@@ -4,12 +4,12 @@ export const usercolumns = [
   {
     label: "Name",
     field: "Name",
-    width: 250,
+    width: 200,
   },
   {
     label: "Email",
     field: "Email",
-    width: 250,
+    width: 200,
   },
   {
     label: "Gender",
@@ -195,17 +195,17 @@ export const riskreviewcolumn = [
   {
     label: "Risk Owner",
     field: "RiskOwner",
-    width: 200,
+    width: 150,
   },
   {
     label: "Mitigatioin Effort",
     field: "MitigationEffort",
-    width: 200,
+    width: 150,
   },
   {
     label: "Impact Score",
     field: "ImpactScore",
-    width: 150,
+    width: 100,
   },
   {
     label: "Possibility Score",
@@ -351,7 +351,7 @@ export const deptcolumn = [
   {
     label: "Department ID",
     field: "id",
-    width: 100,
+    width: 50,
   },
   {
     label: "Department Name",
@@ -376,7 +376,7 @@ export const deptcolumn = [
   {
     label: "Risk Mitigated",
     field: "RiskMitigated",
-    width: 150,
+    width: 100,
   },
   {
     label: "Action",

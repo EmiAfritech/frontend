@@ -4,7 +4,7 @@
   height: 100vh;
 }
 .sidebar-header {
-  height: 14rem;
+  height: 12rem;
   background-color: #000c8e;
   box-shadow: 3rem;
   display: flex;
@@ -40,7 +40,7 @@
   border-radius: 5px;
   margin: 5px;
 }
-.MuiDataGrid-row:nth-child(even) {
+.MuiDataGrid-row:nth-child(odd) {
   background-color: rgb(243, 243, 243);
 }
 .report-container {

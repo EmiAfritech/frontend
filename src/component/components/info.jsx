@@ -11,8 +11,8 @@ export function RiskReportAdvice() {
     <p className="m-5">
       <h2 className="pb-2 font-medium">RISK ADVISE</h2>
       Based on the various parameters placed into consideration its relevant the
-      various factors are placed into consideration
-      <br /> in order of relevance
+      various factors are placed <br />
+      into consideration in order of relevance
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
@@ -34,7 +34,8 @@ export function ImpactReportAdvice() {
     <p className="m-5">
       <h2 className="pb-2 font-medium">IMPACT REPORT</h2>
       Based on the various parameters placed into consideration the following
-      aspects of impact were of high concern
+      aspects of impact were <br />
+      of high concern
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
@@ -56,8 +57,8 @@ export function MitigatedReport() {
     <p className="m-5">
       <h2 className="pb-2 font-medium">MITIGATED REPORT</h2>
       Based on the various parameters placed into consideration the following
-      aspects of Mitigations were of high concern and
-      <br /> needs immediate attention
+      aspects of Mitigations were <br />
+      of high concern and needs immediate attention
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">

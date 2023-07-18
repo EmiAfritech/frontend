@@ -47,7 +47,7 @@ export function EmployeesTable() {
           <Userforms />
         </div>
       </div>
-      <div style={{ height: 620, width: "100%", backgroundColor: "white" }}>
+      <div style={{ height: 520, width: "100%", backgroundColor: "white" }}>
         <DataGrid
           rows={records}
           columns={usercolumns}
@@ -93,7 +93,7 @@ export function RiskReview() {
       </div>
 
       <div
-        style={{ height: 620, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -179,7 +179,7 @@ export function DepartmentTab() {
         </div>
       </div>
       <div
-        style={{ height: 620, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
         className="  mt-2 w-full"
       >
         <DataGrid

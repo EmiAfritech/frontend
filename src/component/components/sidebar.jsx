@@ -17,7 +17,7 @@ export function Sidebar() {
       <div className="sidebar-header drop-shadow-lg">
         <img
           src="https://xlriskecg.emiafritech.com/images/logo@2x1.png"
-          style={{ width: 150, height: 150, borderRadius: 100 }}
+          style={{ width: 150, height: 130, borderRadius: 100 }}
         />
         <span>RISK APPLICATION</span>
       </div>
