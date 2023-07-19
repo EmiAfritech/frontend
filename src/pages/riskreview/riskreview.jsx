@@ -5,7 +5,7 @@ export function Riskreview() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className="mt-5 flex mx-auto">
+      <div className="mt-3 flex mx-auto">
         <RiskReview />
       </div>
     </div>

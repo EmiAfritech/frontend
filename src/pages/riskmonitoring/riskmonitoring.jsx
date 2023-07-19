@@ -9,7 +9,7 @@ export function RiskMonitoring() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className=" flex mx-auto mt-10">
+      <div className=" flex mx-auto mt-3">
         <div className="flex flex-col">
           <div className="flex flex-row m-0">
             <RiskBarchart />

@@ -32,7 +32,7 @@ export function EmployeesTable() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
-        <div className="flex items-right h-8 border rounded-lg  bg-white overflow-hidden">
+        <div className="flex items-right h-8 border rounded-lg bg-white overflow-hidden">
           <div className="grid h-full w-24 text-gray-300" />
 
           <input
@@ -78,7 +78,7 @@ export function RiskReview() {
   }
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row-reverse pb-3 pt-5">
+      <div className="flex flex-row-reverse pb-3 pt-2">
         <div className="flex items-right h-8 border rounded-lg  bg-white overflow-hidden">
           <div className="grid h-full w-24 text-gray-300" />
 
@@ -162,7 +162,7 @@ export function DepartmentTab() {
   }
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
           <div className="grid h-full w-24 text-gray-300" />
 

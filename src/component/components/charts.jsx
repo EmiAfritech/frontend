@@ -98,9 +98,8 @@ export function HighVsLow() {
 }
 export function RiskBarchart() {
   return (
-    <div className="card p-3">
-      <h3>RISK MATRIX</h3>
-      <BarChart width={760} height={200} data={BarData}>
+    <div className="p-3">
+      <BarChart width={760} height={250} data={BarData}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />
