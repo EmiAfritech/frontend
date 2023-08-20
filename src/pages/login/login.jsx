@@ -6,11 +6,21 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginBtn = (
-    <Link className="to-login" to="/dashboard">
-      <input className="login" type="submit" value="Login" />
-    </Link>
-  );
+  const loginBtn = async () => {
+    // <Link className="to-login" to="/dashboard">
+    //   <input className="login" type="submit" value="Login" />
+    // </Link>
+
+    let result = await fetch("http://localhost:3000/login", {
+      method: "post",
+      body: JSON.stringify({ email, password }),
+      headers: {
+        "Content-Type": "application/jason",
+      },
+    });
+    result = await result.json();
+    console.warn(result);
+  };
 
   return (
     <>
