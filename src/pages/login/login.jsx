@@ -6,7 +6,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginBtn = async () => {
+  const handleSubmit  = async () => {
     // <Link className="to-login" to="/dashboard">
     //   <input className="login" type="submit" value="Login" />
     // </Link>
@@ -34,7 +34,7 @@ export function Login() {
                 alt="Paris"
                 className="w-55 h-20"
               />
-              <form action="">
+              <form  onSubmit={handleSubmit}>
                 {/* username */}
                 <div className="">
                   <div>
@@ -64,7 +64,7 @@ export function Login() {
                   </div>
                 </div>
                 {/* login-btn */}
-                <div>{loginBtn}</div>
+                <input className="login" type="submit" value="Login" />
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create new account */}
