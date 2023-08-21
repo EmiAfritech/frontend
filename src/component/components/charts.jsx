@@ -20,7 +20,11 @@ import {
   ImpactLineChartData,
   ReportMitigatedBarData,
   HighLowBarData,
+  PieDataReport,
+  pyramid,
 } from "./chartdata";
+
+import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
 import "../comstyles/component.css";
 
@@ -172,7 +176,7 @@ export function ReportRiskLevel() {
         <span>RISK LEVEL</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -184,7 +188,7 @@ export function ReportRiskStatus() {
         <span>RISK STATUS</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -196,7 +200,7 @@ export function ReportRiskLocation() {
         <span>LOCATION</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -208,7 +212,7 @@ export function ReportRiskCategory() {
         <span>CATEGORY</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -220,7 +224,7 @@ export function ReportRiskScoring() {
         <span>RISK SCORING</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -232,7 +236,7 @@ export function ReportRiskSource() {
         <span>SOURCE </span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -244,7 +248,7 @@ export function ReportRiskTeam() {
         <span>TEAM </span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -256,7 +260,7 @@ export function ReportRiskOwner() {
         <span>OWNER</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -268,7 +272,7 @@ export function ReportRiskTechnology() {
         <span>TECHNOLOGY </span>
       </h1>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReviewUnreview} outerRadius={80} />
+        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
       </PieChart>
     </div>
   );
@@ -322,5 +326,29 @@ export function ReportImpactLineChart() {
         <Line type="monotone" dataKey="impact" stroke="#2394cc" />
       </LineChart>
     </div>
+  );
+}
+
+export function Pyramidchat() {
+  return (
+    <Funnel
+      id="pyramid"
+      dataSource={pyramid}
+      sortData={false}
+      inverted={true}
+      algorithm="dynamicHeight"
+      palette="Harmony Light"
+      argumentField="level"
+      valueField="count"
+    >
+      <Tooltip enabled={true} />
+      <Item>
+        <Border visible={true} />
+      </Item>
+      <Legend visible={true} />
+      <Label visible={true} horizontalAlignment="right" backgroundColor="none">
+        <Font size={16} />
+      </Label>
+    </Funnel>
   );
 }

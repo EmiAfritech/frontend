@@ -37,7 +37,6 @@ export function ImpactReportAdvice() {
       aspects of impact were <br />
       of high concern
       <br />
-      <br />
       <a href="" className="text-[#ce4a01] font-bold">
         1. Technologies
         <br />

@@ -6,7 +6,7 @@ export function RiskView() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className=" flex mx-auto mt-10">
+      <div className=" flex mx-auto mt-3">
         <RiskViewTable />
       </div>
     </div>

@@ -11,6 +11,14 @@ export const PieDataReviewUnreview = [
   },
 ];
 
+export const PieDataReport = [
+  {
+    name: "Review",
+    value: 2343,
+    fill: "#2394cc",
+  },
+];
+
 export const PieDataMitigatedUnmitigated = [
   {
     name: "Mitigated",
@@ -281,4 +289,11 @@ export const ReportMitigatedBarData = [
     UnMitigated: 4300,
     amt: 2100,
   },
+];
+
+export const pyramid = [
+  { count: 75, level: "Low", color: "green" },
+  { count: 95, level: "Medium", color: "blue" },
+  { count: 53, level: "High", color: "yellow" },
+  { count: 23, level: "Very High", color: "red" },
 ];

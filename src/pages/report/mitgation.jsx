@@ -1,5 +1,4 @@
-import { ReportMitiationBarchart } from "../../component/components/charts";
-import { MitigatedReport } from "../../component/components/info";
+import { RiskMitigationReportTable } from "../../component/components/tables";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
 
@@ -13,9 +12,8 @@ export function ReportRiskMitigation() {
           content={() => ref.current}
         />
       </div>
-      <div className="mt-12" ref={ref}>
-        <ReportMitiationBarchart />
-        <MitigatedReport />
+      <div className="mt-3" ref={ref}>
+        <RiskMitigationReportTable />
       </div>
     </div>
   );

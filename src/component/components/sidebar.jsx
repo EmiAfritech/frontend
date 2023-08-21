@@ -8,16 +8,18 @@ import {
   FaSignOutAlt,
   FaUserFriends,
   FaUsers,
+  FaListUl,
+  FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export function Sidebar() {
   return (
     <div className="sidebar-container">
-      <div className="sidebar-header drop-shadow-lg">
+      <div className="sidebar-header drop-shadow-lg mb-1">
         <img
           src="https://xlriskecg.emiafritech.com/images/logo@2x1.png"
-          style={{ width: 150, height: 130, borderRadius: 100 }}
+          style={{ width: 150, height: 100, borderRadius: 100 }}
         />
         <span>RISK APPLICATION</span>
       </div>
@@ -28,12 +30,20 @@ export function Sidebar() {
             <Link to="/dashboard">Overview</Link>
           </li>
           <li>
+            <FaListUl className="icons" />
+            <Link to="/risk-identification">Risk Identification</Link>
+          </li>
+          <li>
             <FaClipboardList className="icons" />
             <Link to="/risk-monitoring">Perform Risk Monitoring</Link>
           </li>
           <li>
             <FaClipboardCheck className="icons" />
             <Link to="/risk-review">Perform Risk Review</Link>
+          </li>
+          <li>
+            <FaPencilAlt className="icons" />
+            <Link to="/risk-mitigation">Risk Mitigation</Link>
           </li>
           <li>
             <FaUsers className="icons" />

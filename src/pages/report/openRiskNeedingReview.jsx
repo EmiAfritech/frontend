@@ -1,12 +1,10 @@
-import {
-  Pyramidchat,
-  ReportRiskLineChart,
-} from "../../component/components/charts";
-import { RiskReportAdvice } from "../../component/components/info";
+import { ReportImpactLineChart } from "../../component/components/charts";
+import { ImpactReportAdvice } from "../../component/components/info";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
+import { Reportopenrisktoreview } from "../../component/components/tables";
 
-export function ReportRiskAdvice() {
+export function ReportOpenRiskNeedingReview() {
   const ref = useRef();
   return (
     <div>
@@ -17,8 +15,7 @@ export function ReportRiskAdvice() {
         />
       </div>
       <div ref={ref}>
-        <Pyramidchat />
-        <RiskReportAdvice />
+        <Reportopenrisktoreview />
       </div>
     </div>
   );

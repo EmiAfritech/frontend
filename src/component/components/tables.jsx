@@ -4,14 +4,26 @@ import {
   usercolumns,
   riskreviewrow,
   riskreviewcolumn,
-  sidebarrow,
-  sidebarcolumn,
   deptcolumn,
   deptrow,
   riskmonitoringrow,
   riskmonitoringcolumn,
   riskviewcolumn,
   riskviewrow,
+  riskappetitereportgreatercolumn,
+  riskappetitereportgreaterrow,
+  riskappetitereportlowercolumn,
+  riskappetitereportlowerrow,
+  reportriskmitigationrow,
+  reportriskmitigationcolumn,
+  reportopenrisktoreviewcolumn,
+  reportopenrisktoreviewrow,
+  reportopenriskassignedtomecolumn,
+  reportopenriskassignedtomerow,
+  reportriskandcontrolerow,
+  reportriskandcontrolecolumn,
+  reportaudittrailrow,
+  reportaudittrailcolumn,
 } from "./datatable";
 import { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
@@ -113,28 +125,61 @@ export function RiskReview() {
 }
 
 export function RiskMonitor() {
-  const ViewAll = (
-    <Link
-      className="bg-blue-500 p-1 px-3 rounded-lg text-white mx-2"
-      to="/RiskView"
-    >
-      VIEW ALL
-    </Link>
-  );
-
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row pd-1 pt-6 flex-row-reverse">
-        {ViewAll}
-        <Riskforms />
-      </div>
       <div
-        style={{ height: 250, backgroundColor: "white" }}
-        className="  mt-2 w-auto"
+        style={{ height: 300, backgroundColor: "white" }}
+        className="  mt-10 w-auto"
       >
         <DataGrid
           rows={riskmonitoringrow}
           columns={riskmonitoringcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RiskAppetiteReportGreater() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 450, backgroundColor: "white" }}
+        className="  mt-10 w-auto"
+      >
+        <DataGrid
+          rows={riskappetitereportgreaterrow}
+          columns={riskappetitereportgreatercolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RiskAppetiteReportLower() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 450, backgroundColor: "white" }}
+        className="  mt-10 w-auto"
+      >
+        <DataGrid
+          rows={riskappetitereportlowerrow}
+          columns={riskappetitereportlowercolumn}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
@@ -221,19 +266,6 @@ export function HighLowRiskTable() {
   );
 }
 
-export function SideTable() {
-  return (
-    <div className="flex flex-col">
-      <div
-        style={{ backgroundColor: "white", width: 260, height: 250 }}
-        className=" mt-5 h-auto"
-      >
-        <DataGrid rows={sidebarrow} columns={sidebarcolumn} />
-      </div>
-    </div>
-  );
-}
-
 export function RiskViewTable() {
   const [records, setRecords] = useState(riskviewrow);
 
@@ -246,21 +278,11 @@ export function RiskViewTable() {
 
     setRecords(newData);
   }
-
-  const RiskMonitoring = (
-    <Link
-      className="bg-blue-500 p-2 px-3 rounded-lg text-white mx-2"
-      to="/risk-monitoring"
-    >
-      MONITOR RISK
-    </Link>
-  );
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
           <div className="grid h-full w-24 text-gray-300" />
-
           <input
             className="peer h-full outline-none text-sm text-gray-700 pr-2"
             type="text"
@@ -269,15 +291,155 @@ export function RiskViewTable() {
             onChange={handleSearch}
           />
         </div>
-        <div className="pr-8">{RiskMonitoring}</div>
+        <div className="pr-8">
+          <Riskforms />
+        </div>
       </div>
       <div
-        style={{ height: 620, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
           rows={records}
           columns={riskviewcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function Reportaudittrail() {
+  const [records, setRecords] = useState(reportaudittrailrow);
+
+  function handleSearch(event) {
+    const newData = reportaudittrailrow.filter((reportaudittrailrow) => {
+      return reportaudittrailrow.RiskName.toLowerCase().includes(
+        event.target.value.toLowerCase()
+      );
+    });
+
+    setRecords(newData);
+  }
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
+          <div className="grid h-full w-24 text-gray-300" />
+          <input
+            className="peer h-full outline-none text-sm text-gray-700 pr-2"
+            type="text"
+            id="search"
+            placeholder="Search Name"
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+      <div
+        style={{ height: 450, width: "100%", backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={records}
+          columns={reportaudittrailcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RiskMitigationReportTable() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={reportriskmitigationrow}
+          columns={reportriskmitigationcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function Reportopenrisktoreview() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={reportopenrisktoreviewrow}
+          columns={reportopenrisktoreviewcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function Reportopenriskassignedtome() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={reportopenriskassignedtomerow}
+          columns={reportopenriskassignedtomecolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function Reportriskandcontrole() {
+  return (
+    <div className="flex flex-col">
+      <div
+        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={reportriskandcontrolerow}
+          columns={reportriskandcontrolecolumn}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
