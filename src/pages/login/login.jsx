@@ -1,25 +1,29 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./login.css";
 
-export function Login() {
+async function loginUser(credentials) {
+  return fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
+
+export function Login({ setToken }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit  = async () => {
-    // <Link className="to-login" to="/dashboard">
-    //   <input className="login" type="submit" value="Login" />
-    // </Link>
-
-    let result = await fetch("http://localhost:3000/login", {
-      method: "post",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/jason",
-      },
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = await loginUser({
+      email,
+      password,
     });
-    result = await result.json();
-    console.warn(result);
+    setToken(token);
   };
 
   return (
@@ -34,7 +38,7 @@ export function Login() {
                 alt="Paris"
                 className="w-55 h-20"
               />
-              <form  onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 {/* username */}
                 <div className="">
                   <div>
@@ -84,3 +88,7 @@ export function Login() {
     </>
   );
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
