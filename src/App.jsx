@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login } from "./pages/login/login";
+// import { Login } from "./pages/login/login";
 import { Dashboard } from "./pages/dasboard/dashboard";
 import { RiskMonitoring } from "./pages/riskmonitoring/riskmonitoring";
 import { Sidebar } from "./component/components/sidebar";
@@ -24,11 +24,11 @@ import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Login />} />
-      </Routes>
-      <Routes path="/" element={<Sidebar />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes> */}
+      <Routes path="" element={<Sidebar />}>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />
         <Route path="/risk-review" element={<Riskreview />} />

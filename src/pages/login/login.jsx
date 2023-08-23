@@ -68,7 +68,9 @@ export function Login({ setToken }) {
                   </div>
                 </div>
                 {/* login-btn */}
-                <input className="login" type="submit" value="Login" />
+                <button className="login" type="submit">
+                  Submit
+                </button>
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create new account */}
