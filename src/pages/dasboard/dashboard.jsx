@@ -8,16 +8,8 @@ import {
   HighVsLow,
 } from "../../component/components/charts";
 import "../../component/comstyles/component.css";
-import { useState } from "react";
-import { Login } from "../login/login";
 
 export function Dashboard() {
-  const [token, setToken] = useState();
-  if (!token) {
-    {
-      return <Login setToken={setToken} />;
-    }
-  }
   return (
     <div className="flex de-flex bg-white ">
       <Sidebar />

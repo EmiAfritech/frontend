@@ -20,15 +20,16 @@ import { ReportOpenRiskAssignedToMe } from "./pages/report/openRiskAssignedToMe"
 import { ReportAuditTrail } from "./pages/report/auditTrail";
 import { ReportOpenRiskNeedingReview } from "./pages/report/openRiskNeedingReview";
 import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
+import { Login } from "./pages/login/login";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Login />} />
-      </Routes> */}
-      <Routes path="" element={<Sidebar />}>
-        <Route path="/" element={<Dashboard />} />
+      </Routes>
+      <Routes path="/" element={<Sidebar />}>
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />
         <Route path="/risk-review" element={<Riskreview />} />

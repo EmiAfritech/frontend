@@ -1,29 +1,49 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useState, useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "../../api/axios";
 import "./login.css";
 
-async function loginUser(credentials) {
-  return fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
-}
+const LOGIN_URL = "/login";
 
-export function Login({ setToken }) {
+export function Login() {
+  const { setAuth } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      email,
-      password,
-    });
-    setToken(token);
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ email, password, roles, accessToken });
+      setEmail("");
+      setPassword("");
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+    }
   };
 
   return (
@@ -38,7 +58,13 @@ export function Login({ setToken }) {
                 alt="Paris"
                 className="w-55 h-20"
               />
-              <form onSubmit={handleSubmit}>
+              <section>
+                <p
+                  className={errMsg ? "errmsg" : "offscreen"}
+                  aria-live="assertive"
+                ></p>
+              </section>
+              <form>
                 {/* username */}
                 <div className="">
                   <div>
@@ -49,7 +75,9 @@ export function Login({ setToken }) {
                       type="email"
                       id="email"
                       value={email}
+                      autoComplete="off"
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -62,13 +90,14 @@ export function Login({ setToken }) {
                     <input
                       type="password"
                       id="password"
+                      autoComplete="off"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                 </div>
                 {/* login-btn */}
-                <button className="login" type="submit">
+                <button className="login" type="button" onClick={handleSubmit}>
                   Submit
                 </button>
                 {/* password reset */}
@@ -90,7 +119,3 @@ export function Login({ setToken }) {
     </>
   );
 }
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
