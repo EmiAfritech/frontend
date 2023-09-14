@@ -25,10 +25,8 @@ import { Login } from "./pages/login/login";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-      </Routes>
       <Routes path="/" element={<Sidebar />}>
+        <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />

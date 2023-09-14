@@ -1,6 +1,6 @@
 import {
   Pyramidchat,
-  ReportRiskLineChart,
+  // ReportRiskLineChart,
 } from "../../component/components/charts";
 import { RiskReportAdvice } from "../../component/components/info";
 import ReactToPrint from "react-to-print";

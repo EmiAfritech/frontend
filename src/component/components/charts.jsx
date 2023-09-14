@@ -13,8 +13,6 @@ import {
 } from "recharts";
 import {
   BarData,
-  PieDataOpenClose,
-  PieDataMitigatedUnmitigated,
   PieDataReviewUnreview,
   LineChartData,
   ImpactLineChartData,
@@ -27,8 +25,28 @@ import {
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
 import "../comstyles/component.css";
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
+import {
+  MITIGATEDVSUNMITIGATEDCHAT_URL,
+  OPENVSCLOSECHART_URL,
+  REVIEWEDVSUNREVIEWEDCHART_URL,
+} from "../../api/routes";
 
 export function OpenVsClose() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  });
+
   return (
     <div className=" items-center flex flex-col px-6">
       <h3 className="pb-3">
@@ -36,17 +54,25 @@ export function OpenVsClose() {
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie
-          dataKey="value"
-          data={PieDataOpenClose}
-          outerRadius={80}
-          innerRadius={60}
-        />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
       </PieChart>
     </div>
   );
 }
 export function MitigatedVsUnmitigated() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(MITIGATEDVSUNMITIGATEDCHAT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  });
+
   return (
     <div className="items-center flex flex-col px-6 ">
       <h3 className="pb-3">
@@ -54,17 +80,25 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie
-          dataKey="value"
-          data={PieDataMitigatedUnmitigated}
-          outerRadius={80}
-          innerRadius={60}
-        />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
       </PieChart>
     </div>
   );
 }
 export function ReviewedVsUnreviewed() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(REVIEWEDVSUNREVIEWEDCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  });
+
   return (
     <div className=" items-center flex flex-col px-6 ">
       <h3 className="pb-3">
@@ -72,12 +106,7 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie
-          dataKey="value"
-          data={PieDataReviewUnreview}
-          outerRadius={80}
-          innerRadius={60}
-        />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
       </PieChart>
     </div>
   );

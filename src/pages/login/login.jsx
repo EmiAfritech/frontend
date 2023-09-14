@@ -3,9 +3,8 @@ import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "../../api/axios";
+import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
-
-const LOGIN_URL = "/login";
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -27,12 +26,22 @@ export function Login() {
           withCredentials: true,
         }
       );
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ email, password, roles, accessToken });
-      setEmail("");
-      setPassword("");
-      navigate("/dashboard", { replace: true });
+      if (response.status === 200) {
+        const token = response.data.authToken;
+        const role = response.data.role;
+        if (
+          token !== null ||
+          token !== undefined ||
+          role !== null ||
+          role !== undefined
+        ) {
+          setAuth({ email, password, role, token });
+          setEmail("");
+          setPassword("");
+          navigate("/dashboard", { replace: true });
+          localStorage.setItem("token", token);
+        }
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

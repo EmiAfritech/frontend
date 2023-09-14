@@ -1,189 +1,15 @@
 import "../comstyles/component.css";
 
 export const usercolumns = [
-  {
-    label: "Name",
-    field: "Name",
-    width: 200,
-  },
-  {
-    label: "Email",
-    field: "Email",
-    width: 200,
-  },
-  {
-    label: "Gender",
-    field: "Gender",
-    width: 120,
-  },
-  {
-    label: "Number",
-    field: "Number",
-    width: 200,
-  },
-  {
-    label: "Status",
-    field: "Status",
-    width: 100,
-  },
-  {
-    label: "Action",
-    field: "Action",
-    width: 100,
-  },
-];
-
-export const userrows = [
-  {
-    id: 1,
-    Name: "Cort Tosh",
-    Email: "ctosh0@github.com",
-    Gender: "Male",
-    Number: "327-626-5542",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 2,
-    Name: "Brianne Dzeniskevich",
-    Email: "bdzeniskevich1@hostgator.com",
-    Gender: "Female",
-    Number: "144-190-8956",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 3,
-    Name: "Isadore Botler",
-    Email: "ibotler2@gmpg.org",
-    Gender: "Male",
-    Number: "350-937-0792",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 4,
-    Name: "Janaya Klosges",
-    Email: "jklosges3@amazon.de",
-    Gender: "Female",
-    Number: "502-438-7799",
-    Status: "Inactive",
-
-    Action: "edit",
-  },
-  {
-    id: 5,
-    Name: "Freddi Di Claudio",
-    Email: "fdiclaudio4@phoca.cz",
-    Gender: "Female",
-    Number: "265-448-9627",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 6,
-    Name: "Oliy Mairs",
-    Email: "omairs5@fda.gov",
-    Gender: "Female",
-    Number: "221-516-2295",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 7,
-    Name: "Tabb Wiseman",
-    Email: "twiseman6@friendfeed.com",
-    Gender: "Male",
-    Number: "171-817-5020",
-    Status: "Inactive",
-
-    Action: "edit",
-  },
-  {
-    id: 8,
-    Name: "Joela Betteriss",
-    Email: "jbetteriss7@msu.edu",
-    Gender: "Female",
-    Number: "481-100-9345",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 9,
-    Name: "Alistair Vasyagin",
-    Email: "avasyagin8@gnu.org",
-    Gender: "Male",
-    Number: "520-669-8364",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 10,
-    Name: "Nealon Ratray",
-    Email: "nratray9@typepad.com",
-    Gender: "Male",
-    Number: "993-654-9793",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 11,
-    Name: "Annissa Kissick",
-    Email: "akissicka@deliciousdays.com",
-    Gender: "Female",
-    Number: "283-425-2705",
-    Status: "Inactive",
-
-    Action: "edit",
-  },
-  {
-    id: 12,
-    Name: "Nissie Sidnell",
-    Email: "nsidnellb@freewebs.com",
-    Gender: "Female",
-    Number: "754-391-3116",
-    Status: "Inactive",
-
-    Action: "edit",
-  },
-  {
-    id: 13,
-    Name: "Madalena Fouch",
-    Email: "mfouchc@mozilla.org",
-    Gender: "Female",
-    Number: "584-300-9004",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 14,
-    Name: "Rozina Atkins",
-    Email: "ratkinsd@japanpost.jp",
-    Gender: "Female",
-    Number: "792-856-0845",
-    Status: "Active",
-
-    Action: "edit",
-  },
-  {
-    id: 15,
-    Name: "Lorelle Sandcroft",
-    Email: "lsandcrofte@google.nl",
-    Gender: "Female",
-    Number: "882-911-7241",
-    Status: "Inactive",
-
-    Action: "edit",
-  },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "firstName", headerName: "First Name", width: 120 },
+  { field: "lastName", headerName: "Last Name", width: 120 },
+  { field: "dob", headerName: "Date of Birth", width: 100 },
+  { field: "phone_number", headerName: "Phone Number", width: 120 },
+  { field: "email", headerName: "Email", width: 120 },
+  { field: "role", headerName: "Role", width: 100 },
+  { field: "createdAt", headerName: "Created At", width: 100 },
+  { field: "updatedAt", headerName: "Updated At", width: 100 },
 ];
 
 export const riskreviewcolumn = [
@@ -1144,139 +970,11 @@ export const reportaudittrailrow = [
 ];
 
 export const deptcolumn = [
-  {
-    label: "Department ID",
-    field: "id",
-    width: 50,
-  },
-  {
-    label: "Department Name",
-    field: "DEPARTMENTNAME",
-    width: 200,
-  },
-  {
-    label: "Department Head",
-    field: "DEPARTMENTHEAD",
-    width: 200,
-  },
-  {
-    label: "Work Location",
-    field: "WORKLOCATION",
-    width: 150,
-  },
-  {
-    label: "Risk Report",
-    field: "RISKREPORT",
-    width: 150,
-  },
-  {
-    label: "Risk Mitigated",
-    field: "RiskMitigated",
-    width: 100,
-  },
-  {
-    label: "Action",
-    field: "Action",
-    width: 100,
-  },
-];
-export const deptrow = [
-  {
-    id: 1,
-    DEPARTMENTNAME: "IT",
-    DEPARTMENTHEAD: "Alexander Andoh",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "4",
-    RiskMitigated: "3",
-  },
-  {
-    id: 2,
-    DEPARTMENTNAME: "Accounting",
-    DEPARTMENTHEAD: "Robert Koomson",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "1",
-    RiskMitigated: "4",
-  },
-  {
-    id: 3,
-    DEPARTMENTNAME: "Finance",
-    DEPARTMENTHEAD: "Edwuard",
-    WORKLOCATION: "Kumasi",
-    RISKREPORT: "1",
-    RiskMitigated: "3",
-  },
-  {
-    id: 4,
-    DEPARTMENTNAME: "IT",
-    DEPARTMENTHEAD: "Alexander Andoh",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "4",
-    RiskMitigated: "3",
-  },
-  {
-    id: 5,
-    DEPARTMENTNAME: "Accounting",
-    DEPARTMENTHEAD: "Robert Koomson",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "1",
-    RiskMitigated: "4",
-  },
-  {
-    id: 6,
-    DEPARTMENTNAME: "Finance",
-    DEPARTMENTHEAD: "Edwuard",
-    WORKLOCATION: "Kumasi",
-    RISKREPORT: "1",
-    RiskMitigated: "3",
-  },
-  {
-    id: 7,
-    DEPARTMENTNAME: "IT",
-    DEPARTMENTHEAD: "Alexander Andoh",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "4",
-    RiskMitigated: "3",
-  },
-  {
-    id: 8,
-    DEPARTMENTNAME: "Accounting",
-    DEPARTMENTHEAD: "Robert Koomson",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "1",
-    RiskMitigated: "4",
-  },
-  {
-    id: 9,
-    DEPARTMENTNAME: "Finance",
-    DEPARTMENTHEAD: "Edwuard",
-    WORKLOCATION: "Kumasi",
-    RISKREPORT: "1",
-    RiskMitigated: "3",
-  },
-  {
-    id: 10,
-    DEPARTMENTNAME: "IT",
-    DEPARTMENTHEAD: "Alexander Andoh",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "4",
-    RiskMitigated: "3",
-  },
-  {
-    id: 11,
-    DEPARTMENTNAME: "Accounting",
-    DEPARTMENTHEAD: "Robert Koomson",
-    WORKLOCATION: "Accra",
-    RISKREPORT: "1",
-    RiskMitigated: "4",
-  },
-  {
-    id: 12,
-    DEPARTMENTNAME: "Finance",
-    DEPARTMENTHEAD: "Edwuard",
-    WORKLOCATION: "Kumasi",
-    RISKREPORT: "1",
-    RiskMitigated: "3",
-  },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "deptID", headerName: "Dapartment ID", width: 120 },
+  { field: "name", headerName: "Name", width: 120 },
+  { field: "createdAt", headerName: "Created At", width: 100 },
+  { field: "updatedAt", headerName: "Updated At", width: 120 },
 ];
 
 export const sidebarcolumn = [
@@ -1341,154 +1039,21 @@ export const sidebarrow = [
 ];
 
 export const riskmonitoringcolumn = [
+  { field: "id", headerName: "ID", width: 70 },
   {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 200,
+    field: "risk_response_activitiy_status",
+    headerName: "Risk Activity",
+    width: 120,
   },
   {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 200,
+    field: "risk_response_implementation",
+    headerName: "Risk Implementation",
+    width: 120,
   },
-  {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
-  },
-  {
-    label: "Impact Score",
-    field: "ImpactScore",
-    width: 100,
-  },
-  {
-    label: "Possibility Score",
-    field: "ProbabilityScore",
-    width: 100,
-  },
-  {
-    label: "Risk Score",
-    field: "RiskScore",
-    width: 100,
-  },
-  {
-    label: "Action",
-    field: "Action",
-    width: 100,
-  },
+  { field: "challenges", headerName: "Challenges", width: 100 },
+  { field: "comments", headerName: "Comments", width: 120 },
+  { field: "createdAt", headerName: "Created At", width: 120 },
 ];
-
-export const riskmonitoringrow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    ImpactScore: "4",
-    ProbabilityScore: "3",
-    RiskScore: "2",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    ImpactScore: "1",
-    ProbabilityScore: "4",
-    RiskScore: "2",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    ImpactScore: "1",
-    ProbabilityScore: "3",
-    RiskScore: "4",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    ImpactScore: "4",
-    ProbabilityScore: "3",
-    RiskScore: "2",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    ImpactScore: "1",
-    ProbabilityScore: "4",
-    RiskScore: "2",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    ImpactScore: "1",
-    ProbabilityScore: "3",
-    RiskScore: "4",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    ImpactScore: "4",
-    ProbabilityScore: "3",
-    RiskScore: "2",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    ImpactScore: "1",
-    ProbabilityScore: "4",
-    RiskScore: "2",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    ImpactScore: "1",
-    ProbabilityScore: "3",
-    RiskScore: "4",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    ImpactScore: "4",
-    ProbabilityScore: "3",
-    RiskScore: "2",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    ImpactScore: "1",
-    ProbabilityScore: "4",
-    RiskScore: "2",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    ImpactScore: "1",
-    ProbabilityScore: "3",
-    RiskScore: "4",
-  },
-];
-
 export const riskappetitereportgreatercolumn = [
   {
     label: "Risk Name",
@@ -1676,41 +1241,14 @@ export const riskappetitereportlowerrow = [
 ];
 
 export const riskviewcolumn = [
-  {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 200,
-  },
-  {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 200,
-  },
-  {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
-  },
-  {
-    label: "Impact Score",
-    field: "ImpactScore",
-    width: 100,
-  },
-  {
-    label: "Possibility Score",
-    field: "ProbabilityScore",
-    width: 100,
-  },
-  {
-    label: "Risk Score",
-    field: "RiskScore",
-    width: 100,
-  },
-  {
-    label: "Action",
-    field: "Action",
-    width: 100,
-  },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "riskID", headerName: "Risk ID", width: 120 },
+  { field: "risk_name", headerName: "Risk Name", width: 120 },
+  { field: "risk_description", headerName: "Risk Description", width: 100 },
+  { field: "risk_category", headerName: "Risk Category", width: 120 },
+  { field: "risk_impact_level", headerName: "Risk Impact Level", width: 70 },
+  { field: "risk_score", headerName: "Risk Score", width: 100 },
+  { field: "risk_owner", headerName: "Risk Owner", width: 120 },
 ];
 
 export const riskviewrow = [

@@ -169,12 +169,10 @@ export const LineChartData = [
   {
     name: "Jan",
     risk: 2400,
-    amt: 2400,
   },
   {
     name: "Feb",
     risk: 1398,
-    amt: 2210,
   },
   {
     name: "Mar",

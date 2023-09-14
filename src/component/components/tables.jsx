@@ -1,15 +1,10 @@
-import { Link } from "react-router-dom";
 import {
-  userrows,
   usercolumns,
   riskreviewrow,
   riskreviewcolumn,
   deptcolumn,
-  deptrow,
-  riskmonitoringrow,
   riskmonitoringcolumn,
   riskviewcolumn,
-  riskviewrow,
   riskappetitereportgreatercolumn,
   riskappetitereportgreaterrow,
   riskappetitereportlowercolumn,
@@ -25,22 +20,32 @@ import {
   reportaudittrailrow,
   reportaudittrailcolumn,
 } from "./datatable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Departmentforms, Riskforms, Userforms } from "./drawers";
+import axios from "../../api/axios";
+import {
+  USERS_URL,
+  DEPARTMENT_URL,
+  VIEWALLRISKS_URL,
+  MONITORINGRISK_URL,
+} from "../../api/routes";
 
 export function EmployeesTable() {
-  const [records, setRecords] = useState(userrows);
+  const [tableData, setTableData] = useState([]);
 
-  function handleSearch(event) {
-    const newData = userrows.filter((userrows) => {
-      return userrows.Name.toLowerCase().includes(
-        event.target.value.toLowerCase()
-      );
-    });
+  useEffect(() => {
+    axios
+      .get(USERS_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
 
-    setRecords(newData);
-  }
+  function handleSearch() {}
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
@@ -52,7 +57,7 @@ export function EmployeesTable() {
             type="text"
             id="search"
             placeholder="Search Name"
-            onChange={handleSearch}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
         <div className="pr-8">
@@ -61,7 +66,7 @@ export function EmployeesTable() {
       </div>
       <div style={{ height: 520, width: "100%", backgroundColor: "white" }}>
         <DataGrid
-          rows={records}
+          rows={tableData}
           columns={usercolumns}
           initialState={{
             pagination: {
@@ -125,6 +130,19 @@ export function RiskReview() {
 }
 
 export function RiskMonitor() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(MONITORINGRISK_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
+
   return (
     <div className="flex flex-col">
       <div
@@ -132,7 +150,7 @@ export function RiskMonitor() {
         className="  mt-10 w-auto"
       >
         <DataGrid
-          rows={riskmonitoringrow}
+          rows={tableData}
           columns={riskmonitoringcolumn}
           initialState={{
             pagination: {
@@ -194,17 +212,20 @@ export function RiskAppetiteReportLower() {
 }
 
 export function DepartmentTab() {
-  const [records, setRecords] = useState(deptrow);
+  const [tableData, setTableData] = useState([]);
 
-  function handleSearch(event) {
-    const newData = deptcolumn.filter((row) => {
-      return row.DEPARTMENTNAME.toLowerCase().includes(
-        event.target.value.toLowerCase()
-      );
-    });
+  useEffect(() => {
+    axios
+      .get(DEPARTMENT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
 
-    setRecords(newData);
-  }
+  function handleSearch() {}
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -228,7 +249,7 @@ export function DepartmentTab() {
         className="  mt-2 w-full"
       >
         <DataGrid
-          rows={records}
+          rows={tableData}
           columns={deptcolumn}
           initialState={{
             pagination: {
@@ -251,7 +272,7 @@ export function HighLowRiskTable() {
         className="  mt-2 w-full"
       >
         <DataGrid
-          rows={deptrow}
+          rows={riskreviewrow}
           columns={deptcolumn}
           initialState={{
             pagination: {
@@ -267,17 +288,20 @@ export function HighLowRiskTable() {
 }
 
 export function RiskViewTable() {
-  const [records, setRecords] = useState(riskviewrow);
+  const [tableData, setTableData] = useState([]);
 
-  function handleSearch(event) {
-    const newData = riskviewrow.filter((riskviewrow) => {
-      return riskviewrow.RiskName.toLowerCase().includes(
-        event.target.value.toLowerCase()
-      );
-    });
+  useEffect(() => {
+    axios
+      .get(VIEWALLRISKS_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
 
-    setRecords(newData);
-  }
+  function handleSearch() {}
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -300,7 +324,7 @@ export function RiskViewTable() {
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={records}
+          rows={tableData}
           columns={riskviewcolumn}
           initialState={{
             pagination: {
