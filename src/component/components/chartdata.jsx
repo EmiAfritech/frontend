@@ -1,15 +1,4 @@
-export const PieDataReviewUnreview = [
-  {
-    name: "Review",
-    value: 2343,
-    fill: "#cc23b3",
-  },
-  {
-    name: "Unreviewed",
-    value: 3000,
-    fill: "#2394cc",
-  },
-];
+
 
 export const PieDataReport = [
   {
@@ -19,38 +8,11 @@ export const PieDataReport = [
   },
 ];
 
-export const PieDataMitigatedUnmitigated = [
-  {
-    name: "Mitigated",
-    value: 2343,
-    fill: "#cc23b3",
-  },
-  {
-    name: "Unmitigated",
-    value: 3000,
-    fill: "#2394cc",
-  },
-];
-
-export const PieDataOpenClose = [
-  {
-    name: "Open",
-    value: 2343,
-    fill: "#cc23b3",
-  },
-  {
-    name: "Closed",
-    value: 3000,
-    fill: "#2394cc",
-  },
-];
-
 export const BarData = [
   {
     name: "Page A",
     open: 4000,
     close: 2400,
-    amt: 2400,
   },
   {
     name: "Page B",
@@ -161,79 +123,6 @@ export const HighLowBarData = [
     name: "Dec",
     high: 3490,
     low: 4300,
-    amt: 2100,
-  },
-];
-
-export const LineChartData = [
-  {
-    name: "Jan",
-    risk: 2400,
-  },
-  {
-    name: "Feb",
-    risk: 1398,
-  },
-  {
-    name: "Mar",
-    risk: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Apr",
-    risk: 3908,
-    amt: 2000,
-  },
-  {
-    name: "May",
-    risk: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Jun",
-    risk: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Jul",
-    risk: 4300,
-    amt: 2100,
-  },
-];
-export const ImpactLineChartData = [
-  {
-    name: "Jan",
-    impact: 5,
-    amt: 2400,
-  },
-  {
-    name: "Feb",
-    impact: 3,
-    amt: 2210,
-  },
-  {
-    name: "Mar",
-    impact: 4,
-    amt: 2290,
-  },
-  {
-    name: "Apr",
-    impact: 1,
-    amt: 2000,
-  },
-  {
-    name: "May",
-    impact: 5,
-    amt: 2181,
-  },
-  {
-    name: "Jun",
-    impact: 4,
-    amt: 2500,
-  },
-  {
-    name: "Jul",
-    impact: 3,
     amt: 2100,
   },
 ];

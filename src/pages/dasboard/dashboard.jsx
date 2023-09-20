@@ -4,8 +4,8 @@ import {
   ReviewedVsUnreviewed,
   MitigatedVsUnmitigated,
   RiskLineChart,
-  ImpactLineChart,
-  HighVsLow,
+  MonitoredVsUnmonitored,
+  
 } from "../../component/components/charts";
 import "../../component/comstyles/component.css";
 
@@ -20,11 +20,10 @@ export function Dashboard() {
               <OpenVsClose />
               <ReviewedVsUnreviewed />
               <MitigatedVsUnmitigated />
-              <HighVsLow />
+              <MonitoredVsUnmonitored/>
             </div>
             <div className="flex flex-row">
               <RiskLineChart />
-              <ImpactLineChart />
             </div>
           </div>
         </div>

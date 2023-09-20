@@ -13,9 +13,6 @@ import {
 } from "recharts";
 import {
   BarData,
-  PieDataReviewUnreview,
-  LineChartData,
-  ImpactLineChartData,
   ReportMitigatedBarData,
   HighLowBarData,
   PieDataReport,
@@ -29,12 +26,17 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import {
   MITIGATEDVSUNMITIGATEDCHAT_URL,
+  MONITOREDVSUNMONITOREDRISKSCHART_URL,
+  OPENVSCLOSEBARCHART_URL,
   OPENVSCLOSECHART_URL,
   REVIEWEDVSUNREVIEWEDCHART_URL,
+  RISKLEVELREPORTCHART_URL,
+  RISKLINECHART_URL,
+  RISKSTATUSREPORTCHART_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     axios
@@ -45,22 +47,23 @@ export function OpenVsClose() {
         },
       })
       .then((data) => setData(data.data));
-  });
+  },[]);
 
   return (
-    <div className=" items-center flex flex-col px-6">
+    <div className=" items-center flex flex-col px-4 pb-5">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={50} />
+        <Tooltip />
       </PieChart>
     </div>
   );
 }
 export function MitigatedVsUnmitigated() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     axios
@@ -71,22 +74,23 @@ export function MitigatedVsUnmitigated() {
         },
       })
       .then((data) => setData(data.data));
-  });
+  },[]);
 
   return (
-    <div className="items-center flex flex-col px-6 ">
+    <div className="items-center flex flex-col px-6 pb-5 ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MITIGATED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={50} />
+        <Tooltip />
       </PieChart>
     </div>
   );
 }
 export function ReviewedVsUnreviewed() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
   useEffect(() => {
     axios
@@ -97,47 +101,74 @@ export function ReviewedVsUnreviewed() {
         },
       })
       .then((data) => setData(data.data));
-  });
+  },[]);
 
   return (
-    <div className=" items-center flex flex-col px-6 ">
+    <div className=" items-center flex flex-col px-6 pb-5 ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>REVIEWED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
       </h3>
       <PieChart width={180} height={160}>
-        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={60} />
+        <Pie dataKey="value" data={data} outerRadius={80} innerRadius={50} />
+        <Tooltip />
       </PieChart>
     </div>
   );
 }
-export function HighVsLow() {
+export function MonitoredVsUnmonitored() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(MONITOREDVSUNMONITOREDRISKSCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
-    <div className=" items-center flex flex-col px-6 ">
+    <div className=" items-center flex flex-col px-6 pb-5 ">
       <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>HIGH </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>LOW</span>
+        <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
+        <span style={{ color: "#2394cc" }}>UNMONITORED</span>
       </h3>
       <PieChart width={180} height={160}>
         <Pie
           dataKey="value"
-          data={PieDataReviewUnreview}
+          data={data}
           outerRadius={80}
-          innerRadius={60}
+          innerRadius={50}
         />
+        <Tooltip />
       </PieChart>
     </div>
   );
 }
 export function RiskBarchart() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSEBARCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
-    <div className="p-3">
-      <BarChart width={760} height={250} data={BarData}>
+    <div className="p-3 card">
+      <BarChart width={760} height={250} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
-        <YAxis />
-        <Bar dataKey="open" fill="#cc23b3" />
-        <Bar dataKey="close" fill="#2394cc" />
+        <YAxis/>
+        <XAxis dataKey="name"/>
+        <Bar dataKey="Opened" fill="#cc23b3" />
+        <Bar dataKey="Closed" fill="#2394cc" />
       </BarChart>
     </div>
   );
@@ -159,12 +190,26 @@ export function HighLowRiskBarchart() {
 }
 
 export function RiskLineChart() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKLINECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
+
   return (
-    <div className="px-5 mt-12 card">
+    
+    <div className="p-8 mt-12 card">
       <LineChart
-        width={400}
+        width={870}
         height={300}
-        data={LineChartData}
+        data={data}
         margin={{ top: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -178,130 +223,220 @@ export function RiskLineChart() {
   );
 }
 
-export function ImpactLineChart() {
-  return (
-    <div className="px-5 mt-12 card">
-      <LineChart
-        width={400}
-        height={300}
-        data={ImpactLineChartData}
-        margin={{ top: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="impact" stroke="#2394cc" />
-      </LineChart>
-    </div>
-  );
-}
 
 export function ReportRiskLevel() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-12">
       <h3 className="pb-3">
         <span>RISK LEVEL</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskStatus() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-2">
       <h3 className="pb-3">
         <span>RISK STATUS</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskLocation() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-12">
       <h3 className="pb-3">
         <span>LOCATION</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskCategory() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
+
   return (
     <div className=" items-center flex flex-col px-5 pb-12">
       <h3 className="pb-3">
         <span>CATEGORY</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskScoring() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-2">
       <h3 className="pb-3">
         <span>RISK SCORING</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskSource() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-2">
       <h3 className="pb-3">
         <span>SOURCE </span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskTeam() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-2">
       <h3 className="pb-3">
         <span>TEAM </span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskOwner() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-12">
       <h3 className="pb-3">
         <span>OWNER</span>
       </h3>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );
 }
 export function ReportRiskTechnology() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORTCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setData(data.data));
+  },[]);
   return (
     <div className=" items-center flex flex-col px-5 pb-2">
       <h1 className="pb-3">
         <span>TECHNOLOGY </span>
       </h1>
       <PieChart width={160} height={160}>
-        <Pie dataKey="value" data={PieDataReport} outerRadius={80} />
+        <Pie dataKey="value" data={data} outerRadius={80} />
       </PieChart>
     </div>
   );

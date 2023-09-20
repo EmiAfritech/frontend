@@ -19,6 +19,7 @@ import {
   reportriskandcontrolecolumn,
   reportaudittrailrow,
   reportaudittrailcolumn,
+  riskmitigationcolumn,
 } from "./datatable";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
@@ -28,7 +29,9 @@ import {
   USERS_URL,
   DEPARTMENT_URL,
   VIEWALLRISKS_URL,
-  MONITORINGRISK_URL,
+  RISKMONITORING_URL,
+  RISKMITIGATION_URL,
+  RISKREVIEW_URL,
 } from "../../api/routes";
 
 export function EmployeesTable() {
@@ -64,7 +67,7 @@ export function EmployeesTable() {
           <Userforms />
         </div>
       </div>
-      <div style={{ height: 520, width: "100%", backgroundColor: "white" }}>
+      <div style={{ height: 520, width: 1000, backgroundColor: "white" }}>
         <DataGrid
           rows={tableData}
           columns={usercolumns}
@@ -82,6 +85,19 @@ export function EmployeesTable() {
 }
 
 export function RiskReview() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKREVIEW_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
+
   const [records, setRecords] = useState(riskreviewrow);
 
   function handleSearch(event) {
@@ -110,11 +126,11 @@ export function RiskReview() {
       </div>
 
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 1000, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={records}
+          rows={tableData}
           columns={riskreviewcolumn}
           initialState={{
             pagination: {
@@ -134,13 +150,13 @@ export function RiskMonitor() {
 
   useEffect(() => {
     axios
-      .get(MONITORINGRISK_URL, {
+      .get(RISKMONITORING_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) => setTableData(data.data));
+      .then((data) => setTableData(data.data),);
   }, []);
 
   return (
@@ -245,12 +261,65 @@ export function DepartmentTab() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 1000, backgroundColor: "white" }}
         className="  mt-2 w-full"
       >
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function RiskmitigationTab() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKMITIGATION_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => setTableData(data.data));
+  }, []);
+
+  function handleSearch() {}
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
+          <div className="grid h-full w-24 text-gray-300" />
+
+          <input
+            className="peer h-full outline-none text-sm text-gray-700 pr-2"
+            type="text"
+            id="search"
+            placeholder="Search Name"
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="pr-8">
+          <Departmentforms />
+        </div>
+      </div>
+      <div
+        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        className="  mt-2 w-full"
+      >
+        <DataGrid
+          rows={tableData}
+          columns={riskmitigationcolumn}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
@@ -320,7 +389,7 @@ export function RiskViewTable() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 1000, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid

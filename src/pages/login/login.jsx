@@ -40,6 +40,7 @@ export function Login() {
           setPassword("");
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
+          alert("You have successfully logged in")
         }
       }
     } catch (err) {
@@ -106,7 +107,7 @@ export function Login() {
                   </div>
                 </div>
                 {/* login-btn */}
-                <button className="login" type="button" onClick={handleSubmit}>
+                <button className="login  hover:bg-[#2a36b8]" type="submit" onClick={handleSubmit}>
                   Submit
                 </button>
                 {/* password reset */}
