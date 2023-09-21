@@ -31,7 +31,7 @@ export function Sidebar() {
           </li>
           <li>
             <FaListUl className="icons" />
-            <Link to="/risk-identification">Risk Identification</Link>
+            <Link to="/risk-identification">RISKS</Link>
           </li>
           <li>
             <FaClipboardList className="icons" />

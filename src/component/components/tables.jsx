@@ -38,32 +38,27 @@ export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(USERS_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => setTableData(data.data));
-  }, []);
+      try{
+      
+        axios
+          .get(USERS_URL, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((data) => setTableData(data.data));
+    
+    }catch(error){
+      console.log(error)
+    }
+  },[]);
 
-  function handleSearch() {}
+  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
-        <div className="flex items-right h-8 border rounded-lg bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-        </div>
-        <div className="pr-8">
+        <div>
           <Userforms />
         </div>
       </div>
@@ -98,33 +93,8 @@ export function RiskReview() {
       .then((data) => setTableData(data.data));
   }, []);
 
-  const [records, setRecords] = useState(riskreviewrow);
-
-  function handleSearch(event) {
-    const newData = riskreviewrow.filter((riskreviewrow) => {
-      return riskreviewrow.RiskName.toLowerCase().includes(
-        event.target.value.toLowerCase()
-      );
-    });
-
-    setRecords(newData);
-  }
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row-reverse pb-3 pt-2">
-        <div className="flex items-right h-8 border rounded-lg  bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={handleSearch}
-          />
-        </div>
-      </div>
-
       <div
         style={{ height: 520, width: 1000, backgroundColor: "white" }}
         className="  mt-2 w-auto"
@@ -240,22 +210,10 @@ export function DepartmentTab() {
       })
       .then((data) => setTableData(data.data));
   }, []);
-
-  function handleSearch() {}
+  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={handleSearch}
-          />
-        </div>
         <div className="pr-8">
           <Departmentforms />
         </div>
@@ -294,22 +252,11 @@ export function RiskmitigationTab() {
       .then((data) => setTableData(data.data));
   }, []);
 
-  function handleSearch() {}
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="pr-8">
+        <div>
           <Departmentforms />
         </div>
       </div>
@@ -368,23 +315,13 @@ export function RiskViewTable() {
         },
       })
       .then((data) => setTableData(data.data));
-  }, []);
+  }, );
 
-  function handleSearch() {}
+  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="pr-8">
+        <div>
           <Riskforms />
         </div>
       </div>
