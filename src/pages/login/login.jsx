@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState,useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -7,12 +7,16 @@ import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 
 export function Login() {
-  const { setAuth } = useContext(AuthContext);
-
+  const {setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
+
+
+  const reload=()=>{
+    setEmail('')
+    setPassword('')
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,23 +40,17 @@ export function Login() {
           role !== undefined
         ) {
           setAuth({ email, password, role, token });
-          setEmail("");
-          setPassword("");
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
           alert("You have successfully logged in")
+          reload()
+        }else{
+          alert("Authorization returned null")
         }
       }
     } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
+      alert("Unathourized User: Input right details")
+      reload()
     }
   };
 
@@ -68,12 +66,6 @@ export function Login() {
                 alt="Paris"
                 className="w-55 h-20"
               />
-              <section>
-                <p
-                  className={errMsg ? "errmsg" : "offscreen"}
-                  aria-live="assertive"
-                ></p>
-              </section>
               <form>
                 {/* username */}
                 <div className="">

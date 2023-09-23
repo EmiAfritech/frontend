@@ -9,21 +9,18 @@ import {
   riskappetitereportgreaterrow,
   riskappetitereportlowercolumn,
   riskappetitereportlowerrow,
-  reportriskmitigationrow,
-  reportriskmitigationcolumn,
   reportopenrisktoreviewcolumn,
   reportopenrisktoreviewrow,
   reportopenriskassignedtomecolumn,
   reportopenriskassignedtomerow,
   reportriskandcontrolerow,
   reportriskandcontrolecolumn,
-  reportaudittrailrow,
   reportaudittrailcolumn,
   riskmitigationcolumn,
 } from "./datatable";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Departmentforms, Riskforms, Userforms } from "./drawers";
+import { Departmentforms, RiskMitigationforms, RiskReviewforms, Riskforms, Userforms } from "./drawers";
 import axios from "../../api/axios";
 import {
   USERS_URL,
@@ -32,7 +29,11 @@ import {
   RISKMONITORING_URL,
   RISKMITIGATION_URL,
   RISKREVIEW_URL,
+  REPORTAUDITTRAIL_URL
 } from "../../api/routes";
+
+
+
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
@@ -52,7 +53,7 @@ export function EmployeesTable() {
     }catch(error){
       console.log(error)
     }
-  },[]);
+  },);
 
   
   return (
@@ -82,6 +83,47 @@ export function EmployeesTable() {
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
 
+    useEffect(() => {
+      axios
+        .get(RISKREVIEW_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => console.log(response.data.Data),);
+    }, []);
+
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+        <div>
+          <RiskReviewforms/>
+        </div>
+      </div>
+      <div
+        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        className="  mt-2 w-auto"
+      >
+        <DataGrid
+          rows={tableData}
+          columns={riskreviewcolumn}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
+          pageSizeOptions={[10, 15]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
+}
+
+export function ClosedRiskTab() {
+  const [tableData, setTableData] = useState([]);
+
   useEffect(() => {
     axios
       .get(RISKREVIEW_URL, {
@@ -95,6 +137,11 @@ export function RiskReview() {
 
   return (
     <div className="flex flex-col">
+      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+        <div>
+          <a href="/risk-review" className="text-blue-500">REVIEW RISK</a>
+        </div>
+      </div>
       <div
         style={{ height: 520, width: 1000, backgroundColor: "white" }}
         className="  mt-2 w-auto"
@@ -126,7 +173,7 @@ export function RiskMonitor() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) => setTableData(data.data),);
+      .then((response) => setTableData(response.data.Data),);
   }, []);
 
   return (
@@ -209,12 +256,12 @@ export function DepartmentTab() {
         },
       })
       .then((data) => setTableData(data.data));
-  }, []);
+  },);
   
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="pr-8">
+        <div>
           <Departmentforms />
         </div>
       </div>
@@ -249,7 +296,7 @@ export function RiskmitigationTab() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) => setTableData(data.data));
+      .then((response) => setTableData(response.data.Data));
   }, []);
 
 
@@ -257,7 +304,7 @@ export function RiskmitigationTab() {
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <Departmentforms />
+          <RiskMitigationforms/>
         </div>
       </div>
       <div
@@ -314,8 +361,10 @@ export function RiskViewTable() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) => setTableData(data.data));
+      .then((response) => setTableData(response.data.Data));
   }, );
+
+
 
   
   return (
@@ -346,37 +395,27 @@ export function RiskViewTable() {
 }
 
 export function Reportaudittrail() {
-  const [records, setRecords] = useState(reportaudittrailrow);
+  const [tableData, setTableData] = useState([]);
 
-  function handleSearch(event) {
-    const newData = reportaudittrailrow.filter((reportaudittrailrow) => {
-      return reportaudittrailrow.RiskName.toLowerCase().includes(
-        event.target.value.toLowerCase()
-      );
-    });
+  useEffect(() => {
+    axios
+      .get(REPORTAUDITTRAIL_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => setTableData(response.data));
+  }, );
 
-    setRecords(newData);
-  }
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div className="flex h-8 border rounded-lg  bg-white overflow-hidden">
-          <div className="grid h-full w-24 text-gray-300" />
-          <input
-            className="peer h-full outline-none text-sm text-gray-700 pr-2"
-            type="text"
-            id="search"
-            placeholder="Search Name"
-            onChange={handleSearch}
-          />
-        </div>
-      </div>
       <div
-        style={{ height: 450, width: "100%", backgroundColor: "white" }}
+        style={{ height: 500, width: "100%", backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={records}
+          rows={tableData}
           columns={reportaudittrailcolumn}
           initialState={{
             pagination: {
@@ -392,15 +431,29 @@ export function Reportaudittrail() {
 }
 
 export function RiskMitigationReportTable() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKMITIGATION_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => setTableData(response.data.Data));
+  }, []);
+
+
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={reportriskmitigationrow}
-          columns={reportriskmitigationcolumn}
+          rows={tableData}
+          columns={riskmitigationcolumn}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },

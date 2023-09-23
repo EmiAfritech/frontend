@@ -18,11 +18,13 @@ import { ReportRiskAndControl } from "./pages/report/riskAndControl";
 import { ReportRiskAppetite } from "./pages/report/riskAppetite";
 import { ReportOpenRiskAssignedToMe } from "./pages/report/openRiskAssignedToMe";
 import { ReportAuditTrail } from "./pages/report/auditTrail";
-import { ReportOpenRiskNeedingReview } from "./pages/report/openRiskNeedingReview";
 import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
+import { ClosedRisk } from "./pages/riskreview/closedrisk";
+import { useState } from "react";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes path="/" element={<Sidebar />}>
@@ -33,6 +35,7 @@ function App() {
         <Route path="/risk-review" element={<Riskreview />} />
         <Route path="/risk-mitigation" element={<RiskMitigation />} />
         <Route path="/department" element={<Department />} />
+        <Route path="/closed-risks" element={<ClosedRisk/>}/>
         <Route path="/employees" element={<Employees />} />
         <Route path="/high-&-Low-Risk" element={<HighLowRisk />} />
         <Route path="/report" element={<Report />}>
@@ -43,10 +46,6 @@ function App() {
           <Route path="risk-and-control" element={<ReportRiskAndControl />} />
           <Route path="risk-appetite" element={<ReportRiskAppetite />} />
           <Route path="audit-trail" element={<ReportAuditTrail />} />
-          <Route
-            path="risk-to-be-reviwed"
-            element={<ReportOpenRiskNeedingReview />}
-          />
           <Route
             path="assigned-risk"
             element={<ReportOpenRiskAssignedToMe />}

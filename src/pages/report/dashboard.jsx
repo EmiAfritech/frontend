@@ -3,10 +3,8 @@ import {
   ReportRiskLevel,
   ReportRiskLocation,
   ReportRiskOwner,
-  ReportRiskScoring,
-  ReportRiskSource,
+  ReportRiskResponse,
   ReportRiskStatus,
-  ReportRiskTechnology,
 } from "../../component/components/charts";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
@@ -27,13 +25,11 @@ export function ReportRiskDashboard() {
             <ReportRiskLevel />
             <ReportRiskCategory />
             <ReportRiskLocation />
-            <ReportRiskOwner />
           </div>
           <div className="flex flex-row pb-3 pt-3">
             <ReportRiskStatus />
-            <ReportRiskSource />
-            <ReportRiskScoring />
-            <ReportRiskTechnology />
+            <ReportRiskResponse />
+            <ReportRiskOwner />
           </div>
         </div>
       </div>

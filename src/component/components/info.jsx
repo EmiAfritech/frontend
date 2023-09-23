@@ -74,3 +74,11 @@ export function MitigatedReport() {
     </p>
   );
 }
+
+export function ViewClosedRisk(){
+  return(
+    <p className="pt-4">
+      To view all closed risks kindly click on the <a href="/closed-risks" className="text-blue-500 font-bold">Link</a>
+    </p>
+  )
+}

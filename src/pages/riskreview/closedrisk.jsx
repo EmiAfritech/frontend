@@ -1,16 +1,13 @@
 import { ViewClosedRisk } from "../../component/components/info";
 import { Sidebar } from "../../component/components/sidebar";
-import { RiskReview } from "../../component/components/tables";
+import { ClosedRiskTab} from "../../component/components/tables";
 import "../../component/comstyles/component.css";
-export function Riskreview() {
+export function ClosedRisk() {
   return (
     <div className="flex de-flex">
       <Sidebar />
       <div className="mt-3 flex mx-auto">
-        <div className="flex flex-col">
-        <RiskReview />
-        <ViewClosedRisk/>
-        </div>
+        <ClosedRiskTab/>
       </div>
     </div>
   );

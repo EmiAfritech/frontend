@@ -8,7 +8,7 @@ import {
   FaSignOutAlt,
   FaUserFriends,
   FaUsers,
-  FaListUl,
+  FaRegShareSquare,
   FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -30,20 +30,20 @@ export function Sidebar() {
             <Link to="/dashboard">Overview</Link>
           </li>
           <li>
-            <FaListUl className="icons" />
-            <Link to="/risk-identification">RISKS</Link>
+            <FaRegShareSquare className="icons" />
+            <Link to="/risk-identification">New Risk</Link>
           </li>
           <li>
             <FaClipboardList className="icons" />
             <Link to="/risk-monitoring">Perform Risk Monitoring</Link>
           </li>
           <li>
-            <FaClipboardCheck className="icons" />
-            <Link to="/risk-review">Perform Risk Review</Link>
-          </li>
-          <li>
             <FaPencilAlt className="icons" />
             <Link to="/risk-mitigation">Risk Mitigation</Link>
+          </li>
+          <li>
+            <FaClipboardCheck className="icons" />
+            <Link to="/risk-review">Perform Risk Review</Link>
           </li>
           <li>
             <FaUsers className="icons" />

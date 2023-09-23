@@ -16,10 +16,7 @@ export function ReportSideTabs() {
             <Link to="mitigation">Mitigations By Date</Link>
           </li>
           <li>
-            <Link to="impact">Likelihood and Impact</Link>
-          </li>
-          <li>
-            <Link to="risk-to-be-reviwed">Open Risks To Review</Link>
+            <Link to="#">Likelihood and Impact</Link>
           </li>
           <li>
             <Link to="assigned-risk">Open Risks Assigned to Me</Link>
