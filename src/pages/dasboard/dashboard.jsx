@@ -8,15 +8,19 @@ import {
   
 } from "../../component/components/charts";
 import "../../component/comstyles/component.css";
+import { LogOut } from "../../api/sessions";
 
 export function Dashboard() {
+  
   return (
+    
     <div className="flex de-flex bg-white ">
       <Sidebar />
       <div className="m-6 flex de-flex mx-auto ">
         <div className="flex flex-row">
           <div className="flex flex-col">
             <div className="flex flex-row">
+            <LogOut/>
               <OpenVsClose />
               <ReviewedVsUnreviewed />
               <MitigatedVsUnmitigated />

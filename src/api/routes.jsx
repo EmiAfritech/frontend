@@ -6,6 +6,9 @@ export const LOGIN_URL = "/login";
 //logout
 export const LOGOUT_URL = "/logout"
 
+//checkSessions
+export const Sessions_URL = "/checkSessionStatus"
+
 
 /*************************************************Organization tables******************************************************/
 
