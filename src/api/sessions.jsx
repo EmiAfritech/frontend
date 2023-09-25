@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
 import { Sessions_URL,LOGOUT_URL } from "./routes";
 import axios from "./axios";
+import { useNavigate } from "react-router-dom";
 
-export function Sessions (){
+export async function Sessions (){
     const[authSession, setAuthSession]=useState("")
-    const authToken = localStorage.getItem("token")
- useEffect(()=>{
-    axios.post(
-        Sessions_URL,
-        JSON.stringify(authToken),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      ). then(response => {setAuthSession(response), console.log(response)})
- })
+    const token = localStorage.getItem("token")
+    console.log(token)
+
+
+
+  try {
+    const response = await axios.post(
+      Sessions_URL,
+      {token:token},
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(response)
+  }catch (err) {
+    console.log("Failed to get session status")
+  }
 }
 
 export function LogOut (){
-    const[authSession, setAuthSession]=useState("")
-    const authToken = localStorage.getItem("token")
+
+  const navigate = useNavigate();
  useEffect(()=>{
-    axios.post(
+    axios.get(
         LOGOUT_URL,
-        JSON.stringify(authToken),
         {
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +37,8 @@ export function LogOut (){
           },
           withCredentials: true,
         }
-      ). then(response => {setAuthSession(response), console.log(response)})
+      )
+      navigate("/", { replace: true });
  })
 }
 

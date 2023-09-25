@@ -722,190 +722,57 @@ export const riskmonitoringcolumn = [
   },
 ];
 export const riskappetitereportgreatercolumn = [
+  { field: "id", headerName: "ID", width: 70 },
   {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 100,
+    field: "riskID",
+    headerName: "Risk Code",
+    width: 120,
   },
   {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 400,
+    field: "riskName",
+    headerName: "Subject",
+    width: 120,
   },
   {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
+    field: "riskScore",
+    headerName: "Inherent Risk score",
+    width: 120,
   },
+  {
+    field: "mitigatedRiskScore",
+    headerName: "Residual Risk score",
+    width: 120,
+  },
+ 
 ];
 
-export const riskappetitereportgreaterrow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-];
+
 
 export const riskappetitereportlowercolumn = [
+  { field: "id", headerName: "ID", width: 70 },
   {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 100,
+    field: "riskID",
+    headerName: "Risk Code",
+    width: 120,
   },
   {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 400,
+    field: "riskName",
+    headerName: "Subject",
+    width: 120,
   },
   {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
+    field: "riskScore",
+    headerName: "Inherent Risk score",
+    width: 120,
+  },
+  {
+    field: "mitigatedRiskScore",
+    headerName: "Residual Risk score",
+    width: 120,
   },
 ];
 
-export const riskappetitereportlowerrow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-  },
-];
+
 
 export const riskviewcolumn = [
   { field: "id", headerName: "ID", width: 70, color: "blue"},

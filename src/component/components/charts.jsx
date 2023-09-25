@@ -28,11 +28,12 @@ import {
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
   RISKSTATUSREPORTCHART_URL,
-  RISKREPORTADVICE_URL,
   RISKLOCATIONREPORT_URL,
   RISKOWNERREPORT_URL,
-  RISKCATEGORYREPORTCHART_URL,
-  RISKRESPONSEREPORT_URL
+  RISKLEVELPYRAMIDCHART_URL,
+  RISKRESPONSEREPORT_URL,
+  RISKLEVELREPORT_URL,
+  RISKCATEGORYREPORT_URL
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -200,6 +201,8 @@ export function RiskLineChart() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -230,11 +233,12 @@ export function ReportRiskLevel() {
 
   useEffect(() => {
     axios
-      .get(RISKSTATUSREPORTCHART_URL, {
+      .get(RISKLEVELREPORT_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token"), 
         },
+        withCredentials: true,
       })
       .then((data) => setData(data.data));
   },[]);
@@ -245,6 +249,7 @@ export function ReportRiskLevel() {
       </h3>
       <PieChart width={180} height={180}>
         <Pie dataKey="value" data={data} outerRadius={85} />
+        <Tooltip />
       </PieChart>
     </div>
   );
@@ -259,6 +264,8 @@ export function ReportRiskStatus() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -269,6 +276,8 @@ export function ReportRiskStatus() {
       </h3>
       <PieChart width={180} height={180}>
         <Pie dataKey="value" data={data} outerRadius={85} />
+        <Tooltip />
+
       </PieChart>
     </div>
   );
@@ -283,6 +292,8 @@ export function ReportRiskLocation() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -293,6 +304,8 @@ export function ReportRiskLocation() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={80} />
+        <Tooltip />
+
       </PieChart>
     </div>
   );
@@ -302,11 +315,13 @@ export function ReportRiskCategory() {
 
   useEffect(() => {
     axios
-      .get(RISKLOCATIONREPORT_URL, {
+      .get(RISKCATEGORYREPORT_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -318,6 +333,7 @@ export function ReportRiskCategory() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
+        <Tooltip />
       </PieChart>
     </div>
   );
@@ -332,6 +348,8 @@ export function ReportRiskResponse() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -342,6 +360,8 @@ export function ReportRiskResponse() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={80} />
+        <Tooltip />
+
       </PieChart>
     </div>
   );
@@ -356,6 +376,8 @@ export function ReportRiskOwner() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
+
       })
       .then((data) => setData(data.data));
   },[]);
@@ -366,6 +388,8 @@ export function ReportRiskOwner() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={80} />
+        <Tooltip />
+
       </PieChart>
     </div>
   );
@@ -414,11 +438,12 @@ export function Pyramidchat() {
 
   useEffect(() => {
     axios
-      .get(RISKREPORTADVICE_URL, {
+      .get(RISKLEVELPYRAMIDCHART_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
       })
       .then((data) => setData(data.data));
   },[]);

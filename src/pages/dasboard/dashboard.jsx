@@ -8,7 +8,6 @@ import {
   
 } from "../../component/components/charts";
 import "../../component/comstyles/component.css";
-import { LogOut } from "../../api/sessions";
 
 export function Dashboard() {
   
@@ -20,7 +19,6 @@ export function Dashboard() {
         <div className="flex flex-row">
           <div className="flex flex-col">
             <div className="flex flex-row">
-            <LogOut/>
               <OpenVsClose />
               <ReviewedVsUnreviewed />
               <MitigatedVsUnmitigated />

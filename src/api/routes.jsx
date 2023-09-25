@@ -28,6 +28,9 @@ export const RISKREVIEW_URL ="/risks/reviews"
 //report audit trail url
 export const REPORTAUDITTRAIL_URL ="/getAudits"
 
+// risk appetite report table
+export const RISKAPPETITEREPORT_URL ="/getRiskAppetite"
+
 
 /*************************************************Organization forms******************************************************/
 
@@ -67,10 +70,10 @@ export const OPENVSCLOSECHART_URL = "/risks/opened-vs-closed";
 export const RISKLINECHART_URL = "/risks/getRiskPerMonthChartData";
 
 //risk status report chart data
-export const RISKSTATUSREPORTCHART_URL ="risks/getRiskStatusChartData"
+export const RISKSTATUSREPORTCHART_URL ="/risks/getRiskStatusChartData"
 
 //risk status report chart data
-export const RISKCATEGORYREPORTCHART_URL ="risks/getRiskCategoryChartData"
+export const RISKCATEGORYREPORTCHART_URL ="/risks/getRiskCategoryChartData"
 
 //openvsclose bar chart data
 export const OPENVSCLOSEBARCHART_URL ="/getOpenedVsClosedGraphData"
@@ -84,15 +87,17 @@ export const RISKMONITORING_URL ="/risks/monitorings"
 export const RISKMITIGATION_URL ="/risks/mitigations"
 
 
-//risk report advice pyramid
-export const RISKREPORTADVICE_URL ="/risks/getRiskLevelChartData"
-
+// risk level pyramid chart
+export const RISKLEVELPYRAMIDCHART_URL ="/getRiskPyramidChartData"
 //risk response report chat
 export const RISKRESPONSEREPORT_URL ="/getRiskResponseChartData"
+//risk level report chat
+export const RISKLEVELREPORT_URL ="/risks/getRiskLevelChartData"
 
 //risk location report chat
 export const RISKLOCATIONREPORT_URL ="/getLocationChartData"
-
+// risk category report chat
+export const RISKCATEGORYREPORT_URL ="/risks/getRiskCategoryChartData"
 
 //risk owner report chat
 export const RISKOWNERREPORT_URL ="/getRiskOwnerChartData"

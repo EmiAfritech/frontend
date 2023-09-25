@@ -12,8 +12,28 @@ import {
   FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+function handleSubmit(e)  {
+  e.preventDefault();
+  const navigate = useNavigate();
+  useEffect(()=>{
+      axios.get(
+          LOGOUT_URL,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        )
+        navigate("/", { replace: true });
+  })
+};
 
 export function Sidebar() {
+  
+    
   return (
     <div className="sidebar-container">
       <div className="sidebar-header drop-shadow-lg mb-1">
@@ -61,10 +81,12 @@ export function Sidebar() {
             <FaCopy className="icons" />
             <Link to="/report">Report</Link>
           </li>
-          <li>
-            <FaSignOutAlt className="icons" />
-            LogOut
-          </li>
+        
+            <button onClick={handleSubmit}>
+              <FaSignOutAlt className="icons" />
+              LogOut
+            </button>
+          
         </ul>
       </div>
     </div>

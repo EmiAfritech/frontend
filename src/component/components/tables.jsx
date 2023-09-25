@@ -6,9 +6,9 @@ import {
   riskmonitoringcolumn,
   riskviewcolumn,
   riskappetitereportgreatercolumn,
-  riskappetitereportgreaterrow,
+  
   riskappetitereportlowercolumn,
-  riskappetitereportlowerrow,
+
   reportopenrisktoreviewcolumn,
   reportopenrisktoreviewrow,
   reportopenriskassignedtomecolumn,
@@ -29,7 +29,8 @@ import {
   RISKMONITORING_URL,
   RISKMITIGATION_URL,
   RISKREVIEW_URL,
-  REPORTAUDITTRAIL_URL
+  REPORTAUDITTRAIL_URL,
+  RISKAPPETITEREPORT_URL
 } from "../../api/routes";
 
 
@@ -199,6 +200,19 @@ export function RiskMonitor() {
 }
 
 export function RiskAppetiteReportGreater() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKAPPETITEREPORT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((response) => setTableData(response.data.outsideRiskAppetite),);
+  }, []);
   return (
     <div className="flex flex-col">
       <div
@@ -206,7 +220,7 @@ export function RiskAppetiteReportGreater() {
         className="  mt-10 w-auto"
       >
         <DataGrid
-          rows={riskappetitereportgreaterrow}
+          rows={tableData}
           columns={riskappetitereportgreatercolumn}
           initialState={{
             pagination: {
@@ -222,6 +236,18 @@ export function RiskAppetiteReportGreater() {
 }
 
 export function RiskAppetiteReportLower() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKAPPETITEREPORT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => setTableData(response.data.withinRiskAppetite),);
+  }, []);
   return (
     <div className="flex flex-col">
       <div
@@ -229,7 +255,7 @@ export function RiskAppetiteReportLower() {
         className="  mt-10 w-auto"
       >
         <DataGrid
-          rows={riskappetitereportlowerrow}
+          rows={tableData}
           columns={riskappetitereportlowercolumn}
           initialState={{
             pagination: {
