@@ -1,4 +1,8 @@
 import "../comstyles/component.css";
+import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+
+import { LOGOUT_URL } from "../../api/routes";
 import {
   FaCopy,
   FaClipboardList,
@@ -12,27 +16,29 @@ import {
   FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-function handleSubmit(e)  {
-  e.preventDefault();
-  const navigate = useNavigate();
-  useEffect(()=>{
-      axios.get(
-          LOGOUT_URL,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            withCredentials: true,
-          }
-        )
-        navigate("/", { replace: true });
-  })
-};
 
 export function Sidebar() {
-  
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try{
+      await axios.get(
+        LOGOUT_URL,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      )
+      navigate("/", { replace: true });
+    }catch(error){
+      alert(error)
+    }
+  };
     
   return (
     <div className="sidebar-container">
