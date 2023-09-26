@@ -14,9 +14,9 @@ import { ReportRiskImpact } from "./pages/report/impact";
 import { ReportRiskChatbot } from "./pages/report/chatbot";
 import { RiskView } from "./pages/riskidentification/riskview";
 import { HighLowRisk } from "./pages/riskmonitoring/HighLowtab";
-import { ReportRiskAndControl } from "./pages/report/riskAndControl";
+import { RiskStatusReport } from "./pages/report/riskStatusReport";
 import { ReportRiskAppetite } from "./pages/report/riskAppetite";
-import { ReportOpenRiskAssignedToMe } from "./pages/report/openRiskAssignedToMe";
+import { ReviewNeedingRisksReport } from "./pages/report/reviewNeedingRisks";
 import { ReportAuditTrail } from "./pages/report/auditTrail";
 import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
@@ -43,12 +43,15 @@ function App() {
           <Route path="advice" element={<ReportRiskAdvice />} />
           <Route path="mitigation" element={<ReportRiskMitigation />} />
           <Route path="impact" element={<ReportRiskImpact />} />
-          <Route path="risk-and-control" element={<ReportRiskAndControl />} />
+
+          <Route path="risk-status-report" element={<RiskStatusReport />} />
+
           <Route path="risk-appetite" element={<ReportRiskAppetite />} />
           <Route path="audit-trail" element={<ReportAuditTrail />} />
+
           <Route
-            path="assigned-risk"
-            element={<ReportOpenRiskAssignedToMe />}
+            path="review-needing-risks"
+            element={<ReviewNeedingRisksReport />}
           />
           <Route path="chatbot" element={<ReportRiskChatbot />} />
         </Route>

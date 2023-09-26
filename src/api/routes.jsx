@@ -30,6 +30,10 @@ export const REPORTAUDITTRAIL_URL ="/getAudits"
 
 // risk appetite report table
 export const RISKAPPETITEREPORT_URL ="/getRiskAppetite"
+//risk needing review report table
+export const RISKNEEDINGREVIEWREPORT_URL ="/getAllOpenedRisksNeedingReview"
+//risk status report table
+export const RISKSTATUSREPORT_URL ="/getAllOpenedRisksStatus"
 
 
 /*************************************************Organization forms******************************************************/
@@ -50,7 +54,7 @@ export const MITIGATERISKFORM_URL ="/departments/risk/riskmitigation/create";
 export const REVIEWRISKFORM_URL ="/departments/risk/riskreview/create";
 
 // monitoring form
-export const MONITORINGRISKFORM_URL ="/departments/risk/riskreview/create";
+export const MONITORINGRISKFORM_URL ="/departments/risk/riskmonitorings/create";
 
 /*************************************************Organization chat ******************************************************/
 

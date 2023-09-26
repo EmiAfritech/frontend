@@ -1,8 +1,8 @@
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
-import { Reportriskandcontrole } from "../../component/components/tables";
+import { RiskStatusReportTab } from "../../component/components/tables";
 
-export function ReportRiskAndControl() {
+export function RiskStatusReport() {
   const ref = useRef();
   return (
     <div>
@@ -13,7 +13,7 @@ export function ReportRiskAndControl() {
         />
       </div>
       <div ref={ref}>
-        <Reportriskandcontrole />
+        <RiskStatusReportTab />
       </div>
     </div>
   );

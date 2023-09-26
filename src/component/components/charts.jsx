@@ -159,7 +159,7 @@ export function RiskBarchart() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) =>{ setData(data.data), console.log(data.data)});
+      .then((data) =>{ setData(data.data)});
   },[]);
   return (
     <div className="p-3 card">

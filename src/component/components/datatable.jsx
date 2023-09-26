@@ -247,131 +247,17 @@ export const reportriskmitigationrow = [
 ];
 
 export const reportopenrisktoreviewcolumn = [
-  {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 200,
-  },
-  {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 150,
-  },
-  {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
-  },
-  {
-    label: "Date",
-    field: "Date",
-    width: 100,
-  },
-  {
-    label: "Risk Score",
-    field: "RiskScore",
-    width: 100,
-  },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "riskCode", headerName: "Risk Code", width: 100 },
+  { field: "status", headerName: "Status", width: 100 },
+  { field: "Subject", headerName: "subject", width: 150 },
+  { field: "riskScore", headerName: "Inherent Risk ", width: 150 },
+  { field: "daysOpen", headerName: "Days Open", width: 150 },
+  { field: "nextReviewDate", headerName: "Next Review Date", width: 150 },
+
 ];
 
-export const reportopenrisktoreviewrow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-];
+
 
 export const reportopenriskassignedtomecolumn = [
   {
@@ -401,231 +287,27 @@ export const reportopenriskassignedtomecolumn = [
   },
 ];
 
-export const reportopenriskassignedtomerow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
+
+
+export const riskstatuscolumn = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "riskCode", headerName: "Risk Code", width: 100 },
+  { field: "status", headerName: "Status", width: 100 },
+  { field: "Subject", headerName: "subject", width: 150 },
+  { field: "department", headerName: "Department", width: 100 },
+  { field: "riskScore", headerName: "Inherent Risk ", width: 150 },
+  { field: "daysOpen", headerName: "Days Open", width: 150 },
+
+  { field: "createdOn", headerName: "Submitted On", width: 150 },
+  { field: "submittedBy", headerName: "Submitted By", width: 150 },
+  { field: "monitoringPlanned", headerName: "monitoring Planned", width: 150 },
+  { field: "mitigationPlanned", headerName: "mitigation Planned", width: 150 },
+  { field: "reviewPlanned", headerName: "review Planned", width: 150 },
+
+
 ];
 
-export const reportriskandcontrolecolumn = [
-  {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 200,
-  },
-  {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 150,
-  },
-  {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
-  },
-  {
-    label: "Date",
-    field: "Date",
-    width: 100,
-  },
-  {
-    label: "Risk Score",
-    field: "RiskScore",
-    width: 100,
-  },
-];
 
-export const reportriskandcontrolerow = [
-  {
-    id: 1,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 2,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 3,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 4,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 5,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 6,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 7,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 8,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 9,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-  {
-    id: 10,
-    RiskName: "Transportation",
-    RiskOwner: "Manager",
-    MitigationEffort: "Travel by air",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 11,
-    RiskName: "IT Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Install Antivirus",
-    Date: "23/04/2009",
-    RiskScore: "2",
-  },
-  {
-    id: 12,
-    RiskName: "Health Risk",
-    RiskOwner: "Manager",
-    MitigationEffort: "Routin medical checkup",
-    Date: "23/04/2009",
-    RiskScore: "4",
-  },
-];
 
 export const reportaudittrailcolumn = [
   { field: "id", headerName: "ID", width: 70 },

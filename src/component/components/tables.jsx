@@ -6,15 +6,12 @@ import {
   riskmonitoringcolumn,
   riskviewcolumn,
   riskappetitereportgreatercolumn,
-  
+  riskstatuscolumn,
   riskappetitereportlowercolumn,
 
   reportopenrisktoreviewcolumn,
-  reportopenrisktoreviewrow,
   reportopenriskassignedtomecolumn,
-  reportopenriskassignedtomerow,
-  reportriskandcontrolerow,
-  reportriskandcontrolecolumn,
+  
   reportaudittrailcolumn,
   riskmitigationcolumn,
 } from "./datatable";
@@ -30,7 +27,9 @@ import {
   RISKMITIGATION_URL,
   RISKREVIEW_URL,
   REPORTAUDITTRAIL_URL,
-  RISKAPPETITEREPORT_URL
+  RISKAPPETITEREPORT_URL,
+  RISKNEEDINGREVIEWREPORT_URL,
+  RISKSTATUSREPORT_URL
 } from "../../api/routes";
 
 
@@ -92,7 +91,7 @@ export function RiskReview() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then((response) => console.log(response.data.Data),);
+        .then((response) => setTableData(response.data.Data),);
     }, []);
 
   return (
@@ -493,15 +492,28 @@ export function RiskMitigationReportTable() {
   );
 }
 
-export function Reportopenrisktoreview() {
+export function ReviewNeedingRisksReportTab() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKNEEDINGREVIEWREPORT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials:true,
+      })
+      .then((response) => setTableData(response.data));
+  }, []);
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={reportopenrisktoreviewrow}
+          rows={tableData}
           columns={reportopenrisktoreviewcolumn}
           initialState={{
             pagination: {
@@ -520,7 +532,7 @@ export function Reportopenriskassignedtome() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -539,16 +551,29 @@ export function Reportopenriskassignedtome() {
   );
 }
 
-export function Reportriskandcontrole() {
+export function RiskStatusReportTab() {
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(RISKSTATUSREPORT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials:true,
+      })
+      .then((response) => setTableData(response.data));
+  }, []);
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: "100%", backgroundColor: "white" }}
+        style={{ height: 520, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={reportriskandcontrolerow}
-          columns={reportriskandcontrolecolumn}
+          rows={tableData}
+          columns={riskstatuscolumn}
           initialState={{
             pagination: {
               paginationModel: { page: 0, pageSize: 10 },
