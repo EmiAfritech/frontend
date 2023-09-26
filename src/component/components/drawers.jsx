@@ -637,7 +637,7 @@ export function RiskReviewforms() {
   const [departmentID, setdepartmentID] = useState("");
 
   const [riskReview, setRiskReview] = useState("");
-  const [nextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
+  const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
   const [riskReviewer, setRiskReviewer] = useState("");
   const [riskReviewComments, setriskReviewComments] = useState("");
 
@@ -652,7 +652,7 @@ export function RiskReviewforms() {
         JSON.stringify({
           riskID,
           riskReview,
-          nextRiskReviewDate,
+          NextRiskReviewDate,
           riskReviewer,
           riskReviewComments,
           departmentID,
@@ -686,10 +686,9 @@ export function RiskReviewforms() {
     // Format the date as "yyyy-MM-dd"
     const formattedDate = `${year}-${month}-${day}T00:00:00.000Z`;
     // Set the formatted date to state
-    console.log(formattedDate)
     setNextRiskReviewDate(formattedDate);
   };
-
+  
   const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
@@ -763,7 +762,7 @@ export function RiskReviewforms() {
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input 
                 type="date"
-                value={nextRiskReviewDate}
+                value={NextRiskReviewDate}
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 onChange={handleDateChange}
               />
@@ -1040,7 +1039,7 @@ export function RiskMonitoringforms() {
   const [riskID, setRiskID] = useState("");
   const [departmentID, setdepartmentID] = useState("");
   const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] = useState("");
-  const [riskResponseImplementation, setRiskResponseImplementation] = useState(new Date());
+  const [riskResponseImplementation, setRiskResponseImplementation] = useState("");
   const [challenges, setChallenges] = useState("");
   const [recommendedChanges, setRecommendedChanges] = useState("");
   const [comments, setComments] = useState("");
@@ -1072,12 +1071,25 @@ export function RiskMonitoringforms() {
       );
       alert("Risk saved Succesfully")
       handleClose();
+      reload()
     }catch(error){
       alert(error)
       handleClose();
+      reload()
     }
 
   };
+
+
+  const reload = () => {
+    setdepartmentID("")
+    setRiskID("")
+    setRiskResponseActivitiyStatus("")
+    setRiskResponseImplementation("")
+    setChallenges("")
+    setRecommendedChanges("")
+    setComments("")
+  }
 
   const [open, setOpen] = React.useState(false);
 

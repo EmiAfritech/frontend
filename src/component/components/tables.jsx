@@ -17,7 +17,7 @@ import {
 } from "./datatable";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Departmentforms, RiskMitigationforms, RiskReviewforms, Riskforms, Userforms } from "./drawers";
+import { Departmentforms, RiskMitigationforms, RiskReviewforms, Riskforms, Userforms,RiskMonitoringforms } from "./drawers";
 import axios from "../../api/axios";
 import {
   USERS_URL,
@@ -177,10 +177,16 @@ export function RiskMonitor() {
   }, []);
 
   return (
+
     <div className="flex flex-col">
+      <div className="flex flex-row pt-1 flex-row-reverse items-center">
+        <div>
+          <RiskMonitoringforms/>
+        </div>
+      </div>
       <div
         style={{ height: 300, backgroundColor: "white" }}
-        className="  mt-10 w-auto"
+        className="  mt-2 w-auto"
       >
         <DataGrid
           rows={tableData}
