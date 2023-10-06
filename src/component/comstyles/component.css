@@ -2,6 +2,7 @@
   background-color: #2a36b8;
   width: 17%;
   height: 100vh;
+  position: fixed;
 }
 .sidebar-header {
   background-color: #000c8e;

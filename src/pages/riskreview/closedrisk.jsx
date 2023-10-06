@@ -6,7 +6,7 @@ export function ClosedRisk() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className="mt-3 flex mx-auto">
+      <div className="mt-3 flex mx-auto pl-[18%]">
         <ClosedRiskTab/>
       </div>
     </div>

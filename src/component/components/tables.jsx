@@ -31,8 +31,7 @@ import {
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL
 } from "../../api/routes";
-
-
+import { Link } from "react-router-dom";
 
 
 export function EmployeesTable() {
@@ -63,7 +62,7 @@ export function EmployeesTable() {
           <Userforms />
         </div>
       </div>
-      <div style={{ height: 520, width: 1000, backgroundColor: "white" }}>
+      <div style={{ height: 650, width: 1100, backgroundColor: "white" }}>
         <DataGrid
           rows={tableData}
           columns={usercolumns}
@@ -102,7 +101,7 @@ export function RiskReview() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -139,11 +138,11 @@ export function ClosedRiskTab() {
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <a href="/risk-review" className="text-blue-500">REVIEW RISK</a>
+          <Link to="/risk-review" className="text-blue-500">REVIEW RISK</Link>
         </div>
       </div>
       <div
-        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -221,7 +220,7 @@ export function RiskAppetiteReportGreater() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 450, backgroundColor: "white" }}
+        style={{ height: 600, width: 850, backgroundColor: "white" }}
         className="  mt-10 w-auto"
       >
         <DataGrid
@@ -256,7 +255,7 @@ export function RiskAppetiteReportLower() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 450, backgroundColor: "white" }}
+        style={{ height: 600, width: 850, backgroundColor: "white" }}
         className="  mt-10 w-auto"
       >
         <DataGrid
@@ -297,7 +296,7 @@ export function DepartmentTab() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-full"
       >
         <DataGrid
@@ -339,7 +338,7 @@ export function RiskmitigationTab() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-full"
       >
         <DataGrid
@@ -406,7 +405,7 @@ export function RiskViewTable() {
         </div>
       </div>
       <div
-        style={{ height: 520, width: 1000, backgroundColor: "white" }}
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -442,7 +441,7 @@ export function Reportaudittrail() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 500, width: "100%", backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -479,7 +478,7 @@ export function RiskMitigationReportTable() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: 850, backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -515,7 +514,7 @@ export function ReviewNeedingRisksReportTab() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: 850, backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -538,7 +537,7 @@ export function Reportopenriskassignedtome() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: 850, backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid
@@ -574,7 +573,7 @@ export function RiskStatusReportTab() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 520, width: 850, backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto"
       >
         <DataGrid

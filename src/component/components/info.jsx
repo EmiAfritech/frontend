@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function ReviewInfo() {
   return (
     <p>
@@ -78,7 +80,7 @@ export function MitigatedReport() {
 export function ViewClosedRisk(){
   return(
     <p className="pt-4">
-      To view all closed risks kindly click on the <a href="/closed-risks" className="text-blue-500 font-bold">Link</a>
+      To view all closed risks kindly click on the <Link to="/closed-risks" className="text-blue-500 font-bold">Link</Link>
     </p>
   )
 }

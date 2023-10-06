@@ -5,7 +5,7 @@ export function Department() {
   return (
     <div className="flex de-flex ">
       <Sidebar />
-      <div className="mx-auto flex mt-3 ">
+      <div className="mx-auto flex mt-3 pl-[18%]">
         <DepartmentTab />
       </div>
     </div>

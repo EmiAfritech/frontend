@@ -7,7 +7,7 @@ export function HighLowRisk() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className=" flex mx-auto mt-10">
+      <div className=" flex mx-auto mt-10 pl-[18%]">
         <div className="flex flex-col">
           <div className="flex flex-row m-0">
             <HighLowRiskBarchart />

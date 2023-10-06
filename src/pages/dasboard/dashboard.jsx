@@ -15,7 +15,7 @@ export function Dashboard() {
     
     <div className="flex de-flex bg-white ">
       <Sidebar />
-      <div className="m-6 flex de-flex mx-auto ">
+      <div className="m-6 flex de-flex mx-auto pl-[18%]">
         <div className="flex flex-row">
           <div className="flex flex-col">
             <div className="flex flex-row">

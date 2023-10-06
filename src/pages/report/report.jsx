@@ -6,7 +6,7 @@ export function Report() {
   return (
     <div className="flex de-flex">
       <Sidebar />
-      <div className="flex flex-row">
+      <div className="flex flex-row pl-[18%] pt-12">
         <div className="mx-auto mt-3">
           <ReportSideTabs />
         </div>
