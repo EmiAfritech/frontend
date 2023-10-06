@@ -88,7 +88,7 @@ export function Sidebar() {
             <Link to="/report">Report</Link>
           </li>
         
-            <button onClick={handleSubmit}>
+            <button className="flex flex row items-center p-3" onClick={handleSubmit}>
               <FaSignOutAlt className="icons" />
               LogOut
             </button>
