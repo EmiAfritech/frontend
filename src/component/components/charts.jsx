@@ -160,7 +160,7 @@ export function RiskBarchart() {
         },
       })
       .then((data) =>{ setData(data.data)});
-  },[]);
+  },[data]);
   return (
     <div className="p-3 card">
       <BarChart width={760} height={250} data={data}>

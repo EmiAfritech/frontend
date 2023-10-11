@@ -354,8 +354,13 @@ export const deptcolumn = [
 export const riskmonitoringcolumn = [
   { field: "id", headerName: "ID", width: 70 },
   {
+    field: "riskID",
+    headerName: "Risk Code",
+    width: 120,
+  },
+  {
     field: "riskName",
-    headerName: "Risk Activity",
+    headerName: "Risk Name",
     width: 120,
   },
   {
@@ -364,8 +369,8 @@ export const riskmonitoringcolumn = [
     width: 120,
   },
   {
-    field: "riskResponseActivityStatus",
-    headerName: "Risk Implementation",
+    field: "riskResponseActivitiyStatus",
+    headerName: "Risk Activity Status",
     width: 120,
   },
   {

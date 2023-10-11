@@ -2,8 +2,7 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import axios from "../../api/axios";
-import { useState} from "react";
-import { Select, initTE } from "tw-elements";
+import { useState,useEffect} from "react";
 
 import {
   CREATERISKFORM_URL,
@@ -12,7 +11,68 @@ import {
   DEPARTMENTCREATEFORM_URL,
   REVIEWRISKFORM_URL,
   MONITORINGRISKFORM_URL,
+  RISKIDS_URL,
+  DEPARTMENTDROPDOWN_URL,
+  USERDROPDOWN_URL,
 } from "../../api/routes";
+
+function getAllOpenedRiskIDs(){
+      const [riskID, setRiskID] = useState([]);
+      useEffect(() => {
+        axios
+          .get(RISKIDS_URL, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((data) => {
+            setRiskID(data.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, []);
+      return riskID;
+}
+function getAllDepartmentNamesAndIDs(){
+        const [department, setDepartment] = useState([]);
+        useEffect(() => {
+            axios
+            .get(DEPARTMENTDROPDOWN_URL, {
+                headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then((data) => {
+                setDepartment(data.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }, []);
+        return department;
+}
+function getAllUserNames(){
+        const [user, setUser] = useState([]);
+        useEffect(() => {
+            axios
+            .get(USERDROPDOWN_URL, {
+                headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then((data) => {
+                setUser(data.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }, []);
+        return user;
+}
 
 export function Userforms() {
   const [userName, setUserName] = useState("");
@@ -660,7 +720,7 @@ export function Riskforms() {
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   id="category"
                   aria-describedby="category"
-                  value={riskCategory}
+                  value={riskResponse}
                   autoComplete="off"
                   onChange={(e) => setRiskResponse(e.target.value)}
                   required>
@@ -682,7 +742,7 @@ export function Riskforms() {
                 <textarea
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   aria-describedby="objective"
-                  value={riskObjective}
+                  value={riskResponseActivity}
                   autoComplete="off"
                   onChange={(e) => setRiskResponseActivitiy(e.target.value)}
                   required
@@ -1133,6 +1193,8 @@ export function RiskMitigationforms() {
 }
 export function RiskMonitoringforms() {
   const [riskID, setRiskID] = useState("");
+  const [risks,setRiskIDs] = useState([]);
+  const [dept, setDept] = useState([]);
   const [departmentID, setdepartmentID] = useState("");
   const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] =
     useState("");
@@ -1141,11 +1203,49 @@ export function RiskMonitoringforms() {
   const [challenges, setChallenges] = useState("");
   const [recommendedChanges, setRecommendedChanges] = useState("");
   const [comments, setComments] = useState("");
-
+  try {
+    useEffect(() => {
+        axios
+        .get(DEPARTMENTDROPDOWN_URL, {
+            headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((data) => {
+            setDept(data.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }, []);
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    useEffect(() => {
+        axios
+        .get(RISKIDS_URL, {
+            headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((data) => {
+            setRiskIDs(data.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }, []);
+  } catch (error) {
+    console.log(error);
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     try {
+      console.log(riskID, riskResponseActivitiyStatus, riskResponseImplementation, challenges, recommendedChanges, comments, departmentID)  
       await axios.post(
         MONITORINGRISKFORM_URL,
         JSON.stringify({
@@ -1174,6 +1274,9 @@ export function RiskMonitoringforms() {
       reload();
     }
   };
+  
+  
+
 
   const reload = () => {
     setdepartmentID("");
@@ -1208,29 +1311,38 @@ export function RiskMonitoringforms() {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskID"
-                value={riskID}
-                autoComplete="off"
-                onChange={(e) => setRiskID(e.target.value)}
-                required
-              />
+              
+               <select
+                    type="riskID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="riskID"
+                    aria-describedby="riskID"
+                    value={riskID}
+                    autoComplete="off"
+                    onChange={(e) => setRiskID(e.target.value)}
+                    required>
+                    <option></option>
+                    {risks.map((risks) => <option key={risks.id} value={risks.value}> {risks.value}</option>)}
+                  </select>
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 risk-id
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                value={departmentID}
-                autoComplete="off"
-                onChange={(e) => setdepartmentID(e.target.value)}
-                required
-              />
+              
+              <select
+                    type="departmentID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="departmentID"
+                    aria-describedby="departmentID"
+                    value={departmentID}
+                    autoComplete="off"
+                    onChange={(e) => setdepartmentID(e.target.value)}
+                    required>
+                    <option></option>
+                            
+                    {dept.map((dept) => <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}> {dept.deptIDs.deptID}</option>)}
+                  </select>
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 department-id
               </label>

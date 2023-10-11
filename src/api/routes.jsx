@@ -120,4 +120,15 @@ export const MITIGATIONRISK_URL =
   "/departments/{departmentId}/risks/{riskId}/riskmitigation";
 
 
+/*****dropdowns  */
+//riskIDS dropdown
+export const RISKIDS_URL ="/risks/getAllOpenedRiskIDs";
+
+//department dropdown
+export const DEPARTMENTDROPDOWN_URL ="/departments/namesOrDeptIds";
+
+//user dropdown
+export const USERDROPDOWN_URL ="/getTheNamesOfUserAllUsers";
+
+
   

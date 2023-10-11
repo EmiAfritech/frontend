@@ -91,7 +91,7 @@ export function RiskReview() {
           },
         })
         .then((response) => setTableData(response.data.Data),);
-    }, []);
+    }, [tableData]);
 
   return (
     <div className="flex flex-col">
@@ -173,7 +173,7 @@ export function RiskMonitor() {
         },
       })
       .then((response) => setTableData(response.data.Data),);
-  }, []);
+  }, [tableData]);
 
   return (
 
@@ -216,7 +216,7 @@ export function RiskAppetiteReportGreater() {
         withCredentials: true,
       })
       .then((response) => setTableData(response.data.outsideRiskAppetite),);
-  }, []);
+  }, [tableData]);
   return (
     <div className="flex flex-col">
       <div
@@ -251,7 +251,7 @@ export function RiskAppetiteReportLower() {
         },
       })
       .then((response) => setTableData(response.data.withinRiskAppetite),);
-  }, []);
+  }, [tableData]);
   return (
     <div className="flex flex-col">
       <div
@@ -327,7 +327,7 @@ export function RiskmitigationTab() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, []);
+  }, [tableData]);
 
 
   return (
@@ -392,7 +392,7 @@ export function RiskViewTable() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, );
+  },[tableData] );
 
 
 
@@ -436,7 +436,7 @@ export function Reportaudittrail() {
         },
       })
       .then((response) => setTableData(response.data));
-  }, );
+  },[tableData] );
 
   return (
     <div className="flex flex-col">
@@ -472,7 +472,7 @@ export function RiskMitigationReportTable() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, []);
+  }, [tableData]);
 
 
   return (
@@ -510,7 +510,7 @@ export function ReviewNeedingRisksReportTab() {
         withCredentials:true,
       })
       .then((response) => setTableData(response.data));
-  }, []);
+  }, [tableData]);
   return (
     <div className="flex flex-col">
       <div
@@ -569,7 +569,7 @@ export function RiskStatusReportTab() {
         withCredentials:true,
       })
       .then((response) => setTableData(response.data));
-  }, []);
+  }, [tableData]);
   return (
     <div className="flex flex-col">
       <div
