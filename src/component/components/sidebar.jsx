@@ -14,33 +14,32 @@ import {
   FaUsers,
   FaRegShareSquare,
   FaPencilAlt,
-  
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export function Sidebar() {
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogOut = async (e) => {
     e.preventDefault();
 
-    try{
-      await axios.get(
-        LOGOUT_URL,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      )
+    try {
+      await axios.get(LOGOUT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+
+      localStorage.clear();
+      alert("logOut Successfully");
       navigate("/", { replace: true });
-    }catch(error){
-      alert(error)
+    } catch (error) {
+      alert(error);
     }
   };
-    
+
   return (
     <div className="sidebar-container">
       <div className="sidebar-header drop-shadow-lg mb-1">
@@ -88,12 +87,14 @@ export function Sidebar() {
             <FaCopy className="icons" />
             <Link to="/report">Report</Link>
           </li>
-        
-            <button className="flex flex row items-center p-3" onClick={handleSubmit}>
-              <FaSignOutAlt className="icons" />
-              LogOut
-            </button>
-          
+
+          <button
+            className="flex flex row items-center p-3"
+            onClick={handleLogOut}
+          >
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
         </ul>
       </div>
     </div>

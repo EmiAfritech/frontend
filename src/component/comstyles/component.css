@@ -5,13 +5,13 @@
   position: fixed;
 }
 .sidebar-header {
-  background-color: #000c8e;
+  background-color: white;
   box-shadow: 3rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: #000c8e;
 }
 .sidebar-main {
   display: flex;
@@ -19,7 +19,7 @@
   color: white;
 }
 .sidebar-main li {
-  padding: 13.5px;
+  padding: 17px;
   display: flex;
   align-items: center;
 }

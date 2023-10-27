@@ -8,16 +8,21 @@ import {
   riskappetitereportgreatercolumn,
   riskstatuscolumn,
   riskappetitereportlowercolumn,
-
   reportopenrisktoreviewcolumn,
   reportopenriskassignedtomecolumn,
-  
   reportaudittrailcolumn,
   riskmitigationcolumn,
 } from "./datatable";
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Departmentforms, RiskMitigationforms, RiskReviewforms, Riskforms, Userforms,RiskMonitoringforms } from "./drawers";
+import {
+  Departmentforms,
+  RiskMitigationforms,
+  RiskReviewforms,
+  Riskforms,
+  Userforms,
+  RiskMonitoringforms,
+} from "./drawers";
 import axios from "../../api/axios";
 import {
   USERS_URL,
@@ -29,32 +34,28 @@ import {
   REPORTAUDITTRAIL_URL,
   RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
-  RISKSTATUSREPORT_URL
+  RISKSTATUSREPORT_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
-
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-      try{
-      
-        axios
-          .get(USERS_URL, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
-          .then((data) => setTableData(data.data));
-    
-    }catch(error){
-      console.log(error)
+    try {
+      axios
+        .get(USERS_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((data) => setTableData(data.data));
+    } catch (error) {
+      console.log(error);
     }
-  },);
+  }, [tableData]);
 
-  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
@@ -82,22 +83,22 @@ export function EmployeesTable() {
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
 
-    useEffect(() => {
-      axios
-        .get(RISKREVIEW_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => setTableData(response.data.Data),);
-    }, [tableData]);
+  useEffect(() => {
+    axios
+      .get(RISKREVIEW_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => setTableData(response.data.Data));
+  }, [tableData]);
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <RiskReviewforms/>
+          <RiskReviewforms />
         </div>
       </div>
       <div
@@ -132,13 +133,15 @@ export function ClosedRiskTab() {
         },
       })
       .then((data) => setTableData(data.data));
-  }, []);
+  }, [tableData]);
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <Link to="/risk-review" className="text-blue-500">REVIEW RISK</Link>
+          <Link to="/risk-review" className="text-blue-500">
+            REVIEW RISK
+          </Link>
         </div>
       </div>
       <div
@@ -172,15 +175,14 @@ export function RiskMonitor() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((response) => setTableData(response.data.Data),);
+      .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
   return (
-
     <div className="flex flex-col">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
         <div>
-          <RiskMonitoringforms/>
+          <RiskMonitoringforms />
         </div>
       </div>
       <div
@@ -215,7 +217,7 @@ export function RiskAppetiteReportGreater() {
         },
         withCredentials: true,
       })
-      .then((response) => setTableData(response.data.outsideRiskAppetite),);
+      .then((response) => setTableData(response.data.outsideRiskAppetite));
   }, [tableData]);
   return (
     <div className="flex flex-col">
@@ -250,7 +252,7 @@ export function RiskAppetiteReportLower() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((response) => setTableData(response.data.withinRiskAppetite),);
+      .then((response) => setTableData(response.data.withinRiskAppetite));
   }, [tableData]);
   return (
     <div className="flex flex-col">
@@ -286,8 +288,8 @@ export function DepartmentTab() {
         },
       })
       .then((data) => setTableData(data.data));
-  },);
-  
+  });
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -329,12 +331,11 @@ export function RiskmitigationTab() {
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <RiskMitigationforms/>
+          <RiskMitigationforms />
         </div>
       </div>
       <div
@@ -392,11 +393,8 @@ export function RiskViewTable() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  },[tableData] );
+  }, [tableData]);
 
-
-
-  
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -436,7 +434,7 @@ export function Reportaudittrail() {
         },
       })
       .then((response) => setTableData(response.data));
-  },[tableData] );
+  }, [tableData]);
 
   return (
     <div className="flex flex-col">
@@ -474,7 +472,6 @@ export function RiskMitigationReportTable() {
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
-
   return (
     <div className="flex flex-col">
       <div
@@ -507,7 +504,7 @@ export function ReviewNeedingRisksReportTab() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        withCredentials:true,
+        withCredentials: true,
       })
       .then((response) => setTableData(response.data));
   }, [tableData]);
@@ -566,7 +563,7 @@ export function RiskStatusReportTab() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        withCredentials:true,
+        withCredentials: true,
       })
       .then((response) => setTableData(response.data));
   }, [tableData]);

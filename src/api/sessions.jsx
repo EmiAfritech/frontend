@@ -1,45 +1,29 @@
-import { useEffect, useState } from "react";
-import { Sessions_URL,LOGOUT_URL } from "./routes";
-import axios from "./axios";
-import { useNavigate } from "react-router-dom";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { Sessions_URL } from "./routes";
+// import axios from "./axios";
+// import { useEffect } from "react";
 
-export async function Sessions (){
-    const[authSession, setAuthSession]=useState("")
-    const token = localStorage.getItem("token")
-    console.log(token)
+// export function Sessions() {
+//   const [session, setSession] = useState("");
+//   const navigate = useNavigate();
+//   const token = localStorage.getItem("token");
 
-
-
-  try {
-    const response = await axios.post(
-      Sessions_URL,
-      {token:token},
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    console.log(response)
-  }catch (err) {
-    console.log("Failed to get session status")
-  }
-}
-
-export function LogOut (){
-
-  const navigate = useNavigate();
- useEffect(()=>{
-    axios.get(
-        LOGOUT_URL,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      )
-      navigate("/", { replace: true });
- })
-}
-
-
+//   useEffect(() => {
+//     axios
+//       .post(Sessions_URL, JSON.stringify({ token }), {
+//         headers: { "Content-Type": "application/json" },
+//       })
+//       .then((data) => {
+//         setSession(data.data.message);
+//         console.log(session);
+//         if (session === "valid") {
+//           console.log("Authorized User");
+//         } else {
+//           // alert("Unauthorized User");
+//           // navigate("/", { replace: true });
+//           // localStorage.clear();
+//         }
+//       });
+//   }, []);
+// }

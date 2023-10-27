@@ -1,4 +1,4 @@
-import { useState,useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -7,16 +7,15 @@ import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 
 export function Login() {
-  const {setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
-  const reload=()=>{
-    setEmail('')
-    setPassword('')
-  }
+  const reload = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,15 +41,15 @@ export function Login() {
           setAuth({ email, password, role, token });
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
-          alert("You have successfully logged in")
-          reload()
-        }else{
-          alert("Authorization returned null")
+          alert("You have successfully logged in");
+          reload();
+        } else {
+          alert("Authorization returned null");
         }
       }
     } catch (err) {
-      alert("Unathourized User: Input right details")
-      reload()
+      alert("Unathourized User: Input right details");
+      reload();
     }
   };
 
@@ -99,7 +98,11 @@ export function Login() {
                   </div>
                 </div>
                 {/* login-btn */}
-                <button className="login  hover:bg-[#2a36b8]" type="submit" onClick={handleSubmit}>
+                <button
+                  className="login  hover:bg-[#2a36b8]"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
                   Submit
                 </button>
                 {/* password reset */}

@@ -4,11 +4,10 @@
 export const LOGIN_URL = "/login";
 
 //logout
-export const LOGOUT_URL = "/logout"
+export const LOGOUT_URL = "/logout";
 
 //checkSessions
-export const Sessions_URL = "/checkSessionStatus"
-
+export const Sessions_URL = "/checkSessionStatus";
 
 /*************************************************Organization tables******************************************************/
 
@@ -22,19 +21,17 @@ export const DEPARTMENT_URL = "/departments";
 export const VIEWALLRISKS_URL = "/risks";
 
 //risk review url
-export const RISKREVIEW_URL ="/risks/reviews"
-
+export const RISKREVIEW_URL = "/risks/reviews";
 
 //report audit trail url
-export const REPORTAUDITTRAIL_URL ="/getAudits"
+export const REPORTAUDITTRAIL_URL = "/getAudits";
 
 // risk appetite report table
-export const RISKAPPETITEREPORT_URL ="/getRiskAppetite"
+export const RISKAPPETITEREPORT_URL = "/getRiskAppetite";
 //risk needing review report table
-export const RISKNEEDINGREVIEWREPORT_URL ="/getAllOpenedRisksNeedingReview"
+export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
 //risk status report table
-export const RISKSTATUSREPORT_URL ="/getAllOpenedRisksStatus"
-
+export const RISKSTATUSREPORT_URL = "/getAllOpenedRisksStatus";
 
 /*************************************************Organization forms******************************************************/
 
@@ -45,21 +42,23 @@ export const USERSCREATEFORM_URL = "/users/create";
 export const DEPARTMENTCREATEFORM_URL = "/departments";
 
 // risk form
-export const CREATERISKFORM_URL ="/departments/risk/create";
+export const CREATERISKFORM_URL = "/departments/risk/create";
 
 // mitigation form
-export const MITIGATERISKFORM_URL ="/departments/risk/riskmitigation/create";
+export const MITIGATERISKFORM_URL = "/departments/risk/riskmitigation/create";
 
 // risk review form
-export const REVIEWRISKFORM_URL ="/departments/risk/riskreview/create";
+export const REVIEWRISKFORM_URL = "/departments/risk/riskreview/create";
 
 // monitoring form
-export const MONITORINGRISKFORM_URL ="/departments/risk/riskmonitorings/create";
+export const MONITORINGRISKFORM_URL =
+  "/departments/risk/riskmonitorings/create";
 
 /*************************************************Organization chat ******************************************************/
 
 //get monitored vs unmonitored risks in the organization data
- export const MONITOREDVSUNMONITOREDRISKSCHART_URL ="/risks/monitored-vs-unmonitored";
+export const MONITOREDVSUNMONITOREDRISKSCHART_URL =
+  "/risks/monitored-vs-unmonitored";
 
 //unreviewedVsreviewed risk chat url
 export const REVIEWEDVSUNREVIEWEDCHART_URL = "/risks/reviewed-vs-unreviewed";
@@ -74,40 +73,34 @@ export const OPENVSCLOSECHART_URL = "/risks/opened-vs-closed";
 export const RISKLINECHART_URL = "/risks/getRiskPerMonthChartData";
 
 //risk status report chart data
-export const RISKSTATUSREPORTCHART_URL ="/risks/getRiskStatusChartData"
+export const RISKSTATUSREPORTCHART_URL = "/risks/getRiskStatusChartData";
 
 //risk status report chart data
-export const RISKCATEGORYREPORTCHART_URL ="/risks/getRiskCategoryChartData"
+export const RISKCATEGORYREPORTCHART_URL = "/risks/getRiskCategoryChartData";
 
 //openvsclose bar chart data
-export const OPENVSCLOSEBARCHART_URL ="/getOpenedVsClosedGraphData"
-
+export const OPENVSCLOSEBARCHART_URL = "/getOpenedVsClosedGraphData";
 
 //risk monitoring bar chat chart data
-export const RISKMONITORING_URL ="/risks/monitorings"
-
+export const RISKMONITORING_URL = "/risks/monitorings";
 
 //risk mitigations bar chat chart data
-export const RISKMITIGATION_URL ="/risks/mitigations"
-
+export const RISKMITIGATION_URL = "/risks/mitigations";
 
 // risk level pyramid chart
-export const RISKLEVELPYRAMIDCHART_URL ="/getRiskPyramidChartData"
+export const RISKLEVELPYRAMIDCHART_URL = "/getRiskPyramidChartData";
 //risk response report chat
-export const RISKRESPONSEREPORT_URL ="/getRiskResponseChartData"
+export const RISKRESPONSEREPORT_URL = "/getRiskResponseChartData";
 //risk level report chat
-export const RISKLEVELREPORT_URL ="/risks/getRiskLevelChartData"
+export const RISKLEVELREPORT_URL = "/risks/getRiskLevelChartData";
 
 //risk location report chat
-export const RISKLOCATIONREPORT_URL ="/getLocationChartData"
+export const RISKLOCATIONREPORT_URL = "/getLocationChartData";
 // risk category report chat
-export const RISKCATEGORYREPORT_URL ="/risks/getRiskCategoryChartData"
+export const RISKCATEGORYREPORT_URL = "/risks/getRiskCategoryChartData";
 
 //risk owner report chat
-export const RISKOWNERREPORT_URL ="/getRiskOwnerChartData"
-
-
-
+export const RISKOWNERREPORT_URL = "/getRiskOwnerChartData";
 
 /*************************************************Department ******************************************************/
 
@@ -119,16 +112,12 @@ export const MONITORINGRISK_URL =
 export const MITIGATIONRISK_URL =
   "/departments/{departmentId}/risks/{riskId}/riskmitigation";
 
-
 /*****dropdowns  */
 //riskIDS dropdown
-export const RISKIDS_URL ="/risks/getAllOpenedRiskIDs";
+export const RISKIDS_URL = "/risks/getAllOpenedRiskIDs";
 
 //department dropdown
-export const DEPARTMENTDROPDOWN_URL ="/departments/namesOrDeptIds";
+export const DEPARTMENTDROPDOWN_URL = "/departments/namesOrDeptIds";
 
 //user dropdown
-export const USERDROPDOWN_URL ="/getTheNamesOfUserAllUsers";
-
-
-  
+export const OWNERSDROPDOWN_URL = "/getTheNamesOfUserAllUsers";

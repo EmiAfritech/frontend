@@ -21,10 +21,8 @@ import { ReportAuditTrail } from "./pages/report/auditTrail";
 import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
 import { ClosedRisk } from "./pages/riskreview/closedrisk";
-import { useState } from "react";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes path="/" element={<Sidebar />}>
@@ -35,7 +33,7 @@ function App() {
         <Route path="/risk-review" element={<Riskreview />} />
         <Route path="/risk-mitigation" element={<RiskMitigation />} />
         <Route path="/department" element={<Department />} />
-        <Route path="/closed-risks" element={<ClosedRisk/>}/>
+        <Route path="/closed-risks" element={<ClosedRisk />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/high-&-Low-Risk" element={<HighLowRisk />} />
         <Route path="/report" element={<Report />}>

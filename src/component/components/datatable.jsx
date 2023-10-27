@@ -12,31 +12,40 @@ export const usercolumns = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   { field: "updatedAt", headerName: "Updated At", width: 150 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-      const handleDeleteClick = () => {
         // Implement your edit logic here
         console.log(`Editing row with ID: ${params.row.id}`);
       };
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
       );
     },
-  }, 
+  },
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
+
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
+      );
+    },
+  },
 ];
 
 export const riskreviewcolumn = [
@@ -44,13 +53,17 @@ export const riskreviewcolumn = [
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
   { field: "riskReview", headerName: "Risk Review", width: 150 },
-  { field: "NextRiskReviewDate", headerName: "Next Risk Review Date", width: 170 },
+  {
+    field: "NextRiskReviewDate",
+    headerName: "Next Risk Review Date",
+    width: 170,
+  },
   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
         // Implement your edit logic here
@@ -59,13 +72,26 @@ export const riskreviewcolumn = [
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleEditClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
+      );
+    },
+  },
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
+
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
       );
     },
   },
@@ -76,28 +102,43 @@ export const riskreviewrow = [
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
   { field: "riskReview", headerName: "Risk Review", width: 150 },
-  { field: "NextRiskReviewDate", headerName: "Next Risk Review Date", width: 170 },
+  {
+    field: "NextRiskReviewDate",
+    headerName: "Next Risk Review Date",
+    width: 170,
+  },
   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
-]
-
+];
 
 export const riskmitigationcolumn = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "riskID", headerName: "Risk Code", width: 70 },
   { field: "riskName", headerName: "Risk Name", width: 70 },
-  { field: "mitigatedRiskProbabilityLevel", headerName: "Mitigated Risk Probability Level", width: 150 },
-  { field: "mitigatedRiskImpactLevel", headerName: "Mitigated Risk Impact Level", width: 150 },
-  { field: "mitigatedRiskScore", headerName: "Mitigated Risk Score", width: 150 },
+  {
+    field: "mitigatedRiskProbabilityLevel",
+    headerName: "Mitigated Risk Probability Level",
+    width: 150,
+  },
+  {
+    field: "mitigatedRiskImpactLevel",
+    headerName: "Mitigated Risk Impact Level",
+    width: 150,
+  },
+  {
+    field: "mitigatedRiskScore",
+    headerName: "Mitigated Risk Score",
+    width: 150,
+  },
   { field: "mitigationEffort", headerName: "Mitigation Effort", width: 150 },
   { field: "mitigationCost", headerName: "Mitigation Cost", width: 150 },
   { field: "mitigationControl", headerName: "Mitigation Control", width: 150 },
   { field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
         // Implement your edit logic here
@@ -106,18 +147,30 @@ export const riskmitigationcolumn = [
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleEditClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
       );
     },
   },
-];
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
 
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
+      );
+    },
+  },
+];
 
 export const reportriskmitigationcolumn = [
   {
@@ -254,10 +307,7 @@ export const reportopenrisktoreviewcolumn = [
   { field: "riskScore", headerName: "Inherent Risk ", width: 150 },
   { field: "daysOpen", headerName: "Days Open", width: 150 },
   { field: "nextReviewDate", headerName: "Next Review Date", width: 150 },
-
 ];
-
-
 
 export const reportopenriskassignedtomecolumn = [
   {
@@ -287,8 +337,6 @@ export const reportopenriskassignedtomecolumn = [
   },
 ];
 
-
-
 export const riskstatuscolumn = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "riskCode", headerName: "Risk Code", width: 100 },
@@ -303,19 +351,13 @@ export const riskstatuscolumn = [
   { field: "monitoringPlanned", headerName: "monitoring Planned", width: 150 },
   { field: "mitigationPlanned", headerName: "mitigation Planned", width: 150 },
   { field: "reviewPlanned", headerName: "review Planned", width: 150 },
-
-
 ];
-
-
 
 export const reportaudittrailcolumn = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "action", headerName: "Action", width: 500 },
   { field: "createdAt", headerName: "Created At", width: 200 },
 ];
-
-
 
 export const deptcolumn = [
   { field: "id", headerName: "ID", width: 70 },
@@ -327,9 +369,9 @@ export const deptcolumn = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   { field: "updatedAt", headerName: "Updated At", width: 150 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
         // Implement your edit logic here
@@ -338,18 +380,30 @@ export const deptcolumn = [
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleEditClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
       );
     },
   },
-];
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
 
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
+      );
+    },
+  },
+];
 
 export const riskmonitoringcolumn = [
   { field: "id", headerName: "ID", width: 70 },
@@ -382,28 +436,37 @@ export const riskmonitoringcolumn = [
   { field: "comments", headerName: "Comments", width: 120 },
   { field: "createdAt", headerName: "Created At", width: 120 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-      const handleDeleteClick = () => {
         // Implement your edit logic here
         console.log(`Editing row with ID: ${params.row.id}`);
       };
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
+      );
+    },
+  },
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
+
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
       );
     },
   },
@@ -430,10 +493,7 @@ export const riskappetitereportgreatercolumn = [
     headerName: "Residual Risk score",
     width: 120,
   },
- 
 ];
-
-
 
 export const riskappetitereportlowercolumn = [
   { field: "id", headerName: "ID", width: 70 },
@@ -459,10 +519,8 @@ export const riskappetitereportlowercolumn = [
   },
 ];
 
-
-
 export const riskviewcolumn = [
-  { field: "id", headerName: "ID", width: 70, color: "blue"},
+  { field: "id", headerName: "ID", width: 70, color: "blue" },
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
   { field: "riskDescription", headerName: "Risk Description", width: 200 },
@@ -471,9 +529,9 @@ export const riskviewcolumn = [
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
-    field: 'action',
-    headerName: 'Action',
-    width: 100,
+    field: "edit",
+    headerName: "Edit",
+    width: 50,
     renderCell: (params) => {
       const handleEditClick = () => {
         // Implement your edit logic here
@@ -482,13 +540,26 @@ export const riskviewcolumn = [
 
       return (
         <>
-        <button onClick={handleEditClick} className="px-2">
-          <FaEdit  className="icons"/>
-        </button>
-        <button onClick={handleEditClick} className="px-2">
-          <FaTrash  className="icons"/>
-        </button>
+          <button onClick={handleEditClick} className="px-2">
+            <FaEdit className="icons" />
+          </button>
         </>
+      );
+    },
+  },
+  {
+    field: "delete",
+    headerName: "delete",
+    renderCell: (params) => {
+      const handleDeleteClick = () => {
+        // Implement your edit logic here
+        console.log(`Editing row with ID: ${params.row.id}`);
+      };
+
+      return (
+        <button onClick={handleDeleteClick} className="px-2">
+          <FaTrash className="icons" />
+        </button>
       );
     },
   },

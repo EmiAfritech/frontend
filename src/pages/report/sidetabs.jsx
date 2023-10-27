@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function ReportSideTabs() {
   return (
     <div className="report-container">
-      <div className="report-main mt-2 mx-10">
+      <div className="report-main mt-20 mx-10">
         <ul>
           <li>
             <Link to="">Risk Dashboard</Link>
@@ -19,7 +19,9 @@ export function ReportSideTabs() {
             <Link to="risk-status-report">Risk Status Report</Link>
           </li>
           <li>
-            <Link to="review-needing-risks">All Opened Risks Needing a Review</Link>
+            <Link to="review-needing-risks">
+              All Opened Risks Needing a Review
+            </Link>
           </li>
           <li>
             <Link to="audit-trail">Audit Trail</Link>
