@@ -41,8 +41,8 @@ export function Sidebar() {
   };
 
   return (
-    <div className="sidebar-container">
-      <div className="sidebar-header drop-shadow-lg mb-1">
+    <div className="sidebar-container bg-[#2B6CB0]">
+      <div className="sidebar-header mb-1">
         <img
           src="https://xlriskecg.emiafritech.com/images/logo@2x1.png"
           style={{ width: 150, height: 100, borderRadius: 100 }}

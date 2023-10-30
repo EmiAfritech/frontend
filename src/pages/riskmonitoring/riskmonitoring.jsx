@@ -1,13 +1,16 @@
 import { Sidebar } from "../../component/components/sidebar";
 import { RiskMonitor } from "../../component/components/tables";
-import {  MonitoredVsUnmonitored, RiskBarchart } from "../../component/components/charts";
+import {
+  MonitoredVsUnmonitored,
+  RiskBarchart,
+} from "../../component/components/charts";
 import { ReviewInfo } from "../../component/components/info";
 import "../../component/comstyles/component.css";
 import { Link } from "react-router-dom";
 
 export function RiskMonitoring() {
   return (
-    <div className="flex de-flex">
+    <div className="flex de-flex bg-slate-50 h-screen">
       <Sidebar />
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
@@ -15,7 +18,7 @@ export function RiskMonitoring() {
             <RiskBarchart />
             <div className="flex flex-col justify-center card">
               <Link to="/high-&-Low-Risk">
-                <MonitoredVsUnmonitored/>
+                <MonitoredVsUnmonitored />
               </Link>
               <ReviewInfo />
             </div>

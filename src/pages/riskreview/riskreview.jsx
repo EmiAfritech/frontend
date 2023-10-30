@@ -4,12 +4,12 @@ import { RiskReview } from "../../component/components/tables";
 import "../../component/comstyles/component.css";
 export function Riskreview() {
   return (
-    <div className="flex de-flex">
+    <div className="flex de-flex bg-slate-50">
       <Sidebar />
       <div className="mt-3 flex mx-auto pl-[18%]">
         <div className="flex flex-col">
-        <RiskReview />
-        <ViewClosedRisk/>
+          <RiskReview />
+          <ViewClosedRisk />
         </div>
       </div>
     </div>

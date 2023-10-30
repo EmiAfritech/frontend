@@ -1,12 +1,11 @@
 .sidebar-container {
-  background-color: #2a36b8;
+  background-color: white;
   width: 17%;
   height: 100vh;
   position: fixed;
 }
 .sidebar-header {
   background-color: white;
-  box-shadow: 3rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -17,6 +16,7 @@
   display: flex;
   justify-content: center;
   color: white;
+  padding-top: 22px;
 }
 .sidebar-main li {
   padding: 17px;
@@ -27,12 +27,14 @@
 .icons {
   size: 8px;
   margin-right: 5px;
+  color: #1f194e;
 }
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   margin: 10px;
   text-align: center;
+  background-color: white;
 }
 .card-container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

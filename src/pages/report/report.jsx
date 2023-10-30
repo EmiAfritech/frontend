@@ -4,7 +4,7 @@ import { ReportSideTabs } from "./sidetabs";
 
 export function Report() {
   return (
-    <div className="flex de-flex">
+    <div className="flex de-flex bg-slate-50 h-screen">
       <Sidebar />
       <div className="flex flex-row pl-[18%] pt-12">
         <div className="mx-auto mt-3">

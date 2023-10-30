@@ -10,7 +10,7 @@ import "../../component/comstyles/component.css";
 
 export function Dashboard() {
   return (
-    <div className="flex de-flex">
+    <div className="flex de-flex bg-slate-50">
       <Sidebar />
       <div className="m-6 mt-16 flex de-flex mx-auto pl-[18%] ">
         <div className="flex flex-row">

@@ -202,7 +202,7 @@ export function RiskLineChart() {
   }, []);
 
   return (
-    <div className="p-12 mt-12 card">
+    <div className="p-12 mt-12 card bg-white">
       <LineChart width={920} height={300} data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
