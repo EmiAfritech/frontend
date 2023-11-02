@@ -12,6 +12,7 @@ import {
   Line,
 } from "recharts";
 import { HighLowBarData } from "./chartdata";
+import Chart from "react-apexcharts";
 
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
@@ -426,24 +427,131 @@ export function Pyramidchat() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <Funnel
-      id="pyramid"
-      dataSource={data}
-      sortData={false}
-      inverted={true}
-      algorithm="dynamicHeight"
-      palette="Harmony Light"
-      argumentField="level"
-      valueField="count"
-    >
-      <Tooltip enabled={true} />
-      <Item>
-        <Border visible={true} />
-      </Item>
-      <Legend visible={true} />
-      <Label visible={true} horizontalAlignment="right" backgroundColor="none">
-        <Font size={16} />
-      </Label>
-    </Funnel>
+    <>
+      <Funnel
+        id="pyramid"
+        dataSource={data}
+        sortData={false}
+        inverted={true}
+        algorithm="dynamicHeight"
+        palette="Harmony Light"
+        argumentField="level"
+        valueField="count"
+      >
+        <Tooltip enabled={true} />
+        <Item>
+          <Border visible={true} />
+        </Item>
+        <Legend visible={true} />
+        <Label
+          visible={true}
+          horizontalAlignment="right"
+          backgroundColor="none"
+        >
+          <Font size={16} />
+        </Label>
+      </Funnel>
+    </>
+  );
+}
+
+export function HeatMap() {
+  const options = {
+    chart: {
+      type: "heatmap",
+    },
+    plotOptions: {
+      heatmap: {
+        colorScale: {
+          ranges: [
+            {
+              from: -30,
+              to: 5,
+              name: "Low",
+              color: "#00A100",
+            },
+            {
+              from: 6,
+              to: 20,
+              name: "Medium",
+              color: "#128FD9",
+            },
+            {
+              from: 21,
+              to: 45,
+              name: "High",
+              color: "#FFB200",
+            },
+            {
+              from: 46,
+              to: 60,
+              name: "Very High",
+              color: "#FF0000",
+            },
+          ],
+        },
+      },
+    },
+    xaxis: {
+      title: {
+        text: "Likelihood", // Label for the x-axis
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Impact", // Label for the y-axis
+      },
+    },
+  };
+
+  const series = [
+    {
+      name: "low",
+      data: [
+        { x: "low", y: 10 },
+        { x: "medium", y: 45 },
+        { x: "high", y: 15 },
+        { x: "very high", y: 15 },
+      ],
+    },
+    {
+      name: "medium",
+      data: [
+        { x: "low", y: 20 },
+        { x: "medium", y: 55 },
+        { x: "high", y: 30 },
+        { x: "very high", y: 70 },
+      ],
+    },
+    {
+      name: "high",
+      data: [
+        { x: "low", y: 5 },
+        { x: "medium", y: 15 },
+        { x: "high", y: 35 },
+        { x: "very high", y: 25 },
+      ],
+    },
+    {
+      name: "very high",
+      data: [
+        { x: "low", y: 30 },
+        { x: "medium", y: 40 },
+        { x: "high", y: 50 },
+        { x: "very high", y: 70 },
+      ],
+    },
+  ];
+
+  return (
+    <div>
+      <Chart
+        options={options}
+        series={series}
+        type="heatmap"
+        height={550}
+        width={900}
+      />
+    </div>
   );
 }

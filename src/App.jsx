@@ -21,6 +21,7 @@ import { ReportAuditTrail } from "./pages/report/auditTrail";
 import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
 import { ClosedRisk } from "./pages/riskreview/closedrisk";
+import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 
 function App() {
   return (
@@ -46,6 +47,10 @@ function App() {
 
           <Route path="risk-appetite" element={<ReportRiskAppetite />} />
           <Route path="audit-trail" element={<ReportAuditTrail />} />
+          <Route
+            path="likelyhood-vs-impact"
+            element={<ReportLikelyhoodVsImpact />}
+          />
 
           <Route
             path="review-needing-risks"

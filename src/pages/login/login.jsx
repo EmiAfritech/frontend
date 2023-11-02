@@ -46,6 +46,8 @@ export function Login() {
         } else {
           alert("Authorization returned null");
         }
+      } else {
+        alert("Server Down");
       }
     } catch (err) {
       alert("Unathourized User: Input right details");

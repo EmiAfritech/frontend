@@ -14,7 +14,12 @@ import {
   riskmitigationcolumn,
 } from "./datatable";
 import { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbar,
+  gridFilteredSortedRowIdsSelector,
+  selectedGridRowsSelector,
+} from "@mui/x-data-grid";
 import {
   Departmentforms,
   RiskMitigationforms,
@@ -37,6 +42,14 @@ import {
   RISKSTATUSREPORT_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
+const getSelectedRowsToExport = ({ apiRef }) => {
+  const selectedRowIds = selectedGridRowsSelector(apiRef);
+  if (selectedRowIds.size > 0) {
+    return Array.from(selectedRowIds.keys());
+  }
+
+  return gridFilteredSortedRowIdsSelector(apiRef);
+};
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
@@ -571,7 +584,7 @@ export function RiskStatusReportTab() {
     <div className="flex flex-col">
       <div
         style={{ height: 650, width: 850, backgroundColor: "white" }}
-        className="  mt-2 w-auto"
+        className=" mt-2 w-auto"
       >
         <DataGrid
           rows={tableData}
@@ -583,6 +596,12 @@ export function RiskStatusReportTab() {
           }}
           pageSizeOptions={[10, 15]}
           checkboxSelection
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              printOptions: { getRowsToExport: getSelectedRowsToExport },
+            },
+          }}
         />
       </div>
     </div>

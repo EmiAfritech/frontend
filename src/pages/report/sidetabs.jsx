@@ -10,6 +10,9 @@ export function ReportSideTabs() {
             <Link to="">Risk Dashboard</Link>
           </li>
           <li>
+            <Link to="likelyhood-vs-impact">Likelyhood Vs Impact</Link>
+          </li>
+          <li>
             <Link to="risk-appetite">Risk Appetite Report</Link>
           </li>
           <li>
