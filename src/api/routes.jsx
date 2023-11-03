@@ -121,3 +121,6 @@ export const DEPARTMENTDROPDOWN_URL = "/departments/namesOrDeptIds";
 
 //user dropdown
 export const OWNERSDROPDOWN_URL = "/getTheNamesOfUserAllUsers";
+
+//heap map
+export const HEATMAP_URL = "/getHeatMapData";

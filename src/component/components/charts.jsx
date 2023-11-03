@@ -33,6 +33,7 @@ import {
   RISKRESPONSEREPORT_URL,
   RISKLEVELREPORT_URL,
   RISKCATEGORYREPORT_URL,
+  HEATMAP_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -456,6 +457,20 @@ export function Pyramidchat() {
 }
 
 export function HeatMap() {
+  const [data, setData] = useState();
+
+ useEffect(() => {
+    axios
+      .get(HEATMAP_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => setData(data.data));
+  }, []);
+
   const options = {
     chart: {
       type: "heatmap",
@@ -506,52 +521,14 @@ export function HeatMap() {
 
   const series = [
     {
-      name: "low",
-      data: [
-        { x: "low", y: 10 },
-        { x: "medium", y: 45 },
-        { x: "high", y: 15 },
-        { x: "very high", y: 15 },
-      ],
-    },
-    {
-      name: "medium",
-      data: [
-        { x: "low", y: 20 },
-        { x: "medium", y: 55 },
-        { x: "high", y: 30 },
-        { x: "very high", y: 70 },
-      ],
-    },
-    {
-      name: "high",
-      data: [
-        { x: "low", y: 5 },
-        { x: "medium", y: 15 },
-        { x: "high", y: 35 },
-        { x: "very high", y: 25 },
-      ],
-    },
-    {
-      name: "very high",
-      data: [
-        { x: "low", y: 30 },
-        { x: "medium", y: 40 },
-        { x: "high", y: 50 },
-        { x: "very high", y: 70 },
-      ],
+      name: "heatmap",
+      data: data, // Set the data for the heatmap here
     },
   ];
 
   return (
     <div>
-      <Chart
-        options={options}
-        series={series}
-        type="heatmap"
-        height={550}
-        width={900}
-      />
+      <Chart options={options} series={series} type="heatmap" height={550} width={900} />
     </div>
   );
 }
