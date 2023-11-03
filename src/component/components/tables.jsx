@@ -465,6 +465,12 @@ export function Reportaudittrail() {
           }}
           pageSizeOptions={[10, 15]}
           checkboxSelection
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              printOptions: { getRowsToExport: getSelectedRowsToExport },
+            },
+          }}
         />
       </div>
     </div>
@@ -501,6 +507,12 @@ export function RiskMitigationReportTable() {
           }}
           pageSizeOptions={[10, 15]}
           checkboxSelection
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              printOptions: { getRowsToExport: getSelectedRowsToExport },
+            },
+          }}
         />
       </div>
     </div>
@@ -537,6 +549,12 @@ export function ReviewNeedingRisksReportTab() {
           }}
           pageSizeOptions={[10, 15]}
           checkboxSelection
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              printOptions: { getRowsToExport: getSelectedRowsToExport },
+            },
+          }}
         />
       </div>
     </div>
@@ -560,6 +578,12 @@ export function Reportopenriskassignedtome() {
           }}
           pageSizeOptions={[10, 15]}
           checkboxSelection
+          slots={{ toolbar: GridToolbar }}
+          slotProps={{
+            toolbar: {
+              printOptions: { getRowsToExport: getSelectedRowsToExport },
+            },
+          }}
         />
       </div>
     </div>

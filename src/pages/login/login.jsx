@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setLoading] = useState(false); // Add isLoading state
   const navigate = useNavigate();
 
   const reload = () => {
@@ -19,6 +21,9 @@ export function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Set isLoading to true while the request is in progress
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -50,8 +55,11 @@ export function Login() {
         alert("Server Down");
       }
     } catch (err) {
-      alert("Unathourized User: Input right details");
+      alert("Unauthorized User: Input right details");
       reload();
+    } finally {
+      // Set isLoading to false when the request is complete (success or error)
+      setLoading(false);
     }
   };
 
@@ -101,15 +109,20 @@ export function Login() {
                 </div>
                 {/* login-btn */}
                 <button
-                  className="login  hover:bg-[#2a36b8]"
+                  className="login hover:bg-[#2a36b8]"
                   type="submit"
                   onClick={handleSubmit}
+                  disabled={isLoading} // Disable the button while loading
                 >
-                  Submit
+                  {isLoading ? (
+                    <CircularProgress size={27} thickness={6} color="primary" />
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
-                {/* create new account */}
+                {/* create a new account */}
                 <div className="new-user">
                   <span style={{ color: "blue" }}>New to EmiRisk?</span>{" "}
                   <span>

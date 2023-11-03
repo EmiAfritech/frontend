@@ -16,13 +16,16 @@ import {
   FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import LoadingPopup from "../../api/sessions";
+import { useState } from "react";
 
 export function Sidebar() {
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
 
   const handleLogOut = async (e) => {
+    setLoading(true);
     e.preventDefault();
-
     try {
       await axios.get(LOGOUT_URL, {
         headers: {
@@ -33,7 +36,8 @@ export function Sidebar() {
       });
 
       localStorage.clear();
-      alert("logOut Successfully");
+
+      alert("Logging Out Successful");
       navigate("/", { replace: true });
     } catch (error) {
       alert(error);
@@ -95,6 +99,7 @@ export function Sidebar() {
             <FaSignOutAlt className="icons" />
             LogOut
           </button>
+          <LoadingPopup isLoading={isLoading} />
         </ul>
       </div>
     </div>

@@ -27,3 +27,33 @@
 //       });
 //   }, []);
 // }
+
+import React, { useState, useEffect } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
+const LoadingPopup = () => {
+  const [isLoading, setLoading] = useState(true);
+
+  // Simulate data loading with a delay (replace this with your actual data fetching)
+  useEffect(() => {
+    // Simulated delay for loading indicator
+    const delay = setTimeout(() => {
+      setLoading(false); // Set loading to false after a delay (simulating loading completion)
+      clearTimeout(delay);
+    }, 2000);
+
+    // Cleanup: Clear the delay timer if the component unmounts
+    return () => {
+      clearTimeout(delay);
+    };
+  }, []);
+
+  return (
+    <Backdrop open={isLoading} style={{ zIndex: 9999, color: "#fff" }}>
+      <CircularProgress color="inherit" />
+    </Backdrop>
+  );
+};
+
+export default LoadingPopup;
