@@ -11,7 +11,10 @@ import {
   DEPARTMENTCREATEFORM_URL,
   REVIEWRISKFORM_URL,
   MONITORINGRISKFORM_URL,
-  RISKIDS_URL,
+  MANAGERSDROPDOWN_URL,
+  RISKIDSREVIEW_URL,
+  RISKIDSMONITORING_URL,
+  RISKIDSMITIGATION_URL,
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
@@ -21,12 +24,28 @@ export function Userforms() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [departmentName, setDepartment] = useState("");
+   const [departmentName, setDepartmentName] = useState("");
+  const [deptmentNames, setdeptmentNames] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [role, setRole] = useState("");
   const [dob, setDob] = useState(new Date());
   const [password, setPassword] = useState("");
 
+   useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -65,13 +84,13 @@ export function Userforms() {
     setFirstName("");
     setLastName("");
     setEmail("");
-    setDepartment("");
+    setDepartmentName("");
     setPhoneNumber("");
     setRole("");
     setPassword("");
   };
 
-  const handleDateChange = (e) => {
+    const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     const dateObj = new Date(selectedDate);
 
@@ -81,9 +100,9 @@ export function Userforms() {
     const day = String(dateObj.getDate()).padStart(2, "0");
 
     // Format the date as "yyyy-MM-dd"
-    const formattedDate = `${year}-${month}-${day}T00:00:00.000Z`;
+    const formattedDate = `${year}-${month}-${day}`;
     // Set the formatted date to state
-    setNextRiskReviewDate(formattedDate);
+    setDob(formattedDate);
   };
 
   const [open, setOpen] = React.useState(false);
@@ -150,19 +169,15 @@ export function Userforms() {
                 Last Name
               </label>
             </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
+           
+             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 type="date"
+                value={dob}
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="lastName"
-                value={lastName}
-                autoComplete="off"
-                onChange={(e) => handleDateChange}
-                required
+                onChange={handleDateChange}
               />
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                Date of Birth
-              </label>
+              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">Date of Birth</label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
@@ -192,20 +207,33 @@ export function Userforms() {
                 Phone Number
               </label>
             </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="Department"
-                value={departmentName}
-                autoComplete="off"
-                onChange={(e) => setDepartment(e.target.value)}
-                required
-              />
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                Department
-              </label>
-            </div>
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <select
+                  type="departmentID"
+                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                  id="departmentID"
+                  aria-describedby="departmentID"
+                  value={departmentName}
+                  autoComplete="off"
+                  onChange={(e) => setDepartmentName(e.target.value)}
+                  required
+                >
+                  <option></option>
+
+                  {deptmentNames.map((deptmentNames) => (
+                    <option
+                      key={deptmentNames.names.id}
+                      value={deptmentNames.names.name}
+                    >
+                      {" "}
+                      {deptmentNames.names.name}
+                    </option>
+                  ))}
+                </select>
+                <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  department
+                </label>
+              </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
                 type="password"
@@ -262,8 +290,25 @@ export function Userforms() {
 export function Departmentforms() {
   const [name, setName] = useState("");
   const [manager, setManager] = useState("");
+  const [managers, setOwnersNames] = useState([]);
   const [deptID, setDeptID] = useState("");
   const [location, setLocation] = useState("");
+
+    useEffect(() => {
+    axios
+      .get(MANAGERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setOwnersNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -353,17 +398,30 @@ export function Departmentforms() {
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
+              <select
                 type="text"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="department-head"
+                id="departmentManager"
+                aria-describedby="departmentManager"
                 value={manager}
                 autoComplete="off"
                 onChange={(e) => setManager(e.target.value)}
                 required
-              />
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                Department-heard
+              >
+                <option></option>
+
+                {managers.map((managers) => (
+                  <option key={managers.id} value={managers.value}>
+                    {" "}
+                    {managers.value}
+                  </option>
+                ))}
+              </select>
+              <label
+                htmlFor="work-location"
+                className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"
+              >
+              department-head
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
@@ -808,7 +866,7 @@ export function RiskReviewforms() {
 
   useEffect(() => {
     axios
-      .get(RISKIDS_URL, {
+      .get(RISKIDSREVIEW_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1065,7 +1123,7 @@ export function RiskMitigationforms() {
 
   useEffect(() => {
     axios
-      .get(RISKIDS_URL, {
+      .get(RISKIDSMITIGATION_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1290,31 +1348,31 @@ export function RiskMitigationforms() {
               >
                 <option></option>
                 <option value="$0 TO $100 000" className="mb-6">
-                  GHC0 - GHC100,000
+                 $0 -$100,000
                 </option>
                 <option value="$100 001 TO $200 000">
-                  GHC100,001 - GHC200,000
+                 $100,001 -$200,000
                 </option>
                 <option value="$300 001 TO 400 000">
-                  GHC300,001 - GHC400,000
+                 $300,001 -$400,000
                 </option>
                 <option value="$400 001 TO $500 000">
-                  GHC400,001 - GHC500,000
+                 $400,001 -$500,000
                 </option>
                 <option value="$500 001 TO $600 000">
-                  GHC500,001 - GHC600,000
+                 $500,001 -$600,000
                 </option>
                 <option value="$600 001 TO $700 000">
-                  GHC600,001 - GHC700,000
+                 $600,001 -$700,000
                 </option>
                 <option value="$700 001 TO $800 000">
-                  GHC700,001 - GHC800,000
+                 $700,001 -$800,000
                 </option>
                 <option value="$800 001 TO $900 000">
-                  GHC800,001 - GHC900,000
+                 $800,001 -$900,000
                 </option>
                 <option value="$900 001 TO $1000 000">
-                  GHC900 001 - GHC1000,000
+                 $900 001 -$1000,000
                 </option>
               </select>
               <label
@@ -1372,7 +1430,7 @@ export function RiskMonitoringforms() {
 
   useEffect(() => {
     axios
-      .get(RISKIDS_URL, {
+      .get(RISKIDSMONITORING_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1380,6 +1438,7 @@ export function RiskMonitoringforms() {
       })
       .then((data) => {
         setRiskIDs(data.data);
+        
       })
       .catch((error) => {
         console.error(error);

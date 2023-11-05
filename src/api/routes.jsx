@@ -20,6 +20,9 @@ export const DEPARTMENT_URL = "/departments";
 //risk url
 export const VIEWALLRISKS_URL = "/risks";
 
+//closed risk url
+export const VIEWCLOSEDRISKS_URL = "/risks/getAllClosedRisks";
+
 //risk review url
 export const RISKREVIEW_URL = "/risks/reviews";
 
@@ -116,8 +119,25 @@ export const MITIGATIONRISK_URL =
 //riskIDS dropdown
 export const RISKIDS_URL = "/risks/getAllOpenedRiskIDs";
 
+//riskIDs for monitoring dropdown
+export const RISKIDSMONITORING_URL = "/risks/getAllOpenedRiskIDSToBeMonitored";
+
+//riskIDs for mitigation dropdown
+export const RISKIDSMITIGATION_URL = "/risks/getAllOpenedRiskIDSToBeMitigated";
+
+//riskIDs for review dropdown
+export const RISKIDSREVIEW_URL = "/risks/getAllOpenedRiskIDSToBeReviewed";
+
 //department dropdown
 export const DEPARTMENTDROPDOWN_URL = "/departments/namesOrDeptIds";
 
 //user dropdown
 export const OWNERSDROPDOWN_URL = "/getTheNamesOfUserAllUsers";
+
+//manager dropdown
+export const MANAGERSDROPDOWN_URL = "/getTheNamesOfAllManagers";
+/******** */
+//heap map
+export const HEATMAP_URL = "/getHeatMapData";
+
+//get 

@@ -9,7 +9,6 @@ import {
   riskstatuscolumn,
   riskappetitereportlowercolumn,
   reportopenrisktoreviewcolumn,
-  reportopenriskassignedtomecolumn,
   reportaudittrailcolumn,
   riskmitigationcolumn,
 } from "./datatable";
@@ -36,6 +35,7 @@ import {
   RISKMONITORING_URL,
   RISKMITIGATION_URL,
   RISKREVIEW_URL,
+  VIEWCLOSEDRISKS_URL,
   REPORTAUDITTRAIL_URL,
   RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
@@ -51,11 +51,12 @@ const getSelectedRowsToExport = ({ apiRef }) => {
   return gridFilteredSortedRowIdsSelector(apiRef);
 };
 
+
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    try {
+  //apply to other tables
+  function getUsers() {
+      try {
       axios
         .get(USERS_URL, {
           headers: {
@@ -64,10 +65,14 @@ export function EmployeesTable() {
           },
         })
         .then((data) => setTableData(data.data));
+        return tableData;
     } catch (error) {
       console.log(error);
     }
-  }, [tableData]);
+  }
+  useEffect(() => {
+    getUsers();
+  });
 
   return (
     <div className="flex flex-col">
@@ -78,7 +83,7 @@ export function EmployeesTable() {
       </div>
       <div style={{ height: 650, width: 1100, backgroundColor: "white" }}>
         <DataGrid
-          rows={tableData}
+          rows={getUsers()}
           columns={usercolumns}
           initialState={{
             pagination: {
@@ -95,9 +100,9 @@ export function EmployeesTable() {
 
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    axios
+  function getRiskReview() {
+    try {
+      axios
       .get(RISKREVIEW_URL, {
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +110,14 @@ export function RiskReview() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, [tableData]);
+      return tableData;
+    }catch (error) {
+      console.log(error);
+    }
+}
+  useEffect(() => {
+    getRiskReview();
+  });
 
   return (
     <div className="flex flex-col">
@@ -119,7 +131,7 @@ export function RiskReview() {
         className="  mt-2 w-auto"
       >
         <DataGrid
-          rows={tableData}
+          rows={getRiskReview()}
           columns={riskreviewcolumn}
           initialState={{
             pagination: {
@@ -139,42 +151,54 @@ export function ClosedRiskTab() {
 
   useEffect(() => {
     axios
-      .get(RISKREVIEW_URL, {
+      .get(VIEWCLOSEDRISKS_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
-      .then((data) => setTableData(data.data));
+      .then((data) => setTableData(data.data.Data));
   }, [tableData]);
 
-  return (
-    <div className="flex flex-col">
-      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div>
-          <Link to="/risk-review" className="text-blue-500">
-            REVIEW RISK
-          </Link>
+  
+    return (
+      <div className="flex flex-col">
+      
+        <div className="flex-row-reverse">
+          <div>  
+            <Link to="/risk-identification" className="text-blue-500 " >
+              VIEW ALL OPENED RISKS
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-row flex-row-reverse ">
+          
+          <div>
+            <Link to="/risk-review" className="text-blue-500">
+              VIEW ALL RISK REVIEWS
+            </Link>
+          </div>
+          
+        </div>
+        <div
+          style={{ height: 650, width: 1100, backgroundColor: "white" }}
+          className="  mt-2 w-auto"
+        >
+          <DataGrid
+            rows={tableData}
+            columns={riskviewcolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            checkboxSelection
+          />
         </div>
       </div>
-      <div
-        style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto"
-      >
-        <DataGrid
-          rows={tableData}
-          columns={riskreviewcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          checkboxSelection
-        />
-      </div>
-    </div>
-  );
+    );
+  
 }
 
 export function RiskMonitor() {
@@ -561,34 +585,7 @@ export function ReviewNeedingRisksReportTab() {
   );
 }
 
-export function Reportopenriskassignedtome() {
-  return (
-    <div className="flex flex-col">
-      <div
-        style={{ height: 650, width: 850, backgroundColor: "white" }}
-        className="  mt-2 w-auto"
-      >
-        <DataGrid
-          rows={reportopenriskassignedtomerow}
-          columns={reportopenriskassignedtomecolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          checkboxSelection
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              printOptions: { getRowsToExport: getSelectedRowsToExport },
-            },
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+
 
 export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);

@@ -10,7 +10,6 @@ import { Report } from "./pages/report/report";
 import { ReportRiskAdvice } from "./pages/report/advice";
 import { ReportRiskMitigation } from "./pages/report/mitgation";
 import { ReportRiskDashboard } from "./pages/report/dashboard";
-import { ReportRiskImpact } from "./pages/report/impact";
 import { ReportRiskChatbot } from "./pages/report/chatbot";
 import { RiskView } from "./pages/riskidentification/riskview";
 import { HighLowRisk } from "./pages/riskmonitoring/HighLowtab";
@@ -41,7 +40,6 @@ function App() {
           <Route index element={<ReportRiskDashboard />} />
           <Route path="advice" element={<ReportRiskAdvice />} />
           <Route path="mitigation" element={<ReportRiskMitigation />} />
-          <Route path="impact" element={<ReportRiskImpact />} />
 
           <Route path="risk-status-report" element={<RiskStatusReport />} />
 

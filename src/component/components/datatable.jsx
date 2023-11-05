@@ -1,4 +1,4 @@
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEye} from "react-icons/fa";
 import "../comstyles/component.css";
 
 export const usercolumns = [
@@ -12,40 +12,25 @@ export const usercolumns = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   { field: "updatedAt", headerName: "Updated At", width: 150 },
   {
-    field: "edit",
-    headerName: "Edit",
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
       );
     },
   },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
-      );
-    },
-  },
+ 
 ];
 
 export const riskreviewcolumn = [
@@ -61,37 +46,21 @@ export const riskreviewcolumn = [
   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
-    field: "edit",
-    headerName: "Edit",
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
       );
     },
   },
@@ -135,38 +104,22 @@ export const riskmitigationcolumn = [
   { field: "mitigationControl", headerName: "Mitigation Control", width: 150 },
   { field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
-  {
-    field: "edit",
-    headerName: "Edit",
+   {
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
       );
     },
   },
@@ -309,33 +262,7 @@ export const reportopenrisktoreviewcolumn = [
   { field: "nextReviewDate", headerName: "Next Review Date", width: 150 },
 ];
 
-export const reportopenriskassignedtomecolumn = [
-  {
-    label: "Risk Name",
-    field: "RiskName",
-    width: 200,
-  },
-  {
-    label: "Risk Owner",
-    field: "RiskOwner",
-    width: 150,
-  },
-  {
-    label: "Mitigatioin Effort",
-    field: "MitigationEffort",
-    width: 200,
-  },
-  {
-    label: "Date",
-    field: "Date",
-    width: 100,
-  },
-  {
-    label: "Risk Score",
-    field: "RiskScore",
-    width: 100,
-  },
-];
+
 
 export const riskstatuscolumn = [
   { field: "id", headerName: "ID", width: 70 },
@@ -369,37 +296,21 @@ export const deptcolumn = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   { field: "updatedAt", headerName: "Updated At", width: 150 },
   {
-    field: "edit",
-    headerName: "Edit",
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
       );
     },
   },
@@ -436,37 +347,21 @@ export const riskmonitoringcolumn = [
   { field: "comments", headerName: "Comments", width: 120 },
   { field: "createdAt", headerName: "Created At", width: 120 },
   {
-    field: "edit",
-    headerName: "Edit",
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
       );
     },
   },
@@ -529,37 +424,21 @@ export const riskviewcolumn = [
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
-    field: "edit",
-    headerName: "Edit",
+    field: "view",
+    headerName: "View",
     width: 50,
     renderCell: (params) => {
-      const handleEditClick = () => {
+      const handleViewClick = () => {
         // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
+        console.log(`Editing row with ID: ${params.row.firstName}`);
       };
 
       return (
         <>
-          <button onClick={handleEditClick} className="px-2">
-            <FaEdit className="icons" />
+          <button onClick={handleViewClick} className="px-2">
+            <FaEye className="icons" />
           </button>
         </>
-      );
-    },
-  },
-  {
-    field: "delete",
-    headerName: "delete",
-    renderCell: (params) => {
-      const handleDeleteClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.id}`);
-      };
-
-      return (
-        <button onClick={handleDeleteClick} className="px-2">
-          <FaTrash className="icons" />
-        </button>
       );
     },
   },

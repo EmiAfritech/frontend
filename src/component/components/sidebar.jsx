@@ -8,7 +8,6 @@ import {
   FaClipboardList,
   FaUniversity,
   FaClipboardCheck,
-  FaChessRook,
   FaSignOutAlt,
   FaUserFriends,
   FaUsers,
@@ -16,7 +15,7 @@ import {
   FaPencilAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import LoadingPopup from "../../api/sessions";
+import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 
 export function Sidebar() {
@@ -83,10 +82,7 @@ export function Sidebar() {
             <FaUserFriends className="icons" />
             <Link to="/employees">Employees</Link>
           </li>
-          <li>
-            <FaChessRook className="icons" />
-            Governance
-          </li>
+          
           <li>
             <FaCopy className="icons" />
             <Link to="/report">Report</Link>
@@ -100,6 +96,7 @@ export function Sidebar() {
             LogOut
           </button>
           <LoadingPopup isLoading={isLoading} />
+          <Sessions />
         </ul>
       </div>
     </div>

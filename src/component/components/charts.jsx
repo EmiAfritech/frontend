@@ -231,7 +231,7 @@ export function ReportRiskLevel() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-10 pb-12">
+    <div className="card items-center flex flex-col px-10 pb-12">
       <h3 className="pb-3">
         <span>RISK LEVEL</span>
       </h3>
@@ -257,7 +257,7 @@ export function ReportRiskStatus() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-10 pb-2">
+    <div className="card items-center flex flex-col px-10 pb-2">
       <h3 className="pb-3">
         <span>RISK STATUS</span>
       </h3>
@@ -283,7 +283,7 @@ export function ReportRiskLocation() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="pb-3">
         <span>LOCATION</span>
       </h3>
@@ -310,7 +310,7 @@ export function ReportRiskCategory() {
   }, []);
 
   return (
-    <div className=" items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="pb-3">
         <span>CATEGORY</span>
       </h3>
@@ -336,7 +336,7 @@ export function ReportRiskResponse() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-8 pb-2">
+    <div className="card items-center flex flex-col px-8 pb-2">
       <h3 className="pb-3">
         <span>RISK RESPONSE</span>
       </h3>
@@ -362,7 +362,7 @@ export function ReportRiskOwner() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="pb-3">
         <span>OWNER</span>
       </h3>
@@ -373,44 +373,8 @@ export function ReportRiskOwner() {
     </div>
   );
 }
-export function ReportRiskLineChart() {
-  return (
-    <div className="p-5 mt-6">
-      <LineChart
-        width={700}
-        height={300}
-        data={LineChartData}
-        margin={{ top: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
-      </LineChart>
-    </div>
-  );
-}
-export function ReportImpactLineChart() {
-  return (
-    <div className="p-5 mt-6">
-      <LineChart
-        width={700}
-        height={300}
-        data={ImpactLineChartData}
-        margin={{ top: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="impact" stroke="#2394cc" />
-      </LineChart>
-    </div>
-  );
-}
+
+
 
 export function Pyramidchat() {
   const [data, setData] = useState();

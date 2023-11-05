@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState,  useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -46,22 +46,26 @@ export function Login() {
           setAuth({ email, password, role, token });
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
-          alert("You have successfully logged in");
+          localStorage.setItem("role", role);
           reload();
         } else {
           alert("Authorization returned null");
-        }
-      } else {
-        alert("Server Down");
-      }
+        }}
     } catch (err) {
-      alert("Unauthorized User: Input right details");
-      reload();
+      if (err.message.includes("Network Error")) {
+        alert("Server is Currently Unavailable, Please Try Again Later");
+        reload();
+      } else if(err.response.status === 401){
+        // Handle other types of errors here if needed
+        alert("Unauthorized User! Please check your credentials");
+        
+      }
     } finally {
-      // Set isLoading to false when the request is complete (success or error)
-      setLoading(false);
-    }
-  };
+  // Set isLoading to false when the request is complete (success or error)
+  setLoading(false);
+  }
+}
+
 
   return (
     <>
