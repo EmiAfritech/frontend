@@ -42,6 +42,7 @@ import {
   RISKSTATUSREPORT_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
+
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
   if (selectedRowIds.size > 0) {
@@ -57,6 +58,7 @@ export function EmployeesTable() {
   //apply to other tables
   function getUsers() {
       try {
+        
       axios
         .get(USERS_URL, {
           headers: {
@@ -73,12 +75,15 @@ export function EmployeesTable() {
   useEffect(() => {
     getUsers();
   });
+  
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
         <div>
+          
           <Userforms />
+          
         </div>
       </div>
       <div style={{ height: 650, width: 1100, backgroundColor: "white" }}>
@@ -422,7 +427,8 @@ export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    axios
+    const viewAllRisks=()=>{
+       axios
       .get(VIEWALLRISKS_URL, {
         headers: {
           "Content-Type": "application/json",
@@ -430,13 +436,24 @@ export function RiskViewTable() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, [tableData]);
+    }
+
+    viewAllRisks();
+
+    
+    
+      
+
+  },[]
+
+  );
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
           <Riskforms />
+          
         </div>
       </div>
       <div

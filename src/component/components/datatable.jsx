@@ -1,5 +1,15 @@
 import { FaEye} from "react-icons/fa";
 import "../comstyles/component.css";
+import { UserData } from "./modals";
+
+
+
+
+
+
+
+
+
 
 export const usercolumns = [
   { field: "id", headerName: "ID", width: 70 },
@@ -15,23 +25,11 @@ export const usercolumns = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => UserData(params),
   },
  
 ];
+
 
 export const riskreviewcolumn = [
   { field: "id", headerName: "ID", width: 70 },
