@@ -1,6 +1,5 @@
-import { FaEye} from "react-icons/fa";
 import "../comstyles/component.css";
-import { UserData } from "./modals";
+import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, RiskData, UserData } from "./modals";
 
 
 
@@ -47,20 +46,7 @@ export const riskreviewcolumn = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => ReviewRiskData(params),
   },
 ];
 
@@ -106,20 +92,7 @@ export const riskmitigationcolumn = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => MitigatedRiskData(params),
   },
 ];
 
@@ -297,20 +270,7 @@ export const deptcolumn = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => DepartmentData(params),
   },
 ];
 
@@ -348,20 +308,7 @@ export const riskmonitoringcolumn = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => MonitoredRiskData(params),
   },
 ];
 export const riskappetitereportgreatercolumn = [
@@ -425,19 +372,6 @@ export const riskviewcolumn = [
     field: "view",
     headerName: "View",
     width: 50,
-    renderCell: (params) => {
-      const handleViewClick = () => {
-        // Implement your edit logic here
-        console.log(`Editing row with ID: ${params.row.firstName}`);
-      };
-
-      return (
-        <>
-          <button onClick={handleViewClick} className="px-2">
-            <FaEye className="icons" />
-          </button>
-        </>
-      );
-    },
+    renderCell: (params) => RiskData(params),
   },
 ];
