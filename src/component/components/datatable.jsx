@@ -363,9 +363,9 @@ export const riskviewcolumn = [
   { field: "id", headerName: "", width: 2, color: "blue" },
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
-  
+  { field: "riskDescription", headerName: "Risk Description", width: 200 },
   { field: "riskCategory", headerName: "Risk Category", width: 180 },
- 
+
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
