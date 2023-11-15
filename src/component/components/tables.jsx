@@ -143,7 +143,6 @@ export function RiskReview() {
             },
           }}
           pageSizeOptions={[10, 15]}
-          checkboxSelection
         />
       </div>
     </div>
@@ -197,7 +196,6 @@ export function ClosedRiskTab() {
               },
             }}
             pageSizeOptions={[10, 15]}
-            checkboxSelection
           />
         </div>
       </div>
