@@ -17,7 +17,7 @@ export const usercolumns = [
   { field: "dob", headerName: "Date of Birth", width: 180 },
   { field: "phoneNumber", headerName: "Phone Number", width: 180 },
   { field: "email", headerName: "Email", width: 180 },
-  { field: "role", headerName: "Role", width: 150 },
+  { field: "role", headerName: "Role", width: 180 },
   {
     field: "view",
     headerName: "View",
