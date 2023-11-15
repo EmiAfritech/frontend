@@ -55,7 +55,7 @@ export function OpenVsClose() {
         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
-      <PieChart width={200} height={180}>
+      <PieChart width={180} height={180}>
         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>

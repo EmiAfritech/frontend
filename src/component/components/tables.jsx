@@ -440,10 +440,6 @@ export function RiskViewTable() {
 
     viewAllRisks();
 
-    
-    
-      
-
   },[]
 
   );
@@ -469,7 +465,6 @@ export function RiskViewTable() {
             },
           }}
           pageSizeOptions={[10, 15]}
-          checkboxSelection
         />
       </div>
     </div>
