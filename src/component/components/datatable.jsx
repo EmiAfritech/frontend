@@ -83,7 +83,6 @@ export const riskmitigationcolumn = [
     headerName: "Mitigated Risk Score",
     width: 150,
   },
-  { field: "mitigationControl", headerName: "Mitigation Control", width: 150 },
   { field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
    {
@@ -262,8 +261,6 @@ export const deptcolumn = [
   { field: "name", headerName: "Department Name", width: 170 },
   { field: "manager", headerName: "Department Manager", width: 170 },
   { field: "location", headerName: "Location", width: 170 },
-  { field: "createdAt", headerName: "Created At", width: 150 },
-  { field: "updatedAt", headerName: "Updated At", width: 150 },
   {
     field: "view",
     headerName: "View",
