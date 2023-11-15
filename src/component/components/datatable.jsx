@@ -296,13 +296,6 @@ export const riskmonitoringcolumn = [
     headerName: "Risk Activity Status",
     width: 120,
   },
-  {
-    field: "recommendedChanges",
-    headerName: "Recommended Changes",
-    width: 120,
-  },
-  { field: "challenges", headerName: "Challenges", width: 100 },
-  { field: "comments", headerName: "Comments", width: 120 },
   { field: "createdAt", headerName: "Created At", width: 120 },
   {
     field: "view",
@@ -360,12 +353,11 @@ export const riskappetitereportlowercolumn = [
 ];
 
 export const riskviewcolumn = [
-  { field: "id", headerName: "", width: 2, color: "blue" },
+  { field: "id", headerName: "ID", width: 70,},
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
   { field: "riskDescription", headerName: "Risk Description", width: 200 },
   { field: "riskCategory", headerName: "Risk Category", width: 180 },
-
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
