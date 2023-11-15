@@ -83,8 +83,6 @@ export const riskmitigationcolumn = [
     headerName: "Mitigated Risk Score",
     width: 150,
   },
-  { field: "mitigationEffort", headerName: "Mitigation Effort", width: 150 },
-  { field: "mitigationCost", headerName: "Mitigation Cost", width: 150 },
   { field: "mitigationControl", headerName: "Mitigation Control", width: 150 },
   { field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
