@@ -30,8 +30,6 @@ export function Sessions() {
       .catch((err) => {
         if (err.message.includes("Network Error")) {
           alert("Server is Currently Unavailable, Please Try Again Later");
-          navigate("/", { replace: true });
-          localStorage.clear();
         }    
       });
     } catch (error) {

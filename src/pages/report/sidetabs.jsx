@@ -7,19 +7,19 @@ export function ReportSideTabs() {
       <div className="report-main mt-20 mx-10">
         <ul>
           <li>
-            <Link to="">Risk Dashboard</Link>
+            <Link to="">Report</Link>
           </li>
           <li>
             <Link to="likelyhood-vs-impact">Likelyhood Vs Impact</Link>
           </li>
           <li>
-            <Link to="risk-appetite">Risk Appetite Report</Link>
+            <Link to="risk-appetite">Risk Appetite</Link>
           </li>
           <li>
             <Link to="mitigation">Mitigations By Date</Link>
           </li>
           <li>
-            <Link to="risk-status-report">Risk Status Report</Link>
+            <Link to="risk-status-report">Risk Status</Link>
           </li>
           <li>
             <Link to="review-needing-risks">

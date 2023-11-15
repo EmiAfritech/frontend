@@ -64,7 +64,7 @@ export function Sidebar() {
           </li>
           <li>
             <FaClipboardList className="icons" />
-            <Link to="/risk-monitoring">Perform Risk Monitoring</Link>
+            <Link to="/risk-monitoring">Risk Monitoring</Link>
           </li>
           <li>
             <FaPencilAlt className="icons" />
@@ -72,7 +72,7 @@ export function Sidebar() {
           </li>
           <li>
             <FaClipboardCheck className="icons" />
-            <Link to="/risk-review">Perform Risk Review</Link>
+            <Link to="/risk-review">Risk Review</Link>
           </li>
           <li>
             <FaUsers className="icons" />
