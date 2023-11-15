@@ -259,6 +259,7 @@ export const deptcolumn = [
   { field: "name", headerName: "Department Name", width: 170 },
   { field: "manager", headerName: "Department Manager", width: 170 },
   { field: "location", headerName: "Location", width: 170 },
+  { field: "createdAt", headerName: "Created At", width: 150 },
   {
     field: "view",
     headerName: "View",
