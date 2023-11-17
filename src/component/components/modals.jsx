@@ -1,12 +1,11 @@
 import Box from '@mui/material/Box';
-
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { FaEye, FaEdit, FaTrash} from "react-icons/fa";
+import { FaEye} from "react-icons/fa";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import {DEPARTMENTDROPDOWN_URL,OWNERSDROPDOWN_URL,MANAGERSDROPDOWN_URL,DEPARTMENTCREATEFORM_URL } from '../../api/routes';
+import {DEPARTMENTDROPDOWN_URL,OWNERSDROPDOWN_URL} from '../../api/routes';
 
 
 export function UserData(params){
@@ -524,227 +523,52 @@ export function MitigatedRiskData(params){
  )
 }
 
-
-
-
 export function DepartmentData(params){
-  const [name, setName] = useState("");
-  const [manager, setManager] = useState("");
-  const [managers, setManagers] = useState([]);
-  const [deptID, setDeptID] = useState("");
-  const [location, setLocation] = useState("");
   const [open, setOpen] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
-
-  setName(params.row.name);
-  setManager(params.row.manager);
-  setDeptID(params.row.deptID);
-  setLocation(params.row.location);
-
-
-  useEffect(() => {
-    const fetchManagers = async () => {
-      try {
-        const response = await axios.get(MANAGERSDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-        setManagers(response.data);
-      } catch (error) {
-        console.error("Error fetching managers:", error);
-      }
-    };
-
-    fetchManagers();
-  }, []);
-
   const close = () => setOpen(false);
+ const style = {
+   position: 'absolute',
+   top: '50%',
+   left: '50%',
+   transform: 'translate(-50%, -50%)',
+   width: 400,
+   bgcolor: 'background.paper',
+   border: '2px solid #000',
+   boxShadow: 24,
+   p: 4,
+ };
+ function handleOpen() {
+   setOpen(!open);
+ }
 
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(
-        DEPARTMENTCREATEFORM_URL,
-        JSON.stringify({
-          name,
-          manager,
-          deptID,
-          location,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );
-      alert("User Saved Successfully");
-      
-    } catch (error) {
-      alert("Error saving user");
-      
-    }
-  };
+ 
+ return(
+   <>
+     <button onClick={handleOpen} className="px-2">
+           <FaEye className="icons" />
+     </button>
+     <Modal
+           open={open}
+           onClose={close}
+           aria-labelledby="modal-modal-title"
+           aria-describedby="modal-modal-description">
+               
+               <Box sx={style}>
+                   <Typography id="modal-modal-title" variant="h6" component="h2">
+                       Hello
+                   </Typography>
+                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                   {params.row.id}
+                   </Typography>
 
-  
+                   
+                   <Button onClick={close}>Close</Button>
+               </Box>
+     </Modal>
+   </>
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  return (
-    <>
-      <button onClick={handleOpen} className="px-2">
-        <FaEye className="icons" />
-      </button>
-      <Modal
-        open={open}
-        onClose={close}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '80%', // Updated width
-            p: 4,
-            bgcolor: 'white', // Updated background color
-            borderRadius: '8px', // Added border radius
-            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Added box shadow
-          }}
-        >
-          <div className="flex justify-between items-center mb-5">
-            <div className="font-bold text-black">Department Detailed View</div>
-            <div>
-              {isEditMode ? (
-                <>
-                  <button className="mr-2" onClick={() => setIsEditMode(false)}>
-                    <FaEye className="icons" />
-                  </button>
-                  <button>
-                    <FaTrash className="icons" />
-                  </button>
-                </>
-              ) : (
-                <button onClick={() => setIsEditMode(true)}>
-                  <FaEdit className="icons" />
-                </button>
-              )}
-            </div>
-          </div>
-          <hr />
-          <form className="w-full">
-            <div className=" px-10 py-10">
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
-                  className={`peer h-full w-full rounded-[7px] border ${
-                    isEditMode ? 'border-blue-gray-200' : 'border-transparent'
-                  } border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50`}
-                  id="departmentID"
-                  value={deptID}
-                  autoComplete="off"
-                  onChange={(e) => setDeptID(e.target.value)}
-                  readOnly={!isEditMode}
-                  required
-                />
-                <label
-                  className={`before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500`}
-                >
-                  Department Code
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
-                  className={`peer h-full w-full rounded-[7px] border ${
-                    isEditMode ? 'border-blue-gray-200' : 'border-transparent'
-                  } border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50`}
-                  id="departmentName"
-                  value={name}
-                  autoComplete="off"
-                  onChange={(e) => setName(e.target.value)}
-                  readOnly={!isEditMode}
-                  required
-                />
-                <label
-                  className={`before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500`}
-                >
-                  Department Name
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  type="text"
-                  className={`peer h-full w-full rounded-[7px] border ${
-                    isEditMode ? 'border-blue-gray-200' : 'border-transparent'
-                  } border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50`}
-                  id="departmentManager"
-                  aria-describedby="departmentManager"
-                  value={manager}
-                  autoComplete="off"
-                  onChange={(e) => setManager(e.target.value)}
-                  readOnly={!isEditMode}
-                  required
-                >
-                  <option></option>
-                  {managers.map((managers) => (
-                    <option key={managers.id} value={managers.value}>
-                      {managers.value}
-                    </option>
-                  ))}
-                </select>
-                <label
-                  htmlFor="work-location"
-                  className={`before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after
-                         :border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500`}
-                    >
-                      Department Head
-                    </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                      type="text"
-                      className={`peer h-full w-full rounded-[7px] border ${
-                        isEditMode ? 'border-blue-gray-200' : 'border-transparent'
-                      } border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50`}
-                      id="work_location"
-                      value={location}
-                      autoComplete="off"
-                      onChange={(e) => setLocation(e.target.value)}
-                      readOnly={!isEditMode}
-                      required
-                    />
-                    <label
-                      className={`before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500`}
-                    >
-                      Work Location
-                    </label>
-              </div>
-              <div className="px-10">
-                  <button
-                    type="submit"
-                    onClick={ isEditMode ? handleEdit : close}
-                    className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                  >
-                    Close
-                  </button>
-              </div>
-            </div>
-          </form>
-          
-        </Box>
-      </Modal>
-    </>
-  );
+ )
 }
-
 
 
 
