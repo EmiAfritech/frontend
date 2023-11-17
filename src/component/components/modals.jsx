@@ -538,23 +538,23 @@ export function DepartmentData(params){
   setLocation(params.row.location);
 
 
-  useEffect(() => {
-    const fetchManagers = async () => {
-      try {
-        const response = await axios.get(MANAGERSDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-        setManagers(response.data);
-      } catch (error) {
-        console.error("Error fetching managers:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchManagers = async () => {
+  //     try {
+  //       const response = await axios.get(MANAGERSDROPDOWN_URL, {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //       });
+  //       setManagers(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching managers:", error);
+  //     }
+  //   };
 
-    fetchManagers();
-  }, []);
+  //   fetchManagers();
+  // }, []);
 
   const close = () => setOpen(false);
 
