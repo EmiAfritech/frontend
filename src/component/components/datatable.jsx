@@ -20,7 +20,7 @@ export const usercolumns = [
   { field: "role", headerName: "Role", width: 180 },
   {
     field: "view",
-    headerName: "View",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => UserData(params),
   },
@@ -42,7 +42,7 @@ export const riskreviewcolumn = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
     field: "view",
-    headerName: "View",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => ReviewRiskData(params),
   },
@@ -85,7 +85,7 @@ export const riskmitigationcolumn = [
   { field: "createdAt", headerName: "Created At", width: 150 },
    {
     field: "view",
-    headerName: "View",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => MitigatedRiskData(params),
   },
@@ -262,7 +262,7 @@ export const deptcolumn = [
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
     field: "view",
-    headerName: "View",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => DepartmentData(params),
   },
@@ -300,7 +300,7 @@ export const riskmonitoringcolumn = [
   { field: "createdAt", headerName: "Created At", width: 120 },
   {
     field: "view",
-    headerName: "View",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => MonitoredRiskData(params),
   },
@@ -362,8 +362,8 @@ export const riskviewcolumn = [
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
-    field: "Action",
-    headerName: "View",
+    field: "view",
+    headerName: "Action",
     width: 50,
     renderCell: (params) => RiskData(params),
   },
