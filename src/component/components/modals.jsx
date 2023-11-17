@@ -558,38 +558,38 @@ export function DepartmentData(params){
 
   const close = () => setOpen(false);
 
-  const handleEdit = async () => {
-    try {
-      await axios.post(
-        DEPARTMENTCREATEFORM_URL,
-        JSON.stringify({
-          name,
-          manager,
-          deptID,
-          location,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );
-      alert("User Saved Successfully");
-      reload();
-    } catch (error) {
-      alert("Error saving user");
-      reload();
-    }
-  };
+  // const handleEdit = async () => {
+  //   try {
+  //     await axios.post(
+  //       DEPARTMENTCREATEFORM_URL,
+  //       JSON.stringify({
+  //         name,
+  //         manager,
+  //         deptID,
+  //         location,
+  //       }),
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     alert("User Saved Successfully");
+  //     reload();
+  //   } catch (error) {
+  //     alert("Error saving user");
+  //     reload();
+  //   }
+  // };
 
-  const reload = () => {
-    setName("");
-    setManager("");
-    setDeptID("");
-    setLocation("");
-  };
+  // const reload = () => {
+  //   setName("");
+  //   setManager("");
+  //   setDeptID("");
+  //   setLocation("");
+  // };
 
   const handleOpen = () => {
     setOpen(!open);
