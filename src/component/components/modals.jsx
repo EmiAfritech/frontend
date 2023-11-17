@@ -582,19 +582,14 @@ export function DepartmentData(params){
         }
       );
       alert("User Saved Successfully");
-      reload();
+      
     } catch (error) {
       alert("Error saving user");
-      reload();
+      
     }
   };
 
-  const reload = () => {
-    setName("");
-    setManager("");
-    setDeptID("");
-    setLocation("");
-  };
+  
 
   const handleOpen = () => {
     setOpen(true);
