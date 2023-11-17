@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { FaEye} from "react-icons/fa";
+import { FaEye,FaEdit,FaTrash} from "react-icons/fa";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import {DEPARTMENTDROPDOWN_URL,OWNERSDROPDOWN_URL,MANAGERSDROPDOWN_URL, } from '../../api/routes';
@@ -523,16 +523,7 @@ export function MitigatedRiskData(params){
  )
 }
 
-
-
-
 export function DepartmentData(params){
-  import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Modal, Box, Button } from '@mui/material';
-import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
-
-const DepartmentData = (params) => {
   const [name, setName] = useState("");
   const [manager, setManager] = useState("");
   const [managers, setManagers] = useState([]);
@@ -567,7 +558,7 @@ const DepartmentData = (params) => {
 
   const close = () => setOpen(false);
 
-  const handleSubmit = async () => {
+  const handleEdit = async () => {
     try {
       await axios.post(
         DEPARTMENTCREATEFORM_URL,
@@ -752,7 +743,7 @@ const DepartmentData = (params) => {
       </Modal>
     </>
   );
-};
+}
 
 
 
