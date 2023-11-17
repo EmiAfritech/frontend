@@ -1,11 +1,12 @@
 import Box from '@mui/material/Box';
+
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { FaEye,FaEdit,FaTrash} from "react-icons/fa";
+import { FaEye, FaEdit, FaTrash} from "react-icons/fa";
 import { useState,useEffect } from 'react';
 import axios from 'axios';
-import {DEPARTMENTDROPDOWN_URL,OWNERSDROPDOWN_URL,MANAGERSDROPDOWN_URL, } from '../../api/routes';
+import {DEPARTMENTDROPDOWN_URL,OWNERSDROPDOWN_URL,MANAGERSDROPDOWN_URL,DEPARTMENTCREATEFORM_URL } from '../../api/routes';
 
 
 export function UserData(params){
@@ -523,6 +524,9 @@ export function MitigatedRiskData(params){
  )
 }
 
+
+
+
 export function DepartmentData(params){
   const [name, setName] = useState("");
   const [manager, setManager] = useState("");
@@ -538,58 +542,59 @@ export function DepartmentData(params){
   setLocation(params.row.location);
 
 
-  // useEffect(() => {
-  //   const fetchManagers = async () => {
-  //     try {
-  //       const response = await axios.get(MANAGERSDROPDOWN_URL, {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: "Bearer " + localStorage.getItem("token"),
-  //         },
-  //       });
-  //       setManagers(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching managers:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchManagers = async () => {
+      try {
+        const response = await axios.get(MANAGERSDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        setManagers(response.data);
+      } catch (error) {
+        console.error("Error fetching managers:", error);
+      }
+    };
 
-  //   fetchManagers();
-  // }, []);
+    fetchManagers();
+  }, []);
 
   const close = () => setOpen(false);
 
-  // const handleEdit = async () => {
-  //   try {
-  //     await axios.post(
-  //       DEPARTMENTCREATEFORM_URL,
-  //       JSON.stringify({
-  //         name,
-  //         manager,
-  //         deptID,
-  //         location,
-  //       }),
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: "Bearer " + localStorage.getItem("token"),
-  //         },
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     alert("User Saved Successfully");
-  //     reload();
-  //   } catch (error) {
-  //     alert("Error saving user");
-  //     reload();
-  //   }
-  // };
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        DEPARTMENTCREATEFORM_URL,
+        JSON.stringify({
+          name,
+          manager,
+          deptID,
+          location,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+      reload();
+    } catch (error) {
+      alert("Error saving user");
+      reload();
+    }
+  };
 
-  // const reload = () => {
-  //   setName("");
-  //   setManager("");
-  //   setDeptID("");
-  //   setLocation("");
-  // };
+  const reload = () => {
+    setName("");
+    setManager("");
+    setDeptID("");
+    setLocation("");
+  };
 
   const handleOpen = () => {
     setOpen(!open);
@@ -729,8 +734,8 @@ export function DepartmentData(params){
               </div>
               <div className="px-10">
                   <button
-                    type="close"
-                    onClick={close}
+                    type="submit"
+                    onClick={ isEditMode ? handleEdit : close}
                     className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                   >
                     Close
@@ -744,8 +749,6 @@ export function DepartmentData(params){
     </>
   );
 }
-
-
 
 
 
