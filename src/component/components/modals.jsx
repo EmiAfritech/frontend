@@ -597,7 +597,7 @@ export function DepartmentData(params){
   };
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
   };
 
   return (
