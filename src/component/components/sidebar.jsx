@@ -13,7 +13,7 @@ export function Sidebar() {
 
   useEffect(() => {
     // Fetch user role from localStorage when the component mounts
-    const role = localStorage.getItem("userRole");
+    const role = localStorage.getItem("role");
     setUserRole(role);
   }, []);
 
