@@ -287,7 +287,7 @@ export function Sidebar() {
               <Link to="/department-management">Department Management</Link>
             </li>
             <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3">
+              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
                 LogOut
               </button>
@@ -305,7 +305,7 @@ export function Sidebar() {
               <Link to="/new-user">New User</Link>
             </li>
             <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3">
+              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
                 LogOut
               </button>
@@ -325,7 +325,7 @@ export function Sidebar() {
             </li>
             {/* Add other Risk Management tabs as needed */}
             <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3">
+              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
                 LogOut
               </button>
@@ -341,9 +341,9 @@ export function Sidebar() {
             <li onClick={() => handleTabClick("New Department")}>
               <Link to="/new-department">New Department</Link>
             </li>
-            {/* Add other Department Management tabs as needed */}
+           
             <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3">
+              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
                 LogOut
               </button>
@@ -366,7 +366,7 @@ export function Sidebar() {
               <Link to="/reporting">Reporting</Link>
             </li>
             <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3">
+              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
                 LogOut
               </button>
@@ -399,6 +399,8 @@ export function Sidebar() {
     </div>
   );
 }
+
+
 
 
 // import "../comstyles/component.css";
