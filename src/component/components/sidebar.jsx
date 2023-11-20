@@ -354,17 +354,21 @@ export function Sidebar() {
         return (
           <>
             <li onClick={() => handleTabClick("Overview")}>
+              <FaUniversity className="icons" />
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("Admin")}>
               <Link to="/admin">Admin</Link>
             </li>
             <li onClick={() => handleTabClick("Departments")}>
-              <Link to="/departments">Departments</Link>
+              <FaUsers className="icons" />
+              <Link to="/department">Departments</Link>
             </li>
             <li onClick={() => handleTabClick("Reporting")}>
-              <Link to="/reporting">Reporting</Link>
+              <FaCopy className="icons" />
+              <Link to="/report">Reporting</Link>
             </li>
+            
             <li onClick={() => handleTabClick("Logout")}>
               <button className="flex flex row items-center p-3" onClick={handleLogOut}>
                 <FaSignOutAlt className="icons" />
