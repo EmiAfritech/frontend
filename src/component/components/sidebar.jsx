@@ -371,10 +371,12 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
+          <Sessions />
           {userRole === "MANAGER" && renderManagerTabs()}
           {userRole === "AUDITOR" && renderAuditorTabs()}
+          {userRole === "ADMIN" && renderAdminTabs()}
+          {userRole === "GENERALMANAGER" && renderGeneralManagerTabs()}
           <LoadingPopup isLoading={isLoading} />
-          <Sessions />
         </ul>
       </div>
     </div>
