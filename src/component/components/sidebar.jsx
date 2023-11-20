@@ -1,4 +1,18 @@
-// ... (previous imports)
+import { LOGOUT_URL } from "../../api/routes";
+import {
+  FaCopy,
+  FaClipboardList,
+  FaUniversity,
+  FaClipboardCheck,
+  FaSignOutAlt,
+  FaUserFriends,
+  FaUsers,
+  FaRegShareSquare,
+  FaPencilAlt,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import LoadingPopup, { Sessions } from "../../api/sessions";
+import { useState } from "react";
 
 export function Sidebar() {
   const navigate = useNavigate();
@@ -371,7 +385,7 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <Sessions />
+          <Sessions/>
           {userRole === "MANAGER" && renderManagerTabs()}
           {userRole === "AUDITOR" && renderAuditorTabs()}
           {userRole === "ADMIN" && renderAdminTabs()}
