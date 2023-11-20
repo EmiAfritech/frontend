@@ -275,16 +275,20 @@ export function Sidebar() {
         return (
           <>
             <li onClick={() => handleTabClick("Home")}>
+              <FaUniversity className="icons" />
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("User Management")}>
-              <Link to="/user-management">User Management</Link>
+              <FaUserFriends className="icons" />
+              <Link to="/employees">User Management</Link>
             </li>
             <li onClick={() => handleTabClick("Risk Management")}>
-              <Link to="/risk-management">Risk Management</Link>
+              <FaRegShareSquare className="icons" />
+              <Link to="/risk-identification">Risk Management</Link>
             </li>
             <li onClick={() => handleTabClick("Department Management")}>
-              <Link to="/department-management">Department Management</Link>
+              <FaUsers className="icons" />
+              <Link to="/department">Department Management</Link>
             </li>
             <li onClick={() => handleTabClick("Logout")}>
               <button className="flex flex row items-center p-3" onClick={handleLogOut}>
@@ -299,10 +303,12 @@ export function Sidebar() {
         return (
           <>
             <li onClick={() => handleTabClick("Home")}>
+              <FaUniversity className="icons" />
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("New User")}>
-              <Link to="/new-user">New User</Link>
+              <FaUserFriends className="icons" />
+              <Link to="/employees">New User</Link>
             </li>
             <li onClick={() => handleTabClick("Logout")}>
               <button className="flex flex row items-center p-3" onClick={handleLogOut}>
@@ -318,10 +324,12 @@ export function Sidebar() {
         return (
           <>
             <li onClick={() => handleTabClick("Home")}>
+              <FaUniversity className="icons" />
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("New Risk")}>
-              <Link to="/new-risk">New Risk</Link>
+              <FaRegShareSquare className="icons" />
+              <Link to="/risk-identification">New Risk</Link>
             </li>
             {/* Add other Risk Management tabs as needed */}
             <li onClick={() => handleTabClick("Logout")}>
@@ -336,10 +344,12 @@ export function Sidebar() {
         return (
           <>
             <li onClick={() => handleTabClick("Home")}>
+              <FaUniversity className="icons" />
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("New Department")}>
-              <Link to="/new-department">New Department</Link>
+              <FaUsers className="icons" />
+              <Link to="/department">New Department</Link>
             </li>
            
             <li onClick={() => handleTabClick("Logout")}>
@@ -358,7 +368,7 @@ export function Sidebar() {
               <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("Admin")}>
-              <Link to="/admin">Admin</Link>
+              <Link to="/dashboard">Overview</Link>
             </li>
             <li onClick={() => handleTabClick("Departments")}>
               <FaUsers className="icons" />
