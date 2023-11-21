@@ -59,7 +59,7 @@ export function Sidebar() {
     e.preventDefault();
     return (
       <>
-        <button className="flex flex row items-center p-3" onClick={() => handleTabClick("Home")}>
+        <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs}>
           <FaUniversity className="icons" />
           <Link to="/dashboard">Overview</Link>
         </button>
