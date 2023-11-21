@@ -55,8 +55,8 @@ export function Sidebar() {
   const handleTabClick = (tab) => {
       setSelectedTab(tab);
   };
-  const handleAuditorRiskManagementTabClick = async (e) => {
-    e.preventDefault();
+  const handleAuditorRiskManagementTabClick = () => {
+    
     return (
       <>
         <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs}>
@@ -88,8 +88,7 @@ export function Sidebar() {
       </>
     );
   }
-  const handleAuditorDefaultTabs = async (e) => {
-    e.preventDefault();
+  const handleAuditorDefaultTabs = () => {
     return (
       <>
         <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs }>
