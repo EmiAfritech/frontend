@@ -19,11 +19,11 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-export function Sidebar() {
+export function Sidebar(currentTab) {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
-  const [selectedTab, setSelectedTab] = useState("Overview");
+  const [selectedTab, setSelectedTab] = useState(currentTab);
   
   useEffect(() => {
     // Fetch user role from localStorage when the component mounts
