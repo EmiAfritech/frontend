@@ -80,7 +80,7 @@ export function Sidebar() {
       MitigatedRisks: "/risk-mitigation",
       ReviewedRisks: "/risk-review",
       ClosedRisks: "/closed-risks",
-      ViewUser: "/employeees",
+      ViewUser: "/employees",
     };
 
     return tabs.map((tab) => (
