@@ -21,10 +21,10 @@ import { useEffect } from "react";
 
 export function Sidebar() {
   const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState("");
-  const [selectedTab, setSelectedTab] = useState("Overview");
-
+  //const [selectedTab, setSelectedTab] = useState("Overview");
+  let selectedTab = "Overview";
   useEffect(() => {
     // Fetch user role from localStorage when the component mounts
     const role = localStorage.getItem("role");
@@ -53,7 +53,7 @@ export function Sidebar() {
   };
 
   const handleTabClick = (tab) => {
-    setSelectedTab(tab);  
+    selectedTab = tab;
   };
 
 
