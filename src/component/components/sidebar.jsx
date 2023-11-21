@@ -24,7 +24,7 @@ export function Sidebar(currentTab) {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
-  const [selectedTab, setSelectedTab] = useState(currentTab);
+  const [selectedTab, setSelectedTab] = useState(currentTab.currentTab);
   
   useEffect(() => {
     // Fetch user role from localStorage when the component mounts
