@@ -115,11 +115,12 @@ export function Sidebar() {
       <>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
           <FaBorderStyle className="icons" />
+          Overview
           
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
           <FaRegShareSquare className="icons" />
-          
+          Risk Management
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -141,18 +142,23 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Home")}>
           <FaBorderStyle className="icons" />
+          Home
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
           <FaRegShareSquare className="icons" />
+          New Risk
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
           <FaClipboardCheck className="icons" />
+          Monitored Risks
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Mitigated Risks")}>
           <FaPencilAlt className="icons" />
+          Mitigated Risks
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Reviewed Risks")}>
           <FaClipboardList className="icons" />
+          Reviewed Risks
         </li>
         <button className="flex flex row items-center p-3" onClick={handleLogOut}>
           <FaSignOutAlt className="icons" />
@@ -165,27 +171,35 @@ export function Sidebar() {
     if(selectedTab === "Risk Management"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-identification");
+      alert(selectedTab);
     } 
     if(selectedTab === "Overview" || selectedTab === "Home"){
       AuditorMainTabs();
       navigate("/dashboard");
+      alert(selectedTab);
+
     } 
     
     if(selectedTab === "New Risk"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-identification");
+      alert(selectedTab);
+
     } 
     if(selectedTab === "Monitored Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-monitoring");
+      alert(selectedTab);
     }
     if(selectedTab === "Mitigated Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-mitigation");
+      alert(selectedTab);
     }
     if(selectedTab === "Reviewed Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-review");
+      alert(selectedTab);
     } 
 
       
