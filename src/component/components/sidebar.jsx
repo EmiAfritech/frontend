@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { FaCopy, FaClipboardList, FaUniversity, FaClipboardCheck, FaSignOutAlt, FaUserFriends, FaUsers, FaRegShareSquare, FaPencilAlt, FaBorderStyle, FaUserShield } from "react-icons/fa";
 import { LOGOUT_URL } from "../../api/routes";
 import {
   FaCopy,
@@ -16,7 +14,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
-import { useState, useEffect } from "react";
+import { useState, useEffect,React } from "react";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
@@ -59,30 +57,30 @@ export function Sidebar() {
 
   const renderManagerTabs = () => {
     const tabs = [
-      { name: "Risk Management", subTabs: ["Home", "New Risk", "Monitored Risks", "Mitigated Risks", "Reviewed Risks", "Closed Risks"] },
-      { name: "User Management", subTabs: ["Home", "View User"] },
+      { name: "Risk Management", subTabs: ["Home", "NewRisk", "MonitoredRisks", "MitigatedRisks", "ReviewedRisks", "ClosedRisks"] },
+      { name: "User Management", subTabs: ["Home", "ViewUser"] },
       // Add more tabs here...
     ];
 
     const icons = {
-      "Home": "FaUniversity",
-      "New Risk": "FaRegShareSquare",
-      "Monitored Risks": "FaClipboardCheck",
-      "Mitigated Risks": "FaPencilAlt",
-      "Reviewed Risks": "FaClipboardList",
-      "Closed Risks": "FaRegShareSquare",
-      "View User": "FaUserFriends",
-      "Logout": "FaSignOutAlt",
+      Home: FaUniversity,
+      NewRisk: FaRegShareSquare,
+      MonitoredRisks: FaClipboardCheck,
+      MitigatedRisks: FaPencilAlt,
+      ReviewedRisks: FaClipboardList,
+      ClosedRisks: FaRegShareSquare,
+      ViewUser: FaUserFriends,
+      Logout: FaSignOutAlt,
     };
 
     const routes = {
-      "Home": "/dashboard",
-      "New Risk": "/risk-identification",
-      "Monitored Risks": "/risk-monitoring",
-      "Mitigated Risks": "/risk-mitigation",
-      "Reviewed Risks": "/risk-review",
-      "Closed Risks": "/closed-risks",
-      "View User": "/employeees",
+      Home: "/dashboard",
+      NewRisk: "/risk-identification",
+      MonitoredRisks: "/risk-monitoring",
+      MitigatedRisks: "/risk-mitigation",
+      ReviewedRisks: "/risk-review",
+      ClosedRisks: "/closed-risks",
+      ViewUser: "/employeees",
     };
 
     return tabs.map((tab) => (
@@ -98,7 +96,7 @@ export function Sidebar() {
                   {subTab}
                 </button>
               ) : (
-                <Link to={routes[subTab]}>{subTab}</Link>
+                <Link to={routes[subTab]}>{subTab.replace(/([A-Z])/g, " $1").trim()}</Link>
               )}
             </li>
           ))}
@@ -113,6 +111,7 @@ export function Sidebar() {
         <FaCopy className="logo-icon" />
         <div className="logo_name">Risk Manager</div>
       </div>
+      <Sessions/>
       <ul className="nav-links">{renderManagerTabs()}</ul>
       {isLoading && <LoadingPopup />}
     </div>
