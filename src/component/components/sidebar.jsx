@@ -139,10 +139,7 @@ export function Sidebar() {
   const handleAuditorRiskManagementTabs = () => {
     return (
       <>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Home")}>
-          <FaBorderStyle className="icons" />
-          Home
-        </li>
+       
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
           <FaRegShareSquare className="icons" />
           New Risk
@@ -159,9 +156,12 @@ export function Sidebar() {
           <FaClipboardList className="icons" />
           Reviewed Risks
         </li>
+         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Home")}>
+          <FaBorderStyle className="icons" />
+          Home
+        </li>
         <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-          <FaSignOutAlt className="icons" />
-            LogOut
+          <FaSignOutAlt className="icons" /> LogOut
         </button>
       </>
     );
