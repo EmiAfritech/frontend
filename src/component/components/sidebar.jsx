@@ -53,7 +53,11 @@ export function Sidebar() {
   };
 
   const handleTabClick = (tab) => {
+    if (tab === "Home") {
+    setSelectedTab("Overview"); // Set the default tab when "Home" is clicked
+  } else {
     setSelectedTab(tab);
+  }
   };
 
   const renderManagerTabs = () => {
@@ -151,199 +155,72 @@ export function Sidebar() {
     }
   };
 
-  const renderAuditorTabs = () => {
-    switch (selectedTab) {
-      case "Risk Management":
-        return (
-          <>
-            <li onClick={() => handleTabClick("Home")}>
-              <FaUniversity className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("New Risk")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">New Risk</Link>
-            </li>
-            <li onClick={() => handleTabClick("Monitored Risks")}>
-              <FaClipboardCheck className="icons" />
-              <Link to="/risk-monitoring">Monitored Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Mitigated Risks")}>
-              <FaPencilAlt className="icons" />
-              <Link to="/risk-mitigation">Mitigated Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reviewed Risks")}>
-              <FaClipboardList className="icons" />
-              <Link to="/risk-review">Reviewed Risks</Link>
-            </li>
-            
+ const renderAuditorTabs = () => {
+  const commonTabs = (
+    <>
+      <li onClick={() => handleTabClick("Home")}>
+        <FaUniversity className="icons" />
+        <Link to="/dashboard">Overview</Link>
+      </li>
+      <li onClick={() => handleTabClick("New Risk")}>
+        <FaRegShareSquare className="icons" />
+        <Link to="/risk-identification">New Risk</Link>
+      </li>
+      <li onClick={() => handleTabClick("Monitored Risks")}>
+        <FaClipboardCheck className="icons" />
+        <Link to="/risk-monitoring">Monitored Risks</Link>
+      </li>
+      <li onClick={() => handleTabClick("Mitigated Risks")}>
+        <FaPencilAlt className="icons" />
+        <Link to="/risk-mitigation">Mitigated Risks</Link>
+      </li>
+      <li onClick={() => handleTabClick("Reviewed Risks")}>
+        <FaClipboardList className="icons" />
+        <Link to="/risk-review">Reviewed Risks</Link>
+      </li>
+      <li onClick={() => handleTabClick("Logout")}>
+        <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
+      </li>
+    </>
+  );
 
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
+  switch (selectedTab) {
+    case "Risk Management":
+    case "New Risk":
+    case "Monitored Risks":
+    case "Mitigated Risks":
+    case "Reviewed Risks":
+      return commonTabs;
+
+    default:
+      return (
+        <>
+          <li onClick={() => handleTabClick("Overview")}>
+            <FaBorderStyle className="icons" />
+            <Link to="/dashboard">Overview</Link>
+          </li>
+          <li onClick={() => handleTabClick("Risk Management")}>
+            <FaRegShareSquare className="icons" />
+            <Link to="/risk-identification">Risk Management</Link>
+          </li>
+          <li onClick={() => handleTabClick("Reporting")}>
+            <FaCopy className="icons" />
+            <Link to="/report">Reporting</Link>
+          </li>
+          <li onClick={() => handleTabClick("Logout")}>
+            <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
+              <FaSignOutAlt className="icons" />
+              LogOut
+            </button>
+          </li>
+        </>
       );
-      case "New Risk":
-        return (
-          <>
-            <li onClick={() => handleTabClick("Home")}>
-              <FaUniversity className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("New Risk")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">New Risk</Link>
-            </li>
-            <li onClick={() => handleTabClick("Monitored Risks")}>
-              <FaClipboardCheck className="icons" />
-              <Link to="/risk-monitoring">Monitored Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Mitigated Risks")}>
-              <FaPencilAlt className="icons" />
-              <Link to="/risk-mitigation">Mitigated Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reviewed Risks")}>
-              <FaClipboardList className="icons" />
-              <Link to="/risk-review">Reviewed Risks</Link>
-            </li>
+  }
+};
 
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
-        );
-      
-      case "Monitored Risks":
-        return (
-          <>
-            <li onClick={() => handleTabClick("Home")}>
-              <FaUniversity className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("New Risk")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">New Risk</Link>
-            </li>
-            <li onClick={() => handleTabClick("Monitored Risks")}>
-              <FaClipboardCheck className="icons" />
-              <Link to="/risk-monitoring">Monitored Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Mitigated Risks")}>
-              <FaPencilAlt className="icons" />
-              <Link to="/risk-mitigation">Mitigated Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reviewed Risks")}>
-              <FaClipboardList className="icons" />
-              <Link to="/risk-review">Reviewed Risks</Link>
-            </li>
-           
-
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
-        );
-      case "Mitigated Risks":
-        return (
-          <>
-            <li onClick={() => handleTabClick("Home")}>
-              <FaUniversity className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("New Risk")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">New Risk</Link>
-            </li>
-            <li onClick={() => handleTabClick("Monitored Risks")}>
-              <FaClipboardCheck className="icons" />
-              <Link to="/risk-monitoring">Monitored Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Mitigated Risks")}>
-              <FaPencilAlt className="icons" />
-              <Link to="/risk-mitigation">Mitigated Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reviewed Risks")}>
-              <FaClipboardList className="icons" />
-              <Link to="/risk-review">Reviewed Risks</Link>
-            </li>
-            
-
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
-        );
-      case "Reviewed Risks":
-        return (
-          <>
-            <li onClick={() => handleTabClick("Home")}>
-              <FaUniversity className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("New Risk")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">New Risk</Link>
-            </li>
-            <li onClick={() => handleTabClick("Monitored Risks")}>
-              <FaClipboardCheck className="icons" />
-              <Link to="/risk-monitoring">Monitored Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Mitigated Risks")}>
-              <FaPencilAlt className="icons" />
-              <Link to="/risk-mitigation">Mitigated Risks</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reviewed Risks")}>
-              <FaClipboardList className="icons" />
-              <Link to="/risk-review">Reviewed Risks</Link>
-            </li>
-            
-
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
-        );
-      
-      default:
-        return (
-          <>
-            <li onClick={() => handleTabClick("Overview")}>
-              <FaBorderStyle className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("Risk Management")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">Risk Management</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reporting")}>
-              <FaCopy className="icons" />
-              <Link to="/report">Reporting</Link>
-            </li>
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-          </>
-        );
-    }
-  };
   const renderGeneralManagerTabs = () => {
     switch (selectedTab) {
       case "Admin":
