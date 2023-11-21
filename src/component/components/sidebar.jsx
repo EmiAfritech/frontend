@@ -53,12 +53,35 @@ export function Sidebar() {
   };
 
   const handleTabClick = (tab) => {
-    if (tab === "Home") {
-    setSelectedTab("Overview"); // Set the default tab when "Home" is clicked
-  } else {
-    setSelectedTab(tab);
+  switch (tab) {
+    case "Risk Management":
+      setSelectedTab("New Risk"); // Set the active tab to "New Risk" when "Risk Management" is clicked
+      break;
+
+    case "New Risk":
+      setSelectedTab("New Risk"); // Set the active tab to "New Risk" when "Risk Management" is clicked
+      break;
+    case "Monitored Risks":
+      setSelectedTab("Monitored Risks"); // Set the active tab to "New Risk" when "Risk Management" is clicked
+      break;
+    case "Mitigated Risks":
+      setSelectedTab("Mitigated Risks"); // Set the active tab to "New Risk" when "Risk Management" is clicked
+      break;
+    case "Reviewed Risks":
+      setSelectedTab("Reviewed Risks"); // Set the active tab to "New Risk" when "Risk Management" is clicked
+      break;
+      
+
+    case "Home":
+      setSelectedTab("Overview"); // Set the default tab when "Home" is clicked
+      break;
+
+    default:
+      setSelectedTab(tab);
+      break;
   }
-  };
+};
+
 
   const renderManagerTabs = () => {
     switch (selectedTab) {
