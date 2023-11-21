@@ -71,6 +71,7 @@ export function Sidebar() {
       setSelectedTab("Reviewed Risks"); // Set the active tab to "New Risk" when "Risk Management" is clicked
       break;
       
+      
 
     case "Home":
       setSelectedTab("Overview"); // Set the default tab when "Home" is clicked
