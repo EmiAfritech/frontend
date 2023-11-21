@@ -59,23 +59,23 @@ export function Sidebar() {
     
     return (
       <>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorDefaultTabs}>
           <FaUniversity className="icons" />
           <Link to="/dashboard">Overview</Link>
         </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
           <FaRegShareSquare className="icons" />
           <Link to="/risk-identification">New Risk</Link>
         </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
           <FaClipboardCheck className="icons" />
           <Link to="/risk-monitoring">Monitored Risks</Link>
         </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
           <FaPencilAlt className="icons" />
           <Link to="/risk-mitigation">Mitigated Risks</Link>
         </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </button>
@@ -87,15 +87,15 @@ export function Sidebar() {
 
       </>
     );
-  }
+  };
   const handleAuditorDefaultTabs = () => {
     return (
       <>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs }>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorDefaultTabs }>
           <FaBorderStyle className="icons" />
           <Link to="/dashboard">Overview</Link>
         </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
           <FaRegShareSquare className="icons" />
           <Link to="/risk-identification">Risk Management</Link>
         </button>
@@ -109,7 +109,31 @@ export function Sidebar() {
         </button>
       </>
     );
-  }
+  };
+  const renderAuditorTabs = () => {
+   return (
+      <>
+         <button className="flex flex row items-center p-3" onClick={handleAuditorDefaultTabs}>
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </button>
+        <button className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">Risk Management</Link>
+        </button>
+        <button className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </button>
+        
+        <button className="flex flex row items-center p-3" onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
+        
+      </>
+   );
+  };
 
 
   const renderManagerTabs = () => {
@@ -207,30 +231,7 @@ export function Sidebar() {
     }
   };
 
- const renderAuditorTabs = () => {
-   return (
-      <>
-         <button className="flex flex row items-center p-3" onClick={() => handleAuditorDefaultTabs }>
-          <FaBorderStyle className="icons" />
-          <Link to="/dashboard">Overview</Link>
-        </button>
-        <button className="flex flex row items-center p-3" onClick={() => handleAuditorRiskManagementTabClick}>
-          <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">Risk Management</Link>
-        </button>
-        <button className="flex flex row items-center p-3">
-          <FaCopy className="icons" />
-          <Link to="/report">Reporting</Link>
-        </button>
-        
-        <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-          <FaSignOutAlt className="icons" />
-          LogOut
-        </button>
-        
-      </>
-   );
-  };
+
 
   const renderGeneralManagerTabs = () => {
     switch (selectedTab) {
