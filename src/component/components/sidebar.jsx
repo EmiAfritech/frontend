@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export function Sidebar(currentTab) {
+  console.log(currentTab);
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
