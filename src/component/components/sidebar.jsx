@@ -167,23 +167,26 @@ export function Sidebar() {
     );
   }
   const renderAuditorTabs = () => {
-    if(selectedTab === "Overview" || selectedTab === "Home"){
-      return AuditorMainTabs();
-    } else if(selectedTab === "Risk Management"){
+    if(selectedTab === "Risk Management"){
       
       return handleAuditorRiskManagementTabs();
-    } else if(selectedTab === "New Risk"){
-      return handleAuditorRiskManagementTabs();
-    } else if(selectedTab === "Monitored Risks"){
-      return handleAuditorRiskManagementTabs();
-    }else if(selectedTab === "Mitigated Risks"){
-      return handleAuditorRiskManagementTabs();
-    }else if(selectedTab === "Reviewed Risks"){
-      return handleAuditorRiskManagementTabs();
-    } else {
+    } 
+    if(selectedTab === "Overview" || selectedTab === "Home"){
       return AuditorMainTabs();
+    } 
+    
+    if(selectedTab === "New Risk"){
+      return handleAuditorRiskManagementTabs();
+    } 
+    if(selectedTab === "Monitored Risks"){
+      return handleAuditorRiskManagementTabs();
     }
-
+    if(selectedTab === "Mitigated Risks"){
+      return handleAuditorRiskManagementTabs();
+    }
+    if(selectedTab === "Reviewed Risks"){
+      return handleAuditorRiskManagementTabs();
+    } 
 
       
 
