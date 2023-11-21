@@ -23,8 +23,8 @@ export function Sidebar() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState("");
-  //const [selectedTab, setSelectedTab] = useState("Overview");
-  let selectedTab = "Overview";
+  const [selectedTab, setSelectedTab] = useState("Overview");
+  
   useEffect(() => {
     // Fetch user role from localStorage when the component mounts
     const role = localStorage.getItem("role");
@@ -53,7 +53,7 @@ export function Sidebar() {
   };
 
   const handleTabClick = (tab) => {
-    selectedTab = tab;
+      setSelectedTab(tab);
   };
 
 
@@ -183,31 +183,10 @@ export function Sidebar() {
         </li>
       </>
     );
-    if(selectedTab === "Risk Management" || selectedTab === "New Risk" || selectedTab === "Monitored Risks" || selectedTab === "Mitigated Risks" || selectedTab === "Reviewed Risks") {
+    if(selectedTab === "Risk Management" ) {
       return commonTabs;
-    }else if(selectedTab === "Home") {
-      return (
-        <>
-          <li onClick={() => handleTabClick("Overview")}>
-              <FaBorderStyle className="icons" />
-              <Link to="/dashboard">Overview</Link>
-            </li>
-            <li onClick={() => handleTabClick("Risk Management")}>
-              <FaRegShareSquare className="icons" />
-              <Link to="/risk-identification">Risk Management</Link>
-            </li>
-            <li onClick={() => handleTabClick("Reporting")}>
-              <FaCopy className="icons" />
-              <Link to="/report">Reporting</Link>
-            </li>
-            <li onClick={() => handleTabClick("Logout")}>
-              <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
-                <FaSignOutAlt className="icons" />
-                LogOut
-              </button>
-            </li>
-        </>
-      );
+    }else if(selectedTab === "New Risk" || selectedTab === "Monitored Risks" || selectedTab === "Mitigated Risks" || selectedTab === "Reviewed Risks") {
+       return commonTabs;
     }else if(selectedTab === "Overview") {
       return (
         <>
@@ -231,7 +210,31 @@ export function Sidebar() {
             </li>
         </>
       );
-    } else {
+    }else if(selectedTab === "Home"){
+       return (
+        <>
+          <li onClick={() => handleTabClick("Overview")}>
+              <FaBorderStyle className="icons" />
+              <Link to="/dashboard">Overview</Link>
+            </li>
+            <li onClick={() => handleTabClick("Risk Management")}>
+              <FaRegShareSquare className="icons" />
+              <Link to="/risk-identification">Risk Management</Link>
+            </li>
+            <li onClick={() => handleTabClick("Reporting")}>
+              <FaCopy className="icons" />
+              <Link to="/report">Reporting</Link>
+            </li>
+            <li onClick={() => handleTabClick("Logout")}>
+              <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
+                <FaSignOutAlt className="icons" />
+                LogOut
+              </button>
+            </li>
+        </>
+      );
+    }
+     else {
       return (
         <>
           <li onClick={() => handleTabClick("Overview")}>
