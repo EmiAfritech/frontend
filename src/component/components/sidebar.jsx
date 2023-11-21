@@ -115,8 +115,7 @@ export function Sidebar() {
       <>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
           <FaBorderStyle className="icons" />
-          Overview
-          
+          Overview 
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
           <FaRegShareSquare className="icons" />
@@ -168,38 +167,45 @@ export function Sidebar() {
     );
   }
   const renderAuditorTabs = () => {
-    if(selectedTab === "Risk Management"){
-      handleAuditorRiskManagementTabs();
-      navigate("/risk-identification");
-      console.log(selectedTab);
-    } 
+    
     if(selectedTab === "Overview" || selectedTab === "Home"){
-      AuditorMainTabs();
+      
       navigate("/dashboard");
       console.log(selectedTab);
+      return AuditorMainTabs();
 
+    } 
+    if(selectedTab === "Risk Management"){
+      
+      navigate("/risk-identification");
+      console.log(selectedTab);
+      return handleAuditorRiskManagementTabs();
     } 
     
     if(selectedTab === "New Risk"){
-      handleAuditorRiskManagementTabs();
+      
       navigate("/risk-identification");
       console.log(selectedTab);
+      return handleAuditorRiskManagementTabs();
 
     } 
     if(selectedTab === "Monitored Risks"){
-      handleAuditorRiskManagementTabs();
+      
       navigate("/risk-monitoring");
       console.log(selectedTab);
+      return handleAuditorRiskManagementTabs();
     }
     if(selectedTab === "Mitigated Risks"){
-      handleAuditorRiskManagementTabs();
+      
       navigate("/risk-mitigation");
       console.log(selectedTab);
+      return handleAuditorRiskManagementTabs();
     }
     if(selectedTab === "Reviewed Risks"){
-      handleAuditorRiskManagementTabs();
+      
       navigate("/risk-review");
       console.log(selectedTab);
+      return handleAuditorRiskManagementTabs();
     } 
 
       
