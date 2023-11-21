@@ -115,11 +115,11 @@ export function Sidebar() {
       <>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
           <FaBorderStyle className="icons" />
-          Overview 
+          <Link to="/dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
           <FaRegShareSquare className="icons" />
-          Risk Management
+          <Link to="/risk-identification">Risk Management</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -142,69 +142,61 @@ export function Sidebar() {
        
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
           <FaRegShareSquare className="icons" />
-          New Risk
+          <Link to="/risk-identification">New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
           <FaClipboardCheck className="icons" />
-          Monitored Risks
+          <Link to="/risk-monitoring">Monitored Risks</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Mitigated Risks")}>
           <FaPencilAlt className="icons" />
-          Mitigated Risks
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Reviewed Risks")}>
           <FaClipboardList className="icons" />
-          Reviewed Risks
+          <Link to="/risk-review">Reviewed Risks</Link>
         </li>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Home")}>
           <FaBorderStyle className="icons" />
-          Home
+          <Link to="/dashboard">Overview</Link>
         </li>
-        <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-          <FaSignOutAlt className="icons" /> LogOut
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+           LogOut
         </button>
+        </li>
+        
       </>
     );
   }
   const renderAuditorTabs = () => {
     
     if(selectedTab === "Overview" || selectedTab === "Home"){
-      
-      navigate("/dashboard");
-      console.log(selectedTab);
+     
       return AuditorMainTabs();
 
     } 
     if(selectedTab === "Risk Management"){
-      
-      navigate("/risk-identification");
-      console.log(selectedTab);
+    
       return handleAuditorRiskManagementTabs();
     } 
     
     if(selectedTab === "New Risk"){
-      
-      navigate("/risk-identification");
-      console.log(selectedTab);
+    
       return handleAuditorRiskManagementTabs();
 
     } 
     if(selectedTab === "Monitored Risks"){
-      
-      navigate("/risk-monitoring");
-      console.log(selectedTab);
+     
       return handleAuditorRiskManagementTabs();
     }
     if(selectedTab === "Mitigated Risks"){
-      
-      navigate("/risk-mitigation");
-      console.log(selectedTab);
+     
       return handleAuditorRiskManagementTabs();
     }
     if(selectedTab === "Reviewed Risks"){
       
-      navigate("/risk-review");
-      console.log(selectedTab);
       return handleAuditorRiskManagementTabs();
     } 
 
