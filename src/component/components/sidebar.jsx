@@ -182,13 +182,14 @@ export function Sidebar() {
  const renderAuditorTabs = () => {
   const commonTabs = (
     <>
-      <li onClick={() => handleTabClick("Home")}>
-        <FaUniversity className="icons" />
-        <Link to="/dashboard">Overview</Link>
-      </li>
+      
       <li onClick={() => handleTabClick("New Risk")}>
         <FaRegShareSquare className="icons" />
         <Link to="/risk-identification">New Risk</Link>
+      </li>
+      <li onClick={() => handleTabClick("Home")}>
+        <FaUniversity className="icons" />
+        <Link to="/dashboard">Overview</Link>
       </li>
       <li onClick={() => handleTabClick("Monitored Risks")}>
         <FaClipboardCheck className="icons" />
