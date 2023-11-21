@@ -45,10 +45,10 @@ export function Sidebar() {
 
       localStorage.clear();
 
-      alert("Logging Out Successful");
+      console.log("Logging Out Successful");
       navigate("/", { replace: true });
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 
@@ -171,35 +171,35 @@ export function Sidebar() {
     if(selectedTab === "Risk Management"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-identification");
-      alert(selectedTab);
+      console.log(selectedTab);
     } 
     if(selectedTab === "Overview" || selectedTab === "Home"){
       AuditorMainTabs();
       navigate("/dashboard");
-      alert(selectedTab);
+      console.log(selectedTab);
 
     } 
     
     if(selectedTab === "New Risk"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-identification");
-      alert(selectedTab);
+      console.log(selectedTab);
 
     } 
     if(selectedTab === "Monitored Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-monitoring");
-      alert(selectedTab);
+      console.log(selectedTab);
     }
     if(selectedTab === "Mitigated Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-mitigation");
-      alert(selectedTab);
+      console.log(selectedTab);
     }
     if(selectedTab === "Reviewed Risks"){
       handleAuditorRiskManagementTabs();
       navigate("/risk-review");
-      alert(selectedTab);
+      console.log(selectedTab);
     } 
 
       
@@ -623,10 +623,10 @@ export function Sidebar() {
 
 //       localStorage.clear();
 
-//       alert("Logging Out Successful");
+//       console.log("Logging Out Successful");
 //       navigate("/", { replace: true });
 //     } catch (error) {
-//       alert(error);
+//       console.log(error);
 //     }
 //   };
 
