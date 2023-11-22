@@ -56,61 +56,8 @@ export function Sidebar(currentTab) {
   const handleTabClick = (tab) => {
       setSelectedTab(tab);
   };
-  // const handleAuditorRiskManagementTabClick = () => {
-    
-  //   return (
-  //     <>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorDefaultTabs}>
-  //         <FaUniversity className="icons" />
-  //         <Link to="/dashboard">Overview</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
-  //         <FaRegShareSquare className="icons" />
-  //         <Link to="/risk-identification">New Risk</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
-  //         <FaClipboardCheck className="icons" />
-  //         <Link to="/risk-monitoring">Monitored Risks</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
-  //         <FaPencilAlt className="icons" />
-  //         <Link to="/risk-mitigation">Mitigated Risks</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
-  //         <FaClipboardList className="icons" />
-  //         <Link to="/risk-review">Reviewed Risks</Link>
-  //       </li>
-  //       <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-  //         <FaSignOutAlt className="icons" />
-  //           LogOut
-  //       </button>
-
-
-  //     </>
-  //   );
-  // };
-  // const handleAuditorDefaultTabs = () => {
-  //   return (
-  //     <>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorDefaultTabs }>
-  //         <FaBorderStyle className="icons" />
-  //         <Link to="/dashboard">Overview</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3" onClick={handleAuditorRiskManagementTabClick}>
-  //         <FaRegShareSquare className="icons" />
-  //         <Link to="/risk-identification">Risk Management</Link>
-  //       </li>
-  //       <li className="flex flex row items-center p-3">
-  //         <FaCopy className="icons" />
-  //         <Link to="/report">Reporting</Link>
-  //       </li>
-  //       <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-  //         <FaSignOutAlt className="icons" />
-  //           LogOut
-  //       </button>
-  //     </>
-  //   );
-  // };
+ 
+  //Auditor Tabs
   const AuditorMainTabs = () => {
    return (
       <>
@@ -157,11 +104,11 @@ export function Sidebar(currentTab) {
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </li>
-         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Home")}>
-          <FaBorderStyle className="icons" />
-          <Link to="/dashboard">Overview</Link>
+         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
+          <FaUniversity className="icons" />
+          <Link to="/dashboard">Home</Link>
         </li>
-        <li className="flex flex row items-center p-3">
+        <li className="flex flex row items-left p-4">
           <button onClick={handleLogOut}>
           <FaSignOutAlt className="icons" />
            LogOut
@@ -202,6 +149,338 @@ export function Sidebar(currentTab) {
     } 
 
       
+
+  }
+
+  //Admin Tabs
+  const AdminMainTabs = () => {
+    return (
+      <>
+         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">Risk Management</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Employees")}>
+          <FaUserFriends className="icons" />
+          <Link to="/employees">Users</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Management")}>
+          <FaUsers className="icons" />
+          <Link to="/department">Department Management</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut}>
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+      </>
+      );
+  }
+  const handleAdminRiskManagementTabs = () => {
+    return (
+      <>
+       
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Mitigated Risks")}>
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Reviewed Risks")}>
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Closed Risks")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/closed-risks">Closed Risks</Link>
+        </li>
+         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
+          <FaUniversity className="icons" />
+          <Link to="/dashboard">Home</Link>
+        </li>
+        <li className="flex flex row items-left p-4">
+          <button onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+           LogOut
+        </button>
+        </li>
+        
+      </>
+    );
+  }
+  const handleAdminDepartmentManagementTabs = () => {
+    return (
+      <>
+       
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Department")}>
+          <FaUsers className="icons" />
+          <Link to="/department">New Department</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Members")}>
+          <FaClipboardCheck className="icons" />
+          <Link to="/employees">Department Members</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Risks")}>
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-identification">Department Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Reporting")}>
+          <FaClipboardList className="icons" />
+          <Link to="/report">Department Reporting</Link>
+        </li>
+         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
+          <FaUniversity className="icons" />
+          <Link to="/dashboard">Home</Link>
+        </li>
+        <li className="flex flex row items-left p-4">
+          <button onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+           LogOut
+        </button>
+        </li>
+        
+      </>
+    );
+  }
+  const renderAdminTabs = () => {
+      
+      if(selectedTab === "Overview" || selectedTab === "Home"){
+      
+        return AdminMainTabs();
+  
+      } 
+      if(selectedTab === "Risk Management"){
+      
+        return handleAdminRiskManagementTabs();
+      } 
+      
+      if(selectedTab === "New Risk"){
+      
+        return handleAdminRiskManagementTabs();
+  
+      } 
+      if(selectedTab === "Monitored Risks"){
+      
+        return handleAdminRiskManagementTabs();
+      }
+      if(selectedTab === "Mitigated Risks"){
+      
+        return handleAdminRiskManagementTabs();
+      }
+      if(selectedTab === "Reviewed Risks"){
+        
+        return handleAdminRiskManagementTabs();
+      } 
+      if(selectedTab === "Closed Risks"){
+        
+        return handleAdminRiskManagementTabs();
+      } 
+      if(selectedTab === "Employees"){
+        
+        return AdminMainTabs();
+      } 
+      if(selectedTab === "Department Management"){
+        
+        return handleAdminDepartmentManagementTabs();
+      } 
+      if(selectedTab === "New Department"){
+        
+        return handleAdminDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Members"){
+        
+        return handleAdminDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Risks"){
+        
+        return handleAdminDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Reporting"){
+        
+        return handleAdminDepartmentManagementTabs();
+      } 
+
+  }
+
+  //General Manager Tabs
+  const GeneralManagerMainTabs = () => {
+    return (
+      <>
+         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">Risk Management</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Employees")}>
+          <FaUserFriends className="icons" />
+          <Link to="/employees">Users</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Management")}>
+          <FaUsers className="icons" />
+          <Link to="/department">Department Management</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut}>
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+      </>
+      );
+  }
+  const handleGeneralManagerRiskManagementTabs = () => {
+    return (
+      <>
+       
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Mitigated Risks")}>
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Reviewed Risks")}>
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Closed Risks")}>
+          <FaRegShareSquare className="icons" />
+          <Link to="/closed-risks">Closed Risks</Link>
+        </li>
+         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
+          <FaUniversity className="icons" />
+          <Link to="/dashboard">Home</Link>
+        </li>
+        <li className="flex flex row items-left p-4">
+          <button onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+           LogOut
+        </button>
+        </li>
+        
+      </>
+    );
+  }
+  const handleGeneralManagerDepartmentManagementTabs = () => {
+    return (
+      <>
+       
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Department")}>
+          <FaUsers className="icons" />
+          <Link to="/department">New Department</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Members")}>
+          <FaClipboardCheck className="icons" />
+          <Link to="/employees">Department Members</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Risks")}>
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-identification">Department Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Reporting")}>
+          <FaClipboardList className="icons" />
+          <Link to="/report">Department Reporting</Link>
+        </li>
+         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
+          <FaUniversity className="icons" />
+          <Link to="/dashboard">Home</Link>
+        </li>
+        <li className="flex flex row items-left p-4">
+          <button onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+           LogOut
+        </button>
+        </li>
+        
+      </>
+    );
+  }
+  const renderGeneralManagerTabs = () => {
+      
+      if(selectedTab === "Overview" || selectedTab === "Home"){
+      
+        return GeneralManagerMainTabs();
+  
+      } 
+      if(selectedTab === "Risk Management"){
+      
+        return handleGeneralManagerRiskManagementTabs();
+      } 
+      
+      if(selectedTab === "New Risk"){
+      
+        return handleGeneralManagerRiskManagementTabs();
+  
+      } 
+      if(selectedTab === "Monitored Risks"){
+      
+        return handleGeneralManagerRiskManagementTabs();
+      }
+      if(selectedTab === "Mitigated Risks"){
+      
+        return handleGeneralManagerRiskManagementTabs();
+      }
+      if(selectedTab === "Reviewed Risks"){
+        
+        return handleGeneralManagerRiskManagementTabs();
+      } 
+      if(selectedTab === "Closed Risks"){
+        
+        return handleGeneralManagerRiskManagementTabs();
+      } 
+      if(selectedTab === "Employees"){
+        
+        return GeneralManagerMainTabs();
+      } 
+      if(selectedTab === "Department Management"){
+        
+        return handleGeneralManagerDepartmentManagementTabs();
+      } 
+      if(selectedTab === "New Department"){
+        
+        return handleGeneralManagerDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Members"){
+        
+        return handleGeneralManagerDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Risks"){
+        
+        return handleGeneralManagerDepartmentManagementTabs();
+      } 
+      if(selectedTab === "Department Reporting"){
+        
+        return handleGeneralManagerDepartmentManagementTabs();
+      } 
 
   }
 
@@ -568,7 +847,8 @@ export function Sidebar(currentTab) {
       <div className="sidebar-main">
         <ul>
           <Sessions/>
-           
+          {userRole === "ADMIN" && renderAdminTabs()}
+          {userRole === "GENERALMANAGER" && renderGeneralManagerTabs()}
           {userRole === "AUDITOR" && renderAuditorTabs()}
           
           <LoadingPopup isLoading={isLoading} />
