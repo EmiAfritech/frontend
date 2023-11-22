@@ -4,10 +4,10 @@ import { RiskViewTable } from "../../component/components/tables";
 import "../../component/comstyles/component.css";
 
 export function RiskView() {
-  const currentTab = "New Risk";
+  
   return (
     <div className="flex de-flex bg-slate-50 h-screen">
-      <Sidebar currentTab={currentTab} />
+      <Sidebar />
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
           {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
