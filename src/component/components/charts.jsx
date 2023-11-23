@@ -42,7 +42,7 @@ import {
 
 export function OpenVsClose(names) {
   const [data, setData] = useState();
-  const departmentName = names.names.toString();
+  const departmentName = names.names;
   useEffect(() => {
     axios.post(OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
       JSON.stringify({
