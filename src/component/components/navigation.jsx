@@ -1,6 +1,6 @@
 import "../comstyles/component.css";
 import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useState } from "react-router-dom";
 
 import { LOGOUT_URL } from "../../api/routes";
 import {
@@ -19,21 +19,15 @@ import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 
 export function Navigation() {
-  const [userRole, setUserRole] = useState("");
   const role = localStorage.getItem("role");
-  setUserRole(role);
+  console.log(role);
 
-  {
-    userRole === "ADMIN" && admin();
-  }
-  {
-    userRole === "GENERALMANAGER" && admin();
-  }
-  {
-    userRole === "MANAGER" && manager();
-  }
-  {
-    userRole === "AUDITOR" && auditor();
+  if (role === "ADMIN" || "GENERAL MANAGER") {
+    return admin();
+  } else if (role === "AUDITOR") {
+    return auditor();
+  } else {
+    return manager();
   }
 }
 
