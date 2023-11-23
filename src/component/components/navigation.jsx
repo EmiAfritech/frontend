@@ -41,10 +41,7 @@ const Navigation = () => {
     ],
   };
 
-  const handleLogOut = () => {
-    console.log('hi')
-  };
-
+  
   const renderMenu = (role) => {
     return (
       <ul>
@@ -54,7 +51,7 @@ const Navigation = () => {
             <Link to={item.link}>{item.label}</Link>
           </li>
         ))}
-        <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
+        <button className="flex flex-row items-center p-3" >
           <FaSignOutAlt className="icons" />
           Log Out
         </button>
