@@ -22,7 +22,6 @@ import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
 import { ClosedRisk } from "./pages/riskreview/closedrisk";
 import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
-import {AdminDashboard} from "./pages/AdminPages/dashboard/adminDashboard";
 
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
         <Route path="/new-risk" element={<AdminRiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />

@@ -23,7 +23,6 @@ import {
   MITIGATEDVSUNMITIGATEDCHAT_URL,
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
   OPENVSCLOSEBARCHART_URL,
-  OPENVSCLOSECHART_URL,
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
   RISKSTATUSREPORTCHART_URL,
@@ -38,16 +37,15 @@ import {
   REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
   OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
+  OPENVSCLOSECHART_URL,
 } from "../../api/routes";
 
-export function OpenVsClose(names) {
+export function OpenVsClose() {
   const [data, setData] = useState();
-  const departmentName = names.names;
+ 
   useEffect(() => {
-    axios.post(OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
-      JSON.stringify({
-      departmentName,
-    }), {
+    axios.get(OPENVSCLOSECHART_URL,
+       {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -55,10 +53,8 @@ export function OpenVsClose(names) {
       withCredentials: true,
     })
     .then((data) => setData(data.data)
-    .catch((error) => {
-      console.error(error);
-    }));
-  }, [data, departmentName]);
+    );
+  }, [data]);
 
  
 
@@ -204,7 +200,7 @@ export function RiskBarchart(names) {
     </div>
   );
 }
-export function MonitoredVsUnmonitoredBarchart(names) {
+export function MonitoredVsUnmonitoredBarchart() {
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -654,3 +650,40 @@ export function HeatMap() {
     </div>
   );
 }
+
+
+// export function OpenVsClose(names) {
+//   const [data, setData] = useState();
+//   const departmentName = names.names;
+//   useEffect(() => {
+//     axios.post(OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
+//       JSON.stringify({
+//       departmentName,
+//     }), {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + localStorage.getItem("token"),
+//       },
+//       withCredentials: true,
+//     })
+//     .then((data) => setData(data.data)
+//     .catch((error) => {
+//       console.error(error);
+//     }));
+//   }, [data, departmentName]);
+
+ 
+
+//   return (
+//     <div className=" items-center flex flex-col px-8 pb-5">
+//       <h3 className="pb-3">
+//         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
+//         <span style={{ color: "#2394cc" }}>CLOSE</span>
+//       </h3>
+//       <PieChart width={180} height={180}>
+//         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+//         <Tooltip />
+//       </PieChart>
+//     </div>
+//   );
+// }
