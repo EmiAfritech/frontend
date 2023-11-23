@@ -12,7 +12,7 @@ import {
   FaSignOutAlt,
 } from 'react-icons/fa';
 
-const Navigation = () => {
+export function Navigation (){
   const role = localStorage.getItem("role");
 
   const menuItems = {
@@ -62,4 +62,3 @@ const Navigation = () => {
   return renderMenu(role);
 };
 
-export default Navigation;
