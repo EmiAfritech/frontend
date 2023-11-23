@@ -37,6 +37,7 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
+        console.log(response)
         if (
           token !== null ||
           token !== undefined ||
