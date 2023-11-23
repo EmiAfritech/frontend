@@ -445,7 +445,9 @@ export function RiskViewTable() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        
+       <div>
+          <Riskforms/>
+        </div> 
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
