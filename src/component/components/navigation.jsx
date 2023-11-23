@@ -18,15 +18,21 @@ import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 
 export function Navigation() {
+  const[userRole, setUserRole] = useState('')
   const role = localStorage.getItem("role");
-  console.log(role);
+  setUserRole(role);
 
-  if (role === "ADMIN" || "GENERAL MANAGER") {
-    return admin();
-  } else if (role === "AUDITOR") {
-    return auditor();
-  } else {
-    return manager();
+  {
+    userRole === "ADMIN" && admin();
+  }
+  {
+    userRole === "GENERALMANAGER" && admin();
+  }
+  {
+    userRole === "MANAGER" && manager();
+  }
+  {
+    userRole === "AUDITOR" && auditor();
   }
 }
 

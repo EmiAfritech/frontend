@@ -57,7 +57,6 @@ export function Login() {
         alert("Server is Currently Unavailable, Please Try Again Later");
         reload();
       } else if(err.response.status === 401){
-        // Handle other types of errors here if needed
         alert("Unauthorized User! Please check your credentials");
         
       }
