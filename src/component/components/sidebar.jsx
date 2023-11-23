@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 export function Sidebar(currentTab) {
-  console.log(currentTab.currentTab);
+  
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState("");
@@ -104,11 +104,11 @@ export function Sidebar(currentTab) {
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </li>
-         <li className="flex flex row items-left p-5" onClick={()=> handleTabClick("Home")}>
+         <li className="flex flex row items-center p-5" onClick={()=> handleTabClick("Home")}>
           <FaUniversity className="icons" />
           <Link to="/dashboard">Home</Link>
         </li>
-        <li className="flex flex row items-left p-5">
+        <li className="flex flex row items-center p-5">
           <button onClick={handleLogOut}>
           <FaSignOutAlt className="icons" />
            LogOut
@@ -158,19 +158,19 @@ export function Sidebar(currentTab) {
       <>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
           <FaBorderStyle className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/admin-dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">Risk Management</Link>
+          <Link to="/new-risk">Risk Management</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Employees")}>
           <FaUserFriends className="icons" />
           <Link to="/employees">Users</Link>
         </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Management")}>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Departments")}>
           <FaUsers className="icons" />
-          <Link to="/department">Department Management</Link>
+          <Link to="/department">Departments</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -192,7 +192,7 @@ export function Sidebar(currentTab) {
        
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/new-risk">New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
           <FaClipboardCheck className="icons" />
@@ -212,7 +212,7 @@ export function Sidebar(currentTab) {
         </li>
          <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
           <FaUniversity className="icons" />
-          <Link to="/dashboard">Home</Link>
+          <Link to="/admin-dashboard">Home</Link>
         </li>
         <li className="flex flex row items-left p-4">
           <button onClick={handleLogOut}>
@@ -224,40 +224,7 @@ export function Sidebar(currentTab) {
       </>
     );
   }
-  const handleAdminDepartmentManagementTabs = () => {
-    return (
-      <>
-       
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Department")}>
-          <FaUsers className="icons" />
-          <Link to="/department">New Department</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Members")}>
-          <FaClipboardCheck className="icons" />
-          <Link to="/employees">Department Members</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Risks")}>
-          <FaPencilAlt className="icons" />
-          <Link to="/risk-identification">Department Risks</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Reporting")}>
-          <FaClipboardList className="icons" />
-          <Link to="/report">Department Reporting</Link>
-        </li>
-         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
-          <FaUniversity className="icons" />
-          <Link to="/dashboard">Home</Link>
-        </li>
-        <li className="flex flex row items-left p-4">
-          <button onClick={handleLogOut}>
-          <FaSignOutAlt className="icons" />
-           LogOut
-        </button>
-        </li>
-        
-      </>
-    );
-  }
+  
   const renderAdminTabs = () => {
       
       if(selectedTab === "Overview" || selectedTab === "Home"){
@@ -295,26 +262,11 @@ export function Sidebar(currentTab) {
         
         return AdminMainTabs();
       } 
-      if(selectedTab === "Department Management"){
+      if(selectedTab === "Departments"){
         
-        return handleAdminDepartmentManagementTabs();
+        return AdminMainTabs();
       } 
-      if(selectedTab === "New Department"){
-        
-        return handleAdminDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Members"){
-        
-        return handleAdminDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Risks"){
-        
-        return handleAdminDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Reporting"){
-        
-        return handleAdminDepartmentManagementTabs();
-      } 
+      
 
   }
 
@@ -324,19 +276,19 @@ export function Sidebar(currentTab) {
       <>
          <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Overview")}>
           <FaBorderStyle className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/admin-dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Risk Management")}>
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">Risk Management</Link>
+          <Link to="/new-risk">Risk Management</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Employees")}>
           <FaUserFriends className="icons" />
           <Link to="/employees">Users</Link>
         </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Management")}>
+        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Departments")}>
           <FaUsers className="icons" />
-          <Link to="/department">Department Management</Link>
+          <Link to="/department">Departments</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -358,7 +310,7 @@ export function Sidebar(currentTab) {
        
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Risk")}>
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/new-risk">New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Monitored Risks")}>
           <FaClipboardCheck className="icons" />
@@ -378,7 +330,7 @@ export function Sidebar(currentTab) {
         </li>
          <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
           <FaUniversity className="icons" />
-          <Link to="/dashboard">Home</Link>
+          <Link to="/admin-dashboard">Home</Link>
         </li>
         <li className="flex flex row items-left p-4">
           <button onClick={handleLogOut}>
@@ -390,40 +342,7 @@ export function Sidebar(currentTab) {
       </>
     );
   }
-  const handleGeneralManagerDepartmentManagementTabs = () => {
-    return (
-      <>
-       
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("New Department")}>
-          <FaUsers className="icons" />
-          <Link to="/department">New Department</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Members")}>
-          <FaClipboardCheck className="icons" />
-          <Link to="/employees">Department Members</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Risks")}>
-          <FaPencilAlt className="icons" />
-          <Link to="/risk-identification">Department Risks</Link>
-        </li>
-        <li className="flex flex row items-center p-3" onClick={()=> handleTabClick("Department Reporting")}>
-          <FaClipboardList className="icons" />
-          <Link to="/report">Department Reporting</Link>
-        </li>
-         <li className="flex flex row items-left p-3" onClick={()=> handleTabClick("Home")}>
-          <FaUniversity className="icons" />
-          <Link to="/dashboard">Home</Link>
-        </li>
-        <li className="flex flex row items-left p-4">
-          <button onClick={handleLogOut}>
-          <FaSignOutAlt className="icons" />
-           LogOut
-        </button>
-        </li>
-        
-      </>
-    );
-  }
+
   const renderGeneralManagerTabs = () => {
       
       if(selectedTab === "Overview" || selectedTab === "Home"){
@@ -461,27 +380,10 @@ export function Sidebar(currentTab) {
         
         return GeneralManagerMainTabs();
       } 
-      if(selectedTab === "Department Management"){
+      if(selectedTab === "Departments"){
         
-        return handleGeneralManagerDepartmentManagementTabs();
+        return GeneralManagerMainTabs();
       } 
-      if(selectedTab === "New Department"){
-        
-        return handleGeneralManagerDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Members"){
-        
-        return handleGeneralManagerDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Risks"){
-        
-        return handleGeneralManagerDepartmentManagementTabs();
-      } 
-      if(selectedTab === "Department Reporting"){
-        
-        return handleGeneralManagerDepartmentManagementTabs();
-      } 
-
   }
 
   //Manager Tabs

@@ -40,7 +40,9 @@ import {
   RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
+  VIEWALLRISKSBASEDONDEPARTMENT_URL,
 } from "../../api/routes";
+
 import { Link } from "react-router-dom";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -417,34 +419,35 @@ export function HighLowRiskTable() {
   );
 }
 
-export function RiskViewTable() {
+export function RiskViewTable(names) {
   const [tableData, setTableData] = useState([]);
+  const departmentName = names.names.toString();
+  
+  
+  
+  try{
+    
+    axios.post(VIEWALLRISKSBASEDONDEPARTMENT_URL,
+      JSON.stringify({
+      departmentName,
+    }), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      withCredentials: true,
+    })
+    .then((response) => setTableData(response.data.Data));
+       
 
-  useEffect(() => {
-    const viewAllRisks=()=>{
-       axios
-      .get(VIEWALLRISKS_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.Data));
-    }
-
-    viewAllRisks();
-
-  },[]
-
-  );
+  }catch(error){
+    console.log(error);
+  }
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div>
-          <Riskforms />
-          
-        </div>
+        
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}

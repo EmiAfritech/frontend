@@ -44,9 +44,14 @@ export function Login() {
           role !== undefined
         ) {
           setAuth({ email, password, role, token });
-          navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
+          
+          if(role === "ADMIN" || role === "GENERALMANAGER"){
+            navigate("/admin-dashboard", { replace: true });
+          }else {
+            navigate("/dashboard", { replace: true });
+          }
           reload();
         } else {
           alert("Authorization returned null");
