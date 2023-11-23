@@ -21,6 +21,7 @@ import LoadingPopup, { Sessions } from "../../api/sessions";
 
 export function Navigation() {
   const role = localStorage.getItem('role')
+  console.log(role)
 
   if (role === "ADMIN" || "GENERAL MANAGER") {
     return admin();
