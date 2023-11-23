@@ -17,11 +17,9 @@ import {
 import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 
-
-
 export function Navigation() {
-  const role = localStorage.getItem('role')
-  console.log(role)
+  const role = localStorage.getItem("role");
+  console.log(role);
 
   if (role === "ADMIN" || "GENERAL MANAGER") {
     return admin();
@@ -31,11 +29,6 @@ export function Navigation() {
     return manager();
   }
 }
-
-
-
-
-
 
 function admin() {
   const navigate = useNavigate();
