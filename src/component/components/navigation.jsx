@@ -1,145 +1,68 @@
-import "../comstyles/component.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
-  FaCopy,
-  FaClipboardList,
   FaUniversity,
-  FaClipboardCheck,
-  FaSignOutAlt,
-  FaUserFriends,
-  FaUsers,
   FaRegShareSquare,
+  FaClipboardList,
   FaPencilAlt,
-} from "react-icons/fa";
-import { Link } from "react-router-dom";
+  FaClipboardCheck,
+  FaUsers,
+  FaUserFriends,
+  FaCopy,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 
-export function Navigation() {
+const Navigation = () => {
   const role = localStorage.getItem("role");
-  console.log(role);
 
-  if (role === "ADMIN" || "GENERAL MANAGER") {
-    return admin();
-  } else if (role === "AUDITOR") {
-    return auditor();
-  } else {
-    return manager();
-  }
-}
+  const menuItems = {
+    ADMIN: [
+      { icon: <FaUniversity />, label: 'Overview', link: '/dashboard' },
+      { icon: <FaRegShareSquare />, label: 'New Risk', link: '/risk-identification' },
+      { icon: <FaClipboardList />, label: 'Risk Monitoring', link: '/risk-monitoring' },
+      { icon: <FaPencilAlt />, label: 'Risk Mitigation', link: '/risk-mitigation' },
+      { icon: <FaClipboardCheck />, label: 'Risk Review', link: '/risk-review' },
+      { icon: <FaUsers />, label: 'Departments', link: '/department' },
+      { icon: <FaUserFriends />, label: 'Employees', link: '/employees' },
+      { icon: <FaCopy />, label: 'Report', link: '/report' },
+    ],
+    GENERAL_MANAGER: [
+      { icon: <FaUniversity />, label: 'Overview', link: '/dashboard' },
+      { icon: <FaRegShareSquare />, label: 'New Risk', link: '/risk-identification' },
+      { icon: <FaClipboardList />, label: 'Risk Monitoring', link: '/risk-monitoring' },
+      { icon: <FaPencilAlt />, label: 'Risk Mitigation', link: '/risk-mitigation' },
+      { icon: <FaClipboardCheck />, label: 'Risk Review', link: '/risk-review' },
+    ],
+    AUDITOR: [
+      { icon: <FaClipboardCheck />, label: 'Risk Review', link: '/risk-review' },
+      { icon: <FaUsers />, label: 'Departments', link: '/department' },
+      { icon: <FaUserFriends />, label: 'Employees', link: '/employees' },
+      { icon: <FaCopy />, label: 'Report', link: '/report' },
+    ],
+  };
 
-function admin() {
-  return (
-    <ul>
-      <li>
-        <FaUniversity className="icons" />
-        <Link to="/dashboard">Overview</Link>
-      </li>
-      <li>
-        <FaRegShareSquare className="icons" />
-        <Link to="/risk-identification">New Risk</Link>
-      </li>
-      <li>
-        <FaClipboardList className="icons" />
-        <Link to="/risk-monitoring">Risk Monitoring</Link>
-      </li>
-      <li>
-        <FaPencilAlt className="icons" />
-        <Link to="/risk-mitigation">Risk Mitigation</Link>
-      </li>
-      <li>
-        <FaClipboardCheck className="icons" />
-        <Link to="/risk-review">Risk Review</Link>
-      </li>
-      <li>
-        <FaUsers className="icons" />
-        <Link to="/department">Departments</Link>
-      </li>
-      <li>
-        <FaUserFriends className="icons" />
-        <Link to="/employees">Employees</Link>
-      </li>
+  const handleLogOut = () => {
+    console.log('hi')
+  };
 
-      <li>
-        <FaCopy className="icons" />
-        <Link to="/report">Report</Link>
-      </li>
+  const renderMenu = (role) => {
+    return (
+      <ul>
+        {menuItems[role].map((item, index) => (
+          <li key={index}>
+            {item.icon && <item.icon className="icons" />}
+            <Link to={item.link}>{item.label}</Link>
+          </li>
+        ))}
+        <button className="flex flex-row items-center p-3" onClick={handleLogOut}>
+          <FaSignOutAlt className="icons" />
+          Log Out
+        </button>
+      </ul>
+    );
+  };
 
-      <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-        <FaSignOutAlt className="icons" />
-        LogOut
-      </button>
-    </ul>
-  );
-}
-function manager() {
-  return (
-    <ul>
-      <li>
-        <FaUniversity className="icons" />
-        <Link to="/dashboard">Overview</Link>
-      </li>
-      <li>
-        <FaRegShareSquare className="icons" />
-        <Link to="/risk-identification">New Risk</Link>
-      </li>
-      <li>
-        <FaClipboardList className="icons" />
-        <Link to="/risk-monitoring">Risk Monitoring</Link>
-      </li>
-      <li>
-        <FaPencilAlt className="icons" />
-        <Link to="/risk-mitigation">Risk Mitigation</Link>
-      </li>
-      <li>
-        <FaClipboardCheck className="icons" />
-        <Link to="/risk-review">Risk Review</Link>
-      </li>
-      <li>
-        <FaUserFriends className="icons" />
-        <Link to="/employees">Employees</Link>
-      </li>
-      <li>
-        <FaCopy className="icons" />
-        <Link to="/report">Report</Link>
-      </li>
+  return renderMenu(role);
+};
 
-      <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-        <FaSignOutAlt className="icons" />
-        LogOut
-      </button>
-    </ul>
-  );
-}
-function auditor() {
-  return (
-    <ul>
-      <li>
-        <FaUniversity className="icons" />
-        <Link to="/dashboard">Overview</Link>
-      </li>
-      <li>
-        <FaRegShareSquare className="icons" />
-        <Link to="/risk-identification">New Risk</Link>
-      </li>
-      <li>
-        <FaClipboardList className="icons" />
-        <Link to="/risk-monitoring">Risk Monitoring</Link>
-      </li>
-      <li>
-        <FaPencilAlt className="icons" />
-        <Link to="/risk-mitigation">Risk Mitigation</Link>
-      </li>
-      <li>
-        <FaClipboardCheck className="icons" />
-        <Link to="/risk-review">Risk Review</Link>
-      </li>
-      <li>
-        <FaCopy className="icons" />
-        <Link to="/report">Report</Link>
-      </li>
-
-      <button className="flex flex row items-center p-3" onClick={handleLogOut}>
-        <FaSignOutAlt className="icons" />
-        LogOut
-      </button>
-    </ul>
-  );
-}
+export default Navigation;
