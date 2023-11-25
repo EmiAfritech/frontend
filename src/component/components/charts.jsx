@@ -135,15 +135,17 @@ export function MonitoredVsUnmonitored() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col card m-4">
-      <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>UNMONITORED</span>
-      </h3>
-      <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+    <div className="card">
+      <div className=" items-center flex flex-col">
+        <h3 className="pb-3">
+          <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
+          <span style={{ color: "#2394cc" }}>UNMONITORED</span>
+        </h3>
+        <PieChart width={200} height={180}>
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+          <Tooltip />
+        </PieChart>
+      </div>
     </div>
   );
 }
