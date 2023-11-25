@@ -23,7 +23,6 @@ import {
   MITIGATEDVSUNMITIGATEDCHAT_URL,
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
   OPENVSCLOSEBARCHART_URL,
-  OPENVSCLOSECHART_URL,
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
   RISKSTATUSREPORTCHART_URL,
@@ -33,24 +32,34 @@ import {
   RISKRESPONSEREPORT_URL,
   RISKLEVELREPORT_URL,
   RISKCATEGORYREPORT_URL,
+  MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL,
+  MONITOREDVSUNMONITOREDBARCHARTDATA_URL,
+  REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
+  OPENVSCLOSEBASEDONDEPARTMENT_URL,
+  OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
+  OPENVSCLOSECHART_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
-
+ 
   useEffect(() => {
-    axios
-      .get(OPENVSCLOSECHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => setData(data.data));
-  }, []);
+    axios.get(OPENVSCLOSECHART_URL,
+       {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      withCredentials: true,
+    })
+    .then((data) => setData(data.data)
+    );
+  }, [data]);
+
+ 
 
   return (
-    <div className=" items-center flex flex-col px-8 pb-5">
+    <div className=" items-center flex flex-col card p-5">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>CLOSE</span>
@@ -77,7 +86,7 @@ export function MitigatedVsUnmitigated() {
   }, []);
 
   return (
-    <div className="items-center flex flex-col px-8 pb-5 ">
+    <div className="items-center flex flex-col card p-5 ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MITIGATED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
@@ -104,7 +113,7 @@ export function ReviewedVsUnreviewed() {
   }, []);
 
   return (
-    <div className=" items-center flex flex-col px-8 pb-5 ">
+    <div className=" items-center flex flex-col card p-5">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>REVIEWED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
@@ -130,7 +139,7 @@ export function MonitoredVsUnmonitored() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-8 pb-5 ">
+    <div className=" items-center flex flex-col card p-5 ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
@@ -142,12 +151,61 @@ export function MonitoredVsUnmonitored() {
     </div>
   );
 }
-export function RiskBarchart() {
+export function RiskBarchart(names) {
+  const [data, setData] = useState();
+  const departmentName = names.names.toString();
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSEBARCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+
+  try{
+    
+    axios.post(OPENVSCLOSEBASEDONDEPARTMENT_URL,
+      JSON.stringify({
+      departmentName,
+    }), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      withCredentials: true,
+    })
+    .then((data) => {setData(data.data);});
+       
+
+  }catch(error){
+    console.log(error);
+  }
+
+  return (
+    <div className="p-3 card">
+      <BarChart width={760} height={250} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Legend />
+        <YAxis />
+        <XAxis dataKey="name" />
+        <Bar dataKey="Opened" fill="#cc23b3" />
+        <Bar dataKey="Closed" fill="#2394cc" />
+        <Tooltip />
+      </BarChart>
+    </div>
+  );
+}
+export function MonitoredVsUnmonitoredBarchart() {
   const [data, setData] = useState();
 
   useEffect(() => {
     axios
-      .get(OPENVSCLOSEBARCHART_URL, {
+      .get(MONITOREDVSUNMONITOREDBARCHARTDATA_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -164,8 +222,67 @@ export function RiskBarchart() {
         <Legend />
         <YAxis />
         <XAxis dataKey="name" />
-        <Bar dataKey="Opened" fill="#cc23b3" />
-        <Bar dataKey="Closed" fill="#2394cc" />
+        <Bar dataKey="Monitored" fill="#cc23b3" />
+        <Bar dataKey="UnMonitored" fill="#2394cc" />
+        <Tooltip />
+      </BarChart>
+    </div>
+  );
+}
+export function MitigatedVsUnmitigatedBarchart() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+  
+  return (
+    <div className="p-3 card">
+      <BarChart width={760} height={250} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Legend />
+        <YAxis />
+        <XAxis dataKey="name" />
+        <Bar dataKey="Mitigated" fill="#cc23b3" />
+        <Bar dataKey="UnMitigated" fill="#2394cc" />
+        <Tooltip />
+      </BarChart>
+    </div>
+  );
+}
+export function ReviewedVsUnreviewedBarchart() {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+  return (
+    <div className="p-3 card">
+      <BarChart width={760} height={250} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Legend />
+        <YAxis />
+        <XAxis dataKey="name" />
+        <Bar dataKey="Reviewed" fill="#cc23b3" />
+        <Bar dataKey="UnReviewed" fill="#2394cc" />
         <Tooltip />
       </BarChart>
     </div>
@@ -533,3 +650,40 @@ export function HeatMap() {
     </div>
   );
 }
+
+
+// export function OpenVsClose(names) {
+//   const [data, setData] = useState();
+//   const departmentName = names.names;
+//   useEffect(() => {
+//     axios.post(OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
+//       JSON.stringify({
+//       departmentName,
+//     }), {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + localStorage.getItem("token"),
+//       },
+//       withCredentials: true,
+//     })
+//     .then((data) => setData(data.data)
+//     .catch((error) => {
+//       console.error(error);
+//     }));
+//   }, [data, departmentName]);
+
+ 
+
+//   return (
+//     <div className=" items-center flex flex-col px-8 pb-5">
+//       <h3 className="pb-3">
+//         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
+//         <span style={{ color: "#2394cc" }}>CLOSE</span>
+//       </h3>
+//       <PieChart width={180} height={180}>
+//         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+//         <Tooltip />
+//       </PieChart>
+//     </div>
+//   );
+// }
