@@ -2,7 +2,7 @@ import { Sidebar } from "../../component/components/sidebar";
 import { RiskMonitor } from "../../component/components/tables";
 import {
   MonitoredVsUnmonitored,
-  RiskBarchart,
+  RiskBarChart,
 } from "../../component/components/charts";
 import { ReviewInfo } from "../../component/components/info";
 import "../../component/comstyles/component.css";
@@ -15,7 +15,7 @@ export function RiskMonitoring() {
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
           <div className="flex flex-row m-0">
-            <RiskBarchart />
+            <RiskBarChart />
             <div className="flex flex-col justify-center card">
               <Link to="/high-&-Low-Risk">
                 <MonitoredVsUnmonitored />
