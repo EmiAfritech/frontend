@@ -9,10 +9,9 @@ import "../../component/comstyles/component.css";
 import { Link } from "react-router-dom";
 
 export function RiskMonitoring() {
-  
   return (
-    <div className="flex de-flex bg-slate-50 h-screen">
-      <Sidebar/>
+    <div className="flex de-flex">
+      <Sidebar />
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
           <div className="flex flex-row m-0">

@@ -118,7 +118,7 @@ export function Userforms() {
 
   return (
     <>
-      <Button onClick={handleOpen} size="small">
+      <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
@@ -361,7 +361,7 @@ export function Departmentforms() {
 
   return (
     <>
-      <Button onClick={handleOpen} size="small">
+      <Button onClick={handleOpen} size="small" variant="outlined">
         Add Department
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
@@ -938,7 +938,7 @@ export function RiskReviewforms() {
 
   return (
     <>
-      <Button onClick={handleOpen} size="small">
+      <Button onClick={handleOpen} size="small"variant="outlined">
         Review Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
@@ -1183,7 +1183,7 @@ export function RiskMitigationforms() {
 
   return (
     <>
-      <Button onClick={handleOpen} size="small">
+      <Button onClick={handleOpen} size="small" variant="outlined">
         Mitigate Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
