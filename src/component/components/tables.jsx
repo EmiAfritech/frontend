@@ -218,7 +218,7 @@ export function RiskMonitor() {
   }, [tableData]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-6">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
         <div>
           <RiskMonitoringforms />
