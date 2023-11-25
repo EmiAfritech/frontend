@@ -61,7 +61,7 @@ export function OpenVsClose() {
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
       <PieChart width={180} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={75} innerRadius={40} />
         <Tooltip />
       </PieChart>
     </div>
@@ -88,7 +88,7 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={75} innerRadius={40} />
         <Tooltip />
       </PieChart>
     </div>
@@ -115,7 +115,7 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={75} innerRadius={40}/>
         <Tooltip />
       </PieChart>
     </div>
@@ -141,7 +141,7 @@ export function MonitoredVsUnmonitored() {
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={75} innerRadius={40} />
         <Tooltip />
       </PieChart>
     </div>
