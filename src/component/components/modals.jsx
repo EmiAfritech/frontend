@@ -103,7 +103,7 @@ export function RiskData(params) {
         onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box>
+        <Box sx={style}>
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <TextField
