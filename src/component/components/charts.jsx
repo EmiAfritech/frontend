@@ -37,6 +37,7 @@ import {
   REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
   OPENVSCLOSECHART_URL,
+  OPENVSCLOSEBARCHART_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -147,9 +148,9 @@ export function MonitoredVsUnmonitored() {
     </div>
   );
 }
-export function RiskBarchart(names) {
+export function RiskBarChart() {
   const [data, setData] = useState();
-  const departmentName = names.names.toString();
+  
   useEffect(() => {
     axios
       .get(OPENVSCLOSEBARCHART_URL, {
@@ -162,29 +163,6 @@ export function RiskBarchart(names) {
         setData(data.data);
       });
   }, [data]);
-
-  try {
-    axios
-      .post(
-        OPENVSCLOSEBASEDONDEPARTMENT_URL,
-        JSON.stringify({
-          departmentName,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      )
-      .then((data) => {
-        setData(data.data);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-
   return (
     <div className="p-3 card">
       <BarChart width={760} height={250} data={data}>
@@ -642,6 +620,59 @@ export function HeatMap() {
         height={550}
         width={900}
       />
+    </div>
+  );
+}
+
+export function RiskBarchart(names) {
+  const [data, setData] = useState();
+  const departmentName = names.names.toString();
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSEBARCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+
+  try {
+    axios
+      .post(
+        OPENVSCLOSEBASEDONDEPARTMENT_URL,
+        JSON.stringify({
+          departmentName,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      )
+      .then((data) => {
+        setData(data.data);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return (
+    <div className="p-3 card">
+      <BarChart width={760} height={250} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Legend />
+        <YAxis />
+        <XAxis dataKey="name" />
+        <Bar dataKey="Opened" fill="#cc23b3" />
+        <Bar dataKey="Closed" fill="#2394cc" />
+        <Tooltip />
+      </BarChart>
     </div>
   );
 }
