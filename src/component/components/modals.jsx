@@ -27,16 +27,17 @@ export function UserData(params) {
         onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box className="modal">
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Hello
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {params.row.id}
-          </Typography>
-
-          <Button onClick={close}>Close</Button>
-        </Box>
+        <div className="modal">
+          <Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Hello
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {params.row.id}
+            </Typography>
+            <Button onClick={close}>Close</Button>
+          </Box>
+        </div>
       </Modal>
     </>
   );
