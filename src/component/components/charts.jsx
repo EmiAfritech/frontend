@@ -55,7 +55,7 @@ export function OpenVsClose() {
   }, [data]);
 
   return (
-    <div className=" items-center flex flex-col card p-3">
+    <div className=" items-center flex flex-col ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>CLOSE</span>
@@ -82,7 +82,7 @@ export function MitigatedVsUnmitigated() {
   }, []);
 
   return (
-    <div className="items-center flex flex-col card p-3 ">
+    <div className="items-center flex flex-col  ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MITIGATED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
@@ -109,7 +109,7 @@ export function ReviewedVsUnreviewed() {
   }, []);
 
   return (
-    <div className=" items-center flex flex-col card p-3">
+    <div className=" items-center flex flex-col">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>REVIEWED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
@@ -135,7 +135,7 @@ export function MonitoredVsUnmonitored() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col card p-3 ">
+    <div className=" items-center flex flex-col ">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
