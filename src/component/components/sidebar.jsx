@@ -79,7 +79,7 @@ export function Sidebar() {
           <Link to="/report">Reporting</Link>
         </li>
         
-        <li className="flex flex row items-center p-3">
+        <li className="flex flex row items-center">
           <button onClick={handleLogOut} className="flex flex row items-center p-3">
             <FaSignOutAlt className="icons" />
             LogOut
@@ -126,7 +126,7 @@ export function Sidebar() {
           <Link to="/report">Reporting</Link>
         </li>
         
-        <li className="flex flex row items-center p-3">
+        <li className="flex flex row items-center ">
           <button onClick={handleLogOut} className="flex flex row items-center p-3">
             <FaSignOutAlt className="icons" />
             LogOut
@@ -172,7 +172,7 @@ export function Sidebar() {
           <Link to="/report">Reporting</Link>
         </li>
         
-        <li className="flex flex row items-center p-3">
+        <li className="flex flex row items-center">
           <button onClick={handleLogOut} className="flex flex row items-center p-3">
             <FaSignOutAlt className="icons" />
             LogOut
@@ -211,7 +211,7 @@ export function Sidebar() {
           <Link to="/report">Reporting</Link>
         </li>
         
-        <li className="flex flex row items-center p-5">
+        <li className="flex flex row items-center ">
           <button onClick={handleLogOut} className="flex flex row items-center p-3">
             <FaSignOutAlt className="icons" />
             LogOut
