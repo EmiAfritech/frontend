@@ -439,7 +439,7 @@ export function RiskViewTable() {
   );
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col card">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
           <Riskforms />
