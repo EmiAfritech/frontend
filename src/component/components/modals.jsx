@@ -111,7 +111,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={riskName}
                 onChange={(e) => setRiskName(e.target.value)}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
@@ -122,7 +121,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={input}
                 onChange={handleInputChange}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
@@ -133,7 +131,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={input}
                 onChange={handleInputChange}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
@@ -144,7 +141,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={input}
                 onChange={handleInputChange}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
@@ -155,7 +151,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={input}
                 onChange={handleInputChange}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
@@ -166,7 +161,6 @@ export function RiskData(params) {
                 variant="outlined"
                 value={input}
                 onChange={handleInputChange}
-                onKeyUp={checkInput}
               />
             </Grid>
             <Grid item xs={3}>
