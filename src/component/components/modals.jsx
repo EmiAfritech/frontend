@@ -102,7 +102,7 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <form className="w-96">
-          <div className=" px-10 py-10">
+          <div className=" px-10 py-10 modal">
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
                 type="departmentID"
