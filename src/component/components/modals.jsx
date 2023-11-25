@@ -101,7 +101,7 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[92rem]">
+          <form className="w-[72rem]">
             <div className=" px-10 py-10">
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
