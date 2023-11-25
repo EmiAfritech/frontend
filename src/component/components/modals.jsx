@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { DEPARTMENTDROPDOWN_URL, OWNERSDROPDOWN_URL } from "../../api/routes";
 import { Grid, TextField } from "@mui/material";
-import "../comstyles/component.css";
+import "../comstyles/component.css"
 
 export function UserData(params) {
   const [open, setOpen] = useState(false);
