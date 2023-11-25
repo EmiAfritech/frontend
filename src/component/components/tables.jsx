@@ -413,7 +413,9 @@ export function RiskViewTable() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then((response) => {setTableData(response.data.Data) ,console.log(tableData)});
+        .then((response) => {
+          setTableData(response.data.Data), console.log(response.data.Data);
+        });
     };
 
     viewAllRisks();
