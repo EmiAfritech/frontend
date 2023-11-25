@@ -12,7 +12,7 @@ import {
   FaUsers,
   FaRegShareSquare,
   FaPencilAlt,
-  FaBorderStyle,
+  FaThList,
   
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -55,7 +55,7 @@ export function Sidebar() {
     return (
       <>
         <li className="flex flex row items-center p-3" >
-          <FaBorderStyle className="icons" />
+          <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" >
@@ -94,7 +94,7 @@ export function Sidebar() {
     return (
       <>
         <li className="flex flex row items-center p-3" >
-          <FaBorderStyle className="icons" />
+          <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" >
@@ -140,7 +140,7 @@ export function Sidebar() {
     return (
       <>
         <li className="flex flex row items-center p-3">
-          <FaBorderStyle className="icons" />
+          <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
         <li className="flex flex row items-center p-3" >
@@ -187,7 +187,7 @@ export function Sidebar() {
     return (
       <>
          <li className="flex flex row items-center p-3">
-          <FaBorderStyle className="icons" />
+          <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
          <li className="flex flex row items-center p-3" >
