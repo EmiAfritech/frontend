@@ -41,21 +41,18 @@ import {
 
 export function OpenVsClose() {
   const [data, setData] = useState();
- 
-  useEffect(() => {
-    axios.get(OPENVSCLOSECHART_URL,
-       {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      withCredentials: true,
-    })
-    .then((data) => setData(data.data)
-    );
-  }, [data]);
 
- 
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => setData(data.data));
+  }, [data]);
 
   return (
     <div className=" items-center flex flex-col card p-5">
@@ -166,22 +163,25 @@ export function RiskBarchart(names) {
       });
   }, [data]);
 
-  try{
-    
-    axios.post(OPENVSCLOSEBASEDONDEPARTMENT_URL,
-      JSON.stringify({
-      departmentName,
-    }), {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      withCredentials: true,
-    })
-    .then((data) => {setData(data.data);});
-       
-
-  }catch(error){
+  try {
+    axios
+      .post(
+        OPENVSCLOSEBASEDONDEPARTMENT_URL,
+        JSON.stringify({
+          departmentName,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      )
+      .then((data) => {
+        setData(data.data);
+      });
+  } catch (error) {
     console.log(error);
   }
 
@@ -243,7 +243,7 @@ export function MitigatedVsUnmitigatedBarchart() {
         setData(data.data);
       });
   }, [data]);
-  
+
   return (
     <div className="p-3 card">
       <BarChart width={760} height={250} data={data}>
@@ -490,8 +490,6 @@ export function ReportRiskOwner() {
   );
 }
 
-
-
 export function Pyramidchat() {
   const [data, setData] = useState();
 
@@ -516,8 +514,7 @@ export function Pyramidchat() {
         algorithm="dynamicHeight"
         palette="Harmony Light"
         argumentField="level"
-        valueField="count"
-      >
+        valueField="count">
         <Tooltip enabled={true} />
         <Item>
           <Border visible={true} />
@@ -526,8 +523,7 @@ export function Pyramidchat() {
         <Label
           visible={true}
           horizontalAlignment="right"
-          backgroundColor="none"
-        >
+          backgroundColor="none">
           <Font size={16} />
         </Label>
       </Funnel>
@@ -649,40 +645,3 @@ export function HeatMap() {
     </div>
   );
 }
-
-
-// export function OpenVsClose(names) {
-//   const [data, setData] = useState();
-//   const departmentName = names.names;
-//   useEffect(() => {
-//     axios.post(OPENVSCLOSEBASEDONDEPARTMENTCHART_URL,
-//       JSON.stringify({
-//       departmentName,
-//     }), {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: "Bearer " + localStorage.getItem("token"),
-//       },
-//       withCredentials: true,
-//     })
-//     .then((data) => setData(data.data)
-//     .catch((error) => {
-//       console.error(error);
-//     }));
-//   }, [data, departmentName]);
-
- 
-
-//   return (
-//     <div className=" items-center flex flex-col px-8 pb-5">
-//       <h3 className="pb-3">
-//         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
-//         <span style={{ color: "#2394cc" }}>CLOSE</span>
-//       </h3>
-//       <PieChart width={180} height={180}>
-//         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-//         <Tooltip />
-//       </PieChart>
-//     </div>
-//   );
-// }
