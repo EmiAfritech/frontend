@@ -40,7 +40,9 @@ import {
   RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
+  VIEWALLRISKSBASEDONDEPARTMENT_URL,
 } from "../../api/routes";
+
 import { Link } from "react-router-dom";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -419,32 +421,33 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
+ 
+  
+  
+  
+  try{
+    
+    axios.get(VIEWALLRISKS_URL,
+      {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      withCredentials: true,
+    })
+    .then((response) => setTableData(response.data.Data));
+       
 
-  useEffect(() => {
-    const viewAllRisks=()=>{
-       axios
-      .get(VIEWALLRISKS_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.Data));
-    }
-
-    viewAllRisks();
-
-  },[]
-
-  );
+  }catch(error){
+    console.log(error);
+  }
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div>
-          <Riskforms />
-          
-        </div>
+       <div>
+          <Riskforms/>
+        </div> 
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
@@ -591,8 +594,6 @@ export function ReviewNeedingRisksReportTab() {
   );
 }
 
-
-
 export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);
 
@@ -634,3 +635,52 @@ export function RiskStatusReportTab() {
     </div>
   );
 }
+
+// export function RiskViewTable(names) {
+//   const [tableData, setTableData] = useState([]);
+//   const departmentName = names.names.toString();
+  
+  
+  
+//   try{
+    
+//     axios.post(VIEWALLRISKS_URL,
+//       JSON.stringify({
+//       departmentName,
+//     }), {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + localStorage.getItem("token"),
+//       },
+//       withCredentials: true,
+//     })
+//     .then((response) => setTableData(response.data.Data));
+       
+
+//   }catch(error){
+//     console.log(error);
+//   }
+
+//   return (
+//     <div className="flex flex-col">
+//       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+        
+//       </div>
+//       <div
+//         style={{ height: 650, width: 1100, backgroundColor: "white" }}
+//         className="  mt-2 w-auto"
+//       >
+//         <DataGrid
+//           rows={tableData}
+//           columns={riskviewcolumn}
+//           initialState={{
+//             pagination: {
+//               paginationModel: { page: 0, pageSize: 10 },
+//             },
+//           }}
+//           pageSizeOptions={[10, 15]}
+//         />
+//       </div>
+//     </div>
+//   );
+// }

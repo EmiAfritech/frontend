@@ -25,7 +25,7 @@ export function Userforms() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-   const [departmentName, setDepartmentName] = useState("");
+  const [departmentName, setDepartmentName] = useState("");
   const [deptmentNames, setdeptmentNames] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [role, setRole] = useState("");
@@ -570,7 +570,7 @@ export function Riskforms() {
         Add Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
-        <div className="flex justify-center font-bold py-5  text-black">
+        <div className="flex justify-center font-bold py-5  text-white">
           NEW RISK
         </div>
         <hr />

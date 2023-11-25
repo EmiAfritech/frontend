@@ -5,7 +5,7 @@ export function Employees() {
   
   return (
     <div className="flex de-flex bg-slate-50 h-screen">
-      <Sidebar/>
+      <Sidebar />
       <div className="mx-auto flex mt-3 pl-[18%]">
         <EmployeesTable />
       </div>

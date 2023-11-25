@@ -12,6 +12,7 @@ import { ReportRiskMitigation } from "./pages/report/mitgation";
 import { ReportRiskDashboard } from "./pages/report/dashboard";
 import { ReportRiskChatbot } from "./pages/report/chatbot";
 import { RiskView } from "./pages/riskidentification/riskview";
+import {AdminRiskView} from "./pages/AdminPages/riskManagement/newRisk";
 import { HighLowRisk } from "./pages/riskmonitoring/HighLowtab";
 import { RiskStatusReport } from "./pages/report/riskStatusReport";
 import { ReportRiskAppetite } from "./pages/report/riskAppetite";
@@ -22,6 +23,7 @@ import { Login } from "./pages/login/login";
 import { ClosedRisk } from "./pages/riskreview/closedrisk";
 import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +31,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
+        <Route path="/new-risk" element={<AdminRiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />
         <Route path="/risk-review" element={<Riskreview />} />
         <Route path="/risk-mitigation" element={<RiskMitigation />} />

@@ -19,7 +19,12 @@ export const DEPARTMENT_URL = "/departments";
 
 //risk url
 export const VIEWALLRISKS_URL = "/risks";
-
+//risk url based on department selected
+export const VIEWALLRISKSBASEDONDEPARTMENT_URL = "/getRisks";
+//open-vs-closed based on department selected
+export const OPENVSCLOSEBASEDONDEPARTMENT_URL = "/getOpenedVsClosedByDepartmentGraphData";
+//open-vs-closed based on department selected chart
+export const OPENVSCLOSEBASEDONDEPARTMENTCHART_URL = "/risks/getOpenedVsClosedByDepartment";
 //closed risk url
 export const VIEWCLOSEDRISKS_URL = "/risks/getAllClosedRisks";
 
@@ -140,4 +145,7 @@ export const MANAGERSDROPDOWN_URL = "/getTheNamesOfAllManagers";
 //heap map
 export const HEATMAP_URL = "/getHeatMapData";
 
-//get 
+//get bar graph data
+export const MONITOREDVSUNMONITOREDBARCHARTDATA_URL = "/getMonitoredVsUnMonitoredGraphData";
+export const MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL = "/getMitigatedVsUnMitigatedGraphData";
+export const REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL = "/getReviewedVsUnReviewedGraphData";
