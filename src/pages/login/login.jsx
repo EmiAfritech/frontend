@@ -1,4 +1,4 @@
-import { useState,  useContext } from "react";
+import { useState, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -53,22 +53,20 @@ export function Login() {
           reload();
         } else {
           alert("Authorization returned null");
-        }}
+        }
+      }
     } catch (err) {
       if (err.message.includes("Network Error")) {
         alert("Server is Currently Unavailable, Please Try Again Later");
         reload();
-      } else if(err.response.status === 401){
-        // Handle other types of errors here if needed
+      } else if (err.response.status === 401) {
         alert("Unauthorized User! Please check your credentials");
-        
       }
     } finally {
-  // Set isLoading to false when the request is complete (success or error)
-  setLoading(false);
-  }
-}
-
+      // Set isLoading to false when the request is complete (success or error)
+      setLoading(false);
+    }
+  };
 
   return (
     <>
