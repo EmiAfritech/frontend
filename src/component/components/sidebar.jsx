@@ -3,14 +3,31 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 import { LOGOUT_URL } from "../../api/routes";
-
+import {
+  FaCopy,
+  FaClipboardList,
+  FaClipboardCheck,
+  FaSignOutAlt,
+  FaUserFriends,
+  FaUsers,
+  FaRegShareSquare,
+  FaPencilAlt,
+  FaBorderStyle,
+  
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
-import { Navigation } from "./navigation";
+
 
 export function Sidebar() {
+  
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
+  
+  const userRole = localStorage.getItem("role");
+  
+
 
   const handleLogOut = async (e) => {
     setLoading(true);
@@ -33,6 +50,180 @@ export function Sidebar() {
     }
   };
 
+  //Auditor Tabs
+  const AuditorMainTabs = () => {
+    return (
+      <>
+        <li className="flex flex row items-center p-3" >
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+            <FaRegShareSquare className="icons" />
+            <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut} className="flex flex row items-center p-3">
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+        
+      </>
+    );
+  };
+  //Admin Tabs
+  const AdminMainTabs = () => {
+    return (
+      <>
+        <li className="flex flex row items-center p-3" >
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaUserFriends className="icons" />
+          <Link to="/employees">Users</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaUsers className="icons" />
+          <Link to="/department">Departments</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut} className="flex flex row items-center p-3">
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+      </>
+      );
+  }
+  //General Manager Tabs
+  const GeneralManagerMainTabs = () => {
+    return (
+      <>
+        <li className="flex flex row items-center p-3">
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaUserFriends className="icons" />
+          <Link to="/employees">Users</Link>
+        </li>
+        <li className="flex flex row items-center p-3" >
+          <FaUsers className="icons" />
+          <Link to="/department">Departments</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-3">
+          <button onClick={handleLogOut} className="flex flex row items-center p-3">
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+      </>
+      );
+  }
+
+  //Manager Tabs
+  const ManagerMainTabs = () => {
+    return (
+      <>
+         <li className="flex flex row items-center p-3">
+          <FaBorderStyle className="icons" />
+          <Link to="/dashboard">Overview</Link>
+        </li>
+         <li className="flex flex row items-center p-3" >
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaClipboardCheck className="icons" />
+          <Link to="/risk-monitoring">Monitored Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaPencilAlt className="icons" />
+          <Link to="/risk-mitigation">Mitigated Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaClipboardList className="icons" />
+          <Link to="/risk-review">Reviewed Risks</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <Link to="/report">Reporting</Link>
+        </li>
+        
+        <li className="flex flex row items-center p-5">
+          <button onClick={handleLogOut} className="flex flex row items-center p-3">
+            <FaSignOutAlt className="icons" />
+            LogOut
+          </button>
+        </li>
+      </>
+      );
+  }
+
+
+
+ 
   return (
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
@@ -43,11 +234,18 @@ export function Sidebar() {
         <span>RISK APPLICATION</span>
       </div>
       <div className="sidebar-main">
-        <Navigation />
-        <LoadingPopup isLoading={isLoading} />
-        <Sessions />
+        <ul>
+          <Sessions/>
+          {userRole === "ADMIN" && AdminMainTabs()}
+          {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
+          {userRole === "MANAGER" && ManagerMainTabs()}
+          {userRole === "AUDITOR" && AuditorMainTabs()}
+          
+          <LoadingPopup isLoading={isLoading} />
+        </ul>
       </div>
     </div>
   );
 }
+
 
