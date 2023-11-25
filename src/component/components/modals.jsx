@@ -119,7 +119,7 @@ export function RiskData(params) {
                   department-id
                 </label>
               </div>
-              <div>
+              <div className="grid grid-cols-4 gap-2">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
