@@ -566,7 +566,7 @@ export function Riskforms() {
 
   return (
     <>
-      <Button onClick={handleOpen} size="small">
+      <Button onClick={handleOpen} size="small" variant="outlined">
         Add Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
