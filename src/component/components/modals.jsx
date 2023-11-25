@@ -119,8 +119,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
             <Grid item xs={3}>
@@ -129,8 +129,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
             <Grid item xs={3}>
@@ -139,8 +139,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
             <Grid item xs={3}>
@@ -149,8 +149,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
             <Grid item xs={3}>
@@ -159,8 +159,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
             <Grid item xs={3}>
@@ -169,9 +169,8 @@ export function RiskData(params) {
                 fullWidth
                 placeholder="Type a message"
                 variant="outlined"
-                value={input}
-                onChange={handleInputChange}
-                onKeyUp={checkInput}
+                value={riskName}
+                onChange={(e) => setRiskName(e.target.value)}
               />
             </Grid>
           </Grid>
