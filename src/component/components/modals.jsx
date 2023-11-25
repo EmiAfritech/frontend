@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { DEPARTMENTDROPDOWN_URL, OWNERSDROPDOWN_URL } from "../../api/routes";
 import { Grid, TextField } from "@mui/material";
+import "../comstyles/component.css";
 
 export function UserData(params) {
   const [open, setOpen] = useState(false);
@@ -101,7 +102,7 @@ export function RiskData(params) {
         onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box className="modal">
+        <Box>
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <TextField
