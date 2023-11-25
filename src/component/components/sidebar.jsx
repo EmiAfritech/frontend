@@ -18,8 +18,6 @@ import {
 import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
-import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
 
 
 export function Sidebar() {
