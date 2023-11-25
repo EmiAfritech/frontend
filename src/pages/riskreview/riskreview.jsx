@@ -6,7 +6,7 @@ import "../../component/comstyles/component.css";
 export function Riskreview() {
  
   return (
-    <div className="flex de-flex bg-slate-50">
+    <div className="flex de-flex bg-slate-100">
       <Sidebar />
       <div className="mt-3 flex mx-auto pl-[18%]">
         <div className="flex flex-col">

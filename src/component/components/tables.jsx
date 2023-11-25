@@ -127,7 +127,7 @@ export function RiskReview() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto">
+        className="  mt-2 w-auto card p-4">
         <DataGrid
           rows={getRiskReview()}
           columns={riskreviewcolumn}
@@ -175,7 +175,7 @@ export function ClosedRiskTab() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto">
+        className="  mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
           columns={riskviewcolumn}
@@ -322,7 +322,7 @@ export function DepartmentTab() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-full">
+        className="  mt-2 w-full card p-4">
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
@@ -361,7 +361,7 @@ export function RiskmitigationTab() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-full">
+        className="  mt-2 w-full card p-4">
         <DataGrid
           rows={tableData}
           columns={riskmitigationcolumn}
