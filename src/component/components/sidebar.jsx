@@ -13,21 +13,16 @@ import {
   FaRegShareSquare,
   FaPencilAlt,
   FaThList,
-  
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 
-
 export function Sidebar() {
-  
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-  
-  const userRole = localStorage.getItem("role");
-  
 
+  const userRole = localStorage.getItem("role");
 
   const handleLogOut = async (e) => {
     setLoading(true);
@@ -54,15 +49,15 @@ export function Sidebar() {
   const AuditorMainTabs = () => {
     return (
       <>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
-            <FaRegShareSquare className="icons" />
-            <Link to="/risk-identification">New Risk</Link>
+        <li className="flex flex row items-center p-3">
+          <FaRegShareSquare className="icons" />
+          <Link to="/risk-identification">New Risk</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
           <Link to="/risk-monitoring">Monitored Risks</Link>
         </li>
@@ -70,7 +65,7 @@ export function Sidebar() {
           <FaPencilAlt className="icons" />
           <Link to="/risk-mitigation">Mitigated Risks</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </li>
@@ -78,14 +73,13 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <Link to="/report">Reporting</Link>
         </li>
-        
-        <li className="flex flex row items-center">
-          <button onClick={handleLogOut} className="flex flex row items-center p-3">
-            <FaSignOutAlt className="icons" />
-            LogOut
-          </button>
-        </li>
-        
+
+        <button
+          onClick={handleLogOut}
+          className="flex flex row items-center p-3">
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
       </>
     );
   };
@@ -93,15 +87,15 @@ export function Sidebar() {
   const AdminMainTabs = () => {
     return (
       <>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
           <Link to="/risk-identification">New Risk</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
           <Link to="/risk-monitoring">Monitored Risks</Link>
         </li>
@@ -125,16 +119,15 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <Link to="/report">Reporting</Link>
         </li>
-        
-        <li className="flex flex row items-center ">
-          <button onClick={handleLogOut} className="flex flex row items-center p-3">
-            <FaSignOutAlt className="icons" />
-            LogOut
-          </button>
-        </li>
+        <button
+          onClick={handleLogOut}
+          className="flex flex row items-center p-3">
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
       </>
-      );
-  }
+    );
+  };
   //General Manager Tabs
   const GeneralManagerMainTabs = () => {
     return (
@@ -143,7 +136,7 @@ export function Sidebar() {
           <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
           <Link to="/risk-identification">New Risk</Link>
         </li>
@@ -163,7 +156,7 @@ export function Sidebar() {
           <FaUserFriends className="icons" />
           <Link to="/employees">Users</Link>
         </li>
-        <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
           <Link to="/department">Departments</Link>
         </li>
@@ -171,26 +164,25 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <Link to="/report">Reporting</Link>
         </li>
-        
-        <li className="flex flex row items-center">
-          <button onClick={handleLogOut} className="flex flex row items-center p-3">
-            <FaSignOutAlt className="icons" />
-            LogOut
-          </button>
-        </li>
+        <button
+          onClick={handleLogOut}
+          className="flex flex row items-center p-3">
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
       </>
-      );
-  }
+    );
+  };
 
   //Manager Tabs
   const ManagerMainTabs = () => {
     return (
       <>
-         <li className="flex flex row items-center p-3">
+        <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
           <Link to="/dashboard">Overview</Link>
         </li>
-         <li className="flex flex row items-center p-3" >
+        <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
           <Link to="/risk-identification">New Risk</Link>
         </li>
@@ -210,20 +202,17 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <Link to="/report">Reporting</Link>
         </li>
-        
-        <li className="flex flex row items-center ">
-          <button onClick={handleLogOut} className="flex flex row items-center p-3">
-            <FaSignOutAlt className="icons" />
-            LogOut
-          </button>
-        </li>
+
+        <button
+          onClick={handleLogOut}
+          className="flex flex row items-center p-3">
+          <FaSignOutAlt className="icons" />
+          LogOut
+        </button>
       </>
-      );
-  }
+    );
+  };
 
-
-
- 
   return (
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
@@ -235,17 +224,15 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <Sessions/>
+          <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
           {userRole === "MANAGER" && ManagerMainTabs()}
           {userRole === "AUDITOR" && AuditorMainTabs()}
-          
+
           <LoadingPopup isLoading={isLoading} />
         </ul>
       </div>
     </div>
   );
 }
-
-
