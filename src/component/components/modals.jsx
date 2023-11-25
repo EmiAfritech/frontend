@@ -101,7 +101,7 @@ export function RiskData(params) {
         onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={{ flexGrow: 1 }} className="style">
+        <Box className="modal">
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <TextField
