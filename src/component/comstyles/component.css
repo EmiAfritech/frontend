@@ -36,6 +36,12 @@
   text-align: center;
   background-color: white;
 }
+.cardTable {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  text-align: center;
+  background-color: white;
+}
 .card-container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;

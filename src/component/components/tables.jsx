@@ -81,7 +81,9 @@ export function EmployeesTable() {
           <Userforms />
         </div>
       </div>
-      <div style={{ height: 650, width: 1100, backgroundColor: "white" }}>
+      <div
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
+        className=" mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={getUsers()}
           columns={usercolumns}
@@ -127,7 +129,7 @@ export function RiskReview() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto card p-4">
+        className="  mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={getRiskReview()}
           columns={riskreviewcolumn}
@@ -175,7 +177,7 @@ export function ClosedRiskTab() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto card p-4">
+        className="  mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={tableData}
           columns={riskviewcolumn}
@@ -322,7 +324,7 @@ export function DepartmentTab() {
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-full card p-4">
+        className=" mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
