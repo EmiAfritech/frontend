@@ -195,6 +195,10 @@ export function Sidebar() {
           <Link to="/risk-mitigation">Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
+          <FaUserFriends className="icons" />
+          <Link to="/employees">Users</Link>
+        </li>
+        <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </li>
