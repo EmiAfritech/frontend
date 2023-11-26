@@ -331,7 +331,7 @@ export function ReportRiskLevel() {
       </h3>
       <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10}  width={20} align="left" />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -358,7 +358,7 @@ export function ReportRiskStatus() {
       </h3>
       <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10}  width={20} align="left" />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -385,7 +385,7 @@ export function ReportRiskLocation() {
       </h3>
       <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10}  width={20} align="left" />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -413,7 +413,7 @@ export function ReportRiskCategory() {
       </h3>
       <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10}  width={20} align="left" />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -440,7 +440,7 @@ export function ReportRiskResponse() {
       </h3>
       <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10}  width={20} align="left" />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -465,8 +465,9 @@ export function ReportRiskOwner() {
       <h3 className="py-3">
         <span>OWNER</span>
       </h3>
-      <PieChart width={190} height={190}>
+      <PieChart width={210} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
