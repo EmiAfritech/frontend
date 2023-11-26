@@ -21,12 +21,12 @@ export function ReportRiskDashboard() {
       </div>
       <div ref={ref}>
         <div className="flex flex-col h-screen">
-          <div className="flex flex-row pb-3 pt-8">
+          <div className="flex flex-row pt-4">
             <ReportRiskLevel />
             <ReportRiskCategory />
             <ReportRiskLocation />
           </div>
-          <div className="flex flex-row pb-3 pt-3">
+          <div className="flex flex-row pt-3">
             <ReportRiskStatus />
             <ReportRiskResponse />
             <ReportRiskOwner />
