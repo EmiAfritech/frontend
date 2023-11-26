@@ -329,7 +329,7 @@ export function ReportRiskLevel() {
       <h3 className="py-3">
         <span>RISK LEVEL</span>
       </h3>
-      <PieChart width={190} height={190}>
+      <PieChart width={250} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
       </PieChart>
@@ -381,7 +381,7 @@ export function ReportRiskLocation() {
       <h3 className="py-3">
         <span>LOCATION</span>
       </h3>
-      <PieChart width={190} height={190}>
+      <PieChart width={250} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
       </PieChart>
@@ -408,7 +408,7 @@ export function ReportRiskCategory() {
       <h3 className="py-3">
         <span>CATEGORY</span>
       </h3>
-      <PieChart width={220} height={190}>
+      <PieChart width={250} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10}  width={20} layout='vertical' verticalAlign='middle' align="right" />
         <Tooltip />
