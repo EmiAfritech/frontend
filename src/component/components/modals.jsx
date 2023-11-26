@@ -55,24 +55,18 @@ export function RiskData(params) {
   );
   const [riskCategory, setRiskCategory] = useState(params.row.riskCategory);
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
-  const [riskOwner, setRiskOwner] = useState(params.row.riskDescription);
-  const [riskCreatedAt, setRiskCreatedAt] = useState(
-    params.row.riskDescription
-  );
+  const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
+  const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
-    params.row.riskDescription
+    params.row.riskProbabilityLevel
   );
   const [riskImpactLevel, setRiskImpactLevel] = useState(
-    params.row.riskDescription
+    params.row.riskImpactLevel
   );
-  const [riskScore, setRiskScore] = useState(
-    params.row.riskDescription
-  );
-  const [riskResponse, setRiskResponse] = useState(
-    params.row.riskDescription
-  );
+  const [riskScore, setRiskScore] = useState(params.row.riskScore);
+  const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
   const [riskResponseActivity, setRiskResponseActivity] = useState(
-    params.row.riskDescription
+    params.row.riskResponseActivity
   );
 
   const style = {
@@ -83,6 +77,7 @@ export function RiskData(params) {
     bgcolor: "background.paper",
     boxShadow: 24,
     p: 4,
+    borderRadius: 1,
   };
   useEffect(() => {
     axios
@@ -130,10 +125,10 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[75rem] rounded-lg">
+          <form className="w-[75rem]">
             <div className=" px-10 py-10">
-              <div className="grid grid-cols-4 gap-3">
-                <div className="relative mb-12" data-te-input-wrapper-init>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -147,7 +142,7 @@ export function RiskData(params) {
                     Risk ID
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -161,7 +156,7 @@ export function RiskData(params) {
                     Risk Name
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -175,7 +170,7 @@ export function RiskData(params) {
                     Department ID
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -190,8 +185,8 @@ export function RiskData(params) {
                   </label>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="relative mb-12" data-te-input-wrapper-init>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <textarea
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -205,7 +200,7 @@ export function RiskData(params) {
                     Risk Description
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -219,7 +214,7 @@ export function RiskData(params) {
                     Risk Category
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <textarea
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -234,8 +229,8 @@ export function RiskData(params) {
                   </label>
                 </div>
               </div>
-              <div className="grid grid-cols-4 gap-3">
-                <div className="relative mb-12" data-te-input-wrapper-init>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -249,7 +244,7 @@ export function RiskData(params) {
                     Risk Owner
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -263,7 +258,7 @@ export function RiskData(params) {
                     Created At
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -277,7 +272,7 @@ export function RiskData(params) {
                     Risk Score
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -292,8 +287,8 @@ export function RiskData(params) {
                   </label>
                 </div>
               </div>
-              <div className="grid grid-cols-4 gap-3">
-                <div className="relative mb-12" data-te-input-wrapper-init>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -307,7 +302,7 @@ export function RiskData(params) {
                     Risk Probability Level
                   </label>
                 </div>
-                <div className="relative mb-12" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -322,7 +317,7 @@ export function RiskData(params) {
                   </label>
                 </div>
                 <div
-                  className="relative mb-12 col-span-2"
+                  className="relative mb-6 col-span-2"
                   data-te-input-wrapper-init>
                   <textarea
                     type="text"
