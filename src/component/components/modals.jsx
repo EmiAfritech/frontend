@@ -130,7 +130,7 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[62rem]">
+          <form className="w-[82rem] round-lg">
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3">
                 <div className="relative mb-6" data-te-input-wrapper-init>
