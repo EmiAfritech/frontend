@@ -499,6 +499,7 @@ export function Reportaudittrail() {
   return (
     <div>
       <div className="grid grid-cols-4">
+      <div className="col-span-3"></div>
         <div>
           <select
             type="text"

@@ -84,7 +84,9 @@
 
 }
 
-
+.recharts-legend-item-text{
+  font-size: 12px;
+}
 
 .heatmap-cell {
   padding: 20px; /* Adjust the padding as needed */
