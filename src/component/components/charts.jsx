@@ -595,6 +595,15 @@ export function HeatMap() {
         text: 'Impact', // Label for the y-axis
       },
     },
+    dataLabels: {
+      enabled: true,
+      style: {
+        colors: ['#000'],
+      },
+      formatter: function (value) {
+        return value.point.data.count;
+      },
+    },
   };
 
   return (

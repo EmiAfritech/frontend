@@ -1,9 +1,9 @@
-import { HeatMaps } from "../../component/components/charts";
+import { HeatMap } from "../../component/components/charts";
 
 export function ReportLikelyhoodVsImpact() {
   return (
     <div>
-      <HeatMaps />
+      <HeatMap />
     </div>
   );
 }
