@@ -610,55 +610,34 @@ export function HeatMap() {
   );
 }
 
-export function RiskBarchart(names) {
-  const [data, setData] = useState();
-  const departmentName = names.names.toString();
-  useEffect(() => {
-    axios
-      .get(OPENVSCLOSEBARCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
+export function HeatMaps() {
+  const data = [
+    [1, 2, 3, 4, 5],
+    [2, 4, 6, 8, 10],
+    [3, 6, 9, 12, 15],
+    [4, 8, 12, 16, 20],
+    [5, 10, 15, 20, 25],
+  ];
 
-  try {
-    axios
-      .post(
-        OPENVSCLOSEBASEDONDEPARTMENT_URL,
-        JSON.stringify({
-          departmentName,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      )
-      .then((data) => {
-        setData(data.data);
-      });
-  } catch (error) {
-    console.log(error);
-  }
+  // Determine the color scale ranges based on your data
+  const getColor = (value) => {
+    if (value >= 16) return '#ff0000'; // Very High
+    if (value >= 10) return '#ffcc00'; // High
+    if (value >= 6) return '#002db3';  // Medium
+    return '#008000'; // Low
+  };
 
   return (
-    <div className="p-3 card">
-      <BarChart width={760} height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <YAxis />
-        <XAxis dataKey="name" />
-        <Bar dataKey="Opened" fill="#cc23b3" />
-        <Bar dataKey="Closed" fill="#2394cc" />
-        <Tooltip />
-      </BarChart>
+    <div className="heatmap-container">
+      {data.map((row, rowIndex) => (
+        <div key={rowIndex} className="heatmap-row">
+          {row.map((value, colIndex) => (
+            <div key={colIndex} className="heatmap-cell" style={{ background: getColor(value) }}>
+              {value}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
