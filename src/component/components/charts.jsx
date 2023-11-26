@@ -37,7 +37,7 @@ import {
   REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
   OPENVSCLOSECHART_URL,
- 
+  DEPARTMENTDROPDOWN_URL
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -62,7 +62,7 @@ export function OpenVsClose() {
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
       <PieChart width={180} height={180}>
-        <Pie dataKey="value" data={data}  outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
     </div>
@@ -89,7 +89,7 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data}  outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
     </div>
@@ -116,7 +116,7 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data}  outerRadius={85} innerRadius={50}/>
+        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
     </div>
@@ -142,7 +142,7 @@ export function MonitoredVsUnmonitored() {
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
       </h3>
       <PieChart width={200} height={180}>
-        <Pie dataKey="value" data={data}  outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
     </div>
@@ -150,7 +150,7 @@ export function MonitoredVsUnmonitored() {
 }
 export function RiskBarChart() {
   const [data, setData] = useState();
-  
+
   useEffect(() => {
     axios
       .get(OPENVSCLOSEBARCHART_URL, {
@@ -476,6 +476,27 @@ export function ReportRiskOwner() {
 
 export function Pyramidchat() {
   const [data, setData] = useState();
+  const [deptmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
+    
+    
+    useEffect(() => {
+    axios
+        .get(DEPARTMENTDROPDOWN_URL, {
+            headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((data) => {
+            setdeptmentNames(data.data);
+            
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+        
+    }, []);
 
   useEffect(() => {
     axios
@@ -490,27 +511,53 @@ export function Pyramidchat() {
   }, []);
   return (
     <>
-      <Funnel
-        id="pyramid"
-        dataSource={data}
-        sortData={false}
-        inverted={true}
-        algorithm="dynamicHeight"
-        palette="Harmony Light"
-        argumentField="level"
-        valueField="count">
-        <Tooltip enabled={true} />
-        <Item>
-          <Border visible={true} />
-        </Item>
-        <Legend visible={true} />
-        <Label
-          visible={true}
-          horizontalAlignment="right"
-          backgroundColor="none">
-          <Font size={16} />
-        </Label>
-      </Funnel>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={deptmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+          <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Select a Department:
+          </label>
+        </div>
+        <div>
+          <Funnel
+            id="pyramid"
+            dataSource={data}
+            sortData={false}
+            inverted={true}
+            algorithm="dynamicHeight"
+            palette="Harmony Light"
+            argumentField="level"
+            valueField="count">
+            <Tooltip enabled={true} />
+            <Item>
+              <Border visible={true} />
+            </Item>
+            <Legend visible={true} />
+            <Label
+              visible={true}
+              horizontalAlignment="right"
+              backgroundColor="none">
+              <Font size={16} />
+            </Label>
+          </Funnel>
+        </div>
+      </div>
     </>
   );
 }
@@ -518,87 +565,87 @@ export function Pyramidchat() {
 export function HeatMap() {
   const series = [
     {
-      name: 'rare',
+      name: "rare",
       data: [
-        { x: 'insignificant', y: 1, count: 1 },
-        { x: 'minor', y: 2, count: 2 },
-        { x: 'moderate', y: 3, count: 3 },
-        { x: 'major', y: 4, count: 4 },
-        { x: 'critical', y: 5, count: 5 },
+        { x: "insignificant", y: 1, count: 1 },
+        { x: "minor", y: 2, count: 2 },
+        { x: "moderate", y: 3, count: 3 },
+        { x: "major", y: 4, count: 4 },
+        { x: "critical", y: 5, count: 5 },
       ],
     },
     {
-      name: 'unlikely',
+      name: "unlikely",
       data: [
-        { x: 'insignificant', y: 2, count: 2 },
-        { x: 'minor', y: 4, count: 4 },
-        { x: 'moderate', y: 6, count: 6 },
-        { x: 'major', y: 8, count: 8 },
-        { x: 'critical', y: 10, count: 10 },
+        { x: "insignificant", y: 2, count: 2 },
+        { x: "minor", y: 4, count: 4 },
+        { x: "moderate", y: 6, count: 6 },
+        { x: "major", y: 8, count: 8 },
+        { x: "critical", y: 10, count: 10 },
       ],
     },
     {
-      name: 'possible',
+      name: "possible",
       data: [
-        { x: 'insignificant', y: 3, count: 3 },
-        { x: 'minor', y: 6, count: 6 },
-        { x: 'moderate', y: 9, count: 9 },
-        { x: 'major', y: 12, count: 12 },
-        { x: 'critical', y: 15, count: 15 },
+        { x: "insignificant", y: 3, count: 3 },
+        { x: "minor", y: 6, count: 6 },
+        { x: "moderate", y: 9, count: 9 },
+        { x: "major", y: 12, count: 12 },
+        { x: "critical", y: 15, count: 15 },
       ],
     },
     {
-      name: 'likely',
+      name: "likely",
       data: [
-        { x: 'insignificant', y: 4, count: 4 },
-        { x: 'minor', y: 8, count: 8 },
-        { x: 'moderate', y: 12, count: 12 },
-        { x: 'major', y: 16, count: 16 },
-        { x: 'critical', y: 20, count: 20 },
+        { x: "insignificant", y: 4, count: 4 },
+        { x: "minor", y: 8, count: 8 },
+        { x: "moderate", y: 12, count: 12 },
+        { x: "major", y: 16, count: 16 },
+        { x: "critical", y: 20, count: 20 },
       ],
     },
     {
-      name: 'almost certain',
+      name: "almost certain",
       data: [
-        { x: 'insignificant', y: 5, count: 5 },
-        { x: 'minor', y: 10, count: 40 },
-        { x: 'moderate', y: 15, count: 15 },
-        { x: 'major', y: 20, count: 2 },
-        { x: 'critical', y: 25, count: 60 },
+        { x: "insignificant", y: 5, count: 5 },
+        { x: "minor", y: 10, count: 40 },
+        { x: "moderate", y: 15, count: 15 },
+        { x: "major", y: 20, count: 2 },
+        { x: "critical", y: 25, count: 60 },
       ],
     },
   ];
 
   const options = {
     chart: {
-      type: 'heatmap',
+      type: "heatmap",
     },
     plotOptions: {
       heatmap: {
         colorScale: {
           ranges: [
-            { from: 1, to: 5, name: 'Low', color: '#008000' },
-            { from: 6, to: 9, name: 'Medium', color: '#002db3' },
-            { from: 10, to: 15, name: 'High', color: '#ffcc00' },
-            { from: 16, to: 25, name: 'Very High', color: '#ff0000' },
+            { from: 1, to: 5, name: "Low", color: "#008000" },
+            { from: 6, to: 9, name: "Medium", color: "#002db3" },
+            { from: 10, to: 15, name: "High", color: "#ffcc00" },
+            { from: 16, to: 25, name: "Very High", color: "#ff0000" },
           ],
         },
       },
     },
     xaxis: {
       title: {
-        text: 'Likelihood', // Label for the x-axis
+        text: "Likelihood", // Label for the x-axis
       },
     },
     yaxis: {
       title: {
-        text: 'Impact', // Label for the y-axis
+        text: "Impact", // Label for the y-axis
       },
     },
     dataLabels: {
       enabled: true,
       style: {
-        colors: ['#000'],
+        colors: ["#000"],
       },
       formatter: function (value) {
         return value.point.data.count;
