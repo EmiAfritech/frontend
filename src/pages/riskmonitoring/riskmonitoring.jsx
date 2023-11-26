@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export function RiskMonitoring() {
   return (
-    <div className="flex de-flex bg-slate-100">
+    <div className="flex de-flex bg-slate-50">
       <Sidebar />
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
