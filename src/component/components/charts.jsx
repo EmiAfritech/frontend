@@ -565,59 +565,6 @@ export function Pyramidchat() {
 }
 
 export function HeatMap() {
-  const series = [
-    {
-      name: "rare",
-      data: [
-        { x: "insignificant", y: 1, count: 1 },
-        { x: "minor", y: 2, count: 2 },
-        { x: "moderate", y: 3, count: 3 },
-        { x: "major", y: 4, count: 4 },
-        { x: "critical", y: 5, count: 5 },
-      ],
-    },
-    {
-      name: "unlikely",
-      data: [
-        { x: "insignificant", y: 2, count: 2 },
-        { x: "minor", y: 4, count: 4 },
-        { x: "moderate", y: 6, count: 6 },
-        { x: "major", y: 8, count: 8 },
-        { x: "critical", y: 10, count: 10 },
-      ],
-    },
-    {
-      name: "possible",
-      data: [
-        { x: "insignificant", y: 3, count: 3 },
-        { x: "minor", y: 6, count: 6 },
-        { x: "moderate", y: 9, count: 9 },
-        { x: "major", y: 12, count: 12 },
-        { x: "critical", y: 15, count: 15 },
-      ],
-    },
-    {
-      name: "likely",
-      data: [
-        { x: "insignificant", y: 4, count: 4 },
-        { x: "minor", y: 8, count: 8 },
-        { x: "moderate", y: 12, count: 12 },
-        { x: "major", y: 16, count: 16 },
-        { x: "critical", y: 20, count: 20 },
-      ],
-    },
-    {
-      name: "almost certain",
-      data: [
-        { x: "insignificant", y: 5, count: 5 },
-        { x: "minor", y: 10, count: 40 },
-        { x: "moderate", y: 15, count: 15 },
-        { x: "major", y: 20, count: 2 },
-        { x: "critical", y: 25, count: 60 },
-      ],
-    },
-  ];
-
   const options = {
     chart: {
       type: "heatmap",
@@ -626,10 +573,30 @@ export function HeatMap() {
       heatmap: {
         colorScale: {
           ranges: [
-            { from: 1, to: 5, name: "Low", color: "#008000" },
-            { from: 6, to: 9, name: "Medium", color: "#002db3" },
-            { from: 10, to: 15, name: "High", color: "#ffcc00" },
-            { from: 16, to: 25, name: "Very High", color: "#ff0000" },
+            {
+              from: 1,
+              to: 5,
+              name: "Low",
+              color: "#008000",
+            },
+            {
+              from: 6,
+              to: 9,
+              name: "Medium",
+              color: "#002db3",
+            },
+            {
+              from: 10,
+              to: 15,
+              name: "High",
+              color: "#ffcc00",
+            },
+            {
+              from: 16,
+              to: 25,
+              name: "Very High",
+              color: "#ff0000",
+            },
           ],
         },
       },
@@ -644,16 +611,60 @@ export function HeatMap() {
         text: "Impact", // Label for the y-axis
       },
     },
-    dataLabels: {
-      enabled: true,
-      style: {
-        colors: ["#000"],
-      },
-      formatter: function (value) {
-        return value.point.data.count;
-      },
-    },
   };
+
+  const series = [
+    {
+      name: "rare",
+      data: [
+        { x: "insignificant", y: 1 },
+        { x: "minor", y: 2 },
+        { x: "moderate", y: 3 },
+        { x: "major", y: 4 },
+        { x: "critical", y: 5 },
+      ],
+    },
+    {
+      name: "unlikely",
+      data: [
+        { x: "insignificant", y: 2 },
+        { x: "minor", y: 4 },
+        { x: "moderate", y: 6 },
+        { x: "major", y: 8 },
+        { x: "critical", y: 10 },
+      ],
+    },
+    {
+      name: "possible",
+      data: [
+        { x: "insignificant", y: 3 },
+        { x: "minor", y: 6 },
+        { x: "moderate", y: 9 },
+        { x: "major", y: 12 },
+        { x: "critical", y: 15 },
+      ],
+    },
+    {
+      name: "likely",
+      data: [
+        { x: "insignificant", y: 4 },
+        { x: "minor", y: 8 },
+        { x: "moderate", y: 12 },
+        { x: "major", y: 16 },
+        { x: "critical", y: 20 },
+      ],
+    },
+    {
+      name: "almost certain",
+      data: [
+        { x: "insignificant", y: 5 },
+        { x: "minor", y: 10 },
+        { x: "moderate", y: 15 },
+        { x: "major", y: 20 },
+        { x: "critical", y: 25 },
+      ],
+    },
+  ];
 
   return (
     <div>
