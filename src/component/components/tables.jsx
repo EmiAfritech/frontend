@@ -72,8 +72,8 @@ export function EmployeesTable() {
   }
   useEffect(() => {
     getUsers();
-  });
-  console.log(tableData)
+  },[])
+  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
@@ -118,8 +118,8 @@ export function RiskReview() {
   }
   useEffect(() => {
     getRiskReview();
-  });
-  console.log(tableData)
+  },[])
+  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -147,7 +147,7 @@ export function RiskReview() {
 
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
-  console.log(tableData)
+  console.log(tableData);
   useEffect(() => {
     axios
       .get(VIEWCLOSEDRISKS_URL, {
@@ -195,9 +195,9 @@ export function ClosedRiskTab() {
 
 export function RiskMonitor() {
   const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    axios
+   function getMonitoring(){
+    try{
+      axios
       .get(RISKMONITORING_URL, {
         headers: {
           "Content-Type": "application/json",
@@ -205,8 +205,15 @@ export function RiskMonitor() {
         },
       })
       .then((response) => setTableData(response.data.Data));
-  }, [tableData]);
-  console.log(tableData)
+      return tableData
+    }catch(err){
+      console.log(err)
+    }
+   }
+  
+   useEffect=(()=>{
+    getMonitoring();
+  },[])
   return (
     <div className="flex flex-col mt-6">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
@@ -218,7 +225,7 @@ export function RiskMonitor() {
         style={{ height: 300, backgroundColor: "white" }}
         className="  mt-2 w-auto">
         <DataGrid
-          rows={tableData}
+          rows={getMonitoring()}
           columns={riskmonitoringcolumn}
           initialState={{
             pagination: {
@@ -304,8 +311,9 @@ export function RiskAppetiteReportLower() {
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
 
-  useEffect(() => {
-    axios
+   function getDepartment(){
+    try{
+      axios
       .get(DEPARTMENT_URL, {
         headers: {
           "Content-Type": "application/json",
@@ -313,8 +321,15 @@ export function DepartmentTab() {
         },
       })
       .then((data) => setTableData(data.data));
-  });
-  console.log(tableData)
+    }catch(err){
+      console.log(err)
+    }
+   }
+
+   useEffect(()=>{
+    getDepartment()
+   },[])
+  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -354,7 +369,7 @@ export function RiskmitigationTab() {
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
-  console.log(tableData)
+  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -414,9 +429,7 @@ export function RiskViewTable() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
-        .then((response) => {
-          setTableData(response.data.Data), console.log(response.data.Data);
-        });
+        .then((response) => setTableData(response.data.Data));
     };
 
     viewAllRisks();
@@ -449,9 +462,10 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    axios
+    
+  function getAuditReport(){
+    try{
+      axios
       .get(REPORTAUDITTRAIL_URL, {
         headers: {
           "Content-Type": "application/json",
@@ -459,7 +473,13 @@ export function Reportaudittrail() {
         },
       })
       .then((response) => setTableData(response.data));
-  }, [tableData]);
+      return tableData
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{getAuditReport()},[])
 
   return (
     <div className="flex flex-col">
@@ -467,7 +487,7 @@ export function Reportaudittrail() {
         style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto">
         <DataGrid
-          rows={tableData}
+          rows={getAuditReport()}
           columns={reportaudittrailcolumn}
           initialState={{
             pagination: {

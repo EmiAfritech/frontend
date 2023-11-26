@@ -255,11 +255,10 @@ export const reportaudittrailcolumn = [
 export const deptcolumn = [
   { field: "id", headerName: "ID", width: 70 },
   { field: "deptID", headerName: "Dapartment Code", width: 150 },
-  { field: "organizationId", headerName: "Organization ID", width: 150 },
-  { field: "name", headerName: "Department Name", width: 170 },
-  { field: "manager", headerName: "Department Manager", width: 170 },
+  { field: "name", headerName: "Department Name", width: 180 },
+  { field: "manager", headerName: "Department Manager", width: 180 },
   { field: "location", headerName: "Location", width: 170 },
-  { field: "createdAt", headerName: "Created At", width: 150 },
+  { field: "createdAt", headerName: "Created At", width: 180 },
   {
     field: "view",
     headerName: "Action",
