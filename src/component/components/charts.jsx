@@ -627,9 +627,9 @@ export function HeatMaps() {
   };
 
   return (
-    <div className="heatmap-container">
+    <div className="grid grid-cols-4">
       {data.map((row, rowIndex) => (
-        <div key={rowIndex} className="heatmap-row">
+        <div key={rowIndex} className="grid grid-rows-4">
           {row.map((value, colIndex) => (
             <div key={colIndex} className="heatmap-cell" style={{ background: getColor(value) }}>
               {value}

@@ -84,27 +84,10 @@
 
 }
 
-.heatmap-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 4px;
-}
 
-.heatmap-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
 
 .heatmap-cell {
   padding: 20px; /* Adjust the padding as needed */
   color: white;
   text-align: center;
-}
-
-.heatmap-row {
-  display: flex; /* Use flexbox to properly align items in a row */
-}
-
-.heatmap-row + .heatmap-row {
-  margin-top: 4px;
 }
