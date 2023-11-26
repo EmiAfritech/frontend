@@ -561,10 +561,10 @@ export function HeatMap() {
       name: 'almost certain',
       data: [
         { x: 'insignificant', y: 5, count: 5 },
-        { x: 'minor', y: 10, count: 10 },
+        { x: 'minor', y: 10, count: 40 },
         { x: 'moderate', y: 15, count: 15 },
-        { x: 'major', y: 20, count: 20 },
-        { x: 'critical', y: 25, count: 25 },
+        { x: 'major', y: 20, count: 2 },
+        { x: 'critical', y: 25, count: 60 },
       ],
     },
   ];
