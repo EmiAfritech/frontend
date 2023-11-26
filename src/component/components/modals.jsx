@@ -647,7 +647,10 @@ export function MonitoredRiskData(params) {
     p: 4,
     borderRadius: 1,
   };
-
+  
+  function handleOpen() {
+    setOpen(!open);
+  }
   return (
     <>
       <button onClick={handleOpen} className="px-2">
