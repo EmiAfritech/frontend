@@ -48,7 +48,7 @@ export function UserData(params) {
 export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const [riskName, setRiskName] = useState(params.riskName);
+  const [riskName, setRiskName] = useState(params.row.riskName);
   console.log(riskName)
   const style = {
     position: "absolute",
@@ -314,7 +314,7 @@ export function RiskData(params) {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+            <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
               <button
                 className="flex flex row items-center p-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 <FaSave className="icons" />
@@ -322,7 +322,7 @@ export function RiskData(params) {
               </button>
               <button
                 className="flex flex row items-center p-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                <FaTrashAlt className="icons" />
+                <FaTrashAlt className="icons" color="red"/>
                 Delete
               </button>
             </div>
