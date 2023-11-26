@@ -410,7 +410,7 @@ export function ReportRiskCategory() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={4}  layout='vertical' verticalAlign='middle' align="right" />
+        <Legend iconSize={10}  width={20} layout='vertical' verticalAlign='middle' align="right" />
         <Tooltip />
       </PieChart>
     </div>
@@ -437,7 +437,6 @@ export function ReportRiskResponse() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
         <Tooltip />
       </PieChart>
     </div>
@@ -464,7 +463,6 @@ export function ReportRiskOwner() {
       </h3>
       <PieChart width={190} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
         <Tooltip />
       </PieChart>
     </div>
