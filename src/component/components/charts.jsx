@@ -413,7 +413,7 @@ export function ReportRiskCategory() {
       </h3>
       <PieChart width={210} height={270}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
+        <Legend iconSize={10} style={{ fontSize: '12px' }}/>
         <Tooltip />
       </PieChart>
     </div>
@@ -440,7 +440,7 @@ export function ReportRiskResponse() {
       </h3>
       <PieChart width={210} height={270}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
+        <Legend iconSize={10} style={{ fontSize: '12px' }}/>
         <Tooltip />
       </PieChart>
     </div>

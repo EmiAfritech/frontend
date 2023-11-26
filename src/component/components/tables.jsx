@@ -607,7 +607,7 @@ export function RiskMitigationReportTable() {
 
   return (
     <div>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 justify-end">
           <div>
             <select
               type="text"
