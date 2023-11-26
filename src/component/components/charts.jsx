@@ -408,7 +408,7 @@ export function ReportRiskCategory() {
       <h3 className="py-3">
         <span>CATEGORY</span>
       </h3>
-      <PieChart width={190} height={190}>
+      <PieChart width={220} height={190}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10}  width={20} layout='vertical' verticalAlign='middle' align="right" />
         <Tooltip />
