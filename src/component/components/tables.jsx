@@ -73,7 +73,7 @@ export function EmployeesTable() {
   useEffect(() => {
     getUsers();
   });
-
+  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
@@ -119,7 +119,7 @@ export function RiskReview() {
   useEffect(() => {
     getRiskReview();
   });
-
+  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -147,7 +147,7 @@ export function RiskReview() {
 
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
-
+  console.log(tableData)
   useEffect(() => {
     axios
       .get(VIEWCLOSEDRISKS_URL, {
@@ -206,7 +206,7 @@ export function RiskMonitor() {
       })
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
-
+  console.log(tableData)
   return (
     <div className="flex flex-col mt-6">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
@@ -314,7 +314,7 @@ export function DepartmentTab() {
       })
       .then((data) => setTableData(data.data));
   });
-
+  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -354,6 +354,7 @@ export function RiskmitigationTab() {
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
+  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
