@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { DEPARTMENTDROPDOWN_URL, OWNERSDROPDOWN_URL } from "../../api/routes";
 import {
-  FaSignOutAlt,
+  FaTrashAlt,FaSave
 } from "react-icons/fa";
 import "../comstyles/component.css";
 
@@ -49,6 +49,7 @@ export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.riskName);
+  console.log(riskName)
   const style = {
     position: "absolute",
     top: "50%",
@@ -315,13 +316,13 @@ export function RiskData(params) {
             </div>
             <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
               <button
-                className="flex flex row items-center p-3">
-                <FaSignOutAlt className="icons" />
+                className="flex flex row items-center p-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <FaSave className="icons" />
                 Save
               </button>
               <button
-                className="flex flex row items-center p-3">
-                <FaSignOutAlt className="icons" />
+                className="flex flex row items-center p-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <FaTrashAlt className="icons" />
                 Delete
               </button>
             </div>
