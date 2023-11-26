@@ -86,17 +86,17 @@
 
 .heatmap-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns based on your data */
-  grid-gap: 4px; /* Adjust the gap between cells */
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 4px;
 }
 
 .heatmap-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Adjust the number of columns based on your data */
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .heatmap-cell {
-  padding: 10px;
+  padding: 20px; /* Adjust the padding as needed */
   color: white;
   text-align: center;
 }

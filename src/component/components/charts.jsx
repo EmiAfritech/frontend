@@ -612,18 +612,17 @@ export function HeatMap() {
 
 export function HeatMaps() {
   const data = [
-    [1, 2, 3, 4, 5],
-    [2, 4, 6, 8, 10],
-    [3, 6, 9, 12, 15],
-    [4, 8, 12, 16, 20],
-    [5, 10, 15, 20, 25],
+    [1, 2, 3, 4],
+    [2, 4, 6, 8],
+    [3, 6, 9, 12],
+    [4, 8, 12, 16],
   ];
 
   // Determine the color scale ranges based on your data
   const getColor = (value) => {
-    if (value >= 16) return '#ff0000'; // Very High
-    if (value >= 10) return '#ffcc00'; // High
-    if (value >= 6) return '#002db3';  // Medium
+    if (value >= 12) return '#ff0000'; // Very High
+    if (value >= 8) return '#ffcc00'; // High
+    if (value >= 4) return '#002db3'; // Medium
     return '#008000'; // Low
   };
 
