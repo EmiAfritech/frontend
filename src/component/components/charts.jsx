@@ -618,34 +618,3 @@ export function HeatMap() {
     </div>
   );
 }
-
-export function HeatMaps() {
-  const data = [
-    [1, 2, 3, 4],
-    [2, 4, 6, 8],
-    [3, 6, 9, 12],
-    [4, 8, 12, 16],
-  ];
-
-  // Determine the color scale ranges based on your data
-  const getColor = (value) => {
-    if (value >= 12) return '#ff0000'; // Very High
-    if (value >= 8) return '#ffcc00'; // High
-    if (value >= 4) return '#002db3'; // Medium
-    return '#008000'; // Low
-  };
-
-  return (
-    <div className="grid grid-cols-4">
-      {data.map((row, rowIndex) => (
-        <div key={rowIndex} className="grid grid-rows-4">
-          {row.map((value, colIndex) => (
-            <div key={colIndex} className="heatmap-cell" style={{ background: getColor(value) }}>
-              {value}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
