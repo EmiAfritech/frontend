@@ -503,7 +503,7 @@ export function Reportaudittrail() {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div>
       <div className="grid grid-cols-4">
           <div>
             <select
@@ -606,7 +606,7 @@ export function RiskMitigationReportTable() {
   }, [tableData]);
 
   return (
-    <div className="flex flex-col">
+    <div>
       <div className="grid grid-cols-4">
           <div>
             <select
@@ -692,7 +692,7 @@ export function ReviewNeedingRisksReportTab() {
       .then((response) => setTableData(response.data));
   }, [tableData]);
   return (
-    <div className="flex flex-col">
+    <div>
       <div className="grid grid-cols-4">
           <div>
             <select
@@ -779,7 +779,7 @@ export function RiskStatusReportTab() {
   }, [tableData]);
 
   return (
-    <div className="flex flex-col">
+    <div>
       <div className="grid grid-cols-4">
           <div>
             <select
