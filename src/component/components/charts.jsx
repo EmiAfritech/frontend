@@ -37,7 +37,7 @@ import {
   REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
   OPENVSCLOSECHART_URL,
-  DEPARTMENTDROPDOWN_URL
+  DEPARTMENTDROPDOWN_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -413,7 +413,7 @@ export function ReportRiskCategory() {
       </h3>
       <PieChart width={210} height={270}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} style={{ fontSize: '12px' }}/>
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -440,7 +440,7 @@ export function ReportRiskResponse() {
       </h3>
       <PieChart width={210} height={270}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} style={{ fontSize: '12px' }}/>
+        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
@@ -478,25 +478,22 @@ export function Pyramidchat() {
   const [data, setData] = useState();
   const [deptmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-    
-    
-    useEffect(() => {
+
+  useEffect(() => {
     axios
-        .get(DEPARTMENTDROPDOWN_URL, {
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .then((data) => {
-            setdeptmentNames(data.data);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     axios

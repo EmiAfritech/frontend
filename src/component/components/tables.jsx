@@ -10,7 +10,8 @@ import {
   riskappetitereportlowercolumn,
   reportopenrisktoreviewcolumn,
   reportaudittrailcolumn,
-  riskmitigationcolumn,reportriskmitigationcolumn
+  riskmitigationcolumn,
+  reportriskmitigationcolumn,
 } from "./datatable";
 import { useEffect, useState } from "react";
 import {
@@ -39,7 +40,8 @@ import {
   REPORTAUDITTRAIL_URL,
   RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
-  RISKSTATUSREPORT_URL,DEPARTMENTDROPDOWN_URL
+  RISKSTATUSREPORT_URL,
+  DEPARTMENTDROPDOWN_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 
@@ -52,7 +54,6 @@ const getSelectedRowsToExport = ({ apiRef }) => {
   return gridFilteredSortedRowIdsSelector(apiRef);
 };
 
-
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
 
@@ -61,8 +62,8 @@ export function EmployeesTable() {
       try {
         const response = await axios.get(USERS_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -85,9 +86,8 @@ export function EmployeesTable() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
-        className="mt-2 w-auto cardTable p-4"
-      >
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
+        className="mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={tableData}
           columns={usercolumns}
@@ -107,8 +107,8 @@ export function RiskReview() {
       try {
         const response = await axios.get(RISKREVIEW_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -131,9 +131,8 @@ export function RiskReview() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
-        className="mt-2 w-auto cardTable p-4"
-      >
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
+        className="mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={tableData}
           columns={riskreviewcolumn}
@@ -201,8 +200,8 @@ export function RiskMonitor() {
       try {
         const response = await axios.get(RISKMONITORING_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -225,9 +224,8 @@ export function RiskMonitor() {
         </div>
       </div>
       <div
-        style={{ height: 300, backgroundColor: 'white' }}
-        className="mt-2 w-auto"
-      >
+        style={{ height: 300, backgroundColor: "white" }}
+        className="mt-2 w-auto">
         <DataGrid
           rows={tableData}
           columns={riskmonitoringcolumn}
@@ -316,8 +314,8 @@ export function DepartmentTab() {
       try {
         const response = await axios.get(DEPARTMENT_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -340,9 +338,8 @@ export function DepartmentTab() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
-        className="mt-2 w-auto cardTable p-4"
-      >
+        style={{ height: 650, width: 1100, backgroundColor: "white" }}
+        className="mt-2 w-auto cardTable p-4">
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
@@ -463,33 +460,30 @@ export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
   const [deptmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-    
-    
-    useEffect(() => {
+
+  useEffect(() => {
     axios
-        .get(DEPARTMENTDROPDOWN_URL, {
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .then((data) => {
-            setdeptmentNames(data.data);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(REPORTAUDITTRAIL_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -505,33 +499,32 @@ export function Reportaudittrail() {
   return (
     <div>
       <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={deptmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-              Select a Department:
-            </label>
-          </div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={deptmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+          <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Select a Department:
+          </label>
         </div>
+      </div>
       <div
-        style={{ height: 650, width: 850, backgroundColor: 'white' }}
-        className="mt-2 w-auto card p-4"
-      >
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
+        className="mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
           columns={reportaudittrailcolumn}
@@ -548,16 +541,16 @@ export function Reportaudittrail() {
                 pdf: true,
               },
               csvOptions: {
-                separator: ';',
+                separator: ";",
               },
               pdfOptions: {
-                orientation: 'landscape',
+                orientation: "landscape",
               },
               getExportParams: (params) => ({
                 columns: params.columns,
                 api: params.api,
                 csvOptions: params.csvOptions,
-                fileName: 'AuditTrailReport',
+                fileName: "AuditTrailReport",
                 onlySelected: params.onlySelected,
                 allColumns: params.allColumns,
                 skipHeader: params.skipHeader,
@@ -574,25 +567,22 @@ export function RiskMitigationReportTable() {
   const [tableData, setTableData] = useState([]);
   const [deptmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-    
-    
-    useEffect(() => {
+
+  useEffect(() => {
     axios
-        .get(DEPARTMENTDROPDOWN_URL, {
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .then((data) => {
-            setdeptmentNames(data.data);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -608,26 +598,27 @@ export function RiskMitigationReportTable() {
   return (
     <div>
       <div className="grid grid-cols-4 justify-end">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={deptmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="col-span-3"></div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={deptmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
       <div
         style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto card p-4">
@@ -657,25 +648,22 @@ export function ReviewNeedingRisksReportTab() {
   const [tableData, setTableData] = useState([]);
   const [deptmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-    
-    
-    useEffect(() => {
+
+  useEffect(() => {
     axios
-        .get(DEPARTMENTDROPDOWN_URL, {
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .then((data) => {
-            setdeptmentNames(data.data);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -691,26 +679,27 @@ export function ReviewNeedingRisksReportTab() {
   return (
     <div>
       <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={deptmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="col-span-3"></div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={deptmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
       <div
         style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="  mt-2 w-auto card p-4">
@@ -740,25 +729,22 @@ export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);
   const [deptmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-    
-    
-    useEffect(() => {
+
+  useEffect(() => {
     axios
-        .get(DEPARTMENTDROPDOWN_URL, {
-            headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
-        .then((data) => {
-            setdeptmentNames(data.data);
-            
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((data) => {
+        setdeptmentNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     axios
@@ -775,26 +761,27 @@ export function RiskStatusReportTab() {
   return (
     <div>
       <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={deptmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="col-span-3"></div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={deptmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
       <div
         style={{ height: 650, width: 850, backgroundColor: "white" }}
         className=" mt-2 w-auto card p-4">
