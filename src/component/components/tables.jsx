@@ -52,28 +52,31 @@ const getSelectedRowsToExport = ({ apiRef }) => {
   return gridFilteredSortedRowIdsSelector(apiRef);
 };
 
+
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
-  //apply to other tables
-  function getUsers() {
-    try {
-      axios
-        .get(USERS_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((data) => setTableData(data.data));
-      return tableData;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const response = await axios.get(USERS_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getUsers();
-  },[])
+  }, []);
+
   console.log(tableData);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
@@ -82,17 +85,14 @@ export function EmployeesTable() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className=" mt-2 w-auto cardTable p-4">
+        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
+        className="mt-2 w-auto cardTable p-4"
+      >
         <DataGrid
-          rows={getUsers()}
+          rows={tableData}
           columns={usercolumns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
+          pageSize={10}
+          pagination
         />
       </div>
     </div>
@@ -101,25 +101,28 @@ export function EmployeesTable() {
 
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
-  function getRiskReview() {
-    try {
-      axios
-        .get(RISKREVIEW_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => setTableData(response.data.Data));
-      return tableData;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   useEffect(() => {
+    const getRiskReview = async () => {
+      try {
+        const response = await axios.get(RISKREVIEW_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setTableData(response.data.Data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getRiskReview();
-  },[])
+  }, []);
+
   console.log(tableData);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -128,17 +131,14 @@ export function RiskReview() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className="  mt-2 w-auto cardTable p-4">
+        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
+        className="mt-2 w-auto cardTable p-4"
+      >
         <DataGrid
-          rows={getRiskReview()}
+          rows={tableData}
           columns={riskreviewcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
+          pageSize={10}
+          pagination
         />
       </div>
     </div>
@@ -195,25 +195,28 @@ export function ClosedRiskTab() {
 
 export function RiskMonitor() {
   const [tableData, setTableData] = useState([]);
-   function getMonitoring(){
-    try{
-      axios
-      .get(RISKMONITORING_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.Data));
-      return tableData
-    }catch(err){
-      console.log(err)
-    }
-   }
-  
-   useEffect=(()=>{
+
+  useEffect(() => {
+    const getMonitoring = async () => {
+      try {
+        const response = await axios.get(RISKMONITORING_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setTableData(response.data.Data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getMonitoring();
-  },[])
+  }, []);
+
+  console.log(tableData);
+
   return (
     <div className="flex flex-col mt-6">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
@@ -222,17 +225,14 @@ export function RiskMonitor() {
         </div>
       </div>
       <div
-        style={{ height: 300, backgroundColor: "white" }}
-        className="  mt-2 w-auto">
+        style={{ height: 300, backgroundColor: 'white' }}
+        className="mt-2 w-auto"
+      >
         <DataGrid
-          rows={getMonitoring()}
+          rows={tableData}
           columns={riskmonitoringcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
+          pageSize={10}
+          pagination
         />
       </div>
     </div>
@@ -311,25 +311,27 @@ export function RiskAppetiteReportLower() {
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
 
-   function getDepartment(){
-    try{
-      axios
-      .get(DEPARTMENT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => setTableData(data.data));
-    }catch(err){
-      console.log(err)
-    }
-   }
+  useEffect(() => {
+    const getDepartment = async () => {
+      try {
+        const response = await axios.get(DEPARTMENT_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
 
-   useEffect(()=>{
-    getDepartment()
-   },[])
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getDepartment();
+  }, []);
+
   console.log(tableData);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -338,17 +340,14 @@ export function DepartmentTab() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 1100, backgroundColor: "white" }}
-        className=" mt-2 w-auto cardTable p-4">
+        style={{ height: 650, width: 1100, backgroundColor: 'white' }}
+        className="mt-2 w-auto cardTable p-4"
+      >
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
+          pageSize={10}
+          pagination
         />
       </div>
     </div>
@@ -462,44 +461,62 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
-    
-  function getAuditReport(){
-    try{
-      axios
-      .get(REPORTAUDITTRAIL_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data));
-      return tableData
-    }catch(err){
-      console.log(err)
-    }
-  }
 
-  useEffect(()=>{getAuditReport()},[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(REPORTAUDITTRAIL_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 650, width: 850, backgroundColor: "white" }}
-        className="  mt-2 w-auto">
+        style={{ height: 650, width: 850, backgroundColor: 'white' }}
+        className="mt-2 w-auto"
+      >
         <DataGrid
-          rows={getAuditReport()}
+          rows={tableData}
           columns={reportaudittrailcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
+          pageSize={10}
+          pagination
           checkboxSelection
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
+          components={{
+            Toolbar: GridToolbar,
+          }}
+          componentsProps={{
             toolbar: {
-              printOptions: { getRowsToExport: getSelectedRowsToExport },
+              exportButton: {
+                csv: false,
+                pdf: true,
+              },
+              csvOptions: {
+                separator: ';',
+              },
+              pdfOptions: {
+                orientation: 'landscape',
+              },
+              getExportParams: (params) => ({
+                columns: params.columns,
+                api: params.api,
+                csvOptions: params.csvOptions,
+                fileName: 'AuditTrailReport',
+                onlySelected: params.onlySelected,
+                allColumns: params.allColumns,
+                skipHeader: params.skipHeader,
+              }),
             },
           }}
         />
