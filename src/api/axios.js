@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://riskappbackend.eu-4.evennode.com/api",
+  baseURL: "https://bkdeployment-production.up.railway.app/api",
 });
