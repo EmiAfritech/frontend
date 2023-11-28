@@ -485,7 +485,7 @@ export function ReportRiskLocation() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKCATEGORYREPORT_URL,
+          RISKLOCATIONREPORT_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {
@@ -524,17 +524,7 @@ export function ReportRiskLocation() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKLOCATIONREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
+  
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="py-3">

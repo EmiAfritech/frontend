@@ -549,6 +549,7 @@ export function RiskMitigationReportTable() {
 
     fetchData();
   }, []);
+  console.log(tableData)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -645,6 +646,7 @@ export function ReviewNeedingRisksReportTab() {
 
     fetchData();
   }, []);
+  console.log(tableData)
 
   useEffect(() => {
     const fetchData = async () => {
