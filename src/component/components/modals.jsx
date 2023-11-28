@@ -841,9 +841,11 @@ export function MitigatedRiskData(params) {
     params.row.mitigationCost
   );
   const [mitigationControl , setMitigationControl] = useState(params.row.mitigationControl    );
+  const prob = getProbabiltyLevelName(params.row.mitigatedRiskProbabilityLevel);
+  const imp = getImpactLevelName(params.row.mitigatedRiskImpactLevel);
   const [mitigatedRiskScore    , setMitigatedRiskScore  ] = useState(params.row.mitigatedRiskScore    );
-  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(params.row.mitigatedRiskProbabilityLevel);
-  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(params.row.mitigatedRiskImpactLevel    );
+  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(prob);
+  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(imp);
   const [createdAt, setCreatedAt] = useState(
     params.row.createdAt
   );
