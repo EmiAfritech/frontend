@@ -709,7 +709,7 @@ export function RiskStatusReportTab() {
 
   useEffect(() => {
     axios
-      .post(RISKSTATUSREPORT_URL, JSON.stringify(departmentName), {
+      .post(RISKSTATUSREPORT_URL, JSON.stringify({departmentName}), {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
