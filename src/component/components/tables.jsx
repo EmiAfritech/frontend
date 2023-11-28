@@ -624,7 +624,7 @@ export function RiskMitigationReportTable() {
 
 export function ReviewNeedingRisksReportTab() {
   const [tableData, setTableData] = useState([]);
-  const [departmentName, setdeptmentName] = useState(" ");
+  const [departmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
 
   useEffect(() => {
