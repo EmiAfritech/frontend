@@ -716,7 +716,7 @@ export function RiskStatusReportTab() {
         },
         withCredentials: true,
       })
-      .then((response) => setTableData(response.data));
+      .then((response) => {setTableData(response.data), console.log(response.data)});
     
   }, [tableData]);
   console.log(tableData)
