@@ -534,6 +534,7 @@ export function ReportRiskOwner() {
 
     fetchData();
   }, []);
+  console.log(data)
 
   useEffect(() => {
     const fetchData = async () => {
