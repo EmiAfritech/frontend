@@ -44,7 +44,6 @@ import {
   DEPARTMENTDROPDOWN_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
-import LoadingPopup from "../../api/sessions";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -57,10 +56,8 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
-  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const getUsers = async () => {
       try {
         const response = await axios.get(USERS_URL, {
@@ -77,7 +74,7 @@ export function EmployeesTable() {
     };
 
     getUsers();
-    <LoadingPopup isLoading={isLoading} />
+    
   }, []);
 
   console.log(tableData);
@@ -630,27 +627,49 @@ export function ReviewNeedingRisksReportTab() {
   const [departmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await  axios
-        .post(RISKNEEDINGREVIEWREPORT_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await  axios
+  //       .post(RISKNEEDINGREVIEWREPORT_URL, JSON.stringify({departmentName}), {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //         withCredentials: true,
+  //       })
 
-        setTableData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  //       setTableData(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
-  console.log(tableData)
+  //   fetchData();
+  // }, []);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setdeptmentName(e.target.value)
+
+    try {
+      const response = await  axios
+      .post(RISKNEEDINGREVIEWREPORT_URL, JSON.stringify({departmentName}), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+
+      setTableData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -683,7 +702,7 @@ export function ReviewNeedingRisksReportTab() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleSubmit}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
