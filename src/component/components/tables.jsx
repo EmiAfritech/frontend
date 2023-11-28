@@ -44,6 +44,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
+import LoadingPopup from "../../api/sessions";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -74,7 +75,8 @@ export function EmployeesTable() {
     };
 
     getUsers();
-  }, [tableData]);
+    <LoadingPopup isLoading={isLoading} />
+  }, []);
 
   console.log(tableData);
 
