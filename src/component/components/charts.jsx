@@ -312,10 +312,12 @@ export function RiskLineChart() {
 
 export function ReportRiskLevel() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -323,8 +325,8 @@ export function ReportRiskLevel() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -337,26 +339,31 @@ export function ReportRiskLevel() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
+
 
   
   return (
@@ -373,7 +380,7 @@ export function ReportRiskLevel() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -395,10 +402,12 @@ export function ReportRiskLevel() {
 }
 export function ReportRiskStatus() {
   const [data, setData] = useState([]);
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -406,8 +415,8 @@ export function ReportRiskStatus() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -420,26 +429,30 @@ export function ReportRiskStatus() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   
   return (
@@ -456,7 +469,7 @@ export function ReportRiskStatus() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -478,10 +491,12 @@ export function ReportRiskStatus() {
 }
 export function ReportRiskLocation() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -489,8 +504,8 @@ export function ReportRiskLocation() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -503,26 +518,30 @@ export function ReportRiskLocation() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   
   return (
@@ -539,7 +558,7 @@ export function ReportRiskLocation() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -561,10 +580,12 @@ export function ReportRiskLocation() {
 }
 export function ReportRiskCategory() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -572,8 +593,8 @@ export function ReportRiskCategory() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -586,27 +607,30 @@ export function ReportRiskCategory() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
 
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
 
   return (
@@ -623,7 +647,7 @@ export function ReportRiskCategory() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -645,10 +669,12 @@ export function ReportRiskCategory() {
 }
 export function ReportRiskResponse() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -656,8 +682,8 @@ export function ReportRiskResponse() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -670,25 +696,30 @@ export function ReportRiskResponse() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
  
   return (
@@ -705,7 +736,7 @@ export function ReportRiskResponse() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -727,8 +758,9 @@ export function ReportRiskResponse() {
 }
 export function ReportRiskOwner() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -738,8 +770,8 @@ export function ReportRiskOwner() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -752,26 +784,30 @@ export function ReportRiskOwner() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
@@ -787,7 +823,7 @@ export function ReportRiskOwner() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -810,10 +846,12 @@ export function ReportRiskOwner() {
 
 export function Pyramidchat() {
   const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
+
+
+ useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -821,8 +859,8 @@ export function Pyramidchat() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
             },
             withCredentials: true,
           }
@@ -835,26 +873,30 @@ export function Pyramidchat() {
     };
 
     fetchData();
-  }, []);
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   return (
     <>
@@ -868,7 +910,7 @@ export function Pyramidchat() {
               aria-describedby="departmentName"
               value={departmentName}
               autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
+              onChange={(e) => {handleDeptNameChange}}>
               <option value="All Departments">All Departments</option>
               {deptmentNames.map((deptmentNames) => (
                 <option

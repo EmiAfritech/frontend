@@ -366,7 +366,6 @@ export function RiskmitigationTab() {
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
 
-  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -527,20 +526,23 @@ export function Reportaudittrail() {
 
 export function RiskMitigationReportTable() {
   const [tableData, setTableData] = useState([]);
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  axios
-        .post(RISKMITIGATION_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
+        const response = await axios.post(
+          RISKMITIGATION_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
 
         setTableData(response.data);
       } catch (error) {
@@ -549,27 +551,30 @@ export function RiskMitigationReportTable() {
     };
 
     fetchData();
-  }, []);
-  console.log(tableData)
+  }, [departmentName]); 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   
 
@@ -585,7 +590,7 @@ export function RiskMitigationReportTable() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -649,7 +654,7 @@ export function ReviewNeedingRisksReportTab() {
     };
 
     fetchData();
-  }, [departmentName]); // Include departmentName as a dependency
+  }, [departmentName]); 
 
   useEffect(() => {
     const fetchDeptData = async () => {
@@ -728,32 +733,8 @@ export function ReviewNeedingRisksReportTab() {
 
 export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);
-  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-
-
-  
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await  axios
-        .post(RISKSTATUSREPORT_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
-
-        setTableData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
   
 
    useEffect(() => {
@@ -775,6 +756,33 @@ export function RiskStatusReportTab() {
     fetchData();
   }, []);
   
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKSTATUSREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [departmentName]); 
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   return (
     <div>
@@ -788,7 +796,7 @@ export function RiskStatusReportTab() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={(e) => {handleDeptNameChange}}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
