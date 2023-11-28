@@ -57,6 +57,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const getUsers = async () => {
