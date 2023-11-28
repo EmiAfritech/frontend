@@ -77,7 +77,7 @@ export function MitigatedVsUnmitigated() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -104,7 +104,7 @@ export function ReviewedVsUnreviewed() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -131,7 +131,7 @@ export function MonitoredVsUnmonitored() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -157,7 +157,7 @@ export function RiskBarChart() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setData(data.data);
@@ -186,7 +186,7 @@ export function MonitoredVsUnmonitoredBarchart() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setData(data.data);
@@ -215,7 +215,7 @@ export function MitigatedVsUnmitigatedBarchart() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setData(data.data);
@@ -245,7 +245,7 @@ export function ReviewedVsUnreviewedBarchart() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setData(data.data);

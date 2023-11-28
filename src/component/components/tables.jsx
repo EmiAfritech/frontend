@@ -155,7 +155,7 @@ export function ClosedRiskTab() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => setTableData(data.data.Data));
   }, [tableData]);
@@ -283,7 +283,7 @@ export function RiskAppetiteReportLower() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((response) => setTableData(response.data.withinRiskAppetite));
   }, [tableData]);
@@ -362,7 +362,7 @@ export function RiskmitigationTab() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
