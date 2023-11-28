@@ -427,104 +427,17 @@ export function ReportRiskResponse() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  axios
-        .post(RISKOWNERREPORT_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-
-        setdeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(RISKRESPONSEREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
-  return (
-    <div className="card items-center flex flex-col px-8 pb-2">
-      <h3 className="py-3">
-        <span>RISK RESPONSE</span>
-      </h3>
-      <div className="grid grid-cols-2">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      <PieChart width={210} height={250}>
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
-    </div>
-  );
-}
-export function ReportRiskOwner() {
-  const [data, setData] = useState();
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await  axios
-        .post(RISKOWNERREPORT_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
+        const response = await axios.post(
+          RISKOWNERREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
 
         setData(response.data);
       } catch (error) {
@@ -535,7 +448,6 @@ export function ReportRiskOwner() {
     fetchData();
   }, []);
   console.log(data)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -556,34 +468,114 @@ export function ReportRiskOwner() {
   }, []);
 
  
+  return (
+    <div className="card items-center flex flex-col px-8 pb-2">
+      <h3 className="py-3">
+        <span>RISK RESPONSE</span>
+      </h3>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <PieChart width={210} height={250}>
+        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Legend iconSize={10} />
+        <Tooltip />
+      </PieChart>
+    </div>
+  );
+}
+export function ReportRiskOwner() {
+  const [data, setData] = useState();
+  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
 
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKOWNERREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="py-3">
         <span>OWNER</span>
       </h3>
-      <div className="grid grid-cols-2">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={(e) => setdeptmentName(e.target.value)}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -601,14 +593,17 @@ export function Pyramidchat() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  axios
-        .post(RISKLEVELPYRAMIDCHART_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
+        const response = await axios.post(
+          RISKLEVELPYRAMIDCHART_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
 
         setData(response.data);
       } catch (error) {
@@ -638,7 +633,6 @@ export function Pyramidchat() {
     fetchData();
   }, []);
 
- 
   return (
     <>
       <div>
