@@ -74,7 +74,7 @@ export function EmployeesTable() {
     };
 
     getUsers();
-  }, []);
+  }, [tableData]);
 
   console.log(tableData);
 
