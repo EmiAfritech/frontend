@@ -312,6 +312,52 @@ export function RiskLineChart() {
 
 export function ReportRiskLevel() {
   const [data, setData] = useState();
+  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKCATEGORYREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     axios
@@ -329,6 +375,27 @@ export function ReportRiskLevel() {
       <h3 className="py-3">
         <span>RISK LEVEL</span>
       </h3>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -339,6 +406,52 @@ export function ReportRiskLevel() {
 }
 export function ReportRiskStatus() {
   const [data, setData] = useState([]);
+  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKCATEGORYREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     axios
@@ -356,6 +469,48 @@ export function ReportRiskStatus() {
       <h3 className="py-3">
         <span>RISK STATUS</span>
       </h3>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -366,6 +521,52 @@ export function ReportRiskStatus() {
 }
 export function ReportRiskLocation() {
   const [data, setData] = useState();
+  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKCATEGORYREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     axios
@@ -383,6 +584,27 @@ export function ReportRiskLocation() {
       <h3 className="py-3">
         <span>LOCATION</span>
       </h3>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -393,24 +615,81 @@ export function ReportRiskLocation() {
 }
 export function ReportRiskCategory() {
   const [data, setData] = useState();
+  const [departmentName, setdeptmentName] = useState("All Departments");
+  const [deptmentNames, setdeptmentNames] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(RISKCATEGORYREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKCATEGORYREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  console.log(data)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
 
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="py-3">
         <span>CATEGORY</span>
       </h3>
+      <div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={(e) => setdeptmentName(e.target.value)}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
