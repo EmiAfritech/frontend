@@ -380,7 +380,7 @@ export function ReportRiskLevel() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -469,7 +469,7 @@ export function ReportRiskStatus() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -558,7 +558,7 @@ export function ReportRiskLocation() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -647,7 +647,7 @@ export function ReportRiskCategory() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -736,7 +736,7 @@ export function ReportRiskResponse() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -823,7 +823,7 @@ export function ReportRiskOwner() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -910,7 +910,7 @@ export function Pyramidchat() {
               aria-describedby="departmentName"
               value={departmentName}
               autoComplete="off"
-              onChange={(e) => {handleDeptNameChange}}>
+              onChange={handleDeptNameChange}>
               <option value="All Departments">All Departments</option>
               {deptmentNames.map((deptmentNames) => (
                 <option

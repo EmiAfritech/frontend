@@ -590,7 +590,7 @@ export function RiskMitigationReportTable() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
@@ -796,7 +796,7 @@ export function RiskStatusReportTab() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => {handleDeptNameChange}}>
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
