@@ -526,35 +526,50 @@ export function Reportaudittrail() {
 
 export function RiskMitigationReportTable() {
   const [tableData, setTableData] = useState([]);
-  const [deptmentName, setdeptmentName] = useState("All Departments");
+  const [departmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => {
-        setdeptmentNames(data.data);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await  axios
+        .post(RISKMITIGATION_URL, JSON.stringify({departmentName}), {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        })
+
+        setTableData(response.data);
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
-    axios
-      .get(RISKMITIGATION_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.Data));
-  }, [tableData]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
 
   return (
     <div>
@@ -566,7 +581,7 @@ export function RiskMitigationReportTable() {
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             id="departmentName"
             aria-describedby="departmentName"
-            value={deptmentName}
+            value={departmentName}
             autoComplete="off"
             onChange={(e) => setdeptmentName(e.target.value)}>
             <option value="All Departments">All Departments</option>
@@ -607,36 +622,49 @@ export function RiskMitigationReportTable() {
 
 export function ReviewNeedingRisksReportTab() {
   const [tableData, setTableData] = useState([]);
-  const [deptmentName, setdeptmentName] = useState("All Departments");
+  const [departmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => {
-        setdeptmentNames(data.data);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await  axios
+        .post(RISKNEEDINGREVIEWREPORT_URL, JSON.stringify({departmentName}), {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        })
+
+        setTableData(response.data);
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
-    axios
-      .get(RISKNEEDINGREVIEWREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((response) => setTableData(response.data));
-  }, [tableData]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="grid grid-cols-4">
@@ -647,7 +675,7 @@ export function ReviewNeedingRisksReportTab() {
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             id="departmentName"
             aria-describedby="departmentName"
-            value={deptmentName}
+            value={departmentName}
             autoComplete="off"
             onChange={(e) => setdeptmentName(e.target.value)}>
             <option value="All Departments">All Departments</option>
@@ -691,35 +719,50 @@ export function RiskStatusReportTab() {
   const [departmentName, setdeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((data) => {
-        setdeptmentNames(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+
+  
 
   useEffect(() => {
-    axios
-      .post(RISKSTATUSREPORT_URL, JSON.stringify({departmentName}), {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((response) => {setTableData(response.data), console.log(response.data)});
-    
-  }, [tableData]);
-  console.log(tableData)
+    const fetchData = async () => {
+      try {
+        const response = await  axios
+        .post(RISKSTATUSREPORT_URL, JSON.stringify({departmentName}), {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        })
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
+
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setdeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
 
   return (
     <div>
