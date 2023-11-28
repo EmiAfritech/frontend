@@ -37,7 +37,7 @@ export function Navigation (){
       { icon: <FaClipboardCheck />, label: 'Risk Review', link: '/risk-review' },
       { icon: <FaUsers />, label: 'Departments', link: '/department' },
       { icon: <FaUserFriends />, label: 'Employees', link: '/employees' },
-      { icon: <FaCopy />, label: 'Report', link: '/report' },
+      
     ],
   };
 
