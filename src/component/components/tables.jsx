@@ -60,6 +60,7 @@ export function EmployeesTable() {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const getUsers = async () => {
       try {
         const response = await axios.get(USERS_URL, {
