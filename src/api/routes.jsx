@@ -39,6 +39,8 @@ export const RISKAPPETITEREPORT_URL = "/getRiskAppetite";
 //risk needing review report table
 export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
 //risk status report table
+//mitigations by Date
+export const MITIGATIONBYDATE_URL = "/getMitigtionsByDate";
 export const RISKSTATUSREPORT_URL = "/getAllOpenedRisksStatus";
 
 /*************************************************Organization forms******************************************************/

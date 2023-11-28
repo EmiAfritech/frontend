@@ -42,6 +42,7 @@ import {
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
   DEPARTMENTDROPDOWN_URL,
+  MITIGATIONBYDATE_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 
@@ -458,8 +459,7 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
-  const [deptmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+ 
 
 
   useEffect(() => {
@@ -533,7 +533,7 @@ export function RiskMitigationReportTable() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKMITIGATION_URL,
+          MITIGATIONBYDATE_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {
