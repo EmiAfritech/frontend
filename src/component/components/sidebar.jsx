@@ -69,10 +69,6 @@ export function Sidebar() {
           <FaClipboardList className="icons" />
           <Link to="/risk-review">Reviewed Risks</Link>
         </li>
-        <li className="flex flex row items-center p-3">
-          <FaCopy className="icons" />
-          <Link to="/report">Reporting</Link>
-        </li>
 
         <button
           onClick={handleLogOut}
