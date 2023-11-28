@@ -198,7 +198,37 @@ export function UserData(params) {
     </>
   );
 }
+ function getProbabiltyLevelName(probabilitys){
+    if (probabilitys === "Almost Impossible") {
+      return 1;
+    } else if (probabilitys === "Unlikely" ) {
+      return 2;
+    } else if (probabilitys === "Likely" ) {
+      return 3;
+    } else if (probabilitys === "Very Likely" ) {
+      return 4;
+    }else if (probabilitys === "Almost Certain" ) {
+      return 5;
+    } else {
+      return 0; 
+    }
+}
 
+function getImpactLevelName(impact){
+    if (impact === "Insignificant") {
+      return 1;
+    } else if (impact === "Minor" ) {
+      return 2;
+    } else if (impact === "Moderate" ) {
+      return 3;
+    } else if (impact === "Major" ) {
+      return 4;
+    }else if (impact === "Catastrophic" ) {
+      return 5;
+    } else {
+      return 0; 
+    }
+}
 export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
@@ -213,11 +243,13 @@ export function RiskData(params) {
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
+  const prob = getProbabiltyLevelName(params.row.riskProbabilityLevel);
+  const imp = getImpactLevelName(params.row.riskImpactLevel);
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
-    params.row.riskProbabilityLevel
+    prob
   );
   const [riskImpactLevel, setRiskImpactLevel] = useState(
-    params.row.riskImpactLevel
+    imp
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
