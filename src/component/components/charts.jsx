@@ -319,7 +319,7 @@ export function ReportRiskLevel() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKCATEGORYREPORT_URL,
+          RISKLEVELREPORT_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {
@@ -339,7 +339,6 @@ export function ReportRiskLevel() {
     fetchData();
   }, []);
 
-  console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -359,17 +358,7 @@ export function ReportRiskLevel() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKLEVELREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
+  
   return (
     <div className="card items-center flex flex-col px-10 pb-12">
       <h3 className="py-3">
@@ -413,7 +402,7 @@ export function ReportRiskStatus() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKCATEGORYREPORT_URL,
+          RISKSTATUSREPORTCHART_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {
@@ -433,7 +422,6 @@ export function ReportRiskStatus() {
     fetchData();
   }, []);
 
-  console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -453,43 +441,12 @@ export function ReportRiskStatus() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKSTATUSREPORTCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
+  
   return (
     <div className="card items-center flex flex-col px-10 pb-2">
       <h3 className="py-3">
         <span>RISK STATUS</span>
       </h3>
-      <div>
-        <div>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
       <div>
         <div>
           <select
@@ -548,7 +505,6 @@ export function ReportRiskLocation() {
     fetchData();
   }, []);
 
-  console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -642,7 +598,6 @@ export function ReportRiskCategory() {
     fetchData();
   }, []);
 
-  console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -707,7 +662,7 @@ export function ReportRiskResponse() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKOWNERREPORT_URL,
+          RISKRESPONSEREPORT_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {
@@ -726,7 +681,6 @@ export function ReportRiskResponse() {
 
     fetchData();
   }, []);
-  console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
