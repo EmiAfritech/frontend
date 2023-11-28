@@ -624,20 +624,23 @@ export function RiskMitigationReportTable() {
 
 export function ReviewNeedingRisksReportTab() {
   const [tableData, setTableData] = useState([]);
-  const [departmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  axios
-        .post(RISKNEEDINGREVIEWREPORT_URL, JSON.stringify({departmentName}), {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        })
+        const response = await axios.post(
+          RISKNEEDINGREVIEWREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
 
         setTableData(response.data);
       } catch (error) {
@@ -646,30 +649,30 @@ export function ReviewNeedingRisksReportTab() {
     };
 
     fetchData();
-  }, []);
-  
-  
-
- 
+  }, [departmentName]); // Include departmentName as a dependency
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchDeptData();
   }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
 
   return (
     <div>
@@ -683,12 +686,14 @@ export function ReviewNeedingRisksReportTab() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={(e) => setdeptmentName(e.target.value)}>
+            onChange={handleDeptNameChange}
+          >
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
                 key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
+                value={deptmentNames.names.name}
+              >
                 {deptmentNames.names.name}
               </option>
             ))}
@@ -696,8 +701,9 @@ export function ReviewNeedingRisksReportTab() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 850, backgroundColor: "white" }}
-        className="  mt-2 w-auto card p-4">
+        style={{ height: 650, width: 850, backgroundColor: 'white' }}
+        className="  mt-2 w-auto card p-4"
+      >
         <DataGrid
           rows={tableData}
           columns={reportopenrisktoreviewcolumn}
