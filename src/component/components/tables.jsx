@@ -78,7 +78,7 @@ export function EmployeesTable() {
     
   }, []);
 
-  console.log(tableData);
+  
 
   return (
     <div className="flex flex-col">
@@ -123,7 +123,7 @@ export function RiskReview() {
     getRiskReview();
   }, []);
 
-  console.log(tableData);
+  
 
   return (
     <div className="flex flex-col">
@@ -148,16 +148,24 @@ export function RiskReview() {
 
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
-  console.log(tableData);
+ 
   useEffect(() => {
-    axios
-      .get(VIEWCLOSEDRISKS_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((data) => setTableData(data.data.Data));
+    const getClosedRisks = async () => {
+      try {
+        const response = await axios.get(VIEWCLOSEDRISKS_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },withCredentials: true,
+        });
+
+        setTableData(response.data.Data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getClosedRisks();
   }, [tableData]);
 
   return (
@@ -204,7 +212,7 @@ export function RiskMonitor() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },
+          },withCredentials: true,
         });
 
         setTableData(response.data.Data);
@@ -216,7 +224,7 @@ export function RiskMonitor() {
     getMonitoring();
   }, []);
 
-  console.log(tableData);
+  
 
   return (
     <div className="flex flex-col mt-6">
@@ -330,7 +338,7 @@ export function DepartmentTab() {
     getDepartment();
   }, []);
 
-  console.log(tableData);
+ 
 
   return (
     <div className="flex flex-col">
@@ -357,14 +365,22 @@ export function RiskmitigationTab() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(RISKMITIGATION_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((response) => setTableData(response.data.Data));
+    const getMitigation = async () => {
+      try {
+        const response = await axios.get(RISKMITIGATION_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },withCredentials: true,
+        });
+
+        setTableData(response.data.Data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getMitigation();
+   
   }, [tableData]);
 
   return (
