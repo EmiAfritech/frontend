@@ -205,12 +205,12 @@ export const riskappetitereportgreatercolumn = [
   },
   {
     field: "riskScore",
-    headerName: "Inherent Risk score",
+    headerName: "Risk score",
     width: 120,
   },
   {
-    field: "mitigatedRiskScore",
-    headerName: "Residual Risk score",
+    field: "appetite",
+    headerName: "Appetite",
     width: 120,
   },
 ];
@@ -229,12 +229,12 @@ export const riskappetitereportlowercolumn = [
   },
   {
     field: "riskScore",
-    headerName: "Inherent Risk score",
+    headerName: "Risk score",
     width: 120,
   },
   {
-    field: "mitigatedRiskScore",
-    headerName: "Residual Risk score",
+    field: "appetite",
+    headerName: "Appetite",
     width: 120,
   },
 ];

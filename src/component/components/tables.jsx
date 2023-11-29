@@ -42,6 +42,7 @@ import {
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
   DEPARTMENTDROPDOWN_URL,
+  MITIGATIONBYDATE_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 
@@ -154,7 +155,7 @@ export function ClosedRiskTab() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => setTableData(data.data.Data));
   }, [tableData]);
@@ -282,7 +283,7 @@ export function RiskAppetiteReportLower() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((response) => setTableData(response.data.withinRiskAppetite));
   }, [tableData]);
@@ -361,7 +362,7 @@ export function RiskmitigationTab() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((response) => setTableData(response.data.Data));
   }, [tableData]);
@@ -458,8 +459,7 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
-  const [deptmentName, setdeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+ 
 
 
   useEffect(() => {
@@ -533,7 +533,7 @@ export function RiskMitigationReportTable() {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKMITIGATION_URL,
+          MITIGATIONBYDATE_URL,
           JSON.stringify({ departmentName }),
           {
             headers: {

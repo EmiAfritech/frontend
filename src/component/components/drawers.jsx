@@ -37,7 +37,7 @@ export function Userforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setdeptmentNames(data.data);
@@ -298,7 +298,7 @@ export function Departmentforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setOwnersNames(data.data);
@@ -471,7 +471,7 @@ export function Riskforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setdeptmentName(data.data);
@@ -487,7 +487,7 @@ export function Riskforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setOwnersName(data.data);
@@ -835,7 +835,7 @@ export function RiskReviewforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setDept(data.data);
@@ -851,7 +851,7 @@ export function RiskReviewforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setRiskIDs(data.data);
@@ -1073,6 +1073,7 @@ export function RiskMitigationforms() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
       })
       .then((data) => {
         setDept(data.data);
@@ -1089,6 +1090,7 @@ export function RiskMitigationforms() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
       })
       .then((data) => {
         setOwnersName(data.data);
@@ -1105,6 +1107,7 @@ export function RiskMitigationforms() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        withCredentials: true,
       })
       .then((data) => {
         setRiskIDs(data.data);
@@ -1113,7 +1116,7 @@ export function RiskMitigationforms() {
         console.error(error);
       });
   }, []);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -1372,7 +1375,7 @@ export function RiskMonitoringforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setDept(data.data);
@@ -1388,7 +1391,7 @@ export function RiskMonitoringforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        },withCredentials: true,
       })
       .then((data) => {
         setRiskIDs(data.data);
