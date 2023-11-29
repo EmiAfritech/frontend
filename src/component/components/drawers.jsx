@@ -706,7 +706,7 @@ export function Riskforms() {
                     <option value="2">Unlikely</option>
                     <option value="3">Likely</option>
                     <option value="4">Very Likely</option>
-                    <option value="4">Almost Certain</option>
+                    <option value="5">Almost Certain</option>
                   </select>
                   <label
                     htmlFor="department-head"
@@ -752,9 +752,9 @@ export function Riskforms() {
                   <option></option>
                   <option value="1">Insignificant</option>
                   <option value="2">Minor</option>
-                  <option value="3">Major</option>
-                  <option value="4">Moderate</option>
-                  <option value="4">Catastrophic</option>
+                  <option value="3">Moderate</option>
+                  <option value="4">Major</option>
+                  <option value="5">Catastrophic</option>
                 </select>
                 <label
                   htmlFor="department-head"

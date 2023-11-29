@@ -10,7 +10,7 @@ export function RiskView() {
       <Sidebar />
       <div className=" flex mx-auto mt-3 pl-[18%]">
         <div className="flex flex-col">
-          {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" || localStorage.getItem("role") === "MANAGER"? (
             <>
               <ViewClosedRisk />
               
