@@ -166,7 +166,7 @@ export function ClosedRiskTab() {
     };
 
     getClosedRisks();
-  }, [tableData]);
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -381,7 +381,7 @@ export function RiskmitigationTab() {
     };
     getMitigation();
    
-  }, [tableData]);
+  }, []);
 
   return (
     <div className="flex flex-col">
