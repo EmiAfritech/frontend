@@ -38,7 +38,7 @@ import {
   RISKREVIEW_URL,
   VIEWCLOSEDRISKS_URL,
   REPORTAUDITTRAIL_URL,
-  RISKAPPETITEREPORT_URL,
+  // RISKAPPETITEREPORT_URL,
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
   DEPARTMENTDROPDOWN_URL,
@@ -251,15 +251,23 @@ export function RiskAppetiteReportGreater() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(RISKAPPETITEREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.outsideRiskAppetite));
-  }, [tableData]);
+    const getDepartment = async () => {
+      try {
+        const response = await axios.get(DEPARTMENT_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getDepartment();
+  }, []);
   console.log(tableData)
   return (
     <div className="flex flex-col">
@@ -286,15 +294,23 @@ export function RiskAppetiteReportLower() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(RISKAPPETITEREPORT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => setTableData(response.data.withinRiskAppetite));
-  }, [tableData]);
+    const getDepartment = async () => {
+      try {
+        const response = await axios.get(DEPARTMENT_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        setTableData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getDepartment();
+  }, []);
   console.log(tableData)
   return (
     <div className="flex flex-col">
