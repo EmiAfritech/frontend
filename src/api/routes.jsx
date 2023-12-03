@@ -34,8 +34,11 @@ export const RISKREVIEW_URL = "/risks/reviews";
 //report audit trail url
 export const REPORTAUDITTRAIL_URL = "/getAudits";
 
-// risk appetite report table
-export const RISKAPPETITEREPORT_URL = "/getRiskAppetite";
+// risk appetite report table Greater
+export const RISKAPPETITEREPORTGREATER_URL = "/getRiskAppetiteGreater";
+
+// risk appetite report table Lesser
+export const RISKAPPETITEREPORTLESSER_URL = "/getRiskAppetiteLesser";
 //risk needing review report table
 export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
 //risk status report table

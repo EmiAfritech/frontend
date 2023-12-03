@@ -39,6 +39,7 @@ import {
   VIEWCLOSEDRISKS_URL,
   REPORTAUDITTRAIL_URL,
   RISKAPPETITEREPORT_URL,
+  RISKAPPETITEREPORTGREATER_URL,
   RISKNEEDINGREVIEWREPORT_URL,
   RISKSTATUSREPORT_URL,
   DEPARTMENTDROPDOWN_URL,
@@ -253,7 +254,7 @@ export function RiskAppetiteReportGreater() {
   useEffect(() => {
     const riskAppetiteReportGreater = async () => {
       try {
-        const response = await axios.get(RISKAPPETITEREPORT_URL, {
+        const response = await axios.get(RISKAPPETITEREPORTGREATER_URL, {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
