@@ -11,10 +11,10 @@ export function ReportRiskAppetite() {
       <Tabs>
         <TabList>
           <Tab>
-            <h1>Appetite {">"} 4</h1>
+            <h1>Outside Appetite {"(>4)"} </h1>
           </Tab>
           <Tab>
-            <h1>Appetite {"<"} 4</h1>
+            <h1>Within Appetite {"(<4)"}</h1>
           </Tab>
         </TabList>
 

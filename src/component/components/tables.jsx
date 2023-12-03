@@ -258,7 +258,7 @@ export function RiskAppetiteReportGreater() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: false,
+          },withCredentials: true,
         });
 
         setTableData(response.data);
@@ -301,7 +301,7 @@ export function RiskAppetiteReportLower() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: false,
+          },withCredentials: true,
         });
 
         setTableData(response.data);
