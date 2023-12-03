@@ -781,7 +781,7 @@ export function RiskStatusReportTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-
+        console.log(response)
         setdeptmentNames(response.data);
       } catch (error) {
         console.error(error);
