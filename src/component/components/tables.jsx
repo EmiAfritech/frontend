@@ -260,6 +260,7 @@ export function RiskAppetiteReportGreater() {
       })
       .then((response) => setTableData(response.data.outsideRiskAppetite));
   }, [tableData]);
+  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div
