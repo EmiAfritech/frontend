@@ -262,7 +262,6 @@ export function RiskAppetiteReportGreater() {
         });
 
         setTableData(response.data);
-        console.log(response)
       } catch (error) {
         console.error(error);
       }
@@ -313,7 +312,6 @@ export function RiskAppetiteReportLower() {
 
     riskAppetiteReportLower();
   }, []);
-  console.log(tableData)
   return (
     <div className="flex flex-col">
       <div
