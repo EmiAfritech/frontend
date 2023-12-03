@@ -291,7 +291,7 @@ export function RiskAppetiteReportLower() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
       })
       .then((response) => setTableData(response.data.withinRiskAppetite));
   }, [tableData]);
