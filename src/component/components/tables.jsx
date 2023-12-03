@@ -251,7 +251,7 @@ export function RiskAppetiteReportGreater() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    const getDepartment = async () => {
+    const riskAppetiteReportGreater = async () => {
       try {
         const response = await axios.get(RISKAPPETITEREPORT_URL, {
           headers: {
@@ -261,12 +261,13 @@ export function RiskAppetiteReportGreater() {
         });
 
         setTableData(response.data);
+        console.log(response)
       } catch (error) {
         console.error(error);
       }
     };
 
-    getDepartment();
+    riskAppetiteReportGreater();
   }, []);
   console.log(tableData)
   return (
@@ -294,7 +295,7 @@ export function RiskAppetiteReportLower() {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    const getDepartment = async () => {
+    const riskAppetiteReportLower = async () => {
       try {
         const response = await axios.get(RISKAPPETITEREPORT_URL, {
           headers: {
@@ -309,7 +310,7 @@ export function RiskAppetiteReportLower() {
       }
     };
 
-    getDepartment();
+    riskAppetiteReportLower();
   }, []);
   console.log(tableData)
   return (
