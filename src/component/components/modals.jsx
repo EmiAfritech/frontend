@@ -198,7 +198,7 @@ export function UserData(params) {
     </>
   );
 }
- function getProbabiltyLevelName(probabilitys){
+ function getProbabiltyLevelNumber(probabilitys){
     if (probabilitys === "Almost Impossible") {
       return 1;
     } else if (probabilitys === "Unlikely" ) {
@@ -214,7 +214,7 @@ export function UserData(params) {
     }
 }
 
-function getImpactLevelName(impact){
+function getImpactLevelNumber(impact){
     if (impact === "Insignificant") {
       return 1;
     } else if (impact === "Minor" ) {
@@ -243,13 +243,12 @@ export function RiskData(params) {
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
-  const prob = getProbabiltyLevelName(params.row.riskProbabilityLevel);
-  const imp = getImpactLevelName(params.row.riskImpactLevel);
+  
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
-    prob
+    params.row.riskProbabilityLevel
   );
   const [riskImpactLevel, setRiskImpactLevel] = useState(
-    imp
+    params.row.riskImpactLevel
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
@@ -841,11 +840,10 @@ export function MitigatedRiskData(params) {
     params.row.mitigationCost
   );
   const [mitigationControl , setMitigationControl] = useState(params.row.mitigationControl    );
-  const prob = getProbabiltyLevelName(params.row.mitigatedRiskProbabilityLevel);
-  const imp = getImpactLevelName(params.row.mitigatedRiskImpactLevel);
+  
   const [mitigatedRiskScore    , setMitigatedRiskScore  ] = useState(params.row.mitigatedRiskScore    );
-  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(prob);
-  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(imp);
+  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(params.row.mitigatedRiskProbabilityLevel);
+  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(params.row.mitigatedRiskImpactLevel);
   const [createdAt, setCreatedAt] = useState(
     params.row.createdAt
   );

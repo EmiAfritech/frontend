@@ -706,7 +706,7 @@ export function Riskforms() {
                     <option value="2">Unlikely</option>
                     <option value="3">Likely</option>
                     <option value="4">Very Likely</option>
-                    <option value="4">Almost Certain</option>
+                    <option value="5">Almost Certain</option>
                   </select>
                   <label
                     htmlFor="department-head"
@@ -752,9 +752,9 @@ export function Riskforms() {
                   <option></option>
                   <option value="1">Insignificant</option>
                   <option value="2">Minor</option>
-                  <option value="3">Major</option>
-                  <option value="4">Moderate</option>
-                  <option value="4">Catastrophic</option>
+                  <option value="3">Moderate</option>
+                  <option value="4">Major</option>
+                  <option value="5">Catastrophic</option>
                 </select>
                 <label
                   htmlFor="department-head"
@@ -1257,15 +1257,22 @@ export function RiskMitigationforms() {
               </div>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
+              <select
                 type="text"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="mitigationEffort"
                 value={mitigationEffort}
                 autoComplete="off"
                 onChange={(e) => setmitigationEffort(e.target.value)}
-                required
-              />
+                required>
+                <option></option>
+                <option value="Trivial">Trivial</option>
+                <option value="Minor">Minor</option>
+                <option value="Considerable">Considerable</option>
+                <option value="Significant">Significant</option>
+                <option value="Exceptional">Exceptional</option>
+                </select>
+              
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 mitigation-effort
               </label>
@@ -1513,8 +1520,8 @@ export function RiskMonitoringforms() {
             </div>
             <div>
               <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
+                <select
+                  type="riskResponseActivityStatus"
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                   id="riskResponseActivitiyStatus"
                   value={riskResponseActivitiyStatus}
@@ -1522,8 +1529,12 @@ export function RiskMonitoringforms() {
                   onChange={(e) =>
                     setRiskResponseActivitiyStatus(e.target.value)
                   }
-                  required
-                />
+                  required>
+                  <option></option>
+                  <option value="YES">YES</option>
+                  <option value="NO">NO</option>
+                  </select>
+                
                 <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                   were-the-response-activity-implemented?
                 </label>
