@@ -355,7 +355,7 @@ export function DepartmentTab() {
     getDepartment();
   }, []);
 
- 
+ console.log(tableData)
 
   return (
     <div className="flex flex-col">
