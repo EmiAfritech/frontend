@@ -1095,7 +1095,7 @@ const data = [
 
 const xLabels = Array.from(new Set(data.map(item => item.x)));
 const yLabels = Array.from(new Set(data.map(item => item.y)));
-console.log(xLabels)
+console.log(yLabels)
 
 
 export function HeatMap2(){
