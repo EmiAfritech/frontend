@@ -1096,8 +1096,8 @@ export function HeatMap() {
 // const xLabels = Array.from(new Set(data.map(item => item.x)));
 // const yLabels = Array.from(new Set(data.map(item => item.y)));
 
-const xLabels = new Array(24).fill(0).map((_, i) => `${i}`);
-const yLabels = ["Sun", "Mon", "Tue"];
+const xLabels = ["insignificant", "minor", "moderate", "major", "critical"];
+const yLabels = ["almost certain", "likely", "possible","unlikely", "rare"];
 const data = new Array(yLabels.length)
   .fill(0)
   .map(() =>
@@ -1111,7 +1111,7 @@ export function HeatMap2(){
       yLabels={yLabels}
       data={data}
       squares
-      height={200}
+      height={50}
       onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
       cellRender={(value, x, y, onClick) => (
         <div onClick={onClick}>
