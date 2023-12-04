@@ -1105,13 +1105,18 @@ const data = new Array(yLabels.length)
   );
 
 export function HeatMap2(){
+  const heatmapStyle = {
+    width: '450px', // Set your desired width here
+    margin: 'auto', // Center the heatmap
+  };
   return (
+    <div style={heatmapStyle}>
     <HeatmapGrid
       xLabels={xLabels}
       yLabels={yLabels}
       data={data}
       squares
-      height={150}
+      height={80}
       onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
       cellRender={(value, x, y, onClick) => (
         <div onClick={onClick}>
@@ -1119,6 +1124,7 @@ export function HeatMap2(){
         </div>
       )}
     />
+    </div>
   );
 };
 
