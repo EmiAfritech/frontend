@@ -1133,7 +1133,7 @@ const getColorForCount = (count) => {
   return range ? range.color : "#ffffff";
 };
 
-export function Heatmap2 () {
+export function HeatMap2 () {
   const heatmapStyle = {
     width: '600px',
     margin: 'auto',
