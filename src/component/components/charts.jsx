@@ -1103,7 +1103,7 @@ const data = new Array(yLabels.length)
   .map(() =>
     new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100))
   );
-  
+
 export function HeatMap2(){
   return (
     <HeatmapGrid
@@ -1111,7 +1111,7 @@ export function HeatMap2(){
       yLabels={yLabels}
       data={data}
       squares
-      height={20}
+      height={200}
       onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
       cellRender={(value, x, y, onClick) => (
         <div onClick={onClick}>
