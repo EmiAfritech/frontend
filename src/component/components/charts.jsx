@@ -1065,39 +1065,45 @@ export function HeatMap() {
   );
 }
 
-const data = [
-  { x: "insignificant", y: "rare", value: 1 },
-  { x: "minor", y: "rare", value: 2 },
-  { x: "moderate", y: "rare", value: 3 },
-  { x: "major", y: "rare", value: 4 },
-  { x: "critical", y: "rare", value: 5 },
-  { x: "insignificant", y: "unlikely", value: 2 },
-  { x: "minor", y: "unlikely", value: 4 },
-  { x: "moderate", y: "unlikely", value: 6 },
-  { x: "major", y: "unlikely", value: 8 },
-  { x: "critical", y: "unlikely", value: 10 },
-  { x: "insignificant", y: "possible", value: 3 },
-  { x: "minor", y: "possible", value: 6 },
-  { x: "moderate", y: "possible", value: 9 },
-  { x: "major", y: "possible", value: 12 },
-  { x: "critical", y: "possible", value: 15 },
-  { x: "insignificant", y: "likely", value: 4 },
-  { x: "minor", y: "likely", value: 8 },
-  { x: "moderate", y: "likely", value: 12 },
-  { x: "major", y: "likely", value: 16 },
-  { x: "critical", y: "likely", value: 20 },
-  { x: "insignificant", y: "almost certain", value: 5 },
-  { x: "minor", y: "almost certain", value: 10 },
-  { x: "moderate", y: "almost certain", value: 15 },
-  { x: "major", y: "almost certain", value: 20 },
-  { x: "critical", y: "almost certain", value: 25 },
-];
+// const data = [
+//   { x: "insignificant", y: "rare", value: 1 },
+//   { x: "minor", y: "rare", value: 2 },
+//   { x: "moderate", y: "rare", value: 3 },
+//   { x: "major", y: "rare", value: 4 },
+//   { x: "critical", y: "rare", value: 5 },
+//   { x: "insignificant", y: "unlikely", value: 2 },
+//   { x: "minor", y: "unlikely", value: 4 },
+//   { x: "moderate", y: "unlikely", value: 6 },
+//   { x: "major", y: "unlikely", value: 8 },
+//   { x: "critical", y: "unlikely", value: 10 },
+//   { x: "insignificant", y: "possible", value: 3 },
+//   { x: "minor", y: "possible", value: 6 },
+//   { x: "moderate", y: "possible", value: 9 },
+//   { x: "major", y: "possible", value: 12 },
+//   { x: "critical", y: "possible", value: 15 },
+//   { x: "insignificant", y: "likely", value: 4 },
+//   { x: "minor", y: "likely", value: 8 },
+//   { x: "moderate", y: "likely", value: 12 },
+//   { x: "major", y: "likely", value: 16 },
+//   { x: "critical", y: "likely", value: 20 },
+//   { x: "insignificant", y: "almost certain", value: 5 },
+//   { x: "minor", y: "almost certain", value: 10 },
+//   { x: "moderate", y: "almost certain", value: 15 },
+//   { x: "major", y: "almost certain", value: 20 },
+//   { x: "critical", y: "almost certain", value: 25 },
+// ];
 
-const xLabels = Array.from(new Set(data.map(item => item.x)));
-const yLabels = Array.from(new Set(data.map(item => item.y)));
-console.log(yLabels)
+// const xLabels = Array.from(new Set(data.map(item => item.x)));
+// const yLabels = Array.from(new Set(data.map(item => item.y)));
 
-
+const xLabels = new Array(24).fill(0).map((_, i) => `${i}`);
+const yLabels = ["Sun", "Mon", "Tue"];
+const data = new Array(yLabels.length)
+  .fill(0)
+  .map(() =>
+    new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100))
+  );
+  
 export function HeatMap2(){
   return (
     <HeatmapGrid
