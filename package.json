@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
+    "react-heatmap-grid": "^0.9.0",
     "react-icons": "^4.9.0",
     "react-tabs": "^6.0.2",
     "react-to-print": "^2.14.13",
