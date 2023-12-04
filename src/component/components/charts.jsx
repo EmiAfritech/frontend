@@ -1111,7 +1111,7 @@ export function HeatMap2(){
       yLabels={yLabels}
       data={data}
       squares
-      height={50}
+      height={150}
       onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
       cellRender={(value, x, y, onClick) => (
         <div onClick={onClick}>
