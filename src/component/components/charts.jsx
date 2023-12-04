@@ -1106,7 +1106,7 @@ const data = new Array(yLabels.length)
 
 export function HeatMap2(){
   const heatmapStyle = {
-    width: '450px', // Set your desired width here
+    width: '650px', // Set your desired width here
     margin: 'auto', // Center the heatmap
   };
   return (
