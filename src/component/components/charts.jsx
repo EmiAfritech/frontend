@@ -1097,33 +1097,63 @@ export function HeatMap() {
 // const yLabels = Array.from(new Set(data.map(item => item.y)));
 
 const xLabels = ["insignificant", "minor", "moderate", "major", "critical"];
-const yLabels = ["almost certain", "likely", "possible","unlikely", "rare"];
-const data = new Array(yLabels.length)
-  .fill(0)
-  .map(() =>
-    new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100))
-  );
+const yLabels = ["Sun", "Mon", "Tue"];
 
-export function HeatMap2(){
+// Sample data with random occurrences
+const originalData = [
+  { x: "insignificant", y: "Sun" },
+  { x: "minor", y: "Sun" },
+  { x: "moderate", y: "Mon" },
+  { x: "major", y: "Tue" },
+  // ... add more data as needed
+];
+
+// Count occurrences for each combination of x and y labels
+const countData = {};
+originalData.forEach(({ x, y }) => {
+  countData[x] = countData[x] || {};
+  countData[x][y] = (countData[x][y] || 0) + 1;
+});
+
+// Create a 2D array representing counts for each cell
+const data = yLabels.map(yLabel =>
+  xLabels.map(xLabel => countData[xLabel]?.[yLabel] || 0)
+);
+
+// Color ranges
+const colorRanges = [
+  { from: 1, to: 5, name: "Low", color: "#008000" },
+  { from: 6, to: 9, name: "Medium", color: "#002db3" },
+  { from: 10, to: 15, name: "High", color: "#ffcc00" },
+  { from: 16, to: 25, name: "Very High", color: "#ff0000" },
+];
+
+const getColorForCount = (count) => {
+  const range = colorRanges.find((range) => count >= range.from && count <= range.to);
+  return range ? range.color : "#ffffff";
+};
+
+export function Heatmap2 () {
   const heatmapStyle = {
-    width: '650px', // Set your desired width here
-    margin: 'auto', // Center the heatmap
+    width: '600px',
+    margin: 'auto',
   };
+
   return (
     <div style={heatmapStyle}>
-    <HeatmapGrid
-      xLabels={xLabels}
-      yLabels={yLabels}
-      data={data}
-      squares
-      height={80}
-      onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
-      cellRender={(value, x, y, onClick) => (
-        <div onClick={onClick}>
-          <div style={{ background: `rgba(25, 129, 255, ${1 - (value / 25)})` }}>{value}</div>
-        </div>
-      )}
-    />
+      <HeatmapGrid
+        xLabels={xLabels}
+        yLabels={yLabels}
+        data={data}
+        squares
+        height={100}
+        onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
+        cellRender={(value, x, y, onClick) => (
+          <div onClick={onClick}>
+            <div style={{ background: getColorForCount(value) }}>{value}</div>
+          </div>
+        )}
+      />
     </div>
   );
 };
