@@ -1327,12 +1327,13 @@ export function HeatMap2 ()  {
       heatmap: {
         shadeIntensity: 0.5,
         colorScale: {
-          ranges: [
-            { from: 1, to: 5, name: 'Low', color: '#D6E9C6' },
-            { from: 6, to: 10, name: 'Medium', color: '#FAEBCC' },
-            { from: 11, to: 15, name: 'High', color: '#EBCCD1' },
-            { from: 16, to: 20, name: 'Very High', color: '#DD7E6B' },
-            { from: 21, to: 25, name: 'Extreme', color: '#C0392B' },
+          cellColors: [
+            ['#D6E9C6', '#FAEBCC', '#EBCCD1', '#DD7E6B'],
+            ['#A1E9C6', '#A0EBCC', '#A0CCD1', '#A07E6B'],
+            // Add more rows as needed...
+            ['#D6E9C6', '#FAEBCC', '#EBCCD1', '#DD7E6B'],
+            ['#A1E9C6', '#A0EBCC', '#A0CCD1', '#A07E6B'],
+            // Add more rows as needed...
           ],
         },
       },
