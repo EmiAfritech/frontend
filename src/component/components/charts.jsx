@@ -1230,19 +1230,40 @@ export function HeatMap() {
 
 export function HeatMap2 ()  {
   // Replace this with your actual data
-  const chartData = [
-    { x: "Category 1", y: "Jan", value: 15 },
-    { x: "Category 2", y: "Jan", value: 30 },
-    { x: "Category 3", y: "Jan", value: 45 },
-    { x: "Category 4", y: "Jan", value: 20 },
-    { x: "Category 5", y: "Jan", value: 60 },
-    { x: "Category 1", y: "Feb", value: 25 },
-    { x: "Category 2", y: "Feb", value: 10 },
-    { x: "Category 3", y: "Feb", value: 50 },
-    { x: "Category 4", y: "Feb", value: 35 },
-    { x: "Category 5", y: "Feb", value: 75 },
-    // ... add more data entries as needed
-  ];
+  const data = [
+    {
+      name: "Series 1",
+      data: [{
+        x: 'W1',
+        y: 22
+      }, {
+        x: 'W2',
+        y: 29
+      }, {
+        x: 'W3',
+        y: 13
+      }, {
+        x: 'W4',
+        y: 32
+      }]
+    },
+    {
+      name: "Series 2",
+      data: [{
+        x: 'W1',
+        y: 43
+      }, {
+        x: 'W2',
+        y: 43
+      }, {
+        x: 'W3',
+        y: 43
+      }, {
+        x: 'W4',
+        y: 43
+      }]
+    }
+  ]
 
   const options = {
     chart: {
@@ -1273,7 +1294,7 @@ export function HeatMap2 ()  {
   return (
     <ReactApexChart
       options={options}
-      series={chartData}
+      series={data}
       type="heatmap"
       height={350}
     />
