@@ -950,7 +950,7 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap() {
+export function HeatMap3() {
 
   const [data, setData] = useState();
 
@@ -1218,3 +1218,35 @@ export function HeatMap2() {
     </div>
   );
 }
+
+export function HeatMap() {
+  const cellsData = [
+    { color: '#FF5733', value: 'A' },
+    { color: '#33FF57', value: 'B' },
+    { color: '#5733FF', value: 'C' },
+    { color: '#FFD633', value: 'D' },
+    { color: '#33FFD6', value: 'E' },
+    { color: '#FF336A', value: 'F' },
+    { color: '#D633FF', value: 'G' },
+    { color: '#57FF33', value: 'H' },
+    { color: '#FF33D6', value: 'I' },
+    { color: '#33FFA2', value: 'J' },
+    { color: '#FF5733', value: 'K' },
+    { color: '#33D6FF', value: 'L' },
+    { color: '#A2FF33', value: 'M' },
+    { color: '#FF5733', value: 'N' },
+    { color: '#33FFD6', value: 'O' },
+    { color: '#5733FF', value: 'P' },
+  ];
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+      {cellsData.map((cell, index) => (
+        <div key={index} style={{ backgroundColor: cell.color, height: '50px', borderRadius: '4px', textAlign: 'center', lineHeight: '50px', color: 'white' }}>
+          {cell.value}
+        </div>
+      ))}
+    </div>
+  );
+};
+
