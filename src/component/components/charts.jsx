@@ -1229,7 +1229,7 @@ export function HeatMap() {
     // You can customize this based on your specific requirements
     ...xAxisLabels.map((xLabel) =>
       yAxisLabels.map((yLabel) => ({
-        color: getRandomColor(),
+        color: 'red',
         value: `${xLabel} - ${yLabel}`,
       }))
     ).flat(),
