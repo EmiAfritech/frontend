@@ -1238,6 +1238,14 @@ export function HeatMap() {
       { color: '#FF5733', value: 'N' },
       { color: '#33FFD6', value: 'O' },
       { color: '#5733FF', value: 'P' },
+      { color: '#A2FF33', value: 'M' },
+      { color: '#FF5733', value: 'N' },
+      { color: '#33FFD6', value: 'O' },
+      { color: '#5733FF', value: 'P' },
+      { color: '#A2FF33', value: 'M' },
+      { color: '#FF5733', value: 'N' },
+      { color: '#33FFD6', value: 'O' },
+      { color: '#5733FF', value: 'P' },
     ];
   
     return (
@@ -1248,6 +1256,7 @@ export function HeatMap() {
             style={{
               backgroundColor: cell.value ? cell.color : 'white',
               height: '100px',
+              width: '100px',
               borderRadius: '4px',
               textAlign: 'center',
               lineHeight: '50px',
