@@ -1220,13 +1220,16 @@ export function HeatMap2() {
 }
 
 export function HeatMap() {
+  const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
+  const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
+
   const cellsData = [
     { color: '#FF5733', value: 'A' },
     { color: '#33FF57', value: 'B' },
     { color: '#5733FF', value: 'C' },
     { color: '#FFD633', value: 'D' },
     { color: '#33FFD6', value: 'E' },
-    { color: '#FF336A', value: '' },
+    { color: '#FF336A', value: '' }, // Empty value, turns white
     { color: '#D633FF', value: 'G' },
     { color: '#57FF33', value: 'H' },
     { color: '#FF33D6', value: 'I' },
@@ -1240,24 +1243,44 @@ export function HeatMap() {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-      {cellsData.map((cell, index) => (
-        <div
-          key={index}
-          style={{
-            backgroundColor: cell.value ? cell.color : 'white',
-            height: '150px',
-            width: '150px',
-            textAlign: 'center',
-            lineHeight: '50px',
-            color: 'white',
-          }}
-        >
-          {cell.value}
+    <div style={{ display: 'grid',  gap: '8px' }}>
+      {/* Empty cell for top-left corner */}
+      <div style={{ height: '50px', borderRadius: '4px', textAlign: 'center', lineHeight: '50px', color: 'white' }}></div>
+      
+      {/* X-axis labels */}
+      {xAxisLabels.map((label, index) => (
+        <div key={index} style={{ textAlign: 'center', lineHeight: '50px' }}>
+          {label}
         </div>
       ))}
-    </div>
 
+      {/* Y-axis labels and grid cells */}
+      {yAxisLabels.map((yLabel, yIndex) => (
+        <React.Fragment key={yIndex}>
+          <div style={{ textAlign: 'center', lineHeight: '50px' }}>
+            {yLabel}
+          </div>
+          {xAxisLabels.map((xLabel, xIndex) => {
+            const cell = cellsData.find((item) => item.value === xLabel + yLabel);
+            return (
+              <div
+                key={xIndex}
+                style={{
+                  backgroundColor: cell && cell.value ? cell.color : 'white',
+                  height: '50px',
+                  borderRadius: '4px',
+                  textAlign: 'center',
+                  lineHeight: '50px',
+                  color: 'white',
+                }}
+              >
+                {cell && cell.value}
+              </div>
+            );
+          })}
+        </React.Fragment>
+      ))}
+    </div>
   );
 };
 
