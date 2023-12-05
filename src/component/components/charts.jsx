@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import { HighLowBarData } from "./chartdata";
 import Chart from "react-apexcharts";
-import HeatmapGrid from 'react-heatmap-grid';
+import ReactApexChart from 'react-apexcharts';
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
 import "../comstyles/component.css";
@@ -1096,132 +1096,188 @@ export function HeatMap() {
 // const xLabels = Array.from(new Set(data.map(item => item.x)));
 // const yLabels = Array.from(new Set(data.map(item => item.y)));
 
-const xLabels = ["insignificant", "minor", "moderate", "major", "critical"];
-const yLabels = ["Sun", "Mon", "Tue"];
+// const xLabels = ["insignificant", "minor", "moderate", "major", "critical"];
+// const yLabels = ["Sun", "Mon", "Tue"];
 
-// Sample data with random occurrences
-const originalData = [
-  { x: "insignificant", y: "Sun" },
-  { x: "minor", y: "Sun" },
-  { x: "moderate", y: "Mon" },
-  { x: "major", y: "Tue" },
-  // ... add more data as needed
-];
+// // Sample data with random occurrences
+// const originalData = [
+//   { x: "insignificant", y: "Sun" },
+//   { x: "minor", y: "Sun" },
+//   { x: "moderate", y: "Mon" },
+//   { x: "major", y: "Tue" },
+//   // ... add more data as needed
+// ];
 
-// Count occurrences for each combination of x and y labels
-const data = [
-  {
-    "x": "insignificant",
-    "y": "Sun",
-    "count": 3
-  },
-  {
-    "x": "minor",
-    "y": "Sun",
-    "count": 8
-  },
-  {
-    "x": "moderate",
-    "y": "Sun",
-    "count": 15
-  },
-  {
-    "x": "major",
-    "y": "Sun",
-    "count": 5
-  },
-  {
-    "x": "critical",
-    "y": "Sun",
-    "count": 22
-  },
-  {
-    "x": "insignificant",
-    "y": "Mon",
-    "count": 10
-  },
-  {
-    "x": "minor",
-    "y": "Mon",
-    "count": 7
-  },
-  {
-    "x": "moderate",
-    "y": "Mon",
-    "count": 18
-  },
-  {
-    "x": "major",
-    "y": "Mon",
-    "count": 12
-  },
-  {
-    "x": "critical",
-    "y": "Mon",
-    "count": 25
-  },
-  {
-    "x": "insignificant",
-    "y": "Tue",
-    "count": 4
-  },
-  {
-    "x": "minor",
-    "y": "Tue",
-    "count": 9
-  },
-  {
-    "x": "moderate",
-    "y": "Tue",
-    "count": 14
-  },
-  {
-    "x": "major",
-    "y": "Tue",
-    "count": 6
-  },
-  {
-    "x": "critical",
-    "y": "Tue",
-    "count": 20
-  }
-]
+// // Count occurrences for each combination of x and y labels
+// const data = [
+//   {
+//     "x": "insignificant",
+//     "y": "Sun",
+//     "count": 3
+//   },
+//   {
+//     "x": "minor",
+//     "y": "Sun",
+//     "count": 8
+//   },
+//   {
+//     "x": "moderate",
+//     "y": "Sun",
+//     "count": 15
+//   },
+//   {
+//     "x": "major",
+//     "y": "Sun",
+//     "count": 5
+//   },
+//   {
+//     "x": "critical",
+//     "y": "Sun",
+//     "count": 22
+//   },
+//   {
+//     "x": "insignificant",
+//     "y": "Mon",
+//     "count": 10
+//   },
+//   {
+//     "x": "minor",
+//     "y": "Mon",
+//     "count": 7
+//   },
+//   {
+//     "x": "moderate",
+//     "y": "Mon",
+//     "count": 18
+//   },
+//   {
+//     "x": "major",
+//     "y": "Mon",
+//     "count": 12
+//   },
+//   {
+//     "x": "critical",
+//     "y": "Mon",
+//     "count": 25
+//   },
+//   {
+//     "x": "insignificant",
+//     "y": "Tue",
+//     "count": 4
+//   },
+//   {
+//     "x": "minor",
+//     "y": "Tue",
+//     "count": 9
+//   },
+//   {
+//     "x": "moderate",
+//     "y": "Tue",
+//     "count": 14
+//   },
+//   {
+//     "x": "major",
+//     "y": "Tue",
+//     "count": 6
+//   },
+//   {
+//     "x": "critical",
+//     "y": "Tue",
+//     "count": 20
+//   }
+// ]
 
-// Color ranges
-const colorRanges = [
-  { from: 1, to: 5, name: "Low", color: "#008000" },
-  { from: 6, to: 9, name: "Medium", color: "#002db3" },
-  { from: 10, to: 15, name: "High", color: "#ffcc00" },
-  { from: 16, to: 25, name: "Very High", color: "#ff0000" },
-];
+// // Color ranges
+// const colorRanges = [
+//   { from: 1, to: 5, name: "Low", color: "#008000" },
+//   { from: 6, to: 9, name: "Medium", color: "#002db3" },
+//   { from: 10, to: 15, name: "High", color: "#ffcc00" },
+//   { from: 16, to: 25, name: "Very High", color: "#ff0000" },
+// ];
 
-const getColorForCount = (count) => {
-  const range = colorRanges.find((range) => count >= range.from && count <= range.to);
-  return range ? range.color : "#ffffff";
-};
+// const getColorForCount = (count) => {
+//   const range = colorRanges.find((range) => count >= range.from && count <= range.to);
+//   return range ? range.color : "#ffffff";
+// };
 
-export function HeatMap2 () {
-  const heatmapStyle = {
-    width: '600px',
-    margin: 'auto',
+// export function HeatMap2 () {
+//   const heatmapStyle = {
+//     width: '600px',
+//     margin: 'auto',
+//   };
+
+//   return (
+//     <div style={heatmapStyle}>
+//       <HeatmapGrid
+//         xLabels={xLabels}
+//         yLabels={yLabels}
+//         data={data.map(entry => ({ x: entry.x, y: entry.y, value: entry.count }))}
+//         squares
+//         height={100}
+//         onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
+//         cellRender={(value, x, y, onClick) => (
+//           <div onClick={onClick}>
+//             <div style={{ background: getColorForCount(value) }}>{value}</div>
+//           </div>
+//         )}
+//       />
+//     </div>
+//   );
+// };
+
+// import React from 'react';
+
+
+export function HeatMap2 ()  {
+  // Replace this with your actual data
+  const chartData = [
+    { x: "Category 1", y: "Jan", value: 15 },
+    { x: "Category 2", y: "Jan", value: 30 },
+    { x: "Category 3", y: "Jan", value: 45 },
+    { x: "Category 4", y: "Jan", value: 20 },
+    { x: "Category 5", y: "Jan", value: 60 },
+    { x: "Category 1", y: "Feb", value: 25 },
+    { x: "Category 2", y: "Feb", value: 10 },
+    { x: "Category 3", y: "Feb", value: 50 },
+    { x: "Category 4", y: "Feb", value: 35 },
+    { x: "Category 5", y: "Feb", value: 75 },
+    // ... add more data entries as needed
+  ];
+
+  const options = {
+    chart: {
+      type: 'heatmap',
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    xaxis: {
+      type: 'category',
+    },
+    plotOptions: {
+      heatmap: {
+        shadeIntensity: 0.5,
+        colorScale: {
+          ranges: [
+            { from: 1, to: 20, name: 'Low', color: '#D6E9C6' },
+            { from: 21, to: 40, name: 'Medium', color: '#FAEBCC' },
+            { from: 41, to: 60, name: 'High', color: '#EBCCD1' },
+            { from: 61, to: 80, name: 'Very High', color: '#DD7E6B' },
+            { from: 81, to: 100, name: 'Extreme', color: '#C0392B' },
+          ],
+        },
+      },
+    },
   };
 
   return (
-    <div style={heatmapStyle}>
-      <HeatmapGrid
-        xLabels={xLabels}
-        yLabels={yLabels}
-        data={data.map(entry => ({ x: entry.x, y: entry.y, value: entry.count }))}
-        squares
-        height={100}
-        onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
-        cellRender={(value, x, y, onClick) => (
-          <div onClick={onClick}>
-            <div style={{ background: getColorForCount(value) }}>{value}</div>
-          </div>
-        )}
-      />
-    </div>
+    <ReactApexChart
+      options={options}
+      series={[{ data: chartData }]}
+      type="heatmap"
+      height={350}
+    />
   );
 };
+
 
