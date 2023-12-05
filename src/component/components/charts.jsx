@@ -1260,7 +1260,7 @@ export function HeatMap() {
             style={{
               backgroundColor: cell.value ? cell.color : 'white',
               height: '110px',
-              width: '200px',
+              width: '170px',
               borderRadius: '4px',
               textAlign: 'center',
               lineHeight: '50px',
