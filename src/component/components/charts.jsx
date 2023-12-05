@@ -13,7 +13,6 @@ import {
 } from "recharts";
 import { HighLowBarData } from "./chartdata";
 import Chart from "react-apexcharts";
-import ReactApexChart from 'react-apexcharts';
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
 import "../comstyles/component.css";
@@ -36,6 +35,7 @@ import {
   MONITOREDVSUNMONITOREDBARCHARTDATA_URL,
   REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
+  HEATMAP_URL,
   OPENVSCLOSECHART_URL,
   DEPARTMENTDROPDOWN_URL,
 } from "../../api/routes";
@@ -951,6 +951,22 @@ export function Pyramidchat() {
 }
 
 export function HeatMap() {
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(HEATMAP_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },withCredentials: true,
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+
   const options = {
     chart: {
       type: "heatmap",
@@ -999,64 +1015,13 @@ export function HeatMap() {
     },
   };
 
-  const series = [
-    {
-      name: "rare",
-      data: [
-        { x: "insignificant", y: 1 },
-        { x: "minor", y: 2 },
-        { x: "moderate", y: 3 },
-        { x: "major", y: 4 },
-        { x: "critical", y: 5 },
-      ],
-    },
-    {
-      name: "unlikely",
-      data: [
-        { x: "insignificant", y: 2 },
-        { x: "minor", y: 4 },
-        { x: "moderate", y: 6 },
-        { x: "major", y: 8 },
-        { x: "critical", y: 10 },
-      ],
-    },
-    {
-      name: "possible",
-      data: [
-        { x: "insignificant", y: 3 },
-        { x: "minor", y: 6 },
-        { x: "moderate", y: 9 },
-        { x: "major", y: 12 },
-        { x: "critical", y: 15 },
-      ],
-    },
-    {
-      name: "likely",
-      data: [
-        { x: "insignificant", y: 4 },
-        { x: "minor", y: 8 },
-        { x: "moderate", y: 12 },
-        { x: "major", y: 16 },
-        { x: "critical", y: 20 },
-      ],
-    },
-    {
-      name: "almost certain",
-      data: [
-        { x: "insignificant", y: 5 },
-        { x: "minor", y: 10 },
-        { x: "moderate", y: 15 },
-        { x: "major", y: 20 },
-        { x: "critical", y: 25 },
-      ],
-    },
-  ];
-
+  
+  
   return (
     <div>
       <Chart
         options={options}
-        series={series}
+        series={data}
         type="heatmap"
         height={550}
         width={900}
@@ -1064,289 +1029,3 @@ export function HeatMap() {
     </div>
   );
 }
-
-// const data = [
-//   { x: "insignificant", y: "rare", value: 1 },
-//   { x: "minor", y: "rare", value: 2 },
-//   { x: "moderate", y: "rare", value: 3 },
-//   { x: "major", y: "rare", value: 4 },
-//   { x: "critical", y: "rare", value: 5 },
-//   { x: "insignificant", y: "unlikely", value: 2 },
-//   { x: "minor", y: "unlikely", value: 4 },
-//   { x: "moderate", y: "unlikely", value: 6 },
-//   { x: "major", y: "unlikely", value: 8 },
-//   { x: "critical", y: "unlikely", value: 10 },
-//   { x: "insignificant", y: "possible", value: 3 },
-//   { x: "minor", y: "possible", value: 6 },
-//   { x: "moderate", y: "possible", value: 9 },
-//   { x: "major", y: "possible", value: 12 },
-//   { x: "critical", y: "possible", value: 15 },
-//   { x: "insignificant", y: "likely", value: 4 },
-//   { x: "minor", y: "likely", value: 8 },
-//   { x: "moderate", y: "likely", value: 12 },
-//   { x: "major", y: "likely", value: 16 },
-//   { x: "critical", y: "likely", value: 20 },
-//   { x: "insignificant", y: "almost certain", value: 5 },
-//   { x: "minor", y: "almost certain", value: 10 },
-//   { x: "moderate", y: "almost certain", value: 15 },
-//   { x: "major", y: "almost certain", value: 20 },
-//   { x: "critical", y: "almost certain", value: 25 },
-// ];
-
-// const xLabels = Array.from(new Set(data.map(item => item.x)));
-// const yLabels = Array.from(new Set(data.map(item => item.y)));
-
-// const xLabels = ["insignificant", "minor", "moderate", "major", "critical"];
-// const yLabels = ["Sun", "Mon", "Tue"];
-
-// // Sample data with random occurrences
-// const originalData = [
-//   { x: "insignificant", y: "Sun" },
-//   { x: "minor", y: "Sun" },
-//   { x: "moderate", y: "Mon" },
-//   { x: "major", y: "Tue" },
-//   // ... add more data as needed
-// ];
-
-// // Count occurrences for each combination of x and y labels
-// const data = [
-//   {
-//     "x": "insignificant",
-//     "y": "Sun",
-//     "count": 3
-//   },
-//   {
-//     "x": "minor",
-//     "y": "Sun",
-//     "count": 8
-//   },
-//   {
-//     "x": "moderate",
-//     "y": "Sun",
-//     "count": 15
-//   },
-//   {
-//     "x": "major",
-//     "y": "Sun",
-//     "count": 5
-//   },
-//   {
-//     "x": "critical",
-//     "y": "Sun",
-//     "count": 22
-//   },
-//   {
-//     "x": "insignificant",
-//     "y": "Mon",
-//     "count": 10
-//   },
-//   {
-//     "x": "minor",
-//     "y": "Mon",
-//     "count": 7
-//   },
-//   {
-//     "x": "moderate",
-//     "y": "Mon",
-//     "count": 18
-//   },
-//   {
-//     "x": "major",
-//     "y": "Mon",
-//     "count": 12
-//   },
-//   {
-//     "x": "critical",
-//     "y": "Mon",
-//     "count": 25
-//   },
-//   {
-//     "x": "insignificant",
-//     "y": "Tue",
-//     "count": 4
-//   },
-//   {
-//     "x": "minor",
-//     "y": "Tue",
-//     "count": 9
-//   },
-//   {
-//     "x": "moderate",
-//     "y": "Tue",
-//     "count": 14
-//   },
-//   {
-//     "x": "major",
-//     "y": "Tue",
-//     "count": 6
-//   },
-//   {
-//     "x": "critical",
-//     "y": "Tue",
-//     "count": 20
-//   }
-// ]
-
-// // Color ranges
-// const colorRanges = [
-//   { from: 1, to: 5, name: "Low", color: "#008000" },
-//   { from: 6, to: 9, name: "Medium", color: "#002db3" },
-//   { from: 10, to: 15, name: "High", color: "#ffcc00" },
-//   { from: 16, to: 25, name: "Very High", color: "#ff0000" },
-// ];
-
-// const getColorForCount = (count) => {
-//   const range = colorRanges.find((range) => count >= range.from && count <= range.to);
-//   return range ? range.color : "#ffffff";
-// };
-
-// export function HeatMap2 () {
-//   const heatmapStyle = {
-//     width: '600px',
-//     margin: 'auto',
-//   };
-
-//   return (
-//     <div style={heatmapStyle}>
-//       <HeatmapGrid
-//         xLabels={xLabels}
-//         yLabels={yLabels}
-//         data={data.map(entry => ({ x: entry.x, y: entry.y, value: entry.count }))}
-//         squares
-//         height={100}
-//         onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
-//         cellRender={(value, x, y, onClick) => (
-//           <div onClick={onClick}>
-//             <div style={{ background: getColorForCount(value) }}>{value}</div>
-//           </div>
-//         )}
-//       />
-//     </div>
-//   );
-// };
-
-// import React from 'react';
-
-
-export function HeatMap2 ()  {
-  // Replace this with your actual data
-  const data = [
-    {
-      name: "insignificant",
-      data: [{
-        x: 'rare',
-        y: 1
-      }, {
-        x: 'unlikely',
-        y: 2
-      }, {
-        x: 'possible',
-        y: 3
-      }, {
-        x: 'certain',
-        y: 4
-      }]
-    },
-    {
-      name: "minor",
-      data: [{
-        x: 'rare',
-        y: 2
-      }, {
-        x: 'unlikely',
-        y: 4
-      }, {
-        x: 'possible',
-        y: 6
-      }, {
-        x: 'certain',
-        y: 8
-      }]
-    },
-    {
-      name: "moderate",
-      data: [{
-        x: 'rare',
-        y: 3
-      }, {
-        x: 'unlikely',
-        y: 6
-      }, {
-        x: 'possible',
-        y: 9
-      }, {
-        x: 'certain',
-        y: 12
-      }]
-    },
-    {
-      name: "major",
-      data: [{
-        x: 'rare',
-        y: 4
-      }, {
-        x: 'unlikely',
-        y: 8
-      }, {
-        x: 'possible',
-        y: 12
-      }, {
-        x: 'certain',
-        y: 16
-      }]
-    },
-    {
-      name: "critical",
-      data: [{
-        x: 'rare',
-        y: 5
-      }, {
-        x: 'unlikely',
-        y: 10
-      }, {
-        x: 'possible',
-        y: 15
-      }, {
-        x: 'certain',
-        y: 20
-      }]
-    }
-  ]
-
-  const options = {
-    chart: {
-      type: 'heatmap',
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    xaxis: {
-      type: 'category',
-    },
-    plotOptions: {
-      heatmap: {
-        shadeIntensity: 0.5,
-        colorScale: {
-          ranges: [
-            { from: 1, to: 5, name: 'Low', color: '#D6E9C6' },
-            { from: 6, to: 10, name: 'Medium', color: '#FAEBCC' },
-            { from: 11, to: 15, name: 'High', color: '#EBCCD1' },
-            { from: 16, to: 20, name: 'Very High', color: '#DD7E6B' },
-            { from: 21, to: 25, name: 'Extreme', color: '#C0392B' },
-          ],
-        },
-      },
-    },
-  };
-
-  return (
-    <ReactApexChart
-      options={options}
-      series={data}
-      type="heatmap"
-      height={350}
-    />
-  );
-};
-
-
