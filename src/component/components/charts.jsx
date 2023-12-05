@@ -962,8 +962,9 @@ export function HeatMap() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },withCredentials: true,
       })
-      .then((data) => {
-        setData(data.data);
+      .then((response) => {
+        console.log(response)
+        setData(response.data);
       });
   }, [data]);
 
