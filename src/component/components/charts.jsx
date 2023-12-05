@@ -1220,7 +1220,7 @@ export function HeatMap2() {
   );
 }
 
-export function HeatMap() {
+export function HeatMap4() {
     const cellsData = [
       { color: 'green', value: 'A' },
       { color: 'blue', value: 'B' },
@@ -1273,4 +1273,87 @@ export function HeatMap() {
       </div>
     );
 };
+
+export function HeatMap() {
+  
+  const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
+  const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
+  const cellsData = [
+    { color: 'green', value: 'A' },
+    { color: 'blue', value: 'B' },
+    { color: 'yellow', value: 'C' },
+    { color: 'red', value: 'D' },
+    { color: 'red', value: 'E' },
+    { color: 'green', value: '' }, // Empty value, turns white
+
+    { color: 'blue', value: 'G' },
+    { color: 'yellow', value: 'H' },
+    { color: 'red', value: 'I' },
+    { color: 'red', value: 'J' },
+    { color: 'green', value: 'K' },
+    { color: 'blue', value: 'L' },
+
+    { color: 'blue', value: 'M' },
+    { color: 'yellow', value: 'N' },
+    { color: 'yellow', value: 'O' },
+    { color: 'green', value: 'P' },
+    { color: 'green', value: 'q' },
+    { color: 'blue', value: 'r' },
+    { color: 'blue', value: 's' },
+
+    { color: 'blue', value: 't' },
+    { color: 'green', value: 'u' },
+    { color: 'green', value: 'v' },
+    { color: 'green', value: 'w' },
+    { color: 'green', value: 'x' },
+    { color: 'green', value: 'y' },
+  ];
+  return (
+    <div>
+      {/* Y-axis label */}
+      <div style={{ display: 'flex', flexDirection: 'column', marginRight: '10px', marginTop: '50px' }}>
+        {yAxisLabels.map((label, index) => (
+          <div key={index} style={{ height: '50px', lineHeight: '50px', textAlign: 'center' }}>
+            {label}
+          </div>
+        ))}
+      </div>
+
+      {/* Heatmap grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${xAxisLabels.length + 1}, 1fr)`, gap: '2px', marginLeft: '20px' }}>
+        {/* X-axis labels */}
+        {xAxisLabels.map((label, index) => (
+          <div key={index} style={{ textAlign: 'center', lineHeight: '50px' }}>
+            {label}
+          </div>
+        ))}
+
+        {/* CellsData grid */}
+        {yAxisLabels.map((yLabel, yIndex) => (
+          <React.Fragment key={yIndex}>
+            {xAxisLabels.map((xLabel, xIndex) => {
+              const cell = cellsData.find((item) => item.value === xLabel + yLabel);
+              return (
+                <div
+                  key={xIndex}
+                  style={{
+                    backgroundColor: cell && cell.value ? cell.color : 'white',
+                    height: '110px',
+                    width: '120px',
+                    borderRadius: '4px',
+                    textAlign: 'center',
+                    lineHeight: '50px',
+                    color: 'white',
+                  }}
+                >
+                  {cell && cell.value}
+                </div>
+              );
+            })}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
 
