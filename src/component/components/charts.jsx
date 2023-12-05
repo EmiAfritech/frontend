@@ -1247,7 +1247,7 @@ export function HeatMap() {
             key={index}
             style={{
               backgroundColor: cell.value ? cell.color : 'white',
-              height: '50px',
+              height: '100px',
               borderRadius: '4px',
               textAlign: 'center',
               lineHeight: '50px',
