@@ -971,7 +971,7 @@ export function HeatMap() {
             withCredentials: true,
           }
         );
-
+console.log(response)
         setData(response.data);
       } catch (error) {
         console.error(error);
