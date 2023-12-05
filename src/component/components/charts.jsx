@@ -1232,35 +1232,83 @@ export function HeatMap2 ()  {
   // Replace this with your actual data
   const data = [
     {
-      name: "Series 1",
+      name: "insignificant",
       data: [{
-        x: 'W1',
-        y: 22
+        x: 'rare',
+        y: 4
       }, {
-        x: 'W2',
-        y: 29
+        x: 'unlikely',
+        y: 10
       }, {
-        x: 'W3',
-        y: 13
+        x: 'possible',
+        y: 23
       }, {
-        x: 'W4',
-        y: 32
+        x: 'certain',
+        y: 3
       }]
     },
     {
-      name: "Series 2",
+      name: "minor",
       data: [{
-        x: 'W1',
-        y: 43
+        x: 'rare',
+        y: 13
       }, {
-        x: 'W2',
-        y: 43
+        x: 'unlikely',
+        y: 2
       }, {
-        x: 'W3',
-        y: 43
+        x: 'possible',
+        y: 15
       }, {
-        x: 'W4',
-        y: 43
+        x: 'certain',
+        y: 20
+      }]
+    },
+    {
+      name: "moderate",
+      data: [{
+        x: 'rare',
+        y: 25
+      }, {
+        x: 'unlikely',
+        y: 12
+      }, {
+        x: 'possible',
+        y: 12
+      }, {
+        x: 'certain',
+        y: 15
+      }]
+    },
+    {
+      name: "major",
+      data: [{
+        x: 'rare',
+        y: 4
+      }, {
+        x: 'unlikely',
+        y: 8
+      }, {
+        x: 'possible',
+        y: 3
+      }, {
+        x: 'certain',
+        y: 10
+      }]
+    },
+    {
+      name: "critical",
+      data: [{
+        x: 'rare',
+        y: 23
+      }, {
+        x: 'unlikely',
+        y: 12
+      }, {
+        x: 'possible',
+        y: 16
+      }, {
+        x: 'certain',
+        y: 3
       }]
     }
   ]
@@ -1280,11 +1328,11 @@ export function HeatMap2 ()  {
         shadeIntensity: 0.5,
         colorScale: {
           ranges: [
-            { from: 1, to: 20, name: 'Low', color: '#D6E9C6' },
-            { from: 21, to: 40, name: 'Medium', color: '#FAEBCC' },
-            { from: 41, to: 60, name: 'High', color: '#EBCCD1' },
-            { from: 61, to: 80, name: 'Very High', color: '#DD7E6B' },
-            { from: 81, to: 100, name: 'Extreme', color: '#C0392B' },
+            { from: 1, to: 5, name: 'Low', color: '#D6E9C6' },
+            { from: 6, to: 10, name: 'Medium', color: '#FAEBCC' },
+            { from: 11, to: 15, name: 'High', color: '#EBCCD1' },
+            { from: 16, to: 20, name: 'Very High', color: '#DD7E6B' },
+            { from: 21, to: 25, name: 'Extreme', color: '#C0392B' },
           ],
         },
       },
