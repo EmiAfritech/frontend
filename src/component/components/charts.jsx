@@ -1222,31 +1222,34 @@ export function HeatMap2() {
 
 export function HeatMap() {
     const cellsData = [
-      { color: '#FF5733', value: 'A' },
+      { color: '#0B610B', value: 'A' },
       { color: '#33FF57', value: 'B' },
       { color: '#5733FF', value: 'C' },
       { color: '#FFD633', value: 'D' },
       { color: '#33FFD6', value: 'E' },
-      { color: '#FF336A', value: '' }, // Empty value, turns white
+      { color: '#0B610B', value: '' }, // Empty value, turns white
+
       { color: '#D633FF', value: 'G' },
       { color: '#57FF33', value: 'H' },
       { color: '#FF33D6', value: 'I' },
       { color: '#33FFA2', value: 'J' },
-      { color: '#FF5733', value: 'K' },
+      { color: '#0B610B', value: 'K' },
       { color: '#33D6FF', value: 'L' },
+
+      { color: '#0B610B', value: 'M' },
+      { color: '#FF5733', value: 'N' },
+      { color: '#33FFD6', value: 'O' },
+      { color: '#0B610B', value: 'P' },
+      { color: '#A2FF33', value: 'M' },
+      { color: '#0B610B', value: 'N' },
+      { color: '#0B610B', value: 'O' },
+
+      { color: '#5733FF', value: 'P' },
       { color: '#A2FF33', value: 'M' },
       { color: '#FF5733', value: 'N' },
       { color: '#33FFD6', value: 'O' },
-      { color: '#5733FF', value: 'P' },
-      { color: '#A2FF33', value: 'M' },
-      { color: '#FF5733', value: 'N' },
-      { color: '#33FFD6', value: 'O' },
-      { color: '#5733FF', value: 'P' },
-      { color: '#A2FF33', value: 'M' },
-      { color: '#FF5733', value: 'N' },
-      { color: '#33FFD6', value: 'O' },
-      { color: '#5733FF', value: 'P' },
-      { color: '#5733FF', value: 'P' },
+      { color: '#0B610B', value: 'P' },
+      { color: '#0B610B', value: 'P' },
     ];
   
     return (
