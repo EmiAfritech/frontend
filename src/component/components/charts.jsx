@@ -1226,7 +1226,7 @@ export function HeatMap() {
     { color: '#5733FF', value: 'C' },
     { color: '#FFD633', value: 'D' },
     { color: '#33FFD6', value: 'E' },
-    { color: '#FF336A', value:  },
+    { color: '#FF336A', value: '' },
     { color: '#D633FF', value: 'G' },
     { color: '#57FF33', value: 'H' },
     { color: '#FF33D6', value: 'I' },
