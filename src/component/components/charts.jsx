@@ -1223,7 +1223,7 @@ export function HeatMap2() {
 export function HeatMap() {
     const cellsData = [
       { color: '#0B610B', value: 'A' },
-      { color: '#D7DF01', value: 'B' },
+      { color: 'blue', value: 'B' },
       { color: '#D7DF01', value: 'C' },
       { color: '#FFD633', value: 'D' },
       { color: '#33FFD6', value: 'E' },
