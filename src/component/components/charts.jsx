@@ -950,7 +950,7 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap2() {
+export function HeatMap() {
 
   const [data, setData] = useState();
 
@@ -1021,7 +1021,7 @@ export function HeatMap2() {
       data: [
         { x: "insignificant", y: 1 },
         { x: "minor", y: 2 },
-        { x: "moderate", y: 3 },
+        { x: "moderate", y:0 },
         { x: "major", y: 4 },
         { x: "critical", y: 5 },
       ],
@@ -1042,7 +1042,7 @@ export function HeatMap2() {
         { x: "insignificant", y: 3 },
         { x: "minor", y: 6 },
         { x: "moderate", y: 9 },
-        { x: "major", y: 12 },
+        { x: "major", y: 0},
         { x: "critical", y: 15 },
       ],
     },
@@ -1081,7 +1081,7 @@ export function HeatMap2() {
   );
 }
 
-export function HeatMap() {
+export function HeatMap2() {
   const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
