@@ -1258,28 +1258,28 @@ export function HeatMap() {
 
       {/* Y-axis labels and grid cells */}
       {yAxisLabels.map((yLabel, yIndex) => (
-        <React.Fragment key={yIndex}>
-          <div style={{ textAlign: 'center', lineHeight: '50px' }}>
-            {yLabel}
-          </div>
-          {xAxisLabels.map((xLabel, xIndex) => {
-            const cell = cellsData.find((item) => item.value === xLabel + yLabel);
-            return (
-              <div
-                key={xIndex}
-                style={{
-                  backgroundColor: cell && cell.value ? cell.color : 'white',
-                  height: '50px',
-                  borderRadius: '4px',
-                  textAlign: 'center',
-                  lineHeight: '50px',
-                  color: 'white',
-                }}
-              >
-                {cell && cell.value}
-              </div>
-            );
-          })}
+  <React.Fragment key={yIndex}>
+    <div style={{ textAlign: 'center', lineHeight: '50px' }}>
+      {yLabel}
+    </div>
+    {xAxisLabels.map((xLabel, xIndex) => {
+      const cell = cellsData.find((item) => item.value === xLabel); // Update this line
+      return (
+        <div
+          key={xIndex}
+          style={{
+            backgroundColor: cell && cell.value ? cell.color : 'white',
+            height: '50px',
+            borderRadius: '4px',
+            textAlign: 'center',
+            lineHeight: '50px',
+            color: 'white',
+          }}
+        >
+          {cell && cell.value}
+        </div>
+      );
+    })}
         </React.Fragment>
       ))}
     </div>
