@@ -1240,16 +1240,16 @@ export function HeatMap() {
       { color: '#FF5733', value: 'N' },
       { color: '#33FFD6', value: 'O' },
       { color: '#0B610B', value: 'P' },
-      { color: '#A2FF33', value: 'M' },
-      { color: '#0B610B', value: 'N' },
-      { color: '#0B610B', value: 'O' },
+      { color: '#A2FF33', value: 'q' },
+      { color: '#0B610B', value: 'r' },
+      { color: '#0B610B', value: 's' },
 
-      { color: '#5733FF', value: 'P' },
-      { color: '#A2FF33', value: 'M' },
-      { color: '#FF5733', value: 'N' },
-      { color: '#33FFD6', value: 'O' },
-      { color: '#0B610B', value: 'P' },
-      { color: '#0B610B', value: 'P' },
+      { color: '#5733FF', value: 't' },
+      { color: '#A2FF33', value: 'u' },
+      { color: '#FF5733', value: 'v' },
+      { color: '#33FFD6', value: 'w' },
+      { color: '#0B610B', value: 'x' },
+      { color: '#0B610B', value: 'y' },
     ];
   
     return (
