@@ -1082,7 +1082,7 @@ export function HeatMap2() {
 }
 
 export function HeatMap() {
-  const [data, setData] = useState();
+  const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
@@ -1210,7 +1210,7 @@ export function HeatMap() {
         </div>
       <Chart
         options={options}
-        series={{data}}
+        series={series}
         type="heatmap"
         height={550}
         width={900}
