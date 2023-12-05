@@ -11,6 +11,7 @@ import {
   Tooltip,
   Line,
 } from "recharts";
+import React from "react";
 import { HighLowBarData } from "./chartdata";
 import Chart from "react-apexcharts";
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
