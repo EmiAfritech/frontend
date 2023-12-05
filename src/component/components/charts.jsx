@@ -1328,12 +1328,11 @@ export function HeatMap2 ()  {
         shadeIntensity: 0.5,
         colorScale: {
           cellColors: [
-            ['#D6E9C6', '#FAEBCC', '#EBCCD1', '#DD7E6B'],
-            ['#A1E9C6', '#A0EBCC', '#A0CCD1', '#A07E6B'],
-            // Add more rows as needed...
-            ['#D6E9C6', '#FAEBCC', '#EBCCD1', '#DD7E6B'],
-            ['#A1E9C6', '#A0EBCC', '#A0CCD1', '#A07E6B'],
-            // Add more rows as needed...
+            ['#145A32', '#196F3D', '#1E8449', '#28B463', '#27AE60'],
+            ['#196F3D', '#1E8449', '#B7950B', '#F1C40F', '#F7DC6F '],
+            ['#1E8449', '#B7950B', '#F4D03F', '#2471A3', '#3498DB '],
+            ['#28B463', '#F1C40F', '#A0CCD1', '#A07E6B', '#EC7063 '],
+            ['#27AE60', '#F7DC6F ', '#A0CCD1', '#A07E6B', '#641E16 '],
           ],
         },
       },
