@@ -1109,16 +1109,83 @@ const originalData = [
 ];
 
 // Count occurrences for each combination of x and y labels
-const countData = {};
-originalData.forEach(({ x, y }) => {
-  countData[x] = countData[x] || {};
-  countData[x][y] = (countData[x][y] || 0) + 1;
-});
-
-// Create a 2D array representing counts for each cell
-const data = yLabels.map(yLabel =>
-  xLabels.map(xLabel => countData[xLabel]?.[yLabel] || 0)
-);
+const data = [
+  {
+    "x": "insignificant",
+    "y": "Sun",
+    "count": 3
+  },
+  {
+    "x": "minor",
+    "y": "Sun",
+    "count": 8
+  },
+  {
+    "x": "moderate",
+    "y": "Sun",
+    "count": 15
+  },
+  {
+    "x": "major",
+    "y": "Sun",
+    "count": 5
+  },
+  {
+    "x": "critical",
+    "y": "Sun",
+    "count": 22
+  },
+  {
+    "x": "insignificant",
+    "y": "Mon",
+    "count": 10
+  },
+  {
+    "x": "minor",
+    "y": "Mon",
+    "count": 7
+  },
+  {
+    "x": "moderate",
+    "y": "Mon",
+    "count": 18
+  },
+  {
+    "x": "major",
+    "y": "Mon",
+    "count": 12
+  },
+  {
+    "x": "critical",
+    "y": "Mon",
+    "count": 25
+  },
+  {
+    "x": "insignificant",
+    "y": "Tue",
+    "count": 4
+  },
+  {
+    "x": "minor",
+    "y": "Tue",
+    "count": 9
+  },
+  {
+    "x": "moderate",
+    "y": "Tue",
+    "count": 14
+  },
+  {
+    "x": "major",
+    "y": "Tue",
+    "count": 6
+  },
+  {
+    "x": "critical",
+    "y": "Tue",
+    "count": 20
+  }
+]
 
 // Color ranges
 const colorRanges = [
