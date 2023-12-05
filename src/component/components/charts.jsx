@@ -11,7 +11,6 @@ import {
   Tooltip,
   Line,
 } from "recharts";
-import React from "react";
 import { HighLowBarData } from "./chartdata";
 import Chart from "react-apexcharts";
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
@@ -1244,7 +1243,8 @@ export function HeatMap() {
   ];
 
   return (
-    <div style={{ display: 'grid',  gap: '8px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${xAxisLabels.length + 1}, 1fr)`, gap: '8px' }}>
+
       {/* Empty cell for top-left corner */}
       <div style={{ height: '50px', borderRadius: '4px', textAlign: 'center', lineHeight: '50px', color: 'white' }}></div>
       
