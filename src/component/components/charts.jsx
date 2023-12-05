@@ -1246,17 +1246,17 @@ export function HeatMap() {
       { color: '#FF5733', value: 'N' },
       { color: '#33FFD6', value: 'O' },
       { color: '#5733FF', value: 'P' },
+      { color: '#5733FF', value: 'P' },
     ];
   
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
         {cellsData.map((cell, index) => (
           <div
             key={index}
             style={{
               backgroundColor: cell.value ? cell.color : 'white',
               height: '100px',
-              width: '100px',
               borderRadius: '4px',
               textAlign: 'center',
               lineHeight: '50px',
