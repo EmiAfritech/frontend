@@ -1221,54 +1221,32 @@ export function HeatMap2() {
 }
 
 export function HeatMap() {
-  const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
-  const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
+  const xAxisLabels = ['critical', 'insignificant', 'moderate', 'major', 'minor'];
+  const yAxisLabels = ['likely', 'possible', 'unlikely', 'rare', 'almost certain'];
 
   const cellsData = [
-    { color: '#FF5733', value: 'A' },
-    { color: '#33FF57', value: 'B' },
-    { color: '#5733FF', value: 'C' },
-    { color: '#FFD633', value: 'D' },
-    { color: '#33FFD6', value: 'E' },
-    { color: '#FF336A', value: '' }, // Empty value, turns white
-    { color: '#D633FF', value: 'G' },
-    { color: '#57FF33', value: 'H' },
-    { color: '#FF33D6', value: 'I' },
-    { color: '#33FFA2', value: 'J' },
-    { color: '#FF5733', value: 'K' },
-    { color: '#33D6FF', value: 'L' },
-    { color: '#A2FF33', value: 'M' },
-    { color: '#FF5733', value: 'N' },
-    { color: '#33FFD6', value: 'O' },
-    { color: '#5733FF', value: 'P' },
+    // Assuming you want to fill the grid with the product of x and y labels
+    // You can customize this based on your specific requirements
+    ...xAxisLabels.map((xLabel) =>
+      yAxisLabels.map((yLabel) => ({
+        color: getRandomColor(),
+        value: `${xLabel} - ${yLabel}`,
+      }))
+    ).flat(),
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${xAxisLabels.length + 1}, 1fr)`, gap: '8px' }}>
-
-      {/* Empty cell for top-left corner */}
-      <div style={{ height: '50px', borderRadius: '4px', textAlign: 'center', lineHeight: '50px', color: 'white' }}></div>
-      
-      {/* X-axis labels */}
-      {xAxisLabels.map((label, index) => (
-        <div key={index} style={{ textAlign: 'center', lineHeight: '50px' }}>
-          {label}
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${yAxisLabels.length}, 1fr)`, gap: '8px' }}>
+      {xAxisLabels.map((xLabel, xIndex) => (
+        <div key={xIndex} style={{ textAlign: 'center', lineHeight: '50px' }}>
+          {xLabel}
         </div>
       ))}
-
-      {/* Y-axis labels and grid cells */}
-      {yAxisLabels.map((yLabel, yIndex) => (
-  <React.Fragment key={yIndex}>
-    <div style={{ textAlign: 'center', lineHeight: '50px' }}>
-      {yLabel}
-    </div>
-    {xAxisLabels.map((xLabel, xIndex) => {
-      const cell = cellsData.find((item) => item.value === xLabel); // Update this line
-      return (
+      {cellsData.map((cell, index) => (
         <div
-          key={xIndex}
+          key={index}
           style={{
-            backgroundColor: cell && cell.value ? cell.color : 'white',
+            backgroundColor: cell.color,
             height: '50px',
             borderRadius: '4px',
             textAlign: 'center',
@@ -1276,11 +1254,8 @@ export function HeatMap() {
             color: 'white',
           }}
         >
-          {cell && cell.value}
+          {cell.value}
         </div>
-      );
-    })}
-        </React.Fragment>
       ))}
     </div>
   );
