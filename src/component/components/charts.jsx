@@ -1298,8 +1298,8 @@ export function HeatMap2 ()  {
     {
       name: "critical",
       data: [{
-        x: 'rare',
-        y: [5, 2]
+        x: 23,
+        y: 5
       }, {
         x: 'unlikely',
         y: 10
@@ -1327,12 +1327,12 @@ export function HeatMap2 ()  {
       heatmap: {
         shadeIntensity: 0.5,
         colorScale: {
-          cellColors: [
-            ['#27AE60', '#229954 ', '#1E8449', '#196F3D', '#145A32'],
-            ['#1E8449', '#196F3D', '#F1C40F', '#2E86C1', '#1B4F72'],
-            ['#1E8449', '#F1C40F', '#21618C', '#D4AC0D', '#7D6608'],
-            ['#196F3D', '#2E86C1', '#D4AC0D', '#E74C3C', '#641E16'],
-            
+          ranges: [
+            { from: 1, to: 5, name: 'Low', color: '#D6E9C6' },
+            { from: 6, to: 10, name: 'Medium', color: '#FAEBCC' },
+            { from: 11, to: 15, name: 'High', color: '#EBCCD1' },
+            { from: 16, to: 20, name: 'Very High', color: '#DD7E6B' },
+            { from: 21, to: 25, name: 'Extreme', color: '#C0392B' },
           ],
         },
       },
