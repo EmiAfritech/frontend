@@ -1250,7 +1250,7 @@ export function HeatMap() {
     ];
   
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '20px' }}>
         {cellsData.map((cell, index) => (
           <div
             key={index}
