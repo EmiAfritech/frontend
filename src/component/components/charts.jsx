@@ -1222,34 +1222,34 @@ export function HeatMap2() {
 
 export function HeatMap() {
     const cellsData = [
-      { color: '#0B610B', value: 'A' },
+      { color: 'green', value: 'A' },
       { color: 'blue', value: 'B' },
-      { color: '#D7DF01', value: 'C' },
-      { color: '#FFD633', value: 'D' },
-      { color: '#33FFD6', value: 'E' },
-      { color: '#0B610B', value: '' }, // Empty value, turns white
+      { color: 'yellow', value: 'C' },
+      { color: 'red', value: 'D' },
+      { color: 'red', value: 'E' },
+      { color: 'green', value: '' }, // Empty value, turns white
 
-      { color: '#0040FF', value: 'G' },
-      { color: '#D7DF01', value: 'H' },
-      { color: '#FF33D6', value: 'I' },
-      { color: '#33FFA2', value: 'J' },
-      { color: '#0B610B', value: 'K' },
-      { color: '#0040FF', value: 'L' },
+      { color: 'blue', value: 'G' },
+      { color: 'yellow', value: 'H' },
+      { color: 'red', value: 'I' },
+      { color: 'red', value: 'J' },
+      { color: 'green', value: 'K' },
+      { color: 'blue', value: 'L' },
 
-      { color: '#0040FF', value: 'M' },
-      { color: '#D7DF01', value: 'N' },
-      { color: '#D7DF01', value: 'O' },
-      { color: '#0B610B', value: 'P' },
-      { color: '#0B610B', value: 'q' },
-      { color: '#0040FF', value: 'r' },
-      { color: '#0040FF', value: 's' },
+      { color: 'blue', value: 'M' },
+      { color: 'yellow', value: 'N' },
+      { color: 'yellow', value: 'O' },
+      { color: 'green', value: 'P' },
+      { color: 'green', value: 'q' },
+      { color: 'blue', value: 'r' },
+      { color: 'blue', value: 's' },
 
-      { color: '#0040FF', value: 't' },
-      { color: '#0B610B', value: 'u' },
-      { color: '#0B610B', value: 'v' },
-      { color: '#0B610B', value: 'w' },
-      { color: '#0B610B', value: 'x' },
-      { color: '#0B610B', value: 'y' },
+      { color: 'blue', value: 't' },
+      { color: 'green', value: 'u' },
+      { color: 'green', value: 'v' },
+      { color: 'green', value: 'w' },
+      { color: 'green', value: 'x' },
+      { color: 'green', value: 'y' },
     ];
   
     return (
