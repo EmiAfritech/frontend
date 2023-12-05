@@ -1235,64 +1235,64 @@ export function HeatMap2 ()  {
       name: "insignificant",
       data: [{
         x: 'rare',
-        y: 4
+        y: 1
       }, {
         x: 'unlikely',
-        y: 10
+        y: 2
       }, {
         x: 'possible',
-        y: 23
+        y: 3
       }, {
         x: 'certain',
-        y: 3
+        y: 4
       }]
     },
     {
       name: "minor",
       data: [{
         x: 'rare',
-        y: 13
+        y: 5
       }, {
         x: 'unlikely',
-        y: 2
+        y: 6
       }, {
         x: 'possible',
-        y: 15
+        y: 7
       }, {
         x: 'certain',
-        y: 20
+        y: 8
       }]
     },
     {
       name: "moderate",
       data: [{
         x: 'rare',
-        y: 25
+        y: 9
       }, {
         x: 'unlikely',
-        y: 12
+        y: 10
       }, {
         x: 'possible',
-        y: 12
+        y: 11
       }, {
         x: 'certain',
-        y: 15
+        y: 12
       }]
     },
     {
       name: "major",
       data: [{
         x: 'rare',
-        y: 4
+        y: 13
       }, {
         x: 'unlikely',
-        y: 8
+        y: 14
       }, {
         x: 'possible',
-        y: 3
+        y: 15
       }, {
         x: 'certain',
-        y: 10
+        y: 16
       }]
     },
     {
