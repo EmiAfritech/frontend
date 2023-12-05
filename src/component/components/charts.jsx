@@ -1220,7 +1220,7 @@ export function HeatMap2() {
   );
 }
 
-export function HeatMap4() {
+export function HeatMap() {
     const cellsData = [
       { color: 'green', value: 'A' },
       { color: 'blue', value: 'B' },
@@ -1253,7 +1253,7 @@ export function HeatMap4() {
     ];
   
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
         {cellsData.map((cell, index) => (
           <div
             key={index}
@@ -1274,8 +1274,8 @@ export function HeatMap4() {
     );
 };
 
-export function HeatMap() {
-  
+export function HeatMap4() {
+
   const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
   const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
   const cellsData = [
