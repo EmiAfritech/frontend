@@ -1251,13 +1251,13 @@ export function HeatMap2 ()  {
       name: "minor",
       data: [{
         x: 'rare',
-        y: 5
+        y: 2
       }, {
         x: 'unlikely',
-        y: 6
+        y: 4
       }, {
         x: 'possible',
-        y: 7
+        y: 6
       }, {
         x: 'certain',
         y: 8
@@ -1267,13 +1267,13 @@ export function HeatMap2 ()  {
       name: "moderate",
       data: [{
         x: 'rare',
-        y: 9
+        y: 3
       }, {
         x: 'unlikely',
-        y: 10
+        y: 6
       }, {
         x: 'possible',
-        y: 11
+        y: 9
       }, {
         x: 'certain',
         y: 12
@@ -1283,13 +1283,13 @@ export function HeatMap2 ()  {
       name: "major",
       data: [{
         x: 'rare',
-        y: 13
+        y: 4
       }, {
         x: 'unlikely',
-        y: 14
+        y: 8
       }, {
         x: 'possible',
-        y: 15
+        y: 12
       }, {
         x: 'certain',
         y: 16
@@ -1299,16 +1299,16 @@ export function HeatMap2 ()  {
       name: "critical",
       data: [{
         x: 'rare',
-        y: 23
+        y: 5
       }, {
         x: 'unlikely',
-        y: 12
+        y: 10
       }, {
         x: 'possible',
-        y: 16
+        y: 15
       }, {
         x: 'certain',
-        y: 3
+        y: 20
       }]
     }
   ]
