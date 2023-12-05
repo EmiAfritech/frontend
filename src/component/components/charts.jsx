@@ -1211,7 +1211,7 @@ export function HeatMap2 () {
       <HeatmapGrid
         xLabels={xLabels}
         yLabels={yLabels}
-        data={data}
+        data={data.map(entry => ({ x: entry.x, y: entry.y, value: entry.count }))}
         squares
         height={100}
         onClick={(x, y) => console.log(`Clicked ${x}, ${y}`)}
