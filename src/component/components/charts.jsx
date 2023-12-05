@@ -1298,7 +1298,7 @@ export function HeatMap2 ()  {
     {
       name: "critical",
       data: [{
-        x: 23,
+        x: 'rare',
         y: 5
       }, {
         x: 'unlikely',
