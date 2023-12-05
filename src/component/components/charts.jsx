@@ -1242,11 +1242,22 @@ export function HeatMap() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
       {cellsData.map((cell, index) => (
-        <div key={index} style={{ backgroundColor: cell.color, height: '50px', borderRadius: '4px', textAlign: 'center', lineHeight: '50px', color: 'white' }}>
+        <div
+          key={index}
+          style={{
+            backgroundColor: cell.value ? cell.color : 'white',
+            height: '50px',
+            borderRadius: '4px',
+            textAlign: 'center',
+            lineHeight: '50px',
+            color: 'white',
+          }}
+        >
           {cell.value}
         </div>
       ))}
     </div>
+
   );
 };
 
