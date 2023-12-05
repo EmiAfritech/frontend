@@ -1273,7 +1273,7 @@ export function HeatMap2 ()  {
   return (
     <ReactApexChart
       options={options}
-      series={[{ data: chartData }]}
+      series={chartData}
       type="heatmap"
       height={350}
     />
