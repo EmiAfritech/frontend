@@ -951,23 +951,60 @@ export function Pyramidchat() {
 }
 
 export function HeatMap() {
-
   const [data, setData] = useState();
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
+
+
+
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          HEATMAP_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [departmentName]); 
 
   useEffect(() => {
-    axios
-      .get(HEATMAP_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((response) => {
-        console.log(response)
-        setData(response.data);
-      });
-  }, [data]);
+    const fetchDeptData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
 
+        setDeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDeptData();
+  }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
+
+  
   const options = {
     chart: {
       type: "heatmap",
@@ -1020,6 +1057,27 @@ export function HeatMap() {
   
   return (
     <div>
+      <div className="grid grid-cols-4">
+          <div>
+            <select
+              type="text"
+              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              id="departmentName"
+              aria-describedby="departmentName"
+              value={departmentName}
+              autoComplete="off"
+              onChange={handleDeptNameChange}>
+              <option value="All Departments">All Departments</option>
+              {deptmentNames.map((deptmentNames) => (
+                <option
+                  key={deptmentNames.names.id}
+                  value={deptmentNames.names.name}>
+                  {deptmentNames.names.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       <Chart
         options={options}
         series={data}
