@@ -950,6 +950,137 @@ export function Pyramidchat() {
   );
 }
 
+export function HeatMap2() {
+
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(HEATMAP_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },withCredentials: true,
+      })
+      .then((data) => {
+        setData(data.data);
+      });
+  }, [data]);
+
+  const options = {
+    chart: {
+      type: "heatmap",
+    },
+    plotOptions: {
+      heatmap: {
+        colorScale: {
+          ranges: [
+            {
+              from: 1,
+              to: 5,
+              name: "Low",
+              color: "#008000",
+            },
+            {
+              from: 6,
+              to: 9,
+              name: "Medium",
+              color: "#002db3",
+            },
+            {
+              from: 10,
+              to: 15,
+              name: "High",
+              color: "#ffcc00",
+            },
+            {
+              from: 16,
+              to: 25,
+              name: "Very High",
+              color: "#ff0000",
+            },
+          ],
+        },
+      },
+    },
+    xaxis: {
+      title: {
+        text: "Likelihood", // Label for the x-axis
+      },
+    },
+    yaxis: {
+      title: {
+        text: "Impact", // Label for the y-axis
+      },
+    },
+  };
+
+  const series = [
+    {
+      name: "rare",
+      data: [
+        { x: "insignificant", y: 1 },
+        { x: "minor", y: 2 },
+        { x: "moderate", y: 3 },
+        { x: "major", y: 4 },
+        { x: "critical", y: 5 },
+      ],
+    },
+    {
+      name: "unlikely",
+      data: [
+        { x: "insignificant", y: 2 },
+        { x: "minor", y: 4 },
+        { x: "moderate", y: 6 },
+        { x: "major", y: 8 },
+        { x: "critical", y: 10 },
+      ],
+    },
+    {
+      name: "possible",
+      data: [
+        { x: "insignificant", y: 3 },
+        { x: "minor", y: 6 },
+        { x: "moderate", y: 9 },
+        { x: "major", y: 12 },
+        { x: "critical", y: 15 },
+      ],
+    },
+    {
+      name: "likely",
+      data: [
+        { x: "insignificant", y: 4 },
+        { x: "minor", y: 8 },
+        { x: "moderate", y: 12 },
+        { x: "major", y: 16 },
+        { x: "critical", y: 20 },
+      ],
+    },
+    {
+      name: "almost certain",
+      data: [
+        { x: "insignificant", y: 5 },
+        { x: "minor", y: 10 },
+        { x: "moderate", y: 15 },
+        { x: "major", y: 20 },
+        { x: "critical", y: 25 },
+      ],
+    },
+  ];
+  
+  return (
+    <div>
+      <Chart
+        options={options}
+        series={series}
+        type="heatmap"
+        height={550}
+        width={900}
+      />
+    </div>
+  );
+}
+
 export function HeatMap() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
@@ -971,7 +1102,6 @@ export function HeatMap() {
             withCredentials: true,
           }
         );
-console.log(response)
         setData(response.data);
       } catch (error) {
         console.error(error);
@@ -1080,7 +1210,7 @@ console.log(response)
         </div>
       <Chart
         options={options}
-        series={data}
+        series={{data}}
         type="heatmap"
         height={550}
         width={900}
