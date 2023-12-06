@@ -1360,7 +1360,7 @@ export function HeatMap5() {
     );
 }
 
-export function HeatMap4() {
+export function HeatMap() {
 
   
   const cellsData = [
