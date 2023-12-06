@@ -1362,8 +1362,7 @@ export function HeatMap5() {
 
 export function HeatMap4() {
 
-  const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
-  const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
+  
   const cellsData = [
     { color: 'green', value: 'A' },
     { color: 'blue', value: 'B' },
