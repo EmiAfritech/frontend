@@ -1221,58 +1221,104 @@ export function HeatMap2() {
 }
 
 export function HeatMap() {
-    const cellsData = [
-      { color: 'green', value: 'A' },
-      { color: 'blue', value: 'B' },
-      { color: 'yellow', value: 'C' },
-      { color: 'red', value: 'D' },
-      { color: 'red', value: 'E' },
-      { color: 'green', value: '' }, // Empty value, turns white
+  const [cellsData, setData] = useState();
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [deptmentNames, setDeptmentNames] = useState([]);
 
-      { color: 'blue', value: 'G' },
-      { color: 'yellow', value: 'H' },
-      { color: 'red', value: 'I' },
-      { color: 'red', value: 'J' },
-      { color: 'green', value: 'K' },
-      { color: 'blue', value: 'L' },
 
-      { color: 'blue', value: 'M' },
-      { color: 'yellow', value: 'N' },
-      { color: 'yellow', value: 'O' },
-      { color: 'green', value: 'P' },
-      { color: 'green', value: 'q' },
-      { color: 'blue', value: 'r' },
-      { color: 'blue', value: 's' },
 
-      { color: 'blue', value: 't' },
-      { color: 'green', value: 'u' },
-      { color: 'green', value: 'v' },
-      { color: 'green', value: 'w' },
-      { color: 'green', value: 'x' },
-      { color: 'green', value: 'y' },
-    ];
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          HEATMAP_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
+        setData(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [departmentName]); 
+
+  useEffect(() => {
+    const fetchDeptData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setDeptmentNames(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDeptData();
+  }, []);
+
+  const handleDeptNameChange = (e) => {
+    setDeptmentName(e.target.value);
+  };
+
   
     return (
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
-        {cellsData.map((cell, index) => (
-          <div
-            key={index}
-            style={{
-              backgroundColor: cell.value ? cell.color : 'white',
-              height: '110px',
-              width: '150px',
-              borderRadius: '4px',
-              textAlign: 'center',
-              lineHeight: '50px',
-              color: 'white',
-            }}
-          >
-            {cell.value}
+      <div>
+        <div className="grid grid-cols-4">
+          <div>
+            <select
+              type="text"
+              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              id="departmentName"
+              aria-describedby="departmentName"
+              value={departmentName}
+              autoComplete="off"
+              onChange={handleDeptNameChange}>
+              <option value="All Departments">All Departments</option>
+              {deptmentNames.map((deptmentNames) => (
+                <option
+                  key={deptmentNames.names.id}
+                  value={deptmentNames.names.name}>
+                  {deptmentNames.names.name}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
+          {cellsData.map((cell, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: cell.value ? cell.color : 'white',
+                height: '110px',
+                width: '150px',
+                borderRadius: '4px',
+                textAlign: 'center',
+                lineHeight: '50px',
+                color: 'white',
+              }}
+            >
+              {cell.value}
+            </div>
+          ))}
+        </div>
       </div>
     );
-};
+}
 
 export function HeatMap4() {
 
