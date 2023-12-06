@@ -1224,7 +1224,7 @@ function valuesForHeatMap(heapMapData, finalData) {
    for(const data of heapMapData){
 
         
-        finalData[index].value = data[index].value;
+        finalData[index].value = data.value;
         index++;
     }
     return finalData;
