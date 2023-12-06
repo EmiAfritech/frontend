@@ -1395,7 +1395,7 @@ export function HeatMap() {
   ];
  return (
       <div>
-        <div className="grid grid-cols-4">
+        {/* <div className="grid grid-cols-4">
           <div>
             <select
               type="text"
@@ -1415,7 +1415,7 @@ export function HeatMap() {
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
           {cellsData.map((cell, index) => (
             <div
