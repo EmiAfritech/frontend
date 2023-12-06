@@ -1219,12 +1219,50 @@ export function HeatMap2() {
     </div>
   );
 }
+function valuesForHeatMap(heapMapData, finalData) {
 
+   for(const data of heapMapData){
+
+        const index = 0;
+        finalData[index].value = data[index].value;
+    }
+    return finalData;
+}
 export function HeatMap() {
-  const [cellsData, setData] = useState();
+  const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
+  let cellsData = [
+      { color: 'green', value: '' },
+      { color: 'blue', value: '' },
+      { color: 'yellow', value: '' },
+      { color: 'red', value: '' },
+      { color: 'red', value: '' },
+      { color: 'green', value: '' }, // Empty value, turns white
 
+      { color: 'blue', value: '' },
+      { color: 'yellow', value: '' },
+      { color: 'red', value: '' },
+      { color: 'red', value: '' },
+      { color: 'green', value: '' },
+      { color: 'blue', value: '' },
+
+      { color: 'blue', value: '' },
+      { color: 'yellow', value: '' },
+      { color: 'yellow', value: '' },
+      { color: 'green', value: '' },
+      { color: 'green', value: '' },
+      { color: 'blue', value: '' },
+      { color: 'blue', value: '' },
+
+      { color: 'blue', value: '' },
+      { color: 'green', value: '' },
+      { color: 'green', value: '' },
+      { color: 'green', value: '' },
+      { color: 'green', value: '' },
+      { color: 'green', value: '' },
+  ];
+  
 
 
  useEffect(() => {
@@ -1242,7 +1280,8 @@ export function HeatMap() {
           }
         );
         setData(response.data);
-        console.log(response);
+        cellsData = valuesForHeatMap(response.data, cellsData);
+        console.log(cellsData);
       } catch (error) {
         console.error(error);
       }
