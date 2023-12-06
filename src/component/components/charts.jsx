@@ -1220,10 +1220,10 @@ export function HeatMap2() {
   );
 }
 function valuesForHeatMap(heapMapData, finalData) {
-
+  let index = 0;
    for(const data of heapMapData){
 
-        let index = 0;
+        
         finalData[index].value = data[index].value;
         index++;
     }
