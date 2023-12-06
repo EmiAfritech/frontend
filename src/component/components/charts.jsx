@@ -1391,8 +1391,10 @@ export function HeatMap() {
     { color: 'green', value: 'v' },
     { color: 'green', value: 'w' },
     { color: 'green', value: 'x' },
-    { color: 'green', value: 'y' },
+    { color: 'green', value: '7' },
+
   ];
+  console.log(cellsData);
  return (
       <div>
         {/* <div className="grid grid-cols-4">
