@@ -1366,7 +1366,7 @@ export function HeatMap() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
   
-  let cellsData = [
+  let cellData = [
     { color: 'green', value: 'A' },
     { color: 'blue', value: 'B' },
     { color: 'yellow', value: 'C' },
@@ -1397,6 +1397,7 @@ export function HeatMap() {
     { color: 'green', value: '7' },
 
   ];
+  var cellsData = [];
    useEffect(() => {
     const fetchData = async () => {
       try {
@@ -1412,8 +1413,8 @@ export function HeatMap() {
           }
         );
         setData(response.data);
-        cellsData = valuesForHeatMap(response.data, cellsData);
-        console.log(response.data,cellsData);
+        cellsData = valuesForHeatMap(response.data, cellData);
+        console.log(response.data,cellData);
       } catch (error) {
         console.error(error);
       }
