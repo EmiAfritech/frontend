@@ -1343,7 +1343,7 @@ export function HeatMap() {
             <div
               key={index}
               style={{
-                backgroundColor: cell.value ? cell.color : 'white',
+                backgroundColor: cell.color ? cell.color : 'white',
                 height: '110px',
                 width: '150px',
                 borderRadius: '4px',
