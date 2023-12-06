@@ -1366,7 +1366,7 @@ export function HeatMap() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
   
-  let cellsData = [
+  var cellsData = [
     { color: 'green', value: 'A' },
     { color: 'blue', value: 'B' },
     { color: 'yellow', value: 'C' },
