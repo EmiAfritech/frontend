@@ -1224,7 +1224,7 @@ function valuesForHeatMap(heapMapData, finalData) {
    for(const data of heapMapData){
 
         
-        finalData[index].value = data.value;
+        finalData[index].value = parseInt(data.value) || 0;
         index++;
     }
     return finalData;
@@ -1282,7 +1282,7 @@ export function HeatMap() {
         );
         setData(response.data);
         cellsData = valuesForHeatMap(response.data, cellsData);
-        console.log(cellsData);
+        console.log(response.data,cellsData);
       } catch (error) {
         console.error(error);
       }
