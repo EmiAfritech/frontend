@@ -1266,7 +1266,7 @@ export function HeatMap5() {
   
 
 
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -1289,7 +1289,7 @@ export function HeatMap5() {
     };
 
     fetchData();
-  }, [departmentName]); 
+    }, [departmentName]); 
 
   useEffect(() => {
     const fetchDeptData = async () => {
@@ -1305,7 +1305,7 @@ export function HeatMap5() {
       } catch (error) {
         console.error(error);
       }
-    };
+  };
 
     fetchDeptData();
   }, []);
@@ -1360,7 +1360,7 @@ export function HeatMap5() {
     );
 }
 
-export function HeatMap() {
+export function HeatMap4() {
 
   const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
   const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
@@ -1394,52 +1394,48 @@ export function HeatMap() {
     { color: 'green', value: 'x' },
     { color: 'green', value: 'y' },
   ];
-  return (
-    <div>
-      {/* Y-axis label */}
-      <div style={{ display: 'flex', flexDirection: 'column', marginRight: '10px', marginTop: '50px' }}>
-        {yAxisLabels.map((label, index) => (
-          <div key={index} style={{ height: '50px', lineHeight: '50px', textAlign: 'center' }}>
-            {label}
+ return (
+      <div>
+        <div className="grid grid-cols-4">
+          <div>
+            <select
+              type="text"
+              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              id="departmentName"
+              aria-describedby="departmentName"
+              value={departmentName}
+              autoComplete="off"
+              onChange={handleDeptNameChange}>
+              <option value="All Departments">All Departments</option>
+              {deptmentNames.map((deptmentNames) => (
+                <option
+                  key={deptmentNames.names.id}
+                  value={deptmentNames.names.name}>
+                  {deptmentNames.names.name}
+                </option>
+              ))}
+            </select>
           </div>
-        ))}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
+          {cellsData.map((cell, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: cell.value ? cell.color : 'white',
+                height: '110px',
+                width: '150px',
+                borderRadius: '4px',
+                textAlign: 'center',
+                lineHeight: '50px',
+                color: 'white',
+              }}
+            >
+              {cell.value}
+            </div>
+          ))}
+        </div>
       </div>
-
-      {/* Heatmap grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${xAxisLabels.length + 1}, 1fr)`, gap: '2px', marginLeft: '20px' }}>
-        {/* X-axis labels */}
-        {xAxisLabels.map((label, index) => (
-          <div key={index} style={{ textAlign: 'center', lineHeight: '50px' }}>
-            {label}
-          </div>
-        ))}
-
-        {/* CellsData grid */}
-        {yAxisLabels.map((yLabel, yIndex) => (
-          <React.Fragment key={yIndex}>
-            {xAxisLabels.map((xLabel, xIndex) => {
-              const cell = cellsData.find((item) => item.value === xLabel + yLabel);
-              return (
-                <div
-                  key={xIndex}
-                  style={{
-                    backgroundColor: cell && cell.value ? cell.color : 'white',
-                    height: '110px',
-                    width: '120px',
-                    borderRadius: '4px',
-                    textAlign: 'center',
-                    lineHeight: '50px',
-                    color: 'white',
-                  }}
-                >
-                  {cell && cell.value}
-                </div>
-              );
-            })}
-          </React.Fragment>
-        ))}
-      </div>
-    </div>
-  );
+    );
 }
 
