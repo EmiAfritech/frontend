@@ -1414,7 +1414,7 @@ export function HeatMap() {
         );
         setData(response.data);
         cellsData = valuesForHeatMap(response.data, cellData);
-        console.log(response.data,cellData);
+        console.log(response.data,cellsData);
       } catch (error) {
         console.error(error);
       }
