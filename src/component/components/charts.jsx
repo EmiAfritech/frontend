@@ -1229,7 +1229,7 @@ function valuesForHeatMap(heapMapData, finalData) {
     }
     return finalData;
 }
-export function HeatMap() {
+export function HeatMap5() {
   const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -1343,7 +1343,7 @@ export function HeatMap() {
             <div
               key={index}
               style={{
-                backgroundColor: cell.color ? cell.color : 'white',
+                backgroundColor: cell.value ? cell.color : 'white',
                 height: '110px',
                 width: '150px',
                 borderRadius: '4px',
@@ -1360,7 +1360,7 @@ export function HeatMap() {
     );
 }
 
-export function HeatMap4() {
+export function HeatMap() {
 
   const xAxisLabels = ['X1', 'X2', 'X3', 'X4']; // Replace with your actual x-axis labels
   const yAxisLabels = ['Y1', 'Y2', 'Y3', 'Y4']; // Replace with your actual y-axis labels
