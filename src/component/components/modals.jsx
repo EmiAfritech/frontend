@@ -5,6 +5,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
+import axios from "../../api/axios";
 import { DELETEUSER_URL, EDITUSER_URL } from "../../api/routes";
 
 export function UserData(params) {
