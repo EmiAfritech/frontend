@@ -59,9 +59,9 @@ export function UserData(params) {
                     Username
                   </label>
                   <TextField
-                    helperText="Please enter your name"
+                    helperText="Username"
                     id="demo-helper-text-misaligned"
-                    label="Name"
+                    label="Username"
                     value={userName}
                     autoComplete="off"
                     onChange={(e) => setUserName(e.target.value)}
