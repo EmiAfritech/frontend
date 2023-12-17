@@ -77,10 +77,7 @@ export function EmployeesTable() {
     };
 
     getUsers();
-    
   }, []);
-
-  
 
   return (
     <div className="flex flex-col">
@@ -125,8 +122,6 @@ export function RiskReview() {
     getRiskReview();
   }, []);
 
-  
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
@@ -150,7 +145,7 @@ export function RiskReview() {
 
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
- 
+
   useEffect(() => {
     const getClosedRisks = async () => {
       try {
@@ -158,7 +153,8 @@ export function ClosedRiskTab() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: true,
+          },
+          withCredentials: true,
         });
 
         setTableData(response.data.Data);
@@ -172,19 +168,19 @@ export function ClosedRiskTab() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row flex-row-reverse ">
+      <div className="flex flex-row flex-row-reverse m-4">
         <div>
-          <Button variant="outlined" >
-          <Link to="/risk-review" className="text-blue-500">
-            VIEW ALL RISK REVIEWS
-          </Link>
+          <Button variant="outlined">
+            <Link to="/risk-review" className="text-blue-500">
+              VIEW ALL RISK REVIEWS
+            </Link>
           </Button>
         </div>
         <div>
-        <Button variant="outlined" >
-          <Link to="/risk-identification" className="text-blue-500 ">
-            VIEW ALL OPENED RISKS
-          </Link>
+          <Button variant="outlined">
+            <Link to="/risk-identification" className="text-blue-500 ">
+              VIEW ALL OPENED RISKS
+            </Link>
           </Button>
         </div>
       </div>
@@ -216,7 +212,8 @@ export function RiskMonitor() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: true,
+          },
+          withCredentials: true,
         });
 
         setTableData(response.data.Data);
@@ -227,8 +224,6 @@ export function RiskMonitor() {
 
     getMonitoring();
   }, []);
-
-  
 
   return (
     <div className="flex flex-col mt-6">
@@ -261,7 +256,8 @@ export function RiskAppetiteReportGreater() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: true,
+          },
+          withCredentials: true,
         });
 
         setTableData(response.data);
@@ -272,7 +268,7 @@ export function RiskAppetiteReportGreater() {
 
     riskAppetiteReportGreater();
   }, []);
-  console.log(tableData)
+  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div
@@ -304,7 +300,8 @@ export function RiskAppetiteReportLower() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: true,
+          },
+          withCredentials: true,
         });
 
         setTableData(response.data);
@@ -358,7 +355,7 @@ export function DepartmentTab() {
     getDepartment();
   }, []);
 
- console.log(tableData)
+  console.log(tableData);
 
   return (
     <div className="flex flex-col">
@@ -391,7 +388,8 @@ export function RiskmitigationTab() {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
-          },withCredentials: true,
+          },
+          withCredentials: true,
         });
 
         setTableData(response.data.Data);
@@ -400,7 +398,6 @@ export function RiskmitigationTab() {
       }
     };
     getMitigation();
-   
   }, []);
 
   return (
@@ -495,8 +492,6 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
- 
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -573,8 +568,8 @@ export function RiskMitigationReportTable() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -587,15 +582,15 @@ export function RiskMitigationReportTable() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -611,8 +606,6 @@ export function RiskMitigationReportTable() {
   const handleDeptNameChange = (e) => {
     setDeptmentName(e.target.value);
   };
-
-  
 
   return (
     <div>
@@ -676,8 +669,8 @@ export function ReviewNeedingRisksReportTab() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -690,15 +683,15 @@ export function ReviewNeedingRisksReportTab() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -727,14 +720,12 @@ export function ReviewNeedingRisksReportTab() {
             aria-describedby="departmentName"
             value={departmentName}
             autoComplete="off"
-            onChange={handleDeptNameChange}
-          >
+            onChange={handleDeptNameChange}>
             <option value="All Departments">All Departments</option>
             {deptmentNames.map((deptmentNames) => (
               <option
                 key={deptmentNames.names.id}
-                value={deptmentNames.names.name}
-              >
+                value={deptmentNames.names.name}>
                 {deptmentNames.names.name}
               </option>
             ))}
@@ -742,9 +733,8 @@ export function ReviewNeedingRisksReportTab() {
         </div>
       </div>
       <div
-        style={{ height: 650, width: 850, backgroundColor: 'white' }}
-        className="  mt-2 w-auto card p-4"
-      >
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
+        className="  mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
           columns={reportopenrisktoreviewcolumn}
@@ -771,9 +761,8 @@ export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
-  
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
@@ -782,7 +771,7 @@ export function RiskStatusReportTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        console.log(response)
+        console.log(response);
         setdeptmentNames(response.data);
       } catch (error) {
         console.error(error);
@@ -791,7 +780,7 @@ export function RiskStatusReportTab() {
 
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -800,8 +789,8 @@ export function RiskStatusReportTab() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -814,7 +803,7 @@ export function RiskStatusReportTab() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   const handleDeptNameChange = (e) => {
     setDeptmentName(e.target.value);
