@@ -32,9 +32,7 @@ import {
   RISKRESPONSEREPORT_URL,
   RISKLEVELREPORT_URL,
   RISKCATEGORYREPORT_URL,
-  MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL,
   MONITOREDVSUNMONITOREDBARCHARTDATA_URL,
-  REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL,
   OPENVSCLOSEBASEDONDEPARTMENT_URL,
   HEATMAP_URL,
   OPENVSCLOSECHART_URL,
@@ -207,65 +205,7 @@ export function MonitoredVsUnmonitoredBarchart() {
     </div>
   );
 }
-export function MitigatedVsUnmitigatedBarchart() {
-  const [data, setData] = useState();
 
-  useEffect(() => {
-    axios
-      .get(MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
-
-  return (
-    <div className="p-3 card">
-      <BarChart width={760} height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <YAxis />
-        <XAxis dataKey="name" />
-        <Bar dataKey="Mitigated" fill="#cc23b3" />
-        <Bar dataKey="UnMitigated" fill="#2394cc" />
-        <Tooltip />
-      </BarChart>
-    </div>
-  );
-}
-export function ReviewedVsUnreviewedBarchart() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
-  return (
-    <div className="p-3 card">
-      <BarChart width={760} height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <YAxis />
-        <XAxis dataKey="name" />
-        <Bar dataKey="Reviewed" fill="#cc23b3" />
-        <Bar dataKey="UnReviewed" fill="#2394cc" />
-        <Tooltip />
-      </BarChart>
-    </div>
-  );
-}
 
 export function HighLowRiskBarchart() {
   return (
