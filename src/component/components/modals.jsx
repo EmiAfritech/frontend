@@ -1,9 +1,8 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FaEye } from "react-icons/fa";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { DEPARTMENTDROPDOWN_URL, OWNERSDROPDOWN_URL } from "../../api/routes";
+import { useState} from "react";
+import TextField from '@mui/material/TextField';
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 
