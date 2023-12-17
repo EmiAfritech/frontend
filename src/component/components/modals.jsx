@@ -14,6 +14,7 @@ export function UserData(params) {
   const [username, setUserName] = useState(params.row.userName);
   const [id, setUserID] = useState(params.row.id);
   const [firstName, setFirstName] = useState(params.row.firstName);
+  const [password, setUserPassword] = useState(params.row.password);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
   const [dob, setDob] = useState(params.row.dob);
@@ -177,10 +178,10 @@ export function UserData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Created At"
-                    value={createdAt}
+                    label="Password"
+                    value={password}
                     autoComplete="off"
-                    onChange={(e) => setCreatedAt(e.target.value)}
+                    onChange={(e) => setUserPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -192,6 +193,15 @@ export function UserData(params) {
                     value={updatedAt}
                     autoComplete="off"
                     onChange={(e) => setUpdatedAt(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Created At"
+                    value={createdAt}
+                    autoComplete="off"
+                    onChange={(e) => setCreatedAt(e.target.value)}
                     required
                   />
                 </div>
