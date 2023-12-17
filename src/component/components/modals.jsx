@@ -22,6 +22,7 @@ export function UserData(params) {
   const [role, setRole] = useState(params.row.role);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
+  const [departmentName, setDepartmentName] = useState(params.row.departmentName);
 
   const style = {
     position: "absolute",
@@ -202,6 +203,15 @@ export function UserData(params) {
                     value={createdAt}
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Department Name"
+                    value={departmentName}
+                    autoComplete="off"
+                    onChange={(e) => setDepartmentName(e.target.value)}
                     required
                   />
                 </div>
