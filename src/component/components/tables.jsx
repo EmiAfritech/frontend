@@ -170,16 +170,20 @@ export function ClosedRiskTab() {
     <div className="flex flex-col">
       <div className="flex flex-row flex-row-reverse">
         <div className="grid grid-cols-2 gap-2">
-          <Button variant="outlined">
-            <Link to="/risk-review" className="text-blue-500">
-              VIEW ALL RISK REVIEWS
-            </Link>
-          </Button>
-          <Button variant="outlined">
-            <Link to="/risk-identification" className="text-blue-500 ">
-              VIEW ALL OPENED RISKS
-            </Link>
-          </Button>
+          <div>
+            <Button variant="outlined">
+              <Link to="/risk-review" className="text-blue-500">
+                VIEW ALL RISK REVIEWS
+              </Link>
+            </Button>
+          </div>
+          <div>
+            <Button variant="outlined">
+              <Link to="/risk-identification" className="text-blue-500 ">
+                VIEW ALL OPENED RISKS
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
       <div

@@ -158,3 +158,12 @@ export const HEATMAP_URL = "/getHeatMapData";
 
 
 /*************************************************Delete and Edit************************************************/
+
+// edit risk url 
+export const EDITRISKURL = "/department/risk/edit"
+
+//delete risk url
+export const DELETERISK  = "/departments/deleteRisk"
+
+
+
