@@ -1,4 +1,4 @@
-/*************************************************Organization******************************************************/
+/*************************************************General******************************************************/
 
 //login url
 export const LOGIN_URL = "/login";
@@ -9,7 +9,7 @@ export const LOGOUT_URL = "/logout";
 //checkSessions
 export const Sessions_URL = "/checkSessionStatus";
 
-/*************************************************Organization tables******************************************************/
+/*************************************************Tables******************************************************/
 
 //users list url
 export const USERS_URL = "/users";
@@ -19,12 +19,16 @@ export const DEPARTMENT_URL = "/departments";
 
 //risk url
 export const VIEWALLRISKS_URL = "/risks";
+
 //risk url based on department selected
 export const VIEWALLRISKSBASEDONDEPARTMENT_URL = "/getRisks";
+
 //open-vs-closed based on department selected
 export const OPENVSCLOSEBASEDONDEPARTMENT_URL = "/getOpenedVsClosedByDepartmentGraphData";
+
 //open-vs-closed based on department selected chart
 export const OPENVSCLOSEBASEDONDEPARTMENTCHART_URL = "/risks/getOpenedVsClosedByDepartment";
+
 //closed risk url
 export const VIEWCLOSEDRISKS_URL = "/risks/getAllClosedRisks";
 
@@ -39,14 +43,17 @@ export const RISKAPPETITEREPORTGREATER_URL = "/getRiskAppetiteGreater";
 
 // risk appetite report table Lesser
 export const RISKAPPETITEREPORTLESSER_URL = "/getRiskAppetiteLesser";
+
 //risk needing review report table
 export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
-//risk status report table
+
 //mitigations by Date
 export const MITIGATIONBYDATE_URL = "/getMitigtionsByDate";
+
+//risk status report table
 export const RISKSTATUSREPORT_URL = "/getAllOpenedRisksStatus";
 
-/*************************************************Organization forms******************************************************/
+/*************************************************Forms******************************************************/
 
 //create users url
 export const USERSCREATEFORM_URL = "/users/create";
@@ -64,14 +71,12 @@ export const MITIGATERISKFORM_URL = "/departments/risk/riskmitigation/create";
 export const REVIEWRISKFORM_URL = "/departments/risk/riskreview/create";
 
 // monitoring form
-export const MONITORINGRISKFORM_URL =
-  "/departments/risk/riskmonitorings/create";
+export const MONITORINGRISKFORM_URL ="/departments/risk/riskmonitorings/create";
 
-/*************************************************Organization chat ******************************************************/
+/************************************************ Chat ******************************************************/
 
 //get monitored vs unmonitored risks in the organization data
-export const MONITOREDVSUNMONITOREDRISKSCHART_URL =
-  "/risks/monitored-vs-unmonitored";
+export const MONITOREDVSUNMONITOREDRISKSCHART_URL = "/risks/monitored-vs-unmonitored";
 
 //unreviewedVsreviewed risk chat url
 export const REVIEWEDVSUNREVIEWEDCHART_URL = "/risks/reviewed-vs-unreviewed";
@@ -102,30 +107,31 @@ export const RISKMITIGATION_URL = "/risks/mitigations";
 
 // risk level pyramid chart
 export const RISKLEVELPYRAMIDCHART_URL = "/getRiskPyramidChartData";
+
 //risk response report chat
 export const RISKRESPONSEREPORT_URL = "/getRiskResponseChartData";
+
 //risk level report chat
 export const RISKLEVELREPORT_URL = "/risks/getRiskLevelChartData";
 
 //risk location report chat
 export const RISKLOCATIONREPORT_URL = "/getLocationChartData";
+
 // risk category report chat
 export const RISKCATEGORYREPORT_URL = "/risks/getRiskCategoryChartData";
 
 //risk owner report chat
 export const RISKOWNERREPORT_URL = "/getRiskOwnerChartData";
 
-/*************************************************Department ******************************************************/
+/************************************************* Specific to Department ******************************************************/
 
 //risk monitoring url
-export const MONITORINGRISK_URL =
-  "/departments/{departmentId}/risks/{riskId}/riskmonitorings";
+export const MONITORINGRISK_URL = "/departments/{departmentId}/risks/{riskId}/riskmonitorings";
 
 //risk mitigation url
-export const MITIGATIONRISK_URL =
-  "/departments/{departmentId}/risks/{riskId}/riskmitigation";
+export const MITIGATIONRISK_URL ="/departments/{departmentId}/risks/{riskId}/riskmitigation";
 
-/*****dropdowns  */
+/**********************************************dropdowns*********************************************************/
 //riskIDS dropdown
 export const RISKIDS_URL = "/risks/getAllOpenedRiskIDs";
 
@@ -146,11 +152,9 @@ export const OWNERSDROPDOWN_URL = "/getTheNamesOfUserAllUsers";
 
 //manager dropdown
 export const MANAGERSDROPDOWN_URL = "/getTheNamesOfAllManagers";
-/******** */
-//heap map
+
+//heat map dropdown
 export const HEATMAP_URL = "/getHeatMapData";
 
-//get bar graph data
-export const MONITOREDVSUNMONITOREDBARCHARTDATA_URL = "/getMonitoredVsUnMonitoredGraphData";
-export const MITIGATEDVSUNMITIGATEDBARCHARTDATA_URL = "/getMitigatedVsUnMitigatedGraphData";
-export const REVIEWEDVSUNREVIEWEDBARCHARTDATA_URL = "/getReviewedVsUnReviewedGraphData";
+
+/*************************************************Delete and Edit************************************************/

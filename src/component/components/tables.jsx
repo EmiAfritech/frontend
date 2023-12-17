@@ -168,21 +168,17 @@ export function ClosedRiskTab() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row flex-row-reverse m-4">
-        <div>
+      <div className="grid col-end-2 gap-2">
           <Button variant="outlined">
             <Link to="/risk-review" className="text-blue-500">
               VIEW ALL RISK REVIEWS
             </Link>
           </Button>
-        </div>
-        <div>
           <Button variant="outlined">
             <Link to="/risk-identification" className="text-blue-500 ">
               VIEW ALL OPENED RISKS
             </Link>
           </Button>
-        </div>
       </div>
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
