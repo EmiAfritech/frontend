@@ -46,6 +46,7 @@ import {
   MITIGATIONBYDATE_URL,
 } from "../../api/routes";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -171,18 +172,20 @@ export function ClosedRiskTab() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex-row-reverse">
-        <div>
-          <Link to="/risk-identification" className="text-blue-500 ">
-            VIEW ALL OPENED RISKS
-          </Link>
-        </div>
-      </div>
       <div className="flex flex-row flex-row-reverse ">
         <div>
+          <Button variant="outlined" >
           <Link to="/risk-review" className="text-blue-500">
             VIEW ALL RISK REVIEWS
           </Link>
+          </Button>
+        </div>
+        <div>
+        <Button variant="outlined" >
+          <Link to="/risk-identification" className="text-blue-500 ">
+            VIEW ALL OPENED RISKS
+          </Link>
+          </Button>
         </div>
       </div>
       <div
