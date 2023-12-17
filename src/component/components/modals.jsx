@@ -72,7 +72,7 @@ export function UserData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      await axios.delete(
         DELETEUSER_URL,
         JSON.stringify({
           id
