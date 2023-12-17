@@ -14,9 +14,7 @@ export function UserData(params) {
   const [firstName, setFirstName] = useState(params.row.firstName);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
-  const [dob, setDob] = useState(
-    params.row.dob
-  );
+  const [dob, setDob] = useState(params.row.dob);
   const [phoneNumber, setPhoneNumber] = useState(params.row.phoneNumber);
   const [role, setRole] = useState(params.row.role);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
@@ -27,7 +25,6 @@ export function UserData(params) {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    bgcolor: "#f5f5f5",
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
@@ -55,14 +52,20 @@ export function UserData(params) {
                     type="text"
                     className="peer h-full w-full rounded-[7px]  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     id="riskResponseActivitiyStatus"
-                    value={userName}
-                    autoComplete="off"
-                    onChange={(e) => setUserName(e.target.value)}
+                    
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Username
                   </label>
+                  <TextField
+                    helperText="Please enter your name"
+                    id="demo-helper-text-misaligned"
+                    label="Name"
+                    value={userName}
+                    autoComplete="off"
+                    onChange={(e) => setUserName(e.target.value)}
+                  />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <input
@@ -198,36 +201,36 @@ export function UserData(params) {
     </>
   );
 }
- function getProbabiltyLevelNumber(probabilitys){
-    if (probabilitys === "Almost Impossible") {
-      return 1;
-    } else if (probabilitys === "Unlikely" ) {
-      return 2;
-    } else if (probabilitys === "Likely" ) {
-      return 3;
-    } else if (probabilitys === "Very Likely" ) {
-      return 4;
-    }else if (probabilitys === "Almost Certain" ) {
-      return 5;
-    } else {
-      return 0; 
-    }
+function getProbabiltyLevelNumber(probabilitys) {
+  if (probabilitys === "Almost Impossible") {
+    return 1;
+  } else if (probabilitys === "Unlikely") {
+    return 2;
+  } else if (probabilitys === "Likely") {
+    return 3;
+  } else if (probabilitys === "Very Likely") {
+    return 4;
+  } else if (probabilitys === "Almost Certain") {
+    return 5;
+  } else {
+    return 0;
+  }
 }
 
-function getImpactLevelNumber(impact){
-    if (impact === "Insignificant") {
-      return 1;
-    } else if (impact === "Minor" ) {
-      return 2;
-    } else if (impact === "Moderate" ) {
-      return 3;
-    } else if (impact === "Major" ) {
-      return 4;
-    }else if (impact === "Catastrophic" ) {
-      return 5;
-    } else {
-      return 0; 
-    }
+function getImpactLevelNumber(impact) {
+  if (impact === "Insignificant") {
+    return 1;
+  } else if (impact === "Minor") {
+    return 2;
+  } else if (impact === "Moderate") {
+    return 3;
+  } else if (impact === "Major") {
+    return 4;
+  } else if (impact === "Catastrophic") {
+    return 5;
+  } else {
+    return 0;
+  }
 }
 export function RiskData(params) {
   const [open, setOpen] = useState(false);
@@ -243,7 +246,7 @@ export function RiskData(params) {
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
-  
+
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
     params.row.riskProbabilityLevel
   );
@@ -511,8 +514,8 @@ export function ReviewRiskData(params) {
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [riskReview    , setRiskReview  ] = useState(params.row.riskReview    );
-  const [riskReviewer    , setRiskReviewer  ] = useState(params.row.riskReviewer    );
+  const [riskReview, setRiskReview] = useState(params.row.riskReview);
+  const [riskReviewer, setRiskReviewer] = useState(params.row.riskReviewer);
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(
     params.row.NextRiskReviewDate
   );
@@ -700,7 +703,6 @@ export function MonitoredRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    
                     value={riskID}
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
@@ -714,7 +716,6 @@ export function MonitoredRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    
                     value={riskName}
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
@@ -728,10 +729,11 @@ export function MonitoredRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    
                     value={riskResponseImplementation}
                     autoComplete="off"
-                    onChange={(e) => setRiskResponseImplementation(e.target.value)}
+                    onChange={(e) =>
+                      setRiskResponseImplementation(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -742,7 +744,6 @@ export function MonitoredRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                   
                     value={riskCreatedAt}
                     autoComplete="off"
                     onChange={(e) => setRiskCreatedAt(e.target.value)}
@@ -775,7 +776,9 @@ export function MonitoredRiskData(params) {
                     id="riskResponseActivitiyStatus"
                     value={riskResponseActivitiyStatus}
                     autoComplete="off"
-                    onChange={(e) => setRiskResponseActivitiyStatus(e.target.value)}
+                    onChange={(e) =>
+                      setRiskResponseActivitiyStatus(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -786,7 +789,6 @@ export function MonitoredRiskData(params) {
                   <textarea
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  
                     value={recommendedChanges}
                     autoComplete="off"
                     onChange={(e) => setRecommendedChanges(e.target.value)}
@@ -834,19 +836,28 @@ export function MitigatedRiskData(params) {
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [mitigationOwner, setMitigationOwner] = useState(params.row.mitigationOwner);
-  const [mitigationEffort    , setMitigationEffort ] = useState(params.row.mitigationEffort    );
-  const [mitigationCost    , setMitigationCost  ] = useState(
+  const [mitigationOwner, setMitigationOwner] = useState(
+    params.row.mitigationOwner
+  );
+  const [mitigationEffort, setMitigationEffort] = useState(
+    params.row.mitigationEffort
+  );
+  const [mitigationCost, setMitigationCost] = useState(
     params.row.mitigationCost
   );
-  const [mitigationControl , setMitigationControl] = useState(params.row.mitigationControl    );
-  
-  const [mitigatedRiskScore    , setMitigatedRiskScore  ] = useState(params.row.mitigatedRiskScore    );
-  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(params.row.mitigatedRiskProbabilityLevel);
-  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(params.row.mitigatedRiskImpactLevel);
-  const [createdAt, setCreatedAt] = useState(
-    params.row.createdAt
+  const [mitigationControl, setMitigationControl] = useState(
+    params.row.mitigationControl
   );
+
+  const [mitigatedRiskScore, setMitigatedRiskScore] = useState(
+    params.row.mitigatedRiskScore
+  );
+  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] =
+    useState(params.row.mitigatedRiskProbabilityLevel);
+  const [mitigatedRiskImpactLevel, setMitigatedRiskImpactLevel] = useState(
+    params.row.mitigatedRiskImpactLevel
+  );
+  const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
   const style = {
     position: "absolute",
@@ -938,7 +949,6 @@ export function MitigatedRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  
                     value={mitigationCost}
                     autoComplete="off"
                     onChange={(e) => setMitigationCost(e.target.value)}
@@ -980,10 +990,11 @@ export function MitigatedRiskData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                 
                     value={mitigatedRiskProbabilityLevel}
                     autoComplete="off"
-                    onChange={(e) => setMitigatedRiskProbabilityLevel(e.target.value)}
+                    onChange={(e) =>
+                      setMitigatedRiskProbabilityLevel(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -999,7 +1010,9 @@ export function MitigatedRiskData(params) {
                     id="riskResponseActivitiyStatus"
                     value={mitigatedRiskImpactLevel}
                     autoComplete="off"
-                    onChange={(e) => setMitigatedRiskImpactLevel(e.target.value)}
+                    onChange={(e) =>
+                      setMitigatedRiskImpactLevel(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -1043,18 +1056,27 @@ export function MitigatedRiskReportData(params) {
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [mitigationOwner, setMitigationOwner] = useState(params.row.mitigationOwner);
-  const [mitigationEffort    , setMitigationEffort ] = useState(params.row.mitigationEffort    );
-  const [mitigationCost    , setMitigationCost  ] = useState(
+  const [mitigationOwner, setMitigationOwner] = useState(
+    params.row.mitigationOwner
+  );
+  const [mitigationEffort, setMitigationEffort] = useState(
+    params.row.mitigationEffort
+  );
+  const [mitigationCost, setMitigationCost] = useState(
     params.row.mitigationCost
   );
-  const [mitigationControl , setMitigationControl] = useState(params.row.mitigationControl    );
-  const [mitigatedRiskScore    , setMitigatedRiskScore  ] = useState(params.row.mitigatedRiskScore    );
-  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] = useState(params.row.mitigatedRiskProbabilityLevel);
-  const [mitigatedRiskImpactLevel    , setMitigatedRiskImpactLevel  ] = useState(params.row.mitigatedRiskImpactLevel    );
-  const [createdAt, setCreatedAt] = useState(
-    params.row.createdAt
+  const [mitigationControl, setMitigationControl] = useState(
+    params.row.mitigationControl
   );
+  const [mitigatedRiskScore, setMitigatedRiskScore] = useState(
+    params.row.mitigatedRiskScore
+  );
+  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] =
+    useState(params.row.mitigatedRiskProbabilityLevel);
+  const [mitigatedRiskImpactLevel, setMitigatedRiskImpactLevel] = useState(
+    params.row.mitigatedRiskImpactLevel
+  );
+  const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
   const style = {
     position: "absolute",
@@ -1146,7 +1168,6 @@ export function MitigatedRiskReportData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  
                     value={mitigationCost}
                     autoComplete="off"
                     onChange={(e) => setMitigationCost(e.target.value)}
@@ -1188,10 +1209,11 @@ export function MitigatedRiskReportData(params) {
                   <input
                     type="text"
                     className="peer h-full w-full rounded-[7px]  border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                 
                     value={mitigatedRiskProbabilityLevel}
                     autoComplete="off"
-                    onChange={(e) => setMitigatedRiskProbabilityLevel(e.target.value)}
+                    onChange={(e) =>
+                      setMitigatedRiskProbabilityLevel(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -1207,7 +1229,9 @@ export function MitigatedRiskReportData(params) {
                     id="riskResponseActivitiyStatus"
                     value={mitigatedRiskImpactLevel}
                     autoComplete="off"
-                    onChange={(e) => setMitigatedRiskImpactLevel(e.target.value)}
+                    onChange={(e) =>
+                      setMitigatedRiskImpactLevel(e.target.value)
+                    }
                     required
                   />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -1252,9 +1276,7 @@ export function DepartmentData(params) {
   const close = () => setOpen(false);
   const [departmentID, setDepartmentID] = useState(params.row.deptID);
   const [departmentName, setDepartmentName] = useState(params.row.name);
-  const [manager, setManager] = useState(
-    params.row.manager
-  );
+  const [manager, setManager] = useState(params.row.manager);
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
