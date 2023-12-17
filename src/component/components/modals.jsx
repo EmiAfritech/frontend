@@ -276,47 +276,6 @@ export function RiskData(params) {
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Risk Description"
-                    multiline
-                    value={riskDescription}
-                    autoComplete="off"
-                    onChange={(e) => setRiskDescription(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Category"
-                    value={riskCategory}
-                    autoComplete="off"
-                    onChange={(e) => setRiskCategory(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Objective"
-                    multiline
-                    value={riskObjective}
-                    autoComplete="off"
-                    onChange={(e) => setRiskObjective(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Response Activity"
-                    multiline
-                    value={riskResponseActivity}
-                    autoComplete="off"
-                    onChange={(e) => setRiskResponseActivity(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
                     label="Risk Owner"
                     value={riskOwner}
                     autoComplete="off"
@@ -352,6 +311,49 @@ export function RiskData(params) {
                   />
                 </div>
               </div>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  
+                  <TextField
+                    label="Risk Category"
+                    value={riskCategory}
+                    autoComplete="off"
+                    onChange={(e) => setRiskCategory(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                <TextField
+                    label="Risk Objective"
+                    multiline
+                    value={riskObjective}
+                    autoComplete="off"
+                    onChange={(e) => setRiskObjective(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                <TextField
+                    label="Risk Description"
+                    multiline
+                    value={riskDescription}
+                    autoComplete="off"
+                    onChange={(e) => setRiskDescription(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Response Activity"
+                    multiline
+                    value={riskResponseActivity}
+                    autoComplete="off"
+                    onChange={(e) => setRiskResponseActivity(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              
               <div className="grid grid-cols-4 gap-3">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
