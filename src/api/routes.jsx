@@ -123,6 +123,10 @@ export const RISKCATEGORYREPORT_URL = "/risks/getRiskCategoryChartData";
 //risk owner report chat
 export const RISKOWNERREPORT_URL = "/getRiskOwnerChartData";
 
+//monitored vs unmonitored bar  chat
+export const MONITOREDVSUNMONITOREDBARCHARTDATA_URL = "/getMonitoredVsUnMonitoredGraphData";
+
+
 /************************************************* Specific to Department ******************************************************/
 
 //risk monitoring url
