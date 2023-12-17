@@ -169,7 +169,7 @@ export function ClosedRiskTab() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row flex-row-reverse">
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-4">
           <div>
             <Button variant="outlined">
               <Link to="/risk-review" className="text-blue-500">
