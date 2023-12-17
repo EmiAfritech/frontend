@@ -277,6 +277,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Description"
+                    multiline
                     value={riskDescription}
                     autoComplete="off"
                     onChange={(e) => setRiskDescription(e.target.value)}
@@ -295,6 +296,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Objective"
+                    multiline
                     value={riskObjective}
                     autoComplete="off"
                     onChange={(e) => setRiskObjective(e.target.value)}
@@ -304,6 +306,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Response Activity"
+                    multiline
                     value={riskResponseActivity}
                     autoComplete="off"
                     onChange={(e) => setRiskResponseActivity(e.target.value)}
@@ -566,12 +569,12 @@ export function MonitoredRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Response Implementation"
-                    value={riskResponseImplementation}
+                <TextField
+                    label="Response Activity Status"
+                    value={riskResponseActivitiyStatus}
                     autoComplete="off"
                     onChange={(e) =>
-                      setRiskResponseImplementation(e.target.value)
+                      setRiskResponseActivitiyStatus(e.target.value)
                     }
                     required
                   />
@@ -598,12 +601,14 @@ export function MonitoredRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                 
                   <TextField
-                    label="Response Activity Status"
-                    value={riskResponseActivitiyStatus}
+                    label="Response Implementation"
+                    multiline
+                    value={riskResponseImplementation}
                     autoComplete="off"
                     onChange={(e) =>
-                      setRiskResponseActivitiyStatus(e.target.value)
+                      setRiskResponseImplementation(e.target.value)
                     }
                     required
                   />
