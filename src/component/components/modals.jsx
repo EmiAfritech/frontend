@@ -41,7 +41,7 @@ export function UserData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
+      await axios.put(
         EDITUSER_URL,
         JSON.stringify({
           firstName,
