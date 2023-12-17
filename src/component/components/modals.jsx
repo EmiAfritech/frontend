@@ -11,10 +11,9 @@ import { DELETEUSER_URL, EDITUSER_URL } from "../../api/routes";
 export function UserData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const [username, setUserName] = useState(params.row.userName);
+  const [userName, setUserName] = useState(params.row.userName);
   const [id, setUserID] = useState(params.row.id);
   const [firstName, setFirstName] = useState(params.row.firstName);
-  const [password, setUserPassword] = useState(params.row.password);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
   const [dob, setDob] = useState(params.row.dob);
@@ -48,8 +47,7 @@ export function UserData(params) {
           lastName,
           dob,
           phoneNumber,
-          username,
-          password,
+          userName,
           email,
           role,
           id,
@@ -104,7 +102,7 @@ export function UserData(params) {
         <Box sx={style}>
           <form className="w-[70rem]">
             <div className=" px-10 py-10">
-              <div className="grid grid-cols-5 gap-3 mb-6">
+              <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="User ID"
@@ -116,7 +114,7 @@ export function UserData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Username"
-                    value={username}
+                    value={userName}
                     autoComplete="off"
                     onChange={(e) => setUserName(e.target.value)}
                   />
@@ -136,15 +134,6 @@ export function UserData(params) {
                     value={lastName}
                     autoComplete="off"
                     onChange={(e) => setLastName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Email"
-                    value={email}
-                    autoComplete="off"
-                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -179,10 +168,10 @@ export function UserData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Password"
-                    value={password}
+                    label="Email"
+                    value={email}
                     autoComplete="off"
-                    onChange={(e) => setUserPassword(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
