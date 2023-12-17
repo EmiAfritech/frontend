@@ -1,15 +1,17 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { FaEye } from "react-icons/fa";
-import { useState} from "react";
-import TextField from '@mui/material/TextField';
+import { useState } from "react";
+import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
+import { DELETEUSER_URL, EDITUSER_URL } from "../../api/routes";
 
 export function UserData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const [userName, setUserName] = useState(params.row.userName);
+  const [username, setUserName] = useState(params.row.userName);
+  const [id, setUserID] = useState(params.row.id);
   const [firstName, setFirstName] = useState(params.row.firstName);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
@@ -33,6 +35,59 @@ export function UserData(params) {
     setOpen(!open);
   }
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        EDITUSER_URL,
+        JSON.stringify({
+          firstName,
+          lastName,
+          dob,
+          phoneNumber,
+          username,
+          password,
+          email,
+          role,
+          id,
+          departmentName,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        DELETEUSER_URL,
+        JSON.stringify({
+          id
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -46,11 +101,19 @@ export function UserData(params) {
         <Box sx={style}>
           <form className="w-[70rem]">
             <div className=" px-10 py-10">
-              <div className="grid grid-cols-4 gap-3 mb-6">
+              <div className="grid grid-cols-5 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="User ID"
+                    value={id}
+                    autoComplete="off"
+                    onChange={(e) => setUserID(e.target.value)}
+                  />
+                </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Username"
-                    value={userName}
+                    value={username}
                     autoComplete="off"
                     onChange={(e) => setUserName(e.target.value)}
                   />
@@ -134,11 +197,17 @@ export function UserData(params) {
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleDeleteSubmit}>
                 <FaTrashAlt className="icons" color="red" />
                 Delete
               </button>
@@ -313,7 +382,6 @@ export function RiskData(params) {
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  
                   <TextField
                     label="Risk Category"
                     value={riskCategory}
@@ -323,7 +391,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <TextField
+                  <TextField
                     label="Risk Objective"
                     multiline
                     value={riskObjective}
@@ -333,7 +401,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <TextField
+                  <TextField
                     label="Risk Description"
                     multiline
                     value={riskDescription}
@@ -353,7 +421,7 @@ export function RiskData(params) {
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-4 gap-3">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -567,7 +635,7 @@ export function MonitoredRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <TextField
+                  <TextField
                     label="Response Activity Status"
                     value={riskResponseActivitiyStatus}
                     autoComplete="off"
@@ -599,7 +667,6 @@ export function MonitoredRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                 
                   <TextField
                     label="Response Implementation"
                     multiline

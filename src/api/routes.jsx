@@ -175,10 +175,10 @@ export const EDITMITIGATIONURL = "departments/risk/riskmitigation/edit"
 export const EDITMONITORINGURL = "departments/risk/riskmonitorings/edit"
 
 //edit user url
-export const EDITUSERURL = "users/update"
+export const EDITUSER_URL = "users/update"
 
 //delete user url
-export const DELETEUSERURL = "users/delete"
+export const DELETEUSER_URL = "users/delete"
 
 //edit department url
 export const EDITDEPARTMENTURL = "departments/update"
