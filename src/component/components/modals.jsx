@@ -27,7 +27,7 @@ export function UserData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
-    bgcolor: "#fffff",
+    bgcolor: "#f5f5f5",
   };
   function handleOpen() {
     setOpen(!open);
