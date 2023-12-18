@@ -318,6 +318,11 @@ export function RiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      const Pl = getProbabiltyLevelNumber(riskProbabilityLevel);
+      constIl = getImpactLevelNumber(riskImpactLevel);
+      setRiskProbabilityLevel(Pl);
+      setImpactLevel(Il);
+
       console.log("id",id);
       await axios.put(
         EDITRISK_URL,
