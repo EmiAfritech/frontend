@@ -749,7 +749,6 @@ export function MonitoredRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("id",id,"riskID",riskID,"riskResponseActivitiyStatus",riskResponseActivitiyStatus,"riskResponseImplementation",riskResponseImplementation,"recommendedChanges",recommendedChanges,"challenges",challenges,"comments",comments);
       await axios.put(
         EDITMONITORING_URL,
         JSON.stringify({
@@ -759,7 +758,7 @@ export function MonitoredRiskData(params) {
           riskResponseImplementation,
           recommendedChanges,
           challenges,
-          comments,
+          comments
         }),
         {
           headers: {
@@ -769,7 +768,7 @@ export function MonitoredRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      alert("Risk Monitoring Saved Successfully");
     } catch (error) {
       alert(error);
     }
@@ -935,7 +934,7 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber( mitigatedRiskProbabilityLevell);
+      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber(mitigatedRiskProbabilityLevell);
       const mitigatedRiskImpactLevel = getImpactLevelNumber(mitigatedRiskImpactLevell);
       await axios.put(
         EDITMITIGATION_URL,
@@ -957,7 +956,7 @@ export function MitigatedRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      alert("risk Mitigation Saved Successfully");
     } catch (error) {
       alert(error);
     }
