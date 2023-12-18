@@ -112,7 +112,7 @@ export function RiskReview() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        console.log(response.data.Data);
+        
         setTableData(response.data.Data);
         
       } catch (error) {

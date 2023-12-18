@@ -578,7 +578,7 @@ export function ReviewRiskData(params) {
     e.preventDefault();
     try {
       
-      console.log("is",id);
+      
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
