@@ -586,12 +586,13 @@ export function ReviewRiskData(params) {
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
-          id,
+          
           riskID,
           riskReview,
           NextRiskReviewDate,
           riskReviewer,
           riskReviewComments,
+          id,
           
         }),
         {
