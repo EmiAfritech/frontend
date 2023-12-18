@@ -314,7 +314,7 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  console.log("id",id);
+  
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -322,7 +322,7 @@ export function RiskData(params) {
       const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
       
 
-      console.log("id",id);
+      
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -346,7 +346,7 @@ export function RiskData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      alert("Risk Saved Successfully");
     } catch (error) {
       alert(error);
     }
@@ -584,7 +584,7 @@ export function ReviewRiskData(params) {
     e.preventDefault();
     try {
       
-      console.log("id",id);
+      
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
@@ -605,7 +605,7 @@ export function ReviewRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      alert("Risk Review Saved Successfully");
     } catch (error) {
       alert(error);
     }
@@ -749,7 +749,7 @@ export function MonitoredRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("id",id);
+      
       await axios.put(
         EDITMONITORING_URL,
         JSON.stringify({
@@ -910,9 +910,9 @@ export function MitigatedRiskData(params) {
   const [mitigatedRiskScore, setMitigatedRiskScore] = useState(
     params.row.mitigatedRiskScore
   );
-  const [mitigatedRiskProbabilityLevel, setMitigatedRiskProbabilityLevel] =
+  const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
     useState(params.row.mitigatedRiskProbabilityLevel);
-  const [mitigatedRiskImpactLevel, setMitigatedRiskImpactLevel] = useState(
+  const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
@@ -935,7 +935,8 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("id",id);
+      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber( mitigatedRiskProbabilityLevell);
+      const mitigatedRiskImpactLevel = getImpactLevelNumber(mitigatedRiskImpactLevell);
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
@@ -1045,7 +1046,7 @@ export function MitigatedRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigation Probability Level"
-                    value={mitigatedRiskProbabilityLevel}
+                    value={mitigatedRiskProbabilityLevell}
                     autoComplete="off"
                     onChange={(e) =>
                       setMitigatedRiskProbabilityLevel(e.target.value)
@@ -1058,7 +1059,7 @@ export function MitigatedRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigated Risk Impact"
-                    value={mitigatedRiskImpactLevel}
+                    value={mitigatedRiskImpactLevell}
                     autoComplete="off"
                     onChange={(e) =>
                       setMitigatedRiskImpactLevel(e.target.value)
