@@ -319,9 +319,9 @@ export function RiskData(params) {
     e.preventDefault();
     try {
       const Pl = getProbabiltyLevelNumber(riskProbabilityLevel);
-      constIl = getImpactLevelNumber(riskImpactLevel);
+      const Il = getImpactLevelNumber(riskImpactLevel);
       setRiskProbabilityLevel(Pl);
-      setImpactLevel(Il);
+      setRiskImpactLevel(Il);
 
       console.log("id",id);
       await axios.put(
