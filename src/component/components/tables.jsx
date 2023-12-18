@@ -114,7 +114,7 @@ export function RiskReview() {
         });
 
         setTableData(response.data.Data);
-        
+        console.log(response.data.Data);
       } catch (error) {
         console.error(error);
       }
