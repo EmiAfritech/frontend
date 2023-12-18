@@ -546,6 +546,7 @@ export function RiskData(params) {
 export function ReviewRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const id= useState(params.row.id);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [riskReview, setRiskReview] = useState(params.row.riskReview);
@@ -578,6 +579,8 @@ export function ReviewRiskData(params) {
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
+          id,
+          riskID,
           riskReview,
           NextRiskReviewDate,
           riskReviewer,
@@ -615,6 +618,7 @@ export function ReviewRiskData(params) {
                   <TextField
                     label="Risk ID"
                     value={riskID}
+                    disabled
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     required
@@ -624,6 +628,7 @@ export function ReviewRiskData(params) {
                   <TextField
                     label="Risk Name"
                     value={riskName}
+                    disabled
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     required
@@ -653,7 +658,6 @@ export function ReviewRiskData(params) {
                   <TextField
                     label="Next Review Date"
                     value={NextRiskReviewDate}
-                    disabled
                     autoComplete="off"
                     onChange={(e) => setNextRiskReviewDate(e.target.value)}
                     required
