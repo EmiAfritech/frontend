@@ -19,7 +19,7 @@ import {
 } from "../../api/routes";
 
 export function UserData(params) {
-  console.log(params)
+  
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [userName, setUserName] = useState(params.row.userName);
@@ -53,6 +53,15 @@ export function UserData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(firstName,
+          lastName,
+          dob,
+          phoneNumber,
+          userName,
+          email,
+          role,
+          id,
+          departmentName,)
       await axios.put(
         EDITUSER_URL,
         JSON.stringify({
