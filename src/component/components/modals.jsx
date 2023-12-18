@@ -6,7 +6,11 @@ import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
-import { DELETEUSER_URL, EDITUSER_URL } from "../../api/routes";
+import {
+  DELETEUSER_URL,
+  EDITDEPARTMENT_URL,
+  EDITUSER_URL,
+} from "../../api/routes";
 
 export function UserData(params) {
   const [open, setOpen] = useState(false);
@@ -21,7 +25,9 @@ export function UserData(params) {
   const [role, setRole] = useState(params.row.role);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
-  const [departmentName, setDepartmentName] = useState(params.row.departmentName);
+  const [departmentName, setDepartmentName] = useState(
+    params.row.departmentName
+  );
 
   const style = {
     position: "absolute",
@@ -73,7 +79,7 @@ export function UserData(params) {
       await axios.delete(
         DELETEUSER_URL,
         JSON.stringify({
-          id
+          id,
         }),
         {
           headers: {
@@ -183,7 +189,7 @@ export function UserData(params) {
                     value={updatedAt}
                     autoComplete="off"
                     onChange={(e) => setUpdatedAt(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -192,7 +198,7 @@ export function UserData(params) {
                     value={createdAt}
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1068,8 +1074,8 @@ export function MitigatedRiskReportData(params) {
 export function DepartmentData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const [departmentID, setDepartmentID] = useState(params.row.deptID);
-  const [departmentName, setDepartmentName] = useState(params.row.name);
+  const [deptID, setDepartmentID] = useState(params.row.deptID);
+  const [name, setDepartmentName] = useState(params.row.name);
   const [manager, setManager] = useState(params.row.manager);
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
@@ -1089,6 +1095,53 @@ export function DepartmentData(params) {
     setOpen(!open);
   }
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        EDITDEPARTMENT_URL,
+        JSON.stringify({
+          name,
+          deptID,
+          manager,
+          location,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(
+        DELETEUSER_URL,
+        JSON.stringify({
+          id,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -1106,7 +1159,7 @@ export function DepartmentData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Department ID"
-                    value={departmentID}
+                    value={deptID}
                     autoComplete="off"
                     onChange={(e) => setDepartmentID(e.target.value)}
                     required
@@ -1115,7 +1168,7 @@ export function DepartmentData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Department Name"
-                    value={departmentName}
+                    value={name}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
@@ -1148,6 +1201,7 @@ export function DepartmentData(params) {
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
                     required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1157,16 +1211,23 @@ export function DepartmentData(params) {
                     autoComplete="off"
                     onChange={(e) => setUpdatedAt(e.target.value)}
                     required
+                    disabled
                   />
                 </div>
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleDeleteSubmit}>
                 <FaTrashAlt className="icons" color="red" />
                 Delete
               </button>

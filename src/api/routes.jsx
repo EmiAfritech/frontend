@@ -185,7 +185,7 @@ export const EDITUSER_URL = "users/update"
 export const DELETEUSER_URL = "users/delete"
 
 //edit department url
-export const EDITDEPARTMENTURL = "departments/update"
+export const EDITDEPARTMENT_URL = "departments/update"
 
 //delete department url
 export const DELETEDEPARTMENTURL = "departments/delete"
