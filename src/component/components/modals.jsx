@@ -546,7 +546,8 @@ export function RiskData(params) {
 export function ReviewRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const id= useState(params.row.id);
+  const id = useState(params.row.id);
+  
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [riskReview, setRiskReview] = useState(params.row.riskReview);
@@ -585,6 +586,7 @@ export function ReviewRiskData(params) {
           NextRiskReviewDate,
           riskReviewer,
           riskReviewComments,
+          
         }),
         {
           headers: {
