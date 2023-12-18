@@ -546,7 +546,7 @@ export function RiskData(params) {
 export function ReviewRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const id = useState(params.row.id);
+  const id = params.row.id;
   
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
@@ -577,7 +577,7 @@ export function ReviewRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(params);
+      
       console.log("is",id);
       await axios.put(
         EDITREVIEW_URL,
