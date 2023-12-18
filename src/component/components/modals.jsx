@@ -274,6 +274,7 @@ function getImpactLevelNumber(impact) {
 export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const id = params.row.id;
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
@@ -297,7 +298,7 @@ export function RiskData(params) {
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  const id = params.row.id;
+  
 
   const style = {
     position: "absolute",
@@ -313,10 +314,11 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-
+  console.log("id",id);
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("id",id);
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -578,7 +580,7 @@ export function ReviewRiskData(params) {
     e.preventDefault();
     try {
       
-      
+      console.log("id",id);
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
@@ -709,6 +711,7 @@ export function ReviewRiskData(params) {
 export function MonitoredRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const id = params.row.id;
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [recommendedChanges, setRecommendedChanges] = useState(
@@ -722,7 +725,7 @@ export function MonitoredRiskData(params) {
   const [challenges, setChallenges] = useState(params.row.challenges);
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
-  const id = params.row.id;
+  
 
   const style = {
     position: "absolute",
@@ -742,6 +745,7 @@ export function MonitoredRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("id",id);
       await axios.put(
         EDITMONITORING_URL,
         JSON.stringify({
@@ -883,6 +887,7 @@ export function MonitoredRiskData(params) {
 export function MitigatedRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const id = params.row.id;
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [mitigationOwner, setMitigationOwner] = useState(
@@ -907,7 +912,7 @@ export function MitigatedRiskData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
-  const id = params.row.id;
+  
 
   const style = {
     position: "absolute",
@@ -926,6 +931,7 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("id",id);
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
@@ -1085,6 +1091,7 @@ export function MitigatedRiskData(params) {
 export function MitigatedRiskReportData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+   const id = params.row.id;
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [mitigationOwner, setMitigationOwner] = useState(
@@ -1108,7 +1115,7 @@ export function MitigatedRiskReportData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
-  const id = params.row.id;
+  
 
   const style = {
     position: "absolute",
