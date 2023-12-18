@@ -297,7 +297,7 @@ export function RiskData(params) {
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  const [id] = useState(params.row.id);
+  const id = params.row.id;
 
   const style = {
     position: "absolute",
@@ -722,6 +722,7 @@ export function MonitoredRiskData(params) {
   const [challenges, setChallenges] = useState(params.row.challenges);
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
+  const id = params.row.id;
 
   const style = {
     position: "absolute",
@@ -744,6 +745,8 @@ export function MonitoredRiskData(params) {
       await axios.put(
         EDITMONITORING_URL,
         JSON.stringify({
+          id,
+          riskID,
           riskResponseActivitiyStatus,
           riskResponseImplementation,
           recommendedChanges,
@@ -904,6 +907,7 @@ export function MitigatedRiskData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
+  const id = params.row.id;
 
   const style = {
     position: "absolute",
@@ -925,6 +929,8 @@ export function MitigatedRiskData(params) {
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
+          id,
+          riskID,
           mitigatedRiskProbabilityLevel,
           mitigatedRiskImpactLevel,
           mitigationEffort,
@@ -1102,6 +1108,7 @@ export function MitigatedRiskReportData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
+  const id = params.row.id;
 
   const style = {
     position: "absolute",
@@ -1258,7 +1265,7 @@ export function DepartmentData(params) {
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
-
+  const id = params.row.id;
   const style = {
     position: "absolute",
     top: "50%",
@@ -1279,6 +1286,7 @@ export function DepartmentData(params) {
       await axios.put(
         EDITDEPARTMENT_URL,
         JSON.stringify({
+          id,
           name,
           deptID,
           manager,
