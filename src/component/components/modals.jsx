@@ -19,10 +19,11 @@ import {
 } from "../../api/routes";
 
 export function UserData(params) {
+  console.log(params)
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [userName, setUserName] = useState(params.row.userName);
-  const [id, setUserID] = useState(params.row.id);
+  const id = params.row.id;
   const [firstName, setFirstName] = useState(params.row.firstName);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
@@ -119,8 +120,9 @@ export function UserData(params) {
                   <TextField
                     label="User ID"
                     value={id}
+                    disabled
                     autoComplete="off"
-                    onChange={(e) => setUserID(e.target.value)}
+                    
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
