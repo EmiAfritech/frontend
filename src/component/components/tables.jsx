@@ -114,13 +114,14 @@ export function RiskReview() {
         });
 
         setTableData(response.data.Data);
-        console.log(tableData);
+        
       } catch (error) {
         console.error(error);
       }
     };
 
     getRiskReview();
+    console.log(tableData);
   }, []);
 
   return (

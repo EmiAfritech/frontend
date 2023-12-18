@@ -577,12 +577,7 @@ export function ReviewRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(id,
-          riskID,
-          riskReview,
-          NextRiskReviewDate,
-          riskReviewer,
-          riskReviewComments);
+      console.log(id);
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
