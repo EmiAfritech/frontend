@@ -121,7 +121,7 @@ export function RiskReview() {
     };
 
     getRiskReview();
-    console.log(tableData);
+    
   }, []);
 
   return (
