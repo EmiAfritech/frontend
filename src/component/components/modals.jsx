@@ -749,7 +749,7 @@ export function MonitoredRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      
+      console.log("id",id,"riskID",riskID,"riskResponseActivitiyStatus",riskResponseActivitiyStatus,"riskResponseImplementation",riskResponseImplementation,"recommendedChanges",recommendedChanges,"challenges",challenges,"comments",comments);
       await axios.put(
         EDITMONITORING_URL,
         JSON.stringify({
