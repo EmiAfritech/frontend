@@ -7,8 +7,14 @@ import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import {
+  DELETEDEPARTMENT_URL,
+  DELETERISK_URL,
   DELETEUSER_URL,
   EDITDEPARTMENT_URL,
+  EDITMITIGATION_URL,
+  EDITMONITORING_URL,
+  EDITREVIEW_URL,
+  EDITRISK_URL,
   EDITUSER_URL,
 } from "../../api/routes";
 
@@ -291,6 +297,7 @@ export function RiskData(params) {
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
+  const [id] = useState(params.row.id);
 
   const style = {
     position: "absolute",
@@ -306,6 +313,60 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        EDITRISK_URL,
+        JSON.stringify({
+          id,
+          riskName,
+          riskID,
+          riskDescription,
+          riskCategory,
+          riskObjective,
+          riskImpactLevel,
+          riskProbabilityLevel,
+          riskResponse,
+          riskResponseActivity,
+          riskOwner,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(
+        DELETERISK_URL,
+        JSON.stringify({
+          id,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <>
@@ -460,11 +521,17 @@ export function RiskData(params) {
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleDeleteSubmit}>
                 <FaTrashAlt className="icons" color="red" />
                 Delete
               </button>
@@ -486,6 +553,9 @@ export function ReviewRiskData(params) {
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(
     params.row.NextRiskReviewDate
   );
+  const [riskReviewComments, setRiskReviewComments] = useState(
+    params.row.riskReviewComments
+  );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
   const style = {
@@ -501,6 +571,31 @@ export function ReviewRiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        EDITREVIEW_URL,
+        JSON.stringify({
+          riskReview,
+          NextRiskReviewDate,
+          riskReviewer,
+          riskReviewComments,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <>
@@ -558,6 +653,7 @@ export function ReviewRiskData(params) {
                   <TextField
                     label="Next Review Date"
                     value={NextRiskReviewDate}
+                    disabled
                     autoComplete="off"
                     onChange={(e) => setNextRiskReviewDate(e.target.value)}
                     required
@@ -566,16 +662,30 @@ export function ReviewRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Created At"
+                    disabled
                     value={createdAt}
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
                     required
                   />
                 </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Review Comments"
+                    value={riskReviewComments}
+                    multiline
+                    autoComplete="off"
+                    onChange={(e) => setRiskReviewComments(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
@@ -618,6 +728,32 @@ export function MonitoredRiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        EDITMONITORING_URL,
+        JSON.stringify({
+          riskResponseActivitiyStatus,
+          riskResponseImplementation,
+          recommendedChanges,
+          challenges,
+          comments,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -638,7 +774,7 @@ export function MonitoredRiskData(params) {
                     value={riskID}
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -647,7 +783,7 @@ export function MonitoredRiskData(params) {
                     value={riskName}
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -667,7 +803,7 @@ export function MonitoredRiskData(params) {
                     value={riskCreatedAt}
                     autoComplete="off"
                     onChange={(e) => setRiskCreatedAt(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
               </div>
@@ -717,7 +853,10 @@ export function MonitoredRiskData(params) {
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
@@ -771,6 +910,33 @@ export function MitigatedRiskData(params) {
     setOpen(!open);
   }
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(
+        EDITMITIGATION_URL,
+        JSON.stringify({
+          mitigatedRiskProbabilityLevel,
+          mitigatedRiskImpactLevel,
+          mitigationEffort,
+          mitigationOwner,
+          mitigationCost,
+          mitigationControl,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+      alert("User Saved Successfully");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -791,7 +957,7 @@ export function MitigatedRiskData(params) {
                     value={riskID}
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -800,7 +966,7 @@ export function MitigatedRiskData(params) {
                     value={riskName}
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
-                    required
+                    disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -879,15 +1045,18 @@ export function MitigatedRiskData(params) {
                   <TextField
                     label="Created At"
                     value={createdAt}
+                    disabled
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
-                    required
                   />
                 </div>
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
@@ -1124,7 +1293,7 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-        DELETEUSER_URL,
+        DELETEDEPARTMENT_URL,
         JSON.stringify({
           id,
         }),
@@ -1217,7 +1386,7 @@ export function DepartmentData(params) {
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-            <button
+              <button
                 className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 type="submit"
                 onClick={handleEditSubmit}>
