@@ -51,12 +51,12 @@ export function Login() {
           role !== null ||
           role !== undefined
         ) {
-          setAuth({ email, password, role, token });
+          setShowSuccessModal(true);
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           reload();
-          setShowSuccessModal(true);
+          
         } else {
           alert("Authorization returned null");
         }
