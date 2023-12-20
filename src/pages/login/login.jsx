@@ -42,9 +42,9 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-
+        notify();
         if (token && role) {
-          notify();
+          
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           navigate("/dashboard", { replace: true });
