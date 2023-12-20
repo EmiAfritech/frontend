@@ -35,7 +35,7 @@ export function Login() {
           withCredentials: true,
         }
       );
-      <PopupModal message="This is a popup message!" />
+      
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
@@ -125,6 +125,7 @@ export function Login() {
                     "Submit"
                   )}
                 </button>
+                <PopupModal message="This is a popup message!" />
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create a new account */}
