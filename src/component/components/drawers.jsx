@@ -3,6 +3,8 @@ import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import axios from "../../api/axios";
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   CREATERISKFORM_URL,
@@ -30,6 +32,9 @@ export function Userforms() {
   const [role, setRole] = useState("");
   const [dob, setDob] = useState(new Date());
   const [password, setPassword] = useState("");
+  const notify = () => {
+    toast.success("User Saved Successfully");
+  };
 
   useEffect(() => {
     axios
@@ -37,7 +42,8 @@ export function Userforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setdeptmentNames(data.data);
@@ -70,11 +76,11 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      notify()
       handleClose();
       reload();
     } catch (error) {
-      alert(error);
+      toast.error(error);
       handleClose();
       reload();
     }
@@ -117,6 +123,7 @@ export function Userforms() {
 
   return (
     <>
+      <ToastContainer />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
@@ -298,7 +305,8 @@ export function Departmentforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setOwnersNames(data.data);
@@ -471,7 +479,8 @@ export function Riskforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setdeptmentName(data.data);
@@ -487,7 +496,8 @@ export function Riskforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setOwnersName(data.data);
@@ -835,7 +845,8 @@ export function RiskReviewforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setDept(data.data);
@@ -851,7 +862,8 @@ export function RiskReviewforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setRiskIDs(data.data);
@@ -1116,7 +1128,7 @@ export function RiskMitigationforms() {
         console.error(error);
       });
   }, []);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -1271,8 +1283,8 @@ export function RiskMitigationforms() {
                 <option value="Considerable">Considerable</option>
                 <option value="Significant">Significant</option>
                 <option value="Exceptional">Exceptional</option>
-                </select>
-              
+              </select>
+
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 mitigation-effort
               </label>
@@ -1382,7 +1394,8 @@ export function RiskMonitoringforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setDept(data.data);
@@ -1398,7 +1411,8 @@ export function RiskMonitoringforms() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setRiskIDs(data.data);
@@ -1533,8 +1547,8 @@ export function RiskMonitoringforms() {
                   <option></option>
                   <option value="YES">YES</option>
                   <option value="NO">NO</option>
-                  </select>
-                
+                </select>
+
                 <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                   were-the-response-activity-implemented?
                 </label>
