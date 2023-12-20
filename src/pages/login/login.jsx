@@ -45,9 +45,9 @@ export function Login() {
 
         if (token && role) {
           notify();
-          // navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
+          navigate("/dashboard", { replace: true });
           reload();
         } else {
           alert("Authorization returned null");
