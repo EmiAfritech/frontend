@@ -12,7 +12,7 @@ export function Login() {
   const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setLoading] = useState(false); 
+  const [isLoading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
 
@@ -40,11 +40,11 @@ export function Login() {
           withCredentials: true,
         }
       );
-      
+
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-       
+
         if (
           token !== null ||
           token !== undefined ||
@@ -56,7 +56,6 @@ export function Login() {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           reload();
-          
         } else {
           alert("Authorization returned null");
         }
@@ -71,7 +70,6 @@ export function Login() {
     } finally {
       // Set isLoading to false when the request is complete (success or error)
       setLoading(false);
-
     }
   };
 
@@ -132,7 +130,13 @@ export function Login() {
                     "Submit"
                   )}
                 </button>
-                
+                {showSuccessModal && (
+                  <PopupModal
+                    message="Login successful! Welcome back."
+                    onClose={handleCloseSuccessModal}
+                  />
+                )}
+
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create a new account */}
@@ -149,12 +153,6 @@ export function Login() {
           </div>
         </div>
       </div>
-      {showSuccessModal && (
-        <PopupModal
-          message="Login successful! Welcome back."
-          onClose={handleCloseSuccessModal}
-        />
-      )}
     </>
   );
 }
