@@ -15,7 +15,15 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const notify = () => toast("This is a toast notification !");
+  const notify = () => {
+    toast.success('Login successful!', {
+      onClose: () => {
+        navigate('/dashboard', { replace: true });
+        reload();
+      },
+    });
+  };
+
 
   const reload = () => {
     setEmail("");
@@ -42,13 +50,11 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-        notify();
+        
         if (token && role) {
-          
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          navigate("/dashboard", { replace: true });
-          reload();
+          notify();
         } else {
           alert("Authorization returned null");
         }
