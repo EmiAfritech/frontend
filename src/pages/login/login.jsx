@@ -35,10 +35,11 @@ export function Login() {
           withCredentials: true,
         }
       );
+      <PopupModal message="This is a popup message!" />
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-        <PopupModal message="This is a popup message!" />
+       
         if (
           token !== null ||
           token !== undefined ||
