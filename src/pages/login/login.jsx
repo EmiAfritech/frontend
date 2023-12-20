@@ -15,12 +15,24 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const notify = () => {
+  const notifySuccess = () => {
     toast.success('Login successful!', {
       onClose: () => {
         navigate('/dashboard', { replace: true });
         reload();
       },
+    });
+  };
+  const notifyNetworkError = () => {
+        toast.error('Server is Currently Unavailable, Please Try Again Later', {
+    });
+  };
+  const notifyUnauthorizedUser = () => {
+        toast.error('Unauthorized User! Please check your credentials', {
+    });
+  };
+  const notifyReturningNull = () => {
+        toast.info('Authorization returned null', {
     });
   };
 
@@ -54,17 +66,17 @@ export function Login() {
         if (token && role) {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          notify();
+          notifySuccess();
         } else {
-          alert("Authorization returned null");
+          notifyReturningNull();
         }
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
-        alert("Server is Currently Unavailable, Please Try Again Later");
+        notifyNetworkError()
         reload();
       } else if (err.response.status === 401) {
-        alert("Unauthorized User! Please check your credentials");
+        notifyUnauthorizedUser()
       }
     } finally {
       setLoading(false);
