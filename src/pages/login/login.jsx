@@ -125,7 +125,7 @@ export function Login() {
                     "Submit"
                   )}
                 </button>
-                <PopupModal message="This is a popup message!" />
+                
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create a new account */}
@@ -138,6 +138,7 @@ export function Login() {
                   </span>
                 </div>
               </form>
+              <PopupModal message="This is a popup message!" />
             </div>
           </div>
         </div>
