@@ -33,13 +33,9 @@ export function Userforms() {
   const [dob, setDob] = useState(new Date());
   const [password, setPassword] = useState("");
   const notify = () => {
-    toast.success("User Saved Successfully", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.success("User Saved Successfully");
   };
+  
 
   useEffect(() => {
     axios
@@ -81,14 +77,13 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      notify();
+      notify()
+      handleClose();
+      reload();
     } catch (error) {
-      toast.error(error, {
-        onClose: () => {
-          handleClose();
-          reload();
-        },
-      });
+      toast.error(error);
+      handleClose();
+      reload();
     }
   };
   const reload = () => {
@@ -130,7 +125,7 @@ export function Userforms() {
   return (
     <>
       <ToastContainer />
-      <Button onClick={handleOpen} size="small" variant="outlined">
+      <Button onClick={notify()} size="small" variant="outlined">
         Add Employee
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
