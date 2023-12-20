@@ -469,6 +469,24 @@ export function RiskData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    label="Risk Probability Level"
+                    value={riskProbabilityLevel}
+                    autoComplete="off"
+                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Impact level"
+                    value={riskImpactLevel}
+                    autoComplete="off"
+                    onChange={(e) => setRiskImpactLevel(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
                     label="Risk Objective"
                     multiline
                     value={riskObjective}
@@ -477,7 +495,11 @@ export function RiskData(params) {
                     required
                   />
                 </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
+                
+              </div>
+
+              <div className="grid grid-cols-4 gap-3">
+              <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Description"
                     multiline
@@ -494,27 +516,6 @@ export function RiskData(params) {
                     value={riskResponseActivity}
                     autoComplete="off"
                     onChange={(e) => setRiskResponseActivity(e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-4 gap-3">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Probability Level"
-                    value={riskProbabilityLevel}
-                    autoComplete="off"
-                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Impact level"
-                    value={riskImpactLevel}
-                    autoComplete="off"
-                    onChange={(e) => setRiskImpactLevel(e.target.value)}
                     required
                   />
                 </div>
