@@ -12,12 +12,17 @@ export function Login() {
   const { setAuth } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setLoading] = useState(false); // Add isLoading state
+  const [isLoading, setLoading] = useState(false); 
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
 
   const reload = () => {
     setEmail("");
     setPassword("");
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
   };
 
   const handleSubmit = async (e) => {
@@ -51,6 +56,7 @@ export function Login() {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           reload();
+          setShowSuccessModal(true);
         } else {
           alert("Authorization returned null");
         }
@@ -65,6 +71,7 @@ export function Login() {
     } finally {
       // Set isLoading to false when the request is complete (success or error)
       setLoading(false);
+
     }
   };
 
@@ -138,11 +145,16 @@ export function Login() {
                   </span>
                 </div>
               </form>
-              <PopupModal message="This is a popup message!" />
             </div>
           </div>
         </div>
       </div>
+      {showSuccessModal && (
+        <PopupModal
+          message="Login successful! Welcome back."
+          onClose={handleCloseSuccessModal}
+        />
+      )}
     </>
   );
 }
