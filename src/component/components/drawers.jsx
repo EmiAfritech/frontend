@@ -33,7 +33,12 @@ export function Userforms() {
   const [dob, setDob] = useState(new Date());
   const [password, setPassword] = useState("");
   const notify = () => {
-    toast.success("User Saved Successfully");
+    toast.success("User Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
   };
 
   useEffect(() => {
@@ -76,13 +81,14 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      notify()
-      handleClose();
-      reload();
+      notify();
     } catch (error) {
-      toast.error(error);
-      handleClose();
-      reload();
+      toast.error(error, {
+        onClose: () => {
+          handleClose();
+          reload();
+        },
+      });
     }
   };
   const reload = () => {
