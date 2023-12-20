@@ -7,6 +7,7 @@ import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -26,7 +27,6 @@ export function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Set isLoading to true while the request is in progress
     setLoading(true);
 
     try {
