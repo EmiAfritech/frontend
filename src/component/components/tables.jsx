@@ -112,14 +112,16 @@ export function RiskReview() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-
+        
         setTableData(response.data.Data);
+        
       } catch (error) {
         console.error(error);
       }
     };
 
     getRiskReview();
+    
   }, []);
 
   return (
