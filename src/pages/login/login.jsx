@@ -45,12 +45,7 @@ export function Login() {
         const token = response.data.authToken;
         const role = response.data.role;
 
-        if (
-          token !== null ||
-          token !== undefined ||
-          role !== null ||
-          role !== undefined
-        ) {
+        if (token && role) {
           setShowSuccessModal(true);
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
@@ -68,7 +63,6 @@ export function Login() {
         alert("Unauthorized User! Please check your credentials");
       }
     } finally {
-      // Set isLoading to false when the request is complete (success or error)
       setLoading(false);
     }
   };
@@ -130,13 +124,6 @@ export function Login() {
                     "Submit"
                   )}
                 </button>
-                {showSuccessModal && (
-                  <PopupModal
-                    message="Login successful! Welcome back."
-                    onClose={handleCloseSuccessModal}
-                  />
-                )}
-
                 {/* password reset */}
                 <div className="reset">Forgot Password?</div>
                 {/* create a new account */}
@@ -153,6 +140,12 @@ export function Login() {
           </div>
         </div>
       </div>
+      {showSuccessModal && (
+        <PopupModal
+          message="Login successful! Welcome back."
+          onClose={handleCloseSuccessModal}
+        />
+      )}
     </>
   );
 }
