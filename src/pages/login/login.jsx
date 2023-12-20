@@ -6,6 +6,7 @@ import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import { PopupModal } from "../../component/components/notificationModals";
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -37,6 +38,7 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
+        <PopupModal message="This is a popup message!" />
         if (
           token !== null ||
           token !== undefined ||
