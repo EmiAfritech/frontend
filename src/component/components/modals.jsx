@@ -298,7 +298,7 @@ export function RiskData(params) {
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
-  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
     params.row.riskProbabilityLevel
   );
   const [riskImpactLevell, setRiskImpactLevel] = useState(
