@@ -6,7 +6,6 @@ import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import { PopupModal } from "../../component/components/notificationModals";
 import { ToastContainer, toast } from 'react-toastify';
 
 export function Login() {
@@ -14,7 +13,6 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
   const notify = () => toast("This is a toast notification !");
 
@@ -23,9 +21,7 @@ export function Login() {
     setPassword("");
   };
 
-  const handleCloseSuccessModal = () => {
-    setShowSuccessModal(false);
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +45,6 @@ export function Login() {
 
         if (token && role) {
           notify();
-          setShowSuccessModal(true);
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
@@ -73,6 +68,7 @@ export function Login() {
 
   return (
     <>
+    <ToastContainer />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
@@ -144,13 +140,6 @@ export function Login() {
           </div>
         </div>
       </div>
-      <ToastContainer />
-      {showSuccessModal && (
-        <PopupModal
-          message="Login successful! Welcome back."
-          onClose={handleCloseSuccessModal}
-        />
-      )}
     </>
   );
 }
