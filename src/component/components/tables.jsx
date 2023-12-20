@@ -272,7 +272,6 @@ export function RiskAppetiteReportGreater() {
 
     riskAppetiteReportGreater();
   }, []);
-  console.log(tableData);
   return (
     <div className="flex flex-col">
       <div

@@ -7,6 +7,7 @@ import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { PopupModal } from "../../component/components/notificationModals";
+import { ToastContainer, toast } from 'react-toastify';
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -15,6 +16,7 @@ export function Login() {
   const [isLoading, setLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const navigate = useNavigate();
+  const notify = () => toast("This is a toast notification !");
 
   const reload = () => {
     setEmail("");
@@ -46,6 +48,7 @@ export function Login() {
         const role = response.data.role;
 
         if (token && role) {
+          notify();
           setShowSuccessModal(true);
           navigate("/dashboard", { replace: true });
           localStorage.setItem("token", token);
@@ -66,6 +69,7 @@ export function Login() {
       setLoading(false);
     }
   };
+  
 
   return (
     <>
@@ -140,6 +144,7 @@ export function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
       {showSuccessModal && (
         <PopupModal
           message="Login successful! Welcome back."
