@@ -570,6 +570,7 @@ export function Riskforms() {
       );
       notify();
     } catch (error) {
+      console.log(error)
       if(error === '400'){
         notifyFillForms();
       }else if(error === '500'){
