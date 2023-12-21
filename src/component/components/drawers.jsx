@@ -40,6 +40,22 @@ export function Userforms() {
       },
     });
   };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -83,9 +99,11 @@ export function Userforms() {
       );
       notify()
     } catch (error) {
-      alert(error);
-      handleClose();
-      reload();
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
   const reload = () => {
@@ -309,6 +327,22 @@ export function Departmentforms() {
       },
     });
   };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -349,9 +383,11 @@ export function Departmentforms() {
       );
       notify()
     } catch (error) {
-      alert(error);
-      handleClose();
-      reload();
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -570,7 +606,6 @@ export function Riskforms() {
       );
       notify();
     } catch (error) {
-      console.log(error)
       if(error.response.status === 400){
         notifyFillForms();
       }else if(error.response.status === 500){
@@ -874,6 +909,30 @@ export function RiskReviewforms() {
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
   const [riskReviewer, setRiskReviewer] = useState("");
   const [riskReviewComments, setriskReviewComments] = useState("");
+  const notify = () => {
+    toast.success("Review Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -931,11 +990,13 @@ export function RiskReviewforms() {
           withCredentials: true,
         }
       );
-      alert("Risk saved Succesfully");
-      handleClose();
+      notify()
     } catch (error) {
-      alert(error);
-      handleClose();
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
   const handleDateChange = (e) => {
@@ -965,6 +1026,7 @@ export function RiskReviewforms() {
 
   return (
     <>
+    <ToastContainer onClose={1000}/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Review Risk
       </Button>
@@ -1113,6 +1175,30 @@ export function RiskMitigationforms() {
   const [mitigationEffort, setmitigationEffort] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
+  const notify = () => {
+    toast.success("Risk Mitigation Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -1189,11 +1275,13 @@ export function RiskMitigationforms() {
           withCredentials: true,
         }
       );
-      alert("Risk saved Succesfully");
-      handleClose();
+      notify()
     } catch (error) {
-      alert(error);
-      handleClose();
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -1209,6 +1297,7 @@ export function RiskMitigationforms() {
 
   return (
     <>
+    <ToastContainer onClose={1000}/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Mitigate Risk
       </Button>
@@ -1423,6 +1512,30 @@ export function RiskMonitoringforms() {
   const [challenges, setChallenges] = useState("");
   const [recommendedChanges, setRecommendedChanges] = useState("");
   const [comments, setComments] = useState("");
+  const notify = () => {
+    toast.success("Risk Monitoring Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -1481,13 +1594,13 @@ export function RiskMonitoringforms() {
           withCredentials: true,
         }
       );
-      alert("Risk saved Succesfully");
-      handleClose();
-      reload();
+      notify()
     } catch (error) {
-      alert(error);
-      handleClose();
-      reload();
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -1513,6 +1626,7 @@ export function RiskMonitoringforms() {
 
   return (
     <>
+    <ToastContainer onClose={1000}/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Monitor Risk
       </Button>
