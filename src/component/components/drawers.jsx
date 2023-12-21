@@ -35,7 +35,6 @@ export function Userforms() {
   const notify = () => {
     toast.success("User Saved Successfully");
   };
-  
 
   useEffect(() => {
     axios
@@ -77,11 +76,10 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      notify()
-      handleClose();
+      notify();
       reload();
     } catch (error) {
-      toast.error(error);
+      alert(error);
       handleClose();
       reload();
     }
@@ -125,7 +123,7 @@ export function Userforms() {
   return (
     <>
       <ToastContainer />
-      <Button onClick={notify()} size="small" variant="outlined">
+      <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
