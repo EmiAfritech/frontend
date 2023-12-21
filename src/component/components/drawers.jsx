@@ -490,6 +490,22 @@ export function Riskforms() {
       },
     });
   };
+  const notifyFillForms = () => {
+    toast.success("Kindly check Input details, all Required Options are to be filled", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
+  const notifyServerDown = () => {
+    toast.success("Server is currently down Contact your admin", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
+  };
 
   useEffect(() => {
     axios
@@ -554,9 +570,11 @@ export function Riskforms() {
       );
       notify();
     } catch (error) {
-      alert(error)
-      handleClose();
-      reload();
+      if(error === '400'){
+        notifyFillForms();
+      }else if(error === '500'){
+        notifyServerDown();
+      }
     }
   };
 
