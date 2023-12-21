@@ -33,7 +33,10 @@ export function Userforms() {
   const [dob, setDob] = useState(new Date());
   const [password, setPassword] = useState("");
   const notify = () => {
-    toast.success("User Saved Successfully");
+    toast.success(
+      "Server is Currently Unavailable, Please Try Again Later",
+      {}
+    );
   };
 
   useEffect(() => {
@@ -76,7 +79,8 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      notify();
+      alert("User Saved Successfully");
+      handleClose();
       reload();
     } catch (error) {
       alert(error);
@@ -471,6 +475,9 @@ export function Riskforms() {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
+  const notify = () => {
+    toast.error("Unauthorized User! Please check your credentials", {});
+  };
 
   useEffect(() => {
     axios
@@ -533,6 +540,7 @@ export function Riskforms() {
           withCredentials: true,
         }
       );
+      notify();
       alert("Risk saved Succesfully");
       handleClose();
       reload();
@@ -568,6 +576,7 @@ export function Riskforms() {
 
   return (
     <>
+      <ToastContainer />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Risk
       </Button>

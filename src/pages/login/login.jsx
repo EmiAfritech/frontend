@@ -5,8 +5,8 @@ import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
 import CircularProgress from "@mui/material/CircularProgress";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -14,33 +14,27 @@ export function Login() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const notifySuccess = () => {
-    toast.success('Login successful!', {
+    toast.success("Login successful!", {
       onClose: () => {
-        navigate('/dashboard', { replace: true });
+        navigate("/dashboard", { replace: true });
         reload();
       },
     });
   };
   const notifyNetworkError = () => {
-        toast.error('Server is Currently Unavailable, Please Try Again Later', {
-    });
+    toast.error("Server is Currently Unavailable, Please Try Again Later", {});
   };
   const notifyUnauthorizedUser = () => {
-        toast.error('Unauthorized User! Please check your credentials', {
-    });
+    toast.error("Unauthorized User! Please check your credentials", {});
   };
   const notifyReturningNull = () => {
-        toast.info('Authorization returned null', {
-    });
+    toast.info("Authorization returned null", {});
   };
-
 
   const reload = () => {
     setEmail("");
     setPassword("");
   };
-
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +54,7 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-        
+
         if (token && role) {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
@@ -71,20 +65,19 @@ export function Login() {
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
-        notifyNetworkError()
+        notifyNetworkError();
         reload();
       } else if (err.response.status === 401) {
-        notifyUnauthorizedUser()
+        notifyUnauthorizedUser();
       }
     } finally {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
-    <ToastContainer />
+      <ToastContainer autoClose={2000} />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
