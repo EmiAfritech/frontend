@@ -19,7 +19,7 @@ import {
   EDITUSER_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 
 export function UserData(params) {
@@ -465,16 +465,13 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel id="Department Name">Department Name</InputLabel>
                   <Select
-                    labelId="Department Name"
+                    label="Department Name"
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                    MenuProps={MenuProps}
-                    input={<OutlinedInput label="Name" />}>
-                    <MenuItem>Department Name</MenuItem>
+                    style={{ width: '100%' }}>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
