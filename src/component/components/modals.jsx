@@ -19,7 +19,7 @@ import {
   EDITUSER_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 
 export function UserData(params) {
@@ -424,208 +424,221 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-
-          <FormControl  fullWidth>
-            <form className="w-[70rem]">
-              <div className=" px-10 py-10">
-                <div className="grid grid-cols-4 gap-3 mb-6">
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Code"
-                      value={riskID}
-                      autoComplete="off"
-                      onChange={(e) => setRiskID(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Name"
-                      value={riskName}
-                      autoComplete="off"
-                      onChange={(e) => setRiskName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Department ID"
-                      value={departmentID}
-                      autoComplete="off"
-                      onChange={(e) => setDepartmentID(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Department Name"
-                      value={departmentName}
-                      autoComplete="off"
-                      onChange={(e) => setDepartmentName(e.target.value)}
-                      required>
-                      {deptmentName.map((deptmentName) => (
-                        <MenuItem
-                          key={deptmentName.names.id}
-                          value={deptmentName.names.name}>
-                          {" "}
-                          {deptmentName.names.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </div>
+          <form className="w-[70rem]">
+            <div className=" px-10 py-10">
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Code"
+                    value={riskID}
+                    autoComplete="off"
+                    onChange={(e) => setRiskID(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
                 </div>
-                <div className="grid grid-cols-4 gap-3 mb-6">
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Risk Owner"
-                      value={riskOwner}
-                      autoComplete="off"
-                      onChange={(e) => setRiskOwner(e.target.value)}
-                      required
-                      >
-                      {ownersName.map((ownersName) => (
-                        <MenuItem key={ownersName.id} value={ownersName.value}>
-                          {" "}
-                          {ownersName.value}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Created At"
-                      value={riskCreatedAt}
-                      autoComplete="off"
-                      onChange={(e) => setRiskCreatedAt(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Score"
-                      value={riskScore}
-                      autoComplete="off"
-                      onChange={(e) => setRiskScore(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Risk Response"
-                      value={riskResponse}
-                      autoComplete="off"
-                      onChange={(e) => setRiskResponse(e.target.value)}
-                      required
-                      >
-                      <MenuItem value="Exploit">Exploit</MenuItem>
-                      <MenuItem value="Accept">Accept</MenuItem>
-                      <MenuItem value="Enhance">Enhance</MenuItem>
-                      <MenuItem value="Avoid">Avoid</MenuItem>
-                      <MenuItem value="Transfer">Transfer</MenuItem>
-                      <MenuItem value="Mitigate">Mitigate</MenuItem>
-                    </Select>
-                  </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Name"
+                    value={riskName}
+                    autoComplete="off"
+                    onChange={(e) => setRiskName(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
                 </div>
-                <div className="grid grid-cols-4 gap-3 mb-6">
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Risk Category"
-                      value={riskCategory}
-                      autoComplete="off"
-                      onChange={(e) => setRiskCategory(e.target.value)}
-                      required
-                      >
-                      <MenuItem value="EXTERNAL FACTORS">
-                        External Factors
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Department ID"
+                    value={departmentID}
+                    autoComplete="off"
+                    onChange={(e) => setDepartmentID(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Department Name"
+                    value={departmentName}
+                    autoComplete="off"
+                    onChange={(e) => setDepartmentName(e.target.value)}
+                    required
+                    style={{ width: '100%' }}>
+                    {deptmentName.map((deptmentName) => (
+                      <MenuItem
+                        key={deptmentName.names.id}
+                        value={deptmentName.names.name}>
+                        {" "}
+                        {deptmentName.names.name}
                       </MenuItem>
-                      <MenuItem value="PEOPLE">People</MenuItem>
-                      <MenuItem value="SYSTEM">System</MenuItem>
-                      <MenuItem value="PROCESS">Process</MenuItem>
-                    </Select>
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Risk Probability Level"
-                      value={riskProbabilityLevell}
-                      autoComplete="off"
-                      onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                      required
-                      >
-                      <MenuItem value={1}>Almost Impossible</MenuItem>
-                      <MenuItem value={2}>Unlikely</MenuItem>
-                      <MenuItem value={3}>Likely</MenuItem>
-                      <MenuItem value={4}>Very Likely</MenuItem>
-                      <MenuItem value={5}>Almost Certain</MenuItem>
-                    </Select>
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <Select
-                      label="Risk Impact level"
-                      value={riskImpactLevell}
-                      autoComplete="off"
-                      onChange={(e) => setRiskImpactLevel(e.target.value)}
-                      required
-                      >
-                      {" "}
-                      <MenuItem value={1}>Insignificant</MenuItem>
-                      <MenuItem value={2}>Minor</MenuItem>
-                      <MenuItem value={3}>Moderate</MenuItem>
-                      <MenuItem value={4}>Major</MenuItem>
-                      <MenuItem value={5}>Catastrophic</MenuItem>
-                    </Select>
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Objective"
-                      multiline
-                      value={riskObjective}
-                      autoComplete="off"
-                      onChange={(e) => setRiskObjective(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-3">
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Description"
-                      multiline
-                      value={riskDescription}
-                      autoComplete="off"
-                      onChange={(e) => setRiskDescription(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="relative mb-6" data-te-input-wrapper-init>
-                    <TextField
-                      label="Risk Response Activity"
-                      multiline
-                      value={riskResponseActivity}
-                      autoComplete="off"
-                      onChange={(e) => setRiskResponseActivity(e.target.value)}
-                      required
-                    />
-                  </div>
+                    ))}
+                  </Select>
                 </div>
               </div>
-              <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-                <button
-                  className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  type="submit"
-                  onClick={handleEditSubmit}>
-                  <FaSave className="icons" />
-                  Save
-                </button>
-                <button
-                  className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  type="submit"
-                  onClick={handleDeleteSubmit}>
-                  <FaTrashAlt className="icons" color="red" />
-                  Delete
-                </button>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Owner"
+                    value={riskOwner}
+                    autoComplete="off"
+                    onChange={(e) => setRiskOwner(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                    >
+                    {ownersName.map((ownersName) => (
+                      <MenuItem key={ownersName.id} value={ownersName.value}>
+                        {" "}
+                        {ownersName.value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Created At"
+                    value={riskCreatedAt}
+                    autoComplete="off"
+                    onChange={(e) => setRiskCreatedAt(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Score"
+                    value={riskScore}
+                    autoComplete="off"
+                    onChange={(e) => setRiskScore(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Response"
+                    value={riskResponse}
+                    autoComplete="off"
+                    onChange={(e) => setRiskResponse(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                    >
+                    <MenuItem value="Exploit">Exploit</MenuItem>
+                    <MenuItem value="Accept">Accept</MenuItem>
+                    <MenuItem value="Enhance">Enhance</MenuItem>
+                    <MenuItem value="Avoid">Avoid</MenuItem>
+                    <MenuItem value="Transfer">Transfer</MenuItem>
+                    <MenuItem value="Mitigate">Mitigate</MenuItem>
+                  </Select>
+                </div>
               </div>
-            </form>
-          </FormControl>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Category"
+                    value={riskCategory}
+                    autoComplete="off"
+                    onChange={(e) => setRiskCategory(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                    >
+                    <MenuItem value="EXTERNAL FACTORS">
+                      External Factors
+                    </MenuItem>
+                    <MenuItem value="PEOPLE">People</MenuItem>
+                    <MenuItem value="SYSTEM">System</MenuItem>
+                    <MenuItem value="PROCESS">Process</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Probability Level"
+                    value={riskProbabilityLevell}
+                    autoComplete="off"
+                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                    >
+                    <MenuItem value={1}>Almost Impossible</MenuItem>
+                    <MenuItem value={2}>Unlikely</MenuItem>
+                    <MenuItem value={3}>Likely</MenuItem>
+                    <MenuItem value={4}>Very Likely</MenuItem>
+                    <MenuItem value={5}>Almost Certain</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Impact level"
+                    value={riskImpactLevell}
+                    autoComplete="off"
+                    onChange={(e) => setRiskImpactLevel(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                    >
+                    {" "}
+                    <MenuItem value={1}>Insignificant</MenuItem>
+                    <MenuItem value={2}>Minor</MenuItem>
+                    <MenuItem value={3}>Moderate</MenuItem>
+                    <MenuItem value={4}>Major</MenuItem>
+                    <MenuItem value={5}>Catastrophic</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Objective"
+                    multiline
+                    value={riskObjective}
+                    autoComplete="off"
+                    onChange={(e) => setRiskObjective(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-4 gap-3">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Description"
+                    multiline
+                    value={riskDescription}
+                    autoComplete="off"
+                    onChange={(e) => setRiskDescription(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Response Activity"
+                    multiline
+                    value={riskResponseActivity}
+                    autoComplete="off"
+                    onChange={(e) => setRiskResponseActivity(e.target.value)}
+                    required
+                    style={{ width: '100%' }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
+                <FaSave className="icons" />
+                Save
+              </button>
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleDeleteSubmit}>
+                <FaTrashAlt className="icons" color="red" />
+                Delete
+              </button>
+            </div>
+          </form>
         </Box>
       </Modal>
     </>
