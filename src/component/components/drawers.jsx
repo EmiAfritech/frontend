@@ -476,7 +476,7 @@ export function Riskforms() {
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
   const notify = () => {
-    toast.error("Risk Saved Successfully", {
+    toast.success("Risk Saved Successfully", {
       onClose: () => {
         handleClose();
         reload();
@@ -546,7 +546,6 @@ export function Riskforms() {
         }
       );
       notify();
-      alert("Risk saved Succesfully");
     } catch (error) {
       toast.error(error)
       handleClose();
