@@ -19,7 +19,7 @@ import {
   EDITUSER_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { MenuItem, Select } from "@mui/material";
+import { InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 
 export function UserData(params) {
@@ -465,6 +465,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                <InputLabel>Department Name</InputLabel>
                   <Select
                     label="Department Name"
                     value={departmentName}
@@ -490,7 +491,9 @@ export function RiskData(params) {
                     value={riskOwner}
                     autoComplete="off"
                     onChange={(e) => setRiskOwner(e.target.value)}
-                    required>
+                    required
+                    style={{ width: '100%' }}
+                    >
                     <MenuItem></MenuItem>
                     {ownersName.map((ownersName) => (
                       <MenuItem key={ownersName.id} value={ownersName.value}>
@@ -525,7 +528,9 @@ export function RiskData(params) {
                     value={riskResponse}
                     autoComplete="off"
                     onChange={(e) => setRiskResponse(e.target.value)}
-                    required>
+                    style={{ width: '100%' }}
+                    required
+                    >
                     <MenuItem></MenuItem>
                     <MenuItem value="Exploit">Exploit</MenuItem>
                     <MenuItem value="Accept">Accept</MenuItem>
@@ -543,7 +548,9 @@ export function RiskData(params) {
                     value={riskCategory}
                     autoComplete="off"
                     onChange={(e) => setRiskCategory(e.target.value)}
-                    required>
+                    required
+                    style={{ width: '100%' }}
+                    >
                     <MenuItem></MenuItem>
                     <MenuItem value="EXTERNAL FACTORS">
                       External Factors
@@ -559,8 +566,9 @@ export function RiskData(params) {
                     value={riskProbabilityLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                    required>
-                    <MenuItem></MenuItem>
+                    required
+                    style={{ width: '100%' }}
+                    >
                     <MenuItem value={1}>Almost Impossible</MenuItem>
                     <MenuItem value={2}>Unlikely</MenuItem>
                     <MenuItem value={3}>Likely</MenuItem>
@@ -574,9 +582,10 @@ export function RiskData(params) {
                     value={riskImpactLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
-                    required>
+                    required
+                    style={{ width: '100%' }}
+                    >
                     {" "}
-                    <MenuItem></MenuItem>
                     <MenuItem value={1}>Insignificant</MenuItem>
                     <MenuItem value={2}>Minor</MenuItem>
                     <MenuItem value={3}>Moderate</MenuItem>
