@@ -282,13 +282,13 @@ export function RiskData(params) {
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
-  const [departmentName, setDepartmentName] = useState("");
+  const [departmentName, setDepartmentName] = useState(params.row.department);
   const [riskDescription, setRiskDescription] = useState(
     params.row.riskDescription
   );
   const [riskCategory, setRiskCategory] = useState(params.row.riskCategory);
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
-  const [riskOwner, setRiskOwner] = useState('');
+  const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
   const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
@@ -302,8 +302,8 @@ export function RiskData(params) {
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  const [deptmentName, setdeptmentName] = useState(params.row.department);
-  const [ownersName, setOwnersName] = useState(params.row.riskOwner);
+  const [deptmentName, setdeptmentName] = useState([]);
+  const [ownersName, setOwnersName] = useState([]);
 
   useEffect(() => {
     axios
