@@ -465,13 +465,16 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                <InputLabel id="Department Name">Department Name</InputLabel>
                   <Select
-                    label="Department Name"
+                    labelId="Department Name"
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                    MenuProps={MenuProps}>
+                    MenuProps={MenuProps}
+                    input={<OutlinedInput label="Name" />}
+                    >
                     <MenuItem></MenuItem>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
