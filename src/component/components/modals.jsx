@@ -17,9 +17,9 @@ import {
   EDITRISK_URL,
   EDITUSER_URL,
 } from "../../api/routes";
+import { MenuItem, Select } from "@mui/material";
 
 export function UserData(params) {
-  
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [userName, setUserName] = useState(params.row.userName);
@@ -53,7 +53,6 @@ export function UserData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       await axios.put(
         EDITUSER_URL,
         JSON.stringify({
@@ -123,7 +122,6 @@ export function UserData(params) {
                     value={id}
                     disabled
                     autoComplete="off"
-                    
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -281,13 +279,13 @@ export function RiskData(params) {
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
-  const [departmentName, setDepartmentName] = useState(params.row.department);
+  const [departmentName, setDepartmentName] = useState("");
   const [riskDescription, setRiskDescription] = useState(
     params.row.riskDescription
   );
   const [riskCategory, setRiskCategory] = useState(params.row.riskCategory);
   const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
-  const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
+  const [riskOwner, setRiskOwner] = useState('');
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
   const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
@@ -301,7 +299,42 @@ export function RiskData(params) {
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  
+  const [deptmentName, setdeptmentName] = useState(params.row.department);
+  const [ownersName, setOwnersName] = useState(params.row.riskOwner);
+
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(OWNERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setOwnersName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const style = {
     position: "absolute",
@@ -317,15 +350,15 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const riskProbabilityLevel = getProbabiltyLevelNumber(riskProbabilityLevell);
+      const riskProbabilityLevel = getProbabiltyLevelNumber(
+        riskProbabilityLevell
+      );
       const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
-      
 
-      
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -393,7 +426,7 @@ export function RiskData(params) {
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Risk ID"
+                    label="Risk Code"
                     value={riskID}
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
@@ -410,7 +443,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                <TextField
                     label="Department ID"
                     value={departmentID}
                     autoComplete="off"
@@ -419,25 +452,42 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Department Name"
-                    value={departmentName}
+                  <Select
+                    label="Department ID"
+                    value={departmentID}
                     autoComplete="off"
-                    onChange={(e) => setDepartmentName(e.target.value)}
-                    required
-                  />
+                    onChange={(e) => setDepartmentID(e.target.value)}
+                    required>
+                    <MenuItem></MenuItem>
+                    {deptmentName.map((deptmentName) => (
+                      <MenuItem
+                        key={deptmentName.names.id}
+                        value={deptmentName.names.name}>
+                        {" "}
+                        {deptmentName.names.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Owner"
                     value={riskOwner}
                     autoComplete="off"
                     onChange={(e) => setRiskOwner(e.target.value)}
-                    required
-                  />
-                </div>
+                    required>
+                    <MenuItem></MenuItem>
+                    {ownersName.map((ownersName) => (
+                      <MenuItem key={ownersName.id} value={ownersName.value}>
+                        {" "}
+                        {ownersName.value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>  
+                    
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Created At"
@@ -457,42 +507,69 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Response"
                     value={riskResponse}
                     autoComplete="off"
                     onChange={(e) => setRiskResponse(e.target.value)}
                     required
-                  />
+                  >
+                    <MenuItem></MenuItem>
+                    <MenuItem value="Exploit">Exploit</MenuItem>
+                    <MenuItem value="Accept">Accept</MenuItem>
+                    <MenuItem value="Enhance">Enhance</MenuItem>
+                    <MenuItem value="Avoid">Avoid</MenuItem>
+                    <MenuItem value="Transfer">Transfer</MenuItem>
+                    <MenuItem value="Mitigate">Mitigate</MenuItem>
+                  </Select>
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Category"
                     value={riskCategory}
                     autoComplete="off"
                     onChange={(e) => setRiskCategory(e.target.value)}
                     required
-                  />
+                  >
+                    <MenuItem></MenuItem>
+                    <MenuItem value='EXTERNAL FACTORS'>External Factors</MenuItem>
+                    <MenuItem value='PEOPLE'>People</MenuItem>
+                    <MenuItem value='SYSTEM'>System</MenuItem>
+                    <MenuItem value='PROCESS'>Process</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Probability Level"
                     value={riskProbabilityLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
-                  />
+                  >
+                    <MenuItem></MenuItem>
+                    <MenuItem value={1}>Almost Impossible</MenuItem>
+                    <MenuItem value={2}>Unlikely</MenuItem>
+                    <MenuItem value={3}>Likely</MenuItem>
+                    <MenuItem value={4}>Very Likely</MenuItem>
+                    <MenuItem value={5}>Almost Certain</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Impact level"
                     value={riskImpactLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
                     required
-                  />
+                  > <MenuItem></MenuItem>
+                  <MenuItem value={1}>Insignificant</MenuItem>
+                  <MenuItem value={2}>Minor</MenuItem>
+                  <MenuItem value={3}>Moderate</MenuItem>
+                  <MenuItem value={4}>Major</MenuItem>
+                  <MenuItem value={5}>Catastrophic</MenuItem>
+                </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -504,11 +581,10 @@ export function RiskData(params) {
                     required
                   />
                 </div>
-                
               </div>
 
               <div className="grid grid-cols-4 gap-3">
-              <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Description"
                     multiline
@@ -557,7 +633,7 @@ export function ReviewRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
-  
+
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [riskReview, setRiskReview] = useState(params.row.riskReview);
@@ -587,19 +663,15 @@ export function ReviewRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      
-      
       await axios.put(
         EDITREVIEW_URL,
         JSON.stringify({
-          
           riskID,
           riskReview,
           NextRiskReviewDate,
           riskReviewer,
           riskReviewComments,
           id,
-          
         }),
         {
           headers: {
@@ -733,7 +805,6 @@ export function MonitoredRiskData(params) {
   const [challenges, setChallenges] = useState(params.row.challenges);
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
-  
 
   const style = {
     position: "absolute",
@@ -762,7 +833,7 @@ export function MonitoredRiskData(params) {
           riskResponseImplementation,
           recommendedChanges,
           challenges,
-          comments
+          comments,
         }),
         {
           headers: {
@@ -919,7 +990,6 @@ export function MitigatedRiskData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
-  
 
   const style = {
     position: "absolute",
@@ -938,8 +1008,12 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber(mitigatedRiskProbabilityLevell);
-      const mitigatedRiskImpactLevel = getImpactLevelNumber(mitigatedRiskImpactLevell);
+      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber(
+        mitigatedRiskProbabilityLevell
+      );
+      const mitigatedRiskImpactLevel = getImpactLevelNumber(
+        mitigatedRiskImpactLevell
+      );
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
@@ -1099,7 +1173,7 @@ export function MitigatedRiskData(params) {
 export function MitigatedRiskReportData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  
+
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [mitigationOwner, setMitigationOwner] = useState(
@@ -1123,7 +1197,6 @@ export function MitigatedRiskReportData(params) {
     params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
-  
 
   const style = {
     position: "absolute",
