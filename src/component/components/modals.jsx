@@ -465,7 +465,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <InputLabel id="Department Name">Department Name</InputLabel>
+                  <InputLabel id="Department Name">Department Name</InputLabel>
                   <Select
                     labelId="Department Name"
                     value={departmentName}
@@ -473,9 +473,8 @@ export function RiskData(params) {
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
                     MenuProps={MenuProps}
-                    input={<OutlinedInput label="Name" />}
-                    >
-                    <MenuItem></MenuItem>
+                    input={<OutlinedInput label="Name" />}>
+                    <MenuItem>Department Name</MenuItem>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
