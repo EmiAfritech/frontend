@@ -476,7 +476,12 @@ export function Riskforms() {
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
   const notify = () => {
-    toast.error("Unauthorized User! Please check your credentials", {});
+    toast.error("Risk Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        reload();
+      },
+    });
   };
 
   useEffect(() => {
@@ -542,10 +547,8 @@ export function Riskforms() {
       );
       notify();
       alert("Risk saved Succesfully");
-      handleClose();
-      reload();
     } catch (error) {
-      alert(error);
+      toast.error(error)
       handleClose();
       reload();
     }
