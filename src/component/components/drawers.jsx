@@ -491,7 +491,7 @@ export function Riskforms() {
     });
   };
   const notifyFillForms = () => {
-    toast.success("Kindly check Input details, all Required Options are to be filled", {
+    toast.error("Kindly check Input details", {
       onClose: () => {
         handleClose();
         reload();
@@ -499,7 +499,7 @@ export function Riskforms() {
     });
   };
   const notifyServerDown = () => {
-    toast.success("Server is currently down Contact your admin", {
+    toast.error("Server is currently down Contact your admin", {
       onClose: () => {
         handleClose();
         reload();
