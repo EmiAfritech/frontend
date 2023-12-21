@@ -4,11 +4,21 @@ import { Sessions_URL } from "./routes";
 import axios from "./axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Sessions() {
   const [session, setSession] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const notify = () => {
+    toast.error("Unauthorized User!", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        localStorage.clear();
+      },
+    });
+  };
 
   useEffect(() => {
     try {
@@ -21,9 +31,8 @@ export function Sessions() {
         if (session === "valid") {
           console.log("Authorized User");
         } else if (session === "Invalid"){
-          alert("Unauthorized User");
-          navigate("/", { replace: true });
-          localStorage.clear();
+          notify()
+          
         }
         
       })

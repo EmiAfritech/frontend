@@ -17,12 +17,21 @@ import {
 import { Link } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
+import { ToastContainer,toast } from "react-toastify";
 
 export function Sidebar() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
 
   const userRole = localStorage.getItem("role");
+  const notify = () => {
+    toast.success("Logging Out Successful", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        localStorage.clear();
+      },
+    });
+  };
 
   const handleLogOut = async (e) => {
     setLoading(true);
@@ -35,11 +44,7 @@ export function Sidebar() {
         },
         withCredentials: true,
       });
-
-      localStorage.clear();
-
-      console.log("Logging Out Successful");
-      navigate("/", { replace: true });
+      notify();
     } catch (error) {
       console.log(error);
     }
@@ -224,6 +229,7 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
+          <ToastContainer/>
           <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
