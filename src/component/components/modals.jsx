@@ -1398,10 +1398,8 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-        DELETEDEPARTMENT_URL,
-        JSON.stringify({
-          id,
-        }),
+       `${DELETEDEPARTMENT_URL}/${id}`,
+        
         {
           headers: {
             "Content-Type": "application/json",
