@@ -53,15 +53,7 @@ export function UserData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(firstName,
-          lastName,
-          dob,
-          phoneNumber,
-          userName,
-          email,
-          role,
-          id,
-          departmentName,)
+      
       await axios.put(
         EDITUSER_URL,
         JSON.stringify({
@@ -1107,7 +1099,7 @@ export function MitigatedRiskData(params) {
 export function MitigatedRiskReportData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-   const id = params.row.id;
+  
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [mitigationOwner, setMitigationOwner] = useState(
