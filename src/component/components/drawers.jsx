@@ -571,9 +571,9 @@ export function Riskforms() {
       notify();
     } catch (error) {
       console.log(error)
-      if(error === '400'){
+      if(error.response.status === 400){
         notifyFillForms();
-      }else if(error === '500'){
+      }else if(error.response.status === 500){
         notifyServerDown();
       }
     }
