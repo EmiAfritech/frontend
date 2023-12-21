@@ -77,7 +77,7 @@ export function Login() {
 
   return (
     <>
-      <ToastContainer autoClose={1500} />
+      <ToastContainer />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">

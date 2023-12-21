@@ -10,12 +10,14 @@ import {
   DELETEDEPARTMENT_URL,
   DELETERISK_URL,
   DELETEUSER_URL,
+  DEPARTMENTDROPDOWN_URL,
   EDITDEPARTMENT_URL,
   EDITMITIGATION_URL,
   EDITMONITORING_URL,
   EDITREVIEW_URL,
   EDITRISK_URL,
   EDITUSER_URL,
+  OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
@@ -454,10 +456,10 @@ export function RiskData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
-                    label="Department ID"
-                    value={departmentID}
+                    label="Department Name"
+                    value={departmentName}
                     autoComplete="off"
-                    onChange={(e) => setDepartmentID(e.target.value)}
+                    onChange={(e) => setDepartmentName(e.target.value)}
                     required>
                     <MenuItem></MenuItem>
                     {deptmentName.map((deptmentName) => (
