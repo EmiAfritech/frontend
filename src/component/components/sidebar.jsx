@@ -229,7 +229,7 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <ToastContainer/>
+          <ToastContainer onClose={500}/>
           <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
