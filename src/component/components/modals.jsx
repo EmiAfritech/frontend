@@ -304,16 +304,6 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
 
   useEffect(() => {
     axios
@@ -491,7 +481,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskOwner(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: '80%' }}
                     >
                     {ownersName.map((ownersName) => (
                       <MenuItem key={ownersName.id} value={ownersName.value}>
@@ -526,7 +516,7 @@ export function RiskData(params) {
                     value={riskResponse}
                     autoComplete="off"
                     onChange={(e) => setRiskResponse(e.target.value)}
-                    style={{ width: '100%' }}
+                    style={{ width: '80%' }}
                     required
                     >
                     <MenuItem value="Exploit">Exploit</MenuItem>
@@ -546,7 +536,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskCategory(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: '80%' }}
                     >
                     <MenuItem value="EXTERNAL FACTORS">
                       External Factors
@@ -563,7 +553,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: '80%' }}
                     >
                     <MenuItem value={1}>Almost Impossible</MenuItem>
                     <MenuItem value={2}>Unlikely</MenuItem>
