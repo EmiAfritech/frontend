@@ -465,14 +465,13 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <InputLabel>Department Name</InputLabel>
                   <Select
                     label="Department Name"
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                    style={{ width: '100%' }}>
+                    style={{ width: '80%' }}>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
@@ -494,7 +493,6 @@ export function RiskData(params) {
                     required
                     style={{ width: '100%' }}
                     >
-                    <MenuItem></MenuItem>
                     {ownersName.map((ownersName) => (
                       <MenuItem key={ownersName.id} value={ownersName.value}>
                         {" "}
@@ -531,7 +529,6 @@ export function RiskData(params) {
                     style={{ width: '100%' }}
                     required
                     >
-                    <MenuItem></MenuItem>
                     <MenuItem value="Exploit">Exploit</MenuItem>
                     <MenuItem value="Accept">Accept</MenuItem>
                     <MenuItem value="Enhance">Enhance</MenuItem>
@@ -551,7 +548,6 @@ export function RiskData(params) {
                     required
                     style={{ width: '100%' }}
                     >
-                    <MenuItem></MenuItem>
                     <MenuItem value="EXTERNAL FACTORS">
                       External Factors
                     </MenuItem>
