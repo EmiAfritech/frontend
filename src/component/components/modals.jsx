@@ -304,6 +304,16 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
   useEffect(() => {
     axios
@@ -446,7 +456,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <TextField
+                  <TextField
                     label="Department ID"
                     value={departmentID}
                     autoComplete="off"
@@ -460,7 +470,8 @@ export function RiskData(params) {
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
-                    required>
+                    required
+                    MenuProps={MenuProps}>
                     <MenuItem></MenuItem>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
@@ -489,8 +500,8 @@ export function RiskData(params) {
                       </MenuItem>
                     ))}
                   </Select>
-                </div>  
-                    
+                </div>
+
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Created At"
@@ -515,8 +526,7 @@ export function RiskData(params) {
                     value={riskResponse}
                     autoComplete="off"
                     onChange={(e) => setRiskResponse(e.target.value)}
-                    required
-                  >
+                    required>
                     <MenuItem></MenuItem>
                     <MenuItem value="Exploit">Exploit</MenuItem>
                     <MenuItem value="Accept">Accept</MenuItem>
@@ -534,13 +544,14 @@ export function RiskData(params) {
                     value={riskCategory}
                     autoComplete="off"
                     onChange={(e) => setRiskCategory(e.target.value)}
-                    required
-                  >
+                    required>
                     <MenuItem></MenuItem>
-                    <MenuItem value='EXTERNAL FACTORS'>External Factors</MenuItem>
-                    <MenuItem value='PEOPLE'>People</MenuItem>
-                    <MenuItem value='SYSTEM'>System</MenuItem>
-                    <MenuItem value='PROCESS'>Process</MenuItem>
+                    <MenuItem value="EXTERNAL FACTORS">
+                      External Factors
+                    </MenuItem>
+                    <MenuItem value="PEOPLE">People</MenuItem>
+                    <MenuItem value="SYSTEM">System</MenuItem>
+                    <MenuItem value="PROCESS">Process</MenuItem>
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -549,8 +560,7 @@ export function RiskData(params) {
                     value={riskProbabilityLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                    required
-                  >
+                    required>
                     <MenuItem></MenuItem>
                     <MenuItem value={1}>Almost Impossible</MenuItem>
                     <MenuItem value={2}>Unlikely</MenuItem>
@@ -565,14 +575,15 @@ export function RiskData(params) {
                     value={riskImpactLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
-                    required
-                  > <MenuItem></MenuItem>
-                  <MenuItem value={1}>Insignificant</MenuItem>
-                  <MenuItem value={2}>Minor</MenuItem>
-                  <MenuItem value={3}>Moderate</MenuItem>
-                  <MenuItem value={4}>Major</MenuItem>
-                  <MenuItem value={5}>Catastrophic</MenuItem>
-                </Select>
+                    required>
+                    {" "}
+                    <MenuItem></MenuItem>
+                    <MenuItem value={1}>Insignificant</MenuItem>
+                    <MenuItem value={2}>Minor</MenuItem>
+                    <MenuItem value={3}>Moderate</MenuItem>
+                    <MenuItem value={4}>Major</MenuItem>
+                    <MenuItem value={5}>Catastrophic</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -1401,8 +1412,8 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-       `${DELETEDEPARTMENT_URL}/${id}`,
-        
+        `${DELETEDEPARTMENT_URL}/${id}`,
+
         {
           headers: {
             "Content-Type": "application/json",
