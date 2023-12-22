@@ -496,6 +496,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                <InputLabel id="demo-simple-select-label">Age</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     label="Department Name"
