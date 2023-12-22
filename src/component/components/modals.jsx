@@ -329,15 +329,15 @@ export function RiskData(params) {
   const [riskImpactLevell, setRiskImpactLevel] = useState(
     getImpactLevelNumber(params.row.riskImpactLevel)
   );
-  const [riskScore, setRiskScore] = useState(params.row.riskScore);
+  
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log("@@@@@@@probabilty", riskProbabilityLevell);
-  console.log("@@@@@@@impact", riskImpactLevell);
+ 
+  
 
   useEffect(() => {
     axios
@@ -392,9 +392,24 @@ export function RiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("********probabilty", riskProbabilityLevell);
-      console.log("*******impact", riskImpactLevell);
-
+      const riskProbabilityLevel = riskProbabilityLevell;
+  
+      const riskImpactLevel = riskImpactLevell;
+    
+      console.log(
+         id,
+          riskName,
+          riskID,
+          riskDescription,
+          riskCategory,
+          riskObjective,
+          riskImpactLevel,
+          riskProbabilityLevel,
+          riskResponse,
+          riskResponseActivity,
+          riskOwner,
+      )
+      
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -404,8 +419,8 @@ export function RiskData(params) {
           riskDescription,
           riskCategory,
           riskObjective,
-          riskImpactLevell,
-          riskProbabilityLevell,
+          riskImpactLevel,
+          riskProbabilityLevel,
           riskResponse,
           riskResponseActivity,
           riskOwner,
@@ -451,98 +466,103 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <FormControl fullWidth>
-            <div className=" px-10 py-10">
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Code"
-                    value={riskID}
-                    autoComplete="off"
-                    onChange={(e) => setRiskID(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Name"
-                    value={riskName}
-                    autoComplete="off"
-                    onChange={(e) => setRiskName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Department ID"
-                    value={departmentID}
-                    autoComplete="off"
-                    onChange={(e) => setDepartmentID(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
+            <FormControl fullWidth>
+              <div className=" px-10 py-10">
+                <div className="grid grid-cols-4 gap-3 mb-6">
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <TextField
+                      label="Risk Code"
+                      value={riskID}
+                      autoComplete="off"
+                      onChange={(e) => setRiskID(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <TextField
+                      label="Risk Name"
+                      value={riskName}
+                      autoComplete="off"
+                      onChange={(e) => setRiskName(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <TextField
+                      label="Department ID"
+                      value={departmentID}
+                      autoComplete="off"
+                      disabled
+                      onChange={(e) => setDepartmentID(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                     
+                    />
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Department Name</InputLabel>
-                  <Select
-                    label="Department Name"
-                    value={departmentName}
-                    autoComplete="off"
-                    onChange={(e) => setDepartmentName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {deptmentName.map((deptmentName) => (
-                      <MenuItem
-                        key={deptmentName.names.id}
-                        value={deptmentName.names.name}>
-                        {" "}
-                        {deptmentName.names.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
+                    <Select
+                      label="Department Name"
+                      value={departmentName}
+                      autoComplete="off"
+                      onChange={(e) => setDepartmentName(e.target.value)}
+                      required
+                      style={{ width: "100%" }}>
+                      {deptmentName.map((deptmentName) => (
+                        <MenuItem
+                          key={deptmentName.names.id}
+                          value={deptmentName.names.name}
+                          onClick={() => setDepartmentID(deptmentName.deptIDs.deptID)}>
+                          {" "}
+                          {deptmentName.names.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="grid grid-cols-4 gap-3 mb-6">
+                  <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Risk Owner</InputLabel>
-                  <Select
-                    label="Risk Owner"
-                    value={riskOwner}
-                    autoComplete="off"
-                    onChange={(e) => setRiskOwner(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {ownersName.map((ownersName) => (
-                      <MenuItem key={ownersName.id} value={ownersName.value}>
-                        {" "}
-                        {ownersName.value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Created At"
-                    value={riskCreatedAt}
-                    autoComplete="off"
-                    onChange={(e) => setRiskCreatedAt(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Score"
-                    value={riskScore}
-                    autoComplete="off"
-                    onChange={(e) => setRiskScore(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
+                    <Select
+                      label="Risk Owner"
+                      value={riskOwner}
+                      autoComplete="off"
+                      onChange={(e) => setRiskOwner(e.target.value)}
+                      required
+                      style={{ width: "100%" }}>
+                      {ownersName.map((ownersName) => (
+                        <MenuItem key={ownersName.id} value={ownersName.value}>
+                          {" "}
+                          {ownersName.value}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <TextField
+                      label="Created At"
+                      value={riskCreatedAt}
+                      autoComplete="off"
+                      disabled
+                      onChange={(e) => setRiskCreatedAt(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
+                    <TextField
+                      label="Risk Score"
+                      value={riskProbabilityLevell*riskImpactLevell}
+                      autoComplete="off"
+                      disabled
+                      onChange={(e) => setRiskScore(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                  <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Risk Response</InputLabel>
                   <Select
                     label="Risk Response"
@@ -1035,11 +1055,9 @@ export function MitigatedRiskData(params) {
     params.row.mitigationControl
   );
 
-  const [mitigatedRiskScore, setMitigatedRiskScore] = useState(
-    params.row.mitigatedRiskScore
-  );
+ 
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(getProbabiltyLevelNumber(params.row.mitigatedRiskProbabilityLevel));
+    useState(params.row.mitigatedRiskProbabilityLevel);
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
@@ -1062,12 +1080,10 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const mitigatedRiskProbabilityLevel = 
-        mitigatedRiskProbabilityLevell
-      ;
-      const mitigatedRiskImpactLevel = 
-        mitigatedRiskImpactLevell
-      ;
+      const mitigatedRiskProbabilityLevel =  mitigatedRiskProbabilityLevell;
+
+      const mitigatedRiskImpactLevel = mitigatedRiskImpactLevell;
+
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
@@ -1213,8 +1229,9 @@ export function MitigatedRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigation Risk Score"
-                    value={mitigatedRiskScore}
+                    value={mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell}
                     autoComplete="off"
+                    disabled
                     onChange={(e) => setMitigatedRiskScore(e.target.value)}
                     required
                   />
@@ -1463,6 +1480,7 @@ export function DepartmentData(params) {
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
+  const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   const id = params.row.id;
   const style = {
     position: "absolute",
@@ -1481,7 +1499,7 @@ export function DepartmentData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
+    await axios.put(
         EDITDEPARTMENT_URL,
         JSON.stringify({
           id,
@@ -1499,7 +1517,9 @@ export function DepartmentData(params) {
         }
       );
       alert("User Saved Successfully");
+
     } catch (error) {
+      
       alert(error);
     }
   };
@@ -1507,8 +1527,14 @@ export function DepartmentData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(
-        `${DELETEDEPARTMENT_URL}/${id}`,
+
+      console.log(id,deletedAssociatedRisks)
+      await axios.put(
+        DELETEDEPARTMENT_URL,
+        JSON.stringify({
+          id,
+          deletedAssociatedRisks,
+        }),
 
         {
           headers: {

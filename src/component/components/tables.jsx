@@ -348,7 +348,7 @@ export function DepartmentTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-
+        console.log(response);
         setTableData(response.data);
       } catch (error) {
         console.error(error);
