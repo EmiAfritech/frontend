@@ -383,7 +383,7 @@ export function RiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
-    width: 800
+    width: 1200
   };
 
   function handleOpen() {
@@ -467,7 +467,6 @@ export function RiskData(params) {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
               <div className=" px-10 py-10">
                 <div className="grid grid-cols-4 gap-3 mb-6">
                   <div className="relative mb-6" data-te-input-wrapper-init>
@@ -503,9 +502,8 @@ export function RiskData(params) {
                     />
                   </div>
                   <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                  <InputLabel>Department Name</InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
                       label="Department Name"
                       value={departmentName}
                       autoComplete="off"
@@ -526,6 +524,7 @@ export function RiskData(params) {
                 </div>
                 <div className="grid grid-cols-4 gap-3 mb-6">
                   <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Owner</InputLabel>
                     <Select
                       label="Risk Owner"
                       value={riskOwner}
@@ -564,6 +563,7 @@ export function RiskData(params) {
                     />
                   </div>
                   <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Response</InputLabel>
                     <Select
                       label="Risk Response"
                       value={riskResponse}
@@ -582,6 +582,7 @@ export function RiskData(params) {
                 </div>
                 <div className="grid grid-cols-4 gap-3 mb-6">
                   <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Category</InputLabel>
                     <Select
                       label="Risk Category"
                       value={riskCategory}
@@ -598,6 +599,7 @@ export function RiskData(params) {
                     </Select>
                   </div>
                   <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Probability Level</InputLabel>
                     <Select
                       label="Risk Probability Level"
                       value={riskProbabilityLevell}
@@ -613,6 +615,7 @@ export function RiskData(params) {
                     </Select>
                   </div>
                   <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Impact level</InputLabel>
                     <Select
                       label="Risk Impact level"
                       value={riskImpactLevell}
@@ -874,6 +877,7 @@ export function MonitoredRiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 1200
   };
 
   function handleOpen() {
@@ -918,7 +922,7 @@ export function MonitoredRiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -928,6 +932,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -937,10 +942,12 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                <InputLabel>Response Activity Status</InputLabel>
+                  <Select
                     label="Response Activity Status"
                     value={riskResponseActivitiyStatus}
                     autoComplete="off"
@@ -948,7 +955,11 @@ export function MonitoredRiskData(params) {
                       setRiskResponseActivitiyStatus(e.target.value)
                     }
                     required
-                  />
+                    style={{ width: "100%" }}
+                  >
+                    <MenuItem value= "YES">YES</MenuItem>
+                    <MenuItem value= "NO">NO</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -957,6 +968,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskCreatedAt(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -969,6 +981,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setChallenges(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -981,6 +994,7 @@ export function MonitoredRiskData(params) {
                       setRiskResponseImplementation(e.target.value)
                     }
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -990,7 +1004,8 @@ export function MonitoredRiskData(params) {
                     value={recommendedChanges}
                     autoComplete="off"
                     onChange={(e) => setRecommendedChanges(e.target.value)}
-                    require
+                    required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1001,6 +1016,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setComments(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -1014,7 +1030,7 @@ export function MonitoredRiskData(params) {
                 Save
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>
