@@ -716,6 +716,7 @@ export function ReviewRiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 1200,
   };
   function handleOpen() {
     setOpen(!open);
@@ -770,6 +771,7 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -780,16 +782,22 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <Select
                     label="Risk Review"
                     value={riskReview}
                     autoComplete="off"
                     onChange={(e) => setRiskReview(e.target.value)}
                     required
-                  />
+                    style={{ width: "100%" }}
+                  >
+                    <MenuItem value="accept risk">Accept Risk</MenuItem>
+                    <MenuItem value="reject risk">Reject Risk</MenuItem>
+                    <MenuItem value="close risk">Close Risk</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -798,6 +806,7 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskReviewer(e.target.value)}
                     requiredd
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -809,6 +818,7 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setNextRiskReviewDate(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -819,6 +829,7 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -829,6 +840,7 @@ export function ReviewRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskReviewComments(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
