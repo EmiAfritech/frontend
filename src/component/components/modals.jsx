@@ -19,7 +19,7 @@ import {
   EDITUSER_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 
 function getProbabiltyLevel(probabilitys) {
@@ -459,7 +459,8 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -493,10 +494,9 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                <InputLabel id="demo-simple-select-label">Age</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
-                    id="demo-simple-select"
                     label="Department Name"
                     value={departmentName}
                     autoComplete="off"
@@ -671,7 +671,7 @@ export function RiskData(params) {
                 Delete
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>
