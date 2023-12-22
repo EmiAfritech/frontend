@@ -420,8 +420,8 @@ export function RiskData(params) {
           riskDescription,
           riskCategory,
           riskObjective,
-          riskImpactLevell,
-          riskProbabilityLevell,
+          riskImpactLevel,
+          riskProbabilityLevel,
           riskResponse,
           riskResponseActivity,
           riskOwner,
@@ -1085,12 +1085,10 @@ export function MitigatedRiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const mitigatedRiskProbabilityLevel = getProbabiltyLevelNumber(
-        mitigatedRiskProbabilityLevell
-      );
-      const mitigatedRiskImpactLevel = getImpactLevelNumber(
-        mitigatedRiskImpactLevell
-      );
+      const mitigatedRiskProbabilityLevel =  mitigatedRiskProbabilityLevell;
+
+      const mitigatedRiskImpactLevel = mitigatedRiskImpactLevell;
+
       await axios.put(
         EDITMITIGATION_URL,
         JSON.stringify({
