@@ -921,6 +921,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -930,6 +931,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -942,6 +944,7 @@ export function MonitoredRiskData(params) {
                       setRiskResponseActivitiyStatus(e.target.value)
                     }
                     required
+                    style={{ width: "100%" }}
                   >
                     <MenuItem value= "YES">YES</MenuItem>
                     <MenuItem value= "NO">NO</MenuItem>
@@ -954,6 +957,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskCreatedAt(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -966,6 +970,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setChallenges(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -978,6 +983,7 @@ export function MonitoredRiskData(params) {
                       setRiskResponseImplementation(e.target.value)
                     }
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -987,7 +993,8 @@ export function MonitoredRiskData(params) {
                     value={recommendedChanges}
                     autoComplete="off"
                     onChange={(e) => setRecommendedChanges(e.target.value)}
-                    require
+                    required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -998,6 +1005,7 @@ export function MonitoredRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setComments(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
