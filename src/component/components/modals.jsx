@@ -393,6 +393,10 @@ export function RiskData(params) {
  const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+      const riskProbabilityLevel = riskProbabilityLevell;
+  
+      const riskImpactLevel = riskImpactLevell;
+    
       console.log(
          id,
           riskName,
@@ -400,8 +404,8 @@ export function RiskData(params) {
           riskDescription,
           riskCategory,
           riskObjective,
-          riskImpactLevell,
-          riskProbabilityLevell,
+          riskImpactLevel,
+          riskProbabilityLevel,
           riskResponse,
           riskResponseActivity,
           riskOwner,
@@ -1056,13 +1060,11 @@ export function MitigatedRiskData(params) {
     params.row.mitigationControl
   );
 
-  const [mitigatedRiskScore, setMitigatedRiskScore] = useState(
-    params.row.mitigatedRiskScore
-  );
+ 
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(params.row.mitigatedRiskProbabilityLevel);
+    useState(getImpactLevelNumber(params.row.mitigatedRiskProbabilityLevel));
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
-    params.row.mitigatedRiskImpactLevel
+    getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
@@ -1189,8 +1191,9 @@ export function MitigatedRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigation Risk Score"
-                    value={mitigatedRiskScore}
+                    value={mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell}
                     autoComplete="off"
+                    disabled
                     onChange={(e) => setMitigatedRiskScore(e.target.value)}
                     required
                   />
