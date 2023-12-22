@@ -244,37 +244,7 @@ export function UserData(params) {
     </>
   );
 }
-function getProbabiltyLevelNumber(probabilitys) {
-  if (probabilitys === "Almost Impossible") {
-    return 1;
-  } else if (probabilitys === "Unlikely") {
-    return 2;
-  } else if (probabilitys === "Likely") {
-    return 3;
-  } else if (probabilitys === "Very Likely") {
-    return 4;
-  } else if (probabilitys === "Almost Certain") {
-    return 5;
-  } else {
-    return 0;
-  }
-}
 
-function getImpactLevelNumber(impact) {
-  if (impact === "Insignificant") {
-    return 1;
-  } else if (impact === "Minor") {
-    return 2;
-  } else if (impact === "Moderate") {
-    return 3;
-  } else if (impact === "Major") {
-    return 4;
-  } else if (impact === "Catastrophic") {
-    return 5;
-  } else {
-    return 0;
-  }
-}
 export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
@@ -304,6 +274,8 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
+  console.log(riskProbabilityLevel)
+  console.log(riskImpactLevel)
 
   useEffect(() => {
     axios
@@ -357,10 +329,6 @@ export function RiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const riskProbabilityLevel = getProbabiltyLevelNumber(
-      //   riskProbabilityLevell
-      // );
-      // const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
 
       await axios.put(
         EDITRISK_URL,
