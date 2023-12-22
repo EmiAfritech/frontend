@@ -330,15 +330,14 @@ export function RiskData(params) {
   const [riskImpactLevell, setRiskImpactLevel] = useState(
    getImpactLevelNumber(params.row.riskImpactLevel)
   );
-  const [riskScore, setRiskScore] = useState(params.row.riskScore);
+  
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log("@@@@@@@probabilty",riskProbabilityLevell );
-  console.log("@@@@@@@impact", riskImpactLevell);
+ 
   
 
   useEffect(() => {
@@ -394,12 +393,19 @@ export function RiskData(params) {
  const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-       
-      
-      console.log("********probabilty", riskProbabilityLevell);
-        console.log("*******impact", riskImpactLevell);
-      
-
+      console.log(
+         id,
+          riskName,
+          riskID,
+          riskDescription,
+          riskCategory,
+          riskObjective,
+          riskImpactLevell,
+          riskProbabilityLevell,
+          riskResponse,
+          riskResponseActivity,
+          riskOwner,
+      )
       
       await axios.put(
         EDITRISK_URL,
@@ -489,9 +495,11 @@ export function RiskData(params) {
                       label="Department ID"
                       value={departmentID}
                       autoComplete="off"
+                      disabled
                       onChange={(e) => setDepartmentID(e.target.value)}
                       required
                       style={{ width: "100%" }}
+                     
                     />
                   </div>
                   <div className="relative mb-6" data-te-input-wrapper-init>
@@ -507,7 +515,8 @@ export function RiskData(params) {
                       {deptmentName.map((deptmentName) => (
                         <MenuItem
                           key={deptmentName.names.id}
-                          value={deptmentName.names.name}>
+                          value={deptmentName.names.name}
+                          onClick={() => setDepartmentID(deptmentName.deptIDs.deptID)}>
                           {" "}
                           {deptmentName.names.name}
                         </MenuItem>
@@ -537,6 +546,7 @@ export function RiskData(params) {
                       label="Created At"
                       value={riskCreatedAt}
                       autoComplete="off"
+                      disabled
                       onChange={(e) => setRiskCreatedAt(e.target.value)}
                       required
                       style={{ width: "100%" }}
@@ -545,8 +555,9 @@ export function RiskData(params) {
                   <div className="relative mb-6" data-te-input-wrapper-init>
                     <TextField
                       label="Risk Score"
-                      value={riskScore}
+                      value={riskProbabilityLevell*riskImpactLevell}
                       autoComplete="off"
+                      disabled
                       onChange={(e) => setRiskScore(e.target.value)}
                       required
                       style={{ width: "100%" }}
