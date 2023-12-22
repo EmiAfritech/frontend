@@ -384,6 +384,7 @@ export function RiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 800
   };
 
   function handleOpen() {
@@ -459,7 +460,6 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <div className="w-[70rem]">
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Age</InputLabel>
               <div className=" px-10 py-10">
@@ -671,7 +671,6 @@ export function RiskData(params) {
                 </button>
               </div>
             </FormControl>
-          </div>
         </Box>
       </Modal>
     </>
