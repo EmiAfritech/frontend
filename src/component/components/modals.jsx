@@ -1533,6 +1533,7 @@ export function DepartmentData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 1200,
   };
   function handleOpen() {
     setOpen(!open);
@@ -1617,7 +1618,7 @@ export function DepartmentData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1627,6 +1628,7 @@ export function DepartmentData(params) {
                     autoComplete="off"
                     onChange={(e) => setDepartmentID(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1636,6 +1638,7 @@ export function DepartmentData(params) {
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1645,7 +1648,8 @@ export function DepartmentData(params) {
                     value={manager}
                     autoComplete="off"
                     onChange={(e) => setManager(e.target.value)}
-                    required>
+                    required
+                    style={{ width: "100%" }}>
                     {managers.map((managers) => (
                       <MenuItem key={managers.id} value={managers.value}>
                         {" "}
@@ -1661,6 +1665,7 @@ export function DepartmentData(params) {
                     autoComplete="off"
                     onChange={(e) => setLocation(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -1673,6 +1678,7 @@ export function DepartmentData(params) {
                     onChange={(e) => setCreatedAt(e.target.value)}
                     required
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1683,6 +1689,7 @@ export function DepartmentData(params) {
                     onChange={(e) => setUpdatedAt(e.target.value)}
                     required
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -1703,7 +1710,7 @@ export function DepartmentData(params) {
                 Delete
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>
