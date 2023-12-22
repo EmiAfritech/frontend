@@ -83,6 +83,7 @@ function getImpactLevelNumber(impact) {
   } else {
     return 0;
   }
+  
 }
 export function UserData(params) {
   const [open, setOpen] = useState(false);
@@ -324,10 +325,10 @@ export function RiskData(params) {
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
   const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
-    params.row.riskProbabilityLevel
+    getProbabiltyLevelNumber(params.row.riskProbabilityLevel)
   );
   const [riskImpactLevell, setRiskImpactLevel] = useState(
-   params.row.riskImpactLevel
+   getImpactLevelNumber(params.row.riskImpactLevel)
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
@@ -393,10 +394,9 @@ export function RiskData(params) {
     e.preventDefault();
     try {
        
-      const riskProbabilityLevel = getProbabiltyLevelNumber(riskProbabilityLevell);
-      const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
-      console.log("********probabilty", riskProbabilityLevel);
-        console.log("*******impact", riskImpactLevel);
+      
+      console.log("********probabilty", riskProbabilityLevell);
+        console.log("*******impact", riskImpactLevell);
       
 
       
