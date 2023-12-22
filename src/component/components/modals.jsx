@@ -274,8 +274,8 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log(riskProbabilityLevel)
-  console.log(riskImpactLevel)
+  console.log(riskProbabilityLevel);
+  console.log(riskImpactLevel);
 
   useEffect(() => {
     axios
@@ -329,7 +329,6 @@ export function RiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -402,7 +401,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -412,7 +411,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -422,17 +421,20 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setDepartmentID(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
                   <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
                     label="Department Name"
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                    style={{ width: '100%' }}>
+                    style={{ width: "100%" }}>
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
@@ -452,8 +454,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskOwner(e.target.value)}
                     required
-                    style={{ width: '100%' }}
-                    >
+                    style={{ width: "100%" }}>
                     {ownersName.map((ownersName) => (
                       <MenuItem key={ownersName.id} value={ownersName.value}>
                         {" "}
@@ -470,7 +471,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskCreatedAt(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -480,7 +481,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskScore(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -490,8 +491,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskResponse(e.target.value)}
                     required
-                    style={{ width: '100%' }}
-                    >
+                    style={{ width: "100%" }}>
                     <MenuItem value="Exploit">Exploit</MenuItem>
                     <MenuItem value="Accept">Accept</MenuItem>
                     <MenuItem value="Enhance">Enhance</MenuItem>
@@ -509,8 +509,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskCategory(e.target.value)}
                     required
-                    style={{ width: '100%' }}
-                    >
+                    style={{ width: "100%" }}>
                     <MenuItem value="EXTERNAL FACTORS">
                       External Factors
                     </MenuItem>
@@ -526,8 +525,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
-                    style={{ width: '100%' }}
-                    >
+                    style={{ width: "100%" }}>
                     <MenuItem value={1}>Almost Impossible</MenuItem>
                     <MenuItem value={2}>Unlikely</MenuItem>
                     <MenuItem value={3}>Likely</MenuItem>
@@ -542,8 +540,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
                     required
-                    style={{ width: '100%' }}
-                    >
+                    style={{ width: "100%" }}>
                     {" "}
                     <MenuItem value={1}>Insignificant</MenuItem>
                     <MenuItem value={2}>Minor</MenuItem>
@@ -560,7 +557,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskObjective(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
@@ -574,7 +571,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskDescription(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -585,7 +582,7 @@ export function RiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskResponseActivity(e.target.value)}
                     required
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
