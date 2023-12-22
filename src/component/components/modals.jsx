@@ -311,6 +311,8 @@ export function RiskData(params) {
    const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
+  const prob = getProbabiltyLevel(params.row.riskProbabilityLevel);
+  const imp = getImpactLevel(params.row.riskImpactLevel);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
@@ -324,10 +326,10 @@ export function RiskData(params) {
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
   const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
-    getProbabiltyLevel(params.row.riskProbabilityLevel)
+    prob
   );
   const [riskImpactLevell, setRiskImpactLevel] = useState(
-    getImpactLevel(params.row.riskImpactLevel)
+   imp
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
@@ -336,8 +338,8 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log("probabilty", riskProbabilityLevell);
-  console.log("impact", riskImpactLevell);
+  console.log("#####probabilty", prob);
+  console.log("#####impact", imp);
 
   useEffect(() => {
     axios
@@ -391,6 +393,8 @@ export function RiskData(params) {
  const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+       console.log("********probabilty", prob);
+        console.log("*******impact", imp);
       const riskProbabilityLevel = getProbabiltyLevelNumber(riskProbabilityLevell);
       const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
       
