@@ -1448,7 +1448,7 @@ export function DepartmentData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
+    await axios.put(
         EDITDEPARTMENT_URL,
         JSON.stringify({
           id,
@@ -1466,7 +1466,9 @@ export function DepartmentData(params) {
         }
       );
       alert("User Saved Successfully");
+
     } catch (error) {
+      
       alert(error);
     }
   };
@@ -1474,6 +1476,8 @@ export function DepartmentData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
+
+      console.log(id,deletedAssociatedRisks)
       await axios.put(
         DELETEDEPARTMENT_URL,
         JSON.stringify({
