@@ -459,7 +459,7 @@ export function RiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <FormControl fullWidth style={{ width: 600 }}>
+          <FormControl fullWidth style={{ width: "100%" }}>
             <InputLabel id="demo-simple-select-label">Age</InputLabel>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
