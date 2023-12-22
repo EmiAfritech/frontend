@@ -336,7 +336,8 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  
+  console.log("probabilty", riskProbabilityLevell);
+  console.log("impact", riskImpactLevell);
 
   useEffect(() => {
     axios
