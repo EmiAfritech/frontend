@@ -866,6 +866,7 @@ export function MonitoredRiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 1200
   };
 
   function handleOpen() {
@@ -910,7 +911,7 @@ export function MonitoredRiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -932,7 +933,8 @@ export function MonitoredRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                <InputLabel>Response Activity Status</InputLabel>
+                  <Select
                     label="Response Activity Status"
                     value={riskResponseActivitiyStatus}
                     autoComplete="off"
@@ -940,7 +942,10 @@ export function MonitoredRiskData(params) {
                       setRiskResponseActivitiyStatus(e.target.value)
                     }
                     required
-                  />
+                  >
+                    <MenuItem value= "YES">YES</MenuItem>
+                    <MenuItem value= "NO">NO</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -1006,7 +1011,7 @@ export function MonitoredRiskData(params) {
                 Save
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>
