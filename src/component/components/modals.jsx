@@ -22,6 +22,68 @@ import {
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 
+function getProbabiltyLevel(probabilitys) {
+  if (probabilitys === 1) {
+    return "Almost Impossible";
+  } else if (probabilitys === 2) {
+    return "Unlikely";
+  } else if (probabilitys === 3) {
+    return "Likely";
+  } else if (probabilitys === 4) {
+    return "Very Likely";
+  } else if (probabilitys === 5) {
+    return "Almost Certain";
+  } else {
+    return "Unknown";
+  }
+}
+
+function getImpactLevel(impact) {
+  if (impact === 1) {
+    return "Insignificant";
+  } else if (impact === 2) {
+    return  "Minor";
+  } else if (impact === 3) {
+    return "Moderate";
+  } else if (impact === 4) {
+    return "Major";
+  } else if (impact === 5) {
+    return "Catastrophic";
+  } else {
+    return "Unknown";
+  }
+}
+function getProbabiltyLevelNumber(probabilitys) {
+  if (probabilitys === "Almost Impossible") {
+    return 1;
+  } else if (probabilitys === "Unlikely") {
+    return 2;
+  } else if (probabilitys === "Likely") {
+    return 3;
+  } else if (probabilitys === "Very Likely") {
+    return 4;
+  } else if (probabilitys === "Almost Certain") {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
+function getImpactLevelNumber(impact) {
+  if (impact === "Insignificant") {
+    return 1;
+  } else if (impact === "Minor") {
+    return 2;
+  } else if (impact === "Moderate") {
+    return 3;
+  } else if (impact === "Major") {
+    return 4;
+  } else if (impact === "Catastrophic") {
+    return 5;
+  } else {
+    return 0;
+  }
+}
 export function UserData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
@@ -246,9 +308,11 @@ export function UserData(params) {
 }
 
 export function RiskData(params) {
-  const [open, setOpen] = useState(false);
+   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
+  const prob = getProbabiltyLevel(params.row.riskProbabilityLevel);
+  const imp = getImpactLevel(params.row.riskImpactLevel);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
@@ -261,11 +325,11 @@ export function RiskData(params) {
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
-    params.row.riskProbabilityLevel
+  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
+    prob
   );
-  const [riskImpactLevel, setRiskImpactLevel] = useState(
-    params.row.riskImpactLevel
+  const [riskImpactLevell, setRiskImpactLevel] = useState(
+   imp
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
@@ -274,8 +338,10 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log(riskProbabilityLevel);
-  console.log(riskImpactLevel);
+  console.log("@@@@@@@probabilty", params.row.riskProbabilityLevel);
+  console.log("@@@@@@@impact", params.row.riskImpactLevel);
+  //console.log("#####probabilty", prob);
+  //console.log("#####impact", imp);
 
   useEffect(() => {
     axios
@@ -326,9 +392,16 @@ export function RiskData(params) {
     setOpen(!open);
   }
 
-  const handleEditSubmit = async (e) => {
+ const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
+       console.log("********probabilty", prob);
+        console.log("*******impact", imp);
+      const riskProbabilityLevel = getProbabiltyLevelNumber(riskProbabilityLevell);
+      const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
+      
+
+      
       await axios.put(
         EDITRISK_URL,
         JSON.stringify({
@@ -362,10 +435,7 @@ export function RiskData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-        DELETERISK_URL,
-        JSON.stringify({
-          id,
-        }),
+        `${DELETERISK_URL}/${id}`, 
         {
           headers: {
             "Content-Type": "application/json",
@@ -520,7 +590,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
                     label="Risk Probability Level"
-                    value={riskProbabilityLevel}
+                    value={riskProbabilityLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
@@ -535,7 +605,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
                     label="Risk Impact level"
-                    value={riskImpactLevel}
+                    value={riskImpactLevell}
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
                     required
@@ -965,9 +1035,9 @@ export function MitigatedRiskData(params) {
     params.row.mitigatedRiskScore
   );
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(params.row.mitigatedRiskProbabilityLevel);
+    useState(getProbabiltyLevel(params.row.mitigatedRiskProbabilityLevel));
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
-    params.row.mitigatedRiskImpactLevel
+    getImpactLevel(params.row.mitigatedRiskImpactLevel)
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
