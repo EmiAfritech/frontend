@@ -17,6 +17,7 @@ import {
   EDITREVIEW_URL,
   EDITRISK_URL,
   EDITUSER_URL,
+  MANAGERSDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
@@ -786,6 +787,7 @@ export function ReviewRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                <InputLabel>Risk Review</InputLabel>
                   <Select
                     label="Risk Review"
                     value={riskReview}
@@ -1516,6 +1518,7 @@ export function DepartmentData(params) {
   const [deptID, setDepartmentID] = useState(params.row.deptID);
   const [name, setDepartmentName] = useState(params.row.name);
   const [manager, setManager] = useState(params.row.manager);
+  const [managers, setOwnersNames] = useState([]);
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
@@ -1586,6 +1589,23 @@ export function DepartmentData(params) {
     }
   };
 
+  useEffect(() => {
+    axios
+      .get(MANAGERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setOwnersNames(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -1619,13 +1639,20 @@ export function DepartmentData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                <InputLabel>Manager</InputLabel>
+                  <Select
                     label="Manager"
                     value={manager}
                     autoComplete="off"
                     onChange={(e) => setManager(e.target.value)}
-                    required
-                  />
+                    required>
+                    {managers.map((managers) => (
+                      <MenuItem key={managers.id} value={managers.value}>
+                        {" "}
+                        {managers.value}
+                        </MenuItem>
+                    ))}
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
