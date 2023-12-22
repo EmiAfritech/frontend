@@ -384,7 +384,7 @@ export function RiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
-    width: 800
+    width: 1200
   };
 
   function handleOpen() {
