@@ -311,8 +311,6 @@ export function RiskData(params) {
    const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
-  const prob = getProbabiltyLevel(params.row.riskProbabilityLevel);
-  const imp = getImpactLevel(params.row.riskImpactLevel);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
@@ -326,10 +324,10 @@ export function RiskData(params) {
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
   const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
-    prob
+    params.row.riskProbabilityLevel
   );
   const [riskImpactLevell, setRiskImpactLevel] = useState(
-   imp
+   params.row.riskImpactLevel
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
   const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
@@ -338,10 +336,9 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  console.log("@@@@@@@probabilty", params.row.riskProbabilityLevel);
-  console.log("@@@@@@@impact", params.row.riskImpactLevel);
-  //console.log("#####probabilty", prob);
-  //console.log("#####impact", imp);
+  console.log("@@@@@@@probabilty",riskProbabilityLevell );
+  console.log("@@@@@@@impact", riskImpactLevell);
+  
 
   useEffect(() => {
     axios
@@ -395,10 +392,11 @@ export function RiskData(params) {
  const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-       console.log("********probabilty", prob);
-        console.log("*******impact", imp);
+       
       const riskProbabilityLevel = getProbabiltyLevelNumber(riskProbabilityLevell);
       const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
+      console.log("********probabilty", riskProbabilityLevel);
+        console.log("*******impact", riskImpactLevel);
       
 
       
@@ -1036,9 +1034,9 @@ export function MitigatedRiskData(params) {
     params.row.mitigatedRiskScore
   );
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(getProbabiltyLevel(params.row.mitigatedRiskProbabilityLevel));
+    useState(params.row.mitigatedRiskProbabilityLevel);
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
-    getImpactLevel(params.row.mitigatedRiskImpactLevel)
+    params.row.mitigatedRiskImpactLevel
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
