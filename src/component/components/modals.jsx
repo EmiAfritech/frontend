@@ -150,10 +150,8 @@ export function UserData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-        DELETEUSER_URL,
-        JSON.stringify({
-          id,
-        }),
+        `${DELETEUSER_URL}/${id}`,
+        
         {
           headers: {
             "Content-Type": "application/json",
