@@ -759,7 +759,7 @@ export function ReviewRiskData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -842,7 +842,7 @@ export function ReviewRiskData(params) {
                 Save
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>

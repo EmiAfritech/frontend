@@ -11,8 +11,22 @@ export function Sessions() {
   const [session, setSession] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const notify = () => {
+  const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        localStorage.clear();
+      },
+    });
+  };
+  const notifyNetwork = () => {
+    toast.error("Server is Currently Unavailable, Please Try Again Later!", {
+      onClose: () => {
+      },
+    });
+  };
+  const notifySystem = () => {
+    toast.error("System Down, Contact Admin!", {
       onClose: () => {
         navigate("/", { replace: true });
         localStorage.clear();
@@ -31,21 +45,19 @@ export function Sessions() {
         if (session === "valid") {
           console.log("Authorized User");
         } else if (session === "Invalid"){
-          notify()
+          notifyUnauthorized()
           
         }
         
       })
       .catch((err) => {
         if (err.message.includes("Network Error")) {
-          alert("Server is Currently Unavailable, Please Try Again Later");
+          notifyNetwork()
         }    
       });
     } catch (error) {
      if (error.message.includes("Network Error")) {
-        alert("Server is Currently Unavailable, Please Try Again Later");
-        navigate("/", { replace: true });
-        localStorage.clear();
+      notifySystem()
       } 
     }
     
