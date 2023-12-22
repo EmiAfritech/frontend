@@ -1429,6 +1429,7 @@ export function DepartmentData(params) {
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
+  const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   const id = params.row.id;
   const style = {
     position: "absolute",
@@ -1473,8 +1474,12 @@ export function DepartmentData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(
-        `${DELETEDEPARTMENT_URL}/${id}`,
+      await axios.put(
+        DELETEDEPARTMENT_URL,
+        JSON.stringify({
+          id,
+          deletedAssociatedRisks,
+        }),
 
         {
           headers: {
