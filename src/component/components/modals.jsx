@@ -1062,7 +1062,7 @@ export function MitigatedRiskData(params) {
 
  
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(getImpactLevelNumber(params.row.mitigatedRiskProbabilityLevel));
+    useState(getProbabiltyLevelNumber(params.row.mitigatedRiskProbabilityLevel));
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
@@ -1469,7 +1469,7 @@ export function DepartmentData(params) {
 
     } catch (error) {
       
-      alert(error);
+      alert(error.message);
     }
   };
 
@@ -1478,13 +1478,8 @@ export function DepartmentData(params) {
     try {
 
       console.log(id,deletedAssociatedRisks)
-      await axios.put(
-        DELETEDEPARTMENT_URL,
-        JSON.stringify({
-          id,
-          deletedAssociatedRisks,
-        }),
-
+      await axios.delete(
+        ` ${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
         {
           headers: {
             "Content-Type": "application/json",
