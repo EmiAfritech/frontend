@@ -1062,6 +1062,7 @@ export function MitigatedRiskData(params) {
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
+  const [ownersName, setOwnersName] = useState([]);
 
   const style = {
     position: "absolute",
@@ -1072,6 +1073,7 @@ export function MitigatedRiskData(params) {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
+    width: 1200,
   };
   function handleOpen() {
     setOpen(!open);
@@ -1148,6 +1150,7 @@ export function MitigatedRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskID(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1157,6 +1160,7 @@ export function MitigatedRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setRiskName(e.target.value)}
                     disabled
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1184,7 +1188,8 @@ export function MitigatedRiskData(params) {
                   value={mitigationEffort}
                   autoComplete="off"
                   onChange={(e) => setMitigationEffort(e.target.value)}
-                  required>
+                  required
+                  style={{ width: "100%" }}>
                   <MenuItem value="Trivial">Trivial</MenuItem>
                   <MenuItem value="Minor">Minor</MenuItem>
                   <MenuItem value="Considerable">Considerable</MenuItem>
@@ -1201,6 +1206,7 @@ export function MitigatedRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setMitigationCost(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   >
                     <MenuItem value="$100 001 TO $200 000">$100,001 -$200,000</MenuItem>
                     <MenuItem value="$300 001 TO 400 000">$300,001 -$400,000</MenuItem>
@@ -1221,6 +1227,7 @@ export function MitigatedRiskData(params) {
                     autoComplete="off"
                     onChange={(e) => setMitigationControl(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   >
                     <MenuItem value="MANUAL">Manual</MenuItem>
                     <MenuItem value="SYSTEMATIC">Systematic</MenuItem>
@@ -1234,6 +1241,7 @@ export function MitigatedRiskData(params) {
                     disabled
                     onChange={(e) => setMitigatedRiskScore(e.target.value)}
                     required
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1278,6 +1286,7 @@ export function MitigatedRiskData(params) {
                     disabled
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
+                    style={{ width: "100%" }}
                   />
                 </div>
               </div>
