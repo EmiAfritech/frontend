@@ -291,10 +291,10 @@ export function RiskData(params) {
   const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
-  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(
     params.row.riskProbabilityLevel
   );
-  const [riskImpactLevell, setRiskImpactLevel] = useState(
+  const [riskImpactLevel, setRiskImpactLevel] = useState(
     params.row.riskImpactLevel
   );
   const [riskScore, setRiskScore] = useState(params.row.riskScore);
@@ -357,10 +357,10 @@ export function RiskData(params) {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      const riskProbabilityLevel = getProbabiltyLevelNumber(
-        riskProbabilityLevell
-      );
-      const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
+      // const riskProbabilityLevel = getProbabiltyLevelNumber(
+      //   riskProbabilityLevell
+      // );
+      // const riskImpactLevel = getImpactLevelNumber(riskImpactLevell);
 
       await axios.put(
         EDITRISK_URL,
@@ -554,7 +554,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
                     label="Risk Probability Level"
-                    value={riskProbabilityLevell}
+                    value={riskProbabilityLevel}
                     autoComplete="off"
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
@@ -570,7 +570,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
                     label="Risk Impact level"
-                    value={riskImpactLevell}
+                    value={riskImpactLevel}
                     autoComplete="off"
                     onChange={(e) => setRiskImpactLevel(e.target.value)}
                     required
