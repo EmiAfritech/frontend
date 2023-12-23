@@ -1189,7 +1189,7 @@ export function MitigatedRiskData(params) {
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [ownersName, setOwnersName] = useState([]);
   const notify = () => {
-    toast.success("risk Mitigation Saved Successfully", );
+    toast.success("Risk Mitigation Saved Successfully", );
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
