@@ -1560,6 +1560,8 @@ export function DepartmentData(params) {
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
   const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   setDeletedAssociatedRisks(false);
+  const [deptmentName, setdeptmentName] = useState([]);
+  
   const id = params.row.id;
   const style = {
     position: "absolute",
@@ -1639,6 +1641,23 @@ export function DepartmentData(params) {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -1664,14 +1683,24 @@ export function DepartmentData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <InputLabel>Department Name</InputLabel>
+                  <Select
                     label="Department Name"
                     value={name}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                    style={{ width: "100%" }}
-                  />
+                    style={{ width: "100%" }}>
+                    {deptmentName.map((deptmentName) => (
+                      <MenuItem
+                        key={deptmentName.names.id}
+                        value={deptmentName.names.name}
+                        >
+                        {" "}
+                        {deptmentName.names.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                 <InputLabel>Manager</InputLabel>
