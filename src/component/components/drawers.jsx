@@ -1177,6 +1177,9 @@ export function RiskMitigationforms() {
   const [mitigationEffort, setmitigationEffort] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
+  const [open, setOpen] = React.useState(false);
+
+
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -1287,7 +1290,7 @@ export function RiskMitigationforms() {
     }
   };
 
-  const [open, setOpen] = React.useState(false);
+  
 
   function handleOpen() {
     setOpen(!open);
@@ -1296,6 +1299,18 @@ export function RiskMitigationforms() {
   function handleClose() {
     setOpen(false);
   }
+
+  const reload = () => {
+    setmitigationOwner("");
+    setdepartmentID("");
+    setmitigatedRiskProbabilityLevel("");
+    setRiskID("");
+    setmitigatedRiskImpactLevel("");
+    setmitigationControl("");
+    setmitigationEffort("");
+    setmitigationEffort("");
+    setmitigationCost("");
+  };
 
   return (
     <>
