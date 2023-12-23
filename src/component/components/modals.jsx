@@ -153,10 +153,8 @@ export function UserData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-        DELETEUSER_URL,
-        JSON.stringify({
-          id,
-        }),
+        `${DELETEUSER_URL}/${id}`,
+        
         {
           headers: {
             "Content-Type": "application/json",
@@ -443,20 +441,6 @@ export function RiskData(params) {
       const riskProbabilityLevel = riskProbabilityLevell;
 
       const riskImpactLevel = riskImpactLevell;
-
-      console.log(
-        id,
-        riskName,
-        riskID,
-        riskDescription,
-        riskCategory,
-        riskObjective,
-        riskImpactLevel,
-        riskProbabilityLevel,
-        riskResponse,
-        riskResponseActivity,
-        riskOwner
-      );
 
       await axios.put(
         EDITRISK_URL,
@@ -1118,7 +1102,7 @@ export function MitigatedRiskData(params) {
   );
 
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(params.row.mitigatedRiskProbabilityLevel);
+    useState(getProbabiltyLevelNumber(params.row.mitigatedRiskProbabilityLevel));
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
@@ -1268,8 +1252,13 @@ export function MitigatedRiskData(params) {
                     onChange={(e) => setMitigationCost(e.target.value)}
                     required
                     style={{ width: "100%" }}>
+                    <MenuItem value="$0 TO $100 000">$0 -$100,000</MenuItem>
+
                     <MenuItem value="$100 001 TO $200 000">
                       $100,001 -$200,000
+                    </MenuItem>
+                    <MenuItem value="$200 001 TO $300 000">
+                      $200,001 -$300,000
                     </MenuItem>
                     <MenuItem value="$300 001 TO 400 000">
                       $300,001 -$400,000
@@ -1572,6 +1561,7 @@ export function DepartmentData(params) {
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
   const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
+  setDeletedAssociatedRisks(false);
   const id = params.row.id;
   const style = {
     position: "absolute",
@@ -1618,14 +1608,9 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       console.log(id, deletedAssociatedRisks);
-      await axios.put(
-        DELETEDEPARTMENT_URL,
-        JSON.stringify({
-          id,
-          deletedAssociatedRisks,
-        }),
-
-        {
+      await axios.delete(
+      `${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
+      {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1633,7 +1618,7 @@ export function DepartmentData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      alert("Department deleted Successfully");
     } catch (error) {
       alert(error);
     }
@@ -1765,3 +1750,4 @@ export function DepartmentData(params) {
     </>
   );
 }
+
