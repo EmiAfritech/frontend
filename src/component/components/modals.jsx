@@ -1606,6 +1606,7 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       console.log(id, deleteAssociatedRisks);
+      setDeletedAssociatedRisks(false);
       await axios.delete(
       `${DELETEDEPARTMENT_URL}/${id}/${deleteAssociatedRisks}`,
       {
