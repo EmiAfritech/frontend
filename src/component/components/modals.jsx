@@ -422,7 +422,7 @@ export function RiskData(params) {
   };
 
   const notifyDelete = () => {
-    toast.error("User Deleted");
+    toast.error("Risk Deleted");
   };
 
   useEffect(() => {
