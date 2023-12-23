@@ -321,9 +321,7 @@ export function UserData(params) {
                       <MenuItem
                         key={deptmentName.names.id}
                         value={deptmentName.names.name}
-                        onClick={() =>
-                          setDepartmentID(deptmentName.deptIDs.deptID)
-                        }>
+                        >
                         {" "}
                         {deptmentName.names.name}
                       </MenuItem>
