@@ -1655,7 +1655,6 @@ export function DepartmentData(params) {
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
   const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
-  setDeletedAssociatedRisks(false);
   const [deptmentName, setdeptmentName] = useState([]);
   
   const id = params.row.id;
