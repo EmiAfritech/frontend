@@ -348,17 +348,17 @@ export function DepartmentTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        console.log(response);
+        
         setTableData(response.data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
 
     getDepartment();
   }, []);
 
-  console.log(tableData);
+  
 
   return (
     <div className="flex flex-col">
@@ -774,7 +774,7 @@ export function RiskStatusReportTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        console.log(response);
+        
         setdeptmentNames(response.data);
       } catch (error) {
         console.error(error);

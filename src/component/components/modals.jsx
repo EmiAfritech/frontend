@@ -1607,9 +1607,9 @@ export function DepartmentData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(id, deletedAssociatedRisks);
+      console.log(id, deleteAssociatedRisks);
       await axios.delete(
-      `${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
+      `${DELETEDEPARTMENT_URL}/${id}/${deleteAssociatedRisks}`,
       {
           headers: {
             "Content-Type": "application/json",
