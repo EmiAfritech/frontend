@@ -23,6 +23,7 @@ export function Login() {
   };
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
+    reload()
   };
   const notifyUnauthorizedUser = () => {
     toast.error("Unauthorized User! Please check your credentials", {});
@@ -66,7 +67,6 @@ export function Login() {
     } catch (err) {
       if (err.message.includes("Network Error")) {
         notifyNetworkError();
-        reload();
       } else if (err.response.status === 401) {
         notifyUnauthorizedUser();
       }

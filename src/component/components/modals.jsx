@@ -22,6 +22,12 @@ import {
 } from "../../api/routes";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+
+
 
 function getProbabiltyLevel(probabilitys) {
   if (probabilitys === 1) {
@@ -104,6 +110,19 @@ export function UserData(params) {
   
   const [deptmentName, setdeptmentName] = useState([]);
 
+  const notify = () => {
+    toast.success("User Saved Successfully",);
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", );
+  };
+  const notifyDelete = () => {
+    toast.error("User Deleted");
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin", );
+  };
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -143,9 +162,13 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
+      notify()
     } catch (error) {
-      alert(error);
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -163,10 +186,14 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      alert("User Saved Successfully");
-    } catch (error) {
-      alert(error);
-    }
+      notifyDelete()
+      }catch (error) {
+        if(error.response.status === 400){
+          notifyFillForms();
+        }else if(error.response.status === 500){
+          notifyServerDown();
+        }
+      }
   };
 
   useEffect(() => {
@@ -188,6 +215,7 @@ export function UserData(params) {
 
   return (
     <>
+    <ToastContainer/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -383,6 +411,20 @@ export function RiskData(params) {
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
 
+  const notify = () => {
+    toast.success("Risk Saved Successfully", );
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", );
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin",);
+  };
+
+  const notifyDelete = () => {
+    toast.error("User Deleted");
+  };
+
   useEffect(() => {
     axios
       .get(DEPARTMENTDROPDOWN_URL, {
@@ -463,9 +505,13 @@ export function RiskData(params) {
           withCredentials: true,
         }
       );
-      alert("Risk Saved Successfully");
+      notify()
     } catch (error) {
-      alert(error);
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -479,14 +525,19 @@ export function RiskData(params) {
         },
         withCredentials: true,
       });
-      alert("User Saved Successfully");
-    } catch (error) {
-      alert(error);
+      notifyDelete()
+    }catch (error) {
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
   return (
     <>
+    <ToastContainer/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -739,6 +790,17 @@ export function ReviewRiskData(params) {
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
 
+  const notify = () => {
+    toast.success("Risk Review Saved Successfully", );
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", );
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin",);
+  };
+
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -775,14 +837,19 @@ export function ReviewRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("Risk Review Saved Successfully");
+      notify()
     } catch (error) {
-      alert(error);
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
   return (
     <>
+    <ToastContainer/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -912,6 +979,16 @@ export function MonitoredRiskData(params) {
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
+  const notify = () => {
+    toast.success("Risk Monitoring Saved Successfully", );
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", );
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin",);
+  };
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -950,13 +1027,18 @@ export function MonitoredRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("Risk Monitoring Saved Successfully");
+       notify()
     } catch (error) {
-      alert(error);
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
   return (
     <>
+    <ToastContainer/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1106,6 +1188,15 @@ export function MitigatedRiskData(params) {
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [ownersName, setOwnersName] = useState([]);
+  const notify = () => {
+    toast.success("risk Mitigation Saved Successfully", );
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details", );
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin",);
+  };
 
   const style = {
     position: "absolute",
@@ -1149,9 +1240,13 @@ export function MitigatedRiskData(params) {
           withCredentials: true,
         }
       );
-      alert("risk Mitigation Saved Successfully");
+      notify()
     } catch (error) {
-      alert(error);
+      if(error.response.status === 400){
+        notifyFillForms();
+      }else if(error.response.status === 500){
+        notifyServerDown();
+      }
     }
   };
 
@@ -1174,6 +1269,7 @@ export function MitigatedRiskData(params) {
 
   return (
     <>
+    <ToastContainer/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
