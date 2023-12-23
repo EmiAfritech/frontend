@@ -1558,7 +1558,7 @@ export function DepartmentData(params) {
   const [location, setLocation] = useState(params.row.location);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
-  const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
+  const [deleteAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   
   const id = params.row.id;
   const style = {
@@ -1605,9 +1605,9 @@ export function DepartmentData(params) {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(id, deletedAssociatedRisks);
+      console.log(id, deleteAssociatedRisks);
       await axios.delete(
-      `${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
+      `${DELETEDEPARTMENT_URL}/${id}/${deleteAssociatedRisks}`,
       {
           headers: {
             "Content-Type": "application/json",
