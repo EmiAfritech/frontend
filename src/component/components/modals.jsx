@@ -101,6 +101,8 @@ export function UserData(params) {
   const [departmentName, setDepartmentName] = useState(
     params.row.departmentName
   );
+  
+  const [deptmentName, setdeptmentName] = useState([]);
 
   const style = {
     position: "absolute",
@@ -111,6 +113,7 @@ export function UserData(params) {
     p: 4,
     borderRadius: 1,
     bgcolor: "#FFFFFF",
+    width: 1200,
   };
   function handleOpen() {
     setOpen(!open);
@@ -168,6 +171,23 @@ export function UserData(params) {
     }
   };
 
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -179,7 +199,7 @@ export function UserData(params) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <form className="w-[70rem]">
+          <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -188,6 +208,7 @@ export function UserData(params) {
                     value={id}
                     disabled
                     autoComplete="off"
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -196,6 +217,7 @@ export function UserData(params) {
                     value={userName}
                     autoComplete="off"
                     onChange={(e) => setUserName(e.target.value)}
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -204,6 +226,7 @@ export function UserData(params) {
                     value={firstName}
                     autoComplete="off"
                     onChange={(e) => setFirstName(e.target.value)}
+                    style={{ width: "100%" }}
                     required
                   />
                 </div>
@@ -213,6 +236,7 @@ export function UserData(params) {
                     value={lastName}
                     autoComplete="off"
                     onChange={(e) => setLastName(e.target.value)}
+                    style={{ width: "100%" }}
                     required
                   />
                 </div>
@@ -224,6 +248,7 @@ export function UserData(params) {
                     value={dob}
                     autoComplete="off"
                     onChange={(e) => setDob(e.target.value)}
+                    style={{ width: "100%" }}
                     required
                   />
                 </div>
@@ -233,17 +258,25 @@ export function UserData(params) {
                     value={phoneNumber}
                     autoComplete="off"
                     onChange={(e) => setPhoneNumber(e.target.value)}
+                    style={{ width: "100%" }}
                     required
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <InputLabel>Role</InputLabel>
+                  <Select
                     label="Role"
                     value={role}
                     autoComplete="off"
                     onChange={(e) => setRole(e.target.value)}
+                    style={{ width: "100%" }}
                     required
-                  />
+                  >
+                    <MenuItem value="ADMIN">Admin</MenuItem>
+                    <MenuItem value="GENERALMANAGER">General Manager</MenuItem>
+                    <MenuItem value="MANAGER">Manager</MenuItem>
+                    <MenuItem value="AUDITOR">Auditor</MenuItem>
+                  </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -251,6 +284,7 @@ export function UserData(params) {
                     value={email}
                     autoComplete="off"
                     onChange={(e) => setEmail(e.target.value)}
+                    style={{ width: "100%" }}
                     required
                   />
                 </div>
@@ -262,6 +296,7 @@ export function UserData(params) {
                     value={updatedAt}
                     autoComplete="off"
                     onChange={(e) => setUpdatedAt(e.target.value)}
+                    style={{ width: "100%" }}
                     disabled
                   />
                 </div>
@@ -271,17 +306,31 @@ export function UserData(params) {
                     value={createdAt}
                     autoComplete="off"
                     onChange={(e) => setCreatedAt(e.target.value)}
+                    style={{ width: "100%" }}
                     disabled
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
+                  <InputLabel>Department Name</InputLabel>
+                  <Select
                     label="Department Name"
                     value={departmentName}
                     autoComplete="off"
                     onChange={(e) => setDepartmentName(e.target.value)}
                     required
-                  />
+                    style={{ width: "100%" }}>
+                    {deptmentName.map((deptmentName) => (
+                      <MenuItem
+                        key={deptmentName.names.id}
+                        value={deptmentName.names.name}
+                        onClick={() =>
+                          setDepartmentID(deptmentName.deptIDs.deptID)
+                        }>
+                        {" "}
+                        {deptmentName.names.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </div>
               </div>
             </div>
@@ -301,7 +350,7 @@ export function UserData(params) {
                 Delete
               </button>
             </div>
-          </form>
+          </FormControl>
         </Box>
       </Modal>
     </>
