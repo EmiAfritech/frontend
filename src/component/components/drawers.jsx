@@ -20,7 +20,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { RiskReview } from "./tables";
+
 
 export function Userforms() {
   const [userName, setUserName] = useState("");
@@ -917,7 +917,6 @@ export function RiskReviewforms() {
       onClose: () => {
         handleClose();
         reload();
-        <RiskReview/>
       },
     });
   };
@@ -1041,11 +1040,12 @@ export function RiskReviewforms() {
 
   return (
     <>
-    <ToastContainer onClose={1000}/>
+    
       <Button onClick={handleOpen} size="small" variant="outlined">
         Review Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
+      <ToastContainer onClose={1000}/>
         <div className="flex justify-center font-bold py-5  text-black">
           REVIEW RISK
         </div>
