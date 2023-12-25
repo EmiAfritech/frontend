@@ -1030,6 +1030,15 @@ export function RiskReviewforms() {
     setOpen(false);
   }
 
+  const reload = () => {
+    setRiskID("");
+    setdepartmentID("");
+    setRiskReview("");
+    setNextRiskReviewDate("");
+    setRiskReviewer("");
+    setriskReviewComments("");
+  };
+
   return (
     <>
     <ToastContainer onClose={1000}/>
