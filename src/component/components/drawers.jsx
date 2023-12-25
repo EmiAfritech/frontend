@@ -20,6 +20,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
+import { RiskReview } from "./tables";
 
 export function Userforms() {
   const [userName, setUserName] = useState("");
@@ -916,6 +917,7 @@ export function RiskReviewforms() {
       onClose: () => {
         handleClose();
         reload();
+        <RiskReview/>
       },
     });
   };
@@ -993,6 +995,7 @@ export function RiskReviewforms() {
         }
       );
       notify()
+      
     } catch (error) {
       if(error.response.status === 400){
         notifyFillForms();
@@ -1001,6 +1004,7 @@ export function RiskReviewforms() {
       }
     }
   };
+
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     const dateObj = new Date(selectedDate);
