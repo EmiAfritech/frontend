@@ -209,7 +209,7 @@ export function RiskBarChart() {
       <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4"/>
         <div className="flex flex-row">
-          <section className="m-2"><p>Années</p></section>
+          <section className="m-2"><p>Years</p></section>
           <select
             type="text"
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -349,7 +349,7 @@ export function RiskLineChart() {
       <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4"/>
         <div className="flex flex-row">
-          <section className="m-2"><p>Années</p></section>
+          <section className="m-2"><p>Years</p></section>
           <select
             type="text"
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"

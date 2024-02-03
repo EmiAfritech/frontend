@@ -961,7 +961,7 @@ export function ReviewRiskData(params) {
   );
 }
 
-export function MonitoredRiskData(params) {
+export function MonitoredRiskData({params,  onFormSubmit }) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -981,12 +981,14 @@ export function MonitoredRiskData(params) {
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", );
+    handleClose();
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
   };
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin",);
+    handleClose();
   };
 
   const style = {
@@ -1003,6 +1005,10 @@ export function MonitoredRiskData(params) {
 
   function handleOpen() {
     setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
   }
 
   const handleEditSubmit = async (e) => {
@@ -1028,6 +1034,7 @@ export function MonitoredRiskData(params) {
         }
       );
        notify()
+       onFormSubmit()
     } catch (error) {
       if(error.response.status === 400){
         notifyFillForms();

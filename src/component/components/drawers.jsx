@@ -21,7 +21,7 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 
-export function Userforms() {
+export function Userforms({ onFormSubmit }){
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -36,6 +36,7 @@ export function Userforms() {
     toast.success("User Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });
@@ -314,7 +315,7 @@ export function Userforms() {
   );
 }
 
-export function Departmentforms() {
+export function Departmentforms({ onFormSubmit }) {
   const [name, setName] = useState("");
   const [manager, setManager] = useState("");
   const [managers, setOwnersNames] = useState([]);
@@ -324,6 +325,7 @@ export function Departmentforms() {
     toast.success("Department Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });
@@ -901,7 +903,7 @@ export function Riskforms ({ onFormSubmit }) {
     </>
   );
 }
-export function RiskReviewforms() {
+export function RiskReviewforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
   const [departmentID, setdepartmentID] = useState("");
 
@@ -916,6 +918,7 @@ export function RiskReviewforms() {
     toast.success("Review Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });
@@ -1172,7 +1175,7 @@ export function RiskReviewforms() {
     </>
   );
 }
-export function RiskMitigationforms() {
+export function RiskMitigationforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
 
   const [risks, setRiskIDs] = useState([]);
@@ -1192,6 +1195,7 @@ export function RiskMitigationforms() {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });
@@ -1513,7 +1517,7 @@ export function RiskMitigationforms() {
     </>
   );
 }
-export function RiskMonitoringforms() {
+export function RiskMonitoringforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1529,6 +1533,7 @@ export function RiskMonitoringforms() {
     toast.success("Risk Monitoring Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });

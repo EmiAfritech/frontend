@@ -60,30 +60,35 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
 
+  const getUsers = async () => {
+    try {
+      const response = await axios.get(USERS_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      setTableData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const response = await axios.get(USERS_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-
-        setTableData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getUsers();
   }, []);
+
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
+    getUsers();
+  };
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
         <div>
-          <Userforms />
+          <Userforms onFormSubmit={handleFormSubmit}/>
         </div>
       </div>
       <div
@@ -103,32 +108,38 @@ export function EmployeesTable() {
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
 
-  useEffect(() => {
-    const getRiskReview = async () => {
-      try {
-        const response = await axios.get(RISKREVIEW_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-        
-        setTableData(response.data.Data);
-        
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const getRiskReview = async () => {
+    try {
+      const response = await axios.get(RISKREVIEW_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      
+      setTableData(response.data.Data);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     getRiskReview();
-    
   }, []);
+
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
+    getRiskReview();
+  };
+
+  
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <RiskReviewforms />
+          <RiskReviewforms  onFormSubmit={handleFormSubmit}/>
         </div>
       </div>
       <div
@@ -209,31 +220,36 @@ export function ClosedRiskTab() {
 export function RiskMonitor() {
   const [tableData, setTableData] = useState([]);
 
+  const getMonitoring = async () => {
+    try {
+      const response = await axios.get(RISKMONITORING_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+
+      setTableData(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const getMonitoring = async () => {
-      try {
-        const response = await axios.get(RISKMONITORING_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        });
-
-        setTableData(response.data.Data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getMonitoring();
   }, []);
+
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
+    getMonitoring();
+  };
 
   return (
     <div className="flex flex-col mt-6">
       <div className="flex flex-row pt-1 flex-row-reverse items-center">
         <div>
-          <RiskMonitoringforms />
+          <RiskMonitoringforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div
@@ -338,33 +354,37 @@ export function RiskAppetiteReportLower() {
 
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
+  const getDepartment = async () => {
+    try {
+      const response = await axios.get(DEPARTMENT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+      
+      setTableData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   useEffect(() => {
-    const getDepartment = async () => {
-      try {
-        const response = await axios.get(DEPARTMENT_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
-        
-        setTableData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     getDepartment();
   }, []);
 
   
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
+    getDepartment();
+  };
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <Departmentforms />
+          <Departmentforms onFormSubmit={handleFormSubmit}/>
         </div>
       </div>
       <div
@@ -383,31 +403,35 @@ export function DepartmentTab() {
 
 export function RiskmitigationTab() {
   const [tableData, setTableData] = useState([]);
+  const getMitigation = async () => {
+    try {
+      const response = await axios.get(RISKMITIGATION_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+
+      setTableData(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const getMitigation = async () => {
-      try {
-        const response = await axios.get(RISKMITIGATION_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        });
-
-        setTableData(response.data.Data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     getMitigation();
   }, []);
+
+  const handleFormSubmit = () => {
+    getMitigation();
+  };
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <RiskMitigationforms />
+          <RiskMitigationforms onFormSubmit={handleFormSubmit}/>
         </div>
       </div>
       <div
@@ -465,11 +489,10 @@ export function RiskViewTable() {
   };
 
   useEffect(() => {
-    viewAllRisks(); // Fetch data on initial component render
-  }, []); // Empty dependency array ensures it only runs once
+    viewAllRisks(); 
+  }, []); 
 
   const handleFormSubmit = () => {
-    // Call the function to fetch updated data after form submission
     viewAllRisks();
   };
 
