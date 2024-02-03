@@ -453,11 +453,6 @@ export function HighLowRiskTable() {
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
 
-  const handleFormSubmit = () => {
-    // Call the function to fetch updated data after form submission
-    viewAllRisks();
-  };
-
   const viewAllRisks = () => {
     axios
       .get(VIEWALLRISKS_URL, {
@@ -470,19 +465,13 @@ export function RiskViewTable() {
   };
 
   useEffect(() => {
-    const viewAllRisks = () => {
-      axios
-        .get(VIEWALLRISKS_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => setTableData(response.data.Data));
-    };
+    viewAllRisks(); // Fetch data on initial component render
+  }, []); // Empty dependency array ensures it only runs once
 
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
     viewAllRisks();
-  }, []);
+  };
 
   return (
     <div className="flex flex-col ">
