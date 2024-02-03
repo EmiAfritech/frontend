@@ -961,7 +961,7 @@ export function ReviewRiskData(params) {
   );
 }
 
-export function MonitoredRiskData({params,  onFormSubmit }) {
+export function MonitoredRiskData(params, { onFormSubmit }) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
