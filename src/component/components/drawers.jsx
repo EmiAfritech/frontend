@@ -20,7 +20,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-
+import { useNavigate } from "react-router-dom";
 
 export function Userforms() {
   const [userName, setUserName] = useState("");
@@ -75,7 +75,6 @@ export function Userforms() {
       });
   }, []);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -100,11 +99,11 @@ export function Userforms() {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -147,7 +146,7 @@ export function Userforms() {
 
   return (
     <>
-      <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={1000} />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
@@ -384,11 +383,11 @@ export function Departmentforms() {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -413,7 +412,7 @@ export function Departmentforms() {
 
   return (
     <>
-    <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={1000} />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Department
       </Button>
@@ -521,6 +520,8 @@ export function Riskforms() {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
+  const navigate = useNavigate()
+
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
@@ -608,10 +609,11 @@ export function Riskforms() {
         }
       );
       notify();
+      navigate("/risk-identification", { replace: true });
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -993,12 +995,11 @@ export function RiskReviewforms() {
           withCredentials: true,
         }
       );
-      notify()
-      
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -1040,12 +1041,11 @@ export function RiskReviewforms() {
 
   return (
     <>
-    
       <Button onClick={handleOpen} size="small" variant="outlined">
         Review Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
-      <ToastContainer onClose={1000}/>
+        <ToastContainer onClose={1000} />
         <div className="flex justify-center font-bold py-5  text-black">
           REVIEW RISK
         </div>
@@ -1290,11 +1290,11 @@ export function RiskMitigationforms() {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -1312,7 +1312,7 @@ export function RiskMitigationforms() {
 
   return (
     <>
-    <ToastContainer onClose={1000}/>
+      <ToastContainer onClose={1000} />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Mitigate Risk
       </Button>
@@ -1609,11 +1609,11 @@ export function RiskMonitoringforms() {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -1641,7 +1641,7 @@ export function RiskMonitoringforms() {
 
   return (
     <>
-    <ToastContainer onClose={1000}/>
+      <ToastContainer onClose={1000} />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Monitor Risk
       </Button>

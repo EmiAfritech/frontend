@@ -13,14 +13,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const notifySuccess = () => {
-    toast.success("Login successful!", {
-      onClose: () => {
-        navigate("/dashboard", { replace: true });
-        reload();
-      },
-    });
-  };
+  
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
   };
@@ -58,7 +51,7 @@ export function Login() {
         if (token && role) {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          notifySuccess();
+          navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
         }

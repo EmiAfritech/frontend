@@ -37,6 +37,7 @@ import {
   HEATMAP_URL,
   OPENVSCLOSECHART_URL,
   DEPARTMENTDROPDOWN_URL,
+  RISKYEARSCHART_URL,
 } from "../../api/routes";
 
 export function OpenVsClose() {
@@ -149,21 +150,85 @@ export function MonitoredVsUnmonitored() {
 }
 export function RiskBarChart() {
   const [data, setData] = useState();
+  const yr = new Date().getFullYear();
+  const [year, setYear] = useState(yr.toString());
+  const [years, setYears] = useState([]);
+  
 
-  useEffect(() => {
-    axios
-      .get(OPENVSCLOSEBARCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
+    useEffect(() => {
+    const fetchRiskData = async () => {
+      try {
+        const response = await axios.get(RISKYEARSCHART_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setYears(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRiskData();
+  }, []);
+  
+
+
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          OPENVSCLOSEBARCHART_URL,
+          JSON.stringify({ year }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [year]); 
+
+  const handleYearChange = (e) => {
+      setYear(e.target.value);
+      
+  };
   return (
     <div className="p-3 card">
+      <div className="grid grid-cols-5 gap-4">
+        <div className="col-span-4"/>
+        <div className="flex flex-row">
+          <section className="m-2"><p>Années</p></section>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={year}
+            autoComplete="off"
+            onChange={handleYearChange}>
+            {years.map((years) => (
+              <option
+                key={years.id}
+                value={years.year}>
+                {years.year}
+              </option>
+          
+            ))}
+          </select>
+        </div>
+      </div>
       <BarChart width={760} height={250} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
@@ -224,21 +289,86 @@ export function HighLowRiskBarchart() {
 
 export function RiskLineChart() {
   const [data, setData] = useState();
+  const yr = new Date().getFullYear();
+  const [year, setYear] = useState(yr.toString());
+  const [years, setYears] = useState([]);
+ 
+
+  
 
   useEffect(() => {
-    axios
-      .get(RISKLINECHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
+    const fetchRiskData = async () => {
+      try {
+        const response = await axios.get(RISKYEARSCHART_URL, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+        });
+
+        setYears(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRiskData();
   }, []);
+
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKLINECHART_URL,
+          JSON.stringify({ year }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [year]); 
+
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+    console.log(year)
+  };
 
   return (
     <div className="p-12 mt-12 card bg-white">
+      <div className="grid grid-cols-5 gap-4">
+        <div className="col-span-4"/>
+        <div className="flex flex-row">
+          <section className="m-2"><p>Années</p></section>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={year}
+            autoComplete="off"
+            onChange={handleYearChange}>
+            {years.map((years) => (
+              <option
+                key={years.id}
+                value={years.year}>
+                {years.year}
+              </option>
+          
+            ))}
+          </select>
+        </div>
+      </div>
       <LineChart width={920} height={300} data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
