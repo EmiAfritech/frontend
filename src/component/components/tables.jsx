@@ -453,6 +453,11 @@ export function HighLowRiskTable() {
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
 
+  const handleFormSubmit = () => {
+    // Call the function to fetch updated data after form submission
+    viewAllRisks();
+  };
+
   useEffect(() => {
     const viewAllRisks = () => {
       axios
@@ -472,7 +477,7 @@ export function RiskViewTable() {
     <div className="flex flex-col ">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <Riskforms />
+        <Riskforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div

@@ -20,7 +20,6 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { useNavigate } from "react-router-dom";
 
 export function Userforms() {
   const [userName, setUserName] = useState("");
@@ -506,7 +505,7 @@ export function Departmentforms() {
   );
 }
 
-export function Riskforms() {
+export const Riskforms = ({ onFormSubmit }) =>  {
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
@@ -520,12 +519,12 @@ export function Riskforms() {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
-  const navigate = useNavigate()
 
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
         handleClose();
+        onFormSubmit();
         reload();
       },
     });
@@ -609,7 +608,6 @@ export function Riskforms() {
         }
       );
       notify();
-      navigate("/risk-identification", { replace: true });
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
