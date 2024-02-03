@@ -961,7 +961,7 @@ export function ReviewRiskData(params) {
   );
 }
 
-export function MonitoredRiskData(params, { onFormSubmit }) {
+export function MonitoredRiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -1034,7 +1034,6 @@ export function MonitoredRiskData(params, { onFormSubmit }) {
         }
       );
        notify()
-       onFormSubmit()
     } catch (error) {
       if(error.response.status === 400){
         notifyFillForms();
