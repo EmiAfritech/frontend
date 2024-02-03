@@ -505,7 +505,7 @@ export function Departmentforms() {
   );
 }
 
-export const Riskforms = ({ onFormSubmit }) =>  {
+export function Riskforms ({ onFormSubmit }) {
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
