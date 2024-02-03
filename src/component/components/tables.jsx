@@ -458,6 +458,17 @@ export function RiskViewTable() {
     viewAllRisks();
   };
 
+  const viewAllRisks = () => {
+    axios
+      .get(VIEWALLRISKS_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => setTableData(response.data.Data));
+  };
+
   useEffect(() => {
     const viewAllRisks = () => {
       axios
