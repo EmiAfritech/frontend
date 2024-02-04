@@ -29,35 +29,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-function getProbabiltyLevel(probabilitys) {
-  if (probabilitys === 1) {
-    return "Almost Impossible";
-  } else if (probabilitys === 2) {
-    return "Unlikely";
-  } else if (probabilitys === 3) {
-    return "Likely";
-  } else if (probabilitys === 4) {
-    return "Very Likely";
-  } else if (probabilitys === 5) {
-    return "Almost Certain";
-  } else {
-    return "Unknown";
-  }
-}
 
-function getImpactLevel(impact) {
-  if (impact === 1) {
-    return "Insignificant";
-  } else if (impact === 2) {
-    return "Minor";
-  } else if (impact === 3) {
-    return "Moderate";
-  } else if (impact === 4) {
-    return "Major";
-  } else if (impact === 5) {
-    return "Catastrophic";
-  } else {
-    return "Unknown";
+
+function getRiskScore(score) {
+  if (score >= 1 && score <= 5) {
+    return "Low";
+  } else if (score >= 6 && score <= 9 ) {
+    return "Medium";
+  } else if (score >= 10 && score <= 15 ) {
+    return "High";
+  } else if(score >= 16 && score <= 25) {
+      return "Very High";
+  }else {
+    return "Unknown"; 
   }
 }
 function getProbabiltyLevelNumber(probabilitys) {
@@ -636,7 +620,7 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Score"
-                    value={riskProbabilityLevell * riskImpactLevell}
+                    value={getRiskScore(riskProbabilityLevell * riskImpactLevell)}
                     autoComplete="off"
                     disabled
                     onChange={(e) => setRiskScore(e.target.value)}
@@ -1401,7 +1385,7 @@ export function MitigatedRiskData(params) {
                   <TextField
                     label="Mitigation Risk Score"
                     value={
-                      mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell
+                      getRiskScore(mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell)
                     }
                     autoComplete="off"
                     disabled
