@@ -42,20 +42,10 @@ export function Userforms({ onFormSubmit }){
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin")
   };
 
   useEffect(() => {
@@ -240,6 +230,8 @@ export function Userforms({ onFormSubmit }){
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
+            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <>
               <select
                 type="departmentID"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -263,6 +255,8 @@ export function Userforms({ onFormSubmit }){
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 department
               </label>
+              </>
+              ):(<></>)}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
@@ -288,8 +282,6 @@ export function Userforms({ onFormSubmit }){
                 onChange={(e) => setRole(e.target.value)}
                 required>
                 <option>Select</option>
-                <option value="ADMIN">Admin</option>
-                <option value="GENERALMANAGER">General Manager</option>
                 <option value="MANAGER">Manager</option>
                 <option value="AUDITOR">Auditor</option>
               </select>
@@ -331,38 +323,12 @@ export function Departmentforms({ onFormSubmit }) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin");
   };
 
-  useEffect(() => {
-    axios
-      .get(MANAGERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setOwnersNames(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -372,7 +338,6 @@ export function Departmentforms({ onFormSubmit }) {
         DEPARTMENTCREATEFORM_URL,
         JSON.stringify({
           name,
-          manager,
           deptID,
           location,
         }),
@@ -396,7 +361,6 @@ export function Departmentforms({ onFormSubmit }) {
 
   const reload = () => {
     setName("");
-    setManager("");
     setDeptID("");
     setLocation("");
   };
@@ -450,31 +414,6 @@ export function Departmentforms({ onFormSubmit }) {
               />
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 Department-name
-              </label>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentManager"
-                aria-describedby="departmentManager"
-                value={manager}
-                autoComplete="off"
-                onChange={(e) => setManager(e.target.value)}
-                required>
-                <option></option>
-
-                {managers.map((managers) => (
-                  <option key={managers.id} value={managers.value}>
-                    {" "}
-                    {managers.value}
-                  </option>
-                ))}
-              </select>
-              <label
-                htmlFor="work-location"
-                className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department-head
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
@@ -532,20 +471,10 @@ export function Riskforms ({ onFormSubmit }) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin");
   };
 
   useEffect(() => {
@@ -586,12 +515,12 @@ export function Riskforms ({ onFormSubmit }) {
     e.preventDefault();
 
     try {
+      if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       await axios.post(
         CREATERISKFORM_URL,
         JSON.stringify({
           riskID,
           riskName,
-          departmentName,
           riskOwner,
           riskImpactLevel,
           riskProbabilityLevel,
@@ -609,6 +538,31 @@ export function Riskforms ({ onFormSubmit }) {
           withCredentials: true,
         }
       );
+    }else{
+      await axios.post(
+        CREATERISKFORM_URL,
+        JSON.stringify({
+          riskID,
+          riskName,
+          departmentName,
+          riskOwner,
+          riskImpactLevel,
+          riskProbabilityLevel,
+          riskCategory,
+          riskDescription,
+          riskObjective,
+          riskResponseActivity,
+          riskResponse,
+        }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      }
+    );
+    }
       notify();
     } catch (error) {
       if (error.response.status === 400) {
@@ -655,6 +609,7 @@ export function Riskforms ({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
+          {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
                 type="departmentID"
@@ -680,6 +635,9 @@ export function Riskforms ({ onFormSubmit }) {
                 department
               </label>
             </div>
+            ):(
+              <></>
+             )}
             <div className="grid grid-cols-2 gap-2">
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
@@ -924,20 +882,10 @@ export function RiskReviewforms({ onFormSubmit }) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin");
   };
 
   useEffect(() => {
@@ -957,22 +905,29 @@ export function RiskReviewforms({ onFormSubmit }) {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKIDSREVIEW_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setRiskIDs(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSREVIEW_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+          withCredentials: true,
+        }
+      );
+
+      setRiskIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+};
+
+if(departmentID != ""){ 
+  fetchData();
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1054,6 +1009,8 @@ export function RiskReviewforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
+            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <>
               <select
                 type="departmentID"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -1075,6 +1032,10 @@ export function RiskReviewforms({ onFormSubmit }) {
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 department-id
               </label>
+              </>
+             ):(
+              <></>
+             )}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
@@ -1191,6 +1152,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigationEffort, setmitigationEffort] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
+  const [endDate, setEndDate] = useState(new Date());
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -1201,22 +1163,27 @@ export function RiskMitigationforms({ onFormSubmit }) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin");
   };
 
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    const dateObj = new Date(selectedDate);
+
+    // Extract year, month, and day components
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+    const day = String(dateObj.getDate()).padStart(2, "0");
+
+    // Format the date as "yyyy-MM-dd"
+    const formattedDate = `${year}-${month}-${day}`;
+    // Set the formatted date to state
+    setEndDate(formattedDate);
+  };
+ 
   useEffect(() => {
     axios
       .get(DEPARTMENTDROPDOWN_URL, {
@@ -1251,27 +1218,53 @@ export function RiskMitigationforms({ onFormSubmit }) {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKIDSMITIGATION_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setRiskIDs(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMITIGATION_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+          withCredentials: true,
+        }
+      );
+
+      setRiskIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+        await axios.post(
+        MITIGATERISKFORM_URL,
+        JSON.stringify({
+          riskID,
+          mitigatedRiskProbabilityLevel,
+          mitigatedRiskImpactLevel,
+          mitigationControl,
+          mitigationEffort,
+          mitigationOwner,
+          mitigationCost,
+          endDate
+
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        }
+      );
+    } else {
       await axios.post(
         MITIGATERISKFORM_URL,
         JSON.stringify({
@@ -1283,6 +1276,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           mitigationOwner,
           mitigationCost,
           departmentID,
+          endDate,
         }),
         {
           headers: {
@@ -1292,6 +1286,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           withCredentials: true,
         }
       );
+    }
       notify();
     } catch (error) {
       if (error.response.status === 400) {
@@ -1301,6 +1296,24 @@ export function RiskMitigationforms({ onFormSubmit }) {
       }
     }
   };
+
+  if(departmentID != ""){ 
+    fetchData();
+  }
+
+  const reload = () => {
+    setRiskID("");
+    setdepartmentID("");
+    setmitigatedRiskProbabilityLevel("");
+    setmitigatedRiskImpactLevel("");
+    setmitigationControl("");
+    setmitigationEffort("");
+    setmitigationOwner("");
+    setmitigationCost("");
+    setEndDate("");
+
+    
+  }
 
   const [open, setOpen] = React.useState(false);
 
@@ -1326,7 +1339,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
+            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <>
+                <select
                 type="departmentID"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="departmentID"
@@ -1347,6 +1362,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 department-id
               </label>
+              </>):(<>
+                </>)}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
@@ -1450,26 +1467,17 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 </label>
               </div>
               <div>
-                <div className="relative pb-4" data-te-input-wrapper-init>
-                  <select
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <input
+                    type="date"
+                    value={endDate}
                     className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    value={mitigationOwner}
-                    autoComplete="off"
-                    onChange={(e) => setmitigationOwner(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {ownersName.map((ownersName) => (
-                      <option key={ownersName.id} value={ownersName.value}>
-                        {" "}
-                        {ownersName.value}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={handleDateChange}
+                  />
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    mitigation-owner
+                    Mitigation Due date
                   </label>
-                </div>
+              </div>
               </div>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1501,7 +1509,27 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 mitigation-cost
               </label>
             </div>
-          </div>
+                <div className="relative pb-4" data-te-input-wrapper-init>
+                  <select
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    value={mitigationOwner}
+                    autoComplete="off"
+                    onChange={(e) => setmitigationOwner(e.target.value)}
+                    required>
+                    <option></option>
+
+                    {ownersName.map((ownersName) => (
+                      <option key={ownersName.id} value={ownersName.value}>
+                        {" "}
+                        {ownersName.value}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                    mitigation-owner
+                  </label>
+                </div>
+              </div>
           <div className="px-10">
             <button
               type="submit"
@@ -1539,22 +1567,30 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", {
-      onClose: () => {
-        handleClose();
-        reload();
-      },
-    });
+    toast.error("Server is currently down Contact your admin");
   };
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMONITORING_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token'),
+          },
+          withCredentials: true,
+        }
+      );
 
+      setRiskIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     axios
       .get(DEPARTMENTDROPDOWN_URL, {
@@ -1572,28 +1608,16 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(RISKIDSMONITORING_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setRiskIDs(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  if(departmentID != ""){ 
+    fetchData();
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post(
+      if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+        await axios.post(
         MONITORINGRISKFORM_URL,
         JSON.stringify({
           riskID,
@@ -1602,7 +1626,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           challenges,
           recommendedChanges,
           comments,
-          departmentID,
         }),
         {
           headers: {
@@ -1611,7 +1634,27 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           },
           withCredentials: true,
         }
-      );
+      );} else {
+        await axios.post(
+          MONITORINGRISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            riskResponseActivitiyStatus,
+            riskResponseImplementation,
+            challenges,
+            recommendedChanges,
+            comments,
+            departmentID,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+    }
       notify();
     } catch (error) {
       if (error.response.status === 400) {
@@ -1656,7 +1699,9 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
+            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <>
+                 <select
                 type="departmentID"
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="departmentID"
@@ -1677,6 +1722,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 department-id
               </label>
+              </>):(<>
+                </>)}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select

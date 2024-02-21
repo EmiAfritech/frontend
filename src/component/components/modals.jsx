@@ -29,35 +29,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 
-function getProbabiltyLevel(probabilitys) {
-  if (probabilitys === 1) {
-    return "Almost Impossible";
-  } else if (probabilitys === 2) {
-    return "Unlikely";
-  } else if (probabilitys === 3) {
-    return "Likely";
-  } else if (probabilitys === 4) {
-    return "Very Likely";
-  } else if (probabilitys === 5) {
-    return "Almost Certain";
-  } else {
-    return "Unknown";
-  }
-}
-
-function getImpactLevel(impact) {
-  if (impact === 1) {
-    return "Insignificant";
-  } else if (impact === 2) {
-    return "Minor";
-  } else if (impact === 3) {
-    return "Moderate";
-  } else if (impact === 4) {
-    return "Major";
-  } else if (impact === 5) {
-    return "Catastrophic";
-  } else {
-    return "Unknown";
+function getRiskScore(score) {
+  if (score >= 1 && score <= 5) {
+    return "Low";
+  } else if (score >= 6 && score <= 9 ) {
+    return "Medium";
+  } else if (score >= 10 && score <= 15 ) {
+    return "High";
+  } else if(score >= 16 && score <= 25) {
+      return "Very High";
+  }else {
+    return "Unknown"; 
   }
 }
 function getProbabiltyLevelNumber(probabilitys) {
@@ -109,15 +91,30 @@ export function UserData(params) {
   );
   
   const [deptmentName, setdeptmentName] = useState([]);
+  const cdate = new Date(createdAt);
+  const udate = new Date(updatedAt);
+  const ddate = new Date(dob);
+  const cDate = cdate.toISOString().split('T')[0];
+  const uDate = udate.toISOString().split('T')[0];
+  const dDate = ddate.toISOString().split('T')[0];
+
 
   const notify = () => {
-    toast.success("User Saved Successfully",);
+    toast.success("User Saved Successfully", {
+      onClose: () => {
+        handleClose();
+      },
+    });
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
   };
   const notifyDelete = () => {
-    toast.error("User Deleted");
+    toast.error("User Deleted", {
+      onClose: () => {
+        handleClose();
+      },
+    });
   };
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin", );
@@ -137,7 +134,9 @@ export function UserData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-
+  function handleClose(){
+    setOpen(false)
+  }
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -268,12 +267,27 @@ export function UserData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
+              <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Date of Birth"
-                    value={dob}
+                    value={dDate}
                     autoComplete="off"
-                    onChange={(e) => setDob(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setDob(formattedDate);
+                    
+                    }}
                     style={{ width: "100%" }}
                     required
                   />
@@ -316,22 +330,52 @@ export function UserData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
+              <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Updated At"
-                    value={updatedAt}
+                    type="date"
+                    label="Mis à jour à"
+                    value={uDate}
                     autoComplete="off"
-                    onChange={(e) => setUpdatedAt(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setUpdatedAt(formattedDate);
+                    
+                    }}
                     style={{ width: "100%" }}
                     disabled
                   />
-                </div>
+                </div> 
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Created At"
-                    value={createdAt}
+                    type="date"
+                    label="Créé à"
+                    value={cDate}
                     autoComplete="off"
-                    onChange={(e) => setCreatedAt(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setCreatedAt(formattedDate);
+                    
+                    }}
                     style={{ width: "100%" }}
                     disabled
                   />
@@ -410,9 +454,14 @@ export function RiskData(params) {
   );
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
+  const cdate = new Date(riskCreatedAt);
+  const cDate = cdate.toISOString().split('T')[0];
 
   const notify = () => {
-    toast.success("Risk Saved Successfully", );
+    toast.success("Risk Saved Successfully", {
+      onClose: () => {
+        handleClose();
+      },});
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
@@ -422,7 +471,10 @@ export function RiskData(params) {
   };
 
   const notifyDelete = () => {
-    toast.error("Risk Deleted");
+    toast.error("Risk Deleted",{
+      onClose: () => {
+        handleClose();
+      },});
   };
 
   useEffect(() => {
@@ -474,6 +526,9 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
+  function handleClose() {
+    setOpen(false);
+  } 
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -571,6 +626,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("GENERALMANAGER") ?  (
                   <TextField
                     label="Department ID"
                     value={departmentID}
@@ -579,10 +635,14 @@ export function RiskData(params) {
                     onChange={(e) => setDepartmentID(e.target.value)}
                     required
                     style={{ width: "100%" }}
-                  />
+                    />):(
+                      <> </>)
+                  }
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Department Name</InputLabel>
+                {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("GENERALMANAGER") ?  (
+                  <>
+                    <InputLabel>Department Name</InputLabel>
                   <Select
                     label="Department Name"
                     value={departmentName}
@@ -602,6 +662,10 @@ export function RiskData(params) {
                       </MenuItem>
                     ))}
                   </Select>
+                  </>
+                  
+                ):(<></>)
+                }
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
@@ -624,11 +688,25 @@ export function RiskData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Created At"
-                    value={riskCreatedAt}
+                    value={cDate}
                     autoComplete="off"
                     disabled
-                    onChange={(e) => setRiskCreatedAt(e.target.value)}
+                    onChange={(e) =>  {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setRiskCreatedAt(formattedDate);
+                    }}
                     required
                     style={{ width: "100%" }}
                   />
@@ -636,10 +714,9 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Score"
-                    value={riskProbabilityLevell * riskImpactLevell}
+                    value={getRiskScore(riskProbabilityLevell * riskImpactLevell)}
                     autoComplete="off"
                     disabled
-                    onChange={(e) => setRiskScore(e.target.value)}
                     required
                     style={{ width: "100%" }}
                   />
@@ -789,9 +866,17 @@ export function ReviewRiskData(params) {
     params.row.riskReviewComments
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
+  const cdate = new Date(createdAt);
+  const cDate = cdate.toISOString().split('T')[0];
+  const ndate = new Date(NextRiskReviewDate);
+  const nDate = ndate.toISOString().split('T')[0];
 
   const notify = () => {
-    toast.success("Risk Review Saved Successfully", );
+    toast.success("Risk Review Saved Successfully",  {
+      onClose: () => {
+        handleClose();
+      },
+    } );
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
@@ -814,6 +899,9 @@ export function ReviewRiskData(params) {
   };
   function handleOpen() {
     setOpen(!open);
+  }
+  function handleClose(){
+    setOpen(false)
   }
 
   const handleEditSubmit = async (e) => {
@@ -911,23 +999,51 @@ export function ReviewRiskData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
+              <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Next Review Date"
-                    value={NextRiskReviewDate}
+                    value={nDate}
                     autoComplete="off"
-                    onChange={(e) => setNextRiskReviewDate(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setNextRiskReviewDate(formattedDate);
+                    }}
                     required
                     style={{ width: "100%" }}
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Created At"
                     disabled
-                    value={createdAt}
+                    value={cDate}
                     autoComplete="off"
-                    onChange={(e) => setCreatedAt(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setCreatedAt(formattedDate);
+                    }}
                     required
                     style={{ width: "100%" }}
                   />
@@ -978,6 +1094,8 @@ export function MonitoredRiskData(params) {
   const [challenges, setChallenges] = useState(params.row.challenges);
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
+  const cdate = new Date(riskCreatedAt);
+  const cDate = cdate.toISOString().split('T')[0];
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", );
@@ -988,7 +1106,6 @@ export function MonitoredRiskData(params) {
   };
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin",);
-    handleClose();
   };
 
   const style = {
@@ -1094,10 +1211,25 @@ export function MonitoredRiskData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Created At"
-                    value={riskCreatedAt}
+                    value={cDate}
                     autoComplete="off"
-                    onChange={(e) => setRiskCreatedAt(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setRiskCreatedAt(formattedDate);
+                    
+                    }}
                     disabled
                     style={{ width: "100%" }}
                   />
@@ -1194,8 +1326,15 @@ export function MitigatedRiskData(params) {
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [ownersName, setOwnersName] = useState([]);
+  const cdate = new Date(createdAt);
+  const cDate = cdate.toISOString().split('T')[0];
+
   const notify = () => {
-    toast.success("Risk Mitigation Saved Successfully", );
+    toast.success("Risk Mitigation Saved Successfully",{
+      onClose: () => {
+        handleClose();
+      },
+    } );
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details", );
@@ -1219,6 +1358,9 @@ export function MitigatedRiskData(params) {
     setOpen(!open);
   }
 
+  function handleClose(){
+    setOpen(false)
+  }
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -1451,11 +1593,25 @@ export function MitigatedRiskData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Created At"
-                    value={createdAt}
+                    value={cDate}
                     disabled
                     autoComplete="off"
-                    onChange={(e) => setCreatedAt(e.target.value)}
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setCreatedAt(formattedDate);
+                    }}
                     style={{ width: "100%" }}
                   />
                 </div>
@@ -1662,8 +1818,12 @@ export function DepartmentData(params) {
   const [updatedAt, setUpdatedAt] = useState(params.row.updatedAt);
   const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   const [deptmentName, setdeptmentName] = useState([]);
-  
+  const cdate = new Date(createdAt);
+  const cDate = cdate.toISOString().split('T')[0];
+  const udate = new Date(updatedAt);
+  const uDate = udate.toISOString().split('T')[0];
   const id = params.row.id;
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -1833,10 +1993,25 @@ export function DepartmentData(params) {
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Created At"
-                    value={createdAt}
+                    value={cDate}
                     autoComplete="off"
-                    onChange={(e) => setCreatedAt(e.target.value)}
+                    onChange={(e) => {
+                      
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setCreatedAt(formattedDate);
+                    }}
                     required
                     disabled
                     style={{ width: "100%" }}
@@ -1844,10 +2019,25 @@ export function DepartmentData(params) {
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
+                    type="date"
                     label="Updated At"
-                    value={updatedAt}
+                    value={uDate}
                     autoComplete="off"
-                    onChange={(e) => setUpdatedAt(e.target.value)}
+                    onChange={(e) => {
+                        
+                        const selectedDate = e.target.value;
+                        const dateObj = new Date(selectedDate);
+  
+                        // Extract year, month, and day components
+                        const year = dateObj.getFullYear();
+                        const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                        const day = String(dateObj.getDate()).padStart(2, "0");
+  
+                        // Format the date as "yyyy-MM-dd"
+                        const formattedDate = `${year}-${month}-${day}`;
+                        // Set the formatted date to state
+                        setUpdatedAt(formattedDate);
+                    }}
                     required
                     disabled
                     style={{ width: "100%" }}
@@ -1855,6 +2045,7 @@ export function DepartmentData(params) {
                 </div>
               </div>
             </div>
+            <div><p>select manager to assign one for the department</p></div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
               <button
                 className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
