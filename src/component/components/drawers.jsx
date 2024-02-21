@@ -929,6 +929,7 @@ if(departmentID != ""){
   fetchData();
 }
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -1144,7 +1145,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [dept, setDept] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
   const [departmentID, setdepartmentID] = useState("");
-
+  const [endDate, setEndDate] = useState(new Date());
   const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
     useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
@@ -1152,7 +1153,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigationEffort, setmitigationEffort] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
-  const [endDate, setEndDate] = useState(new Date());
+
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -1289,9 +1290,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
+      if(error.response.status === 400){
         notifyFillForms();
-      } else if (error.response.status === 500) {
+      }else if(error.response.status === 500){
         notifyServerDown();
       }
     }
@@ -1315,6 +1316,11 @@ export function RiskMitigationforms({ onFormSubmit }) {
     
   }
 
+  if(departmentID != ""){ 
+    fetchData();
+  }
+
+ 
   const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
@@ -1479,6 +1485,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                   </label>
               </div>
               </div>
+              
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select

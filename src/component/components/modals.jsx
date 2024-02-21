@@ -1543,7 +1543,7 @@ export function MitigatedRiskData(params) {
                   <TextField
                     label="Mitigation Risk Score"
                     value={
-                      mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell
+                      getRiskScore(mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell)
                     }
                     autoComplete="off"
                     disabled
