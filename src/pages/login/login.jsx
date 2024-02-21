@@ -77,7 +77,7 @@ export function Login() {
           <div className="login-container">
             <div className="formstyle flex-col">
               <img
-                src="https://xlriskecg.emiafritech.com/images/logo@2x1.png"
+                src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
                 alt="Paris"
                 className="w-55 h-20"
               />

@@ -222,7 +222,7 @@ export function Sidebar() {
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
         <img
-          src="https://xlriskecg.emiafritech.com/images/logo@2x1.png"
+          src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
           style={{ width: 150, height: 100, borderRadius: 100 }}
         />
         <span>RISK APPLICATION</span>
