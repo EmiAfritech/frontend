@@ -1463,8 +1463,8 @@ export function HeatMap() {
     { color: 'green', value: 'u' },
     { color: 'green', value: 'v' },
     { color: 'green', value: 'w' },
-    { color: 'green', value: 'x' },
-    { color: 'green', value: '7' },
+    { color: 'green', value: '' },
+    { color: 'green', value: '' },
 
   ];
   
@@ -1483,8 +1483,8 @@ export function HeatMap() {
           }
         );
         setData(response.data);
-        cellsData = valuesForHeatMap(response.data, cellsData);
-        console.log(response.data,cellsData);
+        cellsData = valuesForHeatMap(series, cellsData);
+        console.log(series,cellsData);
       } catch (error) {
         console.error(error);
       }
