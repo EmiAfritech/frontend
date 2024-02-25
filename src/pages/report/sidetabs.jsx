@@ -9,9 +9,9 @@ export function ReportSideTabs() {
           <li>
             <Link to="">Report</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="likelyhood-vs-impact">Likelyhood Vs Impact</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="risk-appetite">Risk Appetite</Link>
           </li>
@@ -32,9 +32,9 @@ export function ReportSideTabs() {
           <li>
             <Link to="advice">Risk Advice</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="chatbot">Risk chat box</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
