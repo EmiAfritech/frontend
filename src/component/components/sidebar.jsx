@@ -56,23 +56,23 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/dashboard" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/risk-identification" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <Link to="/risk-monitoring">Monitored Risks</Link>
+          <Link to="/risk-monitoring" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitored Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <Link to="/risk-mitigation">Mitigated Risks</Link>
+          <Link to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <Link to="/risk-review">Reviewed Risks</Link>
+          <Link to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reviewed Risks</Link>
         </li>
 
         <button
@@ -90,35 +90,35 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <Link to="/risk-monitoring">Monitored Risks</Link>
+          <Link to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitored Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <Link to="/risk-mitigation">Mitigated Risks</Link>
+          <Link to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <Link to="/risk-review">Reviewed Risks</Link>
+          <Link to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reviewed Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <Link to="/employees">Users</Link>
+          <Link to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
-          <Link to="/department">Departments</Link>
+          <Link to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Departments</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <Link to="/report">Reporting</Link>
+          <Link to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</Link>
         </li>
         <button
           onClick={handleLogOut}
@@ -135,35 +135,35 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <Link to="/risk-monitoring">Monitored Risks</Link>
+          <Link to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitored Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <Link to="/risk-mitigation">Mitigated Risks</Link>
+          <Link to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <Link to="/risk-review">Reviewed Risks</Link>
+          <Link to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reviewed Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <Link to="/employees">Users</Link>
+          <Link to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
-          <Link to="/department">Departments</Link>
+          <Link to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Departments</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <Link to="/report">Reporting</Link>
+          <Link to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</Link>
         </li>
         <button
           onClick={handleLogOut}
@@ -181,31 +181,31 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <Link to="/dashboard">Overview</Link>
+          <Link to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <Link to="/risk-identification">New Risk</Link>
+          <Link to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <Link to="/risk-monitoring">Monitored Risks</Link>
+          <Link to="/risk-monitoring" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitored Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <Link to="/risk-mitigation">Mitigated Risks</Link>
+          <Link to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigated Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <Link to="/risk-review">Reviewed Risks</Link>
+          <Link to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reviewed Risks</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <Link to="/employees">Users</Link>
+          <Link to="/employees" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</Link>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <Link to="/report">Reporting</Link>
+          <Link to="/report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</Link>
         </li>
 
         <button

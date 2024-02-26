@@ -24,6 +24,14 @@
   align-items: center;
 }
 
+.sidebar-main li:hover {
+  background-color: #1E4D7E; /* Change color on hover */
+}
+
+.sidebar-main li.active {
+  background-color: #165e9e; /* Change color for active tab */
+}
+
 .icons {
   size: 8px;
   margin-right: 5px;
@@ -93,4 +101,8 @@
   padding: 20px; /* Adjust the padding as needed */
   color: white;
   text-align: center;
+}
+
+.sidebar-main button:hover {
+  background-color: #1E4D7E; /* Change color on hover */
 }
