@@ -222,7 +222,7 @@ export function Sidebar() {
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
         <img
-          src="https://th.bing.com/th/id/R.4ff14a54271ca924cd0508dbc2844dd9?rik=5ErcuzNea3wbSQ&riu=http%3a%2f%2fobjectivecapitalconferences.com%2focic%2fimages%2fecg_logo.png&ehk=LtjCCJwbPL2WJ%2fX%2bgIbhicKLtJDmg2GYrT8UpC2TBaI%3d&risl=&pid=ImgRaw&r=0"
+          src="https://static.africa-press.net/ghana/sites/18/2022/04/img-62599904dbcbf.jpg"
           style={{ width: 150, height: 100, borderRadius: 100 }}
         />
         <span>RISK APPLICATION</span>
