@@ -925,12 +925,14 @@ export function RiskReviewforms({ onFormSubmit }) {
     }
 };
 
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+ if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      setdepartmentID(localStorage.getItem("departmentID");
       fetchData();
-    }
+    }else {
     if(departmentID != ""){ 
       fetchData();
     } 
+  } 
 
   
   const handleSubmit = async (e) => {
@@ -1242,11 +1244,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
 };
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      setdepartmentID(localStorage.getItem("departmentID");
       fetchData();
-    }
+    }else {
     if(departmentID != ""){ 
       fetchData();
     } 
+  } 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1307,9 +1311,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
   };
 
-  if(departmentID != ""){ 
-    fetchData();
-  }
+ 
 
   const reload = () => {
     setRiskID("");
@@ -1325,10 +1327,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     
   }
 
-  if(departmentID != ""){ 
-    fetchData();
-  }
-
+ 
  
   const [open, setOpen] = React.useState(false);
 
@@ -1607,12 +1606,14 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       console.error(error);
     }
   };
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      setdepartmentID(localStorage.getItem("departmentID");
       fetchData();
-    }
+    }else {
     if(departmentID != ""){ 
       fetchData();
     } 
+  } 
   
   useEffect(() => {
     axios
@@ -1631,9 +1632,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       });
   }, []);
 
-  if(departmentID != ""){ 
-    fetchData();
-  }
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
