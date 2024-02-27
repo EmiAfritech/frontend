@@ -222,7 +222,7 @@ export function Sidebar() {
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
         <img
-          src="https://blog.meqasa.com/wp-content/uploads/2020/10/logobanner.jpg"
+          src="https://th.bing.com/th/id/OIP.EpbGP3Wn8vNjsS-_8kL55gAAAA?rs=1&pid=ImgDetMain"
           style={{ width: 150, height: 100, borderRadius: 100 }}
         />
         <span>RISK APPLICATION</span>
