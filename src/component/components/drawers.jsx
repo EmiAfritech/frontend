@@ -926,7 +926,7 @@ export function RiskReviewforms({ onFormSubmit }) {
 };
 
  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(localStorage.getItem("departmentID");
+      setdepartmentID(localStorage.getItem("departmentID"));
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1244,7 +1244,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
 };
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(localStorage.getItem("departmentID");
+      setdepartmentID(localStorage.getItem("departmentID"));
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1607,7 +1607,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     }
   };
    if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(localStorage.getItem("departmentID");
+      setdepartmentID(localStorage.getItem("departmentID"));
       fetchData();
     }else {
     if(departmentID != ""){ 
