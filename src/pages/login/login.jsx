@@ -47,11 +47,12 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
+        const department = response.data.department department;
 
         if (token && role) {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
-          localStorage.setItem("deptmentID", department);
+          localStorage.setItem("departmentID", department);
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
