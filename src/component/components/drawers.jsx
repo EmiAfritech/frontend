@@ -925,9 +925,12 @@ export function RiskReviewforms({ onFormSubmit }) {
     }
 };
 
-if(departmentID != ""){ 
-  fetchData();
-}
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      fetchData();
+    }
+    if(departmentID != ""){ 
+      fetchData();
+    } 
 
   
   const handleSubmit = async (e) => {
@@ -1238,6 +1241,12 @@ export function RiskMitigationforms({ onFormSubmit }) {
       console.error(error);
     }
 };
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      fetchData();
+    }
+    if(departmentID != ""){ 
+      fetchData();
+    } 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1598,6 +1607,13 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       console.error(error);
     }
   };
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      fetchData();
+    }
+    if(departmentID != ""){ 
+      fetchData();
+    } 
+  
   useEffect(() => {
     axios
       .get(DEPARTMENTDROPDOWN_URL, {
