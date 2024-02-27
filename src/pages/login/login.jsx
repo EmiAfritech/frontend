@@ -51,6 +51,7 @@ export function Login() {
         if (token && role) {
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
+          localStorage.setItem("deptmentID", department);
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
