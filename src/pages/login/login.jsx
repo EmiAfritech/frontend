@@ -47,7 +47,7 @@ export function Login() {
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
-        const department = response.data.department department;
+        const department = response.data.department;
 
         if (token && role) {
           localStorage.setItem("token", token);
