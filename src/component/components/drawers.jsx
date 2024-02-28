@@ -925,10 +925,10 @@ export function RiskReviewforms({ onFormSubmit }) {
     }
 };
 
- const dept = localStorage.getItem("departmentID");
-  console.log(dept);
+ const depts = localStorage.getItem("departmentID");
+  console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(dept);
+      setdepartmentID(depts);
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1246,10 +1246,10 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
     
 };
-  const dept = localStorage.getItem("departmentID");
-  console.log(dept);
+  const depts = localStorage.getItem("departmentID");
+  console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(dept);
+      setdepartmentID(depts);
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1611,10 +1611,10 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     }
   };
    
-  const dept = localStorage.getItem("departmentID");
-  console.log(dept);
+  const depts = localStorage.getItem("departmentID");
+  console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(dept);
+      setdepartmentID(depts);
       fetchData();
     }else {
     if(departmentID != ""){ 
