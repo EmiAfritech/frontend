@@ -1197,23 +1197,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     // Set the formatted date to state
     setEndDate(formattedDate);
   };
- 
-  // useEffect(() => {
-  //   axios
-  //     .get(DEPARTMENTDROPDOWN_URL, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + localStorage.getItem("token"),
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((data) => {
-  //       setDept(data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+
 
   useEffect(() => {
     axios
@@ -1232,6 +1216,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
       });
   }, []);
 
+ 
+
+useEffect(() => {
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -1250,38 +1237,40 @@ export function RiskMitigationforms({ onFormSubmit }) {
     } catch (error) {
       console.error(error);
     }
-    
-};
-
-const fetchDepartments = async () => {
-    try {
-      const data =await axios.get(
-        DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      });
-      setDept(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-    
+  };
+  const fetchDepartments = async () => {
+  try {
+    const data =await axios.get(
+      DEPARTMENTDROPDOWN_URL, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      withCredentials: true,
+    });
+    setDept(data.data);
+  } catch (error) {
+    console.error(error);
   }
+  
+}
+ 
 
- const depts = localStorage.getItem("departmentID");
-  const deptInfo = departmentID;
-  setdepartmentID(deptInfo);
-  console.log(deptInfo);
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){    
+  if (
+    (localStorage.getItem("role") === "MANAGER" ||
+      localStorage.getItem("role") === "AUDITOR") 
+  ) {
+    fetchData();
+  } else {
+    fetchDepartments();
+    if (departmentID !== "") {
       fetchData();
-    }else {
-      fetchDepartments();
-      if(departmentID != ""){ 
-      fetchData();
-    } 
-  } 
+    }
+  }
+}, [departmentID]);
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -1669,26 +1658,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     }
   }, [departmentID]);
  
-  
-  // useEffect(() => {
-  //   axios
-  //     .get(DEPARTMENTDROPDOWN_URL, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + localStorage.getItem("token"),
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((data) => {
-  //       setDept(data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-  
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
