@@ -904,6 +904,22 @@ export function RiskReviewforms({ onFormSubmit }) {
         console.error(error);
       });
   }, []);
+  // const fetchDepartments = async () => {
+  //   try {
+  //     const data =await axios.get(
+  //       DEPARTMENTDROPDOWN_URL, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //       withCredentials: true,
+  //     });
+  //     setDept(data.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+    
+  // }
 
   const fetchData = async () => {
     try {
@@ -929,6 +945,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
+    console.log(departmentID);
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1250,6 +1267,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
+    console.log(departmentID);
       fetchData();
     }else {
     if(departmentID != ""){ 
@@ -1615,6 +1633,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   console.log(depts);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
+    console.log(departmentID);
       fetchData();
     }else {
     if(departmentID != ""){ 
