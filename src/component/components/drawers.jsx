@@ -1594,7 +1594,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
-  const [departmentID, setdepartmentID] = useState("");
+  const [departmentID, setdepartmentID] = useState(" ");
   const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] =
     useState("");
   const [riskResponseImplementation, setRiskResponseImplementation] =
@@ -1617,30 +1617,12 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin");
   };
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSMONITORING_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
-          },
-          withCredentials: true,
-        }
-      );
-
-      setRiskIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          RISKIDSREVIEW_URL,
+          RISKIDSMONITORING_URL,
           JSON.stringify({ departmentID }),
           {
             headers: {
@@ -1656,7 +1638,22 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         console.error(error);
       }
     };
-
+    const fetchDepartments = async () => {
+    try {
+      const data =await axios.get(
+        DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+      setDept(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
    
 
     if (
@@ -1665,6 +1662,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     ) {
       fetchData();
     } else {
+      fetchDepartments();
       if (departmentID !== "") {
         fetchData();
       }
