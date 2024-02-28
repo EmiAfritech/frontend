@@ -1657,15 +1657,12 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
     };
 
-    const depts = localStorage.getItem("departmentID");
-    console.log(depts);
+   
 
     if (
       (localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR") &&
-      depts
+        localStorage.getItem("role") === "AUDITOR") 
     ) {
-      setdepartmentID(depts);
       fetchData();
     } else {
       if (departmentID !== "") {
