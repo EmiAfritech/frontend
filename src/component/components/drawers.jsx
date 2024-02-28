@@ -888,72 +888,60 @@ export function RiskReviewforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(DEPARTMENTDROPDOWN_URL, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + localStorage.getItem("token"),
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((data) => {
-  //       setDept(data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-  const fetchDepartments = async () => {
-    try {
-      const data =await axios.get(
-        DEPARTMENTDROPDOWN_URL, {
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         withCredentials: true,
+      })
+      .then((data) => {
+        setDept(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-      setDept(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-    
-  }
+  }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSREVIEW_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
-          },
-          withCredentials: true,
-        }
-      );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKIDSREVIEW_URL,
+          JSON.stringify({ departmentID }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+            withCredentials: true,
+          }
+        );
 
-      setRiskIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-};
+        setRiskIDs(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
- const depts = localStorage.getItem("departmentID");
-  const deptInfo = departmentID;
-  setdepartmentID(deptInfo);
-  console.log(deptInfo);
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){    
+    const depts = localStorage.getItem("departmentID");
+    console.log(depts);
+
+    if (
+      (localStorage.getItem("role") === "MANAGER" ||
+        localStorage.getItem("role") === "AUDITOR") &&
+      depts
+    ) {
+      setdepartmentID(depts);
       fetchData();
-    }else {
-      fetchDepartments();
-      if(departmentID != ""){ 
-      fetchData();
-    } 
-  } 
-
+    } else {
+      if (departmentID !== "") {
+        fetchData();
+      }
+    }
+  }, [departmentID]);
  
   const handleSubmit = async (e) => {
     e.preventDefault();
