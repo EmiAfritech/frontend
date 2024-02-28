@@ -942,10 +942,10 @@ export function RiskReviewforms({ onFormSubmit }) {
 };
 
  const depts = localStorage.getItem("departmentID");
-  console.log(departmentID);
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(depts);
-    console.log(departmentID);
+  const deptInfo = departmentID;
+  setdepartmentID(deptInfo);
+  console.log(deptInfo);
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){    
       fetchData();
     }else {
       fetchDepartments();
@@ -1282,15 +1282,15 @@ const fetchDepartments = async () => {
     
   }
 
-  const depts = localStorage.getItem("departmentID");
-  console.log(departmentID);
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(depts);
-    console.log(departmentID);
+ const depts = localStorage.getItem("departmentID");
+  const deptInfo = departmentID;
+  setdepartmentID(deptInfo);
+  console.log(deptInfo);
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){    
       fetchData();
     }else {
-    fetchDepartments();
-    if(departmentID != ""){ 
+      fetchDepartments();
+      if(departmentID != ""){ 
       fetchData();
     } 
   } 
@@ -1666,14 +1666,14 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   }
    
   const depts = localStorage.getItem("departmentID");
-  console.log(departmentID);
-  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(depts);
-    console.log(departmentID);
+  const deptInfo = departmentID;
+  setdepartmentID(deptInfo);
+  console.log(deptInfo);
+  if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){    
       fetchData();
     }else {
-    fetchDepartments();
-    if(departmentID != ""){ 
+      fetchDepartments();
+      if(departmentID != ""){ 
       fetchData();
     } 
   } 
