@@ -136,7 +136,7 @@ export function Userforms({ onFormSubmit }){
 
   return (
     <>
-      <ToastContainer autoClose={1000} />
+      <ToastContainer autoClose={1000} hideProgressBar/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
@@ -377,7 +377,7 @@ export function Departmentforms({ onFormSubmit }) {
 
   return (
     <>
-      <ToastContainer autoClose={1000} />
+      <ToastContainer autoClose={1000} hideProgressBar/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Department
       </Button>
@@ -598,7 +598,7 @@ export function Riskforms ({ onFormSubmit }) {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer hideProgressBar/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Risk
       </Button>
@@ -888,23 +888,6 @@ export function RiskReviewforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(DEPARTMENTDROPDOWN_URL, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + localStorage.getItem("token"),
-  //       },
-  //       withCredentials: true,
-  //     })
-  //     .then((data) => {
-  //       setDept(data.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -1028,7 +1011,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         Review Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
-        <ToastContainer onClose={1000} />
+        <ToastContainer onClose={1000} hideProgressBar/>
         <div className="flex justify-center font-bold py-5  text-black">
           REVIEW RISK
         </div>
@@ -1373,7 +1356,7 @@ useEffect(() => {
 
   return (
     <>
-      <ToastContainer onClose={1000} />
+      <ToastContainer onClose={1000} hideProgressBar/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Mitigate Risk
       </Button>
@@ -1746,7 +1729,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
   return (
     <>
-      <ToastContainer onClose={1000} />
+      <ToastContainer onClose={1000} hideProgressBar/>
       <Button onClick={handleOpen} size="small" variant="outlined">
         Monitor Risk
       </Button>

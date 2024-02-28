@@ -214,7 +214,7 @@ export function UserData(params) {
 
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer hideProgressBar/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -592,7 +592,7 @@ export function RiskData(params) {
 
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer hideProgressBar/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -937,7 +937,7 @@ export function ReviewRiskData(params) {
 
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer hideProgressBar/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1161,7 +1161,7 @@ export function MonitoredRiskData(params) {
   };
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer hideProgressBar/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1417,7 +1417,7 @@ export function MitigatedRiskData(params) {
 
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer  hideProgressBar/>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>

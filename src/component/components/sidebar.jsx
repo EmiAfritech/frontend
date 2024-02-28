@@ -229,7 +229,7 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <ToastContainer onClose={500}/>
+          <ToastContainer onClose={500} hideProgressBar/>
           <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
