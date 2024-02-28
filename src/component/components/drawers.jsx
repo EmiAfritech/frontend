@@ -925,16 +925,8 @@ export function RiskReviewforms({ onFormSubmit }) {
     }
 };
 
- if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(localStorage.getItem("departmentID"));
-      fetchData();
-    }else {
-    if(departmentID != ""){ 
-      fetchData();
-    } 
-  } 
-
-  
+fetchData();
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -1606,14 +1598,9 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       console.error(error);
     }
   };
-   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      setdepartmentID(localStorage.getItem("departmentID"));
-      fetchData();
-    }else {
-    if(departmentID != ""){ 
-      fetchData();
-    } 
-  } 
+   
+  fetchData();
+ 
   
   useEffect(() => {
     axios
