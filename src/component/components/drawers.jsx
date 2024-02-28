@@ -888,38 +888,38 @@ export function RiskReviewforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setDept(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  // const fetchDepartments = async () => {
-  //   try {
-  //     const data =await axios.get(
-  //       DEPARTMENTDROPDOWN_URL, {
+  // useEffect(() => {
+  //   axios
+  //     .get(DEPARTMENTDROPDOWN_URL, {
   //       headers: {
   //         "Content-Type": "application/json",
   //         Authorization: "Bearer " + localStorage.getItem("token"),
   //       },
   //       withCredentials: true,
+  //     })
+  //     .then((data) => {
+  //       setDept(data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
   //     });
-  //     setDept(data.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
+  // }, []);
+  const fetchDepartments = async () => {
+    try {
+      const data =await axios.get(
+        DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+      setDept(data.data);
+    } catch (error) {
+      console.error(error);
+    }
     
-  // }
+  }
 
   const fetchData = async () => {
     try {
@@ -942,13 +942,14 @@ export function RiskReviewforms({ onFormSubmit }) {
 };
 
  const depts = localStorage.getItem("departmentID");
-  console.log(depts);
+  console.log(departmentID);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
     console.log(departmentID);
       fetchData();
     }else {
-    if(departmentID != ""){ 
+      fetchDepartments();
+      if(departmentID != ""){ 
       fetchData();
     } 
   } 
@@ -1209,22 +1210,22 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate(formattedDate);
   };
  
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setDept(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(DEPARTMENTDROPDOWN_URL, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //       withCredentials: true,
+  //     })
+  //     .then((data) => {
+  //       setDept(data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -1263,13 +1264,32 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
     
 };
+
+const fetchDepartments = async () => {
+    try {
+      const data =await axios.get(
+        DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+      setDept(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
+
   const depts = localStorage.getItem("departmentID");
-  console.log(depts);
+  console.log(departmentID);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
     console.log(departmentID);
       fetchData();
     }else {
+    fetchDepartments();
     if(departmentID != ""){ 
       fetchData();
     } 
@@ -1628,14 +1648,31 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       console.error(error);
     }
   };
+  const fetchDepartments = async () => {
+    try {
+      const data =await axios.get(
+        DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+      setDept(data.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  }
    
   const depts = localStorage.getItem("departmentID");
-  console.log(depts);
+  console.log(departmentID);
   if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
       setdepartmentID(depts);
     console.log(departmentID);
       fetchData();
     }else {
+    fetchDepartments();
     if(departmentID != ""){ 
       fetchData();
     } 
@@ -1643,23 +1680,23 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
  
   
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setDept(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
+  // useEffect(() => {
+  //   axios
+  //     .get(DEPARTMENTDROPDOWN_URL, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //       withCredentials: true,
+  //     })
+  //     .then((data) => {
+  //       setDept(data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+  
   
 
   const handleSubmit = async (e) => {
