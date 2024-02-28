@@ -863,7 +863,7 @@ export function Riskforms ({ onFormSubmit }) {
 }
 export function RiskReviewforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
-  const [departmentID, setdepartmentID] = useState("");
+  const [departmentID, setdepartmentID] = useState(" ");
 
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1170,7 +1170,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
 
   const [dept, setDept] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
-  const [departmentID, setdepartmentID] = useState("");
+  const [departmentID, setdepartmentID] = useState(" ");
   const [endDate, setEndDate] = useState(new Date());
   const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
     useState("");
