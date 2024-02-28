@@ -888,22 +888,22 @@ export function RiskReviewforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setDept(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(DEPARTMENTDROPDOWN_URL, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //       withCredentials: true,
+  //     })
+  //     .then((data) => {
+  //       setDept(data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -925,18 +925,31 @@ export function RiskReviewforms({ onFormSubmit }) {
         console.error(error);
       }
     };
-
-    const depts = localStorage.getItem("departmentID");
-    console.log(depts);
-
+    const fetchDepartments = async () => {
+      try {
+        const data =await axios.get(
+          DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        });
+        setDept(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+   
     if (
       (localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR") &&
-      depts
+        localStorage.getItem("role") === "AUDITOR") 
     ) {
-      setdepartmentID(depts);
+     
       fetchData();
     } else {
+      fetchDepartments();
       if (departmentID !== "") {
         fetchData();
       }
