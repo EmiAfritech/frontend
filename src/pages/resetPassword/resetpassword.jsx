@@ -3,30 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
-import "./login.css";
+import "../login/login.css"
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export function Login() {
-  const [email, setEmail] = useState("");
+export function ResetPassword() {
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const email = localStorage.getItem(email)
+
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
-  };
-  const notifyUnauthorizedUser = () => {
-    toast.error("Unauthorized User! Please check your credentials", {});
-  };
-  const notifyReturningNull = () => {
-    toast.info("Authorization returned null", {});
-  };
-
-  const reload = () => {
-    setEmail("");
-    setPassword("");
   };
 
   const handleSubmit = async (e) => {
@@ -35,35 +25,18 @@ export function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         LOGIN_URL,
         JSON.stringify({ email, password }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
-      );
-
-      if (response.status === 200) {
-        const token = response.data.authToken;
-        const role = response.data.role;
-        const department = response.data.department;
-
-        if (token && role) {
-          localStorage.setItem("token", token);
-          localStorage.setItem("role", role);
-          localStorage.setItem("departmentID", department);
-          navigate("/dashboard", { replace: true });
-        } else {
-          notifyReturningNull();
-        }
-      }
+      ); 
+      navigate("/", { replace: true });
     } catch (err) {
       if (err.message.includes("Network Error")) {
         notifyNetworkError();
-        reload();
-      } else if (err.response.status === 401) {
-        notifyUnauthorizedUser();
       }
     } finally {
       setLoading(false);
@@ -72,46 +45,38 @@ export function Login() {
 
   return (
     <>
-      <ToastContainer hideProgressBar/>
+      <ToastContainer />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
           <div className="login-container">
             <div className="formstyle flex-col">
-              <img
-                src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
-                alt="Paris"
-                className="w-55 h-20"
-              />
+              <div className="border-solid border-2 border-indigo-600">
+                <input value={email}/>
+              </div>
               <form>
-                {/* username */}
                 <div className="">
                   <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Mot de Passe</label>
                   </div>
                   <div>
                     <input
-                      type="email"
-                      id="email"
-                      value={email}
+                      value={password}
                       autoComplete="off"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                   </div>
                 </div>
-                {/* password */}
                 <div>
                   <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="confirm password">Confirmer le mot de passe</label>
                   </div>
                   <div>
                     <input
-                      type="password"
-                      id="password"
                       autoComplete="off"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={confirmpassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </div>
                 </div>
@@ -125,23 +90,21 @@ export function Login() {
                   {isLoading ? (
                     <CircularProgress size={27} thickness={6} color="primary" />
                   ) : (
-                    "Submit"
+                    "Envoyer"
                   )}
                 </button>
                 {/* password reset */}
-                <div className="pt-3">
-                  <button
-                    onClick={handleReset}
-                    className="flex flex row items-center p-3">
-                    Vous avez oublié votre mot de passe?
-                  </button>
+                <div className="reset">
+                  <Link to="/">
+                Retour à la connexion?
+                </Link>
                 </div>
                 {/* create a new account */}
                 <div className="new-user">
-                  <span style={{ color: "blue" }}>New to EmiRisk?</span>{" "}
+                  <span style={{ color: "blue" }}>Nouveau sur EmiRisk ?</span>{" "}
                   <span>
                     <Link className="new" to="/signup">
-                      Contact Us
+                      Contactez-nous
                     </Link>
                   </span>
                 </div>

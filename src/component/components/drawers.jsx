@@ -5,6 +5,7 @@ import axios from "../../api/axios";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Papa from 'papaparse';
 
 import {
   CREATERISKFORM_URL,
@@ -460,6 +461,8 @@ export function Riskforms ({ onFormSubmit }) {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
+  const [csvData, setCSVData] = useState([]);
+  
 
   const notify = () => {
     toast.success("Risk Saved Successfully", {
@@ -510,6 +513,18 @@ export function Riskforms ({ onFormSubmit }) {
         console.error(error);
       });
   }, []);
+
+
+  const fetchAndParseCSV = async () => {
+    try {
+        const response = await fetch('path/to/your/csv/file.csv');
+        const text = await response.text();
+        const parsedData = Papa.parse(text, { header: true });
+        setCSVData(parsedData.data);
+    } catch (error) {
+        console.error('Error fetching or parsing CSV:', error);
+    }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();

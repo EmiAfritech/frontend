@@ -47,6 +47,7 @@ import {
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import Papa from "papaparse";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -88,7 +89,7 @@ export function EmployeesTable() {
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
         <div>
-          <Userforms onFormSubmit={handleFormSubmit}/>
+          <Userforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div
@@ -116,9 +117,8 @@ export function RiskReview() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-      
+
       setTableData(response.data.Data);
-      
     } catch (error) {
       console.error(error);
     }
@@ -133,13 +133,11 @@ export function RiskReview() {
     getRiskReview();
   };
 
-  
-
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div>
-          <RiskReviewforms  onFormSubmit={handleFormSubmit}/>
+          <RiskReviewforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div
@@ -362,19 +360,17 @@ export function DepartmentTab() {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-      
+
       setTableData(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-
   useEffect(() => {
     getDepartment();
   }, []);
 
-  
   const handleFormSubmit = () => {
     // Call the function to fetch updated data after form submission
     getDepartment();
@@ -384,7 +380,7 @@ export function DepartmentTab() {
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <Departmentforms onFormSubmit={handleFormSubmit}/>
+          <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div
@@ -431,7 +427,7 @@ export function RiskmitigationTab() {
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div>
-          <RiskMitigationforms onFormSubmit={handleFormSubmit}/>
+          <RiskMitigationforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <div
@@ -476,6 +472,7 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
+  
 
   const viewAllRisks = () => {
     axios
@@ -488,9 +485,11 @@ export function RiskViewTable() {
       .then((response) => setTableData(response.data.Data));
   };
 
+  
+
   useEffect(() => {
-    viewAllRisks(); 
-  }, []); 
+    viewAllRisks();
+  }, []);
 
   const handleFormSubmit = () => {
     viewAllRisks();
@@ -499,8 +498,13 @@ export function RiskViewTable() {
   return (
     <div className="flex flex-col ">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div>
-        <Riskforms onFormSubmit={handleFormSubmit} />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <Riskforms onFormSubmit={handleFormSubmit} />
+          </div>
+          <div>
+            <CsvModal />
+          </div>
         </div>
       </div>
       <div
@@ -802,7 +806,7 @@ export function RiskStatusReportTab() {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
-        
+
         setdeptmentNames(response.data);
       } catch (error) {
         console.error(error);

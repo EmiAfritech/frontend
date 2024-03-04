@@ -1,5 +1,5 @@
+import * as React from "react";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
@@ -17,13 +17,25 @@ import {
   EDITREVIEW_URL,
   EDITRISK_URL,
   EDITUSER_URL,
+  LOGOUT_URL,
   MANAGERSDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Modal,
+  Typography,
+} from "@mui/material";
+import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CsvUploader } from "./csvuploader";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -2065,6 +2077,132 @@ export function DepartmentData(params) {
           </FormControl>
         </Box>
       </Modal>
+    </>
+  );
+}
+
+
+export function CsvModal() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: "absolute",
+    top: "20%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "white",
+    border: "2px solid #000",
+    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+    borderRadius: "8px",
+    p: 4,
+  };
+  return (
+    <>
+      <Button onClick={handleOpen} size="small" variant="outlined">
+      Télécharger CsvFile
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ mb: 3 }}>
+            sélectionnez pour choisir un fichier
+          </Typography>
+          <CsvUploader onAccepting={handleClose}/>
+        </Box>
+      </Modal>
+    </>
+  );
+}
+
+export function LogOut() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.get(LOGOUT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      });
+      navigate("/", { replace: true });
+      localStorage.clear();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const style = {
+    position: "absolute",
+    top: "20%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 450,
+    bgcolor: "white",
+    border: "2px solid #000",
+    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+    borderRadius: "8px",
+    p: 2,
+  };
+
+  return (
+    <>
+      <button onClick={handleOpen} className="flex flex row items-center p-3">
+        <FaSignOutAlt className="icons" />
+        Déconnexion
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <div className="flex flex row items-center justify-center mb-4">
+            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg
+                class="h-6 w-6 text-red-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                />
+              </svg>
+            </div>
+            <Typography component="h2">
+              Voulez-vous vraiment vous déconnecter ?
+            </Typography>
+          </div>
+          <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+            <button
+              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              type="submit"
+              onClick={handleLogOut}>
+              Oui
+            </button>
+          </div>
+        </Box>
+      </Modal>
+
     </>
   );
 }

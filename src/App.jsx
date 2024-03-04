@@ -21,12 +21,14 @@ import { RiskMitigation } from "./pages/riskmitigation/riskmitigation";
 import { Login } from "./pages/login/login";
 import { ClosedRisk } from "./pages/riskreview/closedrisk";
 import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
+import { ResetPassword } from "./pages/resetPassword/resetpassword";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/risk-identification" element={<RiskView />} />
         <Route path="/risk-monitoring" element={<RiskMonitoring />} />

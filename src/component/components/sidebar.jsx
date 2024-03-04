@@ -1,8 +1,4 @@
 import "../comstyles/component.css";
-import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
-
-import { LOGOUT_URL } from "../../api/routes";
 import {
   FaCopy,
   FaClipboardList,
@@ -17,38 +13,12 @@ import {
 import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
-import { ToastContainer,toast } from "react-toastify";
 
 export function Sidebar() {
-  const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   const userRole = localStorage.getItem("role");
-  const notify = () => {
-    toast.success("Logging Out Successful", {
-      onClose: () => {
-        navigate("/", { replace: true });
-        localStorage.clear();
-      },
-    });
-  };
-
-  const handleLogOut = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-    try {
-      await axios.get(LOGOUT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      });
-      notify();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   //Auditor Tabs
   const AuditorMainTabs = () => {
@@ -75,12 +45,7 @@ export function Sidebar() {
           <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reviewed Risks</NavLink>
         </li>
 
-        <button
-          onClick={handleLogOut}
-          className="flex flex row items-center p-3">
-          <FaSignOutAlt className="icons" />
-          LogOut
-        </button>
+        <LogOut/>
       </>
     );
   };
@@ -120,12 +85,7 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
         </li>
-        <button
-          onClick={handleLogOut}
-          className="flex flex row items-center p-3">
-          <FaSignOutAlt className="icons" />
-          LogOut
-        </button>
+        <LogOut/>
       </>
     );
   };
@@ -165,12 +125,7 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
         </li>
-        <button
-          onClick={handleLogOut}
-          className="flex flex row items-center p-3">
-          <FaSignOutAlt className="icons" />
-          LogOut
-        </button>
+        <LogOut/>
       </>
     );
   };
@@ -207,13 +162,7 @@ export function Sidebar() {
           <FaCopy className="icons" />
           <NavLink to="/report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
         </li>
-
-        <button
-          onClick={handleLogOut}
-          className="flex flex row items-center p-3">
-          <FaSignOutAlt className="icons" />
-          LogOut
-        </button>
+        <LogOut/>
       </>
     );
   };
@@ -229,7 +178,6 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <ToastContainer onClose={500} hideProgressBar/>
           <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
