@@ -69,14 +69,15 @@ export function Login() {
       setLoading(false);
     }
 
-    const handleReset = async (e) => {
-      if (email === "") {
-        alert("Enter your email");
-      } else {
-        localStorage.setItem("email", email);
-        navigate("/resetpassword", { replace: true });
-      }
-    };
+    
+  };
+  const handleReset = async (e) => {
+    if (email === "") {
+      alert("Enter your email");
+    } else {
+      localStorage.setItem("email", email);
+      navigate("/resetpassword", { replace: true });
+    }
   };
 
   return (
