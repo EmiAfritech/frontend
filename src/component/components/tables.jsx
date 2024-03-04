@@ -48,6 +48,7 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
+import { CsvModal } from "./modals";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
