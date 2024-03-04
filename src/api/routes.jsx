@@ -9,6 +9,9 @@ export const LOGOUT_URL = "/logout";
 //checkSessions
 export const Sessions_URL = "/checkSessionStatus";
 
+//Upload Csv
+export const UploadCsv_URL = "/api/departments/risk/create-many-risks";
+
 /*************************************************Tables******************************************************/
 
 //users list url
