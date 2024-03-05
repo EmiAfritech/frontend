@@ -143,7 +143,7 @@ export function Login() {
                   <button
                     onClick={handleReset}
                     className="flex flex row items-center p-3">
-                    Vous avez oublié votre mot de passe?
+                    Forgot your password?
                   </button>
                 </div>
                 {/* create a new account */}

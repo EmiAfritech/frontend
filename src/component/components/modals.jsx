@@ -340,7 +340,7 @@ export function UserData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     type="date"
-                    label="Mis à jour à"
+                    label="updated at"
                     value={uDate}
                     autoComplete="off"
                     onChange={(e) => {
@@ -367,7 +367,7 @@ export function UserData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     type="date"
-                    label="Créé à"
+                    label="created at"
                     value={cDate}
                     autoComplete="off"
                     onChange={(e) => {
@@ -392,7 +392,14 @@ export function UserData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Department Name</InputLabel>
+                  
+                  {role === "ADMIN" ||
+                  role === "GENERALMANAGER" || localStorage.getItem(role) === "MANAGER"  ? (
+                    <>
+                    </>
+                  ) : (
+                    <>
+                      <InputLabel>Department Name</InputLabel>
                   <Select
                     label="Department Name"
                     value={departmentName}
@@ -409,6 +416,8 @@ export function UserData(params) {
                       </MenuItem>
                     ))}
                   </Select>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
