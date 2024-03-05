@@ -93,7 +93,6 @@ export function UserData(params) {
   const [firstName, setFirstName] = useState(params.row.firstName);
   const [lastName, setLastName] = useState(params.row.lastName);
   const [email, setEmail] = useState(params.row.email);
-  const [dob, setDob] = useState(params.row.dob);
   const [phoneNumber, setPhoneNumber] = useState(params.row.phoneNumber);
   const [role, setRole] = useState(params.row.role);
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
@@ -105,7 +104,6 @@ export function UserData(params) {
   const [deptmentName, setdeptmentName] = useState([]);
   const cdate = new Date(createdAt);
   const udate = new Date(updatedAt);
-  const ddate = new Date(dob);
   const cDate = cdate.toISOString().split('T')[0];
   const uDate = udate.toISOString().split('T')[0];
   const dDate = ddate.toISOString().split('T')[0];
@@ -157,7 +155,6 @@ export function UserData(params) {
         JSON.stringify({
           firstName,
           lastName,
-          dob,
           phoneNumber,
           userName,
           email,
@@ -279,31 +276,6 @@ export function UserData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    type="date"
-                    label="Date of Birth"
-                    value={dDate}
-                    autoComplete="off"
-                    onChange={(e) => {
-                      const selectedDate = e.target.value;
-                      const dateObj = new Date(selectedDate);
-
-                      // Extract year, month, and day components
-                      const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-                      const day = String(dateObj.getDate()).padStart(2, "0");
-
-                      // Format the date as "yyyy-MM-dd"
-                      const formattedDate = `${year}-${month}-${day}`;
-                      // Set the formatted date to state
-                      setDob(formattedDate);
-                    
-                    }}
-                    style={{ width: "100%" }}
-                    required
-                  />
-                </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Phone Number"
@@ -327,7 +299,7 @@ export function UserData(params) {
                     <MenuItem value="ADMIN">Admin</MenuItem>
                     <MenuItem value="GENERALMANAGER">General Manager</MenuItem>
                     <MenuItem value="MANAGER">Manager</MenuItem>
-                    <MenuItem value="AUDITOR">Auditor</MenuItem>
+                    <MenuItem value="AUDITOR">Risk Analyst</MenuItem>
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
