@@ -432,9 +432,8 @@ export function Riskforms ({ onFormSubmit, tableData }) {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
-  const [tableDataTest, setTableDataTest] = useState([]); // Add state for tableDataTest
+  const [tableDataTest, setTableDataTest] = useState([]);
 
-  // Assuming tableData contains an array of objects with a 'riskID' property
   useEffect(() => {
     setTableDataTest(tableData.map((item) => item.riskID));
   }, [tableData]);
@@ -453,6 +452,9 @@ export function Riskforms ({ onFormSubmit, tableData }) {
   };
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin");
+  };
+  const ExistingRiskID = () => {
+    toast.error("Risk ID already exists. Please enter a different one.")
   };
 
   useEffect(() => {
@@ -495,11 +497,8 @@ export function Riskforms ({ onFormSubmit, tableData }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if the entered risk ID already exists
     if (tableDataTest.includes(riskID)) {
-      // Handle the case where the risk ID already exists, you can show a warning or handle it as needed
-      alert("Risk ID already exists. Please enter a different one.");
-      return;
+      ExistingRiskID()
     }
 
     try {

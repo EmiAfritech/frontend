@@ -36,6 +36,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
+import { RiskViewTable } from "./tables";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -102,6 +103,7 @@ export function UserData(params) {
   const udate = new Date(updatedAt);
   const cDate = cdate.toISOString().split("T")[0];
   const uDate = udate.toISOString().split("T")[0];
+  const [modaltrigger, setModaltrigger]= useState(false)
 
   if (role === "ANALYST") {
     setRole("AUDITOR");
@@ -167,7 +169,8 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      notify();
+      notify()
+      setModaltrigger(true);
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -419,6 +422,7 @@ export function UserData(params) {
                     </>
                   )}
                 </div>
+                {modaltrigger ? (<RiskViewTable/>):(<></>)}
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -2221,7 +2225,7 @@ export function LogOut() {
               </svg>
             </div>
             <Typography component="h2">
-              Are you sure you want to disconnect?
+              Are you sure you want to Logout?
             </Typography>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
