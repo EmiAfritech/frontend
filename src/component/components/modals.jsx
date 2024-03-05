@@ -37,21 +37,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
     return "Low";
-  } else if (score >= 6 && score <= 9 ) {
+  } else if (score >= 6 && score <= 9) {
     return "Medium";
-  } else if (score >= 10 && score <= 15 ) {
+  } else if (score >= 10 && score <= 15) {
     return "High";
-  } else if(score >= 16 && score <= 25) {
-      return "Very High";
-  }else {
-    return "Unknown"; 
+  } else if (score >= 16 && score <= 25) {
+    return "Very High";
+  } else {
+    return "Unknown";
   }
 }
 function getProbabiltyLevelNumber(probabilitys) {
@@ -100,14 +96,14 @@ export function UserData(params) {
   const [departmentName, setDepartmentName] = useState(
     params.row.departmentName
   );
-  
+
   const [deptmentName, setdeptmentName] = useState([]);
   const cdate = new Date(createdAt);
   const udate = new Date(updatedAt);
-  const cDate = cdate.toISOString().split('T')[0];
-  const uDate = udate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
+  const uDate = udate.toISOString().split("T")[0];
 
-  if(role === "ANALYST"){
+  if (role === "ANALYST") {
     setRole("AUDITOR");
   }
 
@@ -119,7 +115,7 @@ export function UserData(params) {
     });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", );
+    toast.error("Kindly check Input details");
   };
   const notifyDelete = () => {
     toast.error("User Deleted", {
@@ -129,7 +125,7 @@ export function UserData(params) {
     });
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin", );
+    toast.error("Server is currently down Contact your admin");
   };
 
   const style = {
@@ -146,8 +142,8 @@ export function UserData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  function handleClose(){
-    setOpen(false)
+  function handleClose() {
+    setOpen(false);
   }
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -171,11 +167,11 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -186,7 +182,7 @@ export function UserData(params) {
     try {
       await axios.delete(
         `${DELETEUSER_URL}/${id}`,
-        
+
         {
           headers: {
             "Content-Type": "application/json",
@@ -195,14 +191,14 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      notifyDelete()
-      }catch (error) {
-        if(error.response.status === 400){
-          notifyFillForms();
-        }else if(error.response.status === 500){
-          notifyServerDown();
-        }
+      notifyDelete();
+    } catch (error) {
+      if (error.response.status === 400) {
+        notifyFillForms();
+      } else if (error.response.status === 500) {
+        notifyServerDown();
       }
+    }
   };
 
   useEffect(() => {
@@ -224,7 +220,7 @@ export function UserData(params) {
 
   return (
     <>
-    <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -288,20 +284,46 @@ export function UserData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Role</InputLabel>
-                  <Select
-                    label="Role"
-                    value={role}
-                    autoComplete="off"
-                    onChange={(e) => setRole(e.target.value)}
-                    style={{ width: "100%" }}
-                    required
-                  >
-                    <MenuItem value="ADMIN">Admin</MenuItem>
-                    <MenuItem value="GENERALMANAGER">General Manager</MenuItem>
-                    <MenuItem value="MANAGER">Manager</MenuItem>
-                    <MenuItem value="AUDITOR">Risk Analyst</MenuItem>
-                  </Select>
+                  {role === "ADMIN" ||
+                  role === "GENERALMANAGER" ||
+                  role === "ANALYST"  ? (
+                    <>
+                      <InputLabel>Role</InputLabel>
+                      <Select
+                        label="Role"
+                        value={role}
+                        autoComplete="off"
+                        onChange={(e) => setRole(e.target.value)}
+                        style={{ width: "100%" }}
+                        required
+                        disabled>
+                        <MenuItem value="ADMIN">Admin</MenuItem>
+                        <MenuItem value="GENERALMANAGER">
+                          General Manager
+                        </MenuItem>
+                        <MenuItem value="MANAGER">Manager</MenuItem>
+                        <MenuItem value="AUDITOR">Risk Analyst</MenuItem>
+                      </Select>
+                    </>
+                  ) : (
+                    <>
+                      <InputLabel>Role</InputLabel>
+                      <Select
+                        label="Role"
+                        value={role}
+                        autoComplete="off"
+                        onChange={(e) => setRole(e.target.value)}
+                        style={{ width: "100%" }}
+                        required>
+                        <MenuItem value="ADMIN">Admin</MenuItem>
+                        <MenuItem value="GENERALMANAGER">
+                          General Manager
+                        </MenuItem>
+                        <MenuItem value="MANAGER">Manager</MenuItem>
+                        <MenuItem value="AUDITOR">Risk Analyst</MenuItem>
+                      </Select>
+                    </>
+                  )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
@@ -315,7 +337,7 @@ export function UserData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-              <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     type="date"
                     label="Mis à jour à"
@@ -327,19 +349,21 @@ export function UserData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
                       const formattedDate = `${year}-${month}-${day}`;
                       // Set the formatted date to state
                       setUpdatedAt(formattedDate);
-                    
                     }}
                     style={{ width: "100%" }}
                     disabled
                   />
-                </div> 
+                </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     type="date"
@@ -352,14 +376,16 @@ export function UserData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
                       const formattedDate = `${year}-${month}-${day}`;
                       // Set the formatted date to state
                       setCreatedAt(formattedDate);
-                    
                     }}
                     style={{ width: "100%" }}
                     disabled
@@ -377,8 +403,7 @@ export function UserData(params) {
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
-                        value={deptmentName.names.name}
-                        >
+                        value={deptmentName.names.name}>
                         {" "}
                         {deptmentName.names.name}
                       </MenuItem>
@@ -440,26 +465,28 @@ export function RiskData(params) {
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
-  const cDate = cdate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
 
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
         handleClose();
-      },});
+      },
+    });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", );
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin",);
+    toast.error("Server is currently down Contact your admin");
   };
 
   const notifyDelete = () => {
-    toast.error("Risk Deleted",{
+    toast.error("Risk Deleted", {
       onClose: () => {
         handleClose();
-      },});
+      },
+    });
   };
 
   useEffect(() => {
@@ -513,7 +540,7 @@ export function RiskData(params) {
   }
   function handleClose() {
     setOpen(false);
-  } 
+  }
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -545,11 +572,11 @@ export function RiskData(params) {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -565,11 +592,11 @@ export function RiskData(params) {
         },
         withCredentials: true,
       });
-      notifyDelete()
-    }catch (error) {
-      if(error.response.status === 400){
+      notifyDelete();
+    } catch (error) {
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -577,7 +604,7 @@ export function RiskData(params) {
 
   return (
     <>
-    <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -611,46 +638,49 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("GENERALMANAGER") ?  (
-                  <TextField
-                    label="Department ID"
-                    value={departmentID}
-                    autoComplete="off"
-                    disabled
-                    onChange={(e) => setDepartmentID(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                    />):(
-                      <> </>)
-                  }
+                  {localStorage.getItem("role") === "ADMIN" ||
+                  localStorage.getItem("GENERALMANAGER") ? (
+                    <TextField
+                      label="Department ID"
+                      value={departmentID}
+                      autoComplete="off"
+                      disabled
+                      onChange={(e) => setDepartmentID(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  ) : (
+                    <> </>
+                  )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("GENERALMANAGER") ?  (
-                  <>
-                    <InputLabel>Department Name</InputLabel>
-                  <Select
-                    label="Department Name"
-                    value={departmentName}
-                    autoComplete="off"
-                    onChange={(e) => setDepartmentName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {deptmentName.map((deptmentName) => (
-                      <MenuItem
-                        key={deptmentName.names.id}
-                        value={deptmentName.names.name}
-                        onClick={() =>
-                          setDepartmentID(deptmentName.deptIDs.deptID)
-                        }>
-                        {" "}
-                        {deptmentName.names.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                  </>
-                  
-                ):(<></>)
-                }
+                  {localStorage.getItem("role") === "ADMIN" ||
+                  localStorage.getItem("GENERALMANAGER") ? (
+                    <>
+                      <InputLabel>Department Name</InputLabel>
+                      <Select
+                        label="Department Name"
+                        value={departmentName}
+                        autoComplete="off"
+                        onChange={(e) => setDepartmentName(e.target.value)}
+                        required
+                        style={{ width: "100%" }}>
+                        {deptmentName.map((deptmentName) => (
+                          <MenuItem
+                            key={deptmentName.names.id}
+                            value={deptmentName.names.name}
+                            onClick={() =>
+                              setDepartmentID(deptmentName.deptIDs.deptID)
+                            }>
+                            {" "}
+                            {deptmentName.names.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
@@ -678,13 +708,16 @@ export function RiskData(params) {
                     value={cDate}
                     autoComplete="off"
                     disabled
-                    onChange={(e) =>  {
+                    onChange={(e) => {
                       const selectedDate = e.target.value;
                       const dateObj = new Date(selectedDate);
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
@@ -699,7 +732,9 @@ export function RiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Score"
-                    value={getRiskScore(riskProbabilityLevell * riskImpactLevell)}
+                    value={getRiskScore(
+                      riskProbabilityLevell * riskImpactLevell
+                    )}
                     autoComplete="off"
                     disabled
                     required
@@ -852,24 +887,23 @@ export function ReviewRiskData(params) {
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const cdate = new Date(createdAt);
-  const cDate = cdate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
   const ndate = new Date(NextRiskReviewDate);
-  const nDate = ndate.toISOString().split('T')[0];
+  const nDate = ndate.toISOString().split("T")[0];
 
   const notify = () => {
-    toast.success("Risk Review Saved Successfully",  {
+    toast.success("Risk Review Saved Successfully", {
       onClose: () => {
         handleClose();
       },
-    } );
+    });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", );
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin",);
+    toast.error("Server is currently down Contact your admin");
   };
-
 
   const style = {
     position: "absolute",
@@ -885,8 +919,8 @@ export function ReviewRiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  function handleClose(){
-    setOpen(false)
+  function handleClose() {
+    setOpen(false);
   }
 
   const handleEditSubmit = async (e) => {
@@ -910,11 +944,11 @@ export function ReviewRiskData(params) {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -922,7 +956,7 @@ export function ReviewRiskData(params) {
 
   return (
     <>
-    <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -958,15 +992,14 @@ export function ReviewRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <InputLabel>Risk Review</InputLabel>
+                  <InputLabel>Risk Review</InputLabel>
                   <Select
                     label="Risk Review"
                     value={riskReview}
                     autoComplete="off"
                     onChange={(e) => setRiskReview(e.target.value)}
                     required
-                    style={{ width: "100%" }}
-                  >
+                    style={{ width: "100%" }}>
                     <MenuItem value="accept risk">Accept Risk</MenuItem>
                     <MenuItem value="reject risk">Reject Risk</MenuItem>
                     <MenuItem value="close risk">Close Risk</MenuItem>
@@ -984,7 +1017,7 @@ export function ReviewRiskData(params) {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-              <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     type="date"
                     label="Next Review Date"
@@ -996,7 +1029,10 @@ export function ReviewRiskData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
@@ -1021,7 +1057,10 @@ export function ReviewRiskData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
@@ -1080,17 +1119,17 @@ export function MonitoredRiskData(params) {
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
   const cdate = new Date(riskCreatedAt);
-  const cDate = cdate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
 
   const notify = () => {
-    toast.success("Risk Monitoring Saved Successfully", );
+    toast.success("Risk Monitoring Saved Successfully");
     handleClose();
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", );
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin",);
+    toast.error("Server is currently down Contact your admin");
   };
 
   const style = {
@@ -1135,18 +1174,18 @@ export function MonitoredRiskData(params) {
           withCredentials: true,
         }
       );
-       notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
   };
   return (
     <>
-    <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1206,14 +1245,16 @@ export function MonitoredRiskData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
                       const formattedDate = `${year}-${month}-${day}`;
                       // Set the formatted date to state
                       setRiskCreatedAt(formattedDate);
-                    
                     }}
                     disabled
                     style={{ width: "100%" }}
@@ -1305,27 +1346,29 @@ export function MitigatedRiskData(params) {
   );
 
   const [mitigatedRiskProbabilityLevell, setMitigatedRiskProbabilityLevel] =
-    useState(getProbabiltyLevelNumber(params.row.mitigatedRiskProbabilityLevel));
+    useState(
+      getProbabiltyLevelNumber(params.row.mitigatedRiskProbabilityLevel)
+    );
   const [mitigatedRiskImpactLevell, setMitigatedRiskImpactLevel] = useState(
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(createdAt);
-  const cDate = cdate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
 
   const notify = () => {
-    toast.success("Risk Mitigation Saved Successfully",{
+    toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
         handleClose();
       },
-    } );
+    });
   };
   const notifyFillForms = () => {
-    toast.error("Kindly check Input details", );
+    toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin",);
+    toast.error("Server is currently down Contact your admin");
   };
 
   const style = {
@@ -1343,8 +1386,8 @@ export function MitigatedRiskData(params) {
     setOpen(!open);
   }
 
-  function handleClose(){
-    setOpen(false)
+  function handleClose() {
+    setOpen(false);
   }
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -1373,11 +1416,11 @@ export function MitigatedRiskData(params) {
           withCredentials: true,
         }
       );
-      notify()
+      notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
@@ -1402,7 +1445,7 @@ export function MitigatedRiskData(params) {
 
   return (
     <>
-    <ToastContainer  hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1527,9 +1570,9 @@ export function MitigatedRiskData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigation Risk Score"
-                    value={
-                      getRiskScore(mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell)
-                    }
+                    value={getRiskScore(
+                      mitigatedRiskImpactLevell * mitigatedRiskProbabilityLevell
+                    )}
                     autoComplete="off"
                     disabled
                     onChange={(e) => setMitigatedRiskScore(e.target.value)}
@@ -1589,7 +1632,10 @@ export function MitigatedRiskData(params) {
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
@@ -1804,9 +1850,9 @@ export function DepartmentData(params) {
   const [deletedAssociatedRisks, setDeletedAssociatedRisks] = useState(false);
   const [deptmentName, setdeptmentName] = useState([]);
   const cdate = new Date(createdAt);
-  const cDate = cdate.toISOString().split('T')[0];
+  const cDate = cdate.toISOString().split("T")[0];
   const udate = new Date(updatedAt);
-  const uDate = udate.toISOString().split('T')[0];
+  const uDate = udate.toISOString().split("T")[0];
   const id = params.row.id;
 
   const style = {
@@ -1854,8 +1900,8 @@ export function DepartmentData(params) {
     e.preventDefault();
     try {
       await axios.delete(
-      `${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
-      {
+        `${DELETEDEPARTMENT_URL}/${id}/${deletedAssociatedRisks}`,
+        {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1939,8 +1985,7 @@ export function DepartmentData(params) {
                     {deptmentName.map((deptmentName) => (
                       <MenuItem
                         key={deptmentName.names.id}
-                        value={deptmentName.names.name}
-                        >
+                        value={deptmentName.names.name}>
                         {" "}
                         {deptmentName.names.name}
                       </MenuItem>
@@ -1948,7 +1993,7 @@ export function DepartmentData(params) {
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <InputLabel>Manager</InputLabel>
+                  <InputLabel>Manager</InputLabel>
                   <Select
                     label="Manager"
                     value={manager}
@@ -1960,7 +2005,7 @@ export function DepartmentData(params) {
                       <MenuItem key={managers.id} value={managers.value}>
                         {" "}
                         {managers.value}
-                        </MenuItem>
+                      </MenuItem>
                     ))}
                   </Select>
                 </div>
@@ -1983,13 +2028,15 @@ export function DepartmentData(params) {
                     value={cDate}
                     autoComplete="off"
                     onChange={(e) => {
-                      
                       const selectedDate = e.target.value;
                       const dateObj = new Date(selectedDate);
 
                       // Extract year, month, and day components
                       const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
@@ -2009,19 +2056,21 @@ export function DepartmentData(params) {
                     value={uDate}
                     autoComplete="off"
                     onChange={(e) => {
-                        
-                        const selectedDate = e.target.value;
-                        const dateObj = new Date(selectedDate);
-  
-                        // Extract year, month, and day components
-                        const year = dateObj.getFullYear();
-                        const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-                        const day = String(dateObj.getDate()).padStart(2, "0");
-  
-                        // Format the date as "yyyy-MM-dd"
-                        const formattedDate = `${year}-${month}-${day}`;
-                        // Set the formatted date to state
-                        setUpdatedAt(formattedDate);
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setUpdatedAt(formattedDate);
                     }}
                     required
                     disabled
@@ -2030,7 +2079,9 @@ export function DepartmentData(params) {
                 </div>
               </div>
             </div>
-            <div><p>select manager to assign one for the department</p></div>
+            <div>
+              <p>select manager to assign one for the department</p>
+            </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
               <button
                 className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -2054,7 +2105,6 @@ export function DepartmentData(params) {
   );
 }
 
-
 export function CsvModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -2075,7 +2125,7 @@ export function CsvModal() {
   return (
     <>
       <Button onClick={handleOpen} size="small" variant="outlined">
-      Upload CsvFile
+        Upload CsvFile
       </Button>
       <Modal
         open={open}
@@ -2090,7 +2140,7 @@ export function CsvModal() {
             sx={{ mb: 3 }}>
             Select to choose a file
           </Typography>
-          <CsvUploader onAccepting={handleClose}/>
+          <CsvUploader onAccepting={handleClose} />
         </Box>
       </Modal>
     </>
@@ -2162,7 +2212,7 @@ export function LogOut() {
               </svg>
             </div>
             <Typography component="h2">
-            Are you sure you want to disconnect?
+              Are you sure you want to disconnect?
             </Typography>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -2175,8 +2225,6 @@ export function LogOut() {
           </div>
         </Box>
       </Modal>
-
     </>
   );
 }
-
