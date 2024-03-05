@@ -47,8 +47,7 @@ import {
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import Papa from "papaparse";
-import { CsvModal } from "./modals";
+import { CsvModal, RiskData } from "./modals";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -522,6 +521,7 @@ export function RiskViewTable() {
           pageSizeOptions={[10, 15]}
         />
       </div>
+      <RiskData externalFunction = {handleFormSubmit}/>
     </div>
   );
 }

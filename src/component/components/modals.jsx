@@ -111,7 +111,7 @@ export function UserData(params) {
   const notify = () => {
     toast.success("User Saved Successfully", {
       onClose: () => {
-        handleClose();
+        close
       },
     });
   };
@@ -169,7 +169,6 @@ export function UserData(params) {
         }
       );
       notify()
-      window.location.reload(false)
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -220,10 +219,7 @@ export function UserData(params) {
       });
   }, []);
 
-  function handleClose() {
-    setOpen(false);
-    reload();
-  }
+  
 
   return (
     <>
@@ -451,7 +447,8 @@ export function UserData(params) {
   );
 }
 
-export function RiskData(params) {
+export function RiskData({ externalFunction, params })
+ {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -483,10 +480,12 @@ export function RiskData(params) {
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
 
+  
+
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
-        handleClose();
+        close
       },
     });
   };
@@ -589,6 +588,7 @@ export function RiskData(params) {
         }
       );
       notify();
+      externalFunction()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
