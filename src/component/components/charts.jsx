@@ -444,7 +444,7 @@ export function ReportRiskLevel() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+          {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -537,7 +537,7 @@ export function ReportRiskStatus() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -629,7 +629,7 @@ export function ReportRiskLocation() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -721,7 +721,7 @@ export function ReportRiskCategory() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -813,7 +813,7 @@ export function ReportRiskResponse() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -903,7 +903,7 @@ export function ReportRiskOwner() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"
@@ -993,7 +993,7 @@ export function Pyramidchat() {
       <div>
         <div className="grid grid-cols-4">
           <div>
-          {localStorage.getItem(role)==="ADMIN" || localStorage.getItem(role)=== "GENERAL MANAGER"? (
+          {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
           <>
           <select
             type="text"

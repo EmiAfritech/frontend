@@ -394,7 +394,7 @@ export function UserData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   
                   {role === "ADMIN" ||
-                  role === "GENERALMANAGER" || localStorage.getItem(role) === "MANAGER"  ? (
+                  role === "GENERALMANAGER" || localStorage.getItem("role") === "MANAGER"  ? (
                     <>
                     </>
                   ) : (
