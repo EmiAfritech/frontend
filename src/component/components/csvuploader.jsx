@@ -29,10 +29,11 @@ export function CsvUploader(onAccepting) {
       header: true,
     });
   };
+  console.log(csvData)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(UploadCsv_URL, JSON.stringify(csvData, null, 2), {
+      await axios.post(UploadCsv_URL, JSON.stringify({csvData}), {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
