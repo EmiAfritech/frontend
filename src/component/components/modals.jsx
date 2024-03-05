@@ -107,6 +107,9 @@ export function UserData(params) {
   const cDate = cdate.toISOString().split('T')[0];
   const uDate = udate.toISOString().split('T')[0];
 
+  if(role === "ANALYST"){
+    setRole("AUDITOR");
+  }
 
   const notify = () => {
     toast.success("User Saved Successfully", {
