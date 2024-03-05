@@ -418,7 +418,7 @@ export function Departmentforms({ onFormSubmit }) {
   );
 }
 
-export function Riskforms ({ onFormSubmit }) {
+export function Riskforms ({ onFormSubmit, tableData }) {
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
@@ -434,7 +434,8 @@ export function Riskforms ({ onFormSubmit }) {
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
   const [csvData, setCSVData] = useState([]);
   
-
+const tabledatatest = tableData
+console.log(tabledatatest)
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
