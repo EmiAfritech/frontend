@@ -103,7 +103,6 @@ export function UserData(params) {
   const udate = new Date(updatedAt);
   const cDate = cdate.toISOString().split("T")[0];
   const uDate = udate.toISOString().split("T")[0];
-  const [modaltrigger, setModaltrigger]= useState(false)
 
   if (role === "ANALYST") {
     setRole("AUDITOR");
@@ -170,7 +169,7 @@ export function UserData(params) {
         }
       );
       notify()
-      setModaltrigger(true);
+      window.location.reload(false)
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -220,6 +219,11 @@ export function UserData(params) {
         console.error(error);
       });
   }, []);
+
+  function handleClose() {
+    setOpen(false);
+    reload();
+  }
 
   return (
     <>
@@ -422,7 +426,6 @@ export function UserData(params) {
                     </>
                   )}
                 </div>
-                {modaltrigger ? (<EmployeesTable/>):(<></>)}
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
