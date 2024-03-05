@@ -432,10 +432,13 @@ export function Riskforms ({ onFormSubmit, tableData }) {
   const [riskObjective, setObjective] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
-  const [csvData, setCSVData] = useState([]);
-  
-const tabledatatest = tableData
-console.log(tabledatatest)
+  const [tableDataTest, setTableDataTest] = useState([]); // Add state for tableDataTest
+
+  // Assuming tableData contains an array of objects with a 'riskID' property
+  useEffect(() => {
+    setTableDataTest(tableData.map((item) => item.riskID));
+  }, [tableData]);
+
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
@@ -487,19 +490,17 @@ console.log(tabledatatest)
   }, []);
 
 
-  const fetchAndParseCSV = async () => {
-    try {
-        const response = await fetch('path/to/your/csv/file.csv');
-        const text = await response.text();
-        const parsedData = Papa.parse(text, { header: true });
-        setCSVData(parsedData.data);
-    } catch (error) {
-        console.error('Error fetching or parsing CSV:', error);
-    }
-};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if the entered risk ID already exists
+    if (tableDataTest.includes(riskID)) {
+      // Handle the case where the risk ID already exists, you can show a warning or handle it as needed
+      alert("Risk ID already exists. Please enter a different one.");
+      return;
+    }
 
     try {
       if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
