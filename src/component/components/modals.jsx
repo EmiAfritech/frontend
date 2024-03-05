@@ -36,7 +36,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
-import { RiskViewTable } from "./tables";
+import { EmployeesTable } from "./tables";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -422,7 +422,7 @@ export function UserData(params) {
                     </>
                   )}
                 </div>
-                {modaltrigger ? (<RiskViewTable/>):(<></>)}
+                {modaltrigger ? (<EmployeesTable/>):(<></>)}
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
