@@ -2074,7 +2074,7 @@ export function CsvModal() {
   return (
     <>
       <Button onClick={handleOpen} size="small" variant="outlined">
-      Télécharger CsvFile
+      Upload CsvFile
       </Button>
       <Modal
         open={open}
