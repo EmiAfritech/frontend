@@ -161,7 +161,6 @@ export function UserData(params) {
           userName,
           email,
           role,
-          id,
           departmentName,
         }),
         {
