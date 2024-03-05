@@ -2087,7 +2087,7 @@ export function CsvModal() {
             variant="h6"
             component="h2"
             sx={{ mb: 3 }}>
-            sélectionnez pour choisir un fichier
+            Select to choose a file
           </Typography>
           <CsvUploader onAccepting={handleClose}/>
         </Box>
@@ -2136,7 +2136,7 @@ export function LogOut() {
     <>
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
-        Déconnexion
+        Logout
       </button>
       <Modal
         open={open}
@@ -2161,7 +2161,7 @@ export function LogOut() {
               </svg>
             </div>
             <Typography component="h2">
-              Voulez-vous vraiment vous déconnecter ?
+            Are you sure you want to disconnect?
             </Typography>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -2169,7 +2169,7 @@ export function LogOut() {
               className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               type="submit"
               onClick={handleLogOut}>
-              Oui
+              Yes
             </button>
           </div>
         </Box>
