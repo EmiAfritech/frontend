@@ -13,6 +13,7 @@ import {
 import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
+import { LogOut } from "./modals";
 
 export function Sidebar() {
   const [isLoading] = useState(false);
