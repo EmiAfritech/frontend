@@ -106,7 +106,6 @@ export function UserData(params) {
   const udate = new Date(updatedAt);
   const cDate = cdate.toISOString().split('T')[0];
   const uDate = udate.toISOString().split('T')[0];
-  const dDate = ddate.toISOString().split('T')[0];
 
 
   const notify = () => {
