@@ -476,7 +476,7 @@ export function RiskData(params )
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  const { triggered, triggerComponent } = useContext(Modaltrigger);
+  const { trigger, triggerComponent } = useContext(Modaltrigger);
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);

@@ -474,7 +474,7 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  const { triggered } = useContext(Modaltrigger);
+  const { trigger } = useContext(Modaltrigger);
   
 
   const viewAllRisks = () => {
@@ -524,7 +524,7 @@ export function RiskViewTable() {
           pageSizeOptions={[10, 15]}
         />
       </div>
-      {triggered && (console.log("amtriggered"))}
+      {trigger && (console.log("amtriggered"))}
     </div>
   );
 }
