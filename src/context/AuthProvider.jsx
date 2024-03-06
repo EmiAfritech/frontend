@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext, Modaltrigger } from "./AuthContext";
+
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
@@ -12,3 +13,21 @@ export const AuthProvider = ({ children }) => {
 };
 
 export default AuthContext;
+
+
+export const ModaltriggerProvider =({children}) => {
+  const [trigger, setTrigger] = useState(false)
+
+  const triggerComponent = () => {
+    setTrigger(!trigger);
+  };
+
+
+  return (
+    <Modaltrigger.Provider value={{ trigger, triggerComponent }}>
+      {children}
+    </Modaltrigger.Provider>
+  );
+}
+
+
