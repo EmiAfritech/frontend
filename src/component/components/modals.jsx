@@ -36,7 +36,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
-import { EmployeesTable } from "./tables";
+import { useContext } from "react";
 import { Modaltrigger } from "../../context/AuthContext";
 
 function getRiskScore(score) {
