@@ -23,8 +23,9 @@ import { ClosedRisk } from "./pages/riskreview/closedrisk";
 import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 import { ResetPassword } from "./pages/resetPassword/resetpassword";
 
+
 function App() {
-  return (
+  return (<>
     <BrowserRouter>
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
@@ -60,6 +61,10 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    
+
+    
+        </>
   );
 }
 
