@@ -168,6 +168,7 @@ export function UserData(params) {
         }
       );
       notify()
+      props.onFormSubmit();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -217,6 +218,8 @@ export function UserData(params) {
         console.error(error);
       });
   }, []);
+
+  
 
   
 
@@ -619,6 +622,8 @@ export function RiskData(params )
       }
     }
   };
+
+  
 
   return (
     <>
@@ -2230,9 +2235,11 @@ export function LogOut() {
                 />
               </svg>
             </div>
-            <Typography component="h2">
-              Are you sure you want to Logout?
-            </Typography>
+            <div className="ml-8">
+              <Typography component="h2" >
+                Are you sure you want to Logout?
+              </Typography>
+            </div>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
             <button
