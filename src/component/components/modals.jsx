@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
+
 import {
   DELETEDEPARTMENT_URL,
   DELETERISK_URL,
@@ -482,7 +483,7 @@ export function RiskData(params )
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
   console.log(params)
-
+  const navigate = useNavigate();
 
   
 
@@ -594,6 +595,7 @@ export function RiskData(params )
         }
       );
       notify();
+      navigate("/risk-identification", { replace: true });
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -614,6 +616,7 @@ export function RiskData(params )
         withCredentials: true,
       });
       notifyDelete();
+      navigate("/risk-identification", { replace: true });
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
