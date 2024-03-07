@@ -168,7 +168,7 @@ export function UserData(params) {
         }
       );
       notify()
-      props.onFormSubmit();
+      
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
