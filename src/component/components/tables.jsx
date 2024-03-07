@@ -47,7 +47,7 @@ import {
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { CsvModal, UserData} from "./modals";
+import { CsvModal} from "./modals";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -86,8 +86,7 @@ export function EmployeesTable() {
   };
 
   return (
-    <>
-    <UserData onModalSubmit={handleFormSubmit}/>
+    
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
         <div>
@@ -105,7 +104,6 @@ export function EmployeesTable() {
         />
       </div>
     </div>
-    </>
   );
 }
 
