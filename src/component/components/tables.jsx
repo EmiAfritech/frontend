@@ -522,7 +522,6 @@ export function RiskViewTable() {
           pageSizeOptions={[10, 15]}
         />
       </div>
-      <RiskData/>
     </div>
   );
 }
