@@ -110,7 +110,7 @@ export function UserData(params) {
   const notify = () => {
     toast.success("User Saved Successfully", {
       onClose: () => {
-        close
+        close()
       },
     });
   };
@@ -120,7 +120,7 @@ export function UserData(params) {
   const notifyDelete = () => {
     toast.error("User Deleted", {
       onClose: () => {
-        handleClose();
+        close();
       },
     });
   };
@@ -487,7 +487,7 @@ export function RiskData(params )
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
-        close
+        close()
       },
     });
   };
@@ -501,7 +501,7 @@ export function RiskData(params )
   const notifyDelete = () => {
     toast.error("Risk Deleted", {
       onClose: () => {
-        handleClose();
+        close()
       },
     });
   };
@@ -911,7 +911,7 @@ export function ReviewRiskData(params) {
   const notify = () => {
     toast.success("Risk Review Saved Successfully", {
       onClose: () => {
-        handleClose();
+        close()
       },
     });
   };
@@ -1140,7 +1140,7 @@ export function MonitoredRiskData(params) {
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully");
-    handleClose();
+    close()
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details");
@@ -1377,7 +1377,7 @@ export function MitigatedRiskData(params) {
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
-        handleClose();
+        close()
       },
     });
   };
@@ -1927,6 +1927,7 @@ export function DepartmentData(params) {
         }
       );
       alert("Department deleted Successfully");
+      close()
     } catch (error) {
       alert(error);
     }
