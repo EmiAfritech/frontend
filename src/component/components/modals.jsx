@@ -478,6 +478,7 @@ export function RiskData(params )
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
+  console.log(params)
 
 
   
