@@ -48,8 +48,6 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { CsvModal} from "./modals";
-import { Modaltrigger } from "../../context/AuthContext";
-import { useContext } from "react";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -474,7 +472,7 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  const { trigger } = useContext(Modaltrigger);
+  
   
 
   const viewAllRisks = () => {
@@ -524,7 +522,7 @@ export function RiskViewTable() {
           pageSizeOptions={[10, 15]}
         />
       </div>
-      {trigger && (console.log("amtriggered"))}
+      <RiskData/>
     </div>
   );
 }

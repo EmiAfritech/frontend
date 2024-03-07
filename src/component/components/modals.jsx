@@ -36,8 +36,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { Modaltrigger } from "../../context/AuthContext";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -476,7 +474,6 @@ export function RiskData(params )
   const [riskResponseActivity, setRiskResponseActivity] = useState(
     params.row.riskResponseActivity
   );
-  const { trigger, triggerComponent } = useContext(Modaltrigger);
   const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
@@ -593,7 +590,6 @@ export function RiskData(params )
         }
       );
       notify();
-      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
