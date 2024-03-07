@@ -2235,7 +2235,7 @@ export function LogOut() {
                 />
               </svg>
             </div>
-            <div className="ml-8">
+            <div className="ml-4">
               <Typography component="h2" >
                 Are you sure you want to Logout?
               </Typography>
