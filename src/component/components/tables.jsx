@@ -495,15 +495,18 @@ export function RiskViewTable() {
     viewAllRisks();
   }, []);
 
-  if(trigger === "true"){
-    handleFormSubmit()
-    console.log("i triggered")
-  }
+  
 
   const handleFormSubmit = () => {
     viewAllRisks();
     resettriggerComponent()
   };
+
+  useEffect(() => {
+    if (trigger) {
+      handleFormSubmit();
+    }
+  }, [trigger]);
 
   return (
     <div className="flex flex-col ">
