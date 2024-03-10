@@ -483,8 +483,8 @@ export function RiskData(params )
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
-  const { triggered, triggerComponent } = React.useContext(Modaltrigger);
-  console.log('triggered:', triggered);
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
+  console.log('triggered:', trigger);
 
   
 
