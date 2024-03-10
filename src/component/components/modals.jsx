@@ -482,8 +482,8 @@ export function RiskData(params )
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
-  console.log(params)
-  const navigate = useNavigate();
+  const { triggered, triggerComponent } = React.useContext(Modaltrigger);
+  console.log('triggered:', triggered);
 
   
 
@@ -595,7 +595,6 @@ export function RiskData(params )
         }
       );
       notify();
-      navigate("/risk-identification", { replace: true });
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -616,7 +615,6 @@ export function RiskData(params )
         withCredentials: true,
       });
       notifyDelete();
-      navigate("/risk-identification", { replace: true });
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
