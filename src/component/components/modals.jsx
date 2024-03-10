@@ -100,6 +100,7 @@ export function UserData(params) {
   );
 
   const [deptmentName, setdeptmentName] = useState([]);
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
   const cdate = new Date(createdAt);
   const udate = new Date(updatedAt);
   const cDate = cdate.toISOString().split("T")[0];
@@ -144,9 +145,7 @@ export function UserData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  function handleClose() {
-    setOpen(false);
-  }
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -170,7 +169,7 @@ export function UserData(params) {
         }
       );
       notify()
-      
+      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -915,6 +914,7 @@ export function ReviewRiskData(params) {
   const cDate = cdate.toISOString().split("T")[0];
   const ndate = new Date(NextRiskReviewDate);
   const nDate = ndate.toISOString().split("T")[0];
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
   const notify = () => {
     toast.success("Risk Review Saved Successfully", {
@@ -944,9 +944,6 @@ export function ReviewRiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  function handleClose() {
-    setOpen(false);
-  }
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -970,6 +967,7 @@ export function ReviewRiskData(params) {
         }
       );
       notify();
+      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -1145,6 +1143,7 @@ export function MonitoredRiskData(params) {
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully");
@@ -1200,6 +1199,7 @@ export function MonitoredRiskData(params) {
         }
       );
       notify();
+      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -1381,6 +1381,7 @@ export function MitigatedRiskData(params) {
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(createdAt);
   const cDate = cdate.toISOString().split("T")[0];
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
@@ -1411,9 +1412,7 @@ export function MitigatedRiskData(params) {
     setOpen(!open);
   }
 
-  function handleClose() {
-    setOpen(false);
-  }
+  
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -1442,6 +1441,7 @@ export function MitigatedRiskData(params) {
         }
       );
       notify();
+      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -1879,6 +1879,7 @@ export function DepartmentData(params) {
   const udate = new Date(updatedAt);
   const uDate = udate.toISOString().split("T")[0];
   const id = params.row.id;
+  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
   const style = {
     position: "absolute",
@@ -1916,6 +1917,7 @@ export function DepartmentData(params) {
         }
       );
       alert("User Saved Successfully");
+      triggerComponent()
     } catch (error) {
       alert(error);
     }

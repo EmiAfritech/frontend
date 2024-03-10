@@ -62,6 +62,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
 
   const getUsers = async () => {
     try {
@@ -87,6 +88,13 @@ export function EmployeesTable() {
     getUsers();
   };
 
+  useEffect(() => {
+    if (trigger) {
+      getUsers();
+      resettriggerComponent()
+    }
+  }, [trigger]);
+
   return (
     
     <div className="flex flex-col">
@@ -111,6 +119,7 @@ export function EmployeesTable() {
 
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
 
   const getRiskReview = async () => {
     try {
@@ -135,6 +144,13 @@ export function RiskReview() {
     // Call the function to fetch updated data after form submission
     getRiskReview();
   };
+
+  useEffect(() => {
+    if (trigger) {
+      getRiskReview();
+      resettriggerComponent()
+    }
+  }, [trigger]);
 
   return (
     <div className="flex flex-col">
@@ -218,8 +234,9 @@ export function ClosedRiskTab() {
   );
 }
 
-export function RiskMonitor() {
+export function RiskMonitor() { 
   const [tableData, setTableData] = useState([]);
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
 
   const getMonitoring = async () => {
     try {
@@ -245,6 +262,13 @@ export function RiskMonitor() {
     // Call the function to fetch updated data after form submission
     getMonitoring();
   };
+
+  useEffect(() => {
+    if (trigger) {
+      getMonitoring();
+      resettriggerComponent()
+    }
+  }, [trigger]);
 
   return (
     <div className="flex flex-col mt-6">
@@ -355,6 +379,8 @@ export function RiskAppetiteReportLower() {
 
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+
   const getDepartment = async () => {
     try {
       const response = await axios.get(DEPARTMENT_URL, {
@@ -379,6 +405,13 @@ export function DepartmentTab() {
     getDepartment();
   };
 
+  useEffect(() => {
+    if (trigger) {
+      getDepartment();
+      resettriggerComponent()
+    }
+  }, [trigger]);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
@@ -402,6 +435,8 @@ export function DepartmentTab() {
 
 export function RiskmitigationTab() {
   const [tableData, setTableData] = useState([]);
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+  
   const getMitigation = async () => {
     try {
       const response = await axios.get(RISKMITIGATION_URL, {
@@ -425,6 +460,13 @@ export function RiskmitigationTab() {
   const handleFormSubmit = () => {
     getMitigation();
   };
+
+  useEffect(() => {
+    if (trigger) {
+      getMonitoring();
+      resettriggerComponent()
+    }
+  }, [trigger]);
 
   return (
     <div className="flex flex-col">
