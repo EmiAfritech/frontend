@@ -49,6 +49,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { CsvModal} from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
+import { ConstantLine } from "devextreme-react/chart";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -474,9 +475,7 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , ResettriggerComponent} = useContext(Modaltrigger);
-  console.log(trigger, "i hve been trigged")
-  console.log(ResettriggerComponent())
+  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
   
 
   const viewAllRisks = () => {
@@ -496,8 +495,14 @@ export function RiskViewTable() {
     viewAllRisks();
   }, []);
 
+  if(trigger === "true"){
+    handleFormSubmit()
+    console.log("i triggered")
+  }
+
   const handleFormSubmit = () => {
     viewAllRisks();
+    resettriggerComponent()
   };
 
   return (
