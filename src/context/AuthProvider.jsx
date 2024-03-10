@@ -22,9 +22,13 @@ export const ModaltriggerProvider =({children}) => {
     setTrigger(!trigger);
   };
 
+  const ResettriggerComponent = () => {
+    setTrigger(!!trigger);
+  };
+
 
   return (
-    <Modaltrigger.Provider value={{ trigger, triggerComponent }}>
+    <Modaltrigger.Provider value={{ trigger, triggerComponent, ResettriggerComponent }}>
       {children}
     </Modaltrigger.Provider>
   );

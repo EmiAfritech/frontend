@@ -474,8 +474,9 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  const { trigger } = useContext(Modaltrigger);
+  const { trigger , ResettriggerComponent} = useContext(Modaltrigger);
   console.log(trigger, "i hve been trigged")
+  console.log(ResettriggerComponent)
   
 
   const viewAllRisks = () => {
