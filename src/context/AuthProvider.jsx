@@ -19,7 +19,7 @@ export const ModaltriggerProvider =({children}) => {
   const [trigger, setTrigger] = useState(false)
 
   const triggerComponent = () => {
-    setTrigger(!trigger);
+    setTrigger(true);
   };
 
   const ResettriggerComponent = () => {
