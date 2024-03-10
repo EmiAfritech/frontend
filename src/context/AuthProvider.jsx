@@ -23,7 +23,7 @@ export const ModaltriggerProvider =({children}) => {
   };
 
   const ResettriggerComponent = () => {
-    setTrigger(!!trigger);
+    setTrigger(false);
   };
 
 
