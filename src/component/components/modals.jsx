@@ -37,6 +37,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { useNavigate } from "react-router-dom";
+import { Modaltrigger } from "../../context/AuthContext";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2236,7 +2237,7 @@ export function LogOut() {
                 />
               </svg>
             </div>
-            <div className="ml-4">
+            <div className="ml-2">
               <Typography component="h2" >
                 Are you sure you want to Logout?
               </Typography>
