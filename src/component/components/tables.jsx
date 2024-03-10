@@ -499,12 +499,13 @@ export function RiskViewTable() {
 
   const handleFormSubmit = () => {
     viewAllRisks();
-    resettriggerComponent()
+    
   };
 
   useEffect(() => {
     if (trigger) {
-      handleFormSubmit();
+      viewAllRisks();
+      resettriggerComponent()
     }
   }, [trigger]);
 
