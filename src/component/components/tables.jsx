@@ -13,7 +13,7 @@ import {
   riskmitigationcolumn,
   reportriskmitigationcolumn,
 } from "./datatable";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   DataGrid,
   GridToolbar,
@@ -473,7 +473,8 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  
+  const { triggered } = useContext(Modaltrigger);
+  console.log(triggered, "i hve been trigged")
   
 
   const viewAllRisks = () => {

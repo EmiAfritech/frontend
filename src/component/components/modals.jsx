@@ -484,7 +484,6 @@ export function RiskData(params )
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
   const { trigger, triggerComponent } = React.useContext(Modaltrigger);
-  console.log('triggered:', trigger);
 
   
 
@@ -596,6 +595,7 @@ export function RiskData(params )
         }
       );
       notify();
+      triggerComponent()
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
