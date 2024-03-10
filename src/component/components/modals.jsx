@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   DELETEDEPARTMENT_URL,
