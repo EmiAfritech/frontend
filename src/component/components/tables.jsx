@@ -476,7 +476,7 @@ export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
   const { trigger , ResettriggerComponent} = useContext(Modaltrigger);
   console.log(trigger, "i hve been trigged")
-  console.log(ResettriggerComponent)
+  console.log(ResettriggerComponent())
   
 
   const viewAllRisks = () => {
