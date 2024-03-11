@@ -1898,6 +1898,7 @@ export function DepartmentData(params) {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    console.log(id);
     try {
       await axios.put(
         EDITDEPARTMENT_URL,
