@@ -1289,7 +1289,7 @@ export function MonitoredRiskData(params) {
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
-                    label="Chanlenges"
+                    label="challenges"
                     value={challenges}
                     multiline
                     autoComplete="off"
