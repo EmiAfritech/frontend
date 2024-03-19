@@ -154,11 +154,13 @@ export function RiskReview() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div>
-          <RiskReviewforms onFormSubmit={handleFormSubmit} />
+       {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERALMANAGER" || localStorage.getItem("role")=== "MANAGER"? (
+        <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+          <div>
+            <RiskReviewforms onFormSubmit={handleFormSubmit} />
+          </div>
         </div>
-      </div>
+      )}
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="mt-2 w-auto cardTable p-4">
@@ -703,7 +705,7 @@ export function RiskMitigationReportTable() {
       <div className="grid grid-cols-4 justify-end">
         <div className="col-span-3"></div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
+        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERALMANAGER"? (
           <>
           <select
             type="text"
