@@ -810,11 +810,11 @@ export function RiskData(params )
                     onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                     required
                     style={{ width: "100%" }}>
-                    <MenuItem value={1}>Almost Impossible</MenuItem>
-                    <MenuItem value={2}>Unlikely</MenuItem>
-                    <MenuItem value={3}>Likely</MenuItem>
-                    <MenuItem value={4}>Very Likely</MenuItem>
-                    <MenuItem value={5}>Almost Certain</MenuItem>
+                    <MenuItem value={1}>Almost Impossible (1)</MenuItem>
+                    <MenuItem value={2}>Unlikely (2)</MenuItem>
+                    <MenuItem value={3}>Likely (3)</MenuItem>
+                    <MenuItem value={4}>Very Likely (4)</MenuItem>
+                    <MenuItem value={5}>Almost Certain (5)</MenuItem>
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -827,11 +827,11 @@ export function RiskData(params )
                     required
                     style={{ width: "100%" }}>
                     {" "}
-                    <MenuItem value={1}>Insignificant</MenuItem>
-                    <MenuItem value={2}>Minor</MenuItem>
-                    <MenuItem value={3}>Moderate</MenuItem>
-                    <MenuItem value={4}>Major</MenuItem>
-                    <MenuItem value={5}>Catastrophic</MenuItem>
+                    <MenuItem value={1}>Insignificant (1)</MenuItem>
+                    <MenuItem value={2}>Minor (2)</MenuItem>
+                    <MenuItem value={3}>Moderate (3)</MenuItem>
+                    <MenuItem value={4}>Major (4)</MenuItem>
+                    <MenuItem value={5}>Catastrophic (5)</MenuItem>
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1616,11 +1616,11 @@ export function MitigatedRiskData(params) {
                     }
                     required
                     style={{ width: "100%" }}>
-                    <MenuItem value={1}>Almost Impossible</MenuItem>
-                    <MenuItem value={2}>Unlikely</MenuItem>
-                    <MenuItem value={3}>Likely</MenuItem>
-                    <MenuItem value={4}>Very Likely</MenuItem>
-                    <MenuItem value={5}>Almost Certain</MenuItem>
+                    <MenuItem value={1}>Almost Impossible (1)</MenuItem>
+                    <MenuItem value={2}>Unlikely (2)</MenuItem>
+                    <MenuItem value={3}>Likely (3)</MenuItem>
+                    <MenuItem value={4}>Very Likely (4)</MenuItem>
+                    <MenuItem value={5}>Almost Certain (5)</MenuItem>
                   </Select>
                 </div>
               </div>
@@ -1637,11 +1637,11 @@ export function MitigatedRiskData(params) {
                     required
                     style={{ width: "100%" }}>
                     {" "}
-                    <MenuItem value={1}>Insignificant</MenuItem>
-                    <MenuItem value={2}>Minor</MenuItem>
-                    <MenuItem value={3}>Moderate</MenuItem>
-                    <MenuItem value={4}>Major</MenuItem>
-                    <MenuItem value={5}>Catastrophic</MenuItem>
+                    <MenuItem value={1}>Insignificant (1)</MenuItem>
+                    <MenuItem value={2}>Minor (2)</MenuItem>
+                    <MenuItem value={3}>Moderate (3)</MenuItem>
+                    <MenuItem value={4}>Major (4)</MenuItem>
+                    <MenuItem value={5}>Catastrophic (5)</MenuItem>
                   </Select>
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
