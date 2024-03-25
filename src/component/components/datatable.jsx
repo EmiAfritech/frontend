@@ -37,7 +37,6 @@ export const riskreviewcolumn = [
     headerName: "Next Risk Review Date",
     width: 170,
   },
-  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
   {
     field: "view",
@@ -80,7 +79,7 @@ export const riskmitigationcolumn = [
     headerName: "Mitigated Risk Score",
     width: 150,
   },
-  { field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
+  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
   { field: "createdAt", headerName: "Created At", width: 150 },
    {
     field: "view",
@@ -99,7 +98,8 @@ export const reportriskmitigationcolumn = [
   headerName: "Mitigated Risk Score",
   width: 150,
 },
-{ field: "mitigationOwner", headerName: "Mitigation Owner", width: 150 },
+  
+ { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
 { field: "createdAt", headerName: "Created At", width: 150 },
 ];
 
@@ -182,6 +182,7 @@ export const riskmonitoringcolumn = [
   },
   { field: "challenges", headerName: "Challenges", width: 100 },
   { field: "comments", headerName: "Comments", width: 120 },
+  { field: "mitigationOwner", headerName: "Mitigation Owner", width: 120 },
   { field: "createdAt", headerName: "Created At", width: 120 },
   {
     field: "view",
@@ -245,7 +246,6 @@ export const riskviewcolumn = [
   { field: "riskDescription", headerName: "Risk Description", width: 250 },
   { field: "riskCategory", headerName: "Risk Category", width: 180 },
   { field: "riskScore", headerName: "Risk Score", width: 100 },
-  { field: "riskOwner", headerName: "Risk Owner", width: 150 },
   {
     field: "view",
     headerName: "Action",
