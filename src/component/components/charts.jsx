@@ -989,8 +989,8 @@ export function Pyramidchat() {
   };
 
   const handleItemClick = (e) => {
-    console.log("Hi");
-    // Here you can handle the click event as per your requirement
+    const clickedItem = e.item;
+    console.log(clickedItem.data.color); // Log the color of the clicked item
   };
 
   return (
