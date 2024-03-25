@@ -990,7 +990,7 @@ export function Pyramidchat() {
 
   const handleItemClick = (e) => {
     const clickedItem = e.item;
-    console.log(clickedItem.data.color); // Log the color of the clicked item
+    console.log(clickedItem.data); // Log the color of the clicked item
   };
 
   return (
