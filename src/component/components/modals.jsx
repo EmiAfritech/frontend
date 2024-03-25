@@ -16,6 +16,7 @@ import {
   EDITDEPARTMENT_URL,
   EDITMITIGATION_URL,
   EDITMONITORING_URL,
+  RISKREVIEWERSDROPDOWN_URL,
   EDITREVIEW_URL,
   EDITRISK_URL,
   EDITUSER_URL,
@@ -902,7 +903,6 @@ export function ReviewRiskData(params) {
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [riskReview, setRiskReview] = useState(params.row.riskReview);
-  const [riskReviewer, setRiskReviewer] = useState(params.row.riskReviewer);
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(
     params.row.NextRiskReviewDate
   );
@@ -954,7 +954,6 @@ export function ReviewRiskData(params) {
           riskID,
           riskReview,
           NextRiskReviewDate,
-          riskReviewer,
           riskReviewComments,
           id,
         }),
@@ -1028,16 +1027,7 @@ export function ReviewRiskData(params) {
                     <MenuItem value="close risk">Close Risk</MenuItem>
                   </Select>
                 </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Reviewer"
-                    value={riskReviewer}
-                    autoComplete="off"
-                    onChange={(e) => setRiskReviewer(e.target.value)}
-                    requiredd
-                    style={{ width: "100%" }}
-                  />
-                </div>
+                
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1142,6 +1132,10 @@ export function MonitoredRiskData(params) {
   const [comments, setComments] = useState(params.row.comments);
   const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
   const cdate = new Date(riskCreatedAt);
+  const [mitigationOwner, setMitigationOwner] = useState(
+    params.row.mitigationOwner
+  );
+  const [ownersName, setOwnersName] = useState([]);
   const cDate = cdate.toISOString().split("T")[0];
   const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
@@ -1175,6 +1169,22 @@ export function MonitoredRiskData(params) {
   function handleClose() {
     setOpen(false);
   }
+   useEffect(() => {
+    axios
+      .get(OWNERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setOwnersName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -1188,6 +1198,7 @@ export function MonitoredRiskData(params) {
           riskResponseImplementation,
           recommendedChanges,
           challenges,
+          mitigationOwner,
           comments,
         }),
         {
@@ -1333,6 +1344,23 @@ export function MonitoredRiskData(params) {
                     style={{ width: "100%" }}
                   />
                 </div>
+                 <div className="relative mb-6" data-te-input-wrapper-init>
+                  <Select
+                    label="Risk Reviewer"
+                    value={mitigationOwner}
+                    autoComplete="off"
+                    onChange={(e) => setMitigationOwner(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    {ownersName.map((ownersName) => (
+                      <MenuItem key={ownersName.id} value={ownersName.value}>
+                        {" "}
+                        {ownersName.value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  
+                </div>
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -1357,9 +1385,8 @@ export function MitigatedRiskData(params) {
   const id = params.row.id;
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [mitigationOwner, setMitigationOwner] = useState(
-    params.row.mitigationOwner
-  );
+  const [riskReviewer, setRiskReviewer] = useState(params.row.riskReviewer);
+  
   const [mitigationEffort, setMitigationEffort] = useState(
     params.row.mitigationEffort
   );
@@ -1428,7 +1455,7 @@ export function MitigatedRiskData(params) {
           mitigatedRiskProbabilityLevel,
           mitigatedRiskImpactLevel,
           mitigationEffort,
-          mitigationOwner,
+          riskReviewer,
           mitigationCost,
           mitigationControl,
         }),
@@ -1453,7 +1480,7 @@ export function MitigatedRiskData(params) {
 
   useEffect(() => {
     axios
-      .get(OWNERSDROPDOWN_URL, {
+      .get(RISKREVIEWERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -1504,12 +1531,11 @@ export function MitigatedRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Mitigation Owner</InputLabel>
                   <Select
-                    label="Mitigation Owner"
-                    value={mitigationOwner}
+                    label="Risk Reviewer"
+                    value={riskReviewer}
                     autoComplete="off"
-                    onChange={(e) => setMitigationOwner(e.target.value)}
+                    onChange={(e) => setRiskReviewer(e.target.value)}
                     required
                     style={{ width: "100%" }}>
                     {ownersName.map((ownersName) => (
@@ -1519,7 +1545,9 @@ export function MitigatedRiskData(params) {
                       </MenuItem>
                     ))}
                   </Select>
+                  
                 </div>
+               
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Mitigation Effort</InputLabel>
                   <Select
@@ -1600,8 +1628,6 @@ export function MitigatedRiskData(params) {
                     )}
                     autoComplete="off"
                     disabled
-                    onChange={(e) => setMitigatedRiskScore(e.target.value)}
-                    required
                     style={{ width: "100%" }}
                   />
                 </div>
@@ -1694,8 +1720,8 @@ export function MitigatedRiskReportData(params) {
 
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [mitigationOwner, setMitigationOwner] = useState(
-    params.row.mitigationOwner
+  const [riskReviewer, setRiskReviewer] = useState(
+    params.row.riskReviewer
   );
   const [mitigationEffort, setMitigationEffort] = useState(
     params.row.mitigationEffort
@@ -1765,9 +1791,9 @@ export function MitigatedRiskReportData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Mitigation Owner"
-                    value={mitigationOwner}
+                    value={riskReviewer}
                     autoComplete="off"
-                    onChange={(e) => setMitigationOwner(e.target.value)}
+                    onChange={(e) => setRiskReviewer(e.target.value)}
                     required
                   />
                 </div>
