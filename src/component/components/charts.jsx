@@ -988,6 +988,11 @@ export function Pyramidchat() {
     setDeptmentName(e.target.value);
   };
 
+  const handleItemClick = (e) => {
+    console.log("Hi");
+    // Here you can handle the click event as per your requirement
+  };
+
   return (
     <>
       <div>
@@ -1024,7 +1029,8 @@ export function Pyramidchat() {
             algorithm="dynamicHeight"
             palette="Harmony Light"
             argumentField="level"
-            valueField="count">
+            valueField="count"
+            onItemClick={handleItemClick}>
             <Tooltip enabled={true} />
             <Item>
               <Border visible={true} />
