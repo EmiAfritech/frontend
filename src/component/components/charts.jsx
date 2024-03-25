@@ -988,6 +988,11 @@ export function Pyramidchat() {
     setDeptmentName(e.target.value);
   };
 
+  const handleItemClick = (e) => {
+    const clickedItem = e.item;
+    console.log(clickedItem.data.color); // Log the color of the clicked item
+  };
+
   return (
     <>
       <div>
@@ -1024,7 +1029,8 @@ export function Pyramidchat() {
             algorithm="dynamicHeight"
             palette="Harmony Light"
             argumentField="level"
-            valueField="count">
+            valueField="count"
+            onItemClick={handleItemClick}>
             <Tooltip enabled={true} />
             <Item>
               <Border visible={true} />
