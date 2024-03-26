@@ -14,6 +14,7 @@ export function ReportRiskAdvice() {
       </div>
       <div ref={ref}>
         <Pyramidchat />
+        <ReportRiskAdvice/>
       </div>
     </div>
   );
