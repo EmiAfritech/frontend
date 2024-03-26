@@ -1,3 +1,4 @@
+import { Button } from "devextreme-react";
 import { Link } from "react-router-dom";
 
 export function ReviewInfo() {
@@ -11,7 +12,6 @@ export function ReviewInfo() {
 export function RiskReportAdvice() {
   return (
     <p className="m-5">
-      <h2 className="pb-2 font-medium">RISK ADVISE</h2>
       Based on the various parameters placed into consideration its relevant the
       various factors are placed <br />
       into consideration in order of relevance

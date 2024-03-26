@@ -40,6 +40,7 @@ import {
   RISKYEARSCHART_URL,
 } from "../../api/routes";
 import { RiskReportAdvice } from "./info";
+import { Button } from "devextreme-react";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
@@ -1045,7 +1046,10 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
-        <RiskReportAdvice/>
+        <div className="flex flex-row">
+          <Button> Risk Advice</Button>
+          <Button>View Table</Button>
+        </div>
       </div>
     </>
   );
