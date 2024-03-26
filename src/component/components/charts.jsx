@@ -1046,6 +1046,7 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
+        <Button> View Table </Button>
       </div>
     </>
   );
