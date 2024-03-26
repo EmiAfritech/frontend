@@ -1046,7 +1046,7 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
-        <div className="grid grid-rows-8 gap-4">
+        <div className="grid grid-cols-8 gap-4">
           <Button> Risk Advice</Button>
           <Button>View Table</Button>
         
