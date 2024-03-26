@@ -1,5 +1,4 @@
 import { Pyramidchat } from "../../component/components/charts";
-import { RiskReportAdvice } from "../../component/components/info";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
 
@@ -15,7 +14,6 @@ export function ReportRiskAdvice() {
       </div>
       <div ref={ref}>
         <Pyramidchat />
-        <RiskReportAdvice />
       </div>
     </div>
   );

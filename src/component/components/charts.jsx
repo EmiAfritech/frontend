@@ -39,6 +39,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   RISKYEARSCHART_URL,
 } from "../../api/routes";
+import { RiskReportAdvice } from "./info";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
@@ -1044,6 +1045,7 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
+        <RiskReportAdvice/>
       </div>
     </>
   );
