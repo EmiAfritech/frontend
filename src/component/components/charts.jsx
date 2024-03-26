@@ -1046,10 +1046,9 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
-        <div className="grid grid-cols-8 gap-4">
-          <Button> Risk Advice</Button>
-          <Button>View Table</Button>
-        
+        <div className="grid grid-cols-8 gap-4 pt-5">
+          <div className="grid grid-cols-2"><Button> Risk Advice</Button></div>
+          <div className="grid grid-cols-2"><Button>View Table</Button></div>
         </div>
       </div>
     </>
