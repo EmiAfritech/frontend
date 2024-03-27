@@ -945,7 +945,7 @@ export function Pyramidchat() {
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
-  console.log(data.risk)
+  console.log(data)
 
 
 
