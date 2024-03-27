@@ -46,19 +46,19 @@ export const riskreviewcolumn = [
   },
 ];
 
-// export const riskreviewrow = [
-//   { field: "id", headerName: "ID", width: 70 },
-//   { field: "riskID", headerName: "Risk Code", width: 100 },
-//   { field: "riskName", headerName: "Risk Name", width: 150 },
-//   { field: "riskReview", headerName: "Risk Review", width: 150 },
-//   {
-//     field: "NextRiskReviewDate",
-//     headerName: "Next Risk Review Date",
-//     width: 170,
-//   },
-//   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-//   { field: "createdAt", headerName: "Created At", width: 150 },
-// ];
+export const riskreviewrow = [
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "riskID", headerName: "Risk Code", width: 100 },
+  { field: "riskName", headerName: "Risk Name", width: 150 },
+  { field: "riskReview", headerName: "Risk Review", width: 150 },
+  {
+    field: "NextRiskReviewDate",
+    headerName: "Next Risk Review Date",
+    width: 170,
+  },
+  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
+  { field: "createdAt", headerName: "Created At", width: 150 },
+];
 
 export const riskmitigationcolumn = [
   { field: "id", headerName: "ID", width: 70 },
