@@ -942,7 +942,9 @@ export function Pyramidchat() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
+  const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
+  console.log(data.risk)
 
 
 
@@ -1064,7 +1066,7 @@ export function Pyramidchat() {
           {pyramidRiskTable?(<RiskMitigationReportTable/>):(
           <>
           <DataGrid
-          rows={data.risks}
+          rows={tableData}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
