@@ -1066,12 +1066,16 @@ export function Pyramidchat() {
         <div>
           {pyramidRiskTable?
           (<>
+          <div
+          style={{ height: 650, width: 1100, backgroundColor: "white" }}>
           <DataGrid
           rows={tableData}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
         />
+          </div>
+          
           </>):(<RiskReportAdvice/> )}
         </div>
       </div>
