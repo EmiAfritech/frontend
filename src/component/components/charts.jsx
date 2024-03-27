@@ -12,7 +12,7 @@ import {
   Line,
 } from "recharts";
 import React from "react";
-import { HighLowBarData } from "./chartdata";
+import { HighLowBarData, pyramid } from "./chartdata";
 import Chart from "react-apexcharts";
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
@@ -41,6 +41,7 @@ import {
 } from "../../api/routes";
 import { RiskReportAdvice } from "./info";
 import { Button } from "devextreme-react";
+import { RiskMitigationReportTable } from "./tables";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
@@ -940,6 +941,7 @@ export function Pyramidchat() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
+  const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
 
 
 
@@ -995,6 +997,13 @@ export function Pyramidchat() {
     console.log(clickedItem.data); // Log the color of the clicked item
   };
 
+  const handleRiskAdvice = (e) => {
+    setPyramidRiskTable(false)
+  };
+
+  const handlePyramidRiskTable = (e) => {
+    setPyramidRiskTable(true)
+  }
   return (
     <>
       <div>
@@ -1047,13 +1056,17 @@ export function Pyramidchat() {
           </Funnel>
         </div>
         <div className="grid grid-cols-6 gap-4 pt-5">
-          <Button className="px-4"> Risk Advice</Button>
-          <Button className="px-4">View Table</Button>
+          <Button className="px-4" onClick={handleRiskAdvice}> Risk Advice</Button>
+          <Button className="px-4" onClick={handlePyramidRiskTable}>View Table</Button>
+        </div>
+        <div>
+          {pyramidRiskTable?(<RiskMitigationReportTable/>):(<RiskReportAdvice/>)}
         </div>
       </div>
     </>
   );
 }
+
 
 export function HeatMap3() {
 
