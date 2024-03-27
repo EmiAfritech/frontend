@@ -945,7 +945,7 @@ export function Pyramidchat() {
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
-  console.log(data)
+  console.log(data.risks)
 
 
 
@@ -1063,7 +1063,8 @@ export function Pyramidchat() {
           <Button className="px-4" onClick={handleRiskAdvice} variant="text" size="large"> Risk Advice</Button>
           <Button className="px-4" onClick={handlePyramidRiskTable} size="small" variant="outlined">View Table</Button>
         </div>
-        <div>
+        <hr/>
+        <div className="py-5">
           {pyramidRiskTable?
           (<>
           <div
