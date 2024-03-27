@@ -92,11 +92,11 @@ export const riskmitigationcolumn = [
 export const reportriskpyramidcolumn = [
 { field: "id", headerName: "ID", width: 70 },
 { field: "riskID", headerName: "Risk Code", width: 150 },
-{ field: "riskName", headerName: "Risk Name", width: 250 },
+{ field: "riskName", headerName: "Risk Name", width: 150 },
 {
   field: "riskDescription",
   headerName: "Risk Description",
-  width: 150,
+  width: 200,
 },
 {
   field: "view",
