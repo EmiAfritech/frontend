@@ -40,7 +40,7 @@ import {
   RISKYEARSCHART_URL,
 } from "../../api/routes";
 import { RiskReportAdvice } from "./info";
-import { Button } from "devextreme-react";
+import { Button } from "@mui/material";
 import { RiskMitigationReportTable } from "./tables";
 
 export function OpenVsClose() {
@@ -1056,8 +1056,8 @@ export function Pyramidchat() {
           </Funnel>
         </div>
         <div className="grid grid-cols-6 gap-4 pt-5">
-          <Button className="px-4" onClick={handleRiskAdvice}> Risk Advice</Button>
-          <Button className="px-4" onClick={handlePyramidRiskTable}>View Table</Button>
+          <Button className="px-4" onClick={handleRiskAdvice} variant="text" size="small"> Risk Advice</Button>
+          <Button className="px-4" onClick={handlePyramidRiskTable} size="small" variant="outlined">View Table</Button>
         </div>
         <div>
           {pyramidRiskTable?(<RiskMitigationReportTable/>):(<RiskReportAdvice/>)}
