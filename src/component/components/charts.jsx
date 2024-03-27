@@ -1064,16 +1064,15 @@ export function Pyramidchat() {
           <Button className="px-4" onClick={handlePyramidRiskTable} size="small" variant="outlined">View Table</Button>
         </div>
         <div>
-          {pyramidRiskTable?(<RiskMitigationReportTable/>):(
-          <>
+          {pyramidRiskTable?
+          (<>
           <DataGrid
           rows={tableData}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
         />
-          </>
-          )}
+          </>):(<RiskReportAdvice/> )}
         </div>
       </div>
     </>
