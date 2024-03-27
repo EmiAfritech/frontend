@@ -42,6 +42,7 @@ import {
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
 import { RiskMitigationReportTable } from "./tables";
+import { reportriskpyramidcolumn } from "./datatable";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
@@ -1060,7 +1061,16 @@ export function Pyramidchat() {
           <Button className="px-4" onClick={handlePyramidRiskTable} size="small" variant="outlined">View Table</Button>
         </div>
         <div>
-          {pyramidRiskTable?(<RiskMitigationReportTable/>):(<RiskReportAdvice/>)}
+          {pyramidRiskTable?(<RiskMitigationReportTable/>):(
+          <>
+          <DataGrid
+          rows={data.risks}
+          columns={reportriskpyramidcolumn}
+          pageSize={10}
+          pagination
+        />
+          </>
+          )}
         </div>
       </div>
     </>

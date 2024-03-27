@@ -46,19 +46,19 @@ export const riskreviewcolumn = [
   },
 ];
 
-export const riskreviewrow = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "riskID", headerName: "Risk Code", width: 100 },
-  { field: "riskName", headerName: "Risk Name", width: 150 },
-  { field: "riskReview", headerName: "Risk Review", width: 150 },
-  {
-    field: "NextRiskReviewDate",
-    headerName: "Next Risk Review Date",
-    width: 170,
-  },
-  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-  { field: "createdAt", headerName: "Created At", width: 150 },
-];
+// export const riskreviewrow = [
+//   { field: "id", headerName: "ID", width: 70 },
+//   { field: "riskID", headerName: "Risk Code", width: 100 },
+//   { field: "riskName", headerName: "Risk Name", width: 150 },
+//   { field: "riskReview", headerName: "Risk Review", width: 150 },
+//   {
+//     field: "NextRiskReviewDate",
+//     headerName: "Next Risk Review Date",
+//     width: 170,
+//   },
+//   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
+//   { field: "createdAt", headerName: "Created At", width: 150 },
+// ];
 
 export const riskmitigationcolumn = [
   { field: "id", headerName: "ID", width: 70 },
@@ -89,6 +89,23 @@ export const riskmitigationcolumn = [
   },
 ];
 
+export const reportriskpyramidcolumn = [
+{ field: "id", headerName: "ID", width: 70 },
+{ field: "riskID", headerName: "Risk Code", width: 150 },
+{ field: "riskName", headerName: "Risk Name", width: 250 },
+{
+  field: "riskDescription",
+  headerName: "Risk Description",
+  width: 150,
+},
+{
+  field: "view",
+  headerName: "Action",
+  width: 50,
+  renderCell: (params) => MitigatedRiskData(params),
+},
+  
+];
 export const reportriskmitigationcolumn = [
 { field: "id", headerName: "ID", width: 70 },
 { field: "riskID", headerName: "Risk Code", width: 70 },
