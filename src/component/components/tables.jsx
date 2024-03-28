@@ -568,12 +568,20 @@ export function RiskViewTable() {
         className="  mt-2 w-auto card p-4">
         <Box
           sx={{
-            [`.${gridClasses.cell}.cold`]: {
-              backgroundColor: "#b9d5ff91",
-              color: "#1a3e72",
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#BC2809",
+              color: "#FFFFFF",
             },
-            [`.${gridClasses.cell}.hot`]: {
-              backgroundColor: "#FF0000",
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#EAE41D",
+              color: "#FFFFF",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0D1CB0",
+              color: "#FFFFF",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#037403",
               color: "#FFFFF",
             },
           }}>
@@ -591,7 +599,9 @@ export function RiskViewTable() {
               return 'hot';
             }else if(params.value === 'Very High') {
               return 'cold';
-            }
+            }else if(params.value === 'Medium') {
+              return 'medium';
+            }return 'low'
           }}
         />
         </Box>

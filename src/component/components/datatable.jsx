@@ -259,8 +259,8 @@ export const riskappetitereportlowercolumn = [
 export const riskviewcolumn = [
   { field: "id", headerName: "ID", width: 70,},
   { field: "riskID", headerName: "Risk Code", width: 100 },
-  { field: "riskName", headerName: "Risk Name", width: 150 },
-  { field: "riskDescription", headerName: "Risk Description", width: 250 },
+  { field: "riskName", headerName: "Risk Name", width: 250 },
+  { field: "riskDescription", headerName: "Risk Description", width: 300 },
   { field: "riskCategory", headerName: "Risk Category", width: 180 },
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   {
