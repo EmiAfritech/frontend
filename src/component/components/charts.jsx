@@ -1005,9 +1005,7 @@ export function Pyramidchat() {
     setPyramidRiskTable(false)
   };
 
-  const handlePyramidRiskTable = (e) => {
-    
-  }
+  
   return (
     <>
       <div>
@@ -1070,7 +1068,7 @@ export function Pyramidchat() {
           style={{ height: 650, width: 850, backgroundColor: "white" }}
           className=" mt-4">
           <DataGrid
-          rows={tableData}
+          rows={clickedItem.data.risks}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
