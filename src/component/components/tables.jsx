@@ -574,15 +574,15 @@ export function RiskViewTable() {
             },
             [`.${gridClasses.cell}.high`]: {
               backgroundColor: "#EAE41D",
-              color: "#FFFFF",
+              color: "#FFFFFF",
             },
             [`.${gridClasses.cell}.medium`]: {
               backgroundColor: "#0D1CB0",
-              color: "#FFFFF",
+              color: "#FFFFFF",
             },
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#037403",
-              color: "#FFFFF",
+              color: "#FFFFFF",
             },
           }}>
         <DataGrid
