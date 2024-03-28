@@ -587,10 +587,10 @@ export function RiskViewTable() {
           }}
           pageSizeOptions={[10, 15]}
           getCellClassName={(params) => {
-            if (params.value == 'High') {
+            if (params.value === 'High') {
               return 'hot';
             }
-            return params.value >= 'Very High' ? 'hot' : 'cold';
+            return params.value === 'Very High' ? 'hot' : 'cold';
           }}
         />
         </Box>
