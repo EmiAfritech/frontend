@@ -569,7 +569,7 @@ export function RiskViewTable() {
         <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
-              backgroundColor: "#F9A8A8",
+              backgroundColor: "#F84626",
             },
             [`.${gridClasses.cell}.high`]: {
               backgroundColor: "#F5F9A8",
