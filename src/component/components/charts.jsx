@@ -945,7 +945,6 @@ export function Pyramidchat() {
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
-  console.log(data.risks)
 
 
 
@@ -997,8 +996,9 @@ export function Pyramidchat() {
   };
 
   const handleItemClick = (e) => {
+    setPyramidRiskTable(true)
     const clickedItem = e.item;
-    console.log(clickedItem.data); // Log the color of the clicked item
+    console.log(clickedItem.data.risks); // Log the color of the clicked item
   };
 
   const handleRiskAdvice = (e) => {
@@ -1006,7 +1006,7 @@ export function Pyramidchat() {
   };
 
   const handlePyramidRiskTable = (e) => {
-    setPyramidRiskTable(true)
+    
   }
   return (
     <>
@@ -1061,7 +1061,6 @@ export function Pyramidchat() {
         </div>
         <div className="grid grid-cols-6 gap-4 pt-5">
           <Button className="px-4" onClick={handleRiskAdvice} variant="text" size="large"> Risk Advice</Button>
-          <Button className="px-4" onClick={handlePyramidRiskTable} size="small" variant="outlined">View Table</Button>
         </div>
         <hr/>
         <div className="py-5">
