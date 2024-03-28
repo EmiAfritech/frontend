@@ -19,6 +19,7 @@ import {
   GridToolbar,
   gridFilteredSortedRowIdsSelector,
   selectedGridRowsSelector,
+  gridClasses,
 } from "@mui/x-data-grid";
 import {
   Departmentforms,
@@ -47,7 +48,7 @@ import {
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { CsvModal} from "./modals";
+import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
 import { ConstantLine } from "devextreme-react/chart";
 
@@ -62,7 +63,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
 
   const getUsers = async () => {
     try {
@@ -91,12 +92,11 @@ export function EmployeesTable() {
   useEffect(() => {
     if (trigger) {
       getUsers();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
   return (
-    
     <div className="flex flex-col">
       <div className="flex flex-row-reverse pb-3 pt-2 items-center">
         <div>
@@ -119,7 +119,7 @@ export function EmployeesTable() {
 
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
 
   const getRiskReview = async () => {
     try {
@@ -148,21 +148,23 @@ export function RiskReview() {
   useEffect(() => {
     if (trigger) {
       getRiskReview();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
   return (
     <div className="flex flex-col">
-      
-       {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERALMANAGER" || localStorage.getItem("role")=== "MANAGER"? 
-         (
-          <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-            <div>
-              <RiskReviewforms onFormSubmit={handleFormSubmit} />
-            </div>
+      {localStorage.getItem("role") === "ADMIN" ||
+      localStorage.getItem("role") === "GENERALMANAGER" ||
+      localStorage.getItem("role") === "MANAGER" ? (
+        <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
+          <div>
+            <RiskReviewforms onFormSubmit={handleFormSubmit} />
           </div>
-        ):(<></>)}
+        </div>
+      ) : (
+        <></>
+      )}
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="mt-2 w-auto cardTable p-4">
@@ -238,9 +240,9 @@ export function ClosedRiskTab() {
   );
 }
 
-export function RiskMonitor() { 
+export function RiskMonitor() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
 
   const getMonitoring = async () => {
     try {
@@ -270,7 +272,7 @@ export function RiskMonitor() {
   useEffect(() => {
     if (trigger) {
       getMonitoring();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
@@ -383,7 +385,7 @@ export function RiskAppetiteReportLower() {
 
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
 
   const getDepartment = async () => {
     try {
@@ -412,7 +414,7 @@ export function DepartmentTab() {
   useEffect(() => {
     if (trigger) {
       getDepartment();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
@@ -439,8 +441,8 @@ export function DepartmentTab() {
 
 export function RiskmitigationTab() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
-  
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+
   const getMitigation = async () => {
     try {
       const response = await axios.get(RISKMITIGATION_URL, {
@@ -468,7 +470,7 @@ export function RiskmitigationTab() {
   useEffect(() => {
     if (trigger) {
       getMonitoring();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
@@ -521,8 +523,7 @@ export function HighLowRiskTable() {
 
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
-  const { trigger , resettriggerComponent} = useContext(Modaltrigger);
-  
+  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
 
   const viewAllRisks = () => {
     axios
@@ -535,23 +536,18 @@ export function RiskViewTable() {
       .then((response) => setTableData(response.data.Data));
   };
 
-  
-
   useEffect(() => {
     viewAllRisks();
   }, []);
 
-  
-
   const handleFormSubmit = () => {
     viewAllRisks();
-    
   };
 
   useEffect(() => {
     if (trigger) {
       viewAllRisks();
-      resettriggerComponent()
+      resettriggerComponent();
     }
   }, [trigger]);
 
@@ -560,7 +556,7 @@ export function RiskViewTable() {
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <Riskforms onFormSubmit={handleFormSubmit} tableData={tableData}  />
+            <Riskforms onFormSubmit={handleFormSubmit} tableData={tableData} />
           </div>
           <div>
             <CsvModal />
@@ -570,6 +566,17 @@ export function RiskViewTable() {
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-auto card p-4">
+        <Box
+          sx={{
+            [`.${gridClasses.cell}.cold`]: {
+              backgroundColor: "#b9d5ff91",
+              color: "#1a3e72",
+            },
+            [`.${gridClasses.cell}.hot`]: {
+              backgroundColor: "#ff943975",
+              color: "#1a3e72",
+            },
+          }}>
         <DataGrid
           rows={tableData}
           columns={riskviewcolumn}
@@ -579,7 +586,14 @@ export function RiskViewTable() {
             },
           }}
           pageSizeOptions={[10, 15]}
+          getCellClassName={(params) => {
+            if (params.field === 'riskScore' || params.value == 'High') {
+              return 'hot';
+            }
+            return params.value >= 15 ? 'hot' : 'cold';
+          }}
         />
+        </Box>
       </div>
     </div>
   );
@@ -707,26 +721,30 @@ export function RiskMitigationReportTable() {
       <div className="grid grid-cols-4 justify-end">
         <div className="col-span-3"></div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERALMANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div
@@ -811,26 +829,30 @@ export function ReviewNeedingRisksReportTab() {
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERAL MANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div
@@ -915,26 +937,30 @@ export function RiskStatusReportTab() {
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERAL MANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div
