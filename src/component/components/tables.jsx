@@ -50,7 +50,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
-import { ConstantLine } from "devextreme-react/chart";
+import Box from '@mui/material/Box';
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
