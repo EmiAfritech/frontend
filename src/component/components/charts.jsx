@@ -932,7 +932,6 @@ export function ReportRiskOwner() {
       </div>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
     </div>
