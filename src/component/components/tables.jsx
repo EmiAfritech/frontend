@@ -601,7 +601,9 @@ export function RiskViewTable() {
               return 'cold';
             }else if(params.value === 'Medium') {
               return 'medium';
-            }return 'low'
+            }else if(params.value === 'Low') {
+              return 'low';
+            }
           }}
         />
         </Box>
