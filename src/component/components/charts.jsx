@@ -999,7 +999,7 @@ export function Pyramidchat() {
     setPyramidRiskTable(true)
     const clickedItem = e.item;
     console.log(clickedItem.data.risks); 
-    settableData(clickedItem.data.risks);
+    // settableData(clickedItem.data.risks);
   };
 
   const handleRiskAdvice = (e) => {
