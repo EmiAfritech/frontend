@@ -998,7 +998,8 @@ export function Pyramidchat() {
   const handleItemClick = (e) => {
     setPyramidRiskTable(true)
     const clickedItem = e.item;
-    console.log(clickedItem.data.risks); // Log the color of the clicked item
+    console.log(clickedItem.data.risks); 
+    settableData(clickedItem.data.risks);
   };
 
   const handleRiskAdvice = (e) => {
@@ -1068,7 +1069,7 @@ export function Pyramidchat() {
           style={{ height: 650, width: 850, backgroundColor: "white" }}
           className=" mt-4">
           <DataGrid
-          rows={clickedItem.data.risks}
+          rows={tableData}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
