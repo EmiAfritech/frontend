@@ -589,8 +589,9 @@ export function RiskViewTable() {
           getCellClassName={(params) => {
             if (params.value === 'High') {
               return 'hot';
+            }else if(params.value === ' Very High') {
+              return 'cold';
             }
-            return params.value === 'Very High' ? 'hot' : 'cold';
           }}
         />
         </Box>
