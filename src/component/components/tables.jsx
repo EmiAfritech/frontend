@@ -596,9 +596,9 @@ export function RiskViewTable() {
           pageSizeOptions={[10, 15]}
           getCellClassName={(params) => {
             if (params.value === 'High') {
-              return 'hot';
+              return 'high';
             }else if(params.value === 'Very High') {
-              return 'cold';
+              return 'veryhigh';
             }else if(params.value === 'Medium') {
               return 'medium';
             }else if(params.value === 'Low') {
