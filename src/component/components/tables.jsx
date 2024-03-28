@@ -573,8 +573,8 @@ export function RiskViewTable() {
               color: "#1a3e72",
             },
             [`.${gridClasses.cell}.hot`]: {
-              backgroundColor: "#ff943975",
-              color: "#1a3e72",
+              backgroundColor: "#FF0000",
+              color: "#FFFFF",
             },
           }}>
         <DataGrid
@@ -589,7 +589,7 @@ export function RiskViewTable() {
           getCellClassName={(params) => {
             if (params.value === 'High') {
               return 'hot';
-            }else if(params.value === ' Very High') {
+            }else if(params.value === 'Very High') {
               return 'cold';
             }
           }}
