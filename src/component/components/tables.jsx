@@ -572,7 +572,7 @@ export function RiskViewTable() {
               backgroundColor: "#F84626",
             },
             [`.${gridClasses.cell}.high`]: {
-              backgroundColor: "#F5F9A8",
+              backgroundColor: "#ecbe2f",
             },
             [`.${gridClasses.cell}.medium`]: {
               backgroundColor: "#797DFA",
