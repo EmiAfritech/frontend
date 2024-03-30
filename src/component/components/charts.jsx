@@ -1065,7 +1065,7 @@ export function Pyramidchat() {
           {pyramidRiskTable?
           (<>
           <div
-          style={{ height: 350, width: 850, backgroundColor: "white" }}
+          style={{ height: 350, width: 850, backgroundColor: "white" }} 
           className=" mt-4">
           <DataGrid
           rows={tableData}

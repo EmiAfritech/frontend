@@ -41,7 +41,10 @@ export function Sidebar() {
           <FaClipboardList className="icons" />
           <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Review Risks</NavLink>
         </li>
-
+        <li className="flex flex row items-center p-3">
+          <FaCopy className="icons" />
+          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
+        </li>
         <LogOut/>
       </>
     );
