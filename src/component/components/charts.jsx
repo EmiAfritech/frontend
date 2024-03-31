@@ -1088,6 +1088,7 @@ export function Pyramidchat() {
                     [`.${gridClasses.cell}.low`]: {
                       backgroundColor: "#89FA79",
                     },
+                    height:350
                   }}>
                   <DataGrid
                     rows={tableData}
