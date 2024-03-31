@@ -1065,14 +1065,41 @@ export function Pyramidchat() {
           {pyramidRiskTable?
           (<>
           <div
-          style={{ height: 350, width: 850, backgroundColor: "white" }} 
+          style={{ height: 350, width: 900, backgroundColor: "white" }} 
           className=" mt-4">
+            <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#797DFA",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+          }}>
           <DataGrid
           rows={tableData}
           columns={reportriskpyramidcolumn}
           pageSize={10}
           pagination
+          getCellClassName={(params) => {
+            if (params.value === 'High') {
+              return 'high';
+            }else if(params.value === 'Very High') {
+              return 'veryhigh';
+            }else if(params.value === 'Medium') {
+              return 'medium';
+            }else if(params.value === 'Low') {
+              return 'low';
+            }
+          }}
         />
+        </Box>
           </div>
           
           </>):(<RiskReportAdvice/> )}
