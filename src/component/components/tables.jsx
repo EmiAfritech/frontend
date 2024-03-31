@@ -50,6 +50,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
+import Box from '@mui/material/Box';
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -565,6 +566,21 @@ export function RiskViewTable() {
       <div
         style={{ height: 650, width: 1100, backgroundColor: "white" }}
         className="  mt-2 w-auto card p-4">
+        <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#797DFA",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+          }}>
         <DataGrid
           rows={tableData}
           columns={riskviewcolumn}
@@ -574,7 +590,19 @@ export function RiskViewTable() {
             },
           }}
           pageSizeOptions={[10, 15]}
+          getCellClassName={(params) => {
+            if (params.value === 'High') {
+              return 'high';
+            }else if(params.value === 'Very High') {
+              return 'veryhigh';
+            }else if(params.value === 'Medium') {
+              return 'medium';
+            }else if(params.value === 'Low') {
+              return 'low';
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
