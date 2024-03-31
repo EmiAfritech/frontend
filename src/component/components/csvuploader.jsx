@@ -49,7 +49,7 @@ export function CsvUploader(onAccepting) {
   return (
     <div>
       <input type="file" accept=".csv" onChange={handleUpload} />
-      <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <button
           className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           type="submit"
