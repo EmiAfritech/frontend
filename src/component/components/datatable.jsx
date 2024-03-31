@@ -261,8 +261,8 @@ export const riskviewcolumn = [
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 200 },
   { field: "riskDescription", headerName: "Risk Description", width: 250 },
-  { field: "riskCategory", headerName: "Risk Category", width: 180 },
-  { field: "riskStatus", headerName: "Risk Status", width: 150 },
+  { field: "riskCategory", headerName: "Risk Category", width: 120 },
+  { field: "riskStatus", headerName: "Risk Status", width: 120 },
   { field: "riskScore", headerName: "Risk Score", width: 100 },
   {
     field: "view",
