@@ -839,7 +839,7 @@ export function ReviewNeedingRisksReportTab() {
         <div className="col-span-3"></div>
         <div>
           {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERAL MANAGER" ? (
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -947,7 +947,7 @@ export function RiskStatusReportTab() {
         <div className="col-span-3"></div>
         <div>
           {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERAL MANAGER" ? (
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"

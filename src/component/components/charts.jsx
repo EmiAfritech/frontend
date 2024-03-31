@@ -42,8 +42,8 @@ import {
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
 import { reportriskpyramidcolumn } from "./datatable";
-import { DataGrid, gridClasses, } from "@mui/x-data-grid";
-import Box from '@mui/material/Box';
+import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
@@ -82,7 +82,8 @@ export function MitigatedVsUnmitigated() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -109,7 +110,8 @@ export function ReviewedVsUnreviewed() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -136,7 +138,8 @@ export function MonitoredVsUnmonitored() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => setData(data.data));
   }, []);
@@ -158,15 +161,14 @@ export function RiskBarChart() {
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
   const [years, setYears] = useState([]);
-  
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchRiskData = async () => {
       try {
         const response = await axios.get(RISKYEARSCHART_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -178,10 +180,8 @@ export function RiskBarChart() {
 
     fetchRiskData();
   }, []);
-  
 
-
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -189,8 +189,8 @@ export function RiskBarChart() {
           JSON.stringify({ year }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -203,18 +203,19 @@ export function RiskBarChart() {
     };
 
     fetchData();
-  }, [year]); 
+  }, [year]);
 
   const handleYearChange = (e) => {
-      setYear(e.target.value);
-      
+    setYear(e.target.value);
   };
   return (
     <div className="p-3 card">
       <div className="grid grid-cols-5 gap-4">
-        <div className="col-span-4"/>
+        <div className="col-span-4" />
         <div className="flex flex-row">
-          <section className="m-2"><p>Years</p></section>
+          <section className="m-2">
+            <p>Years</p>
+          </section>
           <select
             type="text"
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -224,12 +225,9 @@ export function RiskBarChart() {
             autoComplete="off"
             onChange={handleYearChange}>
             {years.map((years) => (
-              <option
-                key={years.id}
-                value={years.year}>
+              <option key={years.id} value={years.year}>
                 {years.year}
               </option>
-          
             ))}
           </select>
         </div>
@@ -255,7 +253,8 @@ export function MonitoredVsUnmonitoredBarchart() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setData(data.data);
@@ -275,7 +274,6 @@ export function MonitoredVsUnmonitoredBarchart() {
     </div>
   );
 }
-
 
 export function HighLowRiskBarchart() {
   return (
@@ -297,17 +295,14 @@ export function RiskLineChart() {
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
   const [years, setYears] = useState([]);
- 
-
-  
 
   useEffect(() => {
     const fetchRiskData = async () => {
       try {
         const response = await axios.get(RISKYEARSCHART_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -320,7 +315,7 @@ export function RiskLineChart() {
     fetchRiskData();
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -328,8 +323,8 @@ export function RiskLineChart() {
           JSON.stringify({ year }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -342,19 +337,21 @@ export function RiskLineChart() {
     };
 
     fetchData();
-  }, [year]); 
+  }, [year]);
 
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    console.log(year)
+    console.log(year);
   };
 
   return (
     <div className="p-12 mt-12 card bg-white">
       <div className="grid grid-cols-5 gap-4">
-        <div className="col-span-4"/>
+        <div className="col-span-4" />
         <div className="flex flex-row">
-          <section className="m-2"><p>Years</p></section>
+          <section className="m-2">
+            <p>Years</p>
+          </section>
           <select
             type="text"
             className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -364,12 +361,9 @@ export function RiskLineChart() {
             autoComplete="off"
             onChange={handleYearChange}>
             {years.map((years) => (
-              <option
-                key={years.id}
-                value={years.year}>
+              <option key={years.id} value={years.year}>
                 {years.year}
               </option>
-          
             ))}
           </select>
         </div>
@@ -391,9 +385,7 @@ export function ReportRiskLevel() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -401,8 +393,8 @@ export function ReportRiskLevel() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -415,15 +407,15 @@ export function ReportRiskLevel() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -440,8 +432,6 @@ export function ReportRiskLevel() {
     setDeptmentName(e.target.value);
   };
 
-
-  
   return (
     <div className="card items-center flex flex-col px-10 pb-12">
       <h3 className="py-3">
@@ -449,27 +439,30 @@ export function ReportRiskLevel() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
-          
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -485,9 +478,7 @@ export function ReportRiskStatus() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -495,8 +486,8 @@ export function ReportRiskStatus() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -509,15 +500,15 @@ export function ReportRiskStatus() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -534,7 +525,6 @@ export function ReportRiskStatus() {
     setDeptmentName(e.target.value);
   };
 
-  
   return (
     <div className="card items-center flex flex-col px-10 pb-2">
       <h3 className="py-3">
@@ -542,26 +532,30 @@ export function ReportRiskStatus() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -577,9 +571,7 @@ export function ReportRiskLocation() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -587,8 +579,8 @@ export function ReportRiskLocation() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -601,15 +593,15 @@ export function ReportRiskLocation() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -626,7 +618,6 @@ export function ReportRiskLocation() {
     setDeptmentName(e.target.value);
   };
 
-  
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="py-3">
@@ -634,26 +625,30 @@ export function ReportRiskLocation() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -669,9 +664,7 @@ export function ReportRiskCategory() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -679,8 +672,8 @@ export function ReportRiskCategory() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -693,15 +686,15 @@ export function ReportRiskCategory() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -718,7 +711,6 @@ export function ReportRiskCategory() {
     setDeptmentName(e.target.value);
   };
 
-
   return (
     <div className="card items-center flex flex-col px-8 pb-12">
       <h3 className="py-3">
@@ -726,26 +718,30 @@ export function ReportRiskCategory() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -761,9 +757,7 @@ export function ReportRiskResponse() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -771,8 +765,8 @@ export function ReportRiskResponse() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -785,15 +779,15 @@ export function ReportRiskResponse() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -810,7 +804,6 @@ export function ReportRiskResponse() {
     setDeptmentName(e.target.value);
   };
 
- 
   return (
     <div className="card items-center flex flex-col px-8 pb-2">
       <h3 className="py-3">
@@ -818,26 +811,30 @@ export function ReportRiskResponse() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -853,7 +850,6 @@ export function ReportRiskOwner() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -862,8 +858,8 @@ export function ReportRiskOwner() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -876,15 +872,15 @@ export function ReportRiskOwner() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -908,26 +904,30 @@ export function ReportRiskOwner() {
       </h3>
       <div>
         <div>
-        {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+          {localStorage.getItem("role") === "ADMIN" ||
+          localStorage.getItem("role") === "GENERALMANAGER" ? (
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}>
+                <option value="All Departments">All Departments</option>
+                {deptmentNames.map((deptmentNames) => (
+                  <option
+                    key={deptmentNames.names.id}
+                    value={deptmentNames.names.name}>
+                    {deptmentNames.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <PieChart width={210} height={250}>
@@ -943,11 +943,9 @@ export function Pyramidchat() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
-  const [pyramidRiskTable, setPyramidRiskTable] = useState(false)
+  const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -955,8 +953,8 @@ export function Pyramidchat() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -969,15 +967,15 @@ export function Pyramidchat() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -995,41 +993,44 @@ export function Pyramidchat() {
   };
 
   const handleItemClick = (e) => {
-    setPyramidRiskTable(true)
+    setPyramidRiskTable(true);
     const clickedItem = e.item;
     settableData(clickedItem.data.risks);
   };
 
   const handleRiskAdvice = (e) => {
-    setPyramidRiskTable(false)
+    setPyramidRiskTable(false);
   };
 
-  
   return (
     <>
       <div>
         <div className="grid grid-cols-4">
           <div>
-          {localStorage.getItem("role")==="ADMIN" || localStorage.getItem("role")=== "GENERAL MANAGER"? (
-          <>
-          <select
-            type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-            id="departmentName"
-            aria-describedby="departmentName"
-            value={departmentName}
-            autoComplete="off"
-            onChange={handleDeptNameChange}>
-            <option value="All Departments">All Departments</option>
-            {deptmentNames.map((deptmentNames) => (
-              <option
-                key={deptmentNames.names.id}
-                value={deptmentNames.names.name}>
-                {deptmentNames.names.name}
-              </option>
-            ))}
-          </select>
-          </>):(<></>)}
+            {localStorage.getItem("role") === "ADMIN" ||
+            localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <>
+                <select
+                  type="text"
+                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                  id="departmentName"
+                  aria-describedby="departmentName"
+                  value={departmentName}
+                  autoComplete="off"
+                  onChange={handleDeptNameChange}>
+                  <option value="All Departments">All Departments</option>
+                  {deptmentNames.map((deptmentNames) => (
+                    <option
+                      key={deptmentNames.names.id}
+                      value={deptmentNames.names.name}>
+                      {deptmentNames.names.name}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div>
@@ -1057,60 +1058,67 @@ export function Pyramidchat() {
           </Funnel>
         </div>
         <div className="grid grid-cols-6 gap-4 pt-5">
-          <Button className="px-4" onClick={handleRiskAdvice} variant="text" size="large"> Risk Advice</Button>
+          <Button
+            className="px-4"
+            onClick={handleRiskAdvice}
+            variant="text"
+            size="large">
+            {" "}
+            Risk Advice
+          </Button>
         </div>
-        <hr/>
+        <hr />
         <div className="py-5">
-          {pyramidRiskTable?
-          (<>
-          <div
-          style={{ height: 350, width: 900, backgroundColor: "white" }} 
-          className=" mt-4">
-            <Box
-          sx={{
-            [`.${gridClasses.cell}.veryhigh`]: {
-              backgroundColor: "#F84626",
-            },
-            [`.${gridClasses.cell}.high`]: {
-              backgroundColor: "#ecbe2f",
-            },
-            [`.${gridClasses.cell}.medium`]: {
-              backgroundColor: "#797DFA",
-            },
-            [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
-            },
-          }}>
-          <DataGrid
-          rows={tableData}
-          columns={reportriskpyramidcolumn}
-          pageSize={10}
-          pagination
-          getCellClassName={(params) => {
-            if (params.value === 'High') {
-              return 'high';
-            }else if(params.value === 'Very High') {
-              return 'veryhigh';
-            }else if(params.value === 'Medium') {
-              return 'medium';
-            }else if(params.value === 'Low') {
-              return 'low';
-            }
-          }}
-        />
-        </Box>
-          </div>
-          
-          </>):(<RiskReportAdvice/> )}
+          {pyramidRiskTable ? (
+            <>
+              <div
+                style={{ height: 350, width: 900, backgroundColor: "white" }}
+                className=" mt-4">
+                <Box
+                  sx={{
+                    [`.${gridClasses.cell}.veryhigh`]: {
+                      backgroundColor: "#F84626",
+                    },
+                    [`.${gridClasses.cell}.high`]: {
+                      backgroundColor: "#ecbe2f",
+                    },
+                    [`.${gridClasses.cell}.medium`]: {
+                      backgroundColor: "#797DFA",
+                    },
+                    [`.${gridClasses.cell}.low`]: {
+                      backgroundColor: "#89FA79",
+                    },
+                  }}>
+                  <DataGrid
+                    rows={tableData}
+                    columns={reportriskpyramidcolumn}
+                    pageSize={10}
+                    pagination
+                    getCellClassName={(params) => {
+                      if (params.value === "High") {
+                        return "high";
+                      } else if (params.value === "Very High") {
+                        return "veryhigh";
+                      } else if (params.value === "Medium") {
+                        return "medium";
+                      } else if (params.value === "Low") {
+                        return "low";
+                      }
+                    }}
+                  />
+                </Box>
+              </div>
+            </>
+          ) : (
+            <RiskReportAdvice />
+          )}
         </div>
       </div>
     </>
   );
 }
 
-
 export function HeatMap3() {
-
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -1119,7 +1127,8 @@ export function HeatMap3() {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },withCredentials: true,
+        },
+        withCredentials: true,
       })
       .then((data) => {
         setData(data.data);
@@ -1180,7 +1189,7 @@ export function HeatMap3() {
       data: [
         { x: "insignificant", y: 1 },
         { x: "minor", y: 2 },
-        { x: "moderate", y:0 },
+        { x: "moderate", y: 0 },
         { x: "major", y: 4 },
         { x: "critical", y: 5 },
       ],
@@ -1201,7 +1210,7 @@ export function HeatMap3() {
         { x: "insignificant", y: 3 },
         { x: "minor", y: 6 },
         { x: "moderate", y: 9 },
-        { x: "major", y: 0},
+        { x: "major", y: 0 },
         { x: "critical", y: 15 },
       ],
     },
@@ -1226,7 +1235,7 @@ export function HeatMap3() {
       ],
     },
   ];
-  
+
   return (
     <div>
       <Chart
@@ -1245,9 +1254,7 @@ export function HeatMap2() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-
-
- useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -1255,8 +1262,8 @@ export function HeatMap2() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -1268,15 +1275,15 @@ export function HeatMap2() {
     };
 
     fetchData();
-  }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -1293,7 +1300,6 @@ export function HeatMap2() {
     setDeptmentName(e.target.value);
   };
 
-  
   const options = {
     chart: {
       type: "heatmap",
@@ -1342,31 +1348,29 @@ export function HeatMap2() {
     },
   };
 
-  
-  
   return (
     <div>
       <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={handleDeptNameChange}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={handleDeptNameChange}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
       <Chart
         options={options}
         series={series}
@@ -1379,13 +1383,11 @@ export function HeatMap2() {
 }
 function valuesForHeatMap(heapMapData, finalData) {
   let index = 0;
-   for(const data of heapMapData){
-
-        
-        finalData[index].value = data.value;
-        index++;
-    }
-    return finalData;
+  for (const data of heapMapData) {
+    finalData[index].value = data.value;
+    index++;
+  }
+  return finalData;
 }
 
 export function HeatMap5() {
@@ -1393,37 +1395,35 @@ export function HeatMap5() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
   let cellsData = [
-      { color: 'green', value: '' },
-      { color: 'blue', value: '' },
-      { color: 'yellow', value: '' },
-      { color: 'red', value: '' },
-      { color: 'red', value: '' },
-      { color: 'green', value: '' }, // Empty value, turns white
+    { color: "green", value: "" },
+    { color: "blue", value: "" },
+    { color: "yellow", value: "" },
+    { color: "red", value: "" },
+    { color: "red", value: "" },
+    { color: "green", value: "" }, // Empty value, turns white
 
-      { color: 'blue', value: '' },
-      { color: 'yellow', value: '' },
-      { color: 'red', value: '' },
-      { color: 'red', value: '' },
-      { color: 'green', value: '' },
-      { color: 'blue', value: '' },
+    { color: "blue", value: "" },
+    { color: "yellow", value: "" },
+    { color: "red", value: "" },
+    { color: "red", value: "" },
+    { color: "green", value: "" },
+    { color: "blue", value: "" },
 
-      { color: 'blue', value: '' },
-      { color: 'yellow', value: '' },
-      { color: 'yellow', value: '' },
-      { color: 'green', value: '' },
-      { color: 'green', value: '' },
-      { color: 'blue', value: '' },
-      { color: 'blue', value: '' },
+    { color: "blue", value: "" },
+    { color: "yellow", value: "" },
+    { color: "yellow", value: "" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
+    { color: "blue", value: "" },
+    { color: "blue", value: "" },
 
-      { color: 'blue', value: '' },
-      { color: 'green', value: '' },
-      { color: 'green', value: '' },
-      { color: 'green', value: '' },
-      { color: 'green', value: '' },
-      { color: 'green', value: '' },
+    { color: "blue", value: "" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
   ];
-  
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1433,30 +1433,30 @@ export function HeatMap5() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
         );
         setData(response.data);
         cellsData = valuesForHeatMap(series, cellsData);
-        console.log(series,cellsData);
+        console.log(series, cellsData);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-    }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -1464,7 +1464,7 @@ export function HeatMap5() {
       } catch (error) {
         console.error(error);
       }
-  };
+    };
 
     fetchDeptData();
   }, []);
@@ -1473,90 +1473,93 @@ export function HeatMap5() {
     setDeptmentName(e.target.value);
   };
 
-  
-    return (
-      <div>
-        <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={handleDeptNameChange}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
-          {cellsData.map((cell, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: cell.value ? cell.color : 'white',
-                height: '110px',
-                width: '150px',
-                borderRadius: '4px',
-                textAlign: 'center',
-                lineHeight: '50px',
-                color: 'white',
-              }}
-            >
-              {cell.value}
-            </div>
-          ))}
+  return (
+    <div>
+      <div className="grid grid-cols-4">
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={handleDeptNameChange}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
-    );
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "2px",
+          marginLeft: "60px",
+        }}>
+        {cellsData.map((cell, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: cell.value ? cell.color : "white",
+              height: "110px",
+              width: "150px",
+              borderRadius: "4px",
+              textAlign: "center",
+              lineHeight: "50px",
+              color: "white",
+            }}>
+            {cell.value}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export function HeatMap() {
   const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
-  
+
   let cellsData = [
-    { color: 'green', value: 'A' },
-    { color: 'blue', value: 'B' },
-    { color: 'yellow', value: 'C' },
-    { color: 'red', value: 'D' },
-    { color: 'red', value: 'E' },
-    { color: 'green', value: '' }, // Empty value, turns white
+    { color: "green", value: "A" },
+    { color: "blue", value: "B" },
+    { color: "yellow", value: "C" },
+    { color: "red", value: "D" },
+    { color: "red", value: "E" },
+    { color: "green", value: "" }, // Empty value, turns white
 
-    { color: 'blue', value: 'G' },
-    { color: 'yellow', value: 'H' },
-    { color: 'red', value: 'I' },
-    { color: 'red', value: 'J' },
-    { color: 'green', value: 'K' },
-    { color: 'blue', value: 'L' },
+    { color: "blue", value: "G" },
+    { color: "yellow", value: "H" },
+    { color: "red", value: "I" },
+    { color: "red", value: "J" },
+    { color: "green", value: "K" },
+    { color: "blue", value: "L" },
 
-    { color: 'blue', value: 'M' },
-    { color: 'yellow', value: 'N' },
-    { color: 'yellow', value: 'O' },
-    { color: 'green', value: 'P' },
-    { color: 'green', value: 'q' },
-    { color: 'blue', value: 'r' },
-    { color: 'blue', value: 's' },
+    { color: "blue", value: "M" },
+    { color: "yellow", value: "N" },
+    { color: "yellow", value: "O" },
+    { color: "green", value: "P" },
+    { color: "green", value: "q" },
+    { color: "blue", value: "r" },
+    { color: "blue", value: "s" },
 
-    { color: 'blue', value: 't' },
-    { color: 'green', value: 'u' },
-    { color: 'green', value: 'v' },
-    { color: 'green', value: 'w' },
-    { color: 'green', value: '' },
-    { color: 'green', value: '' },
-
+    { color: "blue", value: "t" },
+    { color: "green", value: "u" },
+    { color: "green", value: "v" },
+    { color: "green", value: "w" },
+    { color: "green", value: "" },
+    { color: "green", value: "" },
   ];
-  
-   useEffect(() => {
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
@@ -1564,30 +1567,30 @@ export function HeatMap() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
         );
         setData(response.data);
         cellsData = valuesForHeatMap(series, cellsData);
-        console.log(series,cellsData);
+        console.log(series, cellsData);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-    }, [departmentName]); 
+  }, [departmentName]);
 
   useEffect(() => {
     const fetchDeptData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         });
 
@@ -1595,7 +1598,7 @@ export function HeatMap() {
       } catch (error) {
         console.error(error);
       }
-  };
+    };
 
     fetchDeptData();
   }, []);
@@ -1603,89 +1606,91 @@ export function HeatMap() {
   const handleDeptNameChange = (e) => {
     setDeptmentName(e.target.value);
   };
- return (
-      <div>
-        <div className="grid grid-cols-4">
-          <div>
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={handleDeptNameChange}>
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((deptmentNames) => (
-                <option
-                  key={deptmentNames.names.id}
-                  value={deptmentNames.names.name}>
-                  {deptmentNames.names.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
-          {cellsData.map((cell, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: cell.value ? cell.color : 'white',
-                height: '110px',
-                width: '150px',
-                borderRadius: '4px',
-                textAlign: 'center',
-                lineHeight: '50px',
-                color: 'white',
-              }}
-            >
-              {cell.value}
-            </div>
-          ))}
+  return (
+    <div>
+      <div className="grid grid-cols-4">
+        <div>
+          <select
+            type="text"
+            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            id="departmentName"
+            aria-describedby="departmentName"
+            value={departmentName}
+            autoComplete="off"
+            onChange={handleDeptNameChange}>
+            <option value="All Departments">All Departments</option>
+            {deptmentNames.map((deptmentNames) => (
+              <option
+                key={deptmentNames.names.id}
+                value={deptmentNames.names.name}>
+                {deptmentNames.names.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
-    );
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "2px",
+          marginLeft: "60px",
+        }}>
+        {cellsData.map((cell, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: cell.value ? cell.color : "white",
+              height: "110px",
+              width: "150px",
+              borderRadius: "4px",
+              textAlign: "center",
+              lineHeight: "50px",
+              color: "white",
+            }}>
+            {cell.value}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export function HeatMap7() {
-
-  
   const cellsData = [
-    { color: 'green', value: 'A' },
-    { color: 'blue', value: 'B' },
-    { color: 'yellow', value: 'C' },
-    { color: 'red', value: 'D' },
-    { color: 'red', value: 'E' },
-    { color: 'green', value: '' }, // Empty value, turns white
+    { color: "green", value: "A" },
+    { color: "blue", value: "B" },
+    { color: "yellow", value: "C" },
+    { color: "red", value: "D" },
+    { color: "red", value: "E" },
+    { color: "green", value: "" }, // Empty value, turns white
 
-    { color: 'blue', value: 'G' },
-    { color: 'yellow', value: 'H' },
-    { color: 'red', value: 'I' },
-    { color: 'red', value: 'J' },
-    { color: 'green', value: 'K' },
-    { color: 'blue', value: 'L' },
+    { color: "blue", value: "G" },
+    { color: "yellow", value: "H" },
+    { color: "red", value: "I" },
+    { color: "red", value: "J" },
+    { color: "green", value: "K" },
+    { color: "blue", value: "L" },
 
-    { color: 'blue', value: 'M' },
-    { color: 'yellow', value: 'N' },
-    { color: 'yellow', value: 'O' },
-    { color: 'green', value: 'P' },
-    { color: 'green', value: 'q' },
-    { color: 'blue', value: 'r' },
-    { color: 'blue', value: 's' },
+    { color: "blue", value: "M" },
+    { color: "yellow", value: "N" },
+    { color: "yellow", value: "O" },
+    { color: "green", value: "P" },
+    { color: "green", value: "q" },
+    { color: "blue", value: "r" },
+    { color: "blue", value: "s" },
 
-    { color: 'blue', value: 't' },
-    { color: 'green', value: 'u' },
-    { color: 'green', value: 'v' },
-    { color: 'green', value: 'w' },
-    { color: 'green', value: 'x' },
-    { color: 'green', value: '7' },
-
+    { color: "blue", value: "t" },
+    { color: "green", value: "u" },
+    { color: "green", value: "v" },
+    { color: "green", value: "w" },
+    { color: "green", value: "x" },
+    { color: "green", value: "7" },
   ];
   console.log(cellsData);
- return (
-      <div>
-        {/* <div className="grid grid-cols-4">
+  return (
+    <div>
+      {/* <div className="grid grid-cols-4">
           <div>
             <select
               type="text"
@@ -1706,25 +1711,29 @@ export function HeatMap7() {
             </select>
           </div>
         </div> */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '2px',marginLeft: '60px' }}>
-          {cellsData.map((cell, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: cell.value ? cell.color : 'white',
-                height: '110px',
-                width: '150px',
-                borderRadius: '4px',
-                textAlign: 'center',
-                lineHeight: '50px',
-                color: 'white',
-              }}
-            >
-              {cell.value}
-            </div>
-          ))}
-        </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "2px",
+          marginLeft: "60px",
+        }}>
+        {cellsData.map((cell, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: cell.value ? cell.color : "white",
+              height: "110px",
+              width: "150px",
+              borderRadius: "4px",
+              textAlign: "center",
+              lineHeight: "50px",
+              color: "white",
+            }}>
+            {cell.value}
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  );
 }
-
