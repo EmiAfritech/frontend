@@ -96,12 +96,7 @@ export const reportriskpyramidcolumn = [
 {
   field: "riskDescription",
   headerName: "Risk Description",
-  width: 250,
-},
-{
-  field: "riskScore",
-  headerName: "Risk Description",
-  width: 150,
+  width: 350,
 },
 {
   field: "view",
