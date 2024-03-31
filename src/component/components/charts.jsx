@@ -41,7 +41,7 @@ import {
 } from "../../api/routes";
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
-import { RiskMitigationReportTable } from "./tables";
+import Box from '@mui/material/Box';
 import { reportriskpyramidcolumn } from "./datatable";
 import { DataGrid } from "@mui/x-data-grid";
 
