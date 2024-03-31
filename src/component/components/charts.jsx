@@ -42,12 +42,8 @@ import {
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
 import { reportriskpyramidcolumn } from "./datatable";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, gridClasses, } from "@mui/x-data-grid";
 import Box from '@mui/material/Box';
-import {
-  DataGrid,
-  gridClasses,
-} from "@mui/x-data-grid";
 
 export function OpenVsClose() {
   const [data, setData] = useState();
