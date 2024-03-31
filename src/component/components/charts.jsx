@@ -1072,7 +1072,7 @@ export function Pyramidchat() {
           {pyramidRiskTable ? (
             <>
               <div
-                style={{ height: 355, width: 900, backgroundColor: "white" }}
+                style={{ height: 350, width: 900, backgroundColor: "white" }}
                 className=" mt-4">
                 <Box
                   sx={{
@@ -1092,7 +1092,7 @@ export function Pyramidchat() {
                   <DataGrid
                     rows={tableData}
                     columns={reportriskpyramidcolumn}
-                    pageSize={10}
+                    pageSizeOptions={[10, 15]}
                     pagination
                     getCellClassName={(params) => {
                       if (params.value === "High") {
