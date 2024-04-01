@@ -2189,6 +2189,9 @@ export function LogOut() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const notify = () => {
+    toast.success("Review Saved Successfully");
+  };
 
   const handleLogOut = async (e) => {
     e.preventDefault();
@@ -2200,6 +2203,7 @@ export function LogOut() {
         },
         withCredentials: true,
       });
+      notify();
       navigate("/", { replace: true });
       localStorage.clear();
     } catch (error) {
@@ -2222,6 +2226,7 @@ export function LogOut() {
 
   return (
     <>
+    <ToastContainer onClose={5000} hideProgressBar position="top-center"/>
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
         Logout
