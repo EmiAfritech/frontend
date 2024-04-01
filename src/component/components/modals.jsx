@@ -114,7 +114,7 @@ export function UserData(params) {
   const notify = () => {
     toast.success("User Saved Successfully", {
       onClose: () => {
-        close()
+        close();
       },
     });
   };
@@ -169,8 +169,8 @@ export function UserData(params) {
           withCredentials: true,
         }
       );
-      notify()
-      triggerComponent()
+      notify();
+      triggerComponent();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -221,13 +221,9 @@ export function UserData(params) {
       });
   }, []);
 
-  
-
-  
-
   return (
     <>
-      <ToastContainer hideProgressBar autoClose={1000}/>
+      <ToastContainer hideProgressBar autoClose={1000} />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -293,7 +289,7 @@ export function UserData(params) {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   {role === "ADMIN" ||
                   role === "GENERALMANAGER" ||
-                  role === "ANALYST"  ? (
+                  role === "ANALYST" ? (
                     <>
                       <InputLabel>Role</InputLabel>
                       <Select
@@ -399,30 +395,29 @@ export function UserData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  
                   {role === "ADMIN" ||
-                  role === "GENERALMANAGER" || localStorage.getItem("role") === "MANAGER"  ? (
-                    <>
-                    </>
+                  role === "GENERALMANAGER" ||
+                  localStorage.getItem("role") === "MANAGER" ? (
+                    <></>
                   ) : (
                     <>
                       <InputLabel>Department Name</InputLabel>
-                  <Select
-                    label="Department Name"
-                    value={departmentName}
-                    autoComplete="off"
-                    onChange={(e) => setDepartmentName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {deptmentName.map((deptmentName) => (
-                      <MenuItem
-                        key={deptmentName.names.id}
-                        value={deptmentName.names.name}>
-                        {" "}
-                        {deptmentName.names.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
+                      <Select
+                        label="Department Name"
+                        value={departmentName}
+                        autoComplete="off"
+                        onChange={(e) => setDepartmentName(e.target.value)}
+                        required
+                        style={{ width: "100%" }}>
+                        {deptmentName.map((deptmentName) => (
+                          <MenuItem
+                            key={deptmentName.names.id}
+                            value={deptmentName.names.name}>
+                            {" "}
+                            {deptmentName.names.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
                     </>
                   )}
                 </div>
@@ -451,8 +446,7 @@ export function UserData(params) {
   );
 }
 
-export function RiskData(params )
- {
+export function RiskData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -485,14 +479,10 @@ export function RiskData(params )
   const cDate = cdate.toISOString().split("T")[0];
   const { trigger, triggerComponent } = React.useContext(Modaltrigger);
 
-  
-
-  
-
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
-        close()
+        close();
       },
     });
   };
@@ -506,7 +496,7 @@ export function RiskData(params )
   const notifyDelete = () => {
     toast.error("Risk Deleted", {
       onClose: () => {
-        close()
+        close();
       },
     });
   };
@@ -595,7 +585,7 @@ export function RiskData(params )
         }
       );
       notify();
-      triggerComponent()
+      triggerComponent();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -625,11 +615,9 @@ export function RiskData(params )
     }
   };
 
-  
-
   return (
     <>
-      <ToastContainer hideProgressBar  autoClose={1000}/>
+      <ToastContainer hideProgressBar autoClose={1000} />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -919,7 +907,7 @@ export function ReviewRiskData(params) {
   const notify = () => {
     toast.success("Risk Review Saved Successfully", {
       onClose: () => {
-        close()
+        close();
       },
     });
   };
@@ -966,7 +954,7 @@ export function ReviewRiskData(params) {
         }
       );
       notify();
-      triggerComponent()
+      triggerComponent();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -978,7 +966,7 @@ export function ReviewRiskData(params) {
 
   return (
     <>
-      <ToastContainer hideProgressBar autoClose={1000}/>
+      <ToastContainer hideProgressBar autoClose={1000} />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1027,7 +1015,6 @@ export function ReviewRiskData(params) {
                     <MenuItem value="close risk">Close Risk</MenuItem>
                   </Select>
                 </div>
-                
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1141,7 +1128,7 @@ export function MonitoredRiskData(params) {
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully");
-    close()
+    close();
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details");
@@ -1169,7 +1156,7 @@ export function MonitoredRiskData(params) {
   function handleClose() {
     setOpen(false);
   }
-   useEffect(() => {
+  useEffect(() => {
     axios
       .get(OWNERSDROPDOWN_URL, {
         headers: {
@@ -1210,7 +1197,7 @@ export function MonitoredRiskData(params) {
         }
       );
       notify();
-      triggerComponent()
+      triggerComponent();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -1221,7 +1208,7 @@ export function MonitoredRiskData(params) {
   };
   return (
     <>
-      <ToastContainer hideProgressBar autoClose={1000}/>
+      <ToastContainer hideProgressBar autoClose={1000} />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1344,7 +1331,7 @@ export function MonitoredRiskData(params) {
                     style={{ width: "100%" }}
                   />
                 </div>
-                 <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <Select
                     label="Risk Reviewer"
                     value={mitigationOwner}
@@ -1359,7 +1346,6 @@ export function MonitoredRiskData(params) {
                       </MenuItem>
                     ))}
                   </Select>
-                  
                 </div>
               </div>
             </div>
@@ -1386,7 +1372,7 @@ export function MitigatedRiskData(params) {
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
   const [riskReviewer, setRiskReviewer] = useState(params.row.riskReviewer);
-  
+
   const [mitigationEffort, setMitigationEffort] = useState(
     params.row.mitigationEffort
   );
@@ -1413,7 +1399,7 @@ export function MitigatedRiskData(params) {
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
-        close()
+        close();
       },
     });
   };
@@ -1439,7 +1425,6 @@ export function MitigatedRiskData(params) {
     setOpen(!open);
   }
 
-  
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -1468,7 +1453,7 @@ export function MitigatedRiskData(params) {
         }
       );
       notify();
-      triggerComponent()
+      triggerComponent();
     } catch (error) {
       if (error.response.status === 400) {
         notifyFillForms();
@@ -1497,7 +1482,7 @@ export function MitigatedRiskData(params) {
 
   return (
     <>
-      <ToastContainer hideProgressBar autoClose={1000}/>
+      <ToastContainer hideProgressBar autoClose={1000} />
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -1545,9 +1530,8 @@ export function MitigatedRiskData(params) {
                       </MenuItem>
                     ))}
                   </Select>
-                  
                 </div>
-               
+
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Mitigation Effort</InputLabel>
                   <Select
@@ -1720,9 +1704,7 @@ export function MitigatedRiskReportData(params) {
 
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
-  const [riskReviewer, setRiskReviewer] = useState(
-    params.row.riskReviewer
-  );
+  const [riskReviewer, setRiskReviewer] = useState(params.row.riskReviewer);
   const [mitigationEffort, setMitigationEffort] = useState(
     params.row.mitigationEffort
   );
@@ -1944,7 +1926,7 @@ export function DepartmentData(params) {
         }
       );
       alert("User Saved Successfully");
-      triggerComponent()
+      triggerComponent();
     } catch (error) {
       alert(error);
     }
@@ -1964,7 +1946,7 @@ export function DepartmentData(params) {
         }
       );
       alert("Department deleted Successfully");
-      close()
+      close();
     } catch (error) {
       alert(error);
     }
@@ -2267,7 +2249,7 @@ export function LogOut() {
               </svg>
             </div>
             <div className="ml-2">
-              <Typography component="h2" >
+              <Typography component="h2">
                 Are you sure you want to Logout?
               </Typography>
             </div>
@@ -2286,20 +2268,31 @@ export function LogOut() {
   );
 }
 
-export function RiskAdviceReportData(){
-  return(
+export function RiskAdviceReportData() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  return (
     <>
-    <div className="card">
-      <div className="grid grid-cols-5">
-        <div className="span-2 grid grid-cols-2 gap-2">
-          <div className="bg-green h-20 w-20">
-            <p className="">Inherent Risk</p>
-            <p className="">32</p>
+      <button onClick={handleOpen} className="px-2">
+        <FaEye className="icons" />
+      </button>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <div className="card">
+          <div className="grid grid-cols-5">
+            <div className="span-2 grid grid-cols-2 gap-2">
+              <div className="bg-green h-20 w-20">
+                <p className="">Inherent Risk</p>
+                <p className="">32</p>
+              </div>
+              <div className="bg-green"></div>
+            </div>
           </div>
-          <div className="bg-green"></div>
-        </div>
-      </div>
-    </div>
+        </div> 
+      </Modal>
     </>
-  )
+  );
 }
