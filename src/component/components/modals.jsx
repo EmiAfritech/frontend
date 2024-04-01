@@ -2287,7 +2287,7 @@ export function RiskAdviceReportData() {
     top: "20%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 450,
+    width: 950,
     bgcolor: "white",
     border: "2px solid #000",
     boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
@@ -2309,11 +2309,11 @@ export function RiskAdviceReportData() {
           <div className="grid grid-cols-6">
             <div className="col-span-2 ">
               <div className="grid grid-cols-2 gap-1">
-                <div className="bg-sky-700 h-40 w-40 p-5 m-3">
+                <div className="bg-sky-700 h-30 w-40 p-5 m-3">
                   <p className="">Inherent Risk</p>
                   <p className="">32</p>
                 </div>
-                <div className="bg-sky-700 h-40 w-40 p-3 m-3">
+                <div className="bg-sky-700 h-30 w-40 p-3 m-3">
                   <p className="">Inherent Risk</p>
                   <p className="">32</p>
                 </div>
