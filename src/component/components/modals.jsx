@@ -2188,7 +2188,12 @@ export function LogOut() {
   const navigate = useNavigate();
   const notify = () => {
     toast.success("Loginig Out Successful", {
-      position: "top-center",});
+      position: "top-center",
+      onClose: () => {
+        navigate("/", { replace: true });
+        localStorage.clear();
+      },
+    });
   };
 
   const handleLogOut = async (e) => {
@@ -2202,8 +2207,6 @@ export function LogOut() {
         withCredentials: true,
       });
       notify();
-      navigate("/", { replace: true });
-      localStorage.clear();
     } catch (error) {
       console.log(error);
     }
@@ -2224,7 +2227,7 @@ export function LogOut() {
 
   return (
     <>
-    <ToastContainer onClose={5000} hideProgressBar/>
+      <ToastContainer onClose={5000} hideProgressBar />
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
         Logout
@@ -2290,25 +2293,26 @@ export function RiskAdviceReportData() {
         aria-describedby="modal-modal-description">
         <div className="card">
           <div className="grid grid-cols-5">
-            <div className="span-2 grid grid-cols-2 gap-1">
-              <div className="bg-sky-700 h-50 w-50 p-5">
+            <div className="col-span-2 ">
+              <div className="grid grid-cols-2 gap-1">
+                <div className="bg-sky-700 h-50 w-50 p-5 m-3">
+                  <p className="">Inherent Risk</p>
+                  <p className="">32</p>
+                </div>
+              </div>
+              <div className="bg-sky-700 h-50 w-50 p-3 m-3">
                 <p className="">Inherent Risk</p>
                 <p className="">32</p>
               </div>
-              <div className="bg-sky-700 h-50 w-50 p-5">
-              <p className="">Inherent Risk</p>
-                <p className="">32</p>
+            </div>
+            <div className="col-span-2">
+              <div className="grid grid-cols-3">
+                <div>ID</div>
+                <div>status: managment review</div>
               </div>
             </div>
-            <div className="span-3">
-            <div className="grid grid-cols-3">
-              <div>ID</div>
-              <div>status: managment review</div>
-
-            </div>
-            </div>
           </div>
-        </div> 
+        </div>
       </Modal>
     </>
   );
