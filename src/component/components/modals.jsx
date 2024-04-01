@@ -2271,7 +2271,7 @@ export function LogOut() {
 export function RiskAdviceReportData() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  
+
   function handleOpen() {
     setOpen(!open);
   }
@@ -2288,11 +2288,14 @@ export function RiskAdviceReportData() {
         <div className="card">
           <div className="grid grid-cols-5">
             <div className="span-2 grid grid-cols-2 gap-2">
-              <div className="bg-green h-20 w-20">
+              <div className="bg-blue h-20 w-20">
                 <p className="">Inherent Risk</p>
                 <p className="">32</p>
               </div>
-              <div className="bg-green"></div>
+              <div className="bg-green">
+              <p className="">Inherent Risk</p>
+                <p className="">32</p>
+              </div>
             </div>
           </div>
         </div> 
