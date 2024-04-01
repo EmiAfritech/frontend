@@ -2187,7 +2187,8 @@ export function LogOut() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const notify = () => {
-    toast.success("Loginig Out Successful");
+    toast.success("Loginig Out Successful", {
+      position: "top-center",});
   };
 
   const handleLogOut = async (e) => {
@@ -2223,7 +2224,7 @@ export function LogOut() {
 
   return (
     <>
-    <ToastContainer onClose={5000} hideProgressBar position="top-center"/>
+    <ToastContainer onClose={5000} hideProgressBar/>
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
         Logout
