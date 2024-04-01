@@ -2285,3 +2285,21 @@ export function LogOut() {
     </>
   );
 }
+
+export function RiskAdviceReportData(){
+  return(
+    <>
+    <div className="card">
+      <div className="grid grid-cols-5">
+        <div className="span-2 grid grid-cols-2 gap-2">
+          <div className="bg-green h-20 w-20">
+            <p className="">Inherent Risk</p>
+            <p className="">32</p>
+          </div>
+          <div className="bg-green"></div>
+        </div>
+      </div>
+    </div>
+    </>
+  )
+}

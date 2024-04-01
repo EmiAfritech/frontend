@@ -1,5 +1,5 @@
 import "../comstyles/component.css";
-import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, RiskData, UserData, MitigatedRiskReportData } from "./modals";
+import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, RiskData, UserData, MitigatedRiskReportData, RiskAdviceReportData } from "./modals";
 
 
 
@@ -103,7 +103,7 @@ export const reportriskpyramidcolumn = [
   field: "view",
   headerName: "Action",
   width: 50,
-  renderCell: (params) => MitigatedRiskData(params),
+  renderCell: (params) => RiskAdviceReportData(params),
 },
   
 ];
