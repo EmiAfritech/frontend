@@ -2284,15 +2284,14 @@ export function RiskAdviceReportData() {
 
   const style = {
     position: "absolute",
-    top: "20%",
+    top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 950,
-    bgcolor: "white",
-    border: "2px solid #000",
-    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-    borderRadius: "8px",
-    p: 2,
+    bgcolor: "#FFFFFF",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: 1,
+    width: 1200,
   };
   return (
     <>
