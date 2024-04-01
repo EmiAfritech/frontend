@@ -2281,6 +2281,19 @@ export function RiskAdviceReportData() {
   function handleOpen() {
     setOpen(!open);
   }
+
+  const style = {
+    position: "absolute",
+    top: "20%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 450,
+    bgcolor: "white",
+    border: "2px solid #000",
+    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+    borderRadius: "8px",
+    p: 2,
+  };
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -2291,6 +2304,7 @@ export function RiskAdviceReportData() {
         onClose={close}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
+        <Box sx={style}>
         <div className="card">
           <div className="grid grid-cols-6">
             <div className="col-span-2 ">
@@ -2313,6 +2327,7 @@ export function RiskAdviceReportData() {
             </div>
           </div>
         </div>
+        </Box>
       </Modal>
     </>
   );
