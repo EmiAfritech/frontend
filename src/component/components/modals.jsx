@@ -2271,6 +2271,10 @@ export function LogOut() {
 export function RiskAdviceReportData() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  
+  function handleOpen() {
+    setOpen(!open);
+  }
   return (
     <>
       <button onClick={handleOpen} className="px-2">
