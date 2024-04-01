@@ -575,7 +575,7 @@ export function RiskViewTable() {
               backgroundColor: "#ecbe2f",
             },
             [`.${gridClasses.cell}.medium`]: {
-              backgroundColor: "#797DFA",
+              backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#89FA79",
