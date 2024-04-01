@@ -550,9 +550,6 @@ export function RiskData(params) {
   function handleOpen() {
     setOpen(!open);
   }
-  function handleClose() {
-    setOpen(false);
-  }
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -2190,7 +2187,7 @@ export function LogOut() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const notify = () => {
-    toast.success("Review Saved Successfully");
+    toast.success("Loginig Out Successful");
   };
 
   const handleLogOut = async (e) => {
@@ -2302,10 +2299,12 @@ export function RiskAdviceReportData() {
                 <p className="">32</p>
               </div>
             </div>
+            <div className="span-3">
             <div className="grid grid-cols-3">
               <div>ID</div>
               <div>status: managment review</div>
 
+            </div>
             </div>
           </div>
         </div> 
