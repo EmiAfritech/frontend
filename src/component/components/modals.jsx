@@ -39,7 +39,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
-import { Tab, TabList, TabPanel } from "react-tabs";
+import { Tab, TabList, TabPanel, TabContext } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 function getRiskScore(score) {
@@ -2340,11 +2340,10 @@ export function RiskAdviceReportData() {
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example">
-                    <Tab label="Item One" value="1" />
-                    <Tab label="Item Two" value="2" />
-                    <Tab label="Item Three" value="3" />
+                    onChange={handleChange}>
+                    <Tab label="Details" value="1" />
+                    <Tab label="Mitigation" value="2" />
+                    <Tab label="Review" value="3" />
                   </TabList>
                 </Box>
                 <TabPanel value="1">Item One</TabPanel>
