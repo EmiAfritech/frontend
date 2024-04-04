@@ -39,6 +39,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
+import { Tab, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2206,7 +2208,7 @@ export function LogOut() {
         },
         withCredentials: true,
       });
-      handleClose()
+      handleClose();
       notify();
     } catch (error) {
       console.log(error);
@@ -2305,30 +2307,52 @@ export function RiskAdviceReportData() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-        <div>
-          <div className="grid grid-cols-6 bg-[#a8a29e]">
-            <div className="col-span-2 ">
-              <div className="grid grid-cols-2 gap-1">
-                <div className="bg-sky-700 h-70 w-40 p-5 m-3">
-                  <p className="">Inherent Risk</p>
-                  <p className="">32</p>
+          <div>
+            <div className="grid grid-cols-6 bg-[#d6d3d1]">
+              <div className="col-span-2 ">
+                <div className="grid grid-cols-2 gap-1">
+                  <div className="bg-sky-700 h-56 w-40 p-5 m-3">
+                    <p className="">Inherent Risk</p>
+                    <p className="">32</p>
+                  </div>
+                  <div className="bg-sky-700 h-56 w-40 p-3 m-3">
+                    <p className="">Inherent Risk</p>
+                    <p className="">32</p>
+                  </div>
                 </div>
-                <div className="bg-sky-700 h-70 w-40 p-3 m-3">
-                  <p className="">Inherent Risk</p>
-                  <p className="">32</p>
+              </div>
+              <div className="col-span-4">
+                <div className="grid grid-cols-3 ">
+                  <div>
+                    <h1>ID: </h1>
+                  </div>
+                  <div>
+                    <h1>Status:</h1> managment review
+                  </div>
                 </div>
+                <hr />
+                <span className="pt-5">
+                  <h3>subject</h3>
+                </span>
               </div>
             </div>
-            <div className="col-span-4">
-              <div className="grid grid-cols-3 ">
-                <span><h1>ID: </h1></span>
-                <span><h1>Status:</h1> managment review</span>
-              </div>
-              <hr/>
-              <span><h3>subject</h3></span>
+            <div>
+              <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <TabList
+                    onChange={handleChange}
+                    aria-label="lab API tabs example">
+                    <Tab label="Item One" value="1" />
+                    <Tab label="Item Two" value="2" />
+                    <Tab label="Item Three" value="3" />
+                  </TabList>
+                </Box>
+                <TabPanel value="1">Item One</TabPanel>
+                <TabPanel value="2">Item Two</TabPanel>
+                <TabPanel value="3">Item Three</TabPanel>
+              </TabContext>
             </div>
           </div>
-        </div>
         </Box>
       </Modal>
     </>
