@@ -1053,7 +1053,7 @@ export function Pyramidchat() {
         </div>
         <div className=" m-3 flex flex-row-reverse">
           <ReactToPrint
-            trigger={() => <button>Print </button>}
+            trigger={() => <button>Print Chat</button>}
             content={() => ref.current}
           />
         </div>

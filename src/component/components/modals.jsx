@@ -2318,8 +2318,8 @@ export function RiskAdviceReportData() {
                 </div>
               </div>
             </div>
-            <div className="col-span-2">
-              <div className="grid grid-cols-3">
+            <div className="col-span-4">
+              <div className="grid grid-cols-3 ">
                 <div>ID</div>
                 <div>status: managment review</div>
               </div>
