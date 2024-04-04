@@ -44,9 +44,14 @@ import {
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
 import { reportriskpyramidcolumn } from "./datatable";
-import { DataGrid, gridClasses } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  gridClasses,
+  GridToolbar,
+  gridFilteredSortedRowIdsSelector,
+  selectedGridRowsSelector,
+} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -1125,6 +1130,7 @@ export function Pyramidchat() {
                         return "low";
                       }
                     }}
+                    slots={{ toolbar: GridToolbar }}
                     slotProps={{
                       toolbar: {
                         printOptions: {
