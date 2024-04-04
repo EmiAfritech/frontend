@@ -2321,7 +2321,7 @@ export function RiskAdviceReportData() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-4 h-20 justify-items-center">
+              <div className="col-span-4 py-10 justify-items-center">
                 <div className="grid grid-cols-2 ">
                   <div>
                     <h1>ID: </h1>
