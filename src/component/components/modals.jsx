@@ -7,7 +7,7 @@ import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
-
+import "../comstyles/component.css"
 import {
   DELETEDEPARTMENT_URL,
   DELETERISK_URL,
@@ -40,7 +40,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs} from "react-tabs";
-import "../comstyles/component.css"
 
 import "react-tabs/style/react-tabs.css";
 
