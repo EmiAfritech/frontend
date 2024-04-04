@@ -2327,7 +2327,7 @@ export function RiskAdviceReportData() {
                     <h1>ID: </h1>
                   </div>
                   <div>
-                    <h1>Status:</h1> managment review
+                    Status: managment review
                   </div>
                 </div>
                 <hr />
