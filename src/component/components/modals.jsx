@@ -2340,8 +2340,7 @@ export function RiskAdviceReportData() {
             <div>
               <Tabs>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                  <TabList
-                    onChange={handleChange}>
+                  <TabList>
                     <Tab label="Details" value="1" />
                     <Tab label="Mitigation" value="2" />
                     <Tab label="Review" value="3" />
