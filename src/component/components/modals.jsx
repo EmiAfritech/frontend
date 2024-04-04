@@ -2312,18 +2312,18 @@ export function RiskAdviceReportData() {
             <div className="grid grid-cols-6 bg-[#d6d3d1]">
               <div className="col-span-2 ">
                 <div className="grid grid-cols-2 gap-1">
-                  <div className="bg-sky-700 h-56 w-40 p-5 m-3">
+                  <div className="bg-sky-700 h-42 w-40 p-5 m-3">
                     <p className="">Inherent Risk</p>
                     <p className="">32</p>
                   </div>
-                  <div className="bg-sky-700 h-56 w-40 p-3 m-3">
+                  <div className="bg-sky-700 h-42 w-40 p-3 m-3">
                     <p className="">Inherent Risk</p>
                     <p className="">32</p>
                   </div>
                 </div>
               </div>
               <div className="col-span-4">
-                <div className="grid grid-cols-3 ">
+                <div className="grid grid-cols-2 ">
                   <div>
                     <h1>ID: </h1>
                   </div>
@@ -2341,9 +2341,9 @@ export function RiskAdviceReportData() {
               <Tabs>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <TabList>
-                    <Tab label="Details" value="1" />
-                    <Tab label="Mitigation" value="2" />
-                    <Tab label="Review" value="3" />
+                    <Tab><h2>Details</h2></Tab>
+                    <Tab><h2>Mitigation</h2></Tab>
+                    <Tab><h2>Review</h2></Tab>
                   </TabList>
                 </Box>
                 <TabPanel value="1">Item One</TabPanel>
