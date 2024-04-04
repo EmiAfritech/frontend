@@ -39,7 +39,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
-import { Tab, TabList, TabPanel, TabContext } from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs} from "react-tabs";
 
 import "react-tabs/style/react-tabs.css";
 
@@ -2338,7 +2338,7 @@ export function RiskAdviceReportData() {
               </div>
             </div>
             <div>
-              <TabContext value={value}>
+              <Tabs value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                   <TabList
                     onChange={handleChange}>
@@ -2350,7 +2350,7 @@ export function RiskAdviceReportData() {
                 <TabPanel value="1">Item One</TabPanel>
                 <TabPanel value="2">Item Two</TabPanel>
                 <TabPanel value="3">Item Three</TabPanel>
-              </TabContext>
+              </Tabs>
             </div>
           </div>
         </Box>
