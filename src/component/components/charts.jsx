@@ -16,6 +16,8 @@ import { HighLowBarData, pyramid } from "./chartdata";
 import Chart from "react-apexcharts";
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
 
+import ReactToPrint from "react-to-print";
+import { useRef } from "react";
 import "../comstyles/component.css";
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
@@ -944,6 +946,7 @@ export function Pyramidchat() {
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
+  const ref = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1033,7 +1036,13 @@ export function Pyramidchat() {
             )}
           </div>
         </div>
-        <div>
+        <div className=" m-3 flex flex-row-reverse">
+        <ReactToPrint
+          trigger={() => <button>Print </button>}
+          content={() => ref.current}
+        />
+      </div>
+        <div ref={ref}>
           <Funnel
             id="pyramid"
             dataSource={data}
@@ -1105,6 +1114,12 @@ export function Pyramidchat() {
                       } else if (params.value === "Low") {
                         return "low";
                       }
+
+                    }}
+                    slotProps={{
+                      toolbar: {
+                        printOptions: { getRowsToExport: getSelectedRowsToExport },
+                      },
                     }}
                   />
                 </Box>

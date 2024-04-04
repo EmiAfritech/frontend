@@ -2304,7 +2304,7 @@ export function RiskAdviceReportData() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-        <div className="card">
+        <div>
           <div className="grid grid-cols-6">
             <div className="col-span-2 ">
               <div className="grid grid-cols-2 gap-1">
