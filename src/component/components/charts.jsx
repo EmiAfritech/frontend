@@ -1058,6 +1058,7 @@ export function Pyramidchat() {
           />
         </div>
         <div ref={ref}>
+          <h2>Risk Pyramid Chat</h2>
           <Funnel
             id="pyramid"
             dataSource={data}
