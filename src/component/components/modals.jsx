@@ -2312,11 +2312,11 @@ export function RiskAdviceReportData() {
             <div className="grid grid-cols-6 bg-[#d6d3d1]">
               <div className="col-span-2 ">
                 <div className="grid grid-cols-2 gap-1">
-                  <div className="bg-sky-700 h-42 w-40 p-5 m-3">
+                  <div className="bg-sky-700 h-48 w-40 p-5 m-3">
                     <p className="">Inherent Risk</p>
                     <p className="">32</p>
                   </div>
-                  <div className="bg-sky-700 h-42 w-40 p-3 m-3">
+                  <div className="bg-sky-700 h-48 w-40 p-3 m-3">
                     <p className="">Inherent Risk</p>
                     <p className="">32</p>
                   </div>
