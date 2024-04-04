@@ -2306,14 +2306,14 @@ export function RiskAdviceReportData() {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
         <div>
-          <div className="grid grid-cols-6">
+          <div className="grid grid-cols-6 bg-[#a8a29e]">
             <div className="col-span-2 ">
               <div className="grid grid-cols-2 gap-1">
-                <div className="bg-sky-700 h-30 w-40 p-5 m-3">
+                <div className="bg-sky-700 h-70 w-40 p-5 m-3">
                   <p className="">Inherent Risk</p>
                   <p className="">32</p>
                 </div>
-                <div className="bg-sky-700 h-30 w-40 p-3 m-3">
+                <div className="bg-sky-700 h-70 w-40 p-3 m-3">
                   <p className="">Inherent Risk</p>
                   <p className="">32</p>
                 </div>
@@ -2321,9 +2321,11 @@ export function RiskAdviceReportData() {
             </div>
             <div className="col-span-4">
               <div className="grid grid-cols-3 ">
-                <div>ID</div>
-                <div>status: managment review</div>
+                <span><h1>ID: </h1></span>
+                <span><h1>Status:</h1> managment review</span>
               </div>
+              <hr/>
+              <span><h3>subject</h3></span>
             </div>
           </div>
         </div>
