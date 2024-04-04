@@ -114,6 +114,7 @@
   padding: 0;
   margin: 0;
   border-bottom: 2px solid #ccc; /* Add underline border */
+  flex-direction: row; 
 }
 
 .Tab {
