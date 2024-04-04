@@ -40,6 +40,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, TabContext } from "react-tabs";
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 import "react-tabs/style/react-tabs.css";
 
 function getRiskScore(score) {
