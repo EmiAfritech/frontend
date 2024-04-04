@@ -2206,6 +2206,7 @@ export function LogOut() {
         },
         withCredentials: true,
       });
+      handleClose()
       notify();
     } catch (error) {
       console.log(error);
