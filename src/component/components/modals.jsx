@@ -7,7 +7,6 @@ import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
-import "../comstyles/component.css"
 import {
   DELETEDEPARTMENT_URL,
   DELETERISK_URL,
@@ -2340,10 +2339,10 @@ export function RiskAdviceReportData() {
             <div>
               <Tabs>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                  <TabList className="Tablist">
-                    <Tab className="Tab"><h2>Details</h2></Tab>
-                    <Tab className="Tab"><h2>Mitigation</h2></Tab>
-                    <Tab className="Tab"><h2>Review</h2></Tab>
+                  <TabList >
+                    <Tab><h2>Details</h2></Tab>
+                    <Tab><h2>Mitigation</h2></Tab>
+                    <Tab><h2>Review</h2></Tab>
                   </TabList>
                 </Box>
                 <TabPanel value="1">Item One</TabPanel>

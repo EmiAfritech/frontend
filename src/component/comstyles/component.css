@@ -106,35 +106,3 @@
 .sidebar-main button:hover {
   background-color: #1E4D7E; /* Change color on hover */
 }
-
-.TabList {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  border-bottom: 2px solid #ccc; /* Add underline border */
-  flex-direction: row; 
-}
-
-.Tab {
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: none; /* Remove individual tab borders */
-  border-radius: 5px 5px 0 0;
-  cursor: pointer;
-}
-
-.Tab:hover {
-  background-color: #e0e0e0;
-}
-
-.Tab.active {
-  background-color: #fff;
-  border-bottom: 2px solid #fff; /* Match the underline border color */
-}
-
-.Tab h2 {
-  margin: 0;
-}
-
