@@ -47,6 +47,16 @@ import { reportriskpyramidcolumn } from "./datatable";
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 
+
+const getSelectedRowsToExport = ({ apiRef }) => {
+  const selectedRowIds = selectedGridRowsSelector(apiRef);
+  if (selectedRowIds.size > 0) {
+    return Array.from(selectedRowIds.keys());
+  }
+
+  return gridFilteredSortedRowIdsSelector(apiRef);
+};
+
 export function OpenVsClose() {
   const [data, setData] = useState();
 
@@ -1037,11 +1047,11 @@ export function Pyramidchat() {
           </div>
         </div>
         <div className=" m-3 flex flex-row-reverse">
-        <ReactToPrint
-          trigger={() => <button>Print </button>}
-          content={() => ref.current}
-        />
-      </div>
+          <ReactToPrint
+            trigger={() => <button>Print </button>}
+            content={() => ref.current}
+          />
+        </div>
         <div ref={ref}>
           <Funnel
             id="pyramid"
@@ -1097,7 +1107,7 @@ export function Pyramidchat() {
                     [`.${gridClasses.cell}.low`]: {
                       backgroundColor: "#89FA79",
                     },
-                    height:350
+                    height: 350,
                   }}>
                   <DataGrid
                     rows={tableData}
@@ -1114,11 +1124,12 @@ export function Pyramidchat() {
                       } else if (params.value === "Low") {
                         return "low";
                       }
-
                     }}
                     slotProps={{
                       toolbar: {
-                        printOptions: { getRowsToExport: getSelectedRowsToExport },
+                        printOptions: {
+                          getRowsToExport: getSelectedRowsToExport,
+                        },
                       },
                     }}
                   />
