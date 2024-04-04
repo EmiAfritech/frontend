@@ -40,6 +40,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import "../comstyles/component.css"
 
 import "react-tabs/style/react-tabs.css";
 
@@ -2340,10 +2341,10 @@ export function RiskAdviceReportData() {
             <div>
               <Tabs>
                 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                  <TabList>
-                    <Tab><h2>Details</h2></Tab>
-                    <Tab><h2>Mitigation</h2></Tab>
-                    <Tab><h2>Review</h2></Tab>
+                  <TabList className="Tablist">
+                    <Tab className="Tab"><h2>Details</h2></Tab>
+                    <Tab className="Tab"><h2>Mitigation</h2></Tab>
+                    <Tab className="Tab"><h2>Review</h2></Tab>
                   </TabList>
                 </Box>
                 <TabPanel value="1">Item One</TabPanel>
