@@ -2294,7 +2294,7 @@ export function RiskAdviceReportData() {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
-    width: 1100,
+    width: 1200,
   };
   return (
     <>
