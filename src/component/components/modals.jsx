@@ -2345,7 +2345,16 @@ export function RiskAdviceReportData() {
                     <Tab><h2>Review</h2></Tab>
                   </TabList>
                 </Box>
-                <TabPanel value="1">Item One</TabPanel>
+                <TabPanel>
+                  <div className="grid grid-cols-2">
+                    <div>
+                      <li>Submition Date:</li>
+                    </div>
+                    <div>
+                      <li>Submitted by:</li>
+                    </div>
+                  </div>
+                </TabPanel>
                 <TabPanel value="2">Item Two</TabPanel>
                 <TabPanel value="3">Item Three</TabPanel>
               </Tabs>
