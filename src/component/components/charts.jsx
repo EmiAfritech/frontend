@@ -1082,7 +1082,7 @@ export function Pyramidchat() {
             </Label>
           </Funnel>
         </div>
-        <div className="grid grid-cols-6 gap-4 mt-5">
+        <div className="grid grid-cols-6 gap-4">
           <Button
             className="px-4"
             onClick={handleRiskAdvice}

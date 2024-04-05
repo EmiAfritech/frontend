@@ -2308,7 +2308,7 @@ export function RiskAdviceReportData() {
         aria-describedby="modal-modal-description">
         <Box sx={style}>
           <div>
-            <div className="grid grid-cols-6 bg-[#d6d3d1]">
+            <div className="grid grid-cols-6 bg-[#d6d3d1] pb-5">
               <div className="col-span-2 ">
                 <div className="grid grid-cols-2 gap-1">
                   <div className="bg-sky-700 h-48 w-40 p-5 m-3">
@@ -2331,14 +2331,14 @@ export function RiskAdviceReportData() {
                   </div>
                 </div>
                 <hr />
-                <span className="pt-5">
+                <span className="pt-10">
                   <h3>subject</h3>
                 </span>
               </div>
             </div>
             <div>
               <Tabs>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Box>
                   <TabList >
                     <Tab><h2>Details</h2></Tab>
                     <Tab><h2>Mitigation</h2></Tab>
