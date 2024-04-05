@@ -2294,7 +2294,7 @@ export function RiskAdviceReportData() {
     boxShadow: 24,
     p: 4,
     borderRadius: 1,
-    width: 900,
+    width: 1100,
   };
   return (
     <>
@@ -2331,9 +2331,9 @@ export function RiskAdviceReportData() {
                   </div>
                 </div>
                 <hr />
-                <span className="pt-10">
+                <div className="pt-10">
                   <h3>subject</h3>
-                </span>
+                </div>
               </div>
             </div>
             <div>
