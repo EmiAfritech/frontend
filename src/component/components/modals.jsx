@@ -2323,7 +2323,7 @@ export function RiskAdviceReportData() {
               </div>
               <div className="col-span-3 py-10 justify-items-center">
                 <div className="grid grid-cols-2 ">
-                  <div>
+                  <div className="pb-10">
                     <h1>ID: </h1>
                   </div>
                   <div>
@@ -2346,12 +2346,12 @@ export function RiskAdviceReportData() {
                   </TabList>
                 </Box>
                 <TabPanel>
-                  <div className="grid grid-cols-2">
-                    <div>
-                      <li>Submition Date:</li>
+                  <div className="grid grid-cols-3">
+                    <div className="pt-5">
+                      <span>Submition Date:</span>
                     </div>
                     <div>
-                      <li>Submitted by:</li>
+                      <span>Submitted by:</span>
                     </div>
                   </div>
                 </TabPanel>
