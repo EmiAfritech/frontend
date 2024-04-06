@@ -41,6 +41,7 @@ import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs} from "react-tabs";
 
 import "react-tabs/style/react-tabs.css";
+import { Sessions } from "../../api/sessions";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2230,6 +2231,7 @@ export function LogOut() {
 
   return (
     <>
+      <Sessions/>
       <ToastContainer onClose={5000} hideProgressBar />
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
