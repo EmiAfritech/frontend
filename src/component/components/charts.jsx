@@ -979,6 +979,7 @@ export function Pyramidchat() {
         );
 
         setData(response.data);
+        console.log(data)
       } catch (error) {
         console.error(error);
       }

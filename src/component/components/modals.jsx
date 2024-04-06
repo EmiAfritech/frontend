@@ -2379,35 +2379,42 @@ export function RiskAdviceReportData() {
                             startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
                           }}                
                           />
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Category:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Location:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
+                          }}                
+                          />
                     </div>
                   </div>
                 </TabPanel>
