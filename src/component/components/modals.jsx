@@ -2376,7 +2376,7 @@ export function RiskAdviceReportData() {
                             "& fieldset": { border: "none" },
                           }}
                           InputProps={{
-                            startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
+                            startAdornment: <InputAdornment position="start">Risk Name:</InputAdornment>,
                           }}                
                           />
                         <TextField
@@ -2412,9 +2412,74 @@ export function RiskAdviceReportData() {
                             "& fieldset": { border: "none" },
                           }}
                           InputProps={{
-                            startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
+                            startAdornment: <InputAdornment position="start">Probability Level:</InputAdornment>,
                           }}                
                           />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Impact Level:</InputAdornment>,
+                          }}                
+                          />
+                    </div>
+                    <div>
+                    <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Risk Description:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Risk Impact Level:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Risk Objective:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Risk Owner:</InputAdornment>,
+                          }}                
+                          />
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Created At:</InputAdornment>,
+                          }}                
+                          />
+                          <TextField
+                            sx={{
+                              border: "none",
+                              "& fieldset": { border: "none" },
+                            }}
+                            InputProps={{
+                              startAdornment: <InputAdornment position="start">Risk Score:</InputAdornment>,
+                            }}                
+                            />
                     </div>
                   </div>
                 </TabPanel>
