@@ -1057,7 +1057,7 @@ export function Pyramidchat() {
             content={() => ref.current}
           />
         </div>
-        <div ref={ref} className=" flex justify-center" >
+        <div ref={ref} className=" flex items-center" >
           <div className="pb-8 text-2xl font-semibold">Risk Pyramid Chat</div>
           <Funnel
             id="pyramid"
