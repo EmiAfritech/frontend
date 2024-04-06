@@ -38,7 +38,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
-import { Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
 import "react-tabs/style/react-tabs.css";
 import { Sessions } from "../../api/sessions";
@@ -2208,9 +2208,7 @@ export function LogOut() {
     });
   };
   const notifyNetwork = () => {
-    toast.error("Server is Currently Unavailable, Please Try Again Later!", {
-      
-    });
+    toast.error("Server is Currently Unavailable, Please Try Again Later!", {});
   };
 
   const handleLogOut = async (e) => {
@@ -2225,10 +2223,10 @@ export function LogOut() {
       });
       handleClose();
       notify();
-     } catch (error) {
-      if(error.response.status === 401){
+    } catch (error) {
+      if (error.response.status === 401) {
         notifyUnauthorized();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyNetwork();
       }
     }
@@ -2345,9 +2343,7 @@ export function RiskAdviceReportData() {
                   <div className="pb-10">
                     <h1>ID: </h1>
                   </div>
-                  <div>
-                    Status: managment review
-                  </div>
+                  <div>Status: managment review</div>
                 </div>
                 <hr />
                 <div className="pt-10">
@@ -2358,32 +2354,132 @@ export function RiskAdviceReportData() {
             <div>
               <Tabs>
                 <Box>
-                  <TabList >
-                    <Tab><h2>Details</h2></Tab>
-                    <Tab><h2>Mitigation</h2></Tab>
-                    <Tab><h2>Review</h2></Tab>
+                  <TabList>
+                    <Tab>
+                      <h2>Details</h2>
+                    </Tab>
+                    <Tab>
+                      <h2>Mitigation</h2>
+                    </Tab>
+                    <Tab>
+                      <h2>Review</h2>
+                    </Tab>
                   </TabList>
                 </Box>
                 <TabPanel>
                   <div className="grid grid-cols-3 pt-5">
                     <div>
-                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
-                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
-                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
-                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
-                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
                     </div>
                     <div>
-                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
-                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
-                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
-                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
-                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
                     </div>
                   </div>
                 </TabPanel>
-                <TabPanel value="2">Item Two</TabPanel>
-                <TabPanel value="3">Item Three</TabPanel>
+                <TabPanel>
+                  <div className="grid grid-cols-3 pt-5">
+                    <div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                    </div>
+                  </div>
+                </TabPanel>
+                <TabPanel>
+                  <div className="grid grid-cols-3 pt-5">
+                    <div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submition Date:<TextField>hi there</TextField>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                      <div>
+                        Submitted by:<TextField>hi there</TextField>
+                      </div>
+                    </div>
+                  </div>
+                </TabPanel>
               </Tabs>
             </div>
           </div>
