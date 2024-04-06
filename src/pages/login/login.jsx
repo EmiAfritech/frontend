@@ -13,7 +13,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
+
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
   };
@@ -68,8 +68,6 @@ export function Login() {
     } finally {
       setLoading(false);
     }
-
-    
   };
   const handleReset = async (e) => {
     if (email === "") {
@@ -82,12 +80,13 @@ export function Login() {
 
   return (
     <>
-      <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
-          <div className="login-container card">
-            <div className="formstyle flex-col">
+          <div className="login-container">
+            <div className="card">
+              <div className="formstyle flex-col"></div>
               <img
                 src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
                 alt="Paris"

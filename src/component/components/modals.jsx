@@ -2370,7 +2370,14 @@ export function RiskAdviceReportData() {
                   <div className="grid grid-cols-3 pt-5">
                     <div>
                       <div>
-                        Submition Date:<TextField>hi there</TextField>
+                        Submition Date:
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}>
+                          hi there
+                        </TextField>
                       </div>
                       <div>
                         Submition Date:<TextField>hi there</TextField>
