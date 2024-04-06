@@ -2369,16 +2369,15 @@ export function RiskAdviceReportData() {
                 <TabPanel>
                   <div className="grid grid-cols-3 pt-5">
                     <div>
-                      <div className="flex justify-center">
-                        Submition Date:
                         <TextField
                           sx={{
                             border: "none",
                             "& fieldset": { border: "none" },
-                          }}>
-                          hi there
-                        </TextField>
-                      </div>
+                          }}
+                          InputProps={{
+                            startAdornment: <InputAdornment position="start">Submition Date:</InputAdornment>,
+                          }}                
+                          />
                       <div>
                         Submition Date:<TextField>hi there</TextField>
                       </div>
