@@ -2369,7 +2369,7 @@ export function RiskAdviceReportData() {
                 <TabPanel>
                   <div className="grid grid-cols-3 pt-5">
                     <div>
-                      <div>
+                      <div className="flex justify-center">
                         Submition Date:
                         <TextField
                           sx={{
