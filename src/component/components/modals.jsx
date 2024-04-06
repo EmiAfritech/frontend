@@ -2199,6 +2199,20 @@ export function LogOut() {
     });
   };
 
+  const notifyUnauthorized = () => {
+    toast.error("Unauthorized User!", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        localStorage.clear();
+      },
+    });
+  };
+  const notifyNetwork = () => {
+    toast.error("Server is Currently Unavailable, Please Try Again Later!", {
+      
+    });
+  };
+
   const handleLogOut = async (e) => {
     e.preventDefault();
     try {
@@ -2211,8 +2225,12 @@ export function LogOut() {
       });
       handleClose();
       notify();
-    } catch (error) {
-      console.log(error);
+     } catch (error) {
+      if(error.response.status === 401){
+        notifyUnauthorized();
+      }else if(error.response.status === 500){
+        notifyNetwork();
+      }
     }
   };
 
@@ -2231,7 +2249,6 @@ export function LogOut() {
 
   return (
     <>
-      <Sessions/>
       <ToastContainer onClose={5000} hideProgressBar />
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
