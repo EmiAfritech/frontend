@@ -86,7 +86,7 @@ export function Login() {
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
-          <div className="login-container">
+          <div className="login-container card">
             <div className="formstyle flex-col">
               <img
                 src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
