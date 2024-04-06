@@ -88,74 +88,76 @@ export function Login() {
         <div className="basis-1/3 ">
           <div className="login-container">
             <div className="formstyle flex-col">
-              <img
-                src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
-                alt="Paris"
-                className="w-55 h-20"
-              />
-              <form>
-                {/* username */}
-                <div className="">
-                  <div>
-                    <label htmlFor="email">Email</label>
+              <div className="card">
+                <img
+                  src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
+                  alt="Paris"
+                  className="w-55 h-20"
+                />
+                <form>
+                  {/* username */}
+                  <div className="">
+                    <div>
+                      <label htmlFor="email">Email</label>
+                    </div>
+                    <div>
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        autoComplete="off"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
                   </div>
+                  {/* password */}
                   <div>
-                    <input
-                      type="email"
-                      id="email"
-                      value={email}
-                      autoComplete="off"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
+                    <div>
+                      <label htmlFor="password">Password</label>
+                    </div>
+                    <div>
+                      <input
+                        type="password"
+                        id="password"
+                        autoComplete="off"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
-                {/* password */}
-                <div>
-                  <div>
-                    <label htmlFor="password">Password</label>
-                  </div>
-                  <div>
-                    <input
-                      type="password"
-                      id="password"
-                      autoComplete="off"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* login-btn */}
-                <button
-                  className="login hover:bg-[#2a36b8]"
-                  type="submit"
-                  onClick={handleSubmit}
-                  disabled={isLoading} // Disable the button while loading
-                >
-                  {isLoading ? (
-                    <CircularProgress size={27} thickness={6} color="primary" />
-                  ) : (
-                    "Submit"
-                  )}
-                </button>
-                {/* password reset */}
-                <div className="pt-3">
+                  {/* login-btn */}
                   <button
-                    onClick={handleReset}
-                    className="flex flex row items-center p-3">
-                    Forgot your password?
+                    className="login hover:bg-[#2a36b8]"
+                    type="submit"
+                    onClick={handleSubmit}
+                    disabled={isLoading} // Disable the button while loading
+                  >
+                    {isLoading ? (
+                      <CircularProgress size={27} thickness={6} color="primary" />
+                    ) : (
+                      "Submit"
+                    )}
                   </button>
-                </div>
-                {/* create a new account */}
-                <div className="new-user">
-                  <span style={{ color: "blue" }}>New to EmiRisk?</span>{" "}
-                  <span>
-                    <Link className="new" to="/signup">
-                      Contact Us
-                    </Link>
-                  </span>
-                </div>
-              </form>
+                  {/* password reset */}
+                  <div className="pt-3">
+                    <button
+                      onClick={handleReset}
+                      className="flex flex row items-center p-3">
+                      Forgot your password?
+                    </button>
+                  </div>
+                  {/* create a new account */}
+                  <div className="new-user">
+                    <span style={{ color: "blue" }}>New to EmiRisk?</span>{" "}
+                    <span>
+                      <Link className="new" to="/signup">
+                        Contact Us
+                      </Link>
+                    </span>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
