@@ -2367,18 +2367,18 @@ export function RiskAdviceReportData() {
                 <TabPanel>
                   <div className="grid grid-cols-3 pt-5">
                     <div>
-                      <span>Submition Date:</span>
-                      <span className="pt-3">Submition Date: <TextField>hi there</TextField></span>
-                      <span className="pt-3">Submition Date:</span>
-                      <span className="pt-3">Submition Date:</span>
-                      <span className="pt-3">Submition Date:</span>
+                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
+                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
+                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
+                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
+                      <div><span>Submition Date:<TextField>hi there</TextField></span></div>
                     </div>
                     <div>
-                      <span>Submitted by:</span>
-                      <span className="pt-3">Submitted by:</span>
-                      <span className="pt-3">Submitted by:</span>
-                      <span className="pt-3">Submitted by:</span>
-                      <span className="pt-3">Submitted by:</span>
+                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
+                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
+                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
+                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
+                      <div><span>Submitted by:<TextField>hi there</TextField></span></div>
                     </div>
                   </div>
                 </TabPanel>
