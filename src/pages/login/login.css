@@ -15,9 +15,7 @@
 .card {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  margin: 10px;
-  text-align: center;
-  background-color: white;
+  padding: 20px;
 }
 .formstyle label {
   font-size: 12px;
