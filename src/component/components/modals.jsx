@@ -2454,19 +2454,8 @@ export function RiskAdviceReportData(params) {
                         <> </>
                       )}
                       <TextField />
-                      sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Submition Date:
-                            </InputAdornment>
-                          ),
-                        }}
-                        <div>
-                      {localStorage.getItem("role") === "ADMIN" ||
+                      <div className="relative mb-6" data-te-input-wrapper-init>
+                  {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
@@ -2493,7 +2482,7 @@ export function RiskAdviceReportData(params) {
                   ) : (
                     <></>
                   )}
-                      </div>
+                </div>
                       <TextField
                         sx={{
                           border: "none",
