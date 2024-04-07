@@ -2453,22 +2453,13 @@ export function RiskAdviceReportData(params) {
                         <> </>
                       )}
                       
-                      <div className="relative mb-6" data-te-input-wrapper-init>
+                      <div className="relative mb-6 flex flex-row" data-te-input-wrapper-init>
                   {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
+                    <div>Department Name</div>
+                    <div>
                       <Select
-                      sx={{
-                        border: "none",
-                        "& fieldset": { border: "none" },
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            Department Name:
-                          </InputAdornment>
-                        ),
-                      }}
                         label="Department Name"
                         value={departmentName}
                         autoComplete="off"
@@ -2487,6 +2478,7 @@ export function RiskAdviceReportData(params) {
                           </MenuItem>
                         ))}
                       </Select>
+                      </div>
                     </>
                   ) : (
                     <></>
