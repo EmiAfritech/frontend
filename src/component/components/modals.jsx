@@ -2337,7 +2337,7 @@ export function RiskAdviceReportData(params) {
       });
   }, []);
 
-  
+
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -2465,6 +2465,7 @@ export function RiskAdviceReportData(params) {
                             </InputAdornment>
                           ),
                         }}
+                        <div>
                       {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
@@ -2492,7 +2493,7 @@ export function RiskAdviceReportData(params) {
                   ) : (
                     <></>
                   )}
-                      
+                      </div>
                       <TextField
                         sx={{
                           border: "none",
