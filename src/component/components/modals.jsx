@@ -2430,68 +2430,7 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      {localStorage.getItem("role") === "ADMIN" ||
-                      localStorage.getItem("GENERALMANAGER") ? (
-                        <TextField
-                          sx={{
-                            border: "none",
-                            "& fieldset": { border: "none" },
-                          }}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                Department ID:
-                              </InputAdornment>
-                            ),
-                          }}
-                          value={departmentID}
-                          autoComplete="off"
-                          onChange={(e) => setDepartmentID(e.target.value)}
-                          required
-                          style={{ width: "100%" }}
-                        />
-
-                      ) : (
-                        <> </>
-                      )}
-                      
-                      <div className="flex flex-row">
-                  {localStorage.getItem("role") === "ADMIN" ||
-                  localStorage.getItem("GENERALMANAGER") ? (
-                    <>
-                    <div>Department Name</div>
-                    <div>
                       <NativeSelect
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Department NAME:
-                            </InputAdornment>
-                          ),
-                        }}
-                        value={departmentName}
-                        autoComplete="off"
-                        onChange={(e) => setDepartmentName(e.target.value)}
-                        required>
-                        {deptmentName.map((deptmentName) => (
-                          <MenuItem
-                            key={deptmentName.names.id}
-                            value={deptmentName.names.name}
-                            onClick={() =>
-                              setDepartmentID(deptmentName.deptIDs.deptID)
-                            }>
-                            {" "}
-                            {deptmentName.names.name}
-                          </MenuItem>
-                        ))}
-                      </NativeSelect>
-                      </div>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                      <TextField
                         sx={{
                           border: "none",
                           "& fieldset": { border: "none" },
@@ -2500,6 +2439,29 @@ export function RiskAdviceReportData(params) {
                           startAdornment: (
                             <InputAdornment position="start">
                               Probability Level:
+                            </InputAdornment>
+                          ),
+                        }}
+                        value={riskProbabilityLevell}
+                        autoComplete="off"
+                        onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                        required
+                        style={{ width: "100%" }}>
+                        <MenuItem value={1}>Almost Impossible (1)</MenuItem>
+                        <MenuItem value={2}>Unlikely (2)</MenuItem>
+                        <MenuItem value={3}>Likely (3)</MenuItem>
+                        <MenuItem value={4}>Very Likely (4)</MenuItem>
+                        <MenuItem value={5}>Almost Certain (5)</MenuItem>
+                      </NativeSelect>
+                      <TextField
+                        sx={{
+                          border: "none",
+                          "& fieldset": { border: "none" },
+                        }}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              Probability Levels:
                             </InputAdornment>
                           ),
                         }}
