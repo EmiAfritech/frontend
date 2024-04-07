@@ -2392,7 +2392,7 @@ export function RiskAdviceReportData(params) {
                   </TabList>
                 </Box>
                 <TabPanel>
-                  <div className="grid grid-cols-3 pt-5">
+                  <div className="grid grid-cols-2 pt-5">
                     <div>
                       <TextField
                         sx={{
@@ -2442,10 +2442,8 @@ export function RiskAdviceReportData(params) {
                               </InputAdornment>
                             ),
                           }}
-                          label="Department ID"
                           value={departmentID}
                           autoComplete="off"
-                          disabled
                           onChange={(e) => setDepartmentID(e.target.value)}
                           required
                           style={{ width: "100%" }}
@@ -2459,7 +2457,6 @@ export function RiskAdviceReportData(params) {
                   {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
-                      <InputLabel>Department Name</InputLabel>
                       <Select
                       sx={{
                         border: "none",
@@ -2468,7 +2465,7 @@ export function RiskAdviceReportData(params) {
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            Department ID:
+                            Department Name:
                           </InputAdornment>
                         ),
                       }}
