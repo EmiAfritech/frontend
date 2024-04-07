@@ -2305,6 +2305,9 @@ export function RiskAdviceReportData(params) {
   const [departmentID, setDepartmentID] = useState(params.row.departmentID);
   const [departmentName, setDepartmentName] = useState(params.row.department);
   const [deptmentName, setdeptmentName] = useState([]);
+  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
+    getProbabiltyLevelNumber(params.row.riskProbabilityLevel)
+  );
 
   function handleOpen() {
     setOpen(!open);
