@@ -2450,16 +2450,28 @@ export function RiskAdviceReportData(params) {
                           required
                           style={{ width: "100%" }}
                         />
+
                       ) : (
                         <> </>
                       )}
-                      <TextField />
+                      
                       <div className="relative mb-6" data-te-input-wrapper-init>
                   {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
                       <Select
+                      sx={{
+                        border: "none",
+                        "& fieldset": { border: "none" },
+                      }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            Department ID:
+                          </InputAdornment>
+                        ),
+                      }}
                         label="Department Name"
                         value={departmentName}
                         autoComplete="off"
