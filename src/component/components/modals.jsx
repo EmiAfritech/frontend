@@ -2623,9 +2623,11 @@ export function LogOut() {
   );
 }
 
-export function RiskAdviceReportData() {
+export function RiskAdviceReportData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const [riskName, setRiskName] = useState(params.row.riskName);
+  const [riskID, setRiskID] = useState(params.row.riskID);
 
   function handleOpen() {
     setOpen(!open);
@@ -2710,6 +2712,10 @@ export function RiskAdviceReportData() {
                             </InputAdornment>
                           ),
                         }}
+                        value={riskID}
+                        autoComplete="off"
+                        onChange={(e) => setRiskID(e.target.value)}
+                        required
                       />
                       <TextField
                         sx={{
@@ -2723,6 +2729,10 @@ export function RiskAdviceReportData() {
                             </InputAdornment>
                           ),
                         }}
+                        value={riskName}
+                        autoComplete="off"
+                        onChange={(e) => setRiskName(e.target.value)}
+                        required
                       />
                       <TextField
                         sx={{
