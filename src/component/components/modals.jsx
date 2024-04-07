@@ -32,6 +32,7 @@ import {
   Modal,
   Typography,
   InputAdornment,
+  NativeSelect
 } from "@mui/material";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
@@ -40,6 +41,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+
 
 import "react-tabs/style/react-tabs.css";
 import { Sessions } from "../../api/sessions";
@@ -2453,19 +2455,24 @@ export function RiskAdviceReportData(params) {
                         <> </>
                       )}
                       
-                      <div className="relative mb-6 flex flex-row" data-te-input-wrapper-init>
+                      <div className="flex flex-row">
                   {localStorage.getItem("role") === "ADMIN" ||
                   localStorage.getItem("GENERALMANAGER") ? (
                     <>
                     <div>Department Name</div>
                     <div>
-                      <Select
-                        label="Department Name"
+                      <NativeSelect
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              Department NAME:
+                            </InputAdornment>
+                          ),
+                        }}
                         value={departmentName}
                         autoComplete="off"
                         onChange={(e) => setDepartmentName(e.target.value)}
-                        required
-                        style={{ width: "100%" }}>
+                        required>
                         {deptmentName.map((deptmentName) => (
                           <MenuItem
                             key={deptmentName.names.id}
@@ -2477,7 +2484,7 @@ export function RiskAdviceReportData(params) {
                             {deptmentName.names.name}
                           </MenuItem>
                         ))}
-                      </Select>
+                      </NativeSelect>
                       </div>
                     </>
                   ) : (
