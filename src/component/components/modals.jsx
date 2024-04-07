@@ -696,7 +696,7 @@ export function RiskData(params) {
                     <></>
                   )}
                 </div>
-              </div> 
+              </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Risk Owner</InputLabel>
@@ -878,334 +878,6 @@ export function RiskData(params) {
               </button>
             </div>
           </FormControl>
-          <div>
-            <div className="grid grid-cols-6 bg-[#d6d3d1] mb-10">
-              <div className="col-span-2 ">
-                <div className="grid grid-cols-2 gap-1">
-                  <div className="bg-sky-700 h-48 w-40 p-5 m-3">
-                    <p className="">Inherent Risk</p>
-                    <p className="">32</p>
-                  </div>
-                  <div className="bg-sky-700 h-48 w-40 p-3 m-3">
-                    <p className="">Inherent Risk</p>
-                    <p className="">32</p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-3 py-10 justify-items-center">
-                <div className="grid grid-cols-2 ">
-                  <div className="pb-10">
-                    <h1>ID: </h1>
-                  </div>
-                  <div>Status: managment review</div>
-                </div>
-                <hr />
-                <div className="pt-10">
-                  <h3>subject</h3>
-                </div>
-              </div>
-            </div>
-            <div>
-              <Tabs>
-                <Box>
-                  <TabList>
-                    <Tab>
-                      <h2>Details</h2>
-                    </Tab>
-                    <Tab>
-                      <h2>Mitigation</h2>
-                    </Tab>
-                    <Tab>
-                      <h2>Review</h2>
-                    </Tab>
-                  </TabList>
-                </Box>
-                <TabPanel>
-                  <div className="grid grid-cols-3 pt-5">
-                    <div>
-                      <div>
-                        <TextField
-                          sx={{
-                            border: "none",
-                            "& fieldset": { border: "none" },
-                          }}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                Risk ID:
-                              </InputAdornment>
-                            ),
-                          }}
-                          label="Risk Code"
-                          value={riskID}
-                          autoComplete="off"
-                          onChange={(e) => setRiskID(e.target.value)}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <TextField
-                          sx={{
-                            border: "none",
-                            "& fieldset": { border: "none" },
-                          }}
-                          InputProps={{
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                Risk Name:
-                              </InputAdornment>
-                            ),
-                          }}
-                          label="Risk Name"
-                          value={riskName}
-                          autoComplete="off"
-                          onChange={(e) => setRiskName(e.target.value)}
-                          required
-                        />
-                      </div>
-                      <div>
-                        {localStorage.getItem("role") === "ADMIN" ||
-                        localStorage.getItem("GENERALMANAGER") ? (
-                          <TextField
-                            sx={{
-                              border: "none",
-                              "& fieldset": { border: "none" },
-                            }}
-                            InputProps={{
-                              startAdornment: (
-                                <InputAdornment position="start">
-                                  Location:
-                                </InputAdornment>
-                              ),
-                            }}
-                            label="Department ID"
-                            value={departmentID}
-                            autoComplete="off"
-                            disabled
-                            onChange={(e) => setDepartmentID(e.target.value)}
-                            required
-                          />
-                        ) : (
-                          <> </>
-                        )}
-                      </div>
-                      <div className="flex flex-rows">
-                      {localStorage.getItem("role") === "ADMIN" ||
-                  localStorage.getItem("GENERALMANAGER") ? (
-                    <>
-                      <InputLabel>Department Name</InputLabel>
-                      <Select
-                        label="Department Name"
-                        value={departmentName}
-                        autoComplete="off"
-                        onChange={(e) => setDepartmentName(e.target.value)}
-                        required
-                        style={{ width: "100%" }}>
-                        {deptmentName.map((deptmentName) => (
-                          <MenuItem
-                            key={deptmentName.names.id}
-                            value={deptmentName.names.name}
-                            onClick={() =>
-                              setDepartmentID(deptmentName.deptIDs.deptID)
-                            }>
-                            {" "}
-                            {deptmentName.names.name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                      </div>
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Probability Level:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Impact Level:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Description:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Impact Level:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Objective:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Owner:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Created At:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Score:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    </div>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div className="grid grid-cols-3 pt-5">
-                    <div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                    </div>
-                  </div>
-                </TabPanel>
-                <TabPanel>
-                  <div className="grid grid-cols-3 pt-5">
-                    <div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submition Date:<TextField>hi there</TextField>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                      <div>
-                        Submitted by:<TextField>hi there</TextField>
-                      </div>
-                    </div>
-                  </div>
-                </TabPanel>
-              </Tabs>
-            </div>
-          </div>
         </Box>
       </Modal>
     </>
@@ -2628,6 +2300,9 @@ export function RiskAdviceReportData(params) {
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
   const [riskID, setRiskID] = useState(params.row.riskID);
+  const [departmentID, setDepartmentID] = useState(params.row.departmentID);
+  const [departmentName, setDepartmentName] = useState(params.row.department);
+  const [deptmentName, setdeptmentName] = useState([]);
 
   function handleOpen() {
     setOpen(!open);
@@ -2644,6 +2319,25 @@ export function RiskAdviceReportData(params) {
     borderRadius: 1,
     width: 1200,
   };
+
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  
   return (
     <>
       <button onClick={handleOpen} className="px-2">
@@ -2708,7 +2402,7 @@ export function RiskAdviceReportData(params) {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              Risk Name:
+                              Risk ID:
                             </InputAdornment>
                           ),
                         }}
@@ -2725,7 +2419,7 @@ export function RiskAdviceReportData(params) {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              Category:
+                              Risk Name:
                             </InputAdornment>
                           ),
                         }}
@@ -2734,21 +2428,33 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Location:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                      <TextField
-                        sx={{
+                      {localStorage.getItem("role") === "ADMIN" ||
+                      localStorage.getItem("GENERALMANAGER") ? (
+                        <TextField
+                          sx={{
+                            border: "none",
+                            "& fieldset": { border: "none" },
+                          }}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                Department ID:
+                              </InputAdornment>
+                            ),
+                          }}
+                          label="Department ID"
+                          value={departmentID}
+                          autoComplete="off"
+                          disabled
+                          onChange={(e) => setDepartmentID(e.target.value)}
+                          required
+                          style={{ width: "100%" }}
+                        />
+                      ) : (
+                        <> </>
+                      )}
+                      <TextField />
+                      sx={{
                           border: "none",
                           "& fieldset": { border: "none" },
                         }}
@@ -2759,7 +2465,34 @@ export function RiskAdviceReportData(params) {
                             </InputAdornment>
                           ),
                         }}
-                      />
+                      {localStorage.getItem("role") === "ADMIN" ||
+                  localStorage.getItem("GENERALMANAGER") ? (
+                    <>
+                      <InputLabel>Department Name</InputLabel>
+                      <Select
+                        label="Department Name"
+                        value={departmentName}
+                        autoComplete="off"
+                        onChange={(e) => setDepartmentName(e.target.value)}
+                        required
+                        style={{ width: "100%" }}>
+                        {deptmentName.map((deptmentName) => (
+                          <MenuItem
+                            key={deptmentName.names.id}
+                            value={deptmentName.names.name}
+                            onClick={() =>
+                              setDepartmentID(deptmentName.deptIDs.deptID)
+                            }>
+                            {" "}
+                            {deptmentName.names.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                      
                       <TextField
                         sx={{
                           border: "none",
