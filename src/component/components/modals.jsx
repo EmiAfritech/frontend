@@ -631,7 +631,7 @@ export function RiskData(params) {
           <FormControl fullWidth>
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
-                {/* <div className="relative mb-6" data-te-input-wrapper-init>
+                <div className="relative mb-6" data-te-input-wrapper-init>
                   <TextField
                     label="Risk Code"
                     value={riskID}
@@ -696,7 +696,7 @@ export function RiskData(params) {
                     <></>
                   )}
                 </div>
-              </div> */}
+              </div> 
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <InputLabel>Risk Owner</InputLabel>
@@ -878,8 +878,6 @@ export function RiskData(params) {
               </button>
             </div>
           </FormControl>
-        </Box> 
-        <Box sx={style}>
           <div>
             <div className="grid grid-cols-6 bg-[#d6d3d1] mb-10">
               <div className="col-span-2 ">
