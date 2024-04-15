@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 
 export function RiskMonitoring() {
   return (
-    <div className="flex de-flex bg-slate-50">
+    <div className="flex bg-slate-100 flex-col">
       <Sidebar />
-      <div className=" flex mx-auto mt-3 pl-[18%]">
+      <div className=" ml-[18%] m-6 h-screen">
         <div className="flex flex-col">
-          <div className="flex flex-row m-0">
-            <RiskBarChart />
+          <div className="grid grid-cols-3 gap-4">
+            <div className="col-span-2"><RiskBarChart /></div>
             <div className="flex flex-col justify-center card">
               <Link to="/high-&-Low-Risk">
                 <MonitoredVsUnmonitored />

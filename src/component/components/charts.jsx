@@ -258,7 +258,8 @@ export function RiskBarChart() {
           </select>
         </div>
       </div>
-      <BarChart width={760} height={250} data={data}>
+      <ResponsiveContainer  height={250}>
+      <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />
@@ -267,6 +268,7 @@ export function RiskBarChart() {
         <Bar dataKey="Closed" fill="#2394cc" />
         <Tooltip />
       </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

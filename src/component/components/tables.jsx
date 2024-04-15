@@ -284,7 +284,7 @@ export function RiskMonitor() {
         </div>
       </div>
       <div
-        style={{ height: 300, backgroundColor: "white" }}
+        style={{ height: 300 }}
         className="mt-2 w-auto">
         <DataGrid
           rows={tableData}

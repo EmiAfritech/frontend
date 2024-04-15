@@ -172,40 +172,40 @@ export const deptcolumn = [
 ];
 
 export const riskmonitoringcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskName",
     headerName: "Risk Name",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskResponseImplementation",
     headerName: "Risk Implementation",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskResponseActivitiyStatus",
     headerName: "Risk Activity Status",
-    width: 120,
+    flex: 1,
   },
   {
     field: "recommendedChanges",
     headerName: "Recommended Changes",
-    width: 120,
+    flex: 1,
   },
-  { field: "challenges", headerName: "Challenges", width: 100 },
-  { field: "comments", headerName: "Comments", width: 120 },
-  { field: "mitigationOwner", headerName: "Mitigation Owner", width: 120 },
-  { field: "createdAt", headerName: "Created At", width: 120 },
+  { field: "challenges", headerName: "Challenges", flex: 1 },
+  { field: "comments", headerName: "Comments", flex: 1 },
+  { field: "mitigationOwner", headerName: "Mitigation Owner", flex: 1 },
+  { field: "createdAt", headerName: "Created At", flex: 1 },
   {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => MonitoredRiskData(params),
   },
 ];
