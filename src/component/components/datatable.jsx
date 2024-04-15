@@ -61,30 +61,30 @@ export const riskreviewrow = [
 ];
 
 export const riskmitigationcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "riskID", headerName: "Risk Code", width: 70 },
-  { field: "riskName", headerName: "Risk Name", width: 70 },
+  { field: "id", headerName: "ID", flex: 0.5 },
+  { field: "riskID", headerName: "Risk Code", flex: 1 },
+  { field: "riskName", headerName: "Risk Name", flex: 1},
   {
     field: "mitigatedRiskProbabilityLevel",
     headerName: "Mitigated Risk Probability Level",
-    width: 150,
+    flex: 1,
   },
   {
     field: "mitigatedRiskImpactLevel",
     headerName: "Mitigated Risk Impact Level",
-    width: 150,
+    flex: 1,
   },
   {
     field: "mitigatedRiskScore",
     headerName: "Mitigated Risk Score",
-    width: 150,
+    flex: 1,
   },
-  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-  { field: "createdAt", headerName: "Created At", width: 150 },
+  { field: "riskReviewer", headerName: "Risk Reviewer", flex: 1 },
+  { field: "createdAt", headerName: "Created At", flex: 1 },
    {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => MitigatedRiskData(params),
   },
 ];
