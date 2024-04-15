@@ -4,9 +4,9 @@ import { EmployeesTable } from "../../component/components/tables";
 export function Employees() {
   
   return (
-    <div className="flex de-flex bg-slate-50 h-screen">
+    <div className="flex flex-col bg-slate-100">
       <Sidebar/>
-      <div className="mx-auto flex mt-3 pl-[18%]">
+      <div className="ml-[18%] m-6 h-screen">
         <EmployeesTable />
       </div>
     </div>

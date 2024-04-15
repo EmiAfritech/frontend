@@ -11,16 +11,16 @@ import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, R
 
 
 export const usercolumns = [
-  { field: "id", headerName: "ID", width: 50 },
-  { field: "firstName", headerName: "First Name", width: 150 },
-  { field: "lastName", headerName: "Last Name", width: 150 },
-  { field: "phoneNumber", headerName: "Phone Number", width: 170 },
-  { field: "email", headerName: "Email", width: 170 },
-  { field: "role", headerName: "Role", width: 170 },
+  { field: "id", headerName: "ID",  flex: 0.5},
+  { field: "firstName", headerName: "First Name", flex: 1},
+  { field: "lastName", headerName: "Last Name", flex: 1},
+  { field: "phoneNumber", headerName: "Phone Number", flex: 1 },
+  { field: "email", headerName: "Email", flex: 1},
+  { field: "role", headerName: "Role", flex: 1},
   {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => UserData(params),
   },
  
