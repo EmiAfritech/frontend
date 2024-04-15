@@ -10,6 +10,7 @@ import {
   LineChart,
   Tooltip,
   Line,
+  ResponsiveContainer,
 } from "recharts";
 import React from "react";
 import { HighLowBarData, pyramid } from "./chartdata";
@@ -83,10 +84,12 @@ export function OpenVsClose() {
         <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>CLOSE</span>
       </h3>
-      <PieChart width={180} height={180}>
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+      <ResponsiveContainer height={180}>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -111,10 +114,12 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#cc23b3" }}>MITIGATED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
       </h3>
-      <PieChart width={200} height={180}>
+      <ResponsiveContainer height={180}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -139,10 +144,12 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#cc23b3" }}>REVIEWED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
       </h3>
-      <PieChart width={200} height={180}>
+      <ResponsiveContainer height={180}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -166,10 +173,12 @@ export function MonitoredVsUnmonitored() {
         <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
       </h3>
-      <PieChart width={200} height={180}>
+      <ResponsiveContainer height={180}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -1058,7 +1067,9 @@ export function Pyramidchat() {
           />
         </div>
         <div ref={ref}>
-          <div className="pb-8 text-2xl font-semibold flex justify-center">Risk Pyramid Chat</div>
+          <div className="pb-8 text-2xl font-semibold flex justify-center">
+            Risk Pyramid Chat
+          </div>
           <Funnel
             id="pyramid"
             dataSource={data}
