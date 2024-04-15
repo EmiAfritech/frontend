@@ -168,7 +168,7 @@ export function MonitoredVsUnmonitored() {
       .then((data) => setData(data.data));
   }, []);
   return (
-    <div className=" items-center flex flex-col px-8 pb-5">
+    <div className=" items-center flex flex-col px-4 pb-5">
       <h3 className="pb-3">
         <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
         <span style={{ color: "#2394cc" }}>UNMONITORED</span>
