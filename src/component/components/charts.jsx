@@ -394,7 +394,8 @@ export function RiskLineChart() {
           </select>
         </div>
       </div>
-      <LineChart width={920} height={300} data={data} margin={{ top: 5 }}>
+      <ResponsiveContainer height={300}>
+      <LineChart  data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
@@ -402,6 +403,7 @@ export function RiskLineChart() {
         <Legend />
         <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
       </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }
