@@ -4,9 +4,9 @@ import { DepartmentTab } from "../../component/components/tables";
 export function Department() {
   
   return (
-    <div className="flex de-flex bg-slate-50 h-screen">
+    <div className="flex bg-slate-100 flex-col">
       <Sidebar/>
-      <div className="mx-auto flex mt-3 pl-[18%]">
+      <div className="ml-[18%] m-6 h-screen">
         <DepartmentTab />
       </div>
     </div>

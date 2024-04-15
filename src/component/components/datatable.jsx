@@ -157,16 +157,16 @@ export const reportaudittrailcolumn = [
 ];
 
 export const deptcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "deptID", headerName: "Dapartment Code", width: 150 },
-  { field: "name", headerName: "Department Name", width: 180 },
-  { field: "manager", headerName: "Department Manager", width: 180 },
-  { field: "location", headerName: "Location", width: 170 },
-  { field: "createdAt", headerName: "Created At", width: 180 },
+  { field: "id", headerName: "ID", flex: 0.5 },
+  { field: "deptID", headerName: "Dapartment Code", flex: 1},
+  { field: "name", headerName: "Department Name", flex: 1 },
+  { field: "manager", headerName: "Department Manager", flex: 1 },
+  { field: "location", headerName: "Location", flex: 1},
+  { field: "createdAt", headerName: "Created At", flex: 1},
   {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => DepartmentData(params),
   },
 ];
