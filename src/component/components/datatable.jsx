@@ -28,20 +28,20 @@ export const usercolumns = [
 
 
 export const riskreviewcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "riskID", headerName: "Risk Code", width: 100 },
-  { field: "riskName", headerName: "Risk Name", width: 150 },
-  { field: "riskReview", headerName: "Risk Review", width: 150 },
+  { field: "id", headerName: "ID", flex: 0.5 },
+  { field: "riskID", headerName: "Risk Code", flex: 1},
+  { field: "riskName", headerName: "Risk Name", flex: 1},
+  { field: "riskReview", headerName: "Risk Review", flex:  1 },
   {
     field: "NextRiskReviewDate",
     headerName: "Next Risk Review Date",
-    width: 170,
+    flex: 1,
   },
-  { field: "createdAt", headerName: "Created At", width: 150 },
+  { field: "createdAt", headerName: "Created At", flex: 1},
   {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => ReviewRiskData(params),
   },
 ];
