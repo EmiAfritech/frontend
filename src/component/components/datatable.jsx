@@ -258,17 +258,17 @@ export const riskappetitereportlowercolumn = [
 ];
 
 export const riskviewcolumn = [
-  { field: "id", headerName: "ID", width: 70,},
-  { field: "riskID", headerName: "Risk Code", width: 100 },
-  { field: "riskName", headerName: "Risk Name", width: 200 },
-  { field: "riskDescription", headerName: "Risk Description", width: 250 },
-  { field: "riskCategory", headerName: "Risk Category", width: 120 },
-  { field: "riskStatus", headerName: "Risk Status", width: 150 },
-  { field: "riskScore", headerName: "Risk Score", width: 100 },
+  { field: "id", headerName: "ID", felx: 0.5},
+  { field: "riskID", headerName: "Risk Code", felx: 1 },
+  { field: "riskName", headerName: "Risk Name", felx: 1 },
+  { field: "riskDescription", headerName: "Risk Description", flex: 2 },
+  { field: "riskCategory", headerName: "Risk Category", flex:1},
+  { field: "riskStatus", headerName: "Risk Status", flex: 1},
+  { field: "riskScore", headerName: "Risk Score", flex: 1},
   {
     field: "view",
     headerName: "Action",
-    width: 50,
+    flex: 0.5,
     renderCell: (params) => RiskData(params),
   },
 ];
