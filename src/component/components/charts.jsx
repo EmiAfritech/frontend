@@ -495,11 +495,13 @@ export function ReportRiskLevel() {
           )}
         </div>
       </div>
-      <PieChart width={210} height={250}>
+      <ResponsiveContainer height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -588,11 +590,13 @@ export function ReportRiskStatus() {
           )}
         </div>
       </div>
-      <PieChart width={210} height={250}>
+      <ResponsiveContainer height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -681,11 +685,13 @@ export function ReportRiskLocation() {
           )}
         </div>
       </div>
-      <PieChart width={210} height={250}>
+      <ResponsiveContainer height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -774,11 +780,13 @@ export function ReportRiskCategory() {
           )}
         </div>
       </div>
-      <PieChart width={210} height={250}>
+      <ResponsiveContainer height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -867,11 +875,13 @@ export function ReportRiskResponse() {
           )}
         </div>
       </div>
+      <ResponsiveContainer height={250}>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -960,10 +970,12 @@ export function ReportRiskOwner() {
           )}
         </div>
       </div>
+      <ResponsiveContainer height={250}>
       <PieChart width={210} height={250}>
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
