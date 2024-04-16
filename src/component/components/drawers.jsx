@@ -6,7 +6,8 @@ import axios from "../../api/axios";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Papa from 'papaparse';
+import Papa from "papaparse";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   CREATERISKFORM_URL,
@@ -23,7 +24,7 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 
-export function Userforms({ onFormSubmit }){
+export function Userforms({ onFormSubmit }) {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -46,7 +47,7 @@ export function Userforms({ onFormSubmit }){
     toast.error("Kindly check Input details");
   };
   const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin")
+    toast.error("Server is currently down Contact your admin");
   };
 
   useEffect(() => {
@@ -121,7 +122,7 @@ export function Userforms({ onFormSubmit }){
 
   return (
     <>
-      <ToastContainer autoClose={1000} hideProgressBar/>
+      <ToastContainer autoClose={1000} hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Employee
       </Button>
@@ -203,33 +204,36 @@ export function Userforms({ onFormSubmit }){
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
-              <>
-              <select
-                type="departmentID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                aria-describedby="departmentID"
-                value={departmentName}
-                autoComplete="off"
-                onChange={(e) => setDepartmentName(e.target.value)}
-                required>
-                <option></option>
+              {localStorage.getItem("role") === "ADMIN" ||
+              localStorage.getItem("role") === "GENERALMANAGER" ? (
+                <>
+                  <select
+                    type="departmentID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="departmentID"
+                    aria-describedby="departmentID"
+                    value={departmentName}
+                    autoComplete="off"
+                    onChange={(e) => setDepartmentName(e.target.value)}
+                    required>
+                    <option></option>
 
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {" "}
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department
-              </label>
-              </>
-              ):(<></>)}
+                    {deptmentNames.map((deptmentNames) => (
+                      <option
+                        key={deptmentNames.names.id}
+                        value={deptmentNames.names.name}>
+                        {" "}
+                        {deptmentNames.names.name}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                    department
+                  </label>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <input
@@ -300,7 +304,6 @@ export function Departmentforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -348,7 +351,7 @@ export function Departmentforms({ onFormSubmit }) {
 
   return (
     <>
-      <ToastContainer autoClose={1000} hideProgressBar/>
+      <ToastContainer autoClose={1000} hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Department
       </Button>
@@ -417,7 +420,7 @@ export function Departmentforms({ onFormSubmit }) {
   );
 }
 
-export function Riskforms ({ onFormSubmit, tableData }) {
+export function Riskforms({ onFormSubmit, tableData }) {
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
@@ -432,6 +435,7 @@ export function Riskforms ({ onFormSubmit, tableData }) {
   const [riskResponse, setRiskResponse] = useState("");
   const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
   const [tableDataTest, setTableDataTest] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     setTableDataTest(tableData.map((item) => item.riskID));
@@ -453,7 +457,7 @@ export function Riskforms ({ onFormSubmit, tableData }) {
     toast.error("Server is currently down Contact your admin");
   };
   const ExistingRiskID = () => {
-    toast.error("Risk ID already exists. Please enter a different one.")
+    toast.error("Risk ID already exists. Please enter a different one.");
   };
 
   useEffect(() => {
@@ -490,65 +494,66 @@ export function Riskforms ({ onFormSubmit, tableData }) {
       });
   }, []);
 
-
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (tableDataTest.includes(riskID)) {
-      ExistingRiskID()
+      ExistingRiskID();
     }
 
     try {
-      if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
-      await axios.post(
-        CREATERISKFORM_URL,
-        JSON.stringify({
-          riskID,
-          riskName,
-          riskOwner,
-          riskImpactLevel,
-          riskProbabilityLevel,
-          riskCategory,
-          riskDescription,
-          riskObjective,
-          riskResponseActivity,
-          riskResponse,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );
-    }else{
-      await axios.post(
-        CREATERISKFORM_URL,
-        JSON.stringify({
-          riskID,
-          riskName,
-          departmentName,
-          riskOwner,
-          riskImpactLevel,
-          riskProbabilityLevel,
-          riskCategory,
-          riskDescription,
-          riskObjective,
-          riskResponseActivity,
-          riskResponse,
-        }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
+      if (
+        localStorage.getItem("role") === "MANAGER" ||
+        localStorage.getItem("role") === "AUDITOR"
+      ) {
+        await axios.post(
+          CREATERISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            riskName,
+            riskOwner,
+            riskImpactLevel,
+            riskProbabilityLevel,
+            riskCategory,
+            riskDescription,
+            riskObjective,
+            riskResponseActivity,
+            riskResponse,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+      } else {
+        await axios.post(
+          CREATERISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            riskName,
+            departmentName,
+            riskOwner,
+            riskImpactLevel,
+            riskProbabilityLevel,
+            riskCategory,
+            riskDescription,
+            riskObjective,
+            riskResponseActivity,
+            riskResponse,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
       }
-    );
-    }
       notify();
     } catch (error) {
       if (error.response.status === 400) {
@@ -584,7 +589,7 @@ export function Riskforms ({ onFormSubmit, tableData }) {
 
   return (
     <>
-      <ToastContainer hideProgressBar/>
+      <ToastContainer hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Add Risk
       </Button>
@@ -595,35 +600,36 @@ export function Riskforms ({ onFormSubmit, tableData }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-          {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="departmentID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                aria-describedby="departmentID"
-                value={departmentName}
-                autoComplete="off"
-                onChange={(e) => setDepartmentName(e.target.value)}
-                required>
-                <option></option>
+            {localStorage.getItem("role") === "ADMIN" ||
+            localStorage.getItem("role") === "GENERALMANAGER" ? (
+              <div className="relative mb-6" data-te-input-wrapper-init>
+                <select
+                  type="departmentID"
+                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                  id="departmentID"
+                  aria-describedby="departmentID"
+                  value={departmentName}
+                  autoComplete="off"
+                  onChange={(e) => setDepartmentName(e.target.value)}
+                  required>
+                  <option></option>
 
-                {deptmentName.map((deptmentName) => (
-                  <option
-                    key={deptmentName.names.id}
-                    value={deptmentName.names.name}>
-                    {" "}
-                    {deptmentName.names.name}
-                  </option>
-                ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department
-              </label>
-            </div>
-            ):(
+                  {deptmentName.map((deptmentName) => (
+                    <option
+                      key={deptmentName.names.id}
+                      value={deptmentName.names.name}>
+                      {" "}
+                      {deptmentName.names.name}
+                    </option>
+                  ))}
+                </select>
+                <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  department
+                </label>
+              </div>
+            ) : (
               <></>
-             )}
+            )}
             <div className="grid grid-cols-2 gap-2">
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
@@ -834,12 +840,16 @@ export function Riskforms ({ onFormSubmit, tableData }) {
           </div>
           <div className="px-10">
             <button
-              type="submit"
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSubmit}>
-              Submit
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={27} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -881,8 +891,8 @@ export function RiskReviewforms({ onFormSubmit }) {
           JSON.stringify({ departmentID }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -895,8 +905,7 @@ export function RiskReviewforms({ onFormSubmit }) {
     };
     const fetchDepartments = async () => {
       try {
-        const data =await axios.get(
-          DEPARTMENTDROPDOWN_URL, {
+        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -907,14 +916,12 @@ export function RiskReviewforms({ onFormSubmit }) {
       } catch (error) {
         console.error(error);
       }
-      
-    }
-   
+    };
+
     if (
-      (localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR") 
+      localStorage.getItem("role") === "MANAGER" ||
+      localStorage.getItem("role") === "AUDITOR"
     ) {
-     
       fetchData();
     } else {
       fetchDepartments();
@@ -923,7 +930,7 @@ export function RiskReviewforms({ onFormSubmit }) {
       }
     }
   }, [departmentID]);
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -994,7 +1001,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         Review Risk
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
-        <ToastContainer onClose={1000} hideProgressBar/>
+        <ToastContainer onClose={1000} hideProgressBar />
         <div className="flex justify-center font-bold py-5  text-black">
           REVIEW RISK
         </div>
@@ -1002,33 +1009,34 @@ export function RiskReviewforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
-              <>
-              <select
-                type="departmentID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                aria-describedby="departmentID"
-                value={departmentID}
-                autoComplete="off"
-                onChange={(e) => setdepartmentID(e.target.value)}
-                required>
-                <option></option>
+              {localStorage.getItem("role") === "ADMIN" ||
+              localStorage.getItem("role") === "GENERALMANAGER" ? (
+                <>
+                  <select
+                    type="departmentID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="departmentID"
+                    aria-describedby="departmentID"
+                    value={departmentID}
+                    autoComplete="off"
+                    onChange={(e) => setdepartmentID(e.target.value)}
+                    required>
+                    <option></option>
 
-                {dept.map((dept) => (
-                  <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                    {" "}
-                    {dept.deptIDs.deptID}
-                  </option>
-                ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department-id
-              </label>
-              </>
-             ):(
-              <></>
-             )}
+                    {dept.map((dept) => (
+                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
+                        {" "}
+                        {dept.deptIDs.deptID}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                    department-id
+                  </label>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
@@ -1096,7 +1104,6 @@ export function RiskReviewforms({ onFormSubmit }) {
                 </label>
               </div>
             </div>
-            
           </div>
           <div className="px-10">
             <button
@@ -1162,7 +1169,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate(formattedDate);
   };
 
-
   useEffect(() => {
     axios
       .get(RISKREVIEWERSDROPDOWN_URL, {
@@ -1180,123 +1186,116 @@ export function RiskMitigationforms({ onFormSubmit }) {
       });
   }, []);
 
- 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKIDSMITIGATION_URL,
+          JSON.stringify({ departmentID }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSMITIGATION_URL,
-        JSON.stringify({ departmentID }),
-        {
+        setRiskIDs(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const fetchDepartments = async () => {
+      try {
+        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
           withCredentials: true,
-        }
-      );
+        });
+        setDept(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-      setRiskIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const fetchDepartments = async () => {
-  try {
-    const data =await axios.get(
-      DEPARTMENTDROPDOWN_URL, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      withCredentials: true,
-    });
-    setDept(data.data);
-  } catch (error) {
-    console.error(error);
-  }
-  
-}
- 
-
-  if (
-    (localStorage.getItem("role") === "MANAGER" ||
-      localStorage.getItem("role") === "AUDITOR") 
-  ) {
-    fetchData();
-  } else {
-    fetchDepartments();
-    if (departmentID !== "") {
+    if (
+      localStorage.getItem("role") === "MANAGER" ||
+      localStorage.getItem("role") === "AUDITOR"
+    ) {
       fetchData();
+    } else {
+      fetchDepartments();
+      if (departmentID !== "") {
+        fetchData();
+      }
     }
-  }
-}, [departmentID]);
-
-
+  }, [departmentID]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      if(localStorage.getItem("role") === "MANAGER" || localStorage.getItem("role") === "AUDITOR"){
+      if (
+        localStorage.getItem("role") === "MANAGER" ||
+        localStorage.getItem("role") === "AUDITOR"
+      ) {
         await axios.post(
-        MITIGATERISKFORM_URL,
-        JSON.stringify({
-          riskID,
-          mitigatedRiskProbabilityLevel,
-          mitigatedRiskImpactLevel,
-          mitigationControl,
-          mitigationEffort,
-          riskReviewer,
-          mitigationCost,
-          endDate,
-          hostaddress
-
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );
-    } else {
-      await axios.post(
-        MITIGATERISKFORM_URL,
-        JSON.stringify({
-          riskID,
-          mitigatedRiskProbabilityLevel,
-          mitigatedRiskImpactLevel,
-          mitigationControl,
-          mitigationEffort,
-          riskReviewer,
-          mitigationCost,
-          departmentID,
-          endDate,
-          hostaddress,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );
-    }
+          MITIGATERISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            mitigatedRiskProbabilityLevel,
+            mitigatedRiskImpactLevel,
+            mitigationControl,
+            mitigationEffort,
+            riskReviewer,
+            mitigationCost,
+            endDate,
+            hostaddress,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+      } else {
+        await axios.post(
+          MITIGATERISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            mitigatedRiskProbabilityLevel,
+            mitigatedRiskImpactLevel,
+            mitigationControl,
+            mitigationEffort,
+            riskReviewer,
+            mitigationCost,
+            departmentID,
+            endDate,
+            hostaddress,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+      }
       notify();
     } catch (error) {
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         notifyFillForms();
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         notifyServerDown();
       }
     }
   };
-
- 
 
   const reload = () => {
     setRiskID("");
@@ -1308,12 +1307,8 @@ useEffect(() => {
     setRiskReviewer("");
     setmitigationCost("");
     setEndDate("");
+  };
 
-    
-  }
-
- 
- 
   const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
@@ -1326,7 +1321,7 @@ useEffect(() => {
 
   return (
     <>
-      <ToastContainer onClose={1000} hideProgressBar/>
+      <ToastContainer onClose={1000} hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Mitigate Risk
       </Button>
@@ -1338,31 +1333,34 @@ useEffect(() => {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
-              <>
-                <select
-                type="departmentID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                aria-describedby="departmentID"
-                value={departmentID}
-                autoComplete="off"
-                onChange={(e) => setdepartmentID(e.target.value)}
-                required>
-                <option></option>
+              {localStorage.getItem("role") === "ADMIN" ||
+              localStorage.getItem("role") === "GENERALMANAGER" ? (
+                <>
+                  <select
+                    type="departmentID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="departmentID"
+                    aria-describedby="departmentID"
+                    value={departmentID}
+                    autoComplete="off"
+                    onChange={(e) => setdepartmentID(e.target.value)}
+                    required>
+                    <option></option>
 
-                {dept.map((dept) => (
-                  <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                    {" "}
-                    {dept.deptIDs.deptID}
-                  </option>
-                ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department-id
-              </label>
-              </>):(<>
-                </>)}
+                    {dept.map((dept) => (
+                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
+                        {" "}
+                        {dept.deptIDs.deptID}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                    department-id
+                  </label>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
@@ -1476,7 +1474,7 @@ useEffect(() => {
                   <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Mitigation Due date
                   </label>
-              </div>
+                </div>
               </div>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
@@ -1509,29 +1507,29 @@ useEffect(() => {
               </label>
             </div>
             <div>
-                <div className="relative pb-4" data-te-input-wrapper-init>
-                  <select
-                      className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                      value={riskReviewer}
-                      autoComplete="off"
-                      onChange={(e) => setRiskReviewer(e.target.value)}
-                      required>
-                      <option></option>
+              <div className="relative pb-4" data-te-input-wrapper-init>
+                <select
+                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                  value={riskReviewer}
+                  autoComplete="off"
+                  onChange={(e) => setRiskReviewer(e.target.value)}
+                  required>
+                  <option></option>
 
-                      {ownersName.map((ownersName) => (
-                        <option key={ownersName.id} value={ownersName.value}>
-                          {" "}
-                          {ownersName.value}
-                        </option>
-                      ))}
-                  </select>
-                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    risk-reviewer
-                  </label>
-                </div>
+                  {ownersName.map((ownersName) => (
+                    <option key={ownersName.id} value={ownersName.value}>
+                      {" "}
+                      {ownersName.value}
+                    </option>
+                  ))}
+                </select>
+                <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  risk-reviewer
+                </label>
+              </div>
             </div>
           </div>
-                
+
           <div className="px-10">
             <button
               type="submit"
@@ -1542,7 +1540,6 @@ useEffect(() => {
               Submit
             </button>
           </div>
-       
         </form>
       </Drawer>
     </>
@@ -1562,8 +1559,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [recommendedChanges, setRecommendedChanges] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [comments, setComments] = useState("");
-  const [closeStatus, setRiskClosed] = useState("")
-
+  const [closeStatus, setRiskClosed] = useState("");
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
@@ -1580,8 +1576,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin");
   };
- 
-   useEffect(() => {
+
+  useEffect(() => {
     axios
       .get(OWNERSDROPDOWN_URL, {
         headers: {
@@ -1605,8 +1601,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           JSON.stringify({ departmentID }),
           {
             headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
             withCredentials: true,
           }
@@ -1618,26 +1614,23 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
     };
     const fetchDepartments = async () => {
-    try {
-      const data =await axios.get(
-        DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      });
-      setDept(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-    
-  }
-   
+      try {
+        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          withCredentials: true,
+        });
+        setDept(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     if (
-      (localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR") 
+      localStorage.getItem("role") === "MANAGER" ||
+      localStorage.getItem("role") === "AUDITOR"
     ) {
       fetchData();
     } else {
@@ -1647,32 +1640,33 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
     }
   }, [departmentID]);
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      if(localStorage.getItem("role") === "MANAGER"){
+      if (localStorage.getItem("role") === "MANAGER") {
         await axios.post(
-        MONITORINGRISKFORM_URL,
-        JSON.stringify({
-          riskID,
-          riskResponseActivitiyStatus,
-          riskResponseImplementation,
-          challenges,
-          mitigationOwner,
-          recommendedChanges,
-          comments,
-          closeStatus,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        }
-      );} else {
+          MONITORINGRISKFORM_URL,
+          JSON.stringify({
+            riskID,
+            riskResponseActivitiyStatus,
+            riskResponseImplementation,
+            challenges,
+            mitigationOwner,
+            recommendedChanges,
+            comments,
+            closeStatus,
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+            withCredentials: true,
+          }
+        );
+      } else {
         await axios.post(
           MONITORINGRISKFORM_URL,
           JSON.stringify({
@@ -1693,7 +1687,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             withCredentials: true,
           }
         );
-    }
+      }
       notify();
     } catch (error) {
       if (error.response.status === 400) {
@@ -1727,7 +1721,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
   return (
     <>
-      <ToastContainer onClose={1000} hideProgressBar/>
+      <ToastContainer onClose={1000} hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
         Monitor Risk
       </Button>
@@ -1739,31 +1733,34 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-            {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" ? (
-              <>
-                 <select
-                type="departmentID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentID"
-                aria-describedby="departmentID"
-                value={departmentID}
-                autoComplete="off"
-                onChange={(e) => setdepartmentID(e.target.value)}
-                required>
-                <option></option>
+              {localStorage.getItem("role") === "ADMIN" ||
+              localStorage.getItem("role") === "GENERALMANAGER" ? (
+                <>
+                  <select
+                    type="departmentID"
+                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                    id="departmentID"
+                    aria-describedby="departmentID"
+                    value={departmentID}
+                    autoComplete="off"
+                    onChange={(e) => setdepartmentID(e.target.value)}
+                    required>
+                    <option></option>
 
-                {dept.map((dept) => (
-                  <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                    {" "}
-                    {dept.deptIDs.deptID}
-                  </option>
-                ))}
-              </select>
-              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                department-id
-              </label>
-              </>):(<>
-                </>)}
+                    {dept.map((dept) => (
+                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
+                        {" "}
+                        {dept.deptIDs.deptID}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                    department-id
+                  </label>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
               <select
@@ -1876,45 +1873,44 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               </div>
             </div>
             <div className="relative pb-4" data-te-input-wrapper-init>
-                  <select
-                      className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                      value={mitigationOwner}
-                      autoComplete="off"
-                      onChange={(e) => setmitigationOwner(e.target.value)}
-                      required>
-                      <option></option>
+              <select
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                value={mitigationOwner}
+                autoComplete="off"
+                onChange={(e) => setmitigationOwner(e.target.value)}
+                required>
+                <option></option>
 
-                      {ownersName.map((ownersName) => (
-                        <option key={ownersName.id} value={ownersName.value}>
-                          {" "}
-                          {ownersName.value}
-                        </option>
-                      ))}
-                  </select>
-                  <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    mitigation-owner
-                  </label>
+                {ownersName.map((ownersName) => (
+                  <option key={ownersName.id} value={ownersName.value}>
+                    {" "}
+                    {ownersName.value}
+                  </option>
+                ))}
+              </select>
+              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                mitigation-owner
+              </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskReview"
-                  value={closeStatus}
-                  autoComplete="off"
-                  onChange={(e) => setRiskClosed(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  Do you want to close Risk
-                </label>
-              </div>
-
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="riskReview"
+                value={closeStatus}
+                autoComplete="off"
+                onChange={(e) => setRiskClosed(e.target.value)}
+                required>
+                <option></option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                Do you want to close Risk
+              </label>
+            </div>
           </div>
-           
+
           <div className="px-7">
             <button
               type="submit"
