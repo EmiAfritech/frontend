@@ -210,50 +210,50 @@ export const riskmonitoringcolumn = [
   },
 ];
 export const riskappetitereportgreatercolumn = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskName",
     headerName: "Subject",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskScore",
     headerName: "Risk score",
-    width: 120,
+    flex: 1,
   },
   {
     field: "mitigatedRiskScore",
     headerName: "Mitigated Risk Score",
-    width: 120,
+    flex: 1,
   },
 ];
 
 export const riskappetitereportlowercolumn = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskName",
     headerName: "Subject",
-    width: 120,
+    flex: 1,
   },
   {
     field: "riskScore",
     headerName: "Risk score",
-    width: 120,
+    flex: 1,
   },
   {
     field: "mitigatedRiskScore",
     headerName: "Mitigated Risk Score",
-    width: 120,
+    flex: 1,
   },
 ];
 

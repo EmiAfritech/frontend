@@ -322,7 +322,7 @@ export function RiskAppetiteReportGreater() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 600, width: 850, backgroundColor: "white" }}
+        style={{ height: 600, }}
         className="  mt-10 w-auto">
         <DataGrid
           rows={tableData}
@@ -365,7 +365,7 @@ export function RiskAppetiteReportLower() {
   return (
     <div className="flex flex-col">
       <div
-        style={{ height: 600, width: 850, backgroundColor: "white" }}
+        style={{ height: 600, }}
         className="  mt-10 w-auto">
         <DataGrid
           rows={tableData}
