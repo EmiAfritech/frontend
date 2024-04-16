@@ -90,19 +90,19 @@ export const riskmitigationcolumn = [
 ];
 
 export const reportriskpyramidcolumn = [
-{ field: "id", headerName: "ID", width: 70 },
-{ field: "riskID", headerName: "Risk Code", width: 150 },
-{ field: "riskName", headerName: "Risk Name", width: 200 },
+{ field: "id", headerName: "ID", flex: 0.5 },
+{ field: "riskID", headerName: "Risk Code", flex: 1},
+{ field: "riskName", headerName: "Risk Name", flex: 1 },
 {
   field: "riskDescription",
   headerName: "Risk Description",
-  width: 250,
+  flex: 1,
 },
-{ field: "riskScore", headerName: "Risk Score", width: 100 },
+{ field: "riskScore", headerName: "Risk Score", flex: 1 },
 {
   field: "view",
   headerName: "Action",
-  width: 50,
+  flex: 0.5,
   renderCell: (params) => RiskAdviceReportData(params),
 },
   
@@ -135,19 +135,19 @@ export const reportopenrisktoreviewcolumn = [
 
 
 export const riskstatuscolumn = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "riskCode", headerName: "Risk Code", width: 100 },
-  { field: "status", headerName: "Status", width: 100 },
-  { field: "Subject", headerName: "subject", width: 150 },
-  { field: "department", headerName: "Department", width: 100 },
-  { field: "riskScore", headerName: "Inherent Risk ", width: 150 },
-  { field: "daysOpen", headerName: "Days Open", width: 150 },
+  { field: "id", headerName: "ID", flex: 0.5 },
+  { field: "riskCode", headerName: "Risk Code", flex: 1 },
+  { field: "status", headerName: "Status", flex: 1 },
+  { field: "Subject", headerName: "subject", flex: 1 },
+  { field: "department", headerName: "Department", flex: 1 },
+  { field: "riskScore", headerName: "Inherent Risk ", flex: 1 },
+  { field: "daysOpen", headerName: "Days Open", flex: 1 },
 
-  { field: "createdOn", headerName: "Submitted On", width: 150 },
-  { field: "submittedBy", headerName: "Submitted By", width: 150 },
-  { field: "monitoringPlanned", headerName: "monitoring Planned", width: 150 },
-  { field: "mitigationPlanned", headerName: "mitigation Planned", width: 150 },
-  { field: "reviewPlanned", headerName: "review Planned", width: 150 },
+  { field: "createdOn", headerName: "Submitted On", flex: 1},
+  { field: "submittedBy", headerName: "Submitted By", flex: 1 },
+  { field: "monitoringPlanned", headerName: "monitoring Planned", flex: 1 },
+  { field: "mitigationPlanned", headerName: "mitigation Planned", flex: 1 },
+  { field: "reviewPlanned", headerName: "review Planned", flex: 1 },
 ];
 
 export const reportaudittrailcolumn = [
