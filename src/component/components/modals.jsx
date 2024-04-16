@@ -41,6 +41,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 import "react-tabs/style/react-tabs.css";
@@ -2192,6 +2193,9 @@ export function LogOut() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
+
+
   const notify = () => {
     toast.success("Loginig Out Successful", {
       position: "top-center",
@@ -2216,6 +2220,10 @@ export function LogOut() {
 
   const handleLogOut = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+
+
     try {
       await axios.get(LOGOUT_URL, {
         headers: {
@@ -2232,6 +2240,8 @@ export function LogOut() {
       } else if (error.response.status === 500) {
         notifyNetwork();
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -2285,10 +2295,16 @@ export function LogOut() {
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
             <button
-              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
-              onClick={handleLogOut}>
-              Yes
+              onClick={handleLogOut}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Yes"
+              )}
             </button>
           </div>
         </Box>

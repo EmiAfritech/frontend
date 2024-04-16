@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Papa from "papaparse";
-import CircularProgress from "@mui/material/CircularProgress";
+c
 
 import {
   CREATERISKFORM_URL,
@@ -34,6 +34,10 @@ export function Userforms({ onFormSubmit }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+
+
   const notify = () => {
     toast.success("User Saved Successfully", {
       onClose: () => {
@@ -69,6 +73,9 @@ export function Userforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+
     try {
       await axios.post(
         USERSCREATEFORM_URL,
@@ -97,6 +104,8 @@ export function Userforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    } finally {
+      setLoading(false);
     }
   };
   const reload = () => {
@@ -269,13 +278,17 @@ export function Userforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-            <button
+          <button
+              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSubmit}>
-              Submit
+              onClick={handleSubmit}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -288,6 +301,9 @@ export function Departmentforms({ onFormSubmit }) {
   const [name, setName] = useState("");
   const [deptID, setDeptID] = useState("");
   const [location, setLocation] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+
   const notify = () => {
     toast.success("Department Saved Successfully", {
       onClose: () => {
@@ -306,6 +322,7 @@ export function Departmentforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await axios.post(
@@ -330,6 +347,8 @@ export function Departmentforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -407,11 +426,17 @@ export function Departmentforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-            <button
+          <button
+              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
-              Submit
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -561,6 +586,8 @@ export function Riskforms({ onFormSubmit, tableData }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -846,7 +873,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={27} thickness={6} color="primary" />
+                <CircularProgress size={24} thickness={6} color="primary" />
               ) : (
                 "Submit"
               )}
@@ -1106,13 +1133,17 @@ export function RiskReviewforms({ onFormSubmit }) {
             </div>
           </div>
           <div className="px-10">
-            <button
-              type="submit"
+          <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSubmit}>
-              Submit
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -1531,13 +1562,17 @@ export function RiskMitigationforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-            <button
-              type="submit"
+          <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSubmit}>
-              Submit
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
@@ -1912,13 +1947,17 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           </div>
 
           <div className="px-7">
-            <button
-              type="submit"
+          <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSubmit}>
-              Submit
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <CircularProgress size={24} thickness={6} color="primary" />
+              ) : (
+                "Submit"
+              )}
             </button>
           </div>
         </form>
