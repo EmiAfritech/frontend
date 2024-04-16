@@ -123,13 +123,13 @@ export const reportriskmitigationcolumn = [
 
 
 export const reportopenrisktoreviewcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "riskCode", headerName: "Risk Code", width: 100 },
-  { field: "status", headerName: "Status", width: 100 },
-  { field: "Subject", headerName: "subject", width: 150 },
-  { field: "riskScore", headerName: "Inherent Risk ", width: 150 },
-  { field: "daysOpen", headerName: "Days Open", width: 150 },
-  { field: "nextReviewDate", headerName: "Next Review Date", width: 150 },
+  { field: "id", headerName: "ID", flex: 0.5 },
+  { field: "riskCode", headerName: "Risk Code", flex: 1},
+  { field: "status", headerName: "Status", flex: 1 },
+  { field: "Subject", headerName: "subject", flex: 1 },
+  { field: "riskScore", headerName: "Inherent Risk ", flex: 1 },
+  { field: "daysOpen", headerName: "Days Open", flex: 1 },
+  { field: "nextReviewDate", headerName: "Next Review Date", flex: 1 },
 ];
 
 
