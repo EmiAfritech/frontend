@@ -495,7 +495,7 @@ export function ReportRiskLevel() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer >
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -590,7 +590,7 @@ export function ReportRiskStatus() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer >
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -685,7 +685,7 @@ export function ReportRiskLocation() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer >
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -780,7 +780,7 @@ export function ReportRiskCategory() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer >
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -875,7 +875,7 @@ export function ReportRiskResponse() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer >
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
@@ -970,7 +970,7 @@ export function ReportRiskOwner() {
           )}
         </div>
       </div>
-      <ResponsiveContainer height={250}>
+      <ResponsiveContainer>
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
