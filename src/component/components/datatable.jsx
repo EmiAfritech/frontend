@@ -108,17 +108,17 @@ export const reportriskpyramidcolumn = [
   
 ];
 export const reportriskmitigationcolumn = [
-{ field: "id", headerName: "ID", width: 70 },
-{ field: "riskID", headerName: "Risk Code", width: 70 },
-{ field: "riskName", headerName: "Risk Name", width: 150 },
+{ field: "id", headerName: "ID", flex: 0.5 },
+{ field: "riskID", headerName: "Risk Code", flex: 1},
+{ field: "riskName", headerName: "Risk Name", flex: 1},
 {
   field: "mitigatedRiskScore",
   headerName: "Mitigated Risk Score",
-  width: 150,
+  flex: 1,
 },
   
- { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-{ field: "createdAt", headerName: "Created At", width: 150 },
+ { field: "riskReviewer", headerName: "Risk Reviewer",  flex: 1 },
+{ field: "createdAt", headerName: "Created At",  flex: 1 },
 ];
 
 
