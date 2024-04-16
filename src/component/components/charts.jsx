@@ -876,7 +876,7 @@ export function ReportRiskResponse() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart width={210} height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
@@ -971,7 +971,7 @@ export function ReportRiskOwner() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart width={210} height={250}>
+      <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
       </PieChart>

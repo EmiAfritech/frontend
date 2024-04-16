@@ -7,7 +7,7 @@ import {
 
 export function ReportRiskAppetite() {
   return (
-    <div className="pt-7">
+    <div className="m-6">
       <Tabs>
         <TabList>
           <Tab>
