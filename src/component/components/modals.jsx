@@ -2196,15 +2196,7 @@ export function LogOut() {
   const [isLoading, setLoading] = useState(false);
 
 
-  const notify = () => {
-    toast.success("Loginig Out Successful", {
-      position: "top-center",
-      onClose: () => {
-        navigate("/", { replace: true });
-        localStorage.clear();
-      },
-    });
-  };
+
 
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
@@ -2232,8 +2224,8 @@ export function LogOut() {
         },
         withCredentials: true,
       });
-      handleClose();
-      notify();
+      navigate("/", { replace: true });
+        localStorage.clear();
     } catch (error) {
       if (error.response.status === 401) {
         notifyUnauthorized();

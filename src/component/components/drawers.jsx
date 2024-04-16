@@ -894,6 +894,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [riskReview, setRiskReview] = useState("");
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
   const [riskReviewComments, setriskReviewComments] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
   const notify = () => {
     toast.success("Review Saved Successfully", {
       onClose: () => {
@@ -960,6 +962,7 @@ export function RiskReviewforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       await axios.post(
@@ -986,6 +989,8 @@ export function RiskReviewforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -1167,6 +1172,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigationEffort, setmitigationEffort] = useState("");
   const [riskReviewer, setRiskReviewer] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const hostaddress = "http://localhost:5173/risk-mitigation";
 
   const notify = () => {
@@ -1267,6 +1273,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       if (
@@ -1325,6 +1332,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -1595,6 +1604,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [comments, setComments] = useState("");
   const [closeStatus, setRiskClosed] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
@@ -1678,6 +1688,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       if (localStorage.getItem("role") === "MANAGER") {
@@ -1730,6 +1741,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
+    }finally {
+      setLoading(false);
     }
   };
 
