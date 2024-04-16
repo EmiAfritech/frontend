@@ -2188,6 +2188,7 @@ export function CsvModal() {
   );
 }
 
+
 export function LogOut() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -2287,7 +2288,7 @@ export function LogOut() {
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
             <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               type="submit"
               onClick={handleLogOut}
               disabled={isLoading} // Disable the button while loading
