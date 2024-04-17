@@ -132,8 +132,8 @@ export function Login() {
                   onClick={handleSubmit}
                   disabled={isLoading} // Disable the button while loading
                 >
-                  {isLoading ? (
-                    <CircularProgress size={27} thickness={6} color="primary" />
+                  {isLoading ? (<div className="flex flex-row"><p>Loading</p>
+                    <CircularProgress size={27} thickness={6} color="primary" /></div>
                   ) : (
                     "Submit"
                   )}
