@@ -558,9 +558,9 @@ export function RiskViewTable() {
           <div>
             <Riskforms onFormSubmit={handleFormSubmit} tableData={tableData} />
           </div>
-          <div>
+          {/* <div>
             <CsvModal />
-          </div>
+          </div> */}
         </div>
       </div>
       <div
