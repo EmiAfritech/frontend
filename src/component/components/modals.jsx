@@ -2293,11 +2293,11 @@ export function LogOut() {
               onClick={handleLogOut}
               disabled={isLoading} // Disable the button while loading
             >
-              {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
-              ) : (
-                "Yes"
-              )}
+              {isLoading ? (<div className="flex flex-row justify-center"><p className="text-sm pr-2">Loading</p>
+                    <CircularProgress size={27} thickness={6} color="primary" /></div>
+                  ) : (
+                    "Yes"
+                  )}
             </button>
           </div>
         </Box>

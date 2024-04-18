@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Papa from "papaparse";
 import CircularProgress from "@mui/material/CircularProgress";
 
-
 import {
   CREATERISKFORM_URL,
   USERSCREATEFORM_URL,
@@ -36,8 +35,6 @@ export function Userforms({ onFormSubmit }) {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
-
-
 
   const notify = () => {
     toast.success("User Saved Successfully", {
@@ -75,7 +72,6 @@ export function Userforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
 
     try {
       await axios.post(
@@ -279,14 +275,17 @@ export function Userforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-          <button
+            <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
@@ -303,7 +302,6 @@ export function Departmentforms({ onFormSubmit }) {
   const [deptID, setDeptID] = useState("");
   const [location, setLocation] = useState("");
   const [isLoading, setLoading] = useState(false);
-
 
   const notify = () => {
     toast.success("Department Saved Successfully", {
@@ -427,14 +425,17 @@ export function Departmentforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-          <button
+            <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
@@ -874,7 +875,10 @@ export function Riskforms({ onFormSubmit, tableData }) {
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
@@ -990,7 +994,7 @@ export function RiskReviewforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -1139,14 +1143,17 @@ export function RiskReviewforms({ onFormSubmit }) {
             </div>
           </div>
           <div className="px-10">
-          <button
+            <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
@@ -1333,7 +1340,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -1572,14 +1579,17 @@ export function RiskMitigationforms({ onFormSubmit }) {
           </div>
 
           <div className="px-10">
-          <button
+            <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
@@ -1590,7 +1600,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     </>
   );
 }
-export function RiskMonitoringforms({ onFormSubmit }) { 
+export function RiskMonitoringforms({ onFormSubmit }) {
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1742,7 +1752,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       } else if (error.response.status === 500) {
         notifyServerDown();
       }
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -1961,14 +1971,17 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           </div>
 
           <div className="px-7">
-          <button
+            <button
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
               disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
-                <CircularProgress size={24} thickness={6} color="primary" />
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
               ) : (
                 "Submit"
               )}
