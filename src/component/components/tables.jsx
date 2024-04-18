@@ -554,13 +554,10 @@ export function RiskViewTable() {
   return (
     <div className="flex flex-col ">
       <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
-        <div className="grid grid-cols-2 gap-2">
+        <div >
           <div>
             <Riskforms onFormSubmit={handleFormSubmit} tableData={tableData} />
           </div>
-          {/* <div>
-            <CsvModal />
-          </div> */}
         </div>
       </div>
       <div
