@@ -24,6 +24,10 @@ export function Login() {
     toast.info("Authorization returned null", {});
   };
 
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details");
+  };
+
   const reload = () => {
     setEmail("");
     setPassword("");
@@ -64,7 +68,9 @@ export function Login() {
         reload();
       } else if (err.response.status === 401) {
         notifyUnauthorizedUser();
-      }
+      }else if (err.response.status === 400 ||err.response.status === 404 ) {
+        notifyFillForms();
+      } 
     } finally {
       setLoading(false);
     }
