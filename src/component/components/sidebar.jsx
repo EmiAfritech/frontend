@@ -168,7 +168,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="sidebar-container bg-slate-100">
+    <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
         <img
           src="https://static.africa-press.net/ghana/sites/18/2022/04/img-62599904dbcbf.jpg"
