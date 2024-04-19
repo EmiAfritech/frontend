@@ -4,9 +4,9 @@ import "../../component/comstyles/component.css";
 export function RiskMitigation() {
   
   return (
-    <div className="flex bg-slate-100 flex-col">
+    <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar/>
-      <div className="ml-[18%] m-6 h-screen">
+      <div className="ml-[18%] m-6">
         <RiskmitigationTab />
       </div>
     </div>

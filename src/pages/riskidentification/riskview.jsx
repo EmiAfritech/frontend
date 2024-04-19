@@ -6,9 +6,9 @@ import "../../component/comstyles/component.css";
 export function RiskView() {
   
   return (
-    <div className="flex bg-slate-100 flex-col">
+    <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar />
-      <div className=" ml-[18%] m-6 h-screen">
+      <div className=" ml-[18%] m-6">
         <div >
           {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" || localStorage.getItem("role") === "MANAGER"? (
             <>
