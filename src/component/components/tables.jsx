@@ -104,12 +104,12 @@ export function EmployeesTable() {
         </div>
       </div>
       <div className="mt-2 w-auto cardTable p-4">
-        <Box sx={{ height: 300 }}>
+        <Box sx={{ height: 700 }}>
           <DataGrid
             rows={tableData}
             columns={usercolumns}
             pageSize={10}
-            pageSizeOptions={[10, 15]}
+            pageSizeOptions={[15.20]}
           />
         </Box>
       </div>
@@ -165,13 +165,15 @@ export function RiskReview() {
       ) : (
         <></>
       )}
-      <div style={{ height: 650 }} className="mt-2 w-auto cardTable p-4">
+      <div className="mt-2 w-auto cardTable p-4">
+      <Box sx={{ height: 700 }}>
         <DataGrid
           rows={tableData}
           columns={riskreviewcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -281,13 +283,15 @@ export function RiskMonitor() {
           <RiskMonitoringforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div style={{ height: 300 }} className="mt-2 w-auto">
+      <div className="mt-2 w-auto">
+      <Box sx={{ height: 400 }}>
         <DataGrid
           rows={tableData}
           columns={riskmonitoringcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -417,13 +421,15 @@ export function DepartmentTab() {
           <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div style={{ height: 650 }} className="mt-2 w-auto cardTable p-4">
+      <div  className="mt-2 w-auto cardTable p-4">
+      <Box sx={{ height: 700 }}>
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
