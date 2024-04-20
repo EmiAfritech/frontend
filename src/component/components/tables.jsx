@@ -109,7 +109,7 @@ export function EmployeesTable() {
             rows={tableData}
             columns={usercolumns}
             pageSize={10}
-            pagination
+            pageSizeOptions={[10, 15]}
           />
         </Box>
       </div>
@@ -563,6 +563,7 @@ export function RiskViewTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#89FA79",
             },
+            height: 300
           }}>
           <DataGrid
             rows={tableData}
