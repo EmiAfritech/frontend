@@ -103,15 +103,15 @@ export function EmployeesTable() {
           <Userforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div
-        style={{ height: 650,}}
-        className="mt-2 w-auto cardTable p-4">
+      <div className="mt-2 w-auto cardTable p-4">
+        <Box sx={{ height: 700 }}>
         <DataGrid
           rows={tableData}
           columns={usercolumns}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -561,7 +561,6 @@ export function RiskViewTable() {
         </div>
       </div>
       <div
-        // style={{ height: 650,}}
         className="  mt-2 w-auto card p-4">
         <Box
           sx={{
