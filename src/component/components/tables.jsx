@@ -563,7 +563,7 @@ export function RiskViewTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#89FA79",
             },
-            height: 300
+            height: 700
           }}>
           <DataGrid
             rows={tableData}
