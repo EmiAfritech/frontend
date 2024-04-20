@@ -561,7 +561,7 @@ export function RiskViewTable() {
         </div>
       </div>
       <div
-        style={{ height: 650,}}
+        style={{ height: 650,  width: '100%'}}
         className="  mt-2 w-auto card p-4">
         <Box
           sx={{
