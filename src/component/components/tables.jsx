@@ -104,7 +104,7 @@ export function EmployeesTable() {
         </div>
       </div>
       <div className="mt-2 w-auto cardTable p-4">
-        <Box sx={{ height: 700 }}>
+        <Box sx={{ height: 650 }}>
           <DataGrid
             rows={tableData}
             columns={usercolumns}
@@ -166,7 +166,7 @@ export function RiskReview() {
         <></>
       )}
       <div className="mt-2 w-auto cardTable p-4">
-      <Box sx={{ height: 700 }}>
+      <Box sx={{ height: 650 }}>
         <DataGrid
           rows={tableData}
           columns={riskreviewcolumn}
@@ -422,7 +422,7 @@ export function DepartmentTab() {
         </div>
       </div>
       <div  className="mt-2 w-auto cardTable p-4">
-      <Box sx={{ height: 700 }}>
+      <Box sx={{ height: 650 }}>
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
@@ -569,7 +569,7 @@ export function RiskViewTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#89FA79",
             },
-            height: 700
+            height: 650
           }}>
           <DataGrid
             rows={tableData}
