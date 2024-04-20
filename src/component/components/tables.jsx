@@ -579,7 +579,7 @@ export function RiskViewTable() {
                 paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[15. 20]}
+            pageSizeOptions={[15, 20]}
             getCellClassName={(params) => {
               if (params.value === "High") {
                 return "high";
