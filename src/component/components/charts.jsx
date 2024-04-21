@@ -1124,7 +1124,7 @@ export function Pyramidchat() {
           {pyramidRiskTable ? (
             <>
               <div
-                style={{ height: 350, width: 900, backgroundColor: "white" }}
+                style={{ height: 350 }}
                 className=" mt-4">
                 <Box
                   sx={{
