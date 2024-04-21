@@ -1248,8 +1248,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
           }
         );
 
-        setRiskIDs(response);
-        console.log(risks)
+        setRiskIDs(response.data);
+        console.log(response)
         setRiskCategory(response.data.riskCategory)
         console.log(riskCategory)
       } catch (error) {
