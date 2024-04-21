@@ -1226,7 +1226,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
         withCredentials: true,
       })
       .then((data) => {
-        console.log(data)
         setOwnersName(data.data);
       })
       .catch((error) => {
@@ -1250,7 +1249,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
+        console.log(risks)
         setRiskCategory(response.data.riskCategory)
+        console.log(riskCategory)
       } catch (error) {
         console.error(error);
       }
