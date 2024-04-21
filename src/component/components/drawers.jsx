@@ -1432,9 +1432,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 required>
                 <option></option>
                 {risks.map((risks) => (
-                  <option key={risks.id} value={risks.value}>
+                  <option key={risks.id} value={risks.riskName}>
                     {" "}
-                    {risks.value}
+                    {risks.riskName}
                   </option>
                 ))}
               </select>
