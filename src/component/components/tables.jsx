@@ -529,7 +529,7 @@ export function RiskViewTable() {
       })
       .then((response) => setTableData(response.data.Data));
   };
-
+  
   useEffect(() => {
     viewAllRisks();
   }, []);

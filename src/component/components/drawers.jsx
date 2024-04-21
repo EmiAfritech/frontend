@@ -1251,6 +1251,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
         console.error(error);
       }
     };
+
+    console.log(risks)
     const fetchDepartments = async () => {
       try {
         const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
