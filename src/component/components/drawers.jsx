@@ -1298,7 +1298,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           }
         );
 
-        // console.log(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
       }
