@@ -1248,6 +1248,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
+        console.log(risks)
       } catch (error) {
         console.error(error);
       }
@@ -1282,56 +1283,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     }
   }, [departmentID]);
 
-  //CONFIRM AND COME BACK
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKIDSMITIGATIONNAME_URL,
-          JSON.stringify({ departmentID }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            withCredentials: true,
-          }
-        );
-
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    // console.log(risks)
-    const fetchDepartments = async () => {
-      try {
-        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-          withCredentials: true,
-        });
-        setDept(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (
-      localStorage.getItem("role") === "MANAGER" ||
-      localStorage.getItem("role") === "AUDITOR"
-    ) {
-      fetchData();
-    } else {
-      fetchDepartments();
-      if (departmentID !== "") {
-        fetchData();
-      }
-    }
-  }, [departmentID]);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

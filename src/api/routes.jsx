@@ -152,10 +152,6 @@ export const RISKIDSMONITORING_URL = "/risks/getAllOpenedRiskIDSToBeMonitored";
 //riskIDs for mitigation dropdown
 export const RISKIDSMITIGATION_URL = "/risks/getAllOpenedRiskIDSToBeMitigated";
 
-
-///confirm nd get back
-export const RISKIDSMITIGATIONNAME_URL = "/risks/getAllOpenedRiskNamesYetToBeMitigated";
-
 //riskIDs for review dropdown
 export const RISKIDSREVIEW_URL = "/risks/getAllOpenedRiskIDSToBeReviewed";
 
