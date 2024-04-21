@@ -1247,8 +1247,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
           }
         );
 
-        setRiskIDs(response.data);
-        console.log(risks)
+        // setRiskIDs(response);
+        console.log(response)
       } catch (error) {
         console.error(error);
       }
