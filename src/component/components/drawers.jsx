@@ -1219,16 +1219,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   //write a function the value in riskID to filter risks on the basis of id if it exists output riskID
 
   
-  const findRiskID = () => {
-    risks.forEach((risk) => {
-      if (riskID === risk.id) {
-        iD = risk.riskID;
-      }
-    }
-  );
-    console.log(iD);
-    return iD;
-  }
+
  
 
 
@@ -1300,7 +1291,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
         fetchData();
       }
     }
-    findRiskID();
   }, [departmentID]);
 
  
@@ -1317,7 +1307,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({
-            iD,
+            riskID,
             mitigatedRiskProbabilityLevel,
             mitigatedRiskImpactLevel,
             mitigationControl,
@@ -1339,7 +1329,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({
-            iD,
+            riskID,
             mitigatedRiskProbabilityLevel,
             mitigatedRiskImpactLevel,
             mitigationControl,
