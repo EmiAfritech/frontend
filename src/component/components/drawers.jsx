@@ -1084,7 +1084,7 @@ export function RiskReviewforms({ onFormSubmit }) {
                 aria-describedby="riskID"
                 value={riskID}
                 autoComplete="off"
-                onChange={(e) => setRiskID(e.target.riskID)}
+                onChange={(e) => setRiskID(e.target.value)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
@@ -1879,7 +1879,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
                 aria-describedby="riskID"
                 value={riskID}
                 autoComplete="off"
-                onChange={(e) => setRiskID(e.target.riskID)}
+                onChange={(e) => setRiskID(e.target.value)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
