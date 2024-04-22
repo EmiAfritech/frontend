@@ -1216,6 +1216,22 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate(formattedDate);
   };
 
+  //write a function the value in riskID to filter risks on the basis of id if it exists output riskID
+
+  
+  const findRiskID = () => {
+    risks.forEach((risk) => {
+      if (riskID === risk.id) {
+        iD = risk.riskID;
+      }
+    }
+  );
+    console.log(iD);
+    return iD;
+  }
+ 
+
+
   useEffect(() => {
     axios
       .get(RISKREVIEWERSDROPDOWN_URL, {
@@ -1255,6 +1271,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       } catch (error) {
         console.error(error);
       }
+    
     };
 
     const fetchDepartments = async () => {
@@ -1283,6 +1300,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         fetchData();
       }
     }
+    findRiskID();
   }, [departmentID]);
 
  
@@ -1426,7 +1444,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 aria-describedby="riskID"
                 value={riskID}
                 autoComplete="off"
-               
+                onChange={(e) => setRiskID(e.target.key)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
@@ -1436,7 +1454,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
                     }
                   </option>
                 )
-                  ,setRiskID(risks.riskID)
                   
                 )}
               </select>
@@ -1450,7 +1467,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="riskID"
                 aria-describedby="riskID"
-                value={riskID}
+                value={iD}
                 autoComplete="off"
                 />
                 
