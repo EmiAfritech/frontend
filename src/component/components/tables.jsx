@@ -50,7 +50,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -103,15 +103,15 @@ export function EmployeesTable() {
           <Userforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div
-        style={{ height: 650,}}
-        className="mt-2 w-auto cardTable p-4">
-        <DataGrid
-          rows={tableData}
-          columns={usercolumns}
-          pageSize={10}
-          pagination
-        />
+      <div className="mt-2 w-auto cardTable p-4">
+        <Box sx={{ height: 650 }}>
+          <DataGrid
+            rows={tableData}
+            columns={usercolumns}
+            pageSize={10}
+            pageSizeOptions={[15.20]}
+          />
+        </Box>
       </div>
     </div>
   );
@@ -165,15 +165,15 @@ export function RiskReview() {
       ) : (
         <></>
       )}
-      <div
-        style={{ height: 650, }}
-        className="mt-2 w-auto cardTable p-4">
+      <div className="mt-2 w-auto cardTable p-4">
+      <Box sx={{ height: 650 }}>
         <DataGrid
           rows={tableData}
           columns={riskreviewcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -283,15 +283,15 @@ export function RiskMonitor() {
           <RiskMonitoringforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div
-        style={{ height: 300 }}
-        className="mt-2 w-auto">
+      <div className="mt-2 w-auto">
+      <Box sx={{ height: 400 }}>
         <DataGrid
           rows={tableData}
           columns={riskmonitoringcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -321,9 +321,7 @@ export function RiskAppetiteReportGreater() {
   }, []);
   return (
     <div className="flex flex-col">
-      <div
-        style={{ height: 600, }}
-        className="  mt-10 w-auto">
+      <div style={{ height: 600 }} className="  mt-10 w-auto">
         <DataGrid
           rows={tableData}
           columns={riskappetitereportgreatercolumn}
@@ -364,9 +362,7 @@ export function RiskAppetiteReportLower() {
   }, []);
   return (
     <div className="flex flex-col">
-      <div
-        style={{ height: 600, }}
-        className="  mt-10 w-auto">
+      <div style={{ height: 600 }} className="  mt-10 w-auto">
         <DataGrid
           rows={tableData}
           columns={riskappetitereportlowercolumn}
@@ -425,15 +421,15 @@ export function DepartmentTab() {
           <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div
-        style={{ height: 650, }}
-        className="mt-2 w-auto cardTable p-4">
+      <div  className="mt-2 w-auto cardTable p-4">
+      <Box sx={{ height: 650 }}>
         <DataGrid
           rows={tableData}
           columns={deptcolumn}
           pageSize={10}
           pagination
         />
+        </Box>
       </div>
     </div>
   );
@@ -481,9 +477,7 @@ export function RiskmitigationTab() {
           <RiskMitigationforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div
-        style={{ height: 650 }}
-        className="  mt-2 w-full card p-4">
+      <div style={{ height: 650 }} className="  mt-2 w-full card p-4">
         <DataGrid
           rows={tableData}
           columns={riskmitigationcolumn}
@@ -535,7 +529,7 @@ export function RiskViewTable() {
       })
       .then((response) => setTableData(response.data.Data));
   };
-
+  
   useEffect(() => {
     viewAllRisks();
   }, []);
@@ -554,15 +548,13 @@ export function RiskViewTable() {
   return (
     <div className="flex flex-col ">
       <div className="flex flex-row pb-3 pt-5 pr-2 flex-row-reverse items-center">
-        <div >
+        <div>
           <div>
             <Riskforms onFormSubmit={handleFormSubmit} tableData={tableData} />
           </div>
         </div>
       </div>
-      <div
-        style={{ height: 650,}}
-        className="  mt-2 w-auto card p-4">
+      <div className="  mt-2 w-auto card p-4">
         <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
@@ -577,28 +569,29 @@ export function RiskViewTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#89FA79",
             },
+            height: 650
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskviewcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          getCellClassName={(params) => {
-            if (params.value === 'High') {
-              return 'high';
-            }else if(params.value === 'Very High') {
-              return 'veryhigh';
-            }else if(params.value === 'Medium') {
-              return 'medium';
-            }else if(params.value === 'Low') {
-              return 'low';
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={riskviewcolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>
@@ -753,9 +746,7 @@ export function RiskMitigationReportTable() {
           )}
         </div>
       </div>
-      <div
-        style={{ height: 650, }}
-        className="  mt-2 w-auto card p-4">
+      <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
           columns={reportriskmitigationcolumn}
@@ -861,9 +852,7 @@ export function ReviewNeedingRisksReportTab() {
           )}
         </div>
       </div>
-      <div
-        style={{ height: 650 }}
-        className="  mt-2 w-auto card p-4">
+      <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
           columns={reportopenrisktoreviewcolumn}
@@ -969,10 +958,8 @@ export function RiskStatusReportTab() {
           )}
         </div>
       </div>
-      <div
-        style={{ height: 650, }}
-        className=" mt-2 w-auto card p-4">
-          <Box
+      <div style={{ height: 650 }} className=" mt-2 w-auto card p-4">
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -987,34 +974,34 @@ export function RiskStatusReportTab() {
               backgroundColor: "#89FA79",
             },
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskstatuscolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          checkboxSelection
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              printOptions: { getRowsToExport: getSelectedRowsToExport },
-            },
-          }}
-          getCellClassName={(params) => {
-            if (params.value === 'High') {
-              return 'high';
-            }else if(params.value === 'Very High') {
-              return 'veryhigh';
-            }else if(params.value === 'Medium') {
-              return 'medium';
-            }else if(params.value === 'Low') {
-              return 'low';
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={riskstatuscolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            checkboxSelection
+            slots={{ toolbar: GridToolbar }}
+            slotProps={{
+              toolbar: {
+                printOptions: { getRowsToExport: getSelectedRowsToExport },
+              },
+            }}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>

@@ -141,6 +141,7 @@ export const MONITORINGRISK_URL = "/departments/{departmentId}/risks/{riskId}/ri
 //risk mitigation url
 export const MITIGATIONRISK_URL ="/departments/{departmentId}/risks/{riskId}/riskmitigation";
 
+
 /**********************************************dropdowns*********************************************************/
 //riskIDS dropdown
 export const RISKIDS_URL = "/risks/getAllOpenedRiskIDs";
