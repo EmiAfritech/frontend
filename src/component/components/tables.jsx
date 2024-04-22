@@ -612,6 +612,7 @@ export function Reportaudittrail() {
         });
 
         setTableData(response.data);
+        console.log(tableData)
       } catch (error) {
         console.error(error);
       }
