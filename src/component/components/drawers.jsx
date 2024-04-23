@@ -1457,7 +1457,7 @@ console.log(riskID)
                 required>
                 <option></option>
                 {risks.map((risks) => (
-                  <option key={risks.id} value={JSON.stringify({
+                  <option key={risks.id} value={({
                     riskID: risks.riskID,
                     riskName: risks.riskName,
                     riskCategory: risks.riskCategory
