@@ -898,7 +898,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [dept, setDept] = useState([]);
 
   const [riskReview, setRiskReview] = useState("");
-  const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
+  const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
   const [riskReviewComments, setriskReviewComments] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -1135,6 +1135,7 @@ export function RiskReviewforms({ onFormSubmit }) {
              
                { riskReview === "reject risk" ? (
                <> 
+                {setNextRiskReviewDate(new Date())}
                   <input
                     type="date"
                     value={NextRiskReviewDate}
