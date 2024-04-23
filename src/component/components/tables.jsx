@@ -322,6 +322,22 @@ export function RiskAppetiteReportGreater() {
   return (
     <div className="flex flex-col">
       <div style={{ height: 600 }} className="  mt-10 w-auto">
+      <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0B37D6",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+            height: 650
+          }}>
         <DataGrid
           rows={tableData}
           columns={riskappetitereportgreatercolumn}
@@ -331,8 +347,19 @@ export function RiskAppetiteReportGreater() {
             },
           }}
           pageSizeOptions={[10, 15]}
-          checkboxSelection
+          getCellClassName={(params) => {
+            if (params.value === "High") {
+              return "high";
+            } else if (params.value === "Very High") {
+              return "veryhigh";
+            } else if (params.value === "Medium") {
+              return "medium";
+            } else if (params.value === "Low") {
+              return "low";
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
@@ -363,6 +390,22 @@ export function RiskAppetiteReportLower() {
   return (
     <div className="flex flex-col">
       <div style={{ height: 600 }} className="  mt-10 w-auto">
+      <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0B37D6",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+            height: 650
+          }}>
         <DataGrid
           rows={tableData}
           columns={riskappetitereportlowercolumn}
@@ -372,8 +415,19 @@ export function RiskAppetiteReportLower() {
             },
           }}
           pageSizeOptions={[10, 15]}
-          checkboxSelection
+          getCellClassName={(params) => {
+            if (params.value === "High") {
+              return "high";
+            } else if (params.value === "Very High") {
+              return "veryhigh";
+            } else if (params.value === "Medium") {
+              return "medium";
+            } else if (params.value === "Low") {
+              return "low";
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
@@ -478,6 +532,22 @@ export function RiskmitigationTab() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-full card p-4">
+      <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0B37D6",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+            height: 650
+          }}>
         <DataGrid
           rows={tableData}
           columns={riskmitigationcolumn}
@@ -487,7 +557,19 @@ export function RiskmitigationTab() {
             },
           }}
           pageSizeOptions={[10, 15]}
+          getCellClassName={(params) => {
+            if (params.value === "High") {
+              return "high";
+            } else if (params.value === "Very High") {
+              return "veryhigh";
+            } else if (params.value === "Medium") {
+              return "medium";
+            } else if (params.value === "Low") {
+              return "low";
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
@@ -748,6 +830,22 @@ export function RiskMitigationReportTable() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
+      <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0B37D6",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+            height: 650
+          }}>
         <DataGrid
           rows={tableData}
           columns={reportriskmitigationcolumn}
@@ -757,14 +855,25 @@ export function RiskMitigationReportTable() {
             },
           }}
           pageSizeOptions={[10, 15]}
-          checkboxSelection
           slots={{ toolbar: GridToolbar }}
           slotProps={{
             toolbar: {
               printOptions: { getRowsToExport: getSelectedRowsToExport },
             },
           }}
+          getCellClassName={(params) => {
+            if (params.value === "High") {
+              return "high";
+            } else if (params.value === "Very High") {
+              return "veryhigh";
+            } else if (params.value === "Medium") {
+              return "medium";
+            } else if (params.value === "Low") {
+              return "low";
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
@@ -854,6 +963,22 @@ export function ReviewNeedingRisksReportTab() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
+      <Box
+          sx={{
+            [`.${gridClasses.cell}.veryhigh`]: {
+              backgroundColor: "#F84626",
+            },
+            [`.${gridClasses.cell}.high`]: {
+              backgroundColor: "#ecbe2f",
+            },
+            [`.${gridClasses.cell}.medium`]: {
+              backgroundColor: "#0B37D6",
+            },
+            [`.${gridClasses.cell}.low`]: {
+              backgroundColor: "#89FA79",
+            },
+            height: 650
+          }}>
         <DataGrid
           rows={tableData}
           columns={reportopenrisktoreviewcolumn}
@@ -870,7 +995,19 @@ export function ReviewNeedingRisksReportTab() {
               printOptions: { getRowsToExport: getSelectedRowsToExport },
             },
           }}
+          getCellClassName={(params) => {
+            if (params.value === "High") {
+              return "high";
+            } else if (params.value === "Very High") {
+              return "veryhigh";
+            } else if (params.value === "Medium") {
+              return "medium";
+            } else if (params.value === "Low") {
+              return "low";
+            }
+          }}
         />
+        </Box>
       </div>
     </div>
   );
