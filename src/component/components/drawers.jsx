@@ -901,7 +901,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
   const [riskReviewComments, setriskReviewComments] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const canDisplay = useState(false);
+  const [canDisplay, setCanDisplay] = useState(false);
 
   const notify = () => {
     toast.success("Review Saved Successfully", {
@@ -1131,8 +1131,8 @@ export function RiskReviewforms({ onFormSubmit }) {
                   risk-review
                 </label>
                 {riskReview === "reject risk" ? (
-                  canDisplay = true
-                ): canDisplay = false}
+                  setCanDisplay(true)
+                ): setCanDisplay(false)}
               </div>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
