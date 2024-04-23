@@ -1488,7 +1488,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 aria-describedby="riskID"
                 value={riskID}
                 autoComplete="off"
-                onChange={(e) => setRiskID(e.target.value)}
+                onChange={(e) => setRiskID(e.target.value.risks.riskID)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
