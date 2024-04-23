@@ -1142,7 +1142,6 @@ export function RiskReviewforms({ onFormSubmit }) {
              
                { canDisplay? (
                <> 
-                {setNextRiskReviewDate(new Date())}
                   <input
                     type="date"
                     value={NextRiskReviewDate}
