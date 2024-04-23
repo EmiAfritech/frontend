@@ -1212,9 +1212,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [riskReviewer, setRiskReviewer] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [probabilityLevel, setProbabilityLevel] = useState("");
-  const [impactLevel, setImpactLevel] = useState("");
-
+  const [probabilityLevel, setProbabilityLevel] = useState(" ");
+  const [impactLevel, setImpactLevel] = useState(" ");
+  
   const hostaddress = "http://localhost:5173/risk-mitigation";
 
   const notify = () => {
@@ -1281,9 +1281,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
-        console.log(response);
-        setRiskCategory(response.data.riskCategory);
-        console.log(riskCategory);
+        
+       
       } catch (error) {
         console.error(error);
       }
