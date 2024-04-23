@@ -1422,8 +1422,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate("");
   };
 
-  console.log(riskID)
-
   const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
@@ -1434,7 +1432,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setOpen(false);
   }
 
-  
+  const [riskIDD, riskCategoryt, impact, probability]  = riskID
+  console.log(riskIDD, riskCategoryt, impact, probability);
  
 
   return (
@@ -1488,7 +1487,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 aria-describedby="riskID"
                 value={riskID}
                 autoComplete="off"
-                onChange={(e) => setRiskID(e.target.value.risks.riskID)}
+                onChange={(e) => setRiskID(e.target.value)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
