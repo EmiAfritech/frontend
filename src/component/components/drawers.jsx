@@ -1222,7 +1222,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-  const [riskID, setRiskID] = useState([]);
+  const [riskID, setRiskID] = useState("");
   let iD = "";
   const [risks, setRiskIDs] = useState([]);
 
