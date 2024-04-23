@@ -1276,9 +1276,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
-        console.log(response);
-        setRiskCategory(response.data.riskCategory);
-        console.log(riskCategory);
       } catch (error) {
         console.error(error);
       }
@@ -1401,7 +1398,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
   }
 
   const handleChange = (event) => {
-    // Parse the JSON string back to an object
     setRiskID(JSON.parse(event.target.value));
 };
 console.log(riskID)
@@ -1481,7 +1477,7 @@ console.log(riskID)
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="riskID"
                 aria-describedby="riskID"
-                value={riskID}
+                value={riskID.riskID}
                 autoComplete="off"
               />
 
