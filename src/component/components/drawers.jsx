@@ -1432,8 +1432,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setOpen(false);
   }
 
-  const [riskIDD, riskCategoryt, impact, probability]  = riskID
-  console.log(riskIDD, riskCategoryt, impact, probability);
+  const riskIDD = riskID[1]
+  console.log(riskIDD)
  
 
   return (
