@@ -1039,7 +1039,7 @@ export function RiskReviewforms({ onFormSubmit }) {
 
     if (riskReview === "reject risk") {
       console.log("reject risk")
-    }else{console.log("accept risk")}
+    }else if(riskReview === "accept risk") {console.log("accept risk")}
   };
 
   return (
