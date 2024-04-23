@@ -1281,7 +1281,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
-        
+        console.log(response.data);
        
       } catch (error) {
         console.error(error);
@@ -1417,7 +1417,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     console.log(riskCategory,probabilityLevel,impactLevel)
 }
 
-  console.log(riskID);
+ 
 
   return (
     <>
