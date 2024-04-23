@@ -25,6 +25,37 @@ import {
   RISKIDSMITIGATIONNAME_URL,
 } from "../../api/routes";
 
+function getProbabiltyLevelNumber(probabilitys) {
+  if (probabilitys === 1) {
+    return "Almost Impossible (1)";
+  } else if (probabilitys === 2) {
+    return "Unlikely (2)";
+  } else if (probabilitys === 3) {
+    return "Likely (3)";
+  } else if (probabilitys === 4) {
+    return "Very Likely (4)";
+  } else if (probabilitys === 5) {
+    return "Almost Certain (5)";
+  } else {
+    return 0;
+  }
+}
+
+function getImpactLevelNumber(impact) {
+  if (impact === 1) {
+    return "Insignificant (1)";
+  } else if (impact === 2) {
+    return "Minor (2)";
+  } else if (impact === 3) {
+    return "Moderate (3)";
+  } else if (impact === 4) {
+    return "Major (4)";
+  } else if (impact === 5) {
+    return "Catastrophic (5)";
+  } else {
+    return 0;
+  }
+}
 export function Userforms({ onFormSubmit }) {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -1412,9 +1443,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const displayCategoryProbnImpact = async () => {
     //filter through a map of the object risks in search for an object with riskID "riskID"
     const risk = risks.find((risk) => risk.riskID === riskID);
-    setRiskCategory(risk.riskCategory);
-    setProbabilityLevel(risk.riskProbabilityLevel);
-    setImpactLevel(risk.riskImpactLevel);
+    setRiskCategory( risk.riskCategory);
+    setProbabilityLevel(getProbabiltyLevelNumber(risk.probability));
+    setImpactLevel(getImpactLevelNumber(risk.impact));
     console.log(riskCategory,probabilityLevel,impactLevel)
 }
 
