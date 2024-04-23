@@ -612,7 +612,7 @@ export function Reportaudittrail() {
         });
 
         setTableData(response.data);
-        console.log(tableData)
+        console.log(response)
       } catch (error) {
         console.error(error);
       }
