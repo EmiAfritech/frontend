@@ -1408,7 +1408,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   };
 
   const reload = () => {
-    setRiskID("");
+    setRiskName("");
     setdepartmentID("");
     setmitigatedRiskProbabilityLevel("");
     setmitigatedRiskImpactLevel("");
