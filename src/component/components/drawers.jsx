@@ -1222,7 +1222,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-  const [riskIDArray, setRiskIDArray] = useState("");
+  const [riskName, setRiskName] = useState("");
   let iD = "";
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1237,7 +1237,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [riskReviewer, setRiskReviewer] = useState("");
   const [mitigationCost, setmitigationCost] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] = riskIDArray.split(',');
+  const [riskID, riskCategory, impactLevel, probabilityLevel] = riskName.split(',');
   
   const hostaddress = "http://localhost:5173/risk-mitigation";
 
@@ -1483,9 +1483,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="riskID"
                 aria-describedby="riskID"
-                value={riskID}
+                value={riskName}
                 autoComplete="off"
-                onChange={(e) => setRiskIDArray(e.target.value)}
+                onChange={(e) => setRiskName(e.target.value)}
                 required>
                 <option></option>
                 {risks.map((risks) => (
