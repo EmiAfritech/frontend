@@ -901,7 +901,6 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
   const [riskReviewComments, setriskReviewComments] = useState("");
   const [isLoading, setLoading] = useState(false);
-  console.log(risks)
 
   const notify = () => {
     toast.success("Review Saved Successfully", {
@@ -935,6 +934,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
+        console.log(response)
       } catch (error) {
         console.error(error);
       }
@@ -1089,7 +1089,7 @@ export function RiskReviewforms({ onFormSubmit }) {
                 required>
                 <option></option>
                 {risks.map((risks) => (
-                  <option key={risks.id} value={risks }>
+                  <option key={risks.id} value={risks.riskID }>
                     {" "}
                     {risks.riskName}
                   </option>
@@ -1366,6 +1366,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       setLoading(false);
     }
   };
+  console.log(riskID)
 
   const reload = () => {
     setRiskID("");
@@ -1444,7 +1445,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 required>
                 <option></option>
                 {risks.map((risks) => (
-                  <option key={risks.id} value={risks.riskID}>
+                  <option key={risks.id} value={risks}>
                     {" "}
                     {risks.riskName}
                   </option>
