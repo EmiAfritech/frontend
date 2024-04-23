@@ -1314,7 +1314,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       }
     };
 
-    console.log(riskID)
+    
 
     const fetchDepartments = async () => {
       try {
@@ -1421,6 +1421,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setmitigationCost("");
     setEndDate("");
   };
+
+  console.log(riskID)
 
   const [open, setOpen] = React.useState(false);
 
