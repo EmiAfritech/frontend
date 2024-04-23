@@ -1037,8 +1037,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   const handleRiskReview = (e) =>{
     setRiskReview(e.target.value)
     if(riskReview === "reject risk"){
-      console.log("hi")
-    }else{console.log("go")}
+      setCanDisplay(true)
+    }
   }
 
   return (
@@ -1140,7 +1140,7 @@ export function RiskReviewforms({ onFormSubmit }) {
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
              
-               { canDisplay === true ? (
+               { canDisplay? (
                <> 
                 {setNextRiskReviewDate(new Date())}
                   <input
