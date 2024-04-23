@@ -901,7 +901,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
   const [riskReviewComments, setriskReviewComments] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [canDisplay, setCanDisplay] = useState(true);
+  const [canDisplay, setCanDisplay] = useState(false);
 
   const notify = () => {
     toast.success("Review Saved Successfully", {
@@ -1037,8 +1037,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   const handleRiskReview = (e) => {
     setRiskReview(e.target.value);
     if (riskReview === "reject risk") {
-      setCanDisplay(false);
-    }
+      setCanDisplay(true);
+    }else{setCanDisplay(false);}
   };
 
   return (
