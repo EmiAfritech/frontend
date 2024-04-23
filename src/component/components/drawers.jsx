@@ -1443,10 +1443,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const displayCategoryProbnImpact = async () => {
     //filter through a map of the object risks in search for an object with riskID "riskID"
     const risk = risks.find((risk) => risk.riskID === riskID);
-    setRiskCategory( risk.riskCategory);
-    console.log(riskCategory)
+    //set the state of the riskCategory, probabilityLevel and impactLevel to the values of the object found
+    
+   
     setProbabilityLevel(getProbabiltyLevelNumber(risk.probability));
     setImpactLevel(getImpactLevelNumber(risk.impact));
+    setRiskCategory( risk.riskCategory);
+    
     console.log(riskCategory,probabilityLevel,impactLevel)
 }
 
