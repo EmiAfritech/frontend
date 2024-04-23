@@ -144,10 +144,6 @@ export const riskstatuscolumn = [
   { field: "daysOpen", headerName: "Days Open", flex: 1 },
 
   { field: "createdOn", headerName: "Submitted On", flex: 1},
-  { field: "submittedBy", headerName: "Submitted By", flex: 1 },
-  { field: "monitoringPlanned", headerName: "monitoring Planned", flex: 1 },
-  { field: "mitigationPlanned", headerName: "mitigation Planned", flex: 1 },
-  { field: "reviewPlanned", headerName: "review Planned", flex: 1 },
 ];
 
 export const reportaudittrailcolumn = [
