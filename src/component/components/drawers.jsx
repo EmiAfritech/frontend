@@ -1440,18 +1440,18 @@ export function RiskMitigationforms({ onFormSubmit }) {
     // Parse the JSON string back to an object
     setRiskID(JSON.parse(event.target.value));
   };
-  const displayCategoryProbnImpact =  () => {
-    //filter through a map of the object risks in search for an object with riskID "riskID"
-    const risk = risks.find((risk) => risk.riskID === riskID);
-    //set the state of the riskCategory, probabilityLevel and impactLevel to the values of the object found
+//   const displayCategoryProbnImpact =  () => {
+//     //filter through a map of the object risks in search for an object with riskID "riskID"
+//     const risk = risks.find((risk) => risk.riskID === riskID);
+//     //set the state of the riskCategory, probabilityLevel and impactLevel to the values of the object found
 
    
-    setProbabilityLevel(getProbabiltyLevelNumber(risk.probability));
-    setImpactLevel(getImpactLevelNumber(risk.impact));
-    setRiskCategory( risk.riskCategory);
+//     setProbabilityLevel(getProbabiltyLevelNumber(risk.probability));
+//     setImpactLevel(getImpactLevelNumber(risk.impact));
+//     setRiskCategory( risk.riskCategory);
     
-    console.log(riskCategory,probabilityLevel,impactLevel)
-}
+//     console.log(riskCategory,probabilityLevel,impactLevel)
+// }
 
  
 
