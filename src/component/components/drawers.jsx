@@ -1034,7 +1034,7 @@ export function RiskReviewforms({ onFormSubmit }) {
     setriskReviewComments("");
   };
 
-  const handleRiskReview = () =>{
+  const handleRiskReview = (e) =>{
     setRiskReview(e.target.value)
     if(riskReview === "reject risk"){
       console.log("hi")
