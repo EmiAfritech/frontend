@@ -1377,7 +1377,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
       setLoading(false);
     }
   };
-  console.log(riskID)
 
   const reload = () => {
     setRiskID("");
@@ -1400,6 +1399,12 @@ export function RiskMitigationforms({ onFormSubmit }) {
   function handleClose() {
     setOpen(false);
   }
+
+  const handleChange = (event) => {
+    // Parse the JSON string back to an object
+    setRiskID(JSON.parse(event.target.value));
+};
+console.log(riskID)
 
   return (
     <>
@@ -1456,7 +1461,11 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 required>
                 <option></option>
                 {risks.map((risks) => (
-                  <option key={risks.id} value={risks}>
+                  <option key={risks.id} value={JSON.stringify({
+                    riskID: risks.riskID,
+                    riskName: risks.riskName,
+                    riskCategory: risks.riskCategory
+                })}>
                     {" "}
                     {risks.riskName}
                   </option>
