@@ -1432,8 +1432,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setOpen(false);
   }
 
-  const riskIDD = riskID[1]
-  console.log(riskIDD)
+  const [riskIDD, riskCategoryt, impact, probability] = riskID.split(',');
+
+// Now you can use these variables individually:
+console.log(riskIDD);        // Outputs: AUD023
+console.log(riskCategoryt);  // Outputs: PEOPLE
+console.log(impact);        // Outputs: 4
+console.log(probability); 
  
 
   return (
