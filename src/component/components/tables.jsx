@@ -334,7 +334,7 @@ export function RiskAppetiteReportGreater() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -402,7 +402,7 @@ export function RiskAppetiteReportLower() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -544,7 +544,7 @@ export function RiskmitigationTab() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -649,7 +649,7 @@ export function RiskViewTable() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -842,7 +842,7 @@ export function RiskMitigationReportTable() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -975,7 +975,7 @@ export function ReviewNeedingRisksReportTab() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
             height: 650
           }}>
@@ -1109,7 +1109,7 @@ export function RiskStatusReportTab() {
               backgroundColor: "#0B37D6",
             },
             [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#89FA79",
+              backgroundColor: "#4A7C0B",
             },
           }}>
           <DataGrid

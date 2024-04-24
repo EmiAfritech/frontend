@@ -1138,7 +1138,7 @@ export function Pyramidchat() {
                       backgroundColor: "#0B37D6",
                     },
                     [`.${gridClasses.cell}.low`]: {
-                      backgroundColor: "#89FA79",
+                      backgroundColor: "#4A7C0B",
                     },
                     height: 350,
                   }}>
