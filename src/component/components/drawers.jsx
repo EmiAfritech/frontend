@@ -658,7 +658,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
           NEW RISK
         </div>
         <hr />
-        <form className="w-96 bg-slate-400">
+        <form className="w-96">
           <div className=" px-10 py-10">
             {localStorage.getItem("role") === "ADMIN" ||
             localStorage.getItem("role") === "GENERALMANAGER" ? (
