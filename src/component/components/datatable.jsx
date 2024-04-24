@@ -37,7 +37,7 @@ export const riskreviewcolumn = [
     headerName: "Next Risk Review Date",
     flex: 1,
   },
-  { field: "createdAt", headerName: "Created At", flex: 1},
+  { field: "createdAt", headerName: "Date Reviewed", flex: 1},
   {
     field: "view",
     headerName: "Action",
@@ -57,7 +57,7 @@ export const riskreviewrow = [
     width: 170,
   },
   { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-  { field: "createdAt", headerName: "Created At", width: 150 },
+  { field: "createdAt", headerName: "Date Reviewed", width: 150 },
 ];
 
 export const riskmitigationcolumn = [
@@ -80,7 +80,7 @@ export const riskmitigationcolumn = [
     flex: 1,
   },
   { field: "riskReviewer", headerName: "Risk Reviewer", flex: 1 },
-  { field: "createdAt", headerName: "Created At", flex: 1 },
+  { field: "createdAt", headerName: "Date Mitigated", flex: 1 },
    {
     field: "view",
     headerName: "Action",
@@ -118,7 +118,7 @@ export const reportriskmitigationcolumn = [
 },
   
  { field: "riskReviewer", headerName: "Risk Reviewer",  flex: 1 },
-{ field: "createdAt", headerName: "Created At",  flex: 1 },
+{ field: "createdAt", headerName: "Date Mitigated",  flex: 1 },
 ];
 
 
@@ -197,7 +197,7 @@ export const riskmonitoringcolumn = [
   { field: "challenges", headerName: "Challenges", flex: 1 },
   { field: "comments", headerName: "Comments", flex: 1 },
   { field: "mitigationOwner", headerName: "Mitigation Owner", flex: 1 },
-  { field: "createdAt", headerName: "Created At", flex: 1 },
+  { field: "createdAt", headerName: "Date Monitored", flex: 1 },
   {
     field: "view",
     headerName: "Action",
