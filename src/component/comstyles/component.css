@@ -25,12 +25,10 @@
 }
 
 .sidebar-main li:hover {
-  background-color: #1E4D7E; /* Change color on hover */
+  background-color: #1E4D7E; 
+  border-radius: 15px;
 }
 
-.sidebar-main li.active {
-  background-color: #165e9e; /* Change color for active tab */
-}
 
 .icons {
   size: 8px;
