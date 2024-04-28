@@ -3,13 +3,6 @@ import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, R
 
 
 
-
-
-
-
-
-
-
 export const usercolumns = [
   { field: "id", headerName: "ID",  flex: 0.5},
   { field: "firstName", headerName: "First Name", flex: 1},
@@ -254,7 +247,6 @@ export const riskappetitereportlowercolumn = [
 ];
 
 export const riskviewcolumn = [
-  { field: "id", headerName: "ID", felx: 0.5},
   { field: "riskID", headerName: "Risk Code", felx: 1 },
   { field: "riskName", headerName: "Risk Name", felx: 1 },
   { field: "riskDescription", headerName: "Risk Description", flex: 2 },

@@ -672,6 +672,7 @@ export function RiskViewTable() {
                 return "low";
               }
             }}
+            getRowId={(row)=> row.id}
           />
         </Box>
       </div>
