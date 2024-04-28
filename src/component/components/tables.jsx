@@ -141,7 +141,6 @@ export function RiskReview() {
   }, []);
 
   const handleFormSubmit = () => {
-    // Call the function to fetch updated data after form submission
     getRiskReview();
   };
 

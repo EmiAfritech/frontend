@@ -2245,7 +2245,7 @@ export function LogOut() {
     transform: "translate(-50%, -50%)",
     width: 450,
     bgcolor: "white",
-    border: "2px solid #000",
+    borderBottom: "2px solid #000",
     boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
     borderRadius: "8px",
     p: 2,
