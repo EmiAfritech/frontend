@@ -4,7 +4,6 @@ import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, R
 
 
 export const usercolumns = [
-  { field: "id", headerName: "ID",  flex: 0.5},
   { field: "firstName", headerName: "First Name", flex: 1},
   { field: "lastName", headerName: "Last Name", flex: 1},
   { field: "phoneNumber", headerName: "Phone Number", flex: 1 },
@@ -144,7 +143,6 @@ export const reportaudittrailcolumn = [
 ];
 
 export const deptcolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
   { field: "deptID", headerName: "Dapartment Code", flex: 1},
   { field: "name", headerName: "Department Name", flex: 1 },
   { field: "manager", headerName: "Department Manager", flex: 1 },
@@ -159,7 +157,6 @@ export const deptcolumn = [
 ];
 
 export const riskmonitoringcolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",

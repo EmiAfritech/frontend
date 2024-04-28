@@ -110,6 +110,7 @@ export function EmployeesTable() {
             columns={usercolumns}
             pageSize={10}
             pageSizeOptions={[15.20]}
+            getRowId={(row)=> row.id}
           />
         </Box>
       </div>
@@ -290,6 +291,7 @@ export function RiskMonitor() {
           columns={riskmonitoringcolumn}
           pageSize={10}
           pagination
+          getRowId={(row)=> row.id}
         />
         </Box>
       </div>
@@ -482,6 +484,7 @@ export function DepartmentTab() {
           columns={deptcolumn}
           pageSize={10}
           pagination
+          getRowId={(row)=> row.id}
         />
         </Box>
       </div>
