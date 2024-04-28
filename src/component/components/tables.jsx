@@ -171,6 +171,7 @@ export function RiskReview() {
           columns={riskreviewcolumn}
           pageSize={10}
           pagination
+          getRowId={(row)=> row.id}
         />
         </Box>
       </div>

@@ -21,7 +21,6 @@ export const usercolumns = [
 
 
 export const riskreviewcolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
   { field: "riskID", headerName: "Risk Code", flex: 1},
   { field: "riskName", headerName: "Risk Name", flex: 1},
   { field: "riskReview", headerName: "Risk Review", flex:  1 },
