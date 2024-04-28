@@ -54,7 +54,6 @@ export const riskreviewrow = [
 ];
 
 export const riskmitigationcolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
   { field: "riskID", headerName: "Risk Code", flex: 1 },
   { field: "riskName", headerName: "Risk Name", flex: 1},
   {
@@ -248,7 +247,7 @@ export const riskappetitereportlowercolumn = [
 
 export const riskviewcolumn = [
   { field: "riskID", headerName: "Risk Code", felx: 1 },
-  { field: "riskName", headerName: "Risk Name", felx: 1 },
+  { field: "riskName", headerName: "Risk Name", felx: 2 },
   { field: "riskDescription", headerName: "Risk Description", flex: 2 },
   { field: "riskCategory", headerName: "Risk Category", flex:1},
   { field: "riskStatus", headerName: "Risk Status", flex: 1},
