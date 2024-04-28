@@ -2246,7 +2246,7 @@ export function LogOut() {
     width: 450,
     bgcolor: "white",
     borderBottom: "2px solid #000",
-    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+    boxShadow: "40px rgba(0, 0, 0, 0.2)",
     borderRadius: "8px",
     p: 2,
   };
