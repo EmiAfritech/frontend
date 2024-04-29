@@ -1082,8 +1082,8 @@ export function Pyramidchat() {
             content={() => ref.current}
           />
         </div>
-        <div ref={ref} className="pb-8 text-2xl font-semibold flex justify-center">
-          <div>
+        <div ref={ref}>
+          <div className="pb-8 text-2xl font-semibold flex text-center">
             Risk Pyramid Chart
           </div>
           <Funnel
