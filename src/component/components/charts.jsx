@@ -1078,13 +1078,13 @@ export function Pyramidchat() {
         </div>
         <div className=" m-3 flex flex-row-reverse">
           <ReactToPrint
-            trigger={() => <button>Print Chat</button>}
+            trigger={() => <button>Print Chart</button>}
             content={() => ref.current}
           />
         </div>
         <div ref={ref}>
-          <div className="pb-8 text-2xl font-semibold flex justify-center">
-            Risk Pyramid Chat
+          <div className="pb-8 text-2xl font-semibold flex items-center">
+            Risk Pyramid Chart
           </div>
           <Funnel
             id="pyramid"
