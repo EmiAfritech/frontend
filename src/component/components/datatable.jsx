@@ -100,7 +100,7 @@ export const reportriskpyramidcolumn = [
 export const reportriskmitigationcolumn = [
 { field: "id", headerName: "ID", flex: 0.5 },
 { field: "riskID", headerName: "Risk Code", flex: 1},
-{ field: "riskName", headerName: "Risk Name", flex: 1},
+{ field: "riskName", headerName: "Risk Name", flex: 2},
 {
   field: "mitigatedRiskScore",
   headerName: "Mitigated Risk Score",
