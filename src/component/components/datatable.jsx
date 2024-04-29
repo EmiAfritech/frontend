@@ -125,7 +125,6 @@ export const reportopenrisktoreviewcolumn = [
 
 
 export const riskstatuscolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
   { field: "riskCode", headerName: "Risk Code", flex: 1 },
   { field: "status", headerName: "Status", flex: 1 },
   { field: "Subject", headerName: "subject", flex: 1 },

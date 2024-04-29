@@ -677,6 +677,11 @@ export function RiskViewTable() {
                 return "low";
               }
             }}
+            slotProps={{
+              toolbar: {
+                printOptions: { getRowsToExport: getSelectedRowsToExport },
+              },
+            }}
             getRowId={(row)=> row.id}
           />
         </Box>
@@ -1126,7 +1131,6 @@ export function RiskStatusReportTab() {
               },
             }}
             pageSizeOptions={[10, 15]}
-            checkboxSelection
             slots={{ toolbar: GridToolbar }}
             slotProps={{
               toolbar: {
@@ -1144,6 +1148,7 @@ export function RiskStatusReportTab() {
                 return "low";
               }
             }}
+            getRowId={(row)=> row.id}
           />
         </Box>
       </div>
