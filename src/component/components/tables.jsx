@@ -1101,7 +1101,7 @@ export function RiskStatusReportTab() {
           )}
         </div>
       </div>
-      <div style={{ height: 650 }} className=" mt-2 w-auto card p-4">
+      <div  className=" mt-2 w-auto card p-4">
         <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
