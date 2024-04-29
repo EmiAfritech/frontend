@@ -463,7 +463,7 @@ export function ReportRiskLevel() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-10 pb-12">
+    <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
         <span>RISK LEVEL</span>
       </h3>
@@ -558,7 +558,7 @@ export function ReportRiskStatus() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-10 pb-2">
+    <div className="card items-center flex flex-col px-6 pb-2">
       <h3 className="py-3">
         <span>RISK STATUS</span>
       </h3>
@@ -653,7 +653,7 @@ export function ReportRiskLocation() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col  pb-12">
       <h3 className="py-3">
         <span>LOCATION</span>
       </h3>
@@ -748,7 +748,7 @@ export function ReportRiskCategory() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
         <span>CATEGORY</span>
       </h3>
@@ -843,7 +843,7 @@ export function ReportRiskResponse() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-8 pb-2">
+    <div className="card items-center flex flex-col px-6 pb-2">
       <h3 className="py-3">
         <span>RISK RESPONSE</span>
       </h3>
@@ -938,7 +938,7 @@ export function ReportRiskOwner() {
   };
 
   return (
-    <div className="card items-center flex flex-col px-8 pb-12">
+    <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
         <span>OWNER</span>
       </h3>
