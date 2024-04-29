@@ -682,6 +682,7 @@ export function RiskViewTable() {
                 printOptions: { getRowsToExport: getSelectedRowsToExport },
               },
             }}
+            slots={{ toolbar: GridToolbar }}
             getRowId={(row)=> row.id}
           />
         </Box>
