@@ -245,7 +245,7 @@ export const riskviewcolumn = [
   { field: "riskID", headerName: "Risk Code", felx: 1 },
   { field: "riskName", headerName: "Risk Name", felx: 2 },
   { field: "riskDescription", headerName: "Risk Description", flex: 2 },
-  { field: "riskCategory", headerName: "Risk Category", flex:1},
+  { field: "riskCategory", headerName: "Risk Category", flex: 1},
   { field: "riskStatus", headerName: "Risk Status", flex: 1},
   { field: "riskScore", headerName: "Risk Score", flex: 1},
   {
