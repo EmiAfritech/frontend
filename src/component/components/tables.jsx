@@ -1116,6 +1116,7 @@ export function RiskStatusReportTab() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
+            height: 650
           }}>
           <DataGrid
             rows={tableData}
