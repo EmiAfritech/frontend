@@ -677,12 +677,6 @@ export function RiskViewTable() {
                 return "low";
               }
             }}
-            slotProps={{
-              toolbar: {
-                printOptions: { getRowsToExport: getSelectedRowsToExport },
-              },
-            }}
-            slots={{ toolbar: GridToolbar }}
             getRowId={(row)=> row.id}
           />
         </Box>
@@ -1135,7 +1129,7 @@ export function RiskStatusReportTab() {
             slots={{ toolbar: GridToolbar }}
             slotProps={{
               toolbar: {
-                printOptions: { getRowsToExport: getSelectedRowsToExport },
+                printOptions: { getRowsToExport: () => tableData },
               },
             }}
             getCellClassName={(params) => {
