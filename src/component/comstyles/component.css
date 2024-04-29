@@ -103,4 +103,5 @@
 
 .sidebar-main button:hover {
   background-color: #1E4D7E; /* Change color on hover */
+  border-radius: 6px;
 }
