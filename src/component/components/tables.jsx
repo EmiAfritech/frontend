@@ -1128,11 +1128,6 @@ export function RiskStatusReportTab() {
             }}
             pageSizeOptions={[10, 15]}
             slots={{ toolbar: GridToolbar }}
-            slotProps={{
-              toolbar: {
-                printOptions: { getRowsToExport: getSelectedRowsToExport },
-              },
-            }}
             getCellClassName={(params) => {
               if (params.value === "High") {
                 return "high";
