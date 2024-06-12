@@ -38,7 +38,7 @@ export const riskreviewcolumn = [
 ];
 
 export const riskreviewrow = [
-  { field: "id", headerName: "ID", width: 70 },
+ // { field: "id", headerName: "ID", width: 70 },
   { field: "riskID", headerName: "Risk Code", width: 100 },
   { field: "riskName", headerName: "Risk Name", width: 150 },
   { field: "riskReview", headerName: "Risk Review", width: 150 },
@@ -80,7 +80,7 @@ export const riskmitigationcolumn = [
 ];
 
 export const reportriskpyramidcolumn = [
-{ field: "id", headerName: "ID", flex: 0.5 },
+//{ field: "id", headerName: "ID", flex: 0.5 },
 { field: "riskID", headerName: "Risk Code", flex: 1},
 { field: "riskName", headerName: "Risk Name", flex: 1 },
 {
@@ -98,7 +98,7 @@ export const reportriskpyramidcolumn = [
   
 ];
 export const reportriskmitigationcolumn = [
-{ field: "id", headerName: "ID", flex: 0.5 },
+//{ field: "id", headerName: "ID", flex: 0.5 },
 { field: "riskID", headerName: "Risk Code", flex: 1},
 { field: "riskName", headerName: "Risk Name", flex: 2},
 {
@@ -113,7 +113,7 @@ export const reportriskmitigationcolumn = [
 
 
 export const reportopenrisktoreviewcolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
+ // { field: "id", headerName: "ID", flex: 0.5 },
   { field: "riskCode", headerName: "Risk Code", flex: 1},
   { field: "status", headerName: "Status", flex: 1 },
   { field: "Subject", headerName: "subject", flex: 1 },
@@ -136,7 +136,7 @@ export const riskstatuscolumn = [
 ];
 
 export const reportaudittrailcolumn = [
-  { field: "id", headerName: "ID", width: 70 },
+ // { field: "id", headerName: "ID", width: 70 },
   { field: "action", headerName: "Action", width: 500 },
   { field: "createdAt", headerName: "Created At", width: 200 },
 ];
@@ -193,7 +193,7 @@ export const riskmonitoringcolumn = [
   },
 ];
 export const riskappetitereportgreatercolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
+ // { field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",
@@ -217,7 +217,7 @@ export const riskappetitereportgreatercolumn = [
 ];
 
 export const riskappetitereportlowercolumn = [
-  { field: "id", headerName: "ID", flex: 0.5 },
+  //{ field: "id", headerName: "ID", flex: 0.5 },
   {
     field: "riskID",
     headerName: "Risk Code",
