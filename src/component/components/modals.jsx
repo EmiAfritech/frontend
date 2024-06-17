@@ -2439,7 +2439,7 @@ export function RiskAdviceReportData(params) {
                       />
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
-                        <select class="block py-2.5 px-4 w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        <select class="block py-2.5 px-4 w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer w-full">
                           <option>hi</option>
                           <option>to</option>
                         </select>
