@@ -32,7 +32,7 @@ import {
   Modal,
   Typography,
   InputAdornment,
-  NativeSelect
+  NativeSelect,
 } from "@mui/material";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
@@ -42,7 +42,6 @@ import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CircularProgress from "@mui/material/CircularProgress";
-
 
 import "react-tabs/style/react-tabs.css";
 import { Sessions } from "../../api/sessions";
@@ -2188,16 +2187,12 @@ export function CsvModal() {
   );
 }
 
-
 export function LogOut() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-
-
-
 
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
@@ -2215,8 +2210,6 @@ export function LogOut() {
     e.preventDefault();
     setLoading(true);
 
-
-
     try {
       await axios.get(LOGOUT_URL, {
         headers: {
@@ -2226,7 +2219,7 @@ export function LogOut() {
         withCredentials: true,
       });
       navigate("/", { replace: true });
-        localStorage.clear();
+      localStorage.clear();
     } catch (error) {
       if (error.response.status === 401) {
         notifyUnauthorized();
@@ -2293,11 +2286,14 @@ export function LogOut() {
               onClick={handleLogOut}
               disabled={isLoading} // Disable the button while loading
             >
-              {isLoading ? (<div className="flex flex-row justify-center"><p className="text-sm pr-2">Loading</p>
-                    <CircularProgress size={27} thickness={6} color="primary" /></div>
-                  ) : (
-                    "Yes"
-                  )}
+              {isLoading ? (
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">Loading</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
+              ) : (
+                "Yes"
+              )}
             </button>
           </div>
         </Box>
@@ -2350,7 +2346,6 @@ export function RiskAdviceReportData(params) {
         console.error(error);
       });
   }, []);
-
 
   return (
     <>
@@ -2442,9 +2437,9 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      <div className="flex flex-row items-center p-4 space-x-4">
+                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
-                        <select className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        <select class="block py-2.5 px-4 w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                           <option>hi</option>
                           <option>to</option>
                         </select>
