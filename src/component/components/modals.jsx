@@ -2410,7 +2410,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskID(e.target.value)}
                         required
-                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk Name:</p>
@@ -2419,21 +2419,23 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskName(e.target.value)}
                         required
-                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
                         <select 
-                        value={departmentName}
+                        value={deptmentName}
                         autoComplete="off"
-                        onChange={(e) => setDepartmentName(e.target.value)}
-                        class="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                          
-                          <option>choose department</option>
-                          <option>IT</option>
-                          <option>HR</option>
-                          <option>Accounting</option>
-                          <option>Finance</option>
+                        onChange={(e) => setdeptmentName(e.target.value)}
+                        class="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                          {departmentName.map((departmentName) =>{
+                            <option
+                            key={deptmentName.names.id}
+                            value={deptmentName.names.name}>
+                            {" "}
+                            {deptmentName.names.name}
+                          </option>
+                          })}
                         </select>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
@@ -2443,7 +2445,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                         required
-                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <TextField
                         sx={{
