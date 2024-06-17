@@ -2442,7 +2442,7 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      <div className="flex flex-row items-center">
+                      <div className="flex flex-row items-center p-4 m-4">
                         <p>Department Name:</p>
                         <select className="w-full">
                           <option>hi</option>
