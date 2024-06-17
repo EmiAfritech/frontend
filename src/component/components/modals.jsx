@@ -2403,7 +2403,7 @@ export function RiskAdviceReportData(params) {
                 <TabPanel>
                   <div className="grid grid-cols-2 pt-5">
                     <div>
-                    <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk ID:</p>
                         <input
                         value={riskID}
@@ -2412,26 +2412,23 @@ export function RiskAdviceReportData(params) {
                         required
                         className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk Name:
-                            </InputAdornment>
-                          ),
-                        }}
+                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                        <p class="m-0">Risk Name:</p>
+                        <input
                         value={riskName}
                         autoComplete="off"
                         onChange={(e) => setRiskName(e.target.value)}
                         required
-                      />
+                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                      </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
-                        <select class="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        <select 
+                        value={departmentName}
+                        autoComplete="off"
+                        onChange={(e) => setDepartmentName(e.target.value)}
+                        class="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                          
                           <option>choose department</option>
                           <option>IT</option>
                           <option>HR</option>
@@ -2439,19 +2436,15 @@ export function RiskAdviceReportData(params) {
                           <option>Finance</option>
                         </select>
                       </div>
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Probability Levels:
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
+                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                        <p class="m-0">Probability Levels:</p>
+                        <input
+                        value={riskProbabilityLevell}
+                        autoComplete="off"
+                        onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                        required
+                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                      </div>
                       <TextField
                         sx={{
                           border: "none",
