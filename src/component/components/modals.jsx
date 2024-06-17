@@ -2442,9 +2442,9 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      <div className="flex flex-row items-center p-4 m-2">
+                      <div className="flex flex-row items-center p-4 space-x-4">
                         <p class="m-0">Department Name:</p>
-                        <select className="w-full p-4">
+                        <select className="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                           <option>hi</option>
                           <option>to</option>
                         </select>
