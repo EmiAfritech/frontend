@@ -2443,8 +2443,8 @@ export function RiskAdviceReportData(params) {
                         required
                       />
                       <div className="flex flex-row items-center">
-                        <p>hi</p>
-                        <select>
+                        <p>Department Name:</p>
+                        <select className="w-full">
                           <option>hi</option>
                           <option>to</option>
                         </select>
