@@ -2403,23 +2403,15 @@ export function RiskAdviceReportData(params) {
                 <TabPanel>
                   <div className="grid grid-cols-2 pt-5">
                     <div>
-                      <TextField
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Risk ID:
-                            </InputAdornment>
-                          ),
-                        }}
+                    <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                        <p class="m-0">Risk ID:</p>
+                        <input
                         value={riskID}
                         autoComplete="off"
                         onChange={(e) => setRiskID(e.target.value)}
                         required
-                      />
+                        className="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                      </div>
                       <TextField
                         sx={{
                           border: "none",
@@ -2439,7 +2431,7 @@ export function RiskAdviceReportData(params) {
                       />
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
-                        <select class="block py-2.5 px-8 w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        <select class="block py-2.5 pr-12  w-auto text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                           <option>choose department</option>
                           <option>IT</option>
                           <option>HR</option>
