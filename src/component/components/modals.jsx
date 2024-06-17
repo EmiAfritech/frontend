@@ -2428,14 +2428,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setdeptmentName(e.target.value)}
                         class="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                          {departmentName.map((departmentName) => (
-                            <option
-                            key={departmentName.names.id}
-                            value={departmentName.names.name}>
-                            {" "}
-                            {departmentName.names.name}
-                          </option>
-                          ))}
+                          <option>hi</option>
                         </select>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
