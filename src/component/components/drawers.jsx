@@ -948,6 +948,11 @@ export function RiskReviewforms({ onFormSubmit }) {
     toast.error("Server is currently down Contact your admin");
   };
 
+  const [open, setOpen] = React.useState(false);
+  
+  function handleOpen() {
+    setOpen(!open);
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -996,6 +1001,40 @@ export function RiskReviewforms({ onFormSubmit }) {
     }
   }, [departmentID]);
 
+  
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    const dateObj = new Date(selectedDate);
+
+    // Extract year, month, and day components
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+    const day = String(dateObj.getDate()).padStart(2, "0");
+
+    // Format the date as "yyyy-MM-dd"
+    const formattedDate = `${year}-${month}-${day}`;
+    // Set the formatted date to state
+    setNextRiskReviewDate(formattedDate);
+  };
+  
+
+
+  
+
+  
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  const reload = () => {
+    setRiskID("");
+    setdepartmentID("");
+    setRiskReview("");
+    setNextRiskReviewDate("");
+    setriskReviewComments("");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -1028,43 +1067,6 @@ export function RiskReviewforms({ onFormSubmit }) {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const dateObj = new Date(selectedDate);
-
-    // Extract year, month, and day components
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-    const day = String(dateObj.getDate()).padStart(2, "0");
-
-    // Format the date as "yyyy-MM-dd"
-    const formattedDate = `${year}-${month}-${day}`;
-    // Set the formatted date to state
-    setNextRiskReviewDate(formattedDate);
-  };
-
-  const [open, setOpen] = React.useState(false);
-
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
-  const reload = () => {
-    setRiskID("");
-    setdepartmentID("");
-    setRiskReview("");
-    setNextRiskReviewDate("");
-    setriskReviewComments("");
-  };
-
-  const handleRiskReview = (e) => {
-    setRiskReview(e.target.value);
   };
 
   return (

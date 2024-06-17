@@ -3,7 +3,6 @@ import {
   FaCopy,
   FaClipboardList,
   FaClipboardCheck,
-  FaSignOutAlt,
   FaUserFriends,
   FaUsers,
   FaRegShareSquare,
