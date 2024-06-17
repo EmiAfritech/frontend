@@ -2442,29 +2442,13 @@ export function RiskAdviceReportData(params) {
                         onChange={(e) => setRiskName(e.target.value)}
                         required
                       />
-                      <NativeSelect
-                        sx={{
-                          border: "none",
-                          "& fieldset": { border: "none" },
-                        }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              Probability Level:
-                            </InputAdornment>
-                          ),
-                        }}
-                        value={riskProbabilityLevell}
-                        autoComplete="off"
-                        onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                        required
-                        style={{ width: "100%" }}>
-                        <MenuItem value={1}>Almost Impossible (1)</MenuItem>
-                        <MenuItem value={2}>Unlikely (2)</MenuItem>
-                        <MenuItem value={3}>Likely (3)</MenuItem>
-                        <MenuItem value={4}>Very Likely (4)</MenuItem>
-                        <MenuItem value={5}>Almost Certain (5)</MenuItem>
-                      </NativeSelect>
+                      <div className="flex flex-row items-center">
+                        <p>hi</p>
+                        <select>
+                          <option>hi</option>
+                          <option>to</option>
+                        </select>
+                      </div>
                       <TextField
                         sx={{
                           border: "none",
