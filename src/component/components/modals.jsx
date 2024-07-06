@@ -2419,7 +2419,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskName(e.target.value)}
                         required
-                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 w-auto text-xl bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
