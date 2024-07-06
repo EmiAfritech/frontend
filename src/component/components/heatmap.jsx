@@ -100,16 +100,18 @@ const getHeatMapColor = (value) => {
 export const HeatMapGrid = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={data} columns={columns} />
-      sx={{
-    
-    border: 2,
-    borderColor: 'primary.light',
-    '& .MuiDataGrid-columnHeaders': {
-      backgroundColor: 'transparent',
-      color: 'black',
-    },
-  }}
+      <DataGrid 
+        rows={data} 
+        columns={columns} 
+        sx={{
+        border: 2,
+        borderColor: 'primary.light',
+        '& .MuiDataGrid-columnHeaders': {
+          backgroundColor: 'transparent',
+          color: 'black',
+        },
+      }}/>
+      
 
     </div>
   );
