@@ -80,6 +80,8 @@
 .report-main ul {
   padding: 0; /* Removed default padding */
   list-style: none; /* Removed default list styles */
+  flex-direction: row; /* Added to stack items vertically */
+  justify-content: center;
 }
 
 .report-main li {
