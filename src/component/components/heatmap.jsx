@@ -41,7 +41,7 @@ const getHeatMapColor = (value) => {
   return 'red';
 };
 
-const HeatMapGrid = () => {
+export const HeatMapGrid = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid rows={data} columns={columns} />
@@ -49,4 +49,3 @@ const HeatMapGrid = () => {
   );
 };
 
-export default HeatMapGrid;
