@@ -104,13 +104,26 @@ export const HeatMapGrid = () => {
         rows={data} 
         columns={columns} 
         sx={{
-        border: 2,
-        borderColor: 'primary.light',
-        '& .MuiDataGrid-columnHeaders': {
-          backgroundColor: 'transparent',
-          color: 'black',
-        },
-      }}/>
+          border: 2,
+          borderColor: 'primary.light',
+          '& .MuiDataGrid-columnHeaders': {
+            backgroundColor: 'transparent',
+          },
+          '& .MuiDataGrid-columnHeaderTitle': {
+            color: 'transparent',
+          },
+          '& .custom-header .MuiDataGrid-columnHeaderTitle': {
+            color: 'black', // change text color for the name column
+          },
+          '& .custom-header': {
+            backgroundColor: '#ffeb3b', // change background color for the name column
+          },
+          '& .MuiDataGrid-cell': {
+            p: 0,
+            m: 0,
+          },
+        }}
+        />
       
 
     </div>
