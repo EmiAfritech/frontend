@@ -20,8 +20,15 @@ const columns = [
     renderCell: (params) => (
       <Box
         sx={{
+           width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
+          p: 0,
+          m: 0,
         }}
       >
         {params.value}
@@ -35,8 +42,15 @@ const columns = [
     renderCell: (params) => (
       <Box
         sx={{
+           width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
+          p: 0,
+          m: 0,
         }}
       >
         {params.value}
@@ -50,8 +64,15 @@ const columns = [
     renderCell: (params) => (
       <Box
         sx={{
+           width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
+          p: 0,
+          m: 0,
         }}
       >
         {params.value}
@@ -65,8 +86,15 @@ const columns = [
     renderCell: (params) => (
       <Box
         sx={{
+           width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
+          p: 0,
+          m: 0,
         }}
       >
         {params.value}
@@ -80,8 +108,15 @@ const columns = [
     renderCell: (params) => (
       <Box
         sx={{
+           width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
+          p: 0,
+          m: 0,
         }}
       >
         {params.value}
