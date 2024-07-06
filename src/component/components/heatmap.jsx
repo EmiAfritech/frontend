@@ -102,12 +102,19 @@ export const HeatMapGrid = () => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid rows={data} columns={columns} />
       sx={{
-    border: 2,
-    borderColor: 'primary.light',
-    '& .MuiDataGrid-columnHeaders': {
-      background-color: none,
-    },
-  }}
+          '& .MuiDataGrid-columnHeaders': {
+            backgroundColor: 'transparent',
+          },
+          '& .MuiDataGrid-columnHeaderTitle': {
+            color: 'transparent',
+          },
+          '& .custom-header .MuiDataGrid-columnHeaderTitle': {
+            color: 'black', // change text color for the name column
+          },
+          '& .custom-header': {
+            backgroundColor: '#ffeb3b', // change background color for the name column
+          },
+        }}
     </div>
   );
 };
