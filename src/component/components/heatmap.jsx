@@ -105,15 +105,6 @@ export const HeatMapGrid = () => {
           '& .MuiDataGrid-columnHeaders': {
             backgroundColor: 'transparent',
           },
-          '& .MuiDataGrid-columnHeaderTitle': {
-            color: 'transparent',
-          },
-          '& .custom-header .MuiDataGrid-columnHeaderTitle': {
-            color: 'black', // change text color for the name column
-          },
-          '& .custom-header': {
-            backgroundColor: '#ffeb3b', // change background color for the name column
-          },
         }}
     </div>
   );
