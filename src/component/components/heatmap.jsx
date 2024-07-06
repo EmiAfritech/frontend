@@ -140,7 +140,6 @@ export const HeatMapGrid = () => {
         columns={columns} 
         sx={{
           border: 2,
-          borderColor: 'primary.light',
           '& .MuiDataGrid-columnHeaders': {
             backgroundColor: 'transparent',
           },
