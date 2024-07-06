@@ -5,13 +5,11 @@ import { ReportSideTabs } from "./sidetabs";
 export function Report() {
   
   return (
-    <div className="flex flex-col bg-slate-100 h-lvh">
+    <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar/>
-      <div className=" ml-[18%] m-6">
-        <div>
-          <ReportSideTabs />
-        </div>
-        <div >
+      <div className="ml-[18%] m-6">
+        <ReportSideTabs />
+        <div className="mt-5">
           <Outlet />
         </div>
       </div>
