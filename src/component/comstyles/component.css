@@ -61,23 +61,39 @@
   color: white
 }
 .report-container {
-  margin: 100;
+  margin: 0; /* Adjusted to 0 or a specific value with unit */
+  padding: 20px; /* Added padding for better spacing */
 }
+
 .report-main {
-  margin-top: 10px;
+  margin-top: 10px; /* Adjusted to use pixels */
   display: flex;
+  flex-direction: column; /* Added to stack items vertically */
   justify-content: center;
   color: white;
   height: 28rem;
+  overflow-y: auto; /* Added for scrolling if content exceeds height */
 }
+
+.report-main ul {
+  padding: 0; /* Removed default padding */
+  list-style: none; /* Removed default list styles */
+}
+
 .report-main li {
   padding: 10px;
   display: flex;
   align-items: center;
   background-color: #000c8e;
-  margin-top: 5%;
+  margin-top: 5px; /* Adjusted to use pixels */
   font-size: 13px;
+  border-radius: 5px; /* Added border-radius for rounded corners */
 }
+
+.report-main li:first-child {
+  margin-top: 0; /* Removed margin for the first item */
+}
+
 .modal{
     position: 'absolute';
     top: '50%';
