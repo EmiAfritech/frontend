@@ -6,9 +6,9 @@ import { Box } from '@mui/material';
 const data = [
   { id: 1, name: 'almost in possible', score: 65, insignificant: 65, minor: 65, moderate: 65, major: 65, catastrophic: 65 },
   { id: 2, name: 'unlikly', score: 80, insignificant: 80, minor: 80, moderate: 80, major: 80, catastrophic: 80 },
-  { id: 3, name: 'likly', score: 45, insignificant: 45, minor: 45, moderate: 45, major: 45, catastrophic: 45 },
-  { id: 4, name: 'very likly', score: 90, insignificant: 90, minor: 90, moderate: 90, major: 90, catastrophic: 90 },
-  { id: 5, name: 'almost certain', score: 90, insignificant: 90, minor: 90, moderate: 90, major: 90, catastrophic: 90 },
+  { id: 3, name: 'likly', score: 45, insignificant: 45, minor: 80, moderate: 45, major: 55, catastrophic: 75 },
+  { id: 4, name: 'very likly', score: 90, insignificant: 40, minor: 90, moderate: 50, major: 90, catastrophic: 90 },
+  { id: 5, name: 'almost certain', score: 60, insignificant: 30, minor: 90, moderate: 70, major: 90, catastrophic: 80 },
 ];
 
 const columns = [
@@ -26,7 +26,7 @@ const columns = [
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
-          color: 'white',
+          color: 'black',
           p: 0,
           m: 0,
         }}
@@ -48,7 +48,7 @@ const columns = [
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
-          color: 'white',
+          color: 'black',
           p: 0,
           m: 0,
         }}
@@ -70,7 +70,7 @@ const columns = [
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
-          color: 'white',
+          color: 'black',
           p: 0,
           m: 0,
         }}
@@ -92,7 +92,7 @@ const columns = [
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
-          color: 'white',
+          color: 'black',
           p: 0,
           m: 0,
         }}
@@ -114,7 +114,7 @@ const columns = [
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
-          color: 'white',
+          color: 'black',
           p: 0,
           m: 0,
         }}
