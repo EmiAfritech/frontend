@@ -2,7 +2,6 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
-import './HeatMapGrid.css'; // Import the CSS file
 
 const data = [
   { id: 1, name: 'almost in possible', score: 65, insignificant: 65, minor: 65, moderate: 65, major: 65, catastrophic: 65 },
@@ -13,11 +12,12 @@ const data = [
 ];
 
 const columns = [
-  { field: 'name', headerName: 'Name', width: 150, headerClassName: 'transparent-header' },
+  { field: 'name', headerName: 'Name', width: 150, headerAlign: 'center', headerClassName: 'transparent-header' },
   {
     field: 'insignificant',
     headerName: 'Insignificant',
     width: 150,
+    headerAlign: 'center',
     headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
@@ -39,6 +39,7 @@ const columns = [
     field: 'minor',
     headerName: 'Minor',
     width: 150,
+    headerAlign: 'center',
     headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
@@ -60,6 +61,7 @@ const columns = [
     field: 'moderate',
     headerName: 'Moderate',
     width: 150,
+    headerAlign: 'center',
     headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
@@ -81,6 +83,7 @@ const columns = [
     field: 'major',
     headerName: 'Major',
     width: 150,
+    headerAlign: 'center',
     headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
@@ -102,6 +105,7 @@ const columns = [
     field: 'catastrophic',
     headerName: 'Catastrophic',
     width: 150,
+    headerAlign: 'center',
     headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
@@ -128,12 +132,12 @@ const getHeatMapColor = (value) => {
   return 'red';
 };
 
-export const HeatMapGrid = () => {
+const HeatMapGrid = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={data} columns={columns} />
-    </div>
-  );
-};
-
-
+      <DataGrid
+        rows={data}
+        columns={columns}
+        sx={{
+          '.MuiDataGrid-columnHeaderTitle': {
+            color: 'transparent
