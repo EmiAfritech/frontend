@@ -137,7 +137,10 @@ export const HeatMapGrid = () => {
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid 
         rows={data} 
-        columns={columns} 
+        columns={columns}
+        components={{
+          Footer: () => null, // Remove the footer
+        }}
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none', // Remove outer border
