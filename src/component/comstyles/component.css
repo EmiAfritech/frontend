@@ -62,7 +62,7 @@
   color: white
 }
 .report-container {
-  margin: 50px; /* Set margin with units */
+  margin: 20px; /* Set margin with units */
 }
 
 .report-main {
@@ -84,7 +84,7 @@
 }
 
 .report-main li {
-  width: 150px;
+  width: 200px;
   display: flex;
   align-items: center;
   background-color: #000c8e;
