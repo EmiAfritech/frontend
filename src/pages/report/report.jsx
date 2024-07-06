@@ -7,11 +7,11 @@ export function Report() {
   return (
     <div className="flex flex-col bg-slate-100 h-lvh">
       <Sidebar/>
-      <div>
+      <div className=" ml-[18%] m-6">
         <div>
           <ReportSideTabs />
         </div>
-        <div className=" mt-3">
+        <div >
           <Outlet />
         </div>
       </div>
