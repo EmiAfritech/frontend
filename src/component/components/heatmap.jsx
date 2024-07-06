@@ -132,7 +132,7 @@ const getHeatMapColor = (value) => {
   return 'red';
 };
 
-const HeatMapGrid = () => {
+export const HeatMapGrid = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
@@ -140,4 +140,12 @@ const HeatMapGrid = () => {
         columns={columns}
         sx={{
           '.MuiDataGrid-columnHeaderTitle': {
-            color: 'transparent
+            color: 'transparent',
+          },
+        }}
+      />
+    </div>
+  );
+};
+
+
