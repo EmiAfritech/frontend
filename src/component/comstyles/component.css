@@ -13,6 +13,7 @@
   color: #000c8e;
 }
 .sidebar-main {
+  width: 150px; 
   display: flex;
   justify-content: center;
   color: white;
