@@ -12,21 +12,14 @@ const data = [
 ];
 
 const columns = [
-  { field: 'name', headerName: 'Name', width: 150, headerAlign: 'center', headerClassName: 'transparent-header' },
+  { field: 'name', headerName: 'Name', width: 150 },
   {
     field: 'insignificant',
     headerName: 'Insignificant',
     width: 150,
-    headerAlign: 'center',
-    headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
         }}
@@ -39,16 +32,9 @@ const columns = [
     field: 'minor',
     headerName: 'Minor',
     width: 150,
-    headerAlign: 'center',
-    headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
         }}
@@ -61,16 +47,9 @@ const columns = [
     field: 'moderate',
     headerName: 'Moderate',
     width: 150,
-    headerAlign: 'center',
-    headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
         }}
@@ -83,16 +62,9 @@ const columns = [
     field: 'major',
     headerName: 'Major',
     width: 150,
-    headerAlign: 'center',
-    headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
         }}
@@ -105,16 +77,9 @@ const columns = [
     field: 'catastrophic',
     headerName: 'Catastrophic',
     width: 150,
-    headerAlign: 'center',
-    headerClassName: 'transparent-header',
     renderCell: (params) => (
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: getHeatMapColor(params.value),
           color: 'white',
         }}
@@ -135,15 +100,14 @@ const getHeatMapColor = (value) => {
 export const HeatMapGrid = () => {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
-        columns={columns}
-        sx={{
-          '.MuiDataGrid-columnHeaderTitle': {
-            color: 'transparent',
-          },
-        }}
-      />
+      <DataGrid rows={data} columns={columns} />
+      sx={{
+    border: 2,
+    borderColor: 'primary.light',
+    '& .MuiDataGrid-columnHeaders {
+      background-color: none,
+    },
+  }}
     </div>
   );
 };
