@@ -68,7 +68,7 @@
 .report-main {
   margin-top: 10px; /* Adjusted to use pixels */
   display: flex;
-  flex-direction: column; /* Added to stack items vertically */
+  flex-direction: row; /* Added to stack items vertically */
   justify-content: center;
   color: white;
   height: 28rem;
