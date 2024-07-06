@@ -62,36 +62,36 @@
   color: white
 }
 .report-container {
-  margin: 120px; /* Set margin with units */
+  margin: 100px; /* Set margin with units */
 }
 
 .report-main {
   margin-top: 10px;
   display: flex;
-  flex-direction: row; /* Set to row for horizontal layout */
-  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  flex-direction: row; /* Horizontal layout for the list */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
   justify-content: center; /* Center items horizontally */
   color: white;
   height: auto; /* Adjust height based on content */
 }
 
 .report-main ul {
-  padding: 120px; /* Remove default padding */
+  padding: 0; /* Remove default padding */
   list-style: none; /* Remove default list styles */
-  display: flex; /* Set to flex to align items horizontally */
-  flex-wrap: wrap; /* Allow wrapping */
+  display: flex; /* Align list items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap */
   gap: 10px; /* Space between items */
 }
 
 .report-main li {
-  width: 200px;
+  width: 150px; /* Fixed width for each list item */
+  padding: 10px;
   display: flex;
   align-items: center;
   background-color: #000c8e;
   font-size: 13px;
-  border-radius: 5px; /* Added border-radius for rounded corners */
+  border-radius: 5px; /* Rounded corners */
 }
-
 
 .report-main li:first-child {
   margin-top: 0; /* Removed margin for the first item */
