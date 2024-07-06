@@ -61,27 +61,25 @@
   color: white
 }
 .report-container {
-  margin: 0; /* Adjusted to 0 or a specific value with unit */
-  padding: 20px;
-  display: flex;
-  flex-direction: row;/* Added padding for better spacing */
+  margin: 100px; /* Set margin with units */
 }
 
 .report-main {
-  margin-top: 10px; /* Adjusted to use pixels */
+  margin-top: 10px;
   display: flex;
-  flex-direction: row; /* Added to stack items vertically */
-  justify-content: center;
+  flex-direction: row; /* Set to row for horizontal layout */
+  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  justify-content: center; /* Center items horizontally */
   color: white;
-  height: 28rem;
-  overflow-y: auto; /* Added for scrolling if content exceeds height */
+  height: auto; /* Adjust height based on content */
 }
 
 .report-main ul {
-  padding: 0; /* Removed default padding */
-  list-style: none; /* Removed default list styles */
-  flex-direction: row; /* Added to stack items vertically */
-  justify-content: center;
+  padding: 0; /* Remove default padding */
+  list-style: none; /* Remove default list styles */
+  display: flex; /* Set to flex to align items horizontally */
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 10px; /* Space between items */
 }
 
 .report-main li {
@@ -89,10 +87,10 @@
   display: flex;
   align-items: center;
   background-color: #000c8e;
-  margin-top: 5px; /* Adjusted to use pixels */
   font-size: 13px;
   border-radius: 5px; /* Added border-radius for rounded corners */
 }
+
 
 .report-main li:first-child {
   margin-top: 0; /* Removed margin for the first item */
