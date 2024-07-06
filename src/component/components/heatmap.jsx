@@ -139,6 +139,9 @@ export const HeatMapGrid = () => {
         rows={data} 
         columns={columns} 
         sx={{
+          '& .MuiDataGrid-root': {
+            border: 'none', // Remove outer border
+          },
           '& .MuiDataGrid-columnHeaders': {
             backgroundColor: 'transparent',
           },
