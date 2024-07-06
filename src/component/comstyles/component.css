@@ -76,7 +76,7 @@
 }
 
 .report-main ul {
-  padding: 0; /* Remove default padding */
+  padding: 120px; /* Remove default padding */
   list-style: none; /* Remove default list styles */
   display: flex; /* Set to flex to align items horizontally */
   flex-wrap: wrap; /* Allow wrapping */
