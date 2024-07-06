@@ -145,7 +145,7 @@ export const HeatMapGrid = () => {
             backgroundColor: 'transparent',
           },
           '& .MuiDataGrid-columnHeaderTitle': {
-            color: 'transparent',
+            color: 'black',
           },
           '& .custom-header .MuiDataGrid-columnHeaderTitle': {
             color: 'black', // change text color for the name column
