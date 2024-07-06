@@ -1,4 +1,5 @@
 import { Pyramidchat } from "../../component/components/charts";
+import {HeatMapGrid} from "../../component/components/heatmap";
 
 export function ReportRiskAdvice() {
   return (
@@ -6,6 +7,7 @@ export function ReportRiskAdvice() {
       
       <div >
         <Pyramidchat />
+        <HeatMapGrid/>
       </div>
     </div>
   );
