@@ -13,7 +13,7 @@ export function ReportSideTabs() {
     return (
       <>
             <li>
-              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", borderBottom: `2px solid ${isActive ? 'blue' : 'blue'}`})}>Report</NavLink>
+              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Report</NavLink>
             </li>
             <li>
               <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Likelyhood Vs Impact</NavLink>
