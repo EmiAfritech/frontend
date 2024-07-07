@@ -1087,28 +1087,30 @@ export function Pyramidchat() {
           <div className="flex justify-center items-center text-center w-full pb-8 text-2xl font-semibold">
             Risk Pyramid Chart
           </div>
-          <Funnel
-            id="pyramid"
-            dataSource={data}
-            sortData={false}
-            inverted={true}
-            algorithm="dynamicHeight"
-            palette="Harmony Light"
-            argumentField="level"
-            valueField="count"
-            onItemClick={handleItemClick}>
-            <Tooltip enabled={true} />
-            <Item>
-              <Border visible={true} />
-            </Item>
-            <Legend visible={true} />
-            <Label
-              visible={true}
-              horizontalAlignment="right"
-              backgroundColor="none">
-              <Font size={16} />
-            </Label>
-          </Funnel>
+          <div className="m-20">
+            <Funnel
+              id="pyramid"
+              dataSource={data}
+              sortData={false}
+              inverted={true}
+              algorithm="dynamicHeight"
+              palette="Harmony Light"
+              argumentField="level"
+              valueField="count"
+              onItemClick={handleItemClick}>
+              <Tooltip enabled={true} />
+              <Item>
+                <Border visible={true} />
+              </Item>
+              <Legend visible={true} />
+              <Label
+                visible={true}
+                horizontalAlignment="right"
+                backgroundColor="none">
+                <Font size={16} />
+              </Label>
+            </Funnel>
+          </div>
         </div>
         <div className="grid grid-cols-6 gap-4">
           <Button
