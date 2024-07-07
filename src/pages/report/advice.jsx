@@ -6,7 +6,6 @@ export function ReportRiskAdvice() {
     <div>
       <div >
         <Pyramidchat />
-        <HeatMapGrid/>
       </div>
     </div>
   );

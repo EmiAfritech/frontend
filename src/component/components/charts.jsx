@@ -1084,9 +1084,6 @@ export function Pyramidchat() {
           />
         </div>
         <div ref={ref}>
-          <div className="flex justify-center items-center text-center w-full pb-8 text-2xl font-semibold">
-            Risk Pyramid Chart
-          </div>
           <div className="m-20">
             <Funnel
               id="pyramid"
@@ -1111,6 +1108,7 @@ export function Pyramidchat() {
               </Label>
             </Funnel>
           </div>
+          <p>Risk Pyramid Chart</p>
         </div>
         <div className="grid grid-cols-6 gap-4">
           <Button
