@@ -82,11 +82,9 @@
 .report-main li {
   display: flex;
   font-size: 16px;
+  margin: 10px;
 }
 
-.report-main li:first-child {
-  margin-top: 0; /* Removed margin for the first item */
-}
 
 .modal{
     position: 'absolute';
