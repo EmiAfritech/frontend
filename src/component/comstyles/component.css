@@ -62,7 +62,7 @@
   color: white
 }
 .report-container {
-  margin: 10px; /* Set margin with units */
+  margin-top: 50px; /* Set margin with units */
 }
 .report-main {
   margin-top: 10px;
@@ -79,7 +79,7 @@
 
 .report-main li {
   display: flex;
-  font-size: 14px;
+  font-size: 15px;
   margin: 10px;
 }
 
