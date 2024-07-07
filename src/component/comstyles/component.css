@@ -79,12 +79,9 @@
   padding: 0; /* Remove default padding */
   list-style: none; /* Remove default list styles */
   display: flex; /* Align list items horizontally */
-  flex-wrap: wrap; /* Allow items to wrap */
-  gap: 10px; /* Space between items */
 }
 
 .report-main li {
-  width: 100px; 
   padding: 10px;
   display: flex;
   justify-content: center;

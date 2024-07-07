@@ -19,24 +19,24 @@ export function ReportSideTabs() {
               <NavLink to="likelyhood-vs-impact">Likelyhood Vs Impact</NavLink>
             </li>
             <li>
-              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Appetite</NavLink>
+              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>Risk Appetite</NavLink>
             </li>
             <li>
-              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigations By Date</NavLink>
+              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>Mitigations By Date</NavLink>
             </li>
             <li>
-              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Status</NavLink>
+              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>Risk Status</NavLink>
             </li>
             <li>
-              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>
+              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>
                 All Opened Risks Needing a Review
               </NavLink>
             </li>
             <li>
-              <NavLink to="audit-trail" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Audit Trail</NavLink>
+              <NavLink to="audit-trail" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Audit Trail</NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
@@ -55,21 +55,21 @@ const ManagernAuditor = () => {
               <NavLink to="likelyhood-vs-impact">Likelyhood Vs Impact</NavLink>
             </li>
             <li>
-              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Appetite</NavLink>
+              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Risk Appetite</NavLink>
             </li>
             <li>
-              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigations By Date</NavLink>
+              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Mitigations By Date</NavLink>
             </li>
             <li>
-              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Status</NavLink>
+              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Risk Status</NavLink>
             </li>
             <li>
-              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>
+              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>
                 All Opened Risks Needing a Review
               </NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
