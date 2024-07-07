@@ -13,22 +13,22 @@ export function ReportSideTabs() {
     return (
       <>
             <li>
-              <NavLink to="" >Report</NavLink>
+              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", borderBottom: `2px solid ${isActive ? 'blue' : 'blue'}`})}>Report</NavLink>
             </li>
             <li>
-              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Likelyhood Vs Impact</NavLink>
+              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Likelyhood Vs Impact</NavLink>
             </li>
             <li>
-              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Risk Appetite</NavLink>
+              <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Risk Appetite</NavLink>
             </li>
             <li>
-              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Mitigations By Date</NavLink>
+              <NavLink to="mitigation" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Mitigations By Date</NavLink>
             </li>
             <li>
-              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Risk Status</NavLink>
+              <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Risk Status</NavLink>
             </li>
             <li>
-              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>
+              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>
                 All Opened Risks Needing a Review
               </NavLink>
             </li>
@@ -49,7 +49,7 @@ const ManagernAuditor = () => {
     return (
       <>
         <li>
-              <NavLink to=""style={{borderBottom: `2px solid ${isActive? 'black': 'blue'}`}}>Report</NavLink>
+              <NavLink to=""style={({ isActive }) => ({ color: isActive? "black": "black", borderBottom: `2px solid ${isActive ? 'blue' : 'blue'}`})}>Report</NavLink>
             </li>
             <li>
               <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>Likelyhood Vs Impact</NavLink>
