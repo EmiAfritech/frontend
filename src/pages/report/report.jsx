@@ -9,7 +9,7 @@ export function Report() {
       <Sidebar/>
       <div className="ml-[20%]">
         <ReportSideTabs />
-        <div className="p-10">
+        <div className="p-30">
           <Outlet />
         </div>
       </div>
