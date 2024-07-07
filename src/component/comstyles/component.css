@@ -71,7 +71,6 @@
   flex-direction: row; /* Horizontal layout for the list */
   flex-wrap: wrap; /* Allow items to wrap to the next line */
   justify-content: center; /* Center items horizontally */
-  height: auto; /* Adjust height based on content */
 }
 
 .report-main ul {
@@ -81,7 +80,6 @@
 }
 
 .report-main li {
-  padding: 10px;
   display: flex;
   font-size: 16px;
 }
