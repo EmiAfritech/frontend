@@ -13,7 +13,7 @@ export function ReportSideTabs() {
     return (
       <>
             <li>
-              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'transparent'}`})}>Report</NavLink>
+              <NavLink to="" >Report</NavLink>
             </li>
             <li>
               <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'transparent'}`})}>Likelyhood Vs Impact</NavLink>
@@ -49,7 +49,7 @@ const ManagernAuditor = () => {
     return (
       <>
         <li>
-              <NavLink to=""style={({ isActive }) => ({ color: isActive? "blue": "white", borderBottom: `2px solid ${isActive ? 'red' : 'transparent'}`})}>Report</NavLink>
+              <NavLink to="">Report</NavLink>
             </li>
             <li>
               <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'transparent'}`})}>Likelyhood Vs Impact</NavLink>
