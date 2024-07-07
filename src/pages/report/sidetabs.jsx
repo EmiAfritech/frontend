@@ -69,7 +69,7 @@ const ManagernAuditor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottomColor: isActive? "blue": "white"})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
@@ -80,7 +80,7 @@ const ManagernAuditor = () => {
   };
   return (
     <div className="report-container">
-        <div className="report-main mt-20">
+        <div className="report-main mt-10">
           <ul>  
             <Sessions />
             {userRole === "ADMIN" && GeneralnAdminMainTabs()}

@@ -84,13 +84,11 @@
 }
 
 .report-main li {
-  width: 150px; /* Fixed width for each list item */
+  width: 100px; 
   padding: 10px;
   display: flex;
-  align-items: center;
-  background-color: #000c8e;
+  justify-content: center;
   font-size: 13px;
-  border-radius: 5px; /* Rounded corners */
 }
 
 .report-main li:first-child {
