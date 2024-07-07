@@ -28,7 +28,7 @@ export function ReportSideTabs() {
               <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottom: `2px solid ${isActive ? 'blue' : 'white'}`})}>Risk Status</NavLink>
             </li>
             <li>
-              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottom: `2px solid ${isActive ? 'blue' : 'white'}`})}>
+              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "white", borderBottom: `2px solid ${isActive ? 'blue' : 'none'}`})}>
                 All Opened Risks Needing a Review
               </NavLink>
             </li>
@@ -64,12 +64,12 @@ const ManagernAuditor = () => {
               <NavLink to="risk-status-report" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: `2px solid ${isActive ? 'blue' : 'white'}`})}>Risk Status</NavLink>
             </li>
             <li>
-              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: `2px solid ${isActive ? 'blue' : 'white'}`})}>
+              <NavLink to="review-needing-risks" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: `2px solid ${isActive ? 'blue' : 'none'}`})}>
                 All Opened Risks Needing a Review
               </NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: isActive? "blue": "white"})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: isActive? "blue": "none"})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
