@@ -62,9 +62,8 @@
   color: white
 }
 .report-container {
-  margin: 100px; /* Set margin with units */
+  margin: 10px; /* Set margin with units */
 }
-
 .report-main {
   margin-top: 10px;
   display: flex;
@@ -74,7 +73,6 @@
 }
 
 .report-main ul {
-  padding: 10px; /* Remove default padding */
   list-style: none; /* Remove default list styles */
   display: flex; /* Align list items horizontally */
 }
