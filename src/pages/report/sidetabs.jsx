@@ -15,9 +15,9 @@ export function ReportSideTabs() {
         <li>
               <NavLink to="">Report</NavLink>
             </li>
-            {/* <li>
+            <li>
               <NavLink to="likelyhood-vs-impact">Likelyhood Vs Impact</NavLink>
-            </li> */}
+            </li>
             <li>
               <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Appetite</NavLink>
             </li>
@@ -51,9 +51,9 @@ const ManagernAuditor = () => {
         <li>
               <NavLink to="">Report</NavLink>
             </li>
-            {/* <li>
+            <li>
               <NavLink to="likelyhood-vs-impact">Likelyhood Vs Impact</NavLink>
-            </li> */}
+            </li>
             <li>
               <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Risk Appetite</NavLink>
             </li>
@@ -80,7 +80,7 @@ const ManagernAuditor = () => {
   };
   return (
     <div className="report-container">
-        <div className="report-main mt-20 mx-10">
+        <div className="report-main mt-20">
           <ul>  
             <Sessions />
             {userRole === "ADMIN" && GeneralnAdminMainTabs()}
