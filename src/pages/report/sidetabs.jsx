@@ -49,7 +49,7 @@ const ManagernAuditor = () => {
     return (
       <>
         <li>
-              <NavLink to="">Report</NavLink>
+              <NavLink to=""style={{borderBottom: `2px solid ${isActive? 'black': 'black'}`}}>Report</NavLink>
             </li>
             <li>
               <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'black'}`})}>Likelyhood Vs Impact</NavLink>
@@ -69,7 +69,7 @@ const ManagernAuditor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: isActive? "red": "black"})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'black'}`})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
