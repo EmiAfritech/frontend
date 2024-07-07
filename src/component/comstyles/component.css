@@ -83,8 +83,7 @@
 .report-main li {
   padding: 10px;
   display: flex;
-  font-size: 24px;
-  border-bottom: solid 1px;
+  font-size: 16px;
 }
 
 .report-main li:first-child {

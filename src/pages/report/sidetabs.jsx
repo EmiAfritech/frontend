@@ -69,7 +69,7 @@ const ManagernAuditor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottomColor: isActive? "blue": "white"})}>Risk Advice</NavLink>
+              <NavLink to="advice" style={({ isActive }) => ({ color: isActive? "greenyellow": "black", borderBottom: isActive? "blue": "white"})}>Risk Advice</NavLink>
             </li>
             {/* <li>
               <NavLink to="chatbot">Risk chat box</NavLink>
