@@ -1312,32 +1312,85 @@ export function HeatMap3() {
 }
 
 export function HeatMap2() {
-  const [series, setData] = useState();
+  // const [series, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          HEATMAP_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            withCredentials: true,
-          }
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.post(
+  //         HEATMAP_URL,
+  //         JSON.stringify({ departmentName }),
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: "Bearer " + localStorage.getItem("token"),
+  //           },
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       setData(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    fetchData();
-  }, [departmentName]);
+  //   fetchData();
+  // }, [departmentName]);
+
+  const series = [
+    {
+      name: "rare",
+      data: [
+        { x: "insignificant", y: 1 },
+        { x: "minor", y: 2 },
+        { x: "moderate", y: 0 },
+        { x: "major", y: 4 },
+        { x: "critical", y: 5 },
+      ],
+    },
+    {
+      name: "unlikely",
+      data: [
+        { x: "insignificant", y: 2 },
+        { x: "minor", y: 4 },
+        { x: "moderate", y: 6 },
+        { x: "major", y: 8 },
+        { x: "critical", y: 10 },
+      ],
+    },
+    {
+      name: "possible",
+      data: [
+        { x: "insignificant", y: 3 },
+        { x: "minor", y: 6 },
+        { x: "moderate", y: 9 },
+        { x: "major", y: 0 },
+        { x: "critical", y: 15 },
+      ],
+    },
+    {
+      name: "likely",
+      data: [
+        { x: "insignificant", y: 4 },
+        { x: "minor", y: 8 },
+        { x: "moderate", y: 12 },
+        { x: "major", y: 16 },
+        { x: "critical", y: 20 },
+      ],
+    },
+    {
+      name: "almost certain",
+      data: [
+        { x: "insignificant", y: 5 },
+        { x: "minor", y: 10 },
+        { x: "moderate", y: 15 },
+        { x: "major", y: 20 },
+        { x: "critical", y: 25 },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const fetchDeptData = async () => {
