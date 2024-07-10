@@ -1345,7 +1345,7 @@ export function HeatMap2() {
       data: [
         { x: "insignificant", y: 1 },
         { x: "minor", y: 2 },
-        { x: "moderate", y: 0 },
+        { x: "moderate", y: 3 },
         { x: "major", y: 4 },
         { x: "critical", y: 5 },
       ],
@@ -1366,7 +1366,7 @@ export function HeatMap2() {
         { x: "insignificant", y: 3 },
         { x: "minor", y: 6 },
         { x: "moderate", y: 9 },
-        { x: "major", y: 0 },
+        { x: "major", y: 12},
         { x: "critical", y: 15 },
       ],
     },
@@ -1491,7 +1491,7 @@ export function HeatMap2() {
         series={series}
         type="heatmap"
         height={550}
-        width={900}
+        width={1100}
       />
     </div>
   );
