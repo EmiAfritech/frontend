@@ -1,0 +1,25 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+
+export function LanguageButton() {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (event) => {
+    const lng = event.target.value;
+    if (lng) {
+      i18n.changeLanguage(lng);
+    }
+  };
+
+  return (
+    <div>
+      <select
+        className="border-2 border-blue-500 p-1 rounded-md focus:text-blue-500"
+        onChange={changeLanguage}>
+        <option value="">Select Language</option>
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
+    </div>
+  );
+}

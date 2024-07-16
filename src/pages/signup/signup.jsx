@@ -1,18 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
-import "./login.css";
+import "../login/login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaLanguage } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
-import { LanguageButton } from "../../language/language_switcher";
 
-export function Login() {
-  const { i18n, t } = useTranslation();
+export function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -95,23 +91,56 @@ export function Login() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
           <div className="login-container">
-            <div className="flex flex-row-reverse mt-3 mr-3 items-center">
-              <LanguageButton />
-              <span className="pr-2">
-                <FaLanguage size={20} color="blue" />
-              </span>
-            </div>
             <div className="formstyle flex-col">
               <img
                 src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
                 alt="Paris"
-                className="w-55 h-20 mb-12"
+                className="w-55 h-20"
               />
               <form>
+                {/* subscription code */}
+                <div className="">
+                  <div>
+                    <label htmlFor="email">Subscription code</label>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      id="email"
+                      value={email}
+                      autoComplete="off"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                {/* organization */}
+                <div>
+                  <div>
+                    <label htmlFor="email">Organizational Name</label>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      id="email"
+                      value={email}
+                      autoComplete="off"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                {/*employees in the organization*/}
+                <div>
+                  <div>
+                    <label htmlFor="email">Number of Employees</label>
+                  </div>
+                  <input type="number" />
+                </div>
                 {/* username */}
                 <div className="">
                   <div>
-                    <label htmlFor="email">{t("email")}</label>
+                    <label htmlFor="email">Organizational Email</label>
                   </div>
                   <div>
                     <input
@@ -127,7 +156,21 @@ export function Login() {
                 {/* password */}
                 <div>
                   <div>
-                    <label htmlFor="password">{t("password")}</label>
+                    <label htmlFor="password">Organizational Password</label>
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                      id="password"
+                      autoComplete="off"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <label htmlFor="password">Confirm Organizational Password</label>
                   </div>
                   <div>
                     <input
@@ -148,7 +191,7 @@ export function Login() {
                 >
                   {isLoading ? (
                     <div className="flex flex-row justify-center">
-                      <p className="text-sm pr-2">{t("loading")}</p>
+                      <p className="text-sm pr-2">Loading</p>
                       <CircularProgress
                         size={27}
                         thickness={6}
@@ -156,24 +199,14 @@ export function Login() {
                       />
                     </div>
                   ) : (
-                    t("submit")
+                    "Submit"
                   )}
                 </button>
-                {/* password reset */}
-                <div className="pt-3">
-                  <button
-                    style={{ color: "blue" }}
-                    onClick={handleReset}
-                    className="flex flex row items-center">
-                    {t("passwordReset")}
-                  </button>
-                </div>
                 {/* create a new account */}
                 <div className="new-user">
-                  <span>{t("registerQuestion")}</span>{" "}
                   <span style={{ color: "blue" }}>
-                    <Link className="new" to="/signup">
-                      {t("register")}
+                    <Link className="new" to="/">
+                      Return to Login
                     </Link>
                   </span>
                 </div>
