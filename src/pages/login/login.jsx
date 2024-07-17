@@ -125,7 +125,7 @@ export function Login() {
                   </div>
                 </div>
                 {/* password */}
-                <div className="mt-5">
+                <div>
                   <div>
                     <label htmlFor="password">{t("password")}</label>
                   </div>

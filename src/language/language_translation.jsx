@@ -16,7 +16,7 @@ i18n.use(initReactI18next).init({
         loading: "Loading",
         passwordReset: "Forgot your password?",
         registerQuestion: "New to Project Risk App?",
-        register: "Register here",
+        register: "Register here for free",
         //sidebar
         overview: "Overview",
         newRisk: "New Risk",
@@ -25,12 +25,12 @@ i18n.use(initReactI18next).init({
         report: "Reporting",
         monitorRisk: "Monitor Risks",
         users: "Employees",
-        departments:"Departments",
+        departments: "Departments",
         riskApplication: "RISK APPLICATION",
         //chart
         open: "OPEN",
         close: "CLOSE",
-        mitigated:"MITIGATED",
+        mitigated: "MITIGATED",
         unmitigated: "UNMITIGATED",
         reviewed: "REVIEWED",
         unreviewed: "UNREVIEWED",
@@ -46,11 +46,10 @@ i18n.use(initReactI18next).init({
         printChart: "Print Chart",
         owner: "OWNER",
 
-        //table
+        //datatable
         firstName: "First Name",
         lastName: "Last Name",
         phoneNumber: "Phone Number",
-        email: "Email",
         role: "Role",
         view: "Action",
         riskCOde: "Risk Code",
@@ -60,8 +59,34 @@ i18n.use(initReactI18next).init({
         dateReviewed: "Date Reviewed",
         riskReviewer: "Risk Reviewer",
         mitgatedRiskProbabillityLevel: "Mitigated Risk Probability Level",
-
-
+        mitigatedRiskImpactLevel:"Mitigated Risk Impact Level",
+        mitigatedRiskScore: "Mitigated Risk Score",
+        dateMitigated: "Date Mitigated",
+        riskScore: "Risk Score",
+        subject: "subject",
+        inherentRisk: "Inherent Risk ",
+        daysOpen: "Days Open",
+        submittedOn: "Submitted On",
+        createdAt: "Created At",
+        departmentCode: "Dapartment Code",
+        departmentName:"Department Name",
+        departmentManager:"Department Manager",
+        riskImplementaion:"Risk Implementation",
+        riskActivityStatus: "Risk Activity Status",
+        recommendedChanges: "Recommended Changes",
+        challenges: "Challenges",
+        comments: "Comments",
+        mitigationOwner: "Mitigation Owner",
+        dateMonitored:"Date Monitored",
+        mitigatedRiskScore: "Mitigated Risk Score",
+        riskScore: "Risk Score",
+        riskStatus: "Risk Status",
+        riskCategory: "Risk Category",
+        riskDescription: "Risk Description",
+        //table
+        viewAllRiskReviews: "VIEW ALL RISK REVIEWS",
+        viewAllOpenedRisks: "VIEW ALL OPENED RISKS",
+      
       },
     },
     fr: {
@@ -73,7 +98,7 @@ i18n.use(initReactI18next).init({
         loading: "Chargement",
         passwordReset: "Vous avez oublié votre mot de passe?",
         registerQuestion: "Nouveau sur Project Risk App ?",
-        register: "Contactez-nous",
+        register: "Inscrivez-vous ici",
         //sidebar
         overview: "Aperçu",
         newRisk: "Nouveau risque",
@@ -81,8 +106,8 @@ i18n.use(initReactI18next).init({
         reviewRisk: "Risques examinés",
         report: "Rapports",
         monitorRisk: "Risques surveillés",
-        users:"Utilisateurs",
-        departments:"Départements",
+        users: "Utilisateurs",
+        departments: "Départements",
         riskApplication: "APPLICATION DU RISQUE",
         //chart
         open: "OUVERT",
@@ -102,23 +127,52 @@ i18n.use(initReactI18next).init({
         riskResponse: "RÉPONSE AUX RISQUES",
         printChart: "Print Chart",
         owner: "PROPRIÉTAIRE",
-
-        //table
+        status: "Status",
+        //datatable
         firstName: "Prénom",
         lastName: "Nom",
         phoneNumber: "Numéro de téléphone",
-        email: "Messagerie électronique",
         role: "Rôle",
         view: "Action",
         riskCOde: "Code de risque",
-        riskName:"Nom du risque",
-        riskReview:"Examen des risques",
+        riskName: "Nom du risque",
+        riskReview: "Examen des risques",
         nextReviewDate: "Date du prochain examen des risques",
         dateReviewed: "Date de révision",
         riskReviewer: "Examinateur des risques",
-        mitgatedRiskProbabillityLevel: ""
+        mitgatedRiskProbabillityLevel: "Niveau de probabilité de risque atténué",
+        mitigatedRiskImpactLevel: "Niveau d’impact du risque atténué",
+        mitigatedRiskScore: "Score de risque atténué",
+        dateMitigated: "Date atténuée",
+        riskScore: "Score de risque",
+        subject:"Objet",
+        inherentRisk:"Risque inhérent ",
+        daysOpen:"Nombre de jours ouvert",
+        submittedOn: "Soumis le",
+        createdAt: "Créé à",
+        departmentCode: "Code du département",
+        departmentName:"Nom du département", 
+        departmentManager: "Gérant",
+        riskImplementaion:"Mise en œuvre des risques",
+        riskActivityStatus:"Statut de l’activité à risque",
+        recommendedChanges:"Modifications recommandées",
+        challenges: "Défis",
+        comments: "Commentaires",
+        mitigationOwner: "Propriétaire de l’atténuation",
+        dateMonitored: "Date de surveillance ",
+        mitigatedRiskScore: "Score de risque atténué",
+        riskScore: "Score de risque",
+        riskStatus: "État du risque",
+        riskCategory: "Catégorie de risque",
+        riskDescription: "Description du risque ",
+        //table
+        viewAllRiskReviews: "VOIR TOUS LES EXAMENS DES RISQUES",
+        viewAllOpenedRisks: "VOIR TOUS LES RISQUES OUVERTS",
+        
+        
 
-
+        
+       
 
       },
     },

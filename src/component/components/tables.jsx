@@ -51,6 +51,8 @@ import { Button } from "@mui/material";
 import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -182,6 +184,7 @@ export function RiskReview() {
 
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
+  const {t} = useTranslation();
 
   useEffect(() => {
     const getClosedRisks = async () => {
@@ -210,14 +213,14 @@ export function ClosedRiskTab() {
           <div>
             <Button variant="outlined">
               <Link to="/risk-review" className="text-blue-500">
-                VIEW ALL RISK REVIEWS
+                {t("viewAllRiskReviews")}
               </Link>
             </Button>
           </div>
           <div>
             <Button variant="outlined">
               <Link to="/risk-identification" className="text-blue-500 ">
-                VIEW ALL OPENED RISKS
+                {t("viewAllOpenedRisks")}
               </Link>
             </Button>
           </div>
@@ -755,6 +758,7 @@ export function RiskMitigationReportTable() {
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
+  const {t} = useTranslation()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -819,7 +823,7 @@ export function RiskMitigationReportTable() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -952,7 +956,7 @@ export function ReviewNeedingRisksReportTab() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -1086,7 +1090,7 @@ export function RiskStatusReportTab() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}

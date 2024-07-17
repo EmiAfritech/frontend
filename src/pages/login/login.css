@@ -16,15 +16,14 @@
   font-size: 12px;
 }
 .formstyle input {
-  padding-block: 0.9rem;
   background-color: white;
   outline: none;
   border: solid;
   border-width: 1px;
   border-radius: 0.5rem;
   font-size: 1rem;
-  padding-left: 0.5rem;
-  width: 20rem;
+  width: 100%;
+  padding: 17px;
 }
 .formstyle .login {
   text-align: center;
@@ -54,4 +53,5 @@
 .login-container .login {
   background-color: blue;
   color: white;
+  width: 100%;
 }
