@@ -30,6 +30,7 @@ export const usercolumns = () => {
 };
 
 export const riskreviewcolumn = () => {
+  const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
     { field: "riskName", headerName: t("riskName"), flex: 1 },
@@ -49,19 +50,21 @@ export const riskreviewcolumn = () => {
   ];
 };
 
-export const riskreviewrow = [
-  ({ t } = useTranslation()),
-  { field: "riskID", headerName: t("riskCode"), width: 100 },
-  { field: "riskName", headerName: t("riskName"), width: 150 },
-  { field: "riskReview", headerName: t("riskReview"), width: 150 },
-  {
-    field: "NextRiskReviewDate",
-    headerName: t("nextReviewDate"),
-    width: 170,
-  },
-  { field: "riskReviewer", headerName: t("riskReviewer"), width: 150 },
-  { field: "createdAt", headerName: t("dateReviewed"), width: 150 },
-];
+export const riskreviewrow = () => {
+  const { t } = useTranslation();
+  return [
+    { field: "riskID", headerName: t("riskCode"), width: 100 },
+    { field: "riskName", headerName: t("riskName"), width: 150 },
+    { field: "riskReview", headerName: t("riskReview"), width: 150 },
+    {
+      field: "NextRiskReviewDate",
+      headerName: t("nextReviewDate"),
+      width: 170,
+    },
+    { field: "riskReviewer", headerName: t("riskReviewer"), width: 150 },
+    { field: "createdAt", headerName: t("dateReviewed"), width: 150 },
+  ];
+};
 
 export const riskmitigationcolumn = () => {
   const { t } = useTranslation();
