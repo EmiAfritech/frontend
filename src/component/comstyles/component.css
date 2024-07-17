@@ -23,6 +23,7 @@
   padding: 10px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .sidebar-main li:hover {

@@ -53,6 +53,8 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -65,6 +67,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function OpenVsClose() {
   const [data, setData] = useState();
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -81,8 +84,8 @@ export function OpenVsClose() {
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>OPEN </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>CLOSE</span>
+        <span style={{ color: "#cc23b3" }}>{t("open")} </span>Vs{" "}
+        <span style={{ color: "#2394cc" }}>{t("close")}</span>
       </h3>
       <ResponsiveContainer height={180}>
         <PieChart>
@@ -111,8 +114,8 @@ export function MitigatedVsUnmitigated() {
   return (
     <div className="items-center flex flex-col  px-4 pb-5">
       <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>MITIGATED </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>UNMITIGATED</span>
+        <span style={{ color: "#cc23b3" }}>{t("mitigated")} </span>Vs{" "}
+        <span style={{ color: "#2394cc" }}>{t("unmitigated")}</span>
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
@@ -141,8 +144,8 @@ export function ReviewedVsUnreviewed() {
   return (
     <div className=" items-center flex flex-col px-6 pb-5">
       <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>REVIEWED </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>UNREVIEWED</span>
+        <span style={{ color: "#cc23b3" }}>{t("reviewed")} </span>Vs{" "}
+        <span style={{ color: "#2394cc" }}>{t("unreviewed")}</span>
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
@@ -170,8 +173,8 @@ export function MonitoredVsUnmonitored() {
   return (
     <div className=" items-center flex flex-col px-4 pb-5">
       <h3 className="pb-3">
-        <span style={{ color: "#cc23b3" }}>MONITORED </span>Vs{" "}
-        <span style={{ color: "#2394cc" }}>UNMONITORED</span>
+        <span style={{ color: "#cc23b3" }}>{t("monitored")} </span>Vs{" "}
+        <span style={{ color: "#2394cc" }}>{t("unmonitored")}</span>
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
@@ -241,7 +244,7 @@ export function RiskBarChart() {
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
-            <p>Years</p>
+            <p>{t("years")}</p>
           </section>
           <select
             type="text"
@@ -379,7 +382,7 @@ console.log(data)
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
-            <p>Years</p>
+            <p>{t("years")}</p>
           </section>
           <select
             type="text"
@@ -466,7 +469,7 @@ export function ReportRiskLevel() {
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
-        <span>RISK LEVEL</span>
+        <span>{t("riskLevel")}</span>
       </h3>
       <div>
         <div>
@@ -481,7 +484,7 @@ export function ReportRiskLevel() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -561,7 +564,7 @@ export function ReportRiskStatus() {
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
       <h3 className="py-3">
-        <span>RISK STATUS</span>
+        <span>{t("riskStatus")}</span>
       </h3>
       <div>
         <div>
@@ -576,7 +579,7 @@ export function ReportRiskStatus() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -656,7 +659,7 @@ export function ReportRiskLocation() {
   return (
     <div className="card items-center flex flex-col  pb-12">
       <h3 className="py-3">
-        <span>LOCATION</span>
+        <span>{t("location")}</span>
       </h3>
       <div>
         <div>
@@ -671,7 +674,7 @@ export function ReportRiskLocation() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -751,7 +754,7 @@ export function ReportRiskCategory() {
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
-        <span>CATEGORY</span>
+        <span>{t("category")}</span>
       </h3>
       <div>
         <div>
@@ -766,7 +769,7 @@ export function ReportRiskCategory() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -846,7 +849,7 @@ export function ReportRiskResponse() {
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
       <h3 className="py-3">
-        <span>RISK RESPONSE</span>
+        <span>{t("riskResponse")}</span>
       </h3>
       <div>
         <div>
@@ -861,7 +864,7 @@ export function ReportRiskResponse() {
                 value={departmentName}
                 autoComplete="off"
                 onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
+                <option value="All Departments">{t("allDepartment")}</option>
                 {deptmentNames.map((deptmentNames) => (
                   <option
                     key={deptmentNames.names.id}
@@ -941,7 +944,7 @@ export function ReportRiskOwner() {
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
-        <span>OWNER</span>
+        <span>{t("owner")}</span>
       </h3>
       <div>
         <div>
@@ -1062,7 +1065,7 @@ export function Pyramidchat() {
                   value={departmentName}
                   autoComplete="off"
                   onChange={handleDeptNameChange}>
-                  <option value="All Departments">All Departments</option>
+                  <option value="All Departments">{t("allDepartment")}</option>
                   {deptmentNames.map((deptmentNames) => (
                     <option
                       key={deptmentNames.names.id}
@@ -1079,7 +1082,7 @@ export function Pyramidchat() {
         </div>
         <div className=" m-3 flex flex-row-reverse">
           <ReactToPrint
-            trigger={() => <button>Print Chart</button>}
+            trigger={() => <button>{t("printChart")}</button>}
             content={() => ref.current}
           />
         </div>
@@ -1427,12 +1430,5 @@ export function HeatMap2() {
     </div>
   );
 }
-function valuesForHeatMap(heapMapData, finalData) {
-  let index = 0;
-  for (const data of heapMapData) {
-    finalData[index].value = data.value;
-    index++;
-  }
-  return finalData;
-}
+
 

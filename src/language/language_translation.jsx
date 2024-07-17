@@ -26,7 +26,25 @@ i18n.use(initReactI18next).init({
         monitorRisk: "Monitor Risks",
         Users: "Employees",
         Departments:"Departments",
-        //dashboard
+        //chart
+        open: "OPEN",
+        close: "CLOSE",
+        mitigated:"MITIGATED",
+        unmitigated: "UNMITIGATED",
+        reviewed: "REVIEWED",
+        unreviewed: "UNREVIEWED",
+        monitored: "MONITORED",
+        unmonitored: "UNMONITORED",
+        years: "Years",
+        riskLevel: "RISK LEVEL",
+        allDepartment: "All Departments",
+        riskStatus: "RISK STATUS",
+        location: "LOCATION",
+        category: "CATEGORY",
+        riskResponse: "RISK RESPONSE",
+        printChart: "Print Chart",
+        owner: "OWNER"
+
       },
     },
     fr: {
@@ -47,7 +65,27 @@ i18n.use(initReactI18next).init({
         report: "Rapports",
         monitorRisk: "Risques surveillés",
         Users:"Utilisateurs",
-        Departments:"Départements"
+        Departments:"Départements",
+        //chart
+        open: "OUVERT",
+        close: "FERMÉ",
+        mitigated: "ATTÉNUÉ",
+        unmitigated: "NON ATTÉNUÉ",
+        reviewed: "RÉVISÉ",
+        unreviewed: "NON REVU",
+        monitored: "SURVEILLÉ ",
+        unmonitored: "NON SURVEILLÉ",
+        years: "Années",
+        riskLevel: "NIVEAU DE RISQUE",
+        allDepartment: "Tous les départements",
+        riskStatus: "STATUT DE RISQUE",
+        location: "EMPLACEMENT",
+        category: "CATÉGORIE",
+        riskResponse: "RÉPONSE AUX RISQUES",
+        printChart: "Print Chart",
+        owner: "PROPRIÉTAIRE"
+
+
       },
     },
   },
