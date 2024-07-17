@@ -22,6 +22,7 @@ export const usercolumns = [
 
 
 export const riskreviewcolumn = [
+  {t} = useTranslation(),
   { field: "riskID", headerName: t("riskCode"), flex: 1},
   { field: "riskName", headerName: t("riskName"), flex: 1},
   { field: "riskReview", headerName: t('riskReview'), flex:  1 },
@@ -40,7 +41,7 @@ export const riskreviewcolumn = [
 ];
 
 export const riskreviewrow = [
- // { field: "id", headerName: "ID", width: 70 },
+  {t} = useTranslation(),
   { field: "riskID", headerName: t("riskCode"), width: 100 },
   { field: "riskName", headerName: t("riskName"), width: 150 },
   { field: "riskReview", headerName: t('riskReview'), width: 150 },
@@ -54,6 +55,7 @@ export const riskreviewrow = [
 ];
 
 export const riskmitigationcolumn = [
+  {t} = useTranslation(),
   { field: "riskID", headerName: t("riskCode"), flex: 1 },
   { field: "riskName", headerName: t("riskName"), flex: 1},
   {
