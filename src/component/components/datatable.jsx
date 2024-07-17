@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import "../comstyles/component.css";
 import {
   DepartmentData,
@@ -12,7 +11,7 @@ import {
 } from "./modals";
 import { useTranslation } from "react-i18next";
 
-export const usercolumns = () => {
+export const useUserColumns = () => {
   const { t } = useTranslation();
 
   return [
@@ -30,7 +29,7 @@ export const usercolumns = () => {
   ];
 };
 
-export const riskreviewcolumn = () => {
+export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
@@ -51,7 +50,7 @@ export const riskreviewcolumn = () => {
   ];
 };
 
-export const riskreviewrow = () => {
+export const useRiskReviewRows = () => {
   const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), width: 100 },
@@ -67,7 +66,7 @@ export const riskreviewrow = () => {
   ];
 };
 
-export const riskmitigationcolumn = () => {
+export const useRiskMitigationColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
@@ -98,17 +97,12 @@ export const riskmitigationcolumn = () => {
   ];
 };
 
-export const reportriskpyramidcolumn = () => {
+export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
-    //{ field: "id", headerName: "ID", flex: 0.5 },
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
     { field: "riskName", headerName: t("riskName"), flex: 1 },
-    {
-      field: "riskDescription",
-      headerName: "Risk Description",
-      flex: 1,
-    },
+    { field: "riskDescription", headerName: t("riskDescription"), flex: 1 },
     { field: "riskScore", headerName: t("riskScore"), flex: 1 },
     {
       field: "view",
@@ -118,7 +112,8 @@ export const reportriskpyramidcolumn = () => {
     },
   ];
 };
-export const reportriskmitigationcolumn = () => {
+
+export const useReportRiskMitigationColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
@@ -128,25 +123,24 @@ export const reportriskmitigationcolumn = () => {
       headerName: t("mitigatedRiskScore"),
       flex: 1,
     },
-
-    { field: "riskReviewer", headerName: t("riskRreviewer"), flex: 1 },
+    { field: "riskReviewer", headerName: t("riskReviewer"), flex: 1 },
     { field: "createdAt", headerName: t("dateMitigated"), flex: 1 },
   ];
 };
 
-export const reportopenrisktoreviewcolumn = () => {
+export const useReportOpenRiskToReviewColumns = () => {
+  const { t } = useTranslation();
   return [
-    // { field: "id", headerName: "ID", flex: 0.5 },
     { field: "riskCode", headerName: t("riskCode"), flex: 1 },
     { field: "status", headerName: t("status"), flex: 1 },
     { field: "Subject", headerName: t("subject"), flex: 1 },
     { field: "riskScore", headerName: t("inherentRisk"), flex: 1 },
     { field: "daysOpen", headerName: t("daysOpen"), flex: 1 },
-    { field: "nextReviewDate", headerName: t("nextRreviewDate"), flex: 1 },
+    { field: "nextReviewDate", headerName: t("nextReviewDate"), flex: 1 },
   ];
 };
 
-export const riskstatuscolumn = () => {
+export const useRiskStatusColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "riskCode", headerName: t("riskCode"), flex: 1 },
@@ -155,12 +149,11 @@ export const riskstatuscolumn = () => {
     { field: "department", headerName: t("department"), flex: 1 },
     { field: "riskScore", headerName: t("inherentRisk"), flex: 1 },
     { field: "daysOpen", headerName: t("daysOpen"), flex: 1 },
-
     { field: "createdOn", headerName: t("submittedOn"), flex: 1 },
   ];
 };
 
-export const reportaudittrailcolumn = () => {
+export const useReportAuditTrailColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "action", headerName: t("Action"), width: 500 },
@@ -168,7 +161,7 @@ export const reportaudittrailcolumn = () => {
   ];
 };
 
-export const deptcolumn = () => {
+export const useDeptColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "deptID", headerName: t("departmentCode"), flex: 1 },
@@ -185,19 +178,11 @@ export const deptcolumn = () => {
   ];
 };
 
-export const riskmonitoringcolumn = () => {
+export const useRiskMonitoringColumns = () => {
   const { t } = useTranslation();
   return [
-    {
-      field: "riskID",
-      headerName: t("riskCode"),
-      flex: 1,
-    },
-    {
-      field: "riskName",
-      headerName: t("riskName"),
-      flex: 1,
-    },
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("riskName"), flex: 1 },
     {
       field: "riskResponseImplementation",
       headerName: t("riskImplementation"),
@@ -213,7 +198,7 @@ export const riskmonitoringcolumn = () => {
       headerName: t("recommendedChanges"),
       flex: 1,
     },
-    { field: "challenges", headerName: t("challanges"), flex: 1 },
+    { field: "challenges", headerName: t("challenges"), flex: 1 },
     { field: "comments", headerName: t("comments"), flex: 1 },
     { field: "mitigationOwner", headerName: t("mitigationOwner"), flex: 1 },
     { field: "createdAt", headerName: t("dateMonitored"), flex: 1 },
@@ -225,63 +210,32 @@ export const riskmonitoringcolumn = () => {
     },
   ];
 };
-export const riskappetitereportgreatercolumn = () => {
+
+export const useRiskAppetiteReportGreaterColumns = () => {
   const { t } = useTranslation();
   return [
-    {
-      field: "riskID",
-      headerName: t("riskCode"),
-      flex: 1,
-    },
-    {
-      field: "riskName",
-      headerName: t("subject"),
-      flex: 1,
-    },
-    {
-      field: "riskScore",
-      headerName: t("riskScore"),
-      flex: 1,
-    },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("subject"), flex: 1 },
+    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
+    { field: "mitigatedRiskScore", headerName: t("mitigatedRiskScore"), flex: 1 },
   ];
 };
 
-export const riskappetitereportlowercolumn = () => {
+export const useRiskAppetiteReportLowerColumns = () => {
   const { t } = useTranslation();
   return [
-    {
-      field: "riskID",
-      headerName: t("riskCode"),
-      flex: 1,
-    },
-    {
-      field: "riskName",
-      headerName: t("subject"),
-      flex: 1,
-    },
-    {
-      field: "riskScore",
-      headerName: t("riskScore"),
-      flex: 1,
-    },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("subject"), flex: 1 },
+    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
+    { field: "mitigatedRiskScore", headerName: t("mitigatedRiskScore"), flex: 1 },
   ];
 };
 
-export const riskviewcolumn = () => {
+export const useRiskViewColumns = () => {
   const { t } = useTranslation();
   return [
-    { field: "riskID", headerName: "Risk Code", felx: 1 },
-    { field: "riskName", headerName: "Risk Name", felx: 2 },
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("riskName"), flex: 2 },
     { field: "riskDescription", headerName: t("riskDescription"), flex: 2 },
     { field: "riskCategory", headerName: t("riskCategory"), flex: 1 },
     { field: "riskStatus", headerName: t("riskStatus"), flex: 1 },
