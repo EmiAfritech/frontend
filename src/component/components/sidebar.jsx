@@ -13,10 +13,11 @@ import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 import { LogOut } from "./modals";
+import { useTranslation } from "react-i18next";
 
 export function Sidebar() {
   const [isLoading] = useState(false);
-
+  const { t } = useTranslation();
   const userRole = localStorage.getItem("role");
   
 
@@ -26,23 +27,23 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <NavLink to="/dashboard" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</NavLink>
+          <NavLink to="/dashboard" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("overview")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <NavLink to="/risk-identification" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</NavLink>
+          <NavLink to="/risk-identification" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("newRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <NavLink to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigate Risks</NavLink>
+          <NavLink to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("mitigateRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Review Risks</NavLink>
+          <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("reviewRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
+          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("report")}</NavLink>
         </li>
         <LogOut/>
       </>
@@ -54,35 +55,35 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</NavLink>
+          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("overview")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</NavLink>
+          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("newRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <NavLink to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigate Risks</NavLink>
+          <NavLink to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("mitigateRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <NavLink to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Review Risks</NavLink>
+          <NavLink to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("reviewRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitor Risks</NavLink>
+          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("monitorRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</NavLink>
+          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("Users")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
-          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Departments</NavLink>
+          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("Departments")}Departments</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
+          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("report")}</NavLink>
         </li>
         <LogOut/>
       </>
@@ -94,19 +95,19 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</NavLink>
+          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("overview")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</NavLink>
+          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("newRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <NavLink to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigate Risks</NavLink>
+          <NavLink to="/risk-mitigation"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("mitigateRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <NavLink to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Review Risks</NavLink>
+          <NavLink to="/risk-review"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("reviewRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
@@ -122,7 +123,7 @@ export function Sidebar() {
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
+          <NavLink to="/report"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("report")}</NavLink>
         </li>
         <LogOut/>
       </>
@@ -135,19 +136,19 @@ export function Sidebar() {
       <>
         <li className="flex flex row items-center p-3">
           <FaThList className="icons" />
-          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Overview</NavLink>
+          <NavLink to="/dashboard"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("overview")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaRegShareSquare className="icons" />
-          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>New Risk</NavLink>
+          <NavLink to="/risk-identification"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("newRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaPencilAlt className="icons" />
-          <NavLink to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Mitigate Risks</NavLink>
+          <NavLink to="/risk-mitigation" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("mitigateRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardList className="icons" />
-          <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Review Risks</NavLink>
+          <NavLink to="/risk-review" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("reviewRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
@@ -159,7 +160,7 @@ export function Sidebar() {
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
-          <NavLink to="/report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Reporting</NavLink>
+          <NavLink to="/report" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("report")}</NavLink>
         </li>
         <LogOut/>
       </>

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../../language/language_switcher";
 
 export function Login() {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -125,7 +125,7 @@ export function Login() {
                   </div>
                 </div>
                 {/* password */}
-                <div>
+                <div className="mt-5">
                   <div>
                     <label htmlFor="password">{t("password")}</label>
                   </div>
