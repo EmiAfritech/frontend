@@ -22,18 +22,18 @@ export const usercolumns = [
 
 
 export const riskreviewcolumn = [
-  { field: "riskID", headerName: "Risk Code", flex: 1},
-  { field: "riskName", headerName: "Risk Name", flex: 1},
-  { field: "riskReview", headerName: "Risk Review", flex:  1 },
+  { field: "riskID", headerName: t("riskCode"), flex: 1},
+  { field: "riskName", headerName: t("riskName"), flex: 1},
+  { field: "riskReview", headerName: t('riskReview'), flex:  1 },
   {
     field: "NextRiskReviewDate",
-    headerName: "Next Risk Review Date",
+    headerName: t("nextReviewDate"),
     flex: 1,
   },
-  { field: "createdAt", headerName: "Date Reviewed", flex: 1},
+  { field: "createdAt", headerName: t("dateReviewed"), flex: 1},
   {
     field: "view",
-    headerName: "Action",
+    headerName: t("Action"),
     flex: 0.5,
     renderCell: (params) => ReviewRiskData(params),
   },
@@ -41,24 +41,24 @@ export const riskreviewcolumn = [
 
 export const riskreviewrow = [
  // { field: "id", headerName: "ID", width: 70 },
-  { field: "riskID", headerName: "Risk Code", width: 100 },
-  { field: "riskName", headerName: "Risk Name", width: 150 },
-  { field: "riskReview", headerName: "Risk Review", width: 150 },
+  { field: "riskID", headerName: t("riskCode"), width: 100 },
+  { field: "riskName", headerName: t("riskName"), width: 150 },
+  { field: "riskReview", headerName: t('riskReview'), width: 150 },
   {
     field: "NextRiskReviewDate",
-    headerName: "Next Risk Review Date",
+    headerName: t("nextReviewDate"),
     width: 170,
   },
-  { field: "riskReviewer", headerName: "Risk Reviewer", width: 150 },
-  { field: "createdAt", headerName: "Date Reviewed", width: 150 },
+  { field: "riskReviewer", headerName: t("riskReviewer"), width: 150 },
+  { field: "createdAt", headerName: t("dateReviewed"), width: 150 },
 ];
 
 export const riskmitigationcolumn = [
-  { field: "riskID", headerName: "Risk Code", flex: 1 },
-  { field: "riskName", headerName: "Risk Name", flex: 1},
+  { field: "riskID", headerName: t("riskCode"), flex: 1 },
+  { field: "riskName", headerName: t("riskName"), flex: 1},
   {
     field: "mitigatedRiskProbabilityLevel",
-    headerName: "Mitigated Risk Probability Level",
+    headerName: t("mitgatedRiskProbabillityLevel"),
     flex: 1,
   },
   {

@@ -52,7 +52,15 @@ i18n.use(initReactI18next).init({
         phoneNumber: "Phone Number",
         email: "Email",
         role: "Role",
-        view: "Action"
+        view: "Action",
+        riskCOde: "Risk Code",
+        riskName: "Risk Name",
+        riskReview: "Risk Review",
+        nextReviewDate: "Next Risk Review Date",
+        dateReviewed: "Date Reviewed",
+        riskReviewer: "Risk Reviewer",
+        mitgatedRiskProbabillityLevel: "Mitigated Risk Probability Level",
+
 
       },
     },
@@ -101,7 +109,15 @@ i18n.use(initReactI18next).init({
         phoneNumber: "Numéro de téléphone",
         email: "Messagerie électronique",
         role: "Rôle",
-        view: "Action"
+        view: "Action",
+        riskCOde: "Code de risque",
+        riskName:"Nom du risque",
+        riskReview:"Examen des risques",
+        nextReviewDate: "Date du prochain examen des risques",
+        dateReviewed: "Date de révision",
+        riskReviewer: "Examinateur des risques",
+        mitgatedRiskProbabillityLevel: ""
+
 
 
       },
