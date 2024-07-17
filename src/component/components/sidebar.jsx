@@ -75,11 +75,11 @@ export function Sidebar() {
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("Users")}</NavLink>
+          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("users")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
-          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("Departments")}Departments</NavLink>
+          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("departments")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -111,15 +111,15 @@ export function Sidebar() {
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitor Risks</NavLink>
+          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("monitorRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</NavLink>
+          <NavLink to="/employees"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("users")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUsers className="icons" />
-          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Departments</NavLink>
+          <NavLink to="/department"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("departments")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -152,11 +152,11 @@ export function Sidebar() {
         </li>
         <li className="flex flex row items-center p-3">
           <FaClipboardCheck className="icons" />
-          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Monitor Risks</NavLink>
+          <NavLink to="/risk-monitoring"style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("monitorRisk")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaUserFriends className="icons" />
-          <NavLink to="/employees" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>Users</NavLink>
+          <NavLink to="/employees" style={({ isActive }) => ({ color: isActive? "greenyellow": "white",})}>{t("users")}</NavLink>
         </li>
         <li className="flex flex row items-center p-3">
           <FaCopy className="icons" />
@@ -174,7 +174,7 @@ export function Sidebar() {
           src="https://static.africa-press.net/ghana/sites/18/2022/04/img-62599904dbcbf.jpg"
           style={{ width: 200, height: 80, borderRadius: 20 }}
         />
-        <span>RISK APPLICATION</span>
+        <span>{t("riskApplication")}</span>
       </div>
       <div className="sidebar-main">
         <ul>

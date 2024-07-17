@@ -1,17 +1,19 @@
 import "../comstyles/component.css";
 import { DepartmentData, MitigatedRiskData, MonitoredRiskData, ReviewRiskData, RiskData, UserData, MitigatedRiskReportData, RiskAdviceReportData } from "./modals";
-
+import { useTranslation } from "react-i18next";
 
 
 export const usercolumns = [
-  { field: "firstName", headerName: "First Name", flex: 1},
-  { field: "lastName", headerName: "Last Name", flex: 1},
-  { field: "phoneNumber", headerName: "Phone Number", flex: 1 },
-  { field: "email", headerName: "Email", flex: 1},
-  { field: "role", headerName: "Role", flex: 1},
+  {t} = useTranslation(),
+  
+  { field: "firstName", headerName: t("firstName"), flex: 1},
+  { field: "lastName", headerName: t("lastName"), flex: 1},
+  { field: "phoneNumber", headerName: t("phoneNumber"), flex: 1 },
+  { field: "email", headerName: t("email"), flex: 1},
+  { field: "role", headerName: t("role"), flex: 1},
   {
     field: "view",
-    headerName: "Action",
+    headerName: t("Action"),
     flex: 0.5,
     renderCell: (params) => UserData(params),
   },

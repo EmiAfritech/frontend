@@ -24,8 +24,9 @@ i18n.use(initReactI18next).init({
         reviewRisk: "Review Risks",
         report: "Reporting",
         monitorRisk: "Monitor Risks",
-        Users: "Employees",
-        Departments:"Departments",
+        users: "Employees",
+        departments:"Departments",
+        riskApplication: "RISK APPLICATION",
         //chart
         open: "OPEN",
         close: "CLOSE",
@@ -43,7 +44,15 @@ i18n.use(initReactI18next).init({
         category: "CATEGORY",
         riskResponse: "RISK RESPONSE",
         printChart: "Print Chart",
-        owner: "OWNER"
+        owner: "OWNER",
+
+        //table
+        firstName: "First Name",
+        lastName: "Last Name",
+        phoneNumber: "Phone Number",
+        email: "Email",
+        role: "Role",
+        view: "Action"
 
       },
     },
@@ -64,8 +73,9 @@ i18n.use(initReactI18next).init({
         reviewRisk: "Risques examinés",
         report: "Rapports",
         monitorRisk: "Risques surveillés",
-        Users:"Utilisateurs",
-        Departments:"Départements",
+        users:"Utilisateurs",
+        departments:"Départements",
+        riskApplication: "APPLICATION DU RISQUE",
         //chart
         open: "OUVERT",
         close: "FERMÉ",
@@ -83,7 +93,15 @@ i18n.use(initReactI18next).init({
         category: "CATÉGORIE",
         riskResponse: "RÉPONSE AUX RISQUES",
         printChart: "Print Chart",
-        owner: "PROPRIÉTAIRE"
+        owner: "PROPRIÉTAIRE",
+
+        //table
+        firstName: "Prénom",
+        lastName: "Nom",
+        phoneNumber: "Numéro de téléphone",
+        email: "Messagerie électronique",
+        role: "Rôle",
+        view: "Action"
 
 
       },
