@@ -2,12 +2,13 @@ import "../../component/comstyles/component.css";
 import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
+import { t } from "i18next";
 
 
 export function ReportSideTabs() {
   const [isLoading] = useState(false);
-  const {t} = useTranslation()
+  
 
   const userRole = localStorage.getItem("role");
 
