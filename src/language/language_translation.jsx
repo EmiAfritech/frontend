@@ -62,6 +62,8 @@ i18n.use(initReactI18next).init({
         medium: "Medium",
         high: "High",
         veryHigh: "Very High",
+        likelihood: "Vraisemblance",
+        impact: "Impact",
         //datatable
         firstName: "First Name",
         lastName: "Last Name",
@@ -174,6 +176,7 @@ i18n.use(initReactI18next).init({
         medium: "moyenne",
         high: "Haute",
         veryHigh: "Très haut",
+        likelyhood: "",
         //datatable
         firstName: "Prénom",
         lastName: "Nom",

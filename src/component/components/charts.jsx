@@ -1279,12 +1279,12 @@ export function HeatMap2() {
     },
     xaxis: {
       title: {
-        text: "Impact", // Label for the x-axis
+        text: t("impact"), // Label for the x-axis
       },
     },
     yaxis: {
       title: {
-        text: "Likelihood", // Label for the y-axis
+        text: t("likelihood"), // Label for the y-axis
       },
     },
   };
