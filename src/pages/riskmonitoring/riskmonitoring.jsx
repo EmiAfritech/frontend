@@ -17,7 +17,7 @@ export function RiskMonitoring() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="col-span-2"><RiskBarChart /></div>
             <div className="flex flex-col justify-center card">
-              <Link to="/high-&-Low-Risk">
+              <Link to="#">
                 <MonitoredVsUnmonitored />
               </Link>
               <ReviewInfo />
