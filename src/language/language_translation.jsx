@@ -46,7 +46,22 @@ i18n.use(initReactI18next).init({
         riskResponse: "RISK RESPONSE",
         printChart: "Print Chart",
         owner: "OWNER",
-
+        riskPyramidChartName: "Risk Pyramid Chart",
+        rare: "rare",
+        insignificant: "insignificant",
+        minor: "minor",
+        moderate: "moderate",
+        major: "major",
+        critical: "critical",
+        unlikely: "unlikely",
+        possible: "possible",
+        likely: "likely",
+        almostCetain: "almost certain",
+        heatmap: "heatmap",
+        low: "Low",
+        medium: "Medium",
+        high: "High",
+        veryHigh: "Very High",
         //datatable
         firstName: "First Name",
         lastName: "Last Name",
@@ -92,6 +107,14 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "click on the charts",
         viewClosedRisks: "To view all closed risks kindly click on the",
         link: "Link",
+        //report side tabs
+        likelyhoodvsimpact: "Likelyhood Vs Impact",
+        riskAppetite: "Risk Appetite",
+        mitigationByDate: "Mitigations By Date",
+        allOpenedRiskNeedingReview: "All Opened Risks Needing a Review",
+        auditTrail: "Audit Trail",
+        riskAdvice: "Risk Advice",
+
 
       
       },
@@ -135,6 +158,22 @@ i18n.use(initReactI18next).init({
         printChart: "Print Chart",
         owner: "PROPRIÉTAIRE",
         status: "Status",
+        riskPyramidChartName: "Graphique pyramidal des risques",
+        rare: "rare",
+        insignificant: "insignificant",
+        minor: "mineur",
+        moderate: "modéré",
+        major: "majeur",
+        critical: "critique",
+        unlikely: "improbable",
+        possible: "possible",
+        likely:"probable",
+        almostCertain: "presque certain",
+        heatmap: "Carte thermique",
+        low: "basse",
+        medium: "moyenne",
+        high: "Haute",
+        veryHigh: "Très haut",
         //datatable
         firstName: "Prénom",
         lastName: "Nom",
@@ -180,7 +219,13 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "Cliquez sur les graphiques",
         viewClosedRisks: "Pour voir tous les risques fermés, veuillez cliquer sur le ",
         link: "Lien",
-        
+        //report side tabs
+        likelyhoodvsimpact: "Probabilité vs impact",
+        riskAppetite: "Appétit pour le risque",
+        mitigationByDate: "Mesures d’atténuation par date",
+        allOpenedRiskNeedingReview: "Tous les risques ouverts nécessitant un examen",
+        auditTrail: "Piste d’audit",
+        riskAdvice: "Conseils en matière de risques",
         
 
         

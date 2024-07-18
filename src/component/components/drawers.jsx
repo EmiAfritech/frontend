@@ -23,6 +23,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
+import { useTranslation } from "react-i18next";
 
 function getProbabiltyLevelNumber(probabilitys) {
   if (probabilitys === 1) {

@@ -1111,8 +1111,8 @@ export function Pyramidchat() {
                 <Font size={16} />
               </Label>
             </Funnel>
+            <p className="mt-4">{t("riskPyramidChartName")}</p>
           </div>
-          <p>Risk Pyramid Chart</p>
         </div>
         <div className="grid grid-cols-6 gap-4">
           <Button
@@ -1121,7 +1121,7 @@ export function Pyramidchat() {
             variant="text"
             size="large">
             {" "}
-            Risk Advice
+            {t("riskAdvice")}
           </Button>
         </div>
         <hr />
@@ -1184,188 +1184,58 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap3() {
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(HEATMAP_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
-
-  const options = {
-    chart: {
-      type: "heatmap",
-    },
-    plotOptions: {
-      heatmap: {
-        colorScale: {
-          ranges: [
-            {
-              from: 1,
-              to: 5,
-              name: "Low",
-              color: "#008000",
-            },
-            {
-              from: 6,
-              to: 9,
-              name: "Medium",
-              color: "#002db3",
-            },
-            {
-              from: 10,
-              to: 15,
-              name: "High",
-              color: "#ffcc00",
-            },
-            {
-              from: 16,
-              to: 25,
-              name: "Very High",
-              color: "#ff0000",
-            },
-          ],
-        },
-      },
-    },
-    xaxis: {
-      title: {
-        text: "Likelihood", // Label for the x-axis
-      },
-    },
-    yaxis: {
-      title: {
-        text: "Impact", // Label for the y-axis
-      },
-    },
-  };
-
-  const series = [
-    {
-      name: "rare",
-      data: [
-        { x: "insignificant", y: 1 },
-        { x: "minor", y: 2 },
-        { x: "moderate", y: 0 },
-        { x: "major", y: 4 },
-        { x: "critical", y: 5 },
-      ],
-    },
-    {
-      name: "unlikely",
-      data: [
-        { x: "insignificant", y: 2 },
-        { x: "minor", y: 4 },
-        { x: "moderate", y: 6 },
-        { x: "major", y: 8 },
-        { x: "critical", y: 10 },
-      ],
-    },
-    {
-      name: "possible",
-      data: [
-        { x: "insignificant", y: 3 },
-        { x: "minor", y: 6 },
-        { x: "moderate", y: 9 },
-        { x: "major", y: 0 },
-        { x: "critical", y: 15 },
-      ],
-    },
-    {
-      name: "likely",
-      data: [
-        { x: "insignificant", y: 4 },
-        { x: "minor", y: 8 },
-        { x: "moderate", y: 12 },
-        { x: "major", y: 16 },
-        { x: "critical", y: 20 },
-      ],
-    },
-    {
-      name: "almost certain",
-      data: [
-        { x: "insignificant", y: 5 },
-        { x: "minor", y: 10 },
-        { x: "moderate", y: 15 },
-        { x: "major", y: 20 },
-        { x: "critical", y: 25 },
-      ],
-    },
-  ];
-
-  return (
-    <div>
-      <Chart
-        options={options}
-        series={series}
-        type="heatmap"
-        height={550}
-        width={900}
-      />
-    </div>
-  );
-}
 
 export function HeatMap2() {
 
   const series = [
     {
-      name: "rare",
+      name: t("rare"),
       data: [
-        { x: "insignificant", y: 1 },
-        { x: "minor", y: 2 },
-        { x: "moderate", y: 3 },
-        { x: "major", y: 4 },
-        { x: "critical", y: 5 },
+        { x: t("insignificant"), y: 1 },
+        { x: t("minor"), y: 2 },
+        { x: t("moderate"), y: 3 },
+        { x: t("major"), y: 4 },
+        { x: t("critical"), y: 5 },
       ],
     },
     {
-      name: "unlikely",
+      name: t("unlikely"),
       data: [
-        { x: "insignificant", y: 2 },
-        { x: "minor", y: 4 },
-        { x: "moderate", y: 6 },
-        { x: "major", y: 8 },
-        { x: "critical", y: 10 },
+        { x: t("insignificant"), y: 2 },
+        { x: t("minor"), y: 4 },
+        { x: t("moderate"), y: 6 },
+        { x: t("major"), y: 8 },
+        { x: t("critical"), y: 10 },
       ],
     },
     {
-      name: "possible",
+      name: t("possible"),
       data: [
-        { x: "insignificant", y: 3 },
-        { x: "minor", y: 6 },
-        { x: "moderate", y: 9 },
-        { x: "major", y: 12},
-        { x: "critical", y: 15 },
+        { x: t("insignificant"), y: 3 },
+        { x: t("minor"), y: 6 },
+        { x: t("moderate"), y: 9 },
+        { x: t("major"), y: 12},
+        { x: t("critical"), y: 15 },
       ],
     },
     {
-      name: "likely",
+      name: t("likely"),
       data: [
-        { x: "insignificant", y: 4 },
-        { x: "minor", y: 8 },
-        { x: "moderate", y: 12 },
-        { x: "major", y: 16 },
-        { x: "critical", y: 20 },
+        { x: t("insignificant"), y: 4 },
+        { x: t("minor"), y: 8 },
+        { x: t("moderate"), y: 12 },
+        { x: t("major"), y: 16 },
+        { x: t("critical"), y: 20 },
       ],
     },
     {
-      name: "almost certain",
+      name: t("almostCertain"),
       data: [
-        { x: "insignificant", y: 5 },
-        { x: "minor", y: 10 },
-        { x: "moderate", y: 15 },
-        { x: "major", y: 20 },
-        { x: "critical", y: 25 },
+        { x: t("insignificant"), y: 5 },
+        { x: t("minor"), y: 10 },
+        { x: t("moderate"), y: 15 },
+        { x: t("major"), y: 20 },
+        { x: t("critical"), y: 25 },
       ],
     },
   ];
@@ -1382,25 +1252,25 @@ export function HeatMap2() {
             {
               from: 1,
               to: 5,
-              name: "Low",
+              name: t("low"),
               color: "#008000",
             },
             {
               from: 6,
               to: 9,
-              name: "Medium",
+              name: t("medium"),
               color: "#002db3",
             },
             {
               from: 10,
               to: 15,
-              name: "High",
+              name: t("high"),
               color: "#ffcc00",
             },
             {
               from: 16,
               to: 25,
-              name: "Very High",
+              name: t("veryHigh"),
               color: "#ff0000",
             },
           ],
