@@ -1,11 +1,13 @@
 import { Button } from "devextreme-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function ReviewInfo() {
+  const {t} = useTranslation();
   return (
     <p>
       {" "}
-      to identify item details <br /> click on the charts
+      {t("reviewInfo1")} <br />{t("reviewInfo2")} 
     </p>
   );
 }
@@ -78,9 +80,10 @@ export function MitigatedReport() {
 }
 
 export function ViewClosedRisk(){
+  const {t} = useTranslation();
   return(
     <p className="pt-4">
-      To view all closed risks kindly click on the <Link to="/closed-risks" className="text-blue-500 font-bold">Link</Link>
+      {t("viewClosedRisks")} <Link to="/closed-risks" className="text-blue-500 font-bold">{t("link")}</Link>
     </p>
   )
 }

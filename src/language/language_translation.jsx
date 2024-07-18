@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { ViewClosedRisk } from "../component/components/info";
 
 i18n.use(initReactI18next).init({
   fallbackLng: "en",
@@ -86,6 +87,12 @@ i18n.use(initReactI18next).init({
         //table
         viewAllRiskReviews: "VIEW ALL RISK REVIEWS",
         viewAllOpenedRisks: "VIEW ALL OPENED RISKS",
+        //info
+        reviewInfo1: "to identify item details",
+        reviewInfo2: "click on the charts",
+        viewClosedRisks: "To view all closed risks kindly click on the",
+        link: "Link",
+
       
       },
     },
@@ -168,6 +175,11 @@ i18n.use(initReactI18next).init({
         //table
         viewAllRiskReviews: "VOIR TOUS LES EXAMENS DES RISQUES",
         viewAllOpenedRisks: "VOIR TOUS LES RISQUES OUVERTS",
+        //info
+        reviewInfo1: "pour identifier les détails de l’article",
+        reviewInfo2: "Cliquez sur les graphiques",
+        viewClosedRisks: "Pour voir tous les risques fermés, veuillez cliquer sur le ",
+        link: "Lien",
         
         
 

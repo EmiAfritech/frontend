@@ -12,7 +12,6 @@ import { ReportRiskMitigation } from "./pages/report/mitgation";
 import { ReportRiskDashboard } from "./pages/report/dashboard";
 import { ReportRiskChatbot } from "./pages/report/chatbot";
 import { RiskView } from "./pages/riskidentification/riskview";
-// import { HighLowRisk } from "./pages/riskmonitoring/HighLowtab";
 import { RiskStatusReport } from "./pages/report/riskStatusReport";
 import { ReportRiskAppetite } from "./pages/report/riskAppetite";
 import { ReviewNeedingRisksReport } from "./pages/report/reviewNeedingRisks";
@@ -41,7 +40,6 @@ function App() {
         <Route path="/department" element={<Department />} />
         <Route path="/closed-risks" element={<ClosedRisk />} />
         <Route path="/employees" element={<Employees />} />
-        {/* <Route path="/high-&-Low-Risk" element={<HighLowRisk />} /> */}
         <Route path="/report" element={<Report />}>
           <Route index element={<ReportRiskDashboard />} />
           <Route path="advice" element={<ReportRiskAdvice />} />
