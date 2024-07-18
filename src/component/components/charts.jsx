@@ -44,7 +44,7 @@ import {
 } from "../../api/routes";
 import { RiskReportAdvice } from "./info";
 import { Button } from "@mui/material";
-import { reportriskpyramidcolumn } from "./datatable";
+import { useReportRiskPyramidColumns } from "./datatable";
 import {
   DataGrid,
   gridClasses,
@@ -991,6 +991,7 @@ export function Pyramidchat() {
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
+  const pyramidTable = useReportRiskPyramidColumns()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1148,7 +1149,7 @@ export function Pyramidchat() {
                   }}>
                   <DataGrid
                     rows={tableData}
-                    columns={reportriskpyramidcolumn}
+                    columns={pyramidTable}
                     pageSizeOptions={[10, 15]}
                     pagination
                     getCellClassName={(params) => {

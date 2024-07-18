@@ -1,17 +1,16 @@
 import {
-  usercolumns,
-  riskreviewrow,
-  riskreviewcolumn,
-  deptcolumn,
-  riskmonitoringcolumn,
-  riskviewcolumn,
-  riskappetitereportgreatercolumn,
-  riskstatuscolumn,
-  riskappetitereportlowercolumn,
-  reportopenrisktoreviewcolumn,
-  reportaudittrailcolumn,
-  riskmitigationcolumn,
-  reportriskmitigationcolumn,
+  useUserColumns,
+  useRiskReviewColumns,
+  useDeptColumns,
+  useRiskMonitoringColumns,
+  useRiskViewColumns,
+  useRiskAppetiteReportGreaterColumns,
+  useRiskStatusColumns,
+  useRiskAppetiteReportLowerColumns,
+  useReportOpenRiskToReviewColumns,
+  useReportAuditTrailColumns,
+  useRiskMitigationColumns,
+  useReportRiskMitigationColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import {
@@ -66,6 +65,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 export function EmployeesTable() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const usercolumns = useUserColumns();
 
   const getUsers = async () => {
     try {
@@ -123,6 +123,7 @@ export function EmployeesTable() {
 export function RiskReview() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const riskreviewcolumn = useRiskReviewColumns();
 
   const getRiskReview = async () => {
     try {
@@ -185,6 +186,7 @@ export function RiskReview() {
 export function ClosedRiskTab() {
   const [tableData, setTableData] = useState([]);
   const {t} = useTranslation();
+  const riskviewcolumn = useRiskViewColumns();
 
   useEffect(() => {
     const getClosedRisks = async () => {
@@ -247,6 +249,7 @@ export function ClosedRiskTab() {
 export function RiskMonitor() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const riskmonitoringcolumn = useRiskMonitoringColumns();
 
   const getMonitoring = async () => {
     try {
@@ -304,6 +307,7 @@ export function RiskMonitor() {
 
 export function RiskAppetiteReportGreater() {
   const [tableData, setTableData] = useState([]);
+  const riskappetitereportgreatercolumn = useRiskAppetiteReportGreaterColumns();
 
   useEffect(() => {
     const riskAppetiteReportGreater = async () => {
@@ -372,6 +376,7 @@ export function RiskAppetiteReportGreater() {
 
 export function RiskAppetiteReportLower() {
   const [tableData, setTableData] = useState([]);
+  const riskappetitereportlowercolumn = useRiskAppetiteReportLowerColumns();
 
   useEffect(() => {
     const riskAppetiteReportLower = async () => {
@@ -441,6 +446,7 @@ export function RiskAppetiteReportLower() {
 export function DepartmentTab() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const deptcolumn = useDeptColumns();
 
   const getDepartment = async () => {
     try {
@@ -498,6 +504,7 @@ export function DepartmentTab() {
 export function RiskmitigationTab() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const riskmitigationcolumn = useRiskMitigationColumns()
 
   const getMitigation = async () => {
     try {
@@ -582,31 +589,10 @@ export function RiskmitigationTab() {
   );
 }
 
-export function HighLowRiskTable() {
-  return (
-    <div className="flex flex-col">
-      <div
-        style={{ height: 320, width: "100%", backgroundColor: "white" }}
-        className="  mt-2 w-full">
-        <DataGrid
-          rows={riskreviewrow}
-          columns={deptcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          checkboxSelection
-        />
-      </div>
-    </div>
-  );
-}
-
 export function RiskViewTable() {
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const riskviewcolumn = useRiskViewColumns();
 
   const viewAllRisks = () => {
     axios
@@ -690,6 +676,7 @@ export function RiskViewTable() {
 
 export function Reportaudittrail() {
   const [tableData, setTableData] = useState([]);
+  const reportaudittrailcolumn =  useReportAuditTrailColumns();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -758,7 +745,9 @@ export function RiskMitigationReportTable() {
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
-  const {t} = useTranslation()
+  const {t} = useTranslation();
+  const reportriskmitigationcolumn = useReportRiskMitigationColumns();
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -892,6 +881,7 @@ export function ReviewNeedingRisksReportTab() {
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
+  const reportopenrisktoreviewcolumn = useReportOpenRiskToReviewColumns();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1026,6 +1016,7 @@ export function RiskStatusReportTab() {
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
+  const riskstatuscolumn = useRiskStatusColumns();
 
   useEffect(() => {
     const fetchData = async () => {

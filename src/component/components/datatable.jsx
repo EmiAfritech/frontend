@@ -50,21 +50,6 @@ export const useRiskReviewColumns = () => {
   ];
 };
 
-export const useRiskReviewRows = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), width: 100 },
-    { field: "riskName", headerName: t("riskName"), width: 150 },
-    { field: "riskReview", headerName: t("riskReview"), width: 150 },
-    {
-      field: "NextRiskReviewDate",
-      headerName: t("nextReviewDate"),
-      width: 170,
-    },
-    { field: "riskReviewer", headerName: t("riskReviewer"), width: 150 },
-    { field: "createdAt", headerName: t("dateReviewed"), width: 150 },
-  ];
-};
 
 export const useRiskMitigationColumns = () => {
   const { t } = useTranslation();
