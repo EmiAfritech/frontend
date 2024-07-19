@@ -42,9 +42,10 @@ import { CsvUploader } from "./csvuploader";
 import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import { useTranslation } from "react-i18next";
 import "react-tabs/style/react-tabs.css";
 import { Sessions } from "../../api/sessions";
+
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2193,7 +2194,7 @@ export function LogOut() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-
+  const {it} = useTranslation();
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
       onClose: () => {
@@ -2249,7 +2250,7 @@ export function LogOut() {
       <ToastContainer onClose={5000} hideProgressBar />
       <button onClick={handleOpen} className="flex flex row items-center p-3">
         <FaSignOutAlt className="icons" />
-        Logout
+       {t("logout")}
       </button>
       <Modal
         open={open}

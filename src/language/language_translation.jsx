@@ -116,6 +116,21 @@ i18n.use(initReactI18next).init({
         allOpenedRiskNeedingReview: "All Opened Risks Needing a Review",
         auditTrail: "Audit Trail",
         riskAdvice: "Risk Advice",
+        //modals
+        logout: "Logout",
+        //drawers
+        addRisk: "Add Risk",
+        newRisk: "NEW RISK",
+        objective: "objective",
+        description: "description",
+        almostImpossible: "Almost Impossible",
+        veryLikely: "very likely",
+        probabilityLevel: "probability Level",
+        externalFactors: "External Factors",
+        people: "People",
+        system: "System",
+        process: "Process",
+        category: "category"
 
 
       
@@ -166,7 +181,7 @@ i18n.use(initReactI18next).init({
         minor: "mineur",
         moderate: "modéré",
         major: "majeur",
-        critical: "critique",
+        critical: "catastrophique",
         unlikely: "improbable",
         possible: "possible",
         likely:"probable",
@@ -176,7 +191,8 @@ i18n.use(initReactI18next).init({
         medium: "moyenne",
         high: "Haute",
         veryHigh: "Très haut",
-        likelyhood: "",
+        likelihood: "vraisemblance",
+        impact: "Impact",
         //datatable
         firstName: "Prénom",
         lastName: "Nom",
@@ -229,7 +245,21 @@ i18n.use(initReactI18next).init({
         allOpenedRiskNeedingReview: "Tous les risques ouverts nécessitant un examen",
         auditTrail: "Piste d’audit",
         riskAdvice: "Conseils en matière de risques",
-        
+        //modals
+        logout: "Déconnexion",
+        //drawers
+        addRisk: "Ajouter des risques",
+        newRisk: "NOUVEAU RISQUE",
+        objective: "objective",
+        description: "description",
+        almostImpossible: "Presque impossible",
+        veryLikely: "Très probable",
+        probabilityLevel: "Niveau de probabilité",
+        externalFactors: "Facteurs externes",
+        people: "Humain",
+        system: "Système",
+        process: "Processus",
+        category: "Catégorie"
 
         
        
