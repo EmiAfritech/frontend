@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Papa from "papaparse";
 import CircularProgress from "@mui/material/CircularProgress";
-import { t } from "i18next";
+
 
 import {
   CREATERISKFORM_URL,
@@ -481,6 +481,7 @@ export function Departmentforms({ onFormSubmit }) {
 }
 
 export function Riskforms({ onFormSubmit, tableData }) {
+  const {t} = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
