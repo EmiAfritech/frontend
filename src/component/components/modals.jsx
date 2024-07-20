@@ -2194,7 +2194,7 @@ export function LogOut() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-  const {it} = useTranslation();
+  const {t} = useTranslation();
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
       onClose: () => {
