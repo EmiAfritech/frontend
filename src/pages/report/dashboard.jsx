@@ -20,7 +20,7 @@ export function ReportRiskDashboard() {
         />
       </div>
       <div ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-0.5">
+        <div className="grid grid-cols-2  xl:grid-cols-3 xl:gap-0.5">
             <ReportRiskLevel />
             <ReportRiskCategory />
             <ReportRiskLocation />
