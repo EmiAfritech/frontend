@@ -1,7 +1,5 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { ViewClosedRisk } from "../component/components/info";
-import { accepts } from "react-papaparse/dist/utils";
 
 i18n.use(initReactI18next).init({
   fallbackLng: "en",
