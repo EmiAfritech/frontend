@@ -136,6 +136,16 @@ i18n.use(initReactI18next).init({
         transfer: 'Transfer',
         departmentId: "Department Id",
         riskResponseActivity: "Risk Response Activity",
+        mitigationCost: "Mitigation Cost",
+        mitigationDueDate: "Mitigation Due Date",
+        mitigationControl: "Mitigation Control",
+        systematic: "Systematic",
+        manual: "Manual",
+        mitigationEffort: "Mitigation Effort",
+        trivial: "Trivial",
+        conconsiderable: "Conconsiderable",
+        significant: "Significant",
+        exceptional: "Exceptional",
 
 
       
@@ -147,7 +157,7 @@ i18n.use(initReactI18next).init({
         email: "Messagerie électronique",
         password: "Mot de Passe",
         submit: "Envoyer",
-        loading: "Chargement",
+        loading: "chargement",
         passwordReset: "Vous avez oublié votre mot de passe?",
         registerQuestion: "Nouveau sur Project Risk App ?",
         register: "Inscrivez-vous ici",
@@ -271,8 +281,16 @@ i18n.use(initReactI18next).init({
         transfer: "Transférer",
         departmentId: "Département Id",
         riskResponseActivity: "Activité de réponse aux risques",
-
-        
+        mitigationCost: "Coût de l’atténuation",
+        mitigationDueDate: "Date d’échéance de l’atténuation",
+        mitigationControl: "Contrôle de l’atténuation",
+        systematic: "Systématique",
+        manual: "Manuelle",
+        mitigationEffort: "Effort de l’atténuation",
+        trivial: "Trivial",
+        conconsiderable: "Considérable",
+        significant: "Significatif",
+        exceptional: "Exceptionnel",
 
         
        
