@@ -146,7 +146,15 @@ i18n.use(initReactI18next).init({
         conconsiderable: "Conconsiderable",
         significant: "Significant",
         exceptional: "Exceptional",
-        nextReviewDate: "Next Review Date "
+        nextReviewDate: "Next Review Date ",
+        acceptRisk: "Accept Risk",
+        rejectRisk: "Reject Risk",
+        NewDepartment: "New Department",
+        addDepartment: "Add Department",
+        username: "UserName",
+        addEmployee: "Add Employee",
+        newEmployee: "NEW EMPLOYEE",
+
 
 
       
@@ -292,6 +300,14 @@ i18n.use(initReactI18next).init({
         conconsiderable: "Considérable",
         significant: "Significatif",
         exceptional: "Exceptionnel",
+        acceptRisk: "Accepter le risque",
+        rejectRisk: "Risque de rejet",
+        NewDepartment: "Nouveau département",
+        addDepartment: "Ajouter un département",
+        username: "Nom d’utilisateur",
+        addEmployee: "Ajouter un employé",
+        mewEmployee: "NOUVEL EMPLOYÉ",
+
 
         
        
