@@ -866,17 +866,17 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   onChange={(e) => setRiskResponse(e.target.value)}
                   required>
                   <option></option>
-                  <option value="Exploit">Exploit</option>
-                  <option value="Accept">Accept</option>
-                  <option value="Enhance">Enhance</option>
-                  <option value="Avoid">Avoid</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Mitigate">Mitigate</option>
+                  <option value="Exploit">{t('exploit')}</option>
+                  <option value="Accept">{t('accept')}</option>
+                  <option value="Enhance">{t('enhance')}</option>
+                  <option value="Avoid">{t("avoid")}</option>
+                  <option value="Transfer">{t("transfer")}</option>
+                  <option value="Mitigate">{t("mitigate")}</option>
                 </select>
                 <label
                   htmlFor="work-location"
                   className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  risk response
+                  {t("riskResponse")}
                 </label>
               </div>
               <div className="relative">
@@ -889,7 +889,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   required
                 />
                 <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  risk response activity
+                  {t("riskResponseActivity")}
                 </label>
               </div>
             </div>
@@ -899,7 +899,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
-              disabled={isLoading} // Disable the button while loading
+              disabled={isLoading} 
             >
               {isLoading ? (
                 <div className="flex flex-row justify-center">
@@ -907,7 +907,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                "Submit"
+                t('submit')
               )}
             </button>
           </div>

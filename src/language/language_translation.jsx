@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { ViewClosedRisk } from "../component/components/info";
+import { accepts } from "react-papaparse/dist/utils";
 
 i18n.use(initReactI18next).init({
   fallbackLng: "en",
@@ -118,6 +119,8 @@ i18n.use(initReactI18next).init({
         riskAdvice: "Risk Advice",
         //modals
         logout: "Logout",
+        logoutMessage: "Are you sure you want to logout?",
+        yes: "Yes",
         //drawers
         addRisk: "Add Risk",
         newRisk: "NEW RISK",
@@ -130,7 +133,12 @@ i18n.use(initReactI18next).init({
         people: "People",
         system: "System",
         process: "Process",
-        category: "category"
+        category: "category",
+        exploit: 'Exploit',
+        accept: 'Accept',
+        enhance: 'Enhance',
+        avoid: 'Avoid',
+        transfer: 'Transfer',
 
 
       
@@ -247,6 +255,8 @@ i18n.use(initReactI18next).init({
         riskAdvice: "Conseils en matière de risques",
         //modals
         logout: "Déconnexion",
+        logoutMessage: "Êtes-vous sûr de vouloir vous déconnecter?",
+        yes: "Oui",
         //drawers
         addRisk: "Ajouter des risques",
         newRisk: "NOUVEAU RISQUE",
@@ -259,7 +269,14 @@ i18n.use(initReactI18next).init({
         people: "Humain",
         system: "Système",
         process: "Processus",
-        category: "Catégorie"
+        category: "Catégorie",
+        exploit: "Exploiter",
+        accept: "Accepter",
+        enhance: "Améliorer",
+        avoid: "Éviter",
+        transfer: "Transférer",
+
+        
 
         
        

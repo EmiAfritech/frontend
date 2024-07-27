@@ -2276,7 +2276,7 @@ export function LogOut() {
             </div>
             <div className="ml-2">
               <Typography component="h2">
-                Are you sure you want to Logout?
+                {t('logoutMessage')}
               </Typography>
             </div>
           </div>
@@ -2293,7 +2293,7 @@ export function LogOut() {
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                "Yes"
+                t('yes')
               )}
             </button>
           </div>
