@@ -223,7 +223,7 @@ export const useRiskViewColumns = () => {
     { field: "riskName", headerName: t("riskName"), flex: 2 },
     { field: "riskDescription", headerName: t("riskDescription"), flex: 2 },
     { field: "riskCategory", headerName: t("riskCategory"), flex: 1 },
-    { field: "riskStatus", headerName: t("riskStatus"), flex: 1 },
+    { field: "riskStatus", headerName: t("riskStatusdatatable"), flex: 1 },
     { field: "riskScore", headerName: t("riskScore"), flex: 1 },
     {
       field: "view",

@@ -95,9 +95,7 @@ i18n.use(initReactI18next).init({
         comments: "Comments",
         mitigationOwner: "Mitigation Owner",
         dateMonitored:"Date Monitored",
-        mitigatedRiskScore: "Mitigated Risk Score",
-        riskScore: "Risk Score",
-        riskStatus: "Risk Status",
+        riskStatusdatatable: "Risk Status",
         riskCategory: "Risk Category",
         riskDescription: "Risk Description",
         //table
@@ -130,13 +128,14 @@ i18n.use(initReactI18next).init({
         people: "People",
         system: "System",
         process: "Process",
-        category: "category",
+        categorydrawer: "category",
         exploit: 'Exploit',
         accept: 'Accept',
         enhance: 'Enhance',
         avoid: 'Avoid',
         transfer: 'Transfer',
         departmentId: "Department Id",
+        riskResponseActivity: "Risk Response Activity",
 
 
       
@@ -231,9 +230,7 @@ i18n.use(initReactI18next).init({
         comments: "Commentaires",
         mitigationOwner: "Propriétaire de l’atténuation",
         dateMonitored: "Date de surveillance ",
-        mitigatedRiskScore: "Score de risque atténué",
-        riskScore: "Score de risque",
-        riskStatus: "État du risque",
+        riskStatusdatatable: "État du risque",
         riskCategory: "Catégorie de risque",
         riskDescription: "Description du risque ",
         //table
@@ -266,13 +263,14 @@ i18n.use(initReactI18next).init({
         people: "Humain",
         system: "Système",
         process: "Processus",
-        category: "Catégorie",
+        categorydrawer: "Catégorie",
         exploit: "Exploiter",
         accept: "Accepter",
         enhance: "Améliorer",
         avoid: "Éviter",
         transfer: "Transférer",
         departmentId: "Département Id",
+        riskResponseActivity: "Activité de réponse aux risques",
 
         
 
