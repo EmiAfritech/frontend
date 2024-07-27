@@ -146,6 +146,7 @@ i18n.use(initReactI18next).init({
         conconsiderable: "Conconsiderable",
         significant: "Significant",
         exceptional: "Exceptional",
+        nextReviewDate: "Next Review Date "
 
 
       
@@ -282,7 +283,7 @@ i18n.use(initReactI18next).init({
         departmentId: "Département Id",
         riskResponseActivity: "Activité de réponse aux risques",
         mitigationCost: "Coût de l’atténuation",
-        mitigationDueDate: "Date d’échéance de l’atténuation",
+        mitigationDueDate: "Date d’échéance",
         mitigationControl: "Contrôle de l’atténuation",
         systematic: "Systématique",
         manual: "Manuelle",
