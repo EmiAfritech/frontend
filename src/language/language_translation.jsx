@@ -123,7 +123,6 @@ i18n.use(initReactI18next).init({
         yes: "Yes",
         //drawers
         addRisk: "Add Risk",
-        newRisk: "NEW RISK",
         objective: "objective",
         description: "description",
         almostImpossible: "Almost Impossible",
@@ -139,6 +138,7 @@ i18n.use(initReactI18next).init({
         enhance: 'Enhance',
         avoid: 'Avoid',
         transfer: 'Transfer',
+        departmentId: "Department Id",
 
 
       
@@ -259,7 +259,6 @@ i18n.use(initReactI18next).init({
         yes: "Oui",
         //drawers
         addRisk: "Ajouter des risques",
-        newRisk: "NOUVEAU RISQUE",
         objective: "objective",
         description: "description",
         almostImpossible: "Presque impossible",
@@ -275,6 +274,7 @@ i18n.use(initReactI18next).init({
         enhance: "Améliorer",
         avoid: "Éviter",
         transfer: "Transférer",
+        departmentId: "Département Id",
 
         
 
