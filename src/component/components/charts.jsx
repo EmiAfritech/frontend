@@ -882,7 +882,7 @@ export function ReportRiskResponse() {
       <ResponsiveContainer height={250}>
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
+        <Legend iconSize={5} />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
