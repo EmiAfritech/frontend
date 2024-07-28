@@ -154,6 +154,8 @@ i18n.use(initReactI18next).init({
         username: "UserName",
         addEmployee: "Add Employee",
         newEmployee: "NEW EMPLOYEE",
+        monitorRisk: "Monitor Risk",
+        no: "No",
 
 
 
@@ -307,6 +309,8 @@ i18n.use(initReactI18next).init({
         username: "Nom d’utilisateur",
         addEmployee: "Ajouter un employé",
         mewEmployee: "NOUVEL EMPLOYÉ",
+        monitorRisk: "Examiner les risques",
+        no: "Non",
 
 
         
