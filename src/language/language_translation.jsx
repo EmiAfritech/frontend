@@ -230,7 +230,7 @@ i18n.use(initReactI18next).init({
         phoneNumber: "Numéro de téléphone",
         role: "Rôle",
         view: "Action",
-        riskCOde: "Code de risque",
+        riskCode: "Code de risque",
         riskName: "Nom du risque",
         riskReview: "Examen des risques",
         nextReviewDate: "Date du prochain examen des risques",
