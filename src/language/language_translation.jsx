@@ -161,6 +161,8 @@ i18n.use(initReactI18next).init({
         responseImplementation: "response-implementation",
         riskClosedStatus: "Do you want to close Risk",
         impactLevel: "Impact Level",
+        ownerdrawer: "Owner",
+        riskResponsedrawer: "Risk Response",
 
 
 
@@ -321,6 +323,8 @@ i18n.use(initReactI18next).init({
         responseImplementation: "réponse Mise en œuvre",
         riskClosedStatus: "Voulez-vous fermer le risque",
         impactLevel: "Niveau d’impact",
+        ownerdrawer: "Propriétaire ",
+        riskResponsedrawer: "Risk Response",
 
 
         
