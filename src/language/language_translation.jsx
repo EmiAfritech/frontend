@@ -158,7 +158,8 @@ i18n.use(initReactI18next).init({
         no: "No",
         riskId: "Risk ID",
         responseActivityStatus: "were-the-response-activity-implemented?",
-        responseImplementation: "response-implementation"
+        responseImplementation: "response-implementation",
+        riskClosedStatus: "Do you want to close Risk"
 
 
 
@@ -314,9 +315,10 @@ i18n.use(initReactI18next).init({
         mewEmployee: "NOUVEL EMPLOYÉ",
         monitorRisk: "Examiner les risques",
         no: "Non",
-        riskId: "Risques ID",
+        riskId: "Identifiant du risque",
         riskActivityStatus: "L’activité-de-réponse a-t-elle été mise en œuvre ?",
         responseImplementation: "réponse Mise en œuvre",
+        riskClosedStatus: "Voulez-vous fermer le risque"
 
 
         
