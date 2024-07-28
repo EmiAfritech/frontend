@@ -156,6 +156,9 @@ i18n.use(initReactI18next).init({
         newEmployee: "NEW EMPLOYEE",
         monitorRisk: "Monitor Risk",
         no: "No",
+        riskId: "Risk ID",
+        responseActivityStatus: "were-the-response-activity-implemented?",
+        responseImplementation: "response-implementation"
 
 
 
@@ -311,6 +314,9 @@ i18n.use(initReactI18next).init({
         mewEmployee: "NOUVEL EMPLOYÉ",
         monitorRisk: "Examiner les risques",
         no: "Non",
+        riskId: "Risques ID",
+        riskActivityStatus: "L’activité-de-réponse a-t-elle été mise en œuvre ?",
+        responseImplementation: "réponse Mise en œuvre",
 
 
         
