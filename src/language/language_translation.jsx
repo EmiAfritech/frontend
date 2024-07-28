@@ -69,7 +69,7 @@ i18n.use(initReactI18next).init({
         phoneNumber: "Phone Number",
         role: "Role",
         view: "Action",
-        riskCOde: "Risk Code",
+        riskCode: "Risk Code",
         riskName: "Risk Name",
         riskReview: "Risk Review",
         nextReviewDate: "Next Risk Review Date",
@@ -159,7 +159,8 @@ i18n.use(initReactI18next).init({
         riskId: "Risk ID",
         responseActivityStatus: "were-the-response-activity-implemented?",
         responseImplementation: "response-implementation",
-        riskClosedStatus: "Do you want to close Risk"
+        riskClosedStatus: "Do you want to close Risk",
+        impactLevel: "Impact Level",
 
 
 
@@ -318,7 +319,8 @@ i18n.use(initReactI18next).init({
         riskId: "Identifiant du risque",
         riskActivityStatus: "L’activité-de-réponse a-t-elle été mise en œuvre ?",
         responseImplementation: "réponse Mise en œuvre",
-        riskClosedStatus: "Voulez-vous fermer le risque"
+        riskClosedStatus: "Voulez-vous fermer le risque",
+        impactLevel: "Niveau d’impact",
 
 
         
