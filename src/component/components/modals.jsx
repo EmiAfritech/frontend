@@ -2289,7 +2289,7 @@ export function LogOut() {
             >
               {isLoading ? (
                 <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{("loading")}</p>
+                  <p className="text-sm pr-2">{t("loading")}</p>
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
