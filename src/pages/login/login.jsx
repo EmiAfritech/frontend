@@ -13,7 +13,7 @@ import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
 
 export function Login() {
-  const {setAuth } = useContext(AuthContext);
+  const {auth, setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,6 +62,7 @@ export function Login() {
             role: response.data.role,
             department: response.data.department, 
           });
+          print(auth)
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
