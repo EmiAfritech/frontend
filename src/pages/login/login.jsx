@@ -58,7 +58,7 @@ export function Login() {
         if (token && role) {
           setAuth({ 
             token: response.data.authToken,
-            role: response.data.role,
+            role: "hi",
             department: response.data.department, 
           });
           alert(auth.role);
