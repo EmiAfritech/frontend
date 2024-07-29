@@ -15,11 +15,12 @@ import { useState } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const { auth } = React.useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   
 
   //Auditor Tabs
