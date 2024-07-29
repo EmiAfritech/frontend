@@ -60,7 +60,7 @@ export function Login() {
         const department = response.data.department;
 
         if (token && role) {
-          setAuth({ token, role, department });
+          setAuth({ token: token, role: role, department: department });
           console.log(auth)
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
