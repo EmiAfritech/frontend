@@ -16,9 +16,8 @@ export function LanguageButton() {
       <select
         className="border-2 border-blue-500 p-0.5  focus:text-blue-500"
         onChange={changeLanguage}>
-        <option value="">Select Language</option>
-        <option value="en">English</option>
-        <option value="fr">French</option>
+        <option value="en">English (UK)</option>
+        <option value="fr">French (Fr)</option>
       </select>
     </div>
   );
