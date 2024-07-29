@@ -13,7 +13,7 @@ import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
 
 export function Login() {
-  const {setAuth } = useContext(AuthContext);
+  const {auth, setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +61,7 @@ export function Login() {
 
         if (token && role) {
           setAuth({ token, role, department });
+          print(auth)
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           localStorage.setItem("departmentID", department);
