@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
@@ -62,7 +61,7 @@ export function Login() {
             role: response.data.role,
             department: response.data.department, 
           });
-          print(auth)
+          alert(auth.role);
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();

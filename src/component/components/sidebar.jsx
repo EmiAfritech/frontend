@@ -181,10 +181,10 @@ export function Sidebar() {
       <div className="sidebar-main">
         <ul>
           <Sessions />
-          {auth.role === "ADMIN" && AdminMainTabs()}
-          {auth.role === "GENERALMANAGER" && GeneralManagerMainTabs()}
-          {auth.role === "MANAGER" && ManagerMainTabs()}
-          {auth.role === "AUDITOR" && AuditorMainTabs()}
+          {auth === "ADMIN" && AdminMainTabs()}
+          {auth === "GENERALMANAGER" && GeneralManagerMainTabs()}
+          {auth === "MANAGER" && ManagerMainTabs()}
+          {auth === "AUDITOR" && AuditorMainTabs()}
 
           <LoadingPopup isLoading={isLoading} />
         </ul>

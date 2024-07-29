@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
     token: "",
     role: "",
     departmentID: "",
-    
+
   });
 
 
@@ -18,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export default AuthContext;
 
 
 export const ModaltriggerProvider =({children}) => {
