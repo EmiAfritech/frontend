@@ -61,7 +61,7 @@ export function Login() {
 
         if (token && role) {
           setAuth({ token, role, department });
-          print(auth)
+          console.log(auth)
           localStorage.setItem("token", token);
           localStorage.setItem("role", role);
           localStorage.setItem("departmentID", department);
