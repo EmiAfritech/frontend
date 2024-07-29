@@ -2248,7 +2248,7 @@ export function LogOut() {
   return (
     <>
       <ToastContainer onClose={5000} hideProgressBar />
-      <button onClick={handleOpen} className="flex flex row items-center p-3">
+      <button onClick={handleOpen} className="flex flex row items-center p-3 ml-3">
         <FaSignOutAlt className="icons" />
        {t("logout")}
       </button>
