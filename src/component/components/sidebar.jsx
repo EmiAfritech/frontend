@@ -11,13 +11,13 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
 
 export function Sidebar() {
-  const { auth } = React.useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = localStorage.getItem("role");
