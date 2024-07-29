@@ -10,9 +10,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../../language/language_switcher";
-import { setAuth } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export function Login() {
+  const {setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

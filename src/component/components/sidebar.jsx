@@ -14,12 +14,12 @@ import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
-import { auth } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = auth.role;
+  const { auth } = React.useContext(AuthContext);
   
 
   //Auditor Tabs
@@ -180,10 +180,10 @@ export function Sidebar() {
       <div className="sidebar-main">
         <ul>
           <Sessions />
-          {userRole === "ADMIN" && AdminMainTabs()}
-          {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
-          {userRole === "MANAGER" && ManagerMainTabs()}
-          {userRole === "AUDITOR" && AuditorMainTabs()}
+          {auth.role === "ADMIN" && AdminMainTabs()}
+          {auth.role === "GENERALMANAGER" && GeneralManagerMainTabs()}
+          {auth.role === "MANAGER" && ManagerMainTabs()}
+          {auth.role === "AUDITOR" && AuditorMainTabs()}
 
           <LoadingPopup isLoading={isLoading} />
         </ul>
