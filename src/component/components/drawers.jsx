@@ -742,7 +742,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                 {t("objective")}
               </label>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div>
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="description"
@@ -760,7 +760,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   {t("description")}
                 </label>
               </div>
-              <div className="grid grid-rows-2">
+              <div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
                   <select
                     type="departmentID"
@@ -812,7 +812,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 mb-6">
+            <div >
               <div className="relative" data-te-input-wrapper-init>
                 <select
                   type="text"
@@ -1616,7 +1616,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 {t("mitigationEffort")}
               </label>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div>
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
                   type="text"
