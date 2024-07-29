@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../../language/language_switcher";
+import { setAuth } from "../../context/AuthContext";
 
 export function Login() {
   const { t } = useTranslation();
@@ -53,14 +54,13 @@ export function Login() {
       );
 
       if (response.status === 200) {
-        const token = response.data.authToken;
-        const role = response.data.role;
-        const department = response.data.department;
 
         if (token && role) {
-          localStorage.setItem("token", token);
-          localStorage.setItem("role", role);
-          localStorage.setItem("departmentID", department);
+          setAuth({ 
+            token: response.data.authToken,
+            role: response.data.role,
+            department: response.data.department, 
+          });
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();

@@ -3,7 +3,13 @@ import { AuthContext, Modaltrigger } from "./AuthContext";
 
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState({
+    token: "",
+    role: "",
+    departmentID: "",
+    
+  });
+
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
