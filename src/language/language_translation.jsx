@@ -163,6 +163,7 @@ i18n.use(initReactI18next).init({
         impactLevel: "Impact Level",
         ownerdrawer: "Owner",
         riskResponsedrawer: "Risk Response",
+        riskAnalyst: "Risk Analyst"
 
 
 
@@ -325,6 +326,7 @@ i18n.use(initReactI18next).init({
         impactLevel: "Niveau d’impact",
         ownerdrawer: "Propriétaire ",
         riskResponsedrawer: "Réponse aux risques",
+        riskAnalyst: "Analyste de risques",
 
 
         
