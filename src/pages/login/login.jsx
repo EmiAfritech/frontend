@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
@@ -12,7 +13,7 @@ import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
 
 export function Login() {
-  const {auth, setAuth } = useContext(AuthContext);
+  const {setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,14 +55,15 @@ export function Login() {
       );
 
       if (response.status === 200) {
+        const token = response.data.authToken;
+        const role = response.data.role;
+        const department = response.data.department;
 
         if (token && role) {
-          setAuth({ 
-            token: response.data.authToken,
-            role: "hi",
-            department: response.data.department, 
-          });
-          alert(auth.role);
+          setAuth({ token, role, department });
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", role);
+          localStorage.setItem("departmentID", department);
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
