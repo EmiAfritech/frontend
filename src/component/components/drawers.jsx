@@ -297,6 +297,7 @@ export function Userforms({ onFormSubmit }) {
                 autoComplete="off"
                 onChange={(e) => setRole(e.target.value)}
                 required>
+                <option></option>
                 <option value="MANAGER">{t("departmentManager")}</option>
                 <option value="AUDITOR">{t("riskAnalyst")}</option>
               </select>
