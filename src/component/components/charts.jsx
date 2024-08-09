@@ -118,10 +118,10 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#2394cc" }}>{t("unmitigated")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -148,10 +148,10 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#2394cc" }}>{t("unreviewed")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -177,10 +177,10 @@ export function MonitoredVsUnmonitored() {
         <span style={{ color: "#2394cc" }}>{t("unmonitored")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -234,7 +234,7 @@ export function RiskBarChart() {
     fetchData();
   }, [year]);
 
-  console.log(data)
+  console.log(data);
   const handleYearChange = (e) => {
     setYear(e.target.value);
   };
@@ -262,16 +262,16 @@ export function RiskBarChart() {
           </select>
         </div>
       </div>
-      <ResponsiveContainer  height={250}>
-      <BarChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <YAxis />
-        <XAxis dataKey="name" />
-        <Bar dataKey="Opened" fill="#cc23b3" />
-        <Bar dataKey="Closed" fill="#2394cc" />
-        <Tooltip />
-      </BarChart>
+      <ResponsiveContainer height={250}>
+        <BarChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <Legend />
+          <YAxis />
+          <XAxis dataKey="name" />
+          <Bar dataKey="Opened" fill="#cc23b3" />
+          <Bar dataKey="Closed" fill="#2394cc" />
+          <Tooltip />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );
@@ -370,7 +370,7 @@ export function RiskLineChart() {
 
     fetchData();
   }, [year]);
-console.log(data)
+  console.log(data);
   const handleYearChange = (e) => {
     setYear(e.target.value);
     console.log(year);
@@ -401,14 +401,14 @@ console.log(data)
         </div>
       </div>
       <ResponsiveContainer height={300}>
-      <LineChart  data={data} margin={{ top: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
-      </LineChart>
+        <LineChart data={data} margin={{ top: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
@@ -500,11 +500,11 @@ export function ReportRiskLevel() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -595,11 +595,11 @@ export function ReportRiskStatus() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -690,11 +690,11 @@ export function ReportRiskLocation() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -785,11 +785,11 @@ export function ReportRiskCategory() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -880,11 +880,11 @@ export function ReportRiskResponse() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -975,25 +975,25 @@ export function ReportRiskOwner() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
-        <Tooltip />
-        <Legend iconSize={10} />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={data} outerRadius={90} />
+          <Tooltip />
+          <Legend iconSize={10} />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
 export function Pyramidchat() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
-  const pyramidTable = useReportRiskPyramidColumns()
+  const pyramidTable = useReportRiskPyramidColumns();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -1121,18 +1121,18 @@ export function Pyramidchat() {
             className="px-12"
             onClick={handleRiskAdvice}
             variant="text"
-            size="large">
-            {" "}
-            {t("riskAdvice")}
-          </Button>
+            size="large"
+            sx={{
+              whiteSpace: "nowrap",
+              width: "auto", 
+              display: "inline-block",
+            }}></Button>
         </div>
         <hr />
         <div className="py-5">
           {pyramidRiskTable ? (
             <>
-              <div
-                style={{ height: 350 }}
-                className=" mt-4">
+              <div style={{ height: 350 }} className=" mt-4">
                 <Box
                   sx={{
                     [`.${gridClasses.cell}.${t("veryHigh")}`]: {
@@ -1186,9 +1186,7 @@ export function Pyramidchat() {
   );
 }
 
-
 export function HeatMap2() {
-
   const series = [
     {
       name: t("rare"),
@@ -1216,7 +1214,7 @@ export function HeatMap2() {
         { x: t("insignificant"), y: 3 },
         { x: t("minor"), y: 6 },
         { x: t("moderate"), y: 9 },
-        { x: t("major"), y: 12},
+        { x: t("major"), y: 12 },
         { x: t("critical"), y: 15 },
       ],
     },
@@ -1241,7 +1239,6 @@ export function HeatMap2() {
       ],
     },
   ];
-
 
   const options = {
     chart: {
@@ -1303,5 +1300,3 @@ export function HeatMap2() {
     </div>
   );
 }
-
-
