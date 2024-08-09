@@ -24,24 +24,10 @@ export function LanguageButton() {
           paddingLeft: "35px",
         }}
       >
-        <option
-          value="en"
-          style={{
-            background: `url('https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain') no-repeat left center`,
-            backgroundSize: "20px 15px",
-            paddingLeft: "25px",
-          }}
-        >
+        <option value="en">
           English
         </option>
-        <option
-          value="fr"
-          style={{
-            background: `url('https://th.bing.com/th/id/R.98ed847d113e4f1899819db4904e9a3b?rik=Ar%2ftjBrb4NJl4Q&pid=ImgRaw&r=0') no-repeat left center`,
-            backgroundSize: "20px 15px",
-            paddingLeft: "25px",
-          }}
-        >
+        <option value="fr">
           French
         </option>
       </select>
