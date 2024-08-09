@@ -1117,7 +1117,7 @@ export function Pyramidchat() {
         </div>
         <div className="grid grid-cols-6 gap-4">
           <Button
-            className="px-4"
+            className="px-12"
             onClick={handleRiskAdvice}
             variant="text"
             size="large">
