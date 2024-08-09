@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 export function LanguageButton() {
   const { i18n } = useTranslation();
-  const [selectedFlag, setSelectedFlag] = useState("https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain"); 
+  const [selectedFlag, setSelectedFlag] = useState(""); 
 
   const changeLanguage = (event) => {
     const lng = event.target.value;
