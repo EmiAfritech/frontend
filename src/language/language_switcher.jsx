@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 export function LanguageButton() {
   const { i18n } = useTranslation();
-  const [selectedFlag, setSelectedFlag] = useState(""); 
+  const [selectedFlag, setSelectedFlag] = useState("https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain"); 
 
   const changeLanguage = (event) => {
     const lng = event.target.value;
@@ -18,13 +18,12 @@ export function LanguageButton() {
       <select
         className="border-2 border-blue-500 p-0.5 focus:text-blue-500"
         onChange={changeLanguage}
-        value={i18n.language} 
+        value={i18n.language} // make sure the select shows the current language
         style={{
           background: `url(${selectedFlag}) 8px center / 20px 15px no-repeat`,
           paddingLeft: "35px",
         }}
       >
-        <option>Language</option>
         <option value="en">
           English
         </option>
