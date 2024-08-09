@@ -1126,7 +1126,7 @@ export function Pyramidchat() {
               whiteSpace: "nowrap",
               width: "auto", 
               display: "inline-block",
-            }}></Button>
+            }}>{t("riskAdvice")}</Button>
         </div>
         <hr />
         <div className="py-5">
