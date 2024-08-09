@@ -210,7 +210,7 @@ i18n.use(initReactI18next).init({
         location: "EMPLACEMENT",
         category: "CATÉGORIE",
         riskResponse: "RÉPONSE AUX RISQUES",
-        printChart: "Print Chart",
+        printChart: "Imprimer le tableau",
         owner: "PROPRIÉTAIRE",
         status: "Status",
         riskPyramidChartName: "Graphique pyramidal des risques",
