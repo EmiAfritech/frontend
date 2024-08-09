@@ -14,10 +14,33 @@ export function LanguageButton() {
   return (
     <div>
       <select
-        className="border-2 border-blue-500 p-0.5  focus:text-blue-500"
-        onChange={changeLanguage}>
-        <option value="en">English (UK)</option>
-        <option value="fr">French (Fr)</option>
+        className="border-2 border-blue-500 p-0.5 focus:text-blue-500"
+        onChange={changeLanguage}
+        style={{ 
+          background: "url('https://countryflagsapi.com/png/gb') 8px center / 20px 15px no-repeat, url('https://countryflagsapi.com/png/fr') 8px center / 20px 15px no-repeat, white",
+          paddingLeft: "30px",
+        }}
+      >
+        <option
+          value="en"
+          style={{
+            background: `url('https://countryflagsapi.com/png/gb') no-repeat left center`,
+            backgroundSize: "20px 15px",
+            paddingLeft: "25px",
+          }}
+        >
+          English (UK)
+        </option>
+        <option
+          value="fr"
+          style={{
+            background: `url('https://countryflagsapi.com/png/fr') no-repeat left center`,
+            backgroundSize: "20px 15px",
+            paddingLeft: "25px",
+          }}
+        >
+          French (Fr)
+        </option>
       </select>
     </div>
   );
