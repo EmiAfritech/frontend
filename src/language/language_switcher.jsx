@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function LanguageButton() {
   const { i18n } = useTranslation();
+  const [selectedFlag, setSelectedFlag] = useState("gb"); // default flag for English
 
   const changeLanguage = (event) => {
     const lng = event.target.value;
     if (lng) {
       i18n.changeLanguage(lng);
+      setSelectedFlag(lng === "en" ? "gb" : "fr"); // change flag based on language
     }
   };
 
@@ -16,6 +18,11 @@ export function LanguageButton() {
       <select
         className="border-2 border-blue-500 p-0.5 focus:text-blue-500"
         onChange={changeLanguage}
+        value={i18n.language} // make sure the select shows the current language
+        style={{
+          background: `url('https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain${selectedFlag}') 8px center / 20px 15px no-repeat`,
+          paddingLeft: "35px",
+        }}
       >
         <option
           value="en"
@@ -25,7 +32,7 @@ export function LanguageButton() {
             paddingLeft: "25px",
           }}
         >
-          English
+          English (UK)
         </option>
         <option
           value="fr"
@@ -35,9 +42,10 @@ export function LanguageButton() {
             paddingLeft: "25px",
           }}
         >
-          French
+          French (Fr)
         </option>
       </select>
     </div>
   );
 }
+

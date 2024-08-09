@@ -273,8 +273,8 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "Cliquez sur les graphiques",
         viewClosedRisks: "Pour voir tous les risques fermés, veuillez cliquer sur le ",
         link: "Lien",
-        reviewAdvice1: "Sur la base des différents paramètres pris en considération, les différents facteurs sont pertinents",
-        reviewAdvice2: "à prendre en considération par ordre de pertinence",
+        riskAdvice1: "Sur la base des différents paramètres pris en considération, les différents facteurs sont pertinents",
+        riskAdvice2: "à prendre en considération par ordre de pertinence",
         advice1: "Mesures d’atténuation sur les technologies",
         advice2:"Examiner les risques liés aux voyages",
         //report side tabs
@@ -334,9 +334,6 @@ i18n.use(initReactI18next).init({
         ownerdrawer: "Propriétaire ",
         riskResponsedrawer: "Réponse aux risques",
         riskAnalyst: "Analyste de risques",
-
-
-        
        
 
       },
