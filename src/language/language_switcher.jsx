@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 
 export function LanguageButton() {
   const { i18n } = useTranslation();
-  const [selectedFlag, setSelectedFlag] = useState("gb"); // default flag for English
+  const [selectedFlag, setSelectedFlag] = useState("https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain"); 
 
   const changeLanguage = (event) => {
     const lng = event.target.value;
     if (lng) {
       i18n.changeLanguage(lng);
-      setSelectedFlag(lng === "en" ? "gb" : "fr"); // change flag based on language
+      setSelectedFlag(lng === "en" ? "https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain" : "https://th.bing.com/th/id/R.98ed847d113e4f1899819db4904e9a3b?rik=Ar%2ftjBrb4NJl4Q&pid=ImgRaw&r=0");
     }
   };
 
@@ -20,7 +20,7 @@ export function LanguageButton() {
         onChange={changeLanguage}
         value={i18n.language} // make sure the select shows the current language
         style={{
-          background: `url('https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain${selectedFlag}') 8px center / 20px 15px no-repeat`,
+          background: `url(${selectedFlag}) 8px center / 20px 15px no-repeat`,
           paddingLeft: "35px",
         }}
       >
@@ -32,7 +32,7 @@ export function LanguageButton() {
             paddingLeft: "25px",
           }}
         >
-          English (UK)
+          English
         </option>
         <option
           value="fr"
@@ -42,7 +42,7 @@ export function LanguageButton() {
             paddingLeft: "25px",
           }}
         >
-          French (Fr)
+          French
         </option>
       </select>
     </div>

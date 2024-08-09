@@ -15,7 +15,7 @@ export function RiskReportAdvice() {
   const {t} = useTranslation();
   return (
     <p className="m-5">
-      {t("riskAdvice1 ")}<br />{t("riskAdvice2 ")}
+      {t("riskAdvice1")}<br />{t("riskAdvice2")}
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">

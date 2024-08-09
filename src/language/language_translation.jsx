@@ -106,9 +106,10 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "click on the charts",
         viewClosedRisks: "To view all closed risks kindly click on the",
         link: "Link",
-        reviewAdvice1: "Based on the different parameters taken into consideration, these factors needs to be considered",
-        reviewAdvice2: "into consideration in order of relevance",
+        riskAdvice1: "Based on the different parameters taken into consideration, these factors needs to be considered",
+        riskAdvice2: "into consideration in order of relevance",
         advice1: "Mitigations on Technologies",
+        advice2: "Examine travel risks",
         //report side tabs
         likelyhoodvsimpact: "Likelyhood Vs Impact",
         riskAppetite: "Risk Appetite",
