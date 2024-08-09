@@ -2,7 +2,6 @@ import "../../component/comstyles/component.css";
 import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
-// import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 
 
@@ -16,10 +15,10 @@ export function ReportSideTabs() {
     return (
       <>
             <li>
-              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("report")}</NavLink>
+              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", })}>{t("report")}</NavLink>
             </li>
             <li>
-              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("likelyhoodvsimpact")}</NavLink>
+              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", })}>{t("likelyhoodvsimpact")}</NavLink>
             </li>
             <li>
               <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("riskAppetite")}</NavLink>
