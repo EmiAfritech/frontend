@@ -1135,16 +1135,16 @@ export function Pyramidchat() {
               <div style={{ height: 350 }} className=" mt-4">
                 <Box
                   sx={{
-                    [`.${gridClasses.cell}.${t("veryHigh")}`]: {
+                    [`& .${gridClasses.cell}.${t("veryHigh")}`]: {
                       backgroundColor: "#F84626",
                     },
-                    [`.${gridClasses.cell}.${t("high")}`]: {
+                    [`& .${gridClasses.cell}.${t("high")}`]: {
                       backgroundColor: "#ecbe2f",
                     },
-                    [`.${gridClasses.cell}.${t("medium")}`]: {
+                    [`& .${gridClasses.cell}.${t("medium")}`]: {
                       backgroundColor: "#0B37D6",
                     },
-                    [`.${gridClasses.cell}.${t("low")}`]: {
+                    [`& .${gridClasses.cell}.${t("low")}`]: {
                       backgroundColor: "#4A7C0B",
                     },
                     height: 350,
