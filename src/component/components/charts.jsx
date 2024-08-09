@@ -986,6 +986,7 @@ export function ReportRiskOwner() {
 }
 
 export function Pyramidchat() {
+  const {t} = useTranslation()
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
