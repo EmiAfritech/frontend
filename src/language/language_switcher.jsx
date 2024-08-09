@@ -24,6 +24,7 @@ export function LanguageButton() {
           paddingLeft: "35px",
         }}
       >
+        <option>Language</option>
         <option value="en">
           English
         </option>
