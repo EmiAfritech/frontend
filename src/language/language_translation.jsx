@@ -167,7 +167,13 @@ i18n.use(initReactI18next).init({
         impactLevel: "Impact Level",
         ownerdrawer: "Owner",
         riskResponsedrawer: "Risk Response",
-        riskAnalyst: "Risk Analyst"
+        riskAnalyst: "Risk Analyst",
+
+        //pages
+        //report appetite
+        outSideAppetite: 'Outside Appetite',
+        withinAppetite: "Within Appetite",
+
 
 
 
@@ -335,6 +341,11 @@ i18n.use(initReactI18next).init({
         ownerdrawer: "Propriétaire ",
         riskResponsedrawer: "Réponse aux risques",
         riskAnalyst: "Analyste de risques",
+
+        //pages
+        //report appetite
+        outSideAppetite: 'Appétit extérieur',
+        withinAppetite: "Dans l’appétit",
        
 
       },

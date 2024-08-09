@@ -4,6 +4,7 @@ import {
   RiskAppetiteReportGreater,
   RiskAppetiteReportLower,
 } from "../../component/components/tables";
+import { t } from "i18next";
 
 export function ReportRiskAppetite() {
   return (
@@ -11,10 +12,10 @@ export function ReportRiskAppetite() {
       <Tabs>
         <TabList>
           <Tab>
-            <h1>Outside Appetite {"(>4)"} </h1>
+            <h1>{t("outSideAppetite")} {"(>4)"} </h1>
           </Tab>
           <Tab>
-            <h1>Within Appetite {"(<4)"}</h1>
+            <h1>{t("withinAppetite")} {"(<4)"}</h1>
           </Tab>
         </TabList>
 
