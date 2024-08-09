@@ -106,6 +106,9 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "click on the charts",
         viewClosedRisks: "To view all closed risks kindly click on the",
         link: "Link",
+        reviewAdvice1: "Based on the different parameters taken into consideration, these factors needs to be considered",
+        reviewAdvice2: "into consideration in order of relevance",
+        advice1: "Mitigations on Technologies",
         //report side tabs
         likelyhoodvsimpact: "Likelyhood Vs Impact",
         riskAppetite: "Risk Appetite",
@@ -270,6 +273,10 @@ i18n.use(initReactI18next).init({
         reviewInfo2: "Cliquez sur les graphiques",
         viewClosedRisks: "Pour voir tous les risques fermés, veuillez cliquer sur le ",
         link: "Lien",
+        reviewAdvice1: "Sur la base des différents paramètres pris en considération, les différents facteurs sont pertinents",
+        reviewAdvice2: "à prendre en considération par ordre de pertinence",
+        advice1: "Mesures d’atténuation sur les technologies",
+        advice2:"Examiner les risques liés aux voyages",
         //report side tabs
         likelyhoodvsimpact: "Probabilité vs impact",
         riskAppetite: "Appétit pour le risque",

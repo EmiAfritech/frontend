@@ -17,14 +17,14 @@ export function LanguageButton() {
         className="border-2 border-blue-500 p-0.5 focus:text-blue-500"
         onChange={changeLanguage}
         style={{ 
-          background: "url('https://countryflagsapi.com/png/gb') 8px center / 20px 15px no-repeat, url('https://countryflagsapi.com/png/fr') 8px center / 20px 15px no-repeat, white",
+          background: "url('https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain') 8px center / 20px 15px no-repeat, url('https://th.bing.com/th/id/R.98ed847d113e4f1899819db4904e9a3b?rik=Ar%2ftjBrb4NJl4Q&pid=ImgRaw&r=0') 8px center / 20px 15px no-repeat, white",
           paddingLeft: "30px",
         }}
       >
         <option
           value="en"
           style={{
-            background: `url('https://countryflagsapi.com/png/gb') no-repeat left center`,
+            background: `url('https://th.bing.com/th/id/OIP.YMOZI-eYNMGLsKvGOfDSLgHaDt?rs=1&pid=ImgDetMain') no-repeat left center`,
             backgroundSize: "20px 15px",
             paddingLeft: "25px",
           }}
@@ -34,7 +34,7 @@ export function LanguageButton() {
         <option
           value="fr"
           style={{
-            background: `url('https://countryflagsapi.com/png/fr') no-repeat left center`,
+            background: `url('https://th.bing.com/th/id/R.98ed847d113e4f1899819db4904e9a3b?rik=Ar%2ftjBrb4NJl4Q&pid=ImgRaw&r=0') no-repeat left center`,
             backgroundSize: "20px 15px",
             paddingLeft: "25px",
           }}

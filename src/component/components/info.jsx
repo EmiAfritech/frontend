@@ -12,22 +12,18 @@ export function ReviewInfo() {
   );
 }
 export function RiskReportAdvice() {
+  const {t} = useTranslation();
   return (
     <p className="m-5">
-      Based on the various parameters placed into consideration its relevant the
-      various factors are placed <br />
-      into consideration in order of relevance
+      {t("reviewAdvice1 ")}<br />{t("reviewAdvice2 ")}
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
-        1. Mitigations on Technologies
+        1. {t("advice1")}
         <br />
       </a>
       <a href="" className="text-[#ce4a01] font-bold">
-        2. Review Risks on Travels <br />
-      </a>
-      <a href="" className="text-[#ce4a01] font-bold">
-        3. Avoid Long Travels <br />
+        2. {t("advice2")} <br />
       </a>
     </p>
   );
