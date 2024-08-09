@@ -15,10 +15,10 @@ export function ReportSideTabs() {
     return (
       <>
             <li>
-              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", })}>{t("report")}</NavLink>
+              <NavLink to="" style={({ isActive }) => ({ color: isActive? "blue": "blue", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("report")}</NavLink>
             </li>
             <li>
-              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", })}>{t("likelyhoodvsimpact")}</NavLink>
+              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("likelyhoodvsimpact")}</NavLink>
             </li>
             <li>
               <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("riskAppetite")}</NavLink>
@@ -51,10 +51,10 @@ const ManagernAuditor = () => {
     return (
       <>
         <li>
-              <NavLink to=""style={({ isActive }) => ({ color: isActive? "black": "black", borderBottom: `2px solid ${isActive ? 'blue' : 'blue'}`})}>{t("report")}</NavLink>
+              <NavLink to=""style={({ isActive }) => ({ color: isActive? "black": "black", })}>{t("report")}</NavLink>
             </li>
             <li>
-              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("likelyhoodvsimpact")}</NavLink>
+              <NavLink to="likelyhood-vs-impact" style={({ isActive }) => ({ color: isActive? "blue": "black", })}>{t("likelyhoodvsimpact")}</NavLink>
             </li>
             <li>
               <NavLink to="risk-appetite" style={({ isActive }) => ({ color: isActive? "blue": "black", borderBottom: `2px solid ${isActive ? 'red' : 'blue'}`})}>{t("riskAppetite")}</NavLink>
