@@ -1159,13 +1159,13 @@ export function Pyramidchat() {
                     pagination
                     getCellClassName={(params) => {
                       if (params.value === "High") {
-                        return t("high");
-                      } else if (params.value === "VeryHigh") {
-                        return t("veryHigh");
+                        return "high";
+                      } else if (params.value === "Very High") {
+                        return "veryhigh";
                       } else if (params.value === "Medium") {
-                        return t("medium");
+                        return "medium";
                       } else if (params.value === "Low") {
-                        return t("low");
+                        return "low";
                       }
                     }}
                     slots={{ toolbar: GridToolbar }}
