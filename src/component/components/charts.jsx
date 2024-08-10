@@ -1138,7 +1138,7 @@ export function Pyramidchat() {
                 className=" mt-4">
                 <Box
                   sx={{
-                    [`.${gridClasses.cell}.veryHigh`]: {
+                    [`.${gridClasses.cell}.veryhigh`]: {
                       backgroundColor: "#F84626",
                     },
                     [`.${gridClasses.cell}.high`]: {
