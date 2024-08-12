@@ -20,8 +20,11 @@ export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = auth.role;
-  console.log(userRole);
+  const userRole = auth?.role;
+
+if (!userRole) {
+  console.error("User role is not defined");
+}
 
   //Auditor Tabs
   const AuditorMainTabs = () => {
