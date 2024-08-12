@@ -516,7 +516,7 @@ export function RiskData(params) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
