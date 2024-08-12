@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import { AuthContext } from "../../context/AuthContext";
 
 
 import {
@@ -57,6 +58,7 @@ function getImpactLevelNumber(impact) {
   }
 }
 export function Userforms({ onFormSubmit }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation();
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -90,7 +92,7 @@ export function Userforms({ onFormSubmit }) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -122,7 +124,7 @@ export function Userforms({ onFormSubmit }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -243,8 +245,8 @@ export function Userforms({ onFormSubmit }) {
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {localStorage.getItem("role") === "ADMIN" ||
-              localStorage.getItem("role") === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -331,6 +333,7 @@ export function Userforms({ onFormSubmit }) {
 }
 
 export function Departmentforms({ onFormSubmit }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation();
   const [name, setName] = useState("");
   const [deptID, setDeptID] = useState("");
@@ -368,7 +371,7 @@ export function Departmentforms({ onFormSubmit }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -482,6 +485,7 @@ export function Departmentforms({ onFormSubmit }) {
 }
 
 export function Riskforms({ onFormSubmit, tableData }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
@@ -527,7 +531,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
       .get(OWNERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -542,7 +546,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -564,8 +568,8 @@ export function Riskforms({ onFormSubmit, tableData }) {
 
     try {
       if (
-        localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR"
+        auth.role === "MANAGER" ||
+        auth.role === "AUDITOR"
       ) {
         await axios.post(
           CREATERISKFORM_URL,
@@ -584,7 +588,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -608,7 +612,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -660,8 +664,8 @@ export function Riskforms({ onFormSubmit, tableData }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-            {localStorage.getItem("role") === "ADMIN" ||
-            localStorage.getItem("role") === "GENERALMANAGER" ? (
+            {auth.role === "ADMIN" ||
+            auth.role === "GENERALMANAGER" ? (
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
                   type="departmentID"
@@ -916,6 +920,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
   );
 }
 export function RiskReviewforms({ onFormSubmit }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation();
   const [riskID, setRiskID] = useState("");
   const [departmentID, setdepartmentID] = useState(" ");
@@ -956,7 +961,7 @@ export function RiskReviewforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -972,7 +977,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -983,8 +988,8 @@ export function RiskReviewforms({ onFormSubmit }) {
     };
 
     if (
-      localStorage.getItem("role") === "MANAGER" ||
-      localStorage.getItem("role") === "AUDITOR"
+      auth.role === "MANAGER" ||
+      auth.role === "AUDITOR"
     ) {
       fetchData();
     } else {
@@ -1039,7 +1044,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1070,8 +1075,8 @@ export function RiskReviewforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {localStorage.getItem("role") === "ADMIN" ||
-              localStorage.getItem("role") === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -1210,6 +1215,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [risks, setRiskIDs] = useState([]);
@@ -1270,7 +1276,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       .get(RISKREVIEWERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -1291,7 +1297,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " +  auth.token,
             },
             withCredentials: true,
           }
@@ -1308,7 +1314,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -1319,8 +1325,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
     };
 
     if (
-      localStorage.getItem("role") === "MANAGER" ||
-      localStorage.getItem("role") === "AUDITOR"
+      auth.role === "MANAGER" ||
+      auth.role === "AUDITOR"
     ) {
       fetchData();
     } else {
@@ -1337,8 +1343,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
 
     try {
       if (
-        localStorage.getItem("role") === "MANAGER" ||
-        localStorage.getItem("role") === "AUDITOR"
+        auth.role === "MANAGER" ||
+        auth.role === "AUDITOR"
       ) {
         await axios.post(
           MITIGATERISKFORM_URL,
@@ -1379,7 +1385,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1433,8 +1439,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {localStorage.getItem("role") === "ADMIN" ||
-              localStorage.getItem("role") === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -1723,6 +1729,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   );
 }
 export function RiskMonitoringforms({ onFormSubmit }) {
+  const {auth} =  React.useContext(AuthContext);
   const {t} = useTranslation()
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
@@ -1761,7 +1768,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       .get(OWNERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -1781,7 +1788,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1797,7 +1804,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -1808,8 +1815,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     };
 
     if (
-      localStorage.getItem("role") === "MANAGER" ||
-      localStorage.getItem("role") === "AUDITOR"
+      auth.role === "MANAGER" ||
+      auth.role === "AUDITOR"
     ) {
       fetchData();
     } else {
@@ -1825,7 +1832,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     setLoading(true);
 
     try {
-      if (localStorage.getItem("role") === "MANAGER") {
+      if (auth.role === "MANAGER") {
         await axios.post(
           MONITORINGRISKFORM_URL,
           JSON.stringify({
@@ -1841,7 +1848,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1862,7 +1869,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1915,8 +1922,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {localStorage.getItem("role") === "ADMIN" ||
-              localStorage.getItem("role") === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
