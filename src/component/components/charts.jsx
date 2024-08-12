@@ -1,27 +1,15 @@
-import {
-  PieChart,
-  Pie,
-  BarChart,
-  Bar,
-  CartesianGrid,
-  Legend,
-  YAxis,
-  XAxis,
-  LineChart,
-  Tooltip,
-  Line,
-  ResponsiveContainer,
-} from "recharts";
-import React, { useContext } from "react";
-import { HighLowBarData, pyramid } from "./chartdata";
-import Chart from "react-apexcharts";
-import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
-
-import ReactToPrint from "react-to-print";
-import { useRef } from "react";
-import "../comstyles/component.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef, React,   } from "react";
 import axios from "../../api/axios";
+import Chart from "react-apexcharts";
+import ReactToPrint from "react-to-print";
+import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
+import { Item, Border, Label, Font, Funnel, } from "devextreme-react/funnel";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
+import { AuthContext } from "../../context/AuthContext";
+import { RiskReportAdvice } from "./info";
+import { useReportRiskPyramidColumns } from "./datatable";
 import {
   MITIGATEDVSUNMITIGATEDCHAT_URL,
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
@@ -42,9 +30,20 @@ import {
   DEPARTMENTDROPDOWN_URL,
   RISKYEARSCHART_URL,
 } from "../../api/routes";
-import { RiskReportAdvice } from "./info";
-import { Button } from "@mui/material";
-import { useReportRiskPyramidColumns } from "./datatable";
+import {
+  PieChart,
+  Pie,
+  BarChart,
+  Bar,
+  CartesianGrid,
+  Legend,
+  YAxis,
+  XAxis,
+  LineChart,
+  Tooltip,
+  Line,
+  ResponsiveContainer,
+} from "recharts";
 import {
   DataGrid,
   gridClasses,
@@ -52,10 +51,7 @@ import {
   gridFilteredSortedRowIdsSelector,
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
-import Box from "@mui/material/Box";
-import { useTranslation } from "react-i18next";
-import { t } from "i18next";
-import { AuthContext } from "../../context/AuthContext";
+import "../comstyles/component.css";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
