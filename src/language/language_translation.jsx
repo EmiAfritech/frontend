@@ -117,7 +117,7 @@ i18n.use(initReactI18next).init({
         allOpenedRiskNeedingReview: "All Opened Risks Needing a Review",
         auditTrail: "Audit Trail",
         riskAdvice: "Risk Advice",
-        riskStatusReport: "Risk Status Report",
+        riskStatusReport: "Risk Status",
         //modals
         logout: "Logout",
         logoutMessage: "Are you sure you want to logout?",
@@ -292,7 +292,7 @@ i18n.use(initReactI18next).init({
         allOpenedRiskNeedingReview: "Tous les risques ouverts nécessitant un examen",
         auditTrail: "Piste d’audit",
         riskAdvice: "Conseils en matière de risques",
-        riskStatusReport: "Rapport d’état du risque",
+        riskStatusReport: "d’état du risque",
         //modals
         logout: "Déconnexion",
         logoutMessage: "Êtes-vous sûr de vouloir vous déconnecter?",
