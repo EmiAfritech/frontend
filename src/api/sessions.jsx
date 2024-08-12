@@ -9,10 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
 
 export function Sessions() {
-  const {clearAuth} = useContext(AuthContext);
+  const {clearAuth, auth} = useContext(AuthContext);
   const [session, setSession] = useState("");
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = auth?.token;
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
       onClose: () => {
