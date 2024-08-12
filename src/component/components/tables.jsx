@@ -1039,7 +1039,7 @@ export function RiskStatusReportTab() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
