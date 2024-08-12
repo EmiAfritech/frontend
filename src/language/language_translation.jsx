@@ -174,6 +174,7 @@ i18n.use(initReactI18next).init({
         //report appetite
         outSideAppetite: 'Outside Appetite',
         withinAppetite: "Within Appetite",
+        contentPermission: "You do not have permission to view this content"
 
 
 
@@ -348,6 +349,7 @@ i18n.use(initReactI18next).init({
         //report appetite
         outSideAppetite: 'Appétit extérieur',
         withinAppetite: "Dans l’appétit",
+        contentPermission: "Vous n'avez pas la permission de voir ce contenu."
        
 
       },

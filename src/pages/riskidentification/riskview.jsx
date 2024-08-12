@@ -1,22 +1,26 @@
+import { useContext } from "react";
 import { Sidebar } from "../../component/components/sidebar";
 import { ViewClosedRisk } from "../../component/components/info";
 import { RiskViewTable } from "../../component/components/tables";
 import "../../component/comstyles/component.css";
+import { useTranslation } from "react-i18next";
+import { AuthContext } from "../../context/AuthContext";
 
 export function RiskView() {
-  
+  const {t}= useTranslation()
+  const {auth} = useContext(AuthContext);
   return (
     <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar />
       <div className=" ml-[18%] m-6">
         <div >
-          {localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "GENERALMANAGER" || localStorage.getItem("role") === "MANAGER"? (
+          {auth.role === "ADMIN" || auth.role=== "GENERALMANAGER" || auth.role=== "MANAGER"? (
             <>
               <ViewClosedRisk />
               
             </>
           ) : (
-            <p>You do not have permission to view this content.</p>
+            <p>{t("contentPermission")}</p>
           )}
           <RiskViewTable />
         </div>

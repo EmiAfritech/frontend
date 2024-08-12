@@ -1185,7 +1185,6 @@ export function Pyramidchat() {
   );
 }
 
-
 export function HeatMap2() {
 
   const series = [
