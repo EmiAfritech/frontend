@@ -21,7 +21,7 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = localStorage.getItem("role");
-  console.log(auth.role)
+  console.log(auth)
   
 
   //Auditor Tabs
