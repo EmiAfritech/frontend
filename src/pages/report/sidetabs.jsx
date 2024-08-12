@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 import LoadingPopup, { Sessions } from "../../api/sessions";
 import { useState } from "react";
 import { t } from "i18next";
+import { AuthContext } from "../../context/AuthContext";
 
 
 export function ReportSideTabs() {
   const [isLoading] = useState(false);
-  
-
-  const userRole = localStorage.getItem("role");
+  const { auth } = useContext(AuthContext);
+  const userRole = auth?.role;
 
   const GeneralnAdminMainTabs = () => {
     return (
