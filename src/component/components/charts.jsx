@@ -468,8 +468,8 @@ export function ReportRiskLevel() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
