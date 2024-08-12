@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
@@ -44,7 +44,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import "react-tabs/style/react-tabs.css";
-import { Sessions } from "../../api/sessions";
+import { AuthContext } from "../../context/AuthContext";
+
 
 
 function getRiskScore(score) {
@@ -92,6 +93,7 @@ function getImpactLevelNumber(impact) {
   }
 }
 export function UserData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [userName, setUserName] = useState(params.row.userName);
@@ -171,7 +173,7 @@ export function UserData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -196,7 +198,7 @@ export function UserData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -216,7 +218,7 @@ export function UserData(params) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -454,6 +456,7 @@ export function UserData(params) {
 }
 
 export function RiskData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -530,7 +533,7 @@ export function RiskData(params) {
       .get(OWNERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -583,7 +586,7 @@ export function RiskData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -605,7 +608,7 @@ export function RiskData(params) {
       await axios.delete(`${DELETERISK_URL}/${id}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       });
@@ -888,6 +891,7 @@ export function RiskData(params) {
 }
 
 export function ReviewRiskData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -952,7 +956,7 @@ export function ReviewRiskData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1106,6 +1110,7 @@ export function ReviewRiskData(params) {
 }
 
 export function MonitoredRiskData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -1165,7 +1170,7 @@ export function MonitoredRiskData(params) {
       .get(OWNERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -1195,7 +1200,7 @@ export function MonitoredRiskData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1370,6 +1375,7 @@ export function MonitoredRiskData(params) {
 }
 
 export function MitigatedRiskData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -1451,7 +1457,7 @@ export function MitigatedRiskData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1472,7 +1478,7 @@ export function MitigatedRiskData(params) {
       .get(RISKREVIEWERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -1875,6 +1881,7 @@ export function MitigatedRiskReportData(params) {
 }
 
 export function DepartmentData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [deptID, setDepartmentID] = useState(params.row.deptID);
@@ -1924,7 +1931,7 @@ export function DepartmentData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1944,7 +1951,7 @@ export function DepartmentData(params) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         }
@@ -1961,7 +1968,7 @@ export function DepartmentData(params) {
       .get(MANAGERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -1978,7 +1985,7 @@ export function DepartmentData(params) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -2189,6 +2196,7 @@ export function CsvModal() {
 }
 
 export function LogOut() {
+  const {clearAuth, auth} = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -2199,7 +2207,7 @@ export function LogOut() {
     toast.error("Unauthorized User!", {
       onClose: () => {
         navigate("/", { replace: true });
-        localStorage.clear();
+        clearAuth();
       },
     });
   };
@@ -2215,12 +2223,12 @@ export function LogOut() {
       await axios.get(LOGOUT_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       });
       navigate("/", { replace: true });
-      localStorage.clear();
+      clearAuth();
     } catch (error) {
       if (error.response.status === 401) {
         notifyUnauthorized();
@@ -2304,6 +2312,7 @@ export function LogOut() {
 }
 
 export function RiskAdviceReportData(params) {
+  const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
@@ -2336,7 +2345,7 @@ export function RiskAdviceReportData(params) {
       .get(DEPARTMENTDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
