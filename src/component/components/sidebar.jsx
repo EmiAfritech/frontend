@@ -21,7 +21,7 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = auth.role;
-  
+  console.log(userRole);
 
   //Auditor Tabs
   const AuditorMainTabs = () => {
