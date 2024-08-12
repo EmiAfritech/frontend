@@ -52,6 +52,7 @@ import { Modaltrigger } from "../../context/AuthContext";
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
+import { AuthContext } from "../../context/AuthContext";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -63,6 +64,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 };
 
 export function EmployeesTable() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const usercolumns = useUserColumns();
@@ -72,7 +74,7 @@ export function EmployeesTable() {
       const response = await axios.get(USERS_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
       });
 
@@ -121,6 +123,7 @@ export function EmployeesTable() {
 }
 
 export function RiskReview() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskreviewcolumn = useRiskReviewColumns();
@@ -130,7 +133,7 @@ export function RiskReview() {
       const response = await axios.get(RISKREVIEW_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
       });
 
@@ -183,7 +186,9 @@ export function RiskReview() {
   );
 }
 
+
 export function ClosedRiskTab() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const {t} = useTranslation();
   const riskviewcolumn = useRiskViewColumns();
@@ -194,7 +199,7 @@ export function ClosedRiskTab() {
         const response = await axios.get(VIEWCLOSEDRISKS_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -247,6 +252,7 @@ export function ClosedRiskTab() {
 }
 
 export function RiskMonitor() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskmonitoringcolumn = useRiskMonitoringColumns();
@@ -256,7 +262,7 @@ export function RiskMonitor() {
       const response = await axios.get(RISKMONITORING_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       });
@@ -306,6 +312,7 @@ export function RiskMonitor() {
 }
 
 export function RiskAppetiteReportGreater() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const riskappetitereportgreatercolumn = useRiskAppetiteReportGreaterColumns();
 
@@ -315,7 +322,7 @@ export function RiskAppetiteReportGreater() {
         const response = await axios.get(RISKAPPETITEREPORTGREATER_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -375,6 +382,7 @@ export function RiskAppetiteReportGreater() {
 }
 
 export function RiskAppetiteReportLower() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const riskappetitereportlowercolumn = useRiskAppetiteReportLowerColumns();
 
@@ -384,7 +392,7 @@ export function RiskAppetiteReportLower() {
         const response = await axios.get(RISKAPPETITEREPORTLESSER_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
           withCredentials: true,
         });
@@ -444,6 +452,7 @@ export function RiskAppetiteReportLower() {
 }
 
 export function DepartmentTab() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const deptcolumn = useDeptColumns();
@@ -453,7 +462,7 @@ export function DepartmentTab() {
       const response = await axios.get(DEPARTMENT_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
       });
 
@@ -502,6 +511,7 @@ export function DepartmentTab() {
 }
 
 export function RiskmitigationTab() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskmitigationcolumn = useRiskMitigationColumns()
@@ -511,7 +521,7 @@ export function RiskmitigationTab() {
       const response = await axios.get(RISKMITIGATION_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       });
@@ -590,6 +600,7 @@ export function RiskmitigationTab() {
 }
 
 export function RiskViewTable() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskviewcolumn = useRiskViewColumns();
@@ -599,7 +610,7 @@ export function RiskViewTable() {
       .get(VIEWALLRISKS_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
       })
       .then((response) => setTableData(response.data.Data));
@@ -675,6 +686,7 @@ export function RiskViewTable() {
 }
 
 export function Reportaudittrail() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const reportaudittrailcolumn =  useReportAuditTrailColumns();
 
@@ -684,7 +696,7 @@ export function Reportaudittrail() {
         const response = await axios.get(REPORTAUDITTRAIL_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -742,6 +754,7 @@ export function Reportaudittrail() {
 }
 
 export function RiskMitigationReportTable() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -758,7 +771,7 @@ export function RiskMitigationReportTable() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -779,7 +792,7 @@ export function RiskMitigationReportTable() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -801,8 +814,8 @@ export function RiskMitigationReportTable() {
       <div className="grid grid-cols-4 justify-end">
         <div className="col-span-3"></div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -878,6 +891,7 @@ export function RiskMitigationReportTable() {
 }
 
 export function ReviewNeedingRisksReportTab() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -892,7 +906,7 @@ export function ReviewNeedingRisksReportTab() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -913,7 +927,7 @@ export function ReviewNeedingRisksReportTab() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -935,8 +949,8 @@ export function ReviewNeedingRisksReportTab() {
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -1013,6 +1027,7 @@ export function ReviewNeedingRisksReportTab() {
 }
 
 export function RiskStatusReportTab() {
+  const {auth} = useContext(AuthContext)
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setdeptmentNames] = useState([]);
@@ -1046,7 +1061,7 @@ export function RiskStatusReportTab() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1070,8 +1085,8 @@ export function RiskStatusReportTab() {
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
