@@ -20,8 +20,7 @@ export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = localStorage.getItem("role");
-  console.log(auth.role)
+  const userRole = auth.role;
   
 
   //Auditor Tabs
