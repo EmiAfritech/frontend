@@ -6,8 +6,10 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../context/AuthContext";
 
 export function Sessions() {
+  const {clearAuth} = useContext(AuthContext);
   const [session, setSession] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -15,7 +17,7 @@ export function Sessions() {
     toast.error("Unauthorized User!", {
       onClose: () => {
         navigate("/", { replace: true });
-        localStorage.clear();
+        clearAuth();
       },
     });
   };
@@ -29,7 +31,7 @@ export function Sessions() {
     toast.error("System Down, Contact Admin!", {
       onClose: () => {
         navigate("/", { replace: true });
-        localStorage.clear();
+        clearAuth();
       },
     });
   };
@@ -42,12 +44,9 @@ export function Sessions() {
       })
       .then((data) => {
         setSession(data.data.message);
-        if (session === "valid") {
-          console.log("Authorized User");
-        } else if (session === "Invalid"){
+        if (session === "Invalid") {
           notifyUnauthorized()
-          
-        }
+        } 
         
       })
       .catch((err) => {

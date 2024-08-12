@@ -10,9 +10,17 @@ export const AuthProvider = ({ children }) => {
 
   });
 
+  const clearAuth = () => {
+    setAuth({
+      token: "",
+      role: "",
+      departmentID: "",
+    });
+  };
+
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, setAuth, clearAuth }}>
       {children}
     </AuthContext.Provider>
   );

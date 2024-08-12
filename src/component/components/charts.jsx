@@ -364,10 +364,9 @@ export function RiskLineChart() {
 
     fetchData();
   }, [year]);
-console.log(data)
   const handleYearChange = (e) => {
     setYear(e.target.value);
-    console.log(year);
+
   };
 
   return (
