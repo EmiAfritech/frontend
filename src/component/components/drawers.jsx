@@ -3,7 +3,7 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import axios from "../../api/axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -58,7 +58,7 @@ function getImpactLevelNumber(impact) {
   }
 }
 export function Userforms({ onFormSubmit }) {
-  const {auth} =  React.useContext(AuthContext);
+  const {auth} =  useContext(AuthContext);
   const {t} = useTranslation();
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -485,7 +485,7 @@ export function Departmentforms({ onFormSubmit }) {
 }
 
 export function Riskforms({ onFormSubmit, tableData }) {
-  const {auth} =  React.useContext(AuthContext);
+  const {auth} =  useContext(AuthContext);
   const {t} = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
@@ -920,7 +920,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
   );
 }
 export function RiskReviewforms({ onFormSubmit }) {
-  const {auth} =  React.useContext(AuthContext);
+  const {auth} =  useContext(AuthContext);
   const {t} = useTranslation();
   const [riskID, setRiskID] = useState("");
   const [departmentID, setdepartmentID] = useState(" ");
@@ -1215,7 +1215,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-  const {auth} =  React.useContext(AuthContext);
+  const {auth} = useContext(AuthContext);
   const {t} = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [risks, setRiskIDs] = useState([]);
@@ -1729,7 +1729,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   );
 }
 export function RiskMonitoringforms({ onFormSubmit }) {
-  const {auth} =  React.useContext(AuthContext);
+  const {auth} =  useContext(AuthContext);
   const {t} = useTranslation()
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
