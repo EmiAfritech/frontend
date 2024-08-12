@@ -22,9 +22,7 @@ export function Sidebar() {
   const { t } = useTranslation();
   const userRole = auth?.role;
 
-if (!userRole) {
-  console.error("User role is not defined");
-}
+
 
   //Auditor Tabs
   const AuditorMainTabs = () => {

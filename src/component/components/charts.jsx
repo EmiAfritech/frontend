@@ -12,7 +12,7 @@ import {
   Line,
   ResponsiveContainer,
 } from "recharts";
-import React from "react";
+import React, { useContext } from "react";
 import { HighLowBarData, pyramid } from "./chartdata";
 import Chart from "react-apexcharts";
 import Funnel, { Item, Border, Label, Font } from "devextreme-react/funnel";
@@ -55,6 +55,7 @@ import {
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
+import { AuthContext } from "../../context/AuthContext";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -66,6 +67,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 };
 
 export function OpenVsClose() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const { t } = useTranslation();
 
@@ -74,7 +76,7 @@ export function OpenVsClose() {
       .get(OPENVSCLOSECHART_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -97,6 +99,7 @@ export function OpenVsClose() {
   );
 }
 export function MitigatedVsUnmitigated() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -104,7 +107,7 @@ export function MitigatedVsUnmitigated() {
       .get(MITIGATEDVSUNMITIGATEDCHAT_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -127,6 +130,7 @@ export function MitigatedVsUnmitigated() {
   );
 }
 export function ReviewedVsUnreviewed() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -134,7 +138,7 @@ export function ReviewedVsUnreviewed() {
       .get(REVIEWEDVSUNREVIEWEDCHART_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -157,6 +161,7 @@ export function ReviewedVsUnreviewed() {
   );
 }
 export function MonitoredVsUnmonitored() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -164,7 +169,7 @@ export function MonitoredVsUnmonitored() {
       .get(MONITOREDVSUNMONITOREDRISKSCHART_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -186,6 +191,7 @@ export function MonitoredVsUnmonitored() {
   );
 }
 export function RiskBarChart() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
@@ -197,7 +203,7 @@ export function RiskBarChart() {
         const response = await axios.get(RISKYEARSCHART_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -219,7 +225,7 @@ export function RiskBarChart() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -277,6 +283,7 @@ export function RiskBarChart() {
   );
 }
 export function MonitoredVsUnmonitoredBarchart() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -284,7 +291,7 @@ export function MonitoredVsUnmonitoredBarchart() {
       .get(MONITOREDVSUNMONITOREDBARCHARTDATA_URL, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + auth.token,
         },
         withCredentials: true,
       })
@@ -307,22 +314,9 @@ export function MonitoredVsUnmonitoredBarchart() {
   );
 }
 
-export function HighLowRiskBarchart() {
-  return (
-    <div className="card p-3">
-      <BarChart width={1100} height={300} data={HighLowBarData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Bar dataKey="high" fill="#cc23b3" />
-        <Bar dataKey="low" fill="#2394cc" />
-      </BarChart>
-    </div>
-  );
-}
 
 export function RiskLineChart() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
@@ -334,7 +328,7 @@ export function RiskLineChart() {
         const response = await axios.get(RISKYEARSCHART_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -356,7 +350,7 @@ export function RiskLineChart() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -415,6 +409,7 @@ console.log(data)
 }
 
 export function ReportRiskLevel() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -428,7 +423,7 @@ export function ReportRiskLevel() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -449,7 +444,7 @@ export function ReportRiskLevel() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -510,6 +505,7 @@ export function ReportRiskLevel() {
   );
 }
 export function ReportRiskStatus() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -523,7 +519,7 @@ export function ReportRiskStatus() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -544,7 +540,7 @@ export function ReportRiskStatus() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -605,6 +601,7 @@ export function ReportRiskStatus() {
   );
 }
 export function ReportRiskLocation() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -618,7 +615,7 @@ export function ReportRiskLocation() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -639,7 +636,7 @@ export function ReportRiskLocation() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -663,8 +660,8 @@ export function ReportRiskLocation() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -700,6 +697,7 @@ export function ReportRiskLocation() {
   );
 }
 export function ReportRiskCategory() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -713,7 +711,7 @@ export function ReportRiskCategory() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -734,7 +732,7 @@ export function ReportRiskCategory() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -758,8 +756,8 @@ export function ReportRiskCategory() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -795,6 +793,7 @@ export function ReportRiskCategory() {
   );
 }
 export function ReportRiskResponse() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -808,7 +807,7 @@ export function ReportRiskResponse() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -829,7 +828,7 @@ export function ReportRiskResponse() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -853,8 +852,8 @@ export function ReportRiskResponse() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.token === "ADMIN" ||
+          auth.token === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -890,6 +889,7 @@ export function ReportRiskResponse() {
   );
 }
 export function ReportRiskOwner() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -903,7 +903,7 @@ export function ReportRiskOwner() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -924,7 +924,7 @@ export function ReportRiskOwner() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -948,8 +948,8 @@ export function ReportRiskOwner() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+          {auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -986,6 +986,7 @@ export function ReportRiskOwner() {
 }
 
 export function Pyramidchat() {
+  const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -1003,7 +1004,7 @@ export function Pyramidchat() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1024,7 +1025,7 @@ export function Pyramidchat() {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + auth.token,
           },
         });
 
@@ -1056,8 +1057,8 @@ export function Pyramidchat() {
       <div>
         <div className="grid grid-cols-4">
           <div>
-            {localStorage.getItem("role") === "ADMIN" ||
-            localStorage.getItem("role") === "GENERALMANAGER" ? (
+            {auth.role === "ADMIN" ||
+            auth.role === "GENERALMANAGER" ? (
               <>
                 <select
                   type="text"
