@@ -55,12 +55,15 @@ export function Login() {
       );
 
       if (response.status === 200) {
+        const token = response.data.authToken;
+        const role = response.data.role;
+        const department = response.data.department;
+
         if (token && role) {
           setAuth({ 
-            token: response.data.authToken, 
-            role:  response.data.role, 
-            department: response.data.department,
-          });
+            token: token, 
+            role: role, 
+            department: department });
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
