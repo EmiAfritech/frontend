@@ -2354,7 +2354,7 @@ export function RiskAdviceReportData(params) {
                 <TabPanel>
                   <div className="grid grid-cols-2 pt-5">
                     <div>
-                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                      <div class="flex flex-row items-center p-4 w-full max-w-lg">
                         <p class="m-0">Risk ID:</p>
                         <input
                         value={riskID}
@@ -2363,14 +2363,14 @@ export function RiskAdviceReportData(params) {
                         required
                         className="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
-                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                      <div class="flex flex-row items-center p-4  w-full max-w-lg">
                         <p class="m-0">Risk Name:</p>
                         <input
                         value={riskName}
                         autoComplete="off"
                         onChange={(e) => setRiskName(e.target.value)}
                         required
-                        className="block py-2.5 w-auto text-xl bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
+                        className="block py-2.5 w-auto text-sm bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>

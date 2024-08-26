@@ -713,7 +713,7 @@ export function Reportaudittrail() {
   return (
     <div>
       <div
-        style={{ height: 650, backgroundColor: "white" }}
+        style={{ height: 650, width: 850, backgroundColor: "white" }}
         className="mt-2 w-auto card p-4">
         <DataGrid
           rows={tableData}
