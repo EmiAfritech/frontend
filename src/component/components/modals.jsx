@@ -613,7 +613,7 @@ export function RiskData(params) {
       }
     }
   };
-
+  console.log(auth.role);
   const handleDeleteSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -685,6 +685,7 @@ export function RiskData(params) {
                   )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
+                    
                   {auth.role === "MANAGER" || "AUDITOR" ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
