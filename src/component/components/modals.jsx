@@ -2361,7 +2361,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskID(e.target.value)}
                         required
-                        className="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk Name:</p>
@@ -2370,7 +2370,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskName(e.target.value)}
                         required
-                        className="block py-2.5 w-auto text-sm bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
+                        className="block py-2.5 w-full text-sm bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
@@ -2378,18 +2378,18 @@ export function RiskAdviceReportData(params) {
                         value={deptmentName}
                         autoComplete="off"
                         onChange={(e) => setdeptmentName(e.target.value)}
-                        class="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        class="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                           <option>hi</option>
                         </select>
                       </div>
-                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                      <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Probability Levels:</p>
                         <input
                         value={riskProbabilityLevell}
                         autoComplete="off"
                         onChange={(e) => setRiskProbabilityLevel(e.target.value)}
                         required
-                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <TextField
                         sx={{
