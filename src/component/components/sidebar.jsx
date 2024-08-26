@@ -183,7 +183,7 @@ export function Sidebar() {
       <div className="sidebar-header mb-1">
         <img
           src={Sidebar_logo}
-          style={{ width: 200, height: 80, borderRadius: 20 }}
+          style={{ height: 80, borderRadius: 20 }}
         />
         <span>{t("riskApplication")}</span>
       </div>
