@@ -2354,7 +2354,7 @@ export function RiskAdviceReportData(params) {
                 <TabPanel>
                   <div className="grid grid-cols-2 pt-5">
                     <div>
-                      <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
+                      <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk ID:</p>
                         <input
                         value={riskID}
