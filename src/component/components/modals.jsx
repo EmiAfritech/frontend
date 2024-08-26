@@ -670,7 +670,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  {auth.role === "ADMIN" || "GENERALMANAGER" ? (
+                  {auth.role === "MANAGER" || "AUDITOR" ? (
                     <TextField
                       label="Department ID"
                       value={departmentID}
@@ -685,7 +685,7 @@ export function RiskData(params) {
                   )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  {auth.role === "ADMIN" || "GENERALMANAGER" ? (
+                  {auth.role === "MANAGER" || "AUDITOR" ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
                       <Select
