@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Sidebar } from "../../component/components/sidebar";
 import { ViewClosedRisk } from "../../component/components/info";
 import { RiskViewTable } from "../../component/components/tables";
-import "../../component/comstyles/component.css";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
+import "../../component/comstyles/component.css";
 
 export function RiskView() {
   const {t}= useTranslation()

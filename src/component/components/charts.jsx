@@ -847,8 +847,8 @@ export function ReportRiskResponse() {
       </h3>
       <div>
         <div>
-          {auth.token === "ADMIN" ||
-          auth.token === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" ||
+          auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"

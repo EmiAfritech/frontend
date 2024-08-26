@@ -15,12 +15,20 @@ import { useState, useContext } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
+import ecg_logo from "../../assets/images/ecg_logo.jpg"
+import wafi_logo from "../../assets/images/wafi_logo.jpg"
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = auth?.role;
+  const Sidebar_logo = userRole === "ADMIN" 
+    ? ecg_logo 
+    : userRole === "MANAGER" 
+    ? wafi_logo 
+    : afriquetek_logo;
 
 
 
@@ -174,7 +182,7 @@ export function Sidebar() {
     <div className="sidebar-container bg-[#2B6CB0]">
       <div className="sidebar-header mb-1">
         <img
-          src="https://static.africa-press.net/ghana/sites/18/2022/04/img-62599904dbcbf.jpg"
+          src={Sidebar_logo}
           style={{ width: 200, height: 80, borderRadius: 20 }}
         />
         <span>{t("riskApplication")}</span>
