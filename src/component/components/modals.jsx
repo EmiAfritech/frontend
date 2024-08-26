@@ -499,7 +499,7 @@ export function RiskData(params) {
   const [ownersName, setOwnersName] = useState([]);
   const cdate = new Date(riskCreatedAt);
   const cDate = cdate.toISOString().split("T")[0];
-  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
+  const { triggerComponent } = React.useContext(Modaltrigger);
 
   const notify = () => {
     toast.success("Risk Saved Successfully", {
@@ -670,8 +670,7 @@ export function RiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  {localStorage.getItem("role") === "ADMIN" ||
-                  localStorage.getItem("GENERALMANAGER") ? (
+                  {auth.role === "ADMIN" || GENERALMANAGER ? (
                     <TextField
                       label="Department ID"
                       value={departmentID}
@@ -686,8 +685,7 @@ export function RiskData(params) {
                   )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                  {localStorage.getItem("role") === "ADMIN" ||
-                  localStorage.getItem("GENERALMANAGER") ? (
+                  {auth.role === "ADMIN" || "GENERALMANAGER" ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
                       <Select
