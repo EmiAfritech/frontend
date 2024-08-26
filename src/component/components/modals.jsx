@@ -92,6 +92,18 @@ function getImpactLevelNumber(impact) {
     return 0;
   }
 }
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "#FFFFFF",
+  boxShadow: 24,
+  p: 4,
+  borderRadius: 1,
+};
+
+
 export function UserData(params) {
   const {auth} = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -890,84 +902,51 @@ export function RiskData(params) {
   );
 }
 
-export function ReviewRiskData(params) {
-  const {auth} = useContext(AuthContext);
+export function ReviewRiskData({ params }) {
+  const { auth } = useContext(AuthContext);
+  const { triggerComponent } = useContext(ModalTriggerContext);
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-  const id = params.row.id;
-
-  const [riskName, setRiskName] = useState(params.row.riskName);
-  const [riskID, setRiskID] = useState(params.row.riskID);
-  const [riskReview, setRiskReview] = useState(params.row.riskReview);
-  const [NextRiskReviewDate, setNextRiskReviewDate] = useState(
-    params.row.NextRiskReviewDate
-  );
-  const [riskReviewComments, setRiskReviewComments] = useState(
-    params.row.riskReviewComments
-  );
-  const [createdAt, setCreatedAt] = useState(params.row.createdAt);
-  const cdate = new Date(createdAt);
-  const cDate = cdate.toISOString().split("T")[0];
-  const ndate = new Date(NextRiskReviewDate);
-  const nDate = ndate.toISOString().split("T")[0];
-  const { trigger, triggerComponent } = React.useContext(Modaltrigger);
-
-  const notify = () => {
-    toast.success("Risk Review Saved Successfully", {
-      onClose: () => {
-        close();
-      },
-    });
-  };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "#FFFFFF",
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 1,
-    width: 1200,
-  };
-  function handleOpen() {
-    setOpen(!open);
-  }
+  const formattedDate = (dateString) => new Date(dateString).toISOString().split("T")[0];
+  const handleOpen = useCallback(() => setOpen((prev) => !prev), []);
+  const close = useCallback(() => setOpen(false), []);
+  const [riskData, setRiskData] = useState({
+    riskName: params.row.riskName,
+    riskID: params.row.riskID,
+    riskReview: params.row.riskReview,
+    nextRiskReviewDate: params.row.NextRiskReviewDate,
+    riskReviewComments: params.row.riskReviewComments,
+    createdAt: params.row.createdAt,
+  });
+  const handleInputChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setRiskData((prev) => ({ ...prev, [name]: value }));
+  }, []);
+  const notify = useCallback((type, message) => {
+    toast[type](message, { onClose: close });
+  }, [close]);
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    const { riskID, riskReview, nextRiskReviewDate, riskReviewComments } = riskData;
     try {
       await axios.put(
         EDITREVIEW_URL,
-        JSON.stringify({
-          riskID,
-          riskReview,
-          NextRiskReviewDate,
-          riskReviewComments,
-          id,
-        }),
+        JSON.stringify({ riskID, riskReview, NextRiskReviewDate: nextRiskReviewDate, riskReviewComments, id: params.row.id }),
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
+            Authorization: `Bearer ${auth.token}`,
           },
           withCredentials: true,
         }
       );
-      notify();
+      notify("success", "Risk Review Saved Successfully");
       triggerComponent();
     } catch (error) {
-      if (error.response.status === 400) {
-        notifyFillForms();
-      } else if (error.response.status === 500) {
-        notifyServerDown();
+      if (error.response?.status === 400) {
+        notify("error", "Kindly check Input details");
+      } else if (error.response?.status === 500) {
+        notify("error", "Server is currently down. Contact your admin");
       }
     }
   };
@@ -982,122 +961,83 @@ export function ReviewRiskData(params) {
         open={open}
         onClose={close}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...style, width: 1200 }}>
           <FormControl fullWidth>
-            <div className=" px-10 py-10">
+            <div className="px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk ID"
-                    value={riskID}
-                    disabled
-                    autoComplete="off"
-                    onChange={(e) => setRiskID(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Name"
-                    value={riskName}
-                    disabled
-                    autoComplete="off"
-                    onChange={(e) => setRiskName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
+                <TextField
+                  label="Risk ID"
+                  name="riskID"
+                  value={riskData.riskID}
+                  disabled
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Risk Name"
+                  name="riskName"
+                  value={riskData.riskName}
+                  disabled
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <FormControl fullWidth>
                   <InputLabel>Risk Review</InputLabel>
                   <Select
                     label="Risk Review"
-                    value={riskReview}
+                    name="riskReview"
+                    value={riskData.riskReview}
                     autoComplete="off"
-                    onChange={(e) => setRiskReview(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
+                    onChange={handleInputChange}
+                    fullWidth
+                  >
                     <MenuItem value="accept risk">Accept Risk</MenuItem>
                     <MenuItem value="reject risk">Reject Risk</MenuItem>
                     <MenuItem value="close risk">Close Risk</MenuItem>
                   </Select>
-                </div>
+                </FormControl>
               </div>
               <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    type="date"
-                    label="Next Review Date"
-                    value={nDate}
-                    autoComplete="off"
-                    onChange={(e) => {
-                      const selectedDate = e.target.value;
-                      const dateObj = new Date(selectedDate);
-
-                      // Extract year, month, and day components
-                      const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(
-                        2,
-                        "0"
-                      );
-                      const day = String(dateObj.getDate()).padStart(2, "0");
-
-                      // Format the date as "yyyy-MM-dd"
-                      const formattedDate = `${year}-${month}-${day}`;
-                      // Set the formatted date to state
-                      setNextRiskReviewDate(formattedDate);
-                    }}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    type="date"
-                    label="Created At"
-                    disabled
-                    value={cDate}
-                    autoComplete="off"
-                    onChange={(e) => {
-                      const selectedDate = e.target.value;
-                      const dateObj = new Date(selectedDate);
-
-                      // Extract year, month, and day components
-                      const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(
-                        2,
-                        "0"
-                      );
-                      const day = String(dateObj.getDate()).padStart(2, "0");
-
-                      // Format the date as "yyyy-MM-dd"
-                      const formattedDate = `${year}-${month}-${day}`;
-                      // Set the formatted date to state
-                      setCreatedAt(formattedDate);
-                    }}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Review Comments"
-                    value={riskReviewComments}
-                    multiline
-                    autoComplete="off"
-                    onChange={(e) => setRiskReviewComments(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
+                <TextField
+                  type="date"
+                  label="Next Review Date"
+                  name="nextRiskReviewDate"
+                  value={formattedDate(riskData.nextRiskReviewDate)}
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  type="date"
+                  label="Created At"
+                  name="createdAt"
+                  value={formattedDate(riskData.createdAt)}
+                  disabled
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                  fullWidth
+                />
+                <TextField
+                  label="Risk Review Comments"
+                  name="riskReviewComments"
+                  value={riskData.riskReviewComments}
+                  multiline
+                  autoComplete="off"
+                  onChange={handleInputChange}
+                  fullWidth
+                />
               </div>
             </div>
-            <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+            <div className="flex flex-row-reverse items-center pb-3 pt-2 px-2">
               <button
-                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                className="flex items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 type="submit"
-                onClick={handleEditSubmit}>
+                onClick={handleEditSubmit}
+              >
                 <FaSave className="icons" />
                 Save
               </button>
@@ -1108,6 +1048,7 @@ export function ReviewRiskData(params) {
     </>
   );
 }
+
 
 export function MonitoredRiskData(params) {
   const {auth} = useContext(AuthContext);
@@ -2420,7 +2361,7 @@ export function RiskAdviceReportData(params) {
                         autoComplete="off"
                         onChange={(e) => setRiskID(e.target.value)}
                         required
-                        className="block py-2.5 pr-16  w-auto text-xl bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                        className="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
                       </div>
                       <div class="flex flex-row items-center p-4 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk Name:</p>
