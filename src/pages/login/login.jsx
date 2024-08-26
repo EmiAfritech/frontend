@@ -11,6 +11,7 @@ import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
 
 export function Login() {
   const {setAuth } = useContext(AuthContext);
@@ -107,7 +108,7 @@ export function Login() {
             </div>
             <div className="formstyle flex-col">
               <img
-                src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
+                src={afriquetek_logo}
                 alt="Paris"
                 className="w-55 h-20 mb-12"
               />

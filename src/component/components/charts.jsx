@@ -559,8 +559,8 @@ export function ReportRiskStatus() {
       </h3>
       <div>
         <div>
-          {localStorage.getItem("role") === "ADMIN" ||
-          localStorage.getItem("role") === "GENERALMANAGER" ? (
+        {auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER" ?  (
             <>
               <select
                 type="text"
@@ -973,7 +973,6 @@ export function ReportRiskOwner() {
       <PieChart >
         <Pie dataKey="value" data={data} outerRadius={90} />
         <Tooltip />
-        <Legend iconSize={10} />
       </PieChart>
       </ResponsiveContainer>
     </div>
