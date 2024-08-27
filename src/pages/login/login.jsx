@@ -55,6 +55,7 @@ export function Login() {
         }
       );
 
+      console.log(response.data);
       if (response.status === 200) {
         const token = response.data.authToken;
         const role = response.data.role;
