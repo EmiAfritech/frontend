@@ -24,7 +24,7 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = auth?.role;
-  const Sidebar_logo = userRole === "ADMIN" 
+  const Sidebar_logo = userRole ===  "electricity company of ghana limited"
     ? ecg_logo 
     : userRole === "MANAGER" 
     ? wafi_logo 
