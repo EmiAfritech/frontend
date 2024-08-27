@@ -60,6 +60,8 @@ export function Login() {
         const token = response.data.authToken;
         const role = response.data.role;
         const department = response.data.department;
+        const organizationName = response.data.organizationName;
+        
 
         if (token && role) {
           setAuth({ 

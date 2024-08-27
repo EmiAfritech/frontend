@@ -7,6 +7,8 @@ export const AuthProvider = ({ children }) => {
     token: "",
     role: "",
     departmentID: "",
+    organizationName: "",
+
 
   });
 
@@ -15,6 +17,7 @@ export const AuthProvider = ({ children }) => {
       token: "",
       role: "",
       departmentID: "",
+      au
     });
   };
 

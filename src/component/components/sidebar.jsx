@@ -25,9 +25,9 @@ export function Sidebar() {
   const { t } = useTranslation();
   const userRole = auth?.role;
   const Sidebar_logo = 
-  auth.organizationName.toLowerCase() === "electricity company of ghana limited".toLowerCase()
+  auth.organizationName === "electricity company of ghana limited"
   ? ecg_logo 
-  : userRole === "MANAGER" 
+  : auth.organizationName === "MANAGER" 
   ? wafi_logo 
   : afriquetek_logo;
 
