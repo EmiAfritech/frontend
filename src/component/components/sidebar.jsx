@@ -24,7 +24,7 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = auth?.role;
-  console.log(auth.organizationName);
+  console.log(auth);
   const Sidebar_logo = 
   auth.organizationName === "electricity company of ghana limited"
   ? ecg_logo 
