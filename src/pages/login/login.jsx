@@ -67,7 +67,8 @@ export function Login() {
           setAuth({ 
             token: token, 
             role: role, 
-            department: department 
+            department: department, 
+            organizationName: organizationName
           });
           navigate("/dashboard", { replace: true });
         } else {
