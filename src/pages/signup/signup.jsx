@@ -101,7 +101,7 @@ export function SignUp() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
           <div className="login-container">
-            <div className="flex-col m-16 flex justify-center">
+            <div className="flex-col m-16 flex items-center">
               <img
                 src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
                 alt="Afriquetek Logo"
