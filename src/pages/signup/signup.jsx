@@ -110,10 +110,10 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 mb-4 border border-gray-300 rounded"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block mb-1">First Name</label>
                     <input
@@ -122,7 +122,7 @@ export function SignUp() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded"
                     />
                   </div>
                   <div>
