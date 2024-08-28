@@ -109,7 +109,9 @@ export function SignUp() {
               />
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label className="block mb-1 text-xs">Organizational Name</label>
+                  <label className="block mb-1 text-xs">
+                    Organizational Name
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -190,9 +192,12 @@ export function SignUp() {
                   )}
                 </button>
                 <div className="new-user mt-4">
-                  <Link to="/" className="new text-blue-600">
-                    Already registered? Return to Login
-                  </Link>
+                  <span>Already registered?</span>{" "}
+                  <span style={{ color: "blue" }}>
+                    <Link className="new" to="/">
+                      Return to Login
+                    </Link>
+                  </span>
                 </div>
               </form>
             </div>
