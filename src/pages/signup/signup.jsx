@@ -39,7 +39,14 @@ export function SignUp() {
     try {
       const response = await axios.post(
         CREATE_URL,
-        JSON.stringify(formData),
+        JSON.stringify({
+          email: "",
+          confirmPassword: "",
+          password: "",
+          name: "",
+          firstName: "",
+          lastName: "",
+        }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -70,12 +77,11 @@ export function SignUp() {
 
   const resetForm = () => {
     setFormData({
-      email: "",
-      password: "",
-      name: "",
-      firstName: "",
-      lastName: "",
-      confirmPassword: "",
+      email: formData.email,
+      password: formData.password,
+      name: formData.name,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
     });
   };
 
