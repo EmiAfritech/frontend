@@ -184,7 +184,7 @@ export function SignUp() {
                   />
                 </div>
                 <button
-                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm rounded-2xl"
+                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm"
                   type="submit"
                   disabled={isLoading}>
                   {isLoading ? (
