@@ -98,26 +98,10 @@ export function SignUp() {
                 className="w-55 h-20"
               />
               <form>
-                {/* subscription code */}
-                <div className="">
-                  <div>
-                    <label htmlFor="email">Subscription code</label>
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      id="email"
-                      value={email}
-                      autoComplete="off"
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
                 {/* organization */}
                 <div>
                   <div>
-                    <label htmlFor="email">Organizational Name</label>
+                    <label>Organizational Name</label>
                   </div>
                   <div>
                     <input
@@ -130,17 +114,59 @@ export function SignUp() {
                     />
                   </div>
                 </div>
+                {/* email */}
+                <div className=" grid grid-cols-2">
+                  <div>
+                  <div>
+                    <label>First Name</label>
+                  </div>
+                    <input
+                      type="text"
+                      id="email"
+                      value={firstName}
+                      autoComplete="off"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                  <div>
+                    <label>Last Name</label>
+                  </div>
+                    <input
+                      type="text"
+                      id="email"
+                      value={lastName}
+                      autoComplete="off"
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                {/* email */}
+                {/* <div className="">
+                  <div>
+                    <input
+                      type="text"
+                      id="email"
+                      value={email}
+                      autoComplete="off"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div> */}
                 {/*employees in the organization*/}
-                <div>
+                {/* <div>
                   <div>
                     <label htmlFor="email">Number of Employees</label>
                   </div>
                   <input type="number" />
-                </div>
+                </div> */}
                 {/* username */}
                 <div className="">
                   <div>
-                    <label htmlFor="email">Organizational Email</label>
+                    <label htmlFor="email">Email</label>
                   </div>
                   <div>
                     <input
@@ -156,7 +182,7 @@ export function SignUp() {
                 {/* password */}
                 <div>
                   <div>
-                    <label htmlFor="password">Organizational Password</label>
+                    <label htmlFor="password">Password</label>
                   </div>
                   <div>
                     <input
@@ -206,7 +232,7 @@ export function SignUp() {
                 <div className="new-user">
                   <span style={{ color: "blue" }}>
                     <Link className="new" to="/">
-                      Return to Login
+                    Have you already registered? Return to Login
                     </Link>
                   </span>
                 </div>
