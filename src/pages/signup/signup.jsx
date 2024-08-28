@@ -88,7 +88,7 @@ export function SignUp() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
           <div className="login-container">
-            <div className="formstyle flex-col">
+            <div className="formstyle flex-col m-6">
               <img
                 src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
                 alt="Afriquetek Logo"
@@ -105,7 +105,7 @@ export function SignUp() {
                     required
                   />
                 </div>
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label>First Name</label>
                     <input
