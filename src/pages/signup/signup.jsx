@@ -109,75 +109,75 @@ export function SignUp() {
               />
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label className="block mb-1">Organizational Name</label>
+                  <label className="block mb-1 text-sm">Organizational Name</label>
                   <input
                     type="text"
                     id="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
-                    <label className="block mb-1">First Name</label>
+                    <label className="block mb-1 text-sm">First Name</label>
                     <input
                       type="text"
                       id="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded-full"
+                      className="w-full p-1 text-sm h-12 border border-gray-300 rounded-full"
                     />
                   </div>
                   <div>
-                    <label className="block mb-1">Last Name</label>
+                    <label className="block mb-1 text-sm">Last Name</label>
                     <input
                       type="text"
                       id="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
+                      className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block mb-1">Email</label>
+                  <label className="block mb-1 text-sm">Email</label>
                   <input
                     type="email"
                     id="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <div>
-                  <label className="block mb-1">Password</label>
+                  <label className="block mb-1 text-xs">Password</label>
                   <input
                     type="password"
                     id="password"
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <div>
-                  <label className="block mb-1">Confirm Password</label>
+                  <label className="block mb-1 text-xs">Confirm Password</label>
                   <input
                     type="password"
                     id="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <button
-                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm"
+                  className="login hover:bg-[#2a36b8] mt-4 p-4 text-sm"
                   type="submit"
                   disabled={isLoading}>
                   {isLoading ? (
