@@ -36,6 +36,10 @@ export function Sessions() {
     });
   };
 
+  if (auth?.token === "") {
+    navigate("/", { replace: true });
+  }
+  
   useEffect(() => {
     try {
       axios
