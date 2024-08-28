@@ -40,12 +40,11 @@ export function SignUp() {
       const response = await axios.post(
         CREATE_URL,
         JSON.stringify({
-          email: "",
-          confirmPassword: "",
-          password: "",
-          name: "",
-          firstName: "",
-          lastName: "",
+          email: formData.email,
+          password: formData.password,
+          name: formData.name,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
         }),
         {
           headers: { "Content-Type": "application/json" },
@@ -77,11 +76,12 @@ export function SignUp() {
 
   const resetForm = () => {
     setFormData({
-      email: formData.email,
-      password: formData.password,
-      name: formData.name,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
+      email: "",
+      confirmPassword: "",
+      password: "",
+      name: "",
+      firstName: "",
+      lastName: "",
     });
   };
 
@@ -179,8 +179,7 @@ export function SignUp() {
                 <button
                   className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm rounded-2xl"
                   type="submit"
-                  disabled={isLoading}
-                >
+                  disabled={isLoading}>
                   {isLoading ? (
                     <div className="flex justify-center">
                       <span className="text-sm pr-2">Loading</span>
@@ -203,4 +202,3 @@ export function SignUp() {
     </>
   );
 }
-
