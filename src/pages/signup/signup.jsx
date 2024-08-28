@@ -110,10 +110,10 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 mb-4 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
                     <label className="block mb-1">First Name</label>
                     <input
@@ -133,7 +133,7 @@ export function SignUp() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
                     />
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export function SignUp() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
                   />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ export function SignUp() {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
                   />
                 </div>
                 <div>
@@ -167,7 +167,7 @@ export function SignUp() {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
                   />
                 </div>
                 <button
