@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "../../api/axios";
-import { LOGIN_URL } from "../../api/routes";
+import { CREATE_URL } from "../../api/routes";
 import "../login/login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
@@ -33,7 +33,7 @@ export function SignUp() {
 
     try {
       const response = await axios.post(
-        LOGIN_URL,
+        CREATE_URL,
         JSON.stringify(formData),
         {
           headers: { "Content-Type": "application/json" },

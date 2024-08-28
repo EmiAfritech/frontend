@@ -3,6 +3,9 @@
 //login url
 export const LOGIN_URL = "/login";
 
+//login url
+export const CREATE_URL = "/organizations/create";
+
 //logout
 export const LOGOUT_URL = "/logout";
 
