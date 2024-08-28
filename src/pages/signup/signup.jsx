@@ -110,7 +110,7 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded-2xl"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
@@ -122,7 +122,7 @@ export function SignUp() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded"
+                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded-2xl"
                     />
                   </div>
                   <div>
@@ -133,7 +133,7 @@ export function SignUp() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
+                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
                     />
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export function SignUp() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
                   />
                 </div>
                 <div>
@@ -156,7 +156,7 @@ export function SignUp() {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
                   />
                 </div>
                 <div>
@@ -167,11 +167,11 @@ export function SignUp() {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
                   />
                 </div>
                 <button
-                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm rounded"
+                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm rounded-2xl"
                   type="submit"
                   disabled={isLoading}
                 >
