@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 export function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
+    confirmPassword: "",
     password: "",
     name: "",
     firstName: "",
@@ -18,19 +19,23 @@ export function SignUp() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
   const notifyError = (message) => toast.error(message);
   const notifyInfo = (message) => toast.info(message);
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+  const checkPasswords = () => {
+    if (formData.password!== formData.confirmPassword) {
+      notifyError("Passwords do not match");
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+    checkPasswords();
     try {
       const response = await axios.post(
         CREATE_URL,
@@ -44,6 +49,7 @@ export function SignUp() {
       const { status, data } = response;
 
       if (status === 201) {
+        alert("Organization Created Successfully, navigate to Login Page");
         navigate("/", { replace: true });
       } else {
         notifyInfo("Authorization returned null");
@@ -69,6 +75,7 @@ export function SignUp() {
       name: "",
       firstName: "",
       lastName: "",
+      confirmPassword: "",
     });
   };
 
@@ -152,7 +159,7 @@ export function SignUp() {
                   <input
                     type="password"
                     id="confirmPassword"
-                    value={formData.password}
+                    value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
                   />
