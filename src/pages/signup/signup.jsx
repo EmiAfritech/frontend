@@ -26,7 +26,7 @@ export function SignUp() {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
   const checkPasswords = () => {
-    if (formData.password!== formData.confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       notifyError("Passwords do not match");
       setIsLoading(false);
     }
@@ -103,69 +103,75 @@ export function SignUp() {
               />
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label>Organizational Name</label>
+                  <label className="block mb-1">Organizational Name</label>
                   <input
                     type="text"
                     id="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label>First Name</label>
+                    <label className="block mb-1">First Name</label>
                     <input
                       type="text"
                       id="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
+                      className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                     />
                   </div>
                   <div>
-                    <label>Last Name</label>
+                    <label className="block mb-1">Last Name</label>
                     <input
                       type="text"
                       id="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
+                      className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                     />
                   </div>
                 </div>
                 <div>
-                  <label>Email</label>
+                  <label className="block mb-1">Email</label>
                   <input
                     type="email"
                     id="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                   />
                 </div>
                 <div>
-                  <label>Password</label>
+                  <label className="block mb-1">Password</label>
                   <input
                     type="password"
                     id="password"
                     value={formData.password}
                     onChange={handleInputChange}
                     required
+                    className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                   />
                 </div>
                 <div>
-                  <label>Confirm Password</label>
+                  <label className="block mb-1">Confirm Password</label>
                   <input
                     type="password"
                     id="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
+                    className="w-full p-2 text-sm h-8 border border-gray-300 rounded"
                   />
                 </div>
                 <button
-                  className="login hover:bg-[#2a36b8]"
+                  className="login hover:bg-[#2a36b8] mt-4 p-2 text-sm rounded"
                   type="submit"
                   disabled={isLoading}
                 >
@@ -178,8 +184,8 @@ export function SignUp() {
                     "Submit"
                   )}
                 </button>
-                <div className="new-user">
-                  <Link to="/" className="new" style={{ color: "blue" }}>
+                <div className="new-user mt-4">
+                  <Link to="/" className="new text-blue-600">
                     Already registered? Return to Login
                   </Link>
                 </div>
@@ -191,3 +197,4 @@ export function SignUp() {
     </>
   );
 }
+
