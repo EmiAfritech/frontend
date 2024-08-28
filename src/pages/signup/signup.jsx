@@ -52,6 +52,13 @@ export function SignUp() {
         }
       );
 
+      console.log({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+      })
       const { status, data } = response;
 
       if (status === 201) {
