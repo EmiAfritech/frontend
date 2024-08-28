@@ -109,7 +109,7 @@ export function SignUp() {
               />
               <form onSubmit={handleSubmit}>
                 <div>
-                  <label className="block mb-1 text-sm">Organizational Name</label>
+                  <label className="block mb-1 text-xs">Organizational Name</label>
                   <input
                     type="text"
                     id="name"
@@ -121,7 +121,7 @@ export function SignUp() {
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
-                    <label className="block mb-1 text-sm">First Name</label>
+                    <label className="block mb-1 text-xs">First Name</label>
                     <input
                       type="text"
                       id="firstName"
@@ -132,7 +132,7 @@ export function SignUp() {
                     />
                   </div>
                   <div>
-                    <label className="block mb-1 text-sm">Last Name</label>
+                    <label className="block mb-1 text-xs">Last Name</label>
                     <input
                       type="text"
                       id="lastName"
@@ -144,7 +144,7 @@ export function SignUp() {
                   </div>
                 </div>
                 <div>
-                  <label className="block mb-1 text-sm">Email</label>
+                  <label className="block mb-1 text-xs">Email</label>
                   <input
                     type="email"
                     id="email"
