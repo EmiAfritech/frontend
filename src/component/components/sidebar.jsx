@@ -24,11 +24,10 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = auth?.role;
-  console.log(auth);
   const Sidebar_logo = 
   auth.organizationName === "electricity company of ghana limited"
   ? ecg_logo 
-  : auth.organizationName === "MANAGER" 
+  : auth.organizationName === "Waficapital" 
   ? wafi_logo 
   : afriquetek_logo;
 
