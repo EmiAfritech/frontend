@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
     departmentID: "",
     organizationName: "",
 
-
   });
 
   const clearAuth = () => {

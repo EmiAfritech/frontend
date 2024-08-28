@@ -60,14 +60,18 @@ export function Login() {
         const role = response.data.role;
         const department = response.data.department;
         const organizationName = response.data.organizationName;
+        localStorage.setItem("token", response.data.authToken);
+        localStorage.setItem("role",response.data.role);
+        localStorage.setItem("department", response.data.department);
+        localStorage.setItem("organizationName", response.data.organizationName);
         
 
         if (token && role) {
           setAuth({ 
-            token: token, 
-            role: role, 
-            department: department, 
-            organizationName: organizationName
+            token: localStorage.getItem("token"), 
+            role: localStorage.getItem("role"), 
+            department: localStorage.getItem("department"), 
+            organizationName: localStorage.getItem("organizationName"),
           });
           navigate("/dashboard", { replace: true });
         } else {
