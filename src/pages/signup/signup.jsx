@@ -62,7 +62,7 @@ export function SignUp() {
       const { status, data } = response;
 
       if (status === 201) {
-        alert("Organization Created Successfully, navigate to Login Page");
+        alert("Organization Created Successfully, Kindly Login");
         navigate("/", { replace: true });
       } else {
         notifyInfo("Authorization returned null");
