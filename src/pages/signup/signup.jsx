@@ -1,9 +1,7 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { CREATE_URL } from "../../api/routes";
-import "../login/login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,10 +19,12 @@ export function SignUp() {
   const navigate = useNavigate();
   const notifyError = (message) => toast.error(message);
   const notifyInfo = (message) => toast.info(message);
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
+
   const checkPasswords = () => {
     if (formData.password !== formData.confirmPassword) {
       notifyError("Passwords do not match");
@@ -52,14 +52,7 @@ export function SignUp() {
         }
       );
 
-      console.log({
-        email: formData.email,
-        password: formData.password,
-        name: formData.name,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-      })
-      const { status, data } = response;
+      const { status } = response;
 
       if (status === 201) {
         alert("Organization Created Successfully, Kindly Login");
@@ -123,7 +116,7 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded-2xl"
+                    className="w-full p-2 text-sm h-14 mb-2 border border-gray-300 rounded-full"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
@@ -135,7 +128,7 @@ export function SignUp() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded-2xl"
+                      className="w-full p-2 text-sm h-14  border border-gray-300 rounded-full"
                     />
                   </div>
                   <div>
@@ -146,7 +139,7 @@ export function SignUp() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
+                      className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
                     />
                   </div>
                 </div>
@@ -158,7 +151,7 @@ export function SignUp() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <div>
@@ -169,7 +162,7 @@ export function SignUp() {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <div>
@@ -180,7 +173,7 @@ export function SignUp() {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-2xl"
+                    className="w-full p-2 text-sm h-14 border mb-2 border-gray-300 rounded-full"
                   />
                 </div>
                 <button
