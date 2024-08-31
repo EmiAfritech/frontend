@@ -1159,19 +1159,19 @@ export function ReviewNeedingRisksReportTab() {
 
 
 
-import React, { useRef } from "react";
+
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [allData, setAllData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
-  const rowsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(0);
-  const tableRef = useRef(null);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const riskstatuscolumn = useRiskStatusColumns();
 
   useEffect(() => {
-    const fetchDepartments = async () => {
+    const fetchData = async () => {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
@@ -1179,16 +1179,18 @@ export function RiskStatusReportTab() {
             Authorization: "Bearer " + auth.token,
           },
         });
+
         setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchDepartments();
-  }, [auth.token]);
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPaginatedData = async () => {
       try {
         const response = await axios.post(
           RISKSTATUSREPORT_URL,
@@ -1201,36 +1203,95 @@ export function RiskStatusReportTab() {
             withCredentials: true,
           }
         );
-        setTableData(response.data.slice(0, rowsPerPage)); // For pagination
-        setAllData(response.data); // For printing all data
+
+        setTableData(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchData();
-  }, [departmentName, auth.token]);
+
+    const fetchAllData = async () => {
+      try {
+        const response = await axios.post(
+          RISKSTATUSREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+            params: { allData: true },
+          }
+        );
+
+        setAllData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPaginatedData();
+    fetchAllData();
+  }, [departmentName]);
 
   const handleDeptNameChange = (e) => {
     setDeptmentName(e.target.value);
-    setCurrentPage(0); // Reset to first page on department change
   };
 
   const handlePrint = () => {
-    const printContent = tableRef.current.innerHTML;
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = printContent;
-    window.print();
-    document.body.innerHTML = originalContent;
-    window.location.reload(); // Reload to restore original page content
+    const printContent = document.getElementById("printableFullTable").innerHTML;
+    const printWindow = window.open("", "", "height=650,width=900");
+    printWindow.document.write("<html><head><title>Print Report</title>");
+    printWindow.document.write(
+      `<style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 8px;
+        }
+        th {
+          background-color: #1D4ED8; /* Blue background for header */
+          color: white; /* White text for header */
+        }
+        .veryhigh {
+          background-color: #F84626;
+          color: white;
+        }
+        .high {
+          background-color: #ecbe2f;
+          color: black;
+        }
+        .medium {
+          background-color: #0B37D6;
+          color: white;
+        }
+        .low {
+          background-color: #4A7C0B;
+          color: white;
+        }
+      </style>`
+    );
+    printWindow.document.write("</head><body>");
+    printWindow.document.write(printContent);
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
+    printWindow.print();
   };
 
-  const totalPages = Math.ceil(allData.length / rowsPerPage);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    const startIdx = pageNumber * rowsPerPage;
-    setTableData(allData.slice(startIdx, startIdx + rowsPerPage));
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
   };
+
+  const handleRowsPerPageChange = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setCurrentPage(0);
+  };
+
+  const paginatedData = tableData.slice(
+    currentPage * rowsPerPage,
+    currentPage * rowsPerPage + rowsPerPage
+  );
 
   return (
     <div>
@@ -1241,7 +1302,7 @@ export function RiskStatusReportTab() {
             <>
               <select
                 type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 text-sm text-blue-gray-700 outline-none transition-all placeholder-shown:border-blue-gray-200 focus:border-2 focus:border-blue-500 disabled:bg-blue-gray-50"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 id="departmentName"
                 aria-describedby="departmentName"
                 value={departmentName}
@@ -1256,73 +1317,131 @@ export function RiskStatusReportTab() {
                 ))}
               </select>
             </>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="mt-2 w-auto card p-4">
-        <table
-          ref={tableRef}
-          className="min-w-full divide-y divide-gray-200 table-auto border border-gray-300"
-        >
-          <thead className="bg-blue-500">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border border-gray-300">
-                Department
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border border-gray-300">
-                Risk Level
-              </th>
-              {/* Add more headers as needed */}
+        {/* Regular paginated table */}
+        <table className="w-full border-collapse border border-black">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              {riskstatuscolumn.map((col) => (
+                <th key={col.field} className="border border-black p-2">
+                  {col.headerName}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {tableData.map((row, rowIndex) => (
-              <tr
-                key={rowIndex}
-                className={`${
-                  row.riskLevel === "Very High"
-                    ? "bg-red-600 text-white"
-                    : row.riskLevel === "High"
-                    ? "bg-yellow-400 text-black"
-                    : row.riskLevel === "Medium"
-                    ? "bg-blue-500 text-white"
-                    : row.riskLevel === "Low"
-                    ? "bg-green-700 text-white"
-                    : ""
-                }`}
-              >
-                <td className="px-6 py-4 border border-gray-300">{row.department}</td>
-                <td className="px-6 py-4 border border-gray-300">{row.riskLevel}</td>
-                {/* Add more cells as needed */}
+            {paginatedData.map((row, index) => (
+              <tr key={index}>
+                {riskstatuscolumn.map((col) => (
+                  <td
+                    key={col.field}
+                    className={`border border-black p-2 ${
+                      row[col.field] === "High"
+                        ? "high"
+                        : row[col.field] === "Very High"
+                        ? "veryhigh"
+                        : row[col.field] === "Medium"
+                        ? "medium"
+                        : row[col.field] === "Low"
+                        ? "low"
+                        : ""
+                    }`}
+                  >
+                    {row[col.field]}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="mt-4 flex justify-between">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 0}
-            className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span>
-            Page {currentPage + 1} of {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages - 1}
-            className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
-          >
-            Next
-          </button>
+        <div className="mt-4 flex justify-between items-center">
+          <div>
+            <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
+              Print Report
+            </button>
+          </div>
+          <div className="flex items-center">
+            <label htmlFor="rowsPerPage" className="mr-2">
+              Rows per page:
+            </label>
+            <select
+              id="rowsPerPage"
+              value={rowsPerPage}
+              onChange={handleRowsPerPageChange}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              {[10, 15, 20].map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 0}
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <span className="mx-2">
+              Page {currentPage + 1} of{" "}
+              {Math.ceil(tableData.length / rowsPerPage)}
+            </span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage >= Math.ceil(tableData.length / rowsPerPage) - 1}
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
         </div>
-        <button
-          onClick={handlePrint}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Print Report
-        </button>
+      </div>
+
+      {/* Hidden full table for printing */}
+      <div id="printableFullTable" style={{ display: "none" }}>
+        <table className="w-full border-collapse border border-black">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              {riskstatuscolumn.map((col) => (
+                <th key={col.field} className="border border-black p-2">
+                  {col.headerName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {allData.map((row, index) => (
+              <tr key={index}>
+                {riskstatuscolumn.map((col) => (
+                  <td
+                    key={col.field}
+                    className={`border border-black p-2 ${
+                      row[col.field] === "High"
+                        ? "high"
+                        : row[col.field] === "Very High"
+                        ? "veryhigh"
+                        : row[col.field] === "Medium"
+                        ? "medium"
+                        : row[col.field] === "Low"
+                        ? "low"
+                        : ""
+                    }`}
+                  >
+                    {row[col.field]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
