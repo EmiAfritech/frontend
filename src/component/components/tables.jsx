@@ -1158,8 +1158,8 @@ export function ReviewNeedingRisksReportTab() {
 // }
 
 
-
-
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
@@ -1280,6 +1280,17 @@ export function RiskStatusReportTab() {
     printWindow.print();
   };
 
+  const handlePDFExport = () => {
+    const table = document.getElementById("printableFullTable");
+
+    html2canvas(table).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 10, 10, 190, 0);
+      pdf.save("report.pdf");
+    });
+  };
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -1364,6 +1375,9 @@ export function RiskStatusReportTab() {
           <div>
             <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
               Print Report
+            </button>
+            <button onClick={handlePDFExport} className="px-4 py-2 bg-green-500 text-white rounded ml-2">
+              Export to PDF
             </button>
           </div>
           <div className="flex items-center">
