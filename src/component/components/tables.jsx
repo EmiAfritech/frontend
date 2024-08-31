@@ -2076,60 +2076,60 @@ export function RiskStatusReportTab() {
   };
 
   const handlePrint = () => {
-    const printContent = document.getElementById("printableFullTable").innerHTML;
-    const printWindow = window.open("", "", "height=650,width=900");
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Print Report</title>
-          <style>
-            @media print {
-              table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                padding: 8px;
-              }
-              th {
-                background-color: #1D4ED8 !important;
-                color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-              .veryhigh {
-                background-color: #F84626 !important;
-                color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-              .high {
-                background-color: #ecbe2f !important;
-                color: black !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-              .medium {
-                background-color: #0B37D6 !important;
-                color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-              .low {
-                background-color: #4A7C0B !important;
-                color: white !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-              }
-            }
-          </style>
-        </head>
-        <body>
-          ${printContent}
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
-  };
+        const printContent = document.getElementById("printableFullTable").innerHTML;
+        const printWindow = window.open("", "", "height=650,width=900");
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>Print Report</title>
+              <style>
+                @media print {
+                  table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    padding: 8px;
+                  }
+                  th {
+                    background-color: #1D4ED8 !important;
+                    color: white !important;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                  }
+                  .veryhigh {
+                    background-color: #F84626 !important;
+                    color: white !important;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                  }
+                  .high {
+                    background-color: #ecbe2f !important;
+                    color: black !important;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                  }
+                  .medium {
+                    background-color: #0B37D6 !important;
+                    color: white !important;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                  }
+                  .low {
+                    background-color: #4A7C0B !important;
+                    color: white !important;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                  }
+                }
+              </style>
+            </head>
+            <body>
+              ${printContent}
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.print();
+      };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
