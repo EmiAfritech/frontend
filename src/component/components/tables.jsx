@@ -1027,10 +1027,10 @@ export function ReviewNeedingRisksReportTab() {
 }
 
 export function RiskStatusReportTab() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setdeptmentNames] = useState([]);
+  const [deptmentNames, setDeptmentNames] = useState([]);
   const riskstatuscolumn = useRiskStatusColumns();
 
   useEffect(() => {
@@ -1043,7 +1043,7 @@ export function RiskStatusReportTab() {
           },
         });
 
-        setdeptmentNames(response.data);
+        setDeptmentNames(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -1080,13 +1080,51 @@ export function RiskStatusReportTab() {
     setDeptmentName(e.target.value);
   };
 
+  const handlePrint = () => {
+    const printContent = document.getElementById("printableTable").innerHTML;
+    const printWindow = window.open("", "", "height=650,width=900");
+    printWindow.document.write("<html><head><title>Print Report</title>");
+    printWindow.document.write(
+      `<style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 8px;
+        }
+        th, td {
+          text-align: left;
+        }
+        .veryhigh {
+          background-color: #F84626;
+          color: white;
+        }
+        .high {
+          background-color: #ecbe2f;
+          color: black;
+        }
+        .medium {
+          background-color: #0B37D6;
+          color: white;
+        }
+        .low {
+          background-color: #4A7C0B;
+          color: white;
+        }
+      </style>`
+    );
+    printWindow.document.write("</head><body>");
+    printWindow.document.write(printContent);
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
+    printWindow.print();
+  };
+
   return (
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -1095,13 +1133,12 @@ export function RiskStatusReportTab() {
                 aria-describedby="departmentName"
                 value={departmentName}
                 autoComplete="off"
-                onChange={handleDeptNameChange}>
+                onChange={handleDeptNameChange}
+              >
                 <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
+                {deptmentNames.map((dept) => (
+                  <option key={dept.names.id} value={dept.names.name}>
+                    {dept.names.name}
                   </option>
                 ))}
               </select>
@@ -1111,49 +1148,48 @@ export function RiskStatusReportTab() {
           )}
         </div>
       </div>
-      <div  className=" mt-2 w-auto card p-4">
-        <Box
-          sx={{
-            [`.${gridClasses.cell}.veryhigh`]: {
-              backgroundColor: "#F84626",
-            },
-            [`.${gridClasses.cell}.high`]: {
-              backgroundColor: "#ecbe2f",
-            },
-            [`.${gridClasses.cell}.medium`]: {
-              backgroundColor: "#0B37D6",
-            },
-            [`.${gridClasses.cell}.low`]: {
-              backgroundColor: "#4A7C0B",
-            },
-            height: 650
-          }}>
-          <DataGrid
-            rows={tableData}
-            columns={riskstatuscolumn}
-            initialState={{
-              pagination: {
-                paginationModel: { page: 0, pageSize: 10 },
-              },
-            }}
-            pageSizeOptions={[10, 15]}
-            slots={{ toolbar: GridToolbar }}
-            getCellClassName={(params) => {
-              if (params.value === "High") {
-                return "high";
-              } else if (params.value === "Very High") {
-                return "veryhigh";
-              } else if (params.value === "Medium") {
-                return "medium";
-              } else if (params.value === "Low") {
-                return "low";
-              }
-            }}
-            getRowId={(row)=> row.id}
-          />
-        </Box>
+      <div className="mt-2 w-auto card p-4">
+        <div id="printableTable">
+          <table>
+            <thead>
+              <tr>
+                {riskstatuscolumn.map((col) => (
+                  <th key={col.field}>{col.headerName}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((row, index) => (
+                <tr key={index}>
+                  {riskstatuscolumn.map((col) => (
+                    <td
+                      key={col.field}
+                      className={
+                        row[col.field] === "High"
+                          ? "high"
+                          : row[col.field] === "Very High"
+                          ? "veryhigh"
+                          : row[col.field] === "Medium"
+                          ? "medium"
+                          : row[col.field] === "Low"
+                          ? "low"
+                          : ""
+                      }
+                    >
+                      {row[col.field]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <button onClick={handlePrint} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+          Print Report
+        </button>
       </div>
     </div>
   );
 }
+
 
