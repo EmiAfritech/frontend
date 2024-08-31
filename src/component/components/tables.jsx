@@ -1158,8 +1158,10 @@ export function ReviewNeedingRisksReportTab() {
 // }
 
 
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import { pdfMake } from 'pdfmake/build/pdfmake';
+import { vfs_fonts } from 'pdfmake/build/vfs_fonts';
+
+pdfMake.vfs = vfs_fonts.pdfMake.vfs;
 
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
@@ -1240,16 +1242,43 @@ export function RiskStatusReportTab() {
     setDeptmentName(e.target.value);
   };
 
-  const handlePrint = () => {
-    const table = document.getElementById('printableFullTable');
-    html2canvas(table, { useCORS: true, scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-      pdf.save('report.pdf');
-    }).catch((error) => {
-      console.error('Error generating PDF:', error);
-    });
+  const handlePrintPDF = () => {
+    const docDefinition = {
+      content: [
+        {
+          table: {
+            headerRows: 1,
+            body: [
+              [
+                ...riskstatuscolumn.map(col => col.headerName) // Header
+              ],
+              ...allData.map(row => riskstatuscolumn.map(col => {
+                const value = row[col.field];
+                let colorClass = '';
+                if (value === 'High') colorClass = 'bg-yellow-500 text-black';
+                if (value === 'Very High') colorClass = 'bg-red-600 text-white';
+                if (value === 'Medium') colorClass = 'bg-blue-700 text-white';
+                if (value === 'Low') colorClass = 'bg-green-700 text-white';
+                return { text: value, fillColor: colorClass.split(' ')[0], color: colorClass.split(' ')[1] };
+              }))
+            ]
+          },
+          layout: 'lightHorizontalLines',
+        }
+      ],
+      styles: {
+        tableHeader: {
+          fillColor: 'blue',
+          color: 'white',
+          fontSize: 12,
+        },
+      },
+      defaultStyle: {
+        fontSize: 10
+      }
+    };
+
+    pdfMake.createPdf(docDefinition).download('report.pdf');
   };
 
   const handlePageChange = (newPage) => {
@@ -1272,32 +1301,35 @@ export function RiskStatusReportTab() {
         <div className="col-span-3"></div>
         <div>
           {auth.role === 'ADMIN' || auth.role === 'GENERALMANAGER' ? (
-            <select
-              type="text"
-              className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              id="departmentName"
-              aria-describedby="departmentName"
-              value={departmentName}
-              autoComplete="off"
-              onChange={handleDeptNameChange}
-            >
-              <option value="All Departments">All Departments</option>
-              {deptmentNames.map((dept) => (
-                <option key={dept.names.id} value={dept.names.name}>
-                  {dept.names.name}
-                </option>
-              ))}
-            </select>
-          ) : null}
+            <>
+              <select
+                type="text"
+                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                id="departmentName"
+                aria-describedby="departmentName"
+                value={departmentName}
+                autoComplete="off"
+                onChange={handleDeptNameChange}
+              >
+                <option value="All Departments">{t('allDepartment')}</option>
+                {deptmentNames.map((dept) => (
+                  <option key={dept.names.id} value={dept.names.name}>
+                    {dept.names.name}
+                  </option>
+                ))}
+              </select>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="mt-2 w-auto card p-4">
-        {/* Regular paginated table */}
         <table className="w-full border-collapse border border-black">
           <thead>
-            <tr className="bg-blue-500 text-white">
+            <tr>
               {riskstatuscolumn.map((col) => (
-                <th key={col.field} className="border border-black p-2">
+                <th key={col.field} className="border border-black p-2 bg-blue-500 text-white">
                   {col.headerName}
                 </th>
               ))}
@@ -1330,7 +1362,7 @@ export function RiskStatusReportTab() {
         </table>
         <div className="mt-4 flex justify-between items-center">
           <div>
-            <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
+            <button onClick={handlePrintPDF} className="px-4 py-2 bg-blue-500 text-white rounded">
               Print Report
             </button>
           </div>
@@ -1360,7 +1392,8 @@ export function RiskStatusReportTab() {
               Previous
             </button>
             <span className="mx-2">
-              Page {currentPage + 1} of {Math.ceil(tableData.length / rowsPerPage)}
+              Page {currentPage + 1} of{' '}
+              {Math.ceil(tableData.length / rowsPerPage)}
             </span>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
@@ -1371,45 +1404,6 @@ export function RiskStatusReportTab() {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Hidden full table for printing */}
-      <div id="printableFullTable" style={{ display: 'none' }}>
-        <table className="w-full border-collapse border border-black">
-          <thead>
-            <tr className="bg-blue-500 text-white">
-              {riskstatuscolumn.map((col) => (
-                <th key={col.field} className="border border-black p-2">
-                  {col.headerName}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {allData.map((row, index) => (
-              <tr key={index}>
-                {riskstatuscolumn.map((col) => (
-                  <td
-                    key={col.field}
-                    className={`border border-black p-2 ${
-                      row[col.field] === 'High'
-                        ? 'bg-yellow-500 text-black'
-                        : row[col.field] === 'Very High'
-                        ? 'bg-red-600 text-white'
-                        : row[col.field] === 'Medium'
-                        ? 'bg-blue-700 text-white'
-                        : row[col.field] === 'Low'
-                        ? 'bg-green-700 text-white'
-                        : ''
-                    }`}
-                  >
-                    {row[col.field]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   );
