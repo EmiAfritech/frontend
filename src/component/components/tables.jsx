@@ -1795,56 +1795,45 @@ export function RiskStatusReportTab() {
   };
 
   const handlePrint = () => {
-    // Save the current document's content
-    const originalContent = document.body.innerHTML;
-
-    // Get the printable table content
     const printContent = document.getElementById("printableFullTable").innerHTML;
-
-    // Temporarily replace the document's content with the printable content
-    document.body.innerHTML = `
-      <div>
-        <style>
-          @media print {
-            table, th, td {
-              border: 1px solid black;
-              border-collapse: collapse;
-              padding: 8px;
-            }
-            th {
-              background-color: #1D4ED8; /* Blue background for header */
-              color: white; /* White text for header */
-            }
-            .veryhigh {
-              background-color: #F84626;
-              color: white;
-            }
-            .high {
-              background-color: #ecbe2f;
-              color: black;
-            }
-            .medium {
-              background-color: #0B37D6;
-              color: white;
-            }
-            .low {
-              background-color: #4A7C0B;
-              color: white;
-            }
+    const printWindow = window.open("", "", "height=650,width=900");
+    printWindow.document.write("<html><head><title>Print Report</title>");
+    printWindow.document.write(
+      `<style>
+        @media print {
+          table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
           }
-        </style>
-        ${printContent}
-      </div>
-    `;
-
-    // Trigger the print dialog
-    window.print();
-
-    // Restore the original document's content
-    document.body.innerHTML = originalContent;
-
-    // Reattach event listeners (if necessary) to make the page functional again
-    window.location.reload(); // Reload the page to reset event listeners and state
+          th {
+            background-color: #1D4ED8; /* Blue background for header */
+            color: white; /* White text for header */
+          }
+          .veryhigh {
+            background-color: #F84626 !important;
+            color: white !important;
+          }
+          .high {
+            background-color: #ecbe2f !important;
+            color: black !important;
+          }
+          .medium {
+            background-color: #0B37D6 !important;
+            color: white !important;
+          }
+          .low {
+            background-color: #4A7C0B !important;
+            color: white !important;
+          }
+        }
+      </style>`
+    );
+    printWindow.document.write("</head><body>");
+    printWindow.document.write(printContent);
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
+    printWindow.print();
   };
 
   const handlePageChange = (newPage) => {
