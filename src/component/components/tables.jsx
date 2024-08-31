@@ -2186,15 +2186,15 @@ export function RiskStatusReportTab() {
                   <td
                     key={col.field}
                     className={`border border-black p-2 ${
-                      row[col.field] === "High"
-                        ? "high"
-                        : row[col.field] === "Very High"
-                        ? "veryhigh"
-                        : row[col.field] === "Medium"
-                        ? "medium"
-                        : row[col.field] === "Low"
-                        ? "low"
-                        : ""
+                      row[col.field] === 'High'
+                        ? 'bg-yellow-500 text-black'
+                        : row[col.field] === 'Very High'
+                        ? 'bg-red-600 text-white'
+                        : row[col.field] === 'Medium'
+                        ? 'bg-blue-700 text-white'
+                        : row[col.field] === 'Low'
+                        ? 'bg-green-700 text-white'
+                        : ''
                     }`}
                   >
                     {row[col.field]}
