@@ -1158,9 +1158,11 @@ export function ReviewNeedingRisksReportTab() {
 // }
 
 
+
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [departmentName, setDeptmentName] = useState('All Departments');
   const [deptmentNames, setDeptmentNames] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -1187,7 +1189,7 @@ export function RiskStatusReportTab() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPaginatedData = async () => {
       try {
         const response = await axios.post(
           RISKSTATUSREPORT_URL,
@@ -1207,7 +1209,29 @@ export function RiskStatusReportTab() {
       }
     };
 
-    fetchData();
+    const fetchAllData = async () => {
+      try {
+        const response = await axios.post(
+          RISKSTATUSREPORT_URL,
+          JSON.stringify({ departmentName }),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + auth.token,
+            },
+            withCredentials: true,
+            params: { allData: true },
+          }
+        );
+
+        setAllData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPaginatedData();
+    fetchAllData();
   }, [departmentName]);
 
   const handleDeptNameChange = (e) => {
@@ -1215,7 +1239,7 @@ export function RiskStatusReportTab() {
   };
 
   const handlePrint = () => {
-    const printContent = document.getElementById('printableTable').innerHTML;
+    const printContent = document.getElementById('printableFullTable').innerHTML;
     const printWindow = window.open('', '', 'height=650,width=900');
     printWindow.document.write('<html><head><title>Print Report</title>');
     printWindow.document.write(
@@ -1297,43 +1321,42 @@ export function RiskStatusReportTab() {
         </div>
       </div>
       <div className="mt-2 w-auto card p-4">
-        <div id="printableTable">
-          <table className="w-full border-collapse border border-black">
-            <thead>
-              <tr>
+        {/* Regular paginated table */}
+        <table className="w-full border-collapse border border-black">
+          <thead>
+            <tr>
+              {riskstatuscolumn.map((col) => (
+                <th key={col.field} className="border border-black p-2">
+                  {col.headerName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedData.map((row, index) => (
+              <tr key={index}>
                 {riskstatuscolumn.map((col) => (
-                  <th key={col.field} className="border border-black p-2">
-                    {col.headerName}
-                  </th>
+                  <td
+                    key={col.field}
+                    className={`border border-black p-2 ${
+                      row[col.field] === 'High'
+                        ? 'high'
+                        : row[col.field] === 'Very High'
+                        ? 'veryhigh'
+                        : row[col.field] === 'Medium'
+                        ? 'medium'
+                        : row[col.field] === 'Low'
+                        ? 'low'
+                        : ''
+                    }`}
+                  >
+                    {row[col.field]}
+                  </td>
                 ))}
               </tr>
-            </thead>
-            <tbody>
-              {paginatedData.map((row, index) => (
-                <tr key={index}>
-                  {riskstatuscolumn.map((col) => (
-                    <td
-                      key={col.field}
-                      className={`border border-black p-2 ${
-                        row[col.field] === 'High'
-                          ? 'high'
-                          : row[col.field] === 'Very High'
-                          ? 'veryhigh'
-                          : row[col.field] === 'Medium'
-                          ? 'medium'
-                          : row[col.field] === 'Low'
-                          ? 'low'
-                          : ''
-                      }`}
-                    >
-                      {row[col.field]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
         <div className="mt-4 flex justify-between items-center">
           <div>
             <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
@@ -1379,7 +1402,47 @@ export function RiskStatusReportTab() {
           </div>
         </div>
       </div>
+
+      {/* Hidden full table for printing */}
+      <div id="printableFullTable" style={{ display: 'none' }}>
+        <table className="w-full border-collapse border border-black">
+          <thead>
+            <tr>
+              {riskstatuscolumn.map((col) => (
+                <th key={col.field} className="border border-black p-2">
+                  {col.headerName}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {allData.map((row, index) => (
+              <tr key={index}>
+                {riskstatuscolumn.map((col) => (
+                  <td
+                    key={col.field}
+                    className={`border border-black p-2 ${
+                      row[col.field] === 'High'
+                        ? 'high'
+                        : row[col.field] === 'Very High'
+                        ? 'veryhigh'
+                        : row[col.field] === 'Medium'
+                        ? 'medium'
+                        : row[col.field] === 'Low'
+                        ? 'low'
+                        : ''
+                    }`}
+                  >
+                    {row[col.field]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
+
 
