@@ -2446,7 +2446,7 @@ export function RiskStatusReportTab() {
             </select>
           )}
         </div>
-        <Button onClick={handlePrint} size="small" variant="outlined">
+        <Button onClick={handlePrint} size="small" variant="outlined" className="px-6">
           Print
         </Button>
       </div>
