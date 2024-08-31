@@ -1160,6 +1160,7 @@ export function ReviewNeedingRisksReportTab() {
 
 
 
+
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
@@ -1342,13 +1343,13 @@ export function RiskStatusReportTab() {
                     key={col.field}
                     className={`border border-black p-2 ${
                       row[col.field] === "High"
-                        ? "high"
+                        ? "bg-yellow-500 text-black"
                         : row[col.field] === "Very High"
-                        ? "veryhigh"
+                        ? "bg-red-600 text-white"
                         : row[col.field] === "Medium"
-                        ? "medium"
+                        ? "bg-blue-700 text-white"
                         : row[col.field] === "Low"
-                        ? "low"
+                        ? "bg-green-700 text-white"
                         : ""
                     }`}
                   >
@@ -1425,13 +1426,13 @@ export function RiskStatusReportTab() {
                     key={col.field}
                     className={`border border-black p-2 ${
                       row[col.field] === "High"
-                        ? "high"
+                        ? "bg-yellow-500 text-black"
                         : row[col.field] === "Very High"
-                        ? "veryhigh"
+                        ? "bg-red-600 text-white"
                         : row[col.field] === "Medium"
-                        ? "medium"
+                        ? "bg-blue-700 text-white"
                         : row[col.field] === "Low"
-                        ? "low"
+                        ? "bg-green-700 text-white"
                         : ""
                     }`}
                   >
@@ -1446,6 +1447,7 @@ export function RiskStatusReportTab() {
     </div>
   );
 }
+
 
 
 
