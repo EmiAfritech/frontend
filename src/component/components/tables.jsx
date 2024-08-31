@@ -2447,7 +2447,7 @@ export function RiskStatusReportTab() {
           )}
         </div>
         <Button onClick={handlePrint} size="small" variant="outlined" style={{ width: '120px' }}>
-          Print
+          Print Report
         </Button>
       </div>
       <div className="mt-2 w-auto card p-4 rounded-md">
