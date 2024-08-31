@@ -2459,7 +2459,7 @@ export function RiskStatusReportTab() {
           <thead>
             <tr className="bg-blue-500 text-white">
               {riskStatusColumns.map((col) => (
-                <th key={col.field} className="border border-black p-2">
+                <th key={col.field} className="border-b border-black p-2">
                   {col.headerName}
                 </th>
               ))}
@@ -2467,11 +2467,11 @@ export function RiskStatusReportTab() {
           </thead>
           <tbody>
             {paginatedData.map((row, index) => (
-              <tr key={index}>
+              <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
                 {riskStatusColumns.map((col) => (
                   <td
                     key={col.field}
-                    className={`border border-black p-2 ${
+                    className={`border-b border-black p-2 ${
                       row[col.field] === "High"
                         ? "bg-yellow-500 text-black"
                         : row[col.field] === "Very High"
@@ -2530,7 +2530,7 @@ export function RiskStatusReportTab() {
       </div>
 
       {/* Hidden full table for printing */}
-      <div id="printableFullTable" style={{ display: "none" }}>
+      {/* <div id="printableFullTable" style={{ display: "none" }}>
         <table className="w-full border-collapse border border-black">
           <thead>
             <tr>
@@ -2565,7 +2565,7 @@ export function RiskStatusReportTab() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 }
