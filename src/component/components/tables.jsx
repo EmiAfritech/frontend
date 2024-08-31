@@ -64,7 +64,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 };
 
 export function EmployeesTable() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const usercolumns = useUserColumns();
@@ -113,8 +113,8 @@ export function EmployeesTable() {
             rows={tableData}
             columns={usercolumns}
             pageSize={10}
-            pageSizeOptions={[15.20]}
-            getRowId={(row)=> row.id}
+            pageSizeOptions={[15.2]}
+            getRowId={(row) => row.id}
           />
         </Box>
       </div>
@@ -123,7 +123,7 @@ export function EmployeesTable() {
 }
 
 export function RiskReview() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskreviewcolumn = useRiskReviewColumns();
@@ -172,25 +172,24 @@ export function RiskReview() {
         <></>
       )}
       <div className="mt-2 w-auto cardTable p-4">
-      <Box sx={{ height: 650 }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskreviewcolumn}
-          pageSize={10}
-          pagination
-          getRowId={(row)=> row.id}
-        />
+        <Box sx={{ height: 650 }}>
+          <DataGrid
+            rows={tableData}
+            columns={riskreviewcolumn}
+            pageSize={10}
+            pagination
+            getRowId={(row) => row.id}
+          />
         </Box>
       </div>
     </div>
   );
 }
 
-
 export function ClosedRiskTab() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const riskviewcolumn = useRiskViewColumns();
 
   useEffect(() => {
@@ -252,7 +251,7 @@ export function ClosedRiskTab() {
 }
 
 export function RiskMonitor() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskmonitoringcolumn = useRiskMonitoringColumns();
@@ -297,14 +296,14 @@ export function RiskMonitor() {
         </div>
       </div>
       <div className="mt-2 w-auto">
-      <Box sx={{ height: 400 }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskmonitoringcolumn}
-          pageSize={10}
-          pagination
-          getRowId={(row)=> row.id}
-        />
+        <Box sx={{ height: 400 }}>
+          <DataGrid
+            rows={tableData}
+            columns={riskmonitoringcolumn}
+            pageSize={10}
+            pagination
+            getRowId={(row) => row.id}
+          />
         </Box>
       </div>
     </div>
@@ -312,7 +311,7 @@ export function RiskMonitor() {
 }
 
 export function RiskAppetiteReportGreater() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const riskappetitereportgreatercolumn = useRiskAppetiteReportGreaterColumns();
 
@@ -338,7 +337,7 @@ export function RiskAppetiteReportGreater() {
   return (
     <div className="flex flex-col">
       <div style={{ height: 600 }} className="  mt-10 w-auto">
-      <Box
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -352,29 +351,29 @@ export function RiskAppetiteReportGreater() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskappetitereportgreatercolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          getCellClassName={(params) => {
-            if (params.value === "High") {
-              return "high";
-            } else if (params.value === "Very High") {
-              return "veryhigh";
-            } else if (params.value === "Medium") {
-              return "medium";
-            } else if (params.value === "Low") {
-              return "low";
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={riskappetitereportgreatercolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>
@@ -382,7 +381,7 @@ export function RiskAppetiteReportGreater() {
 }
 
 export function RiskAppetiteReportLower() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const riskappetitereportlowercolumn = useRiskAppetiteReportLowerColumns();
 
@@ -408,7 +407,7 @@ export function RiskAppetiteReportLower() {
   return (
     <div className="flex flex-col">
       <div style={{ height: 600 }} className="  mt-10 w-auto">
-      <Box
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -422,29 +421,29 @@ export function RiskAppetiteReportLower() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskappetitereportlowercolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          getCellClassName={(params) => {
-            if (params.value === "High") {
-              return "high";
-            } else if (params.value === "Very High") {
-              return "veryhigh";
-            } else if (params.value === "Medium") {
-              return "medium";
-            } else if (params.value === "Low") {
-              return "low";
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={riskappetitereportlowercolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>
@@ -452,7 +451,7 @@ export function RiskAppetiteReportLower() {
 }
 
 export function DepartmentTab() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const deptcolumn = useDeptColumns();
@@ -495,15 +494,15 @@ export function DepartmentTab() {
           <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <div  className="mt-2 w-auto cardTable p-4">
-      <Box sx={{ height: 650 }}>
-        <DataGrid
-          rows={tableData}
-          columns={deptcolumn}
-          pageSize={10}
-          pagination
-          getRowId={(row)=> row.id}
-        />
+      <div className="mt-2 w-auto cardTable p-4">
+        <Box sx={{ height: 650 }}>
+          <DataGrid
+            rows={tableData}
+            columns={deptcolumn}
+            pageSize={10}
+            pagination
+            getRowId={(row) => row.id}
+          />
         </Box>
       </div>
     </div>
@@ -511,10 +510,10 @@ export function DepartmentTab() {
 }
 
 export function RiskmitigationTab() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
-  const riskmitigationcolumn = useRiskMitigationColumns()
+  const riskmitigationcolumn = useRiskMitigationColumns();
 
   const getMitigation = async () => {
     try {
@@ -555,7 +554,7 @@ export function RiskmitigationTab() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-full card p-4">
-      <Box
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -569,30 +568,30 @@ export function RiskmitigationTab() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={riskmitigationcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          getCellClassName={(params) => {
-            if (params.value === "High") {
-              return "high";
-            } else if (params.value === "Very High") {
-              return "veryhigh";
-            } else if (params.value === "Medium") {
-              return "medium";
-            } else if (params.value === "Low") {
-              return "low";
-            }
-          }}
-          getRowId={(row)=> row.id}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={riskmitigationcolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+            getRowId={(row) => row.id}
+          />
         </Box>
       </div>
     </div>
@@ -600,7 +599,7 @@ export function RiskmitigationTab() {
 }
 
 export function RiskViewTable() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
   const riskviewcolumn = useRiskViewColumns();
@@ -615,7 +614,7 @@ export function RiskViewTable() {
       })
       .then((response) => setTableData(response.data.Data));
   };
-  
+
   useEffect(() => {
     viewAllRisks();
   }, []);
@@ -655,7 +654,7 @@ export function RiskViewTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
           <DataGrid
             rows={tableData}
@@ -677,7 +676,7 @@ export function RiskViewTable() {
                 return "low";
               }
             }}
-            getRowId={(row)=> row.id}
+            getRowId={(row) => row.id}
           />
         </Box>
       </div>
@@ -686,9 +685,9 @@ export function RiskViewTable() {
 }
 
 export function Reportaudittrail() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
-  const reportaudittrailcolumn =  useReportAuditTrailColumns();
+  const reportaudittrailcolumn = useReportAuditTrailColumns();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -701,7 +700,7 @@ export function Reportaudittrail() {
         });
 
         setTableData(response.data);
-        console.log(response)
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -754,13 +753,12 @@ export function Reportaudittrail() {
 }
 
 export function RiskMitigationReportTable() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const reportriskmitigationcolumn = useReportRiskMitigationColumns();
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -814,8 +812,7 @@ export function RiskMitigationReportTable() {
       <div className="grid grid-cols-4 justify-end">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -841,7 +838,7 @@ export function RiskMitigationReportTable() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
-      <Box
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -855,35 +852,35 @@ export function RiskMitigationReportTable() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={reportriskmitigationcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              printOptions: { getRowsToExport: getSelectedRowsToExport },
-            },
-          }}
-          getCellClassName={(params) => {
-            if (params.value === "High") {
-              return "high";
-            } else if (params.value === "Very High") {
-              return "veryhigh";
-            } else if (params.value === "Medium") {
-              return "medium";
-            } else if (params.value === "Low") {
-              return "low";
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={reportriskmitigationcolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            slots={{ toolbar: GridToolbar }}
+            slotProps={{
+              toolbar: {
+                printOptions: { getRowsToExport: getSelectedRowsToExport },
+              },
+            }}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>
@@ -891,7 +888,7 @@ export function RiskMitigationReportTable() {
 }
 
 export function ReviewNeedingRisksReportTab() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const [deptmentNames, setDeptmentNames] = useState([]);
@@ -949,8 +946,7 @@ export function ReviewNeedingRisksReportTab() {
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
+          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
             <>
               <select
                 type="text"
@@ -976,7 +972,7 @@ export function ReviewNeedingRisksReportTab() {
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
-      <Box
+        <Box
           sx={{
             [`.${gridClasses.cell}.veryhigh`]: {
               backgroundColor: "#F84626",
@@ -990,36 +986,36 @@ export function ReviewNeedingRisksReportTab() {
             [`.${gridClasses.cell}.low`]: {
               backgroundColor: "#4A7C0B",
             },
-            height: 650
+            height: 650,
           }}>
-        <DataGrid
-          rows={tableData}
-          columns={reportopenrisktoreviewcolumn}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 10 },
-            },
-          }}
-          pageSizeOptions={[10, 15]}
-          checkboxSelection
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              printOptions: { getRowsToExport: getSelectedRowsToExport },
-            },
-          }}
-          getCellClassName={(params) => {
-            if (params.value === "High") {
-              return "high";
-            } else if (params.value === "Very High") {
-              return "veryhigh";
-            } else if (params.value === "Medium") {
-              return "medium";
-            } else if (params.value === "Low") {
-              return "low";
-            }
-          }}
-        />
+          <DataGrid
+            rows={tableData}
+            columns={reportopenrisktoreviewcolumn}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15]}
+            checkboxSelection
+            slots={{ toolbar: GridToolbar }}
+            slotProps={{
+              toolbar: {
+                printOptions: { getRowsToExport: getSelectedRowsToExport },
+              },
+            }}
+            getCellClassName={(params) => {
+              if (params.value === "High") {
+                return "high";
+              } else if (params.value === "Very High") {
+                return "veryhigh";
+              } else if (params.value === "Medium") {
+                return "medium";
+              } else if (params.value === "Low") {
+                return "low";
+              }
+            }}
+          />
         </Box>
       </div>
     </div>
@@ -1156,9 +1152,6 @@ export function ReviewNeedingRisksReportTab() {
 //     </div>
 //   );
 // }
-
-
-
 
 // export function RiskStatusReportTab() {
 //   const { auth } = useContext(AuthContext);
@@ -1447,8 +1440,6 @@ export function ReviewNeedingRisksReportTab() {
 //   );
 // }
 
-
-
 // export function RiskStatusReportTab() {
 //   const { auth } = useContext(AuthContext);
 //   const [tableData, setTableData] = useState([]);
@@ -1713,7 +1704,6 @@ export function ReviewNeedingRisksReportTab() {
 //     </div>
 //   );
 // }
-
 
 // export function RiskStatusReportTab() {
 //   const { auth } = useContext(AuthContext);
@@ -2301,7 +2291,6 @@ export function ReviewNeedingRisksReportTab() {
 //   );
 // }
 
-
 //currently working
 
 export function RiskStatusReportTab() {
@@ -2336,29 +2325,21 @@ export function RiskStatusReportTab() {
     const fetchData = async () => {
       try {
         const [paginatedResponse, allDataResponse] = await Promise.all([
-          axios.post(
-            RISKSTATUSREPORT_URL,
-            JSON.stringify({ departmentName }),
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + auth.token,
-              },
-              withCredentials: true,
-            }
-          ),
-          axios.post(
-            RISKSTATUSREPORT_URL,
-            JSON.stringify({ departmentName }),
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + auth.token,
-              },
-              withCredentials: true,
-              params: { allData: true },
-            }
-          )
+          axios.post(RISKSTATUSREPORT_URL, JSON.stringify({ departmentName }), {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+          }),
+          axios.post(RISKSTATUSREPORT_URL, JSON.stringify({ departmentName }), {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+            params: { allData: true },
+          }),
         ]);
 
         setTableData(paginatedResponse.data);
@@ -2376,7 +2357,8 @@ export function RiskStatusReportTab() {
   };
 
   const handlePrint = () => {
-    const printContent = document.getElementById("printableFullTable").innerHTML;
+    const printContent =
+      document.getElementById("printableFullTable").innerHTML;
     const printWindow = window.open("", "", "height=650,width=900");
     printWindow.document.write(`
       <html>
@@ -2448,12 +2430,9 @@ export function RiskStatusReportTab() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <button
-          onClick={handlePrint}
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Print Report
-        </button>
+        <Button onClick={handlePrint} size="small" variant="outlined">
+          Print
+        </Button>
       </div>
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
@@ -2463,8 +2442,7 @@ export function RiskStatusReportTab() {
               className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               id="departmentName"
               value={departmentName}
-              onChange={handleDeptNameChange}
-            >
+              onChange={handleDeptNameChange}>
               <option value="All Departments">All Departments</option>
               {departmentNames.map((dept) => (
                 <option key={dept.names.id} value={dept.names.name}>
@@ -2493,17 +2471,16 @@ export function RiskStatusReportTab() {
                   <td
                     key={col.field}
                     className={`border border-black p-2 ${
-                      row[col.field] === 'High'
-                        ? 'bg-yellow-500 text-black'
-                        : row[col.field] === 'Very High'
-                        ? 'bg-red-600 text-white'
-                        : row[col.field] === 'Medium'
-                        ? 'bg-blue-700 text-white'
-                        : row[col.field] === 'Low'
-                        ? 'bg-green-700 text-white'
-                        : ''
-                    }`}
-                  >
+                      row[col.field] === "High"
+                        ? "bg-yellow-500 text-black"
+                        : row[col.field] === "Very High"
+                        ? "bg-red-600 text-white"
+                        : row[col.field] === "Medium"
+                        ? "bg-blue-700 text-white"
+                        : row[col.field] === "Low"
+                        ? "bg-green-700 text-white"
+                        : ""
+                    }`}>
                     {row[col.field]}
                   </td>
                 ))}
@@ -2512,11 +2489,6 @@ export function RiskStatusReportTab() {
           </tbody>
         </table>
         <div className="mt-4 flex justify-between items-center">
-          {/* <div>
-            <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
-              Print Report
-            </button>
-          </div> */}
           <div className="flex items-center">
             <label htmlFor="rowsPerPage" className="mr-2">
               Rows per page:
@@ -2525,8 +2497,7 @@ export function RiskStatusReportTab() {
               id="rowsPerPage"
               value={rowsPerPage}
               onChange={handleRowsPerPageChange}
-              className="border border-gray-300 rounded px-2 py-1"
-            >
+              className="border border-gray-300 rounded px-2 py-1">
               {[10, 15, 20].map((size) => (
                 <option key={size} value={size}>
                   {size}
@@ -2538,18 +2509,19 @@ export function RiskStatusReportTab() {
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 0}
-              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
-            >
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50">
               Previous
             </button>
             <span className="mx-2">
-              Page {currentPage + 1} of {Math.ceil(tableData.length / rowsPerPage)}
+              Page {currentPage + 1} of{" "}
+              {Math.ceil(tableData.length / rowsPerPage)}
             </span>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage >= Math.ceil(tableData.length / rowsPerPage) - 1}
-              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
-            >
+              disabled={
+                currentPage >= Math.ceil(tableData.length / rowsPerPage) - 1
+              }
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50">
               Next
             </button>
           </div>
@@ -2584,8 +2556,7 @@ export function RiskStatusReportTab() {
                         : row[col.field] === "Low"
                         ? "low"
                         : ""
-                    }`}
-                  >
+                    }`}>
                     {row[col.field]}
                   </td>
                 ))}
@@ -2597,9 +2568,3 @@ export function RiskStatusReportTab() {
     </div>
   );
 }
-
-
-
-
-
-
