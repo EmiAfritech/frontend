@@ -1244,35 +1244,6 @@ export function RiskStatusReportTab() {
     const printContent = document.getElementById("printableFullTable").innerHTML;
     const printWindow = window.open("", "", "height=650,width=900");
     printWindow.document.write("<html><head><title>Print Report</title>");
-    printWindow.document.write(
-      `<style>
-        table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
-          padding: 8px;
-        }
-        th {
-          background-color: #1D4ED8; /* Blue background for header */
-          color: white; /* White text for header */
-        }
-        .veryhigh {
-          background-color: #F84626;
-          color: white;
-        }
-        .high {
-          background-color: #ecbe2f;
-          color: black;
-        }
-        .medium {
-          background-color: #0B37D6;
-          color: white;
-        }
-        .low {
-          background-color: #4A7C0B;
-          color: white;
-        }
-      </style>`
-    );
     printWindow.document.write("</head><body>");
     printWindow.document.write(printContent);
     printWindow.document.write("</body></html>");
