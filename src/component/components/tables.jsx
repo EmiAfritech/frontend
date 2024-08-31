@@ -2450,12 +2450,8 @@ export function RiskStatusReportTab() {
           Print
         </Button>
       </div>
-      <div className="grid grid-cols-4">
-        <div className="col-span-3"></div>
-        
-      </div>
       <div className="mt-2 w-auto card p-4">
-        <table className="w-full border-collapse border border-black text-sm">
+        <table className="w-full border-collapse border border-black text-sm" style={{ height: 650 }}>
           <thead>
             <tr className="bg-blue-500 text-white">
               {riskStatusColumns.map((col) => (
