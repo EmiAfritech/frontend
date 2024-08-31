@@ -1614,7 +1614,7 @@ export function RiskStatusReportTab() {
                   <td
                     key={col.field}
                     className="border border-black p-2"
-                    style={{ backgroundColor: row.backgroundColor }}
+                    style={{ backgroundColor: row.color }}
                   >
                     {row[col.field]}
                   </td>
