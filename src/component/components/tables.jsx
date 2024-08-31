@@ -1898,17 +1898,16 @@ export function RiskStatusReportTab() {
                   <td
                     key={col.field}
                     className={`border border-black p-2 ${
-                      row[col.field] === "Very High"
-                        ? "veryhigh"
-                        : row[col.field] === "High"
+                      row[col.field] === "High"
                         ? "high"
+                        : row[col.field] === "Very High"
+                        ? "veryhigh"
                         : row[col.field] === "Medium"
                         ? "medium"
                         : row[col.field] === "Low"
                         ? "low"
                         : ""
                     }`}
-                    style={{ backgroundColor: row.color }}
                   >
                     {row[col.field]}
                   </td>
@@ -1981,26 +1980,17 @@ export function RiskStatusReportTab() {
                 {riskstatuscolumn.map((col) => (
                   <td
                     key={col.field}
-                    className={`border border-black p-2`}
-                    style={{
-                      backgroundColor:
-                        row.color || // Use the inherent color from the data
-                        (row[col.field] === "Very High"
-                          ? "#F84626"
-                          : row[col.field] === "High"
-                          ? "#ecbe2f"
-                          : row[col.field] === "Medium"
-                          ? "#0B37D6"
-                          : row[col.field] === "Low"
-                          ? "#4A7C0B"
-                          : ""),
-                      color:
-                        row[col.field] === "Very High" ||
-                        row[col.field] === "Medium" ||
-                        row[col.field] === "Low"
-                          ? "white"
-                          : "black",
-                    }}
+                    className={`border border-black p-2 ${
+                      row[col.field] === "High"
+                        ? "high"
+                        : row[col.field] === "Very High"
+                        ? "veryhigh"
+                        : row[col.field] === "Medium"
+                        ? "medium"
+                        : row[col.field] === "Low"
+                        ? "low"
+                        : ""
+                    }`}
                   >
                     {row[col.field]}
                   </td>
