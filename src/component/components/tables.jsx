@@ -2450,7 +2450,7 @@ export function RiskStatusReportTab() {
           Print
         </Button>
       </div>
-      <div className="mt-2 w-auto card p-4">
+      <div className="mt-2 w-auto card p-4 rounded-sm">
         <table className="w-full border-collapse border border-black text-sm" style={{ height: 650 }}>
           <thead>
             <tr className="bg-blue-500 text-white">
