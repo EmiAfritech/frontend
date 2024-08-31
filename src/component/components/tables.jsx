@@ -2455,7 +2455,7 @@ export function RiskStatusReportTab() {
         
       </div>
       <div className="mt-2 w-auto card p-4">
-        <table className="w-full border-collapse border border-black">
+        <table className="w-full border-collapse border border-black text-sm">
           <thead>
             <tr className="bg-blue-500 text-white">
               {riskStatusColumns.map((col) => (
@@ -2530,7 +2530,7 @@ export function RiskStatusReportTab() {
       </div>
 
       {/* Hidden full table for printing */}
-      {/* <div id="printableFullTable" style={{ display: "none" }}>
+      <div id="printableFullTable" style={{ display: "none" }}>
         <table className="w-full border-collapse border border-black">
           <thead>
             <tr>
@@ -2565,7 +2565,7 @@ export function RiskStatusReportTab() {
             ))}
           </tbody>
         </table>
-      </div> */}
+      </div>
     </div>
   );
 }
