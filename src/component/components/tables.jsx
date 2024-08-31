@@ -1026,11 +1026,145 @@ export function ReviewNeedingRisksReportTab() {
   );
 }
 
+// export function RiskStatusReportTab() {
+//   const {auth} = useContext(AuthContext)
+//   const [tableData, setTableData] = useState([]);
+//   const [departmentName, setDeptmentName] = useState("All Departments");
+//   const [deptmentNames, setdeptmentNames] = useState([]);
+//   const riskstatuscolumn = useRiskStatusColumns();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: "Bearer " + auth.token,
+//           },
+//         });
+
+//         setdeptmentNames(response.data);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.post(
+//           RISKSTATUSREPORT_URL,
+//           JSON.stringify({ departmentName }),
+//           {
+//             headers: {
+//               "Content-Type": "application/json",
+//               Authorization: "Bearer " + auth.token,
+//             },
+//             withCredentials: true,
+//           }
+//         );
+
+//         setTableData(response.data);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
+
+//     fetchData();
+//   }, [departmentName]);
+
+//   const handleDeptNameChange = (e) => {
+//     setDeptmentName(e.target.value);
+//   };
+
+//   return (
+//     <div>
+//       <div className="grid grid-cols-4">
+//         <div className="col-span-3"></div>
+//         <div>
+//           {auth.role === "ADMIN" ||
+//           auth.role === "GENERALMANAGER" ? (
+//             <>
+//               <select
+//                 type="text"
+//                 className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+//                 id="departmentName"
+//                 aria-describedby="departmentName"
+//                 value={departmentName}
+//                 autoComplete="off"
+//                 onChange={handleDeptNameChange}>
+//                 <option value="All Departments">{t("allDepartment")}</option>
+//                 {deptmentNames.map((deptmentNames) => (
+//                   <option
+//                     key={deptmentNames.names.id}
+//                     value={deptmentNames.names.name}>
+//                     {deptmentNames.names.name}
+//                   </option>
+//                 ))}
+//               </select>
+//             </>
+//           ) : (
+//             <></>
+//           )}
+//         </div>
+//       </div>
+//       <div  className=" mt-2 w-auto card p-4">
+//         <Box
+//           sx={{
+//             [`.${gridClasses.cell}.veryhigh`]: {
+//               backgroundColor: "#F84626",
+//             },
+//             [`.${gridClasses.cell}.high`]: {
+//               backgroundColor: "#ecbe2f",
+//             },
+//             [`.${gridClasses.cell}.medium`]: {
+//               backgroundColor: "#0B37D6",
+//             },
+//             [`.${gridClasses.cell}.low`]: {
+//               backgroundColor: "#4A7C0B",
+//             },
+//             height: 650
+//           }}>
+//           <DataGrid
+//             rows={tableData}
+//             columns={riskstatuscolumn}
+//             initialState={{
+//               pagination: {
+//                 paginationModel: { page: 0, pageSize: 10 },
+//               },
+//             }}
+//             pageSizeOptions={[10, 15]}
+//             slots={{ toolbar: GridToolbar }}
+//             getCellClassName={(params) => {
+//               if (params.value === "High") {
+//                 return "high";
+//               } else if (params.value === "Very High") {
+//                 return "veryhigh";
+//               } else if (params.value === "Medium") {
+//                 return "medium";
+//               } else if (params.value === "Low") {
+//                 return "low";
+//               }
+//             }}
+//             getRowId={(row)=> row.id}
+//           />
+//         </Box>
+//       </div>
+//     </div>
+//   );
+// }
+
+
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
-  const [departmentName, setDeptmentName] = useState("All Departments");
+  const [departmentName, setDeptmentName] = useState('All Departments');
   const [deptmentNames, setDeptmentNames] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const riskstatuscolumn = useRiskStatusColumns();
 
   useEffect(() => {
@@ -1038,8 +1172,8 @@ export function RiskStatusReportTab() {
       try {
         const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + auth.token,
           },
         });
 
@@ -1060,8 +1194,8 @@ export function RiskStatusReportTab() {
           JSON.stringify({ departmentName }),
           {
             headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + auth.token,
             },
             withCredentials: true,
           }
@@ -1081,9 +1215,9 @@ export function RiskStatusReportTab() {
   };
 
   const handlePrint = () => {
-    const printContent = document.getElementById("printableTable").innerHTML;
-    const printWindow = window.open("", "", "height=650,width=900");
-    printWindow.document.write("<html><head><title>Print Report</title>");
+    const printContent = document.getElementById('printableTable').innerHTML;
+    const printWindow = window.open('', '', 'height=650,width=900');
+    printWindow.document.write('<html><head><title>Print Report</title>');
     printWindow.document.write(
       `<style>
         table, th, td {
@@ -1112,19 +1246,33 @@ export function RiskStatusReportTab() {
         }
       </style>`
     );
-    printWindow.document.write("</head><body>");
+    printWindow.document.write('</head><body>');
     printWindow.document.write(printContent);
-    printWindow.document.write("</body></html>");
+    printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.print();
   };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const handleRowsPerPageChange = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setCurrentPage(0);
+  };
+
+  const paginatedData = tableData.slice(
+    currentPage * rowsPerPage,
+    currentPage * rowsPerPage + rowsPerPage
+  );
 
   return (
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
+          {auth.role === 'ADMIN' || auth.role === 'GENERALMANAGER' ? (
             <>
               <select
                 type="text"
@@ -1135,7 +1283,7 @@ export function RiskStatusReportTab() {
                 autoComplete="off"
                 onChange={handleDeptNameChange}
               >
-                <option value="All Departments">{t("allDepartment")}</option>
+                <option value="All Departments">{t('allDepartment')}</option>
                 {deptmentNames.map((dept) => (
                   <option key={dept.names.id} value={dept.names.name}>
                     {dept.names.name}
@@ -1150,31 +1298,33 @@ export function RiskStatusReportTab() {
       </div>
       <div className="mt-2 w-auto card p-4">
         <div id="printableTable">
-          <table>
+          <table className="w-full border-collapse border border-black">
             <thead>
               <tr>
                 {riskstatuscolumn.map((col) => (
-                  <th key={col.field}>{col.headerName}</th>
+                  <th key={col.field} className="border border-black p-2">
+                    {col.headerName}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {tableData.map((row, index) => (
+              {paginatedData.map((row, index) => (
                 <tr key={index}>
                   {riskstatuscolumn.map((col) => (
                     <td
                       key={col.field}
-                      className={
-                        row[col.field] === "High"
-                          ? "high"
-                          : row[col.field] === "Very High"
-                          ? "veryhigh"
-                          : row[col.field] === "Medium"
-                          ? "medium"
-                          : row[col.field] === "Low"
-                          ? "low"
-                          : ""
-                      }
+                      className={`border border-black p-2 ${
+                        row[col.field] === 'High'
+                          ? 'high'
+                          : row[col.field] === 'Very High'
+                          ? 'veryhigh'
+                          : row[col.field] === 'Medium'
+                          ? 'medium'
+                          : row[col.field] === 'Low'
+                          ? 'low'
+                          : ''
+                      }`}
                     >
                       {row[col.field]}
                     </td>
@@ -1184,12 +1334,52 @@ export function RiskStatusReportTab() {
             </tbody>
           </table>
         </div>
-        <button onClick={handlePrint} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-          Print Report
-        </button>
+        <div className="mt-4 flex justify-between items-center">
+          <div>
+            <button onClick={handlePrint} className="px-4 py-2 bg-blue-500 text-white rounded">
+              Print Report
+            </button>
+          </div>
+          <div className="flex items-center">
+            <label htmlFor="rowsPerPage" className="mr-2">
+              Rows per page:
+            </label>
+            <select
+              id="rowsPerPage"
+              value={rowsPerPage}
+              onChange={handleRowsPerPageChange}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              {[10, 15, 20].map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 0}
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <span className="mx-2">
+              Page {currentPage + 1} of{' '}
+              {Math.ceil(tableData.length / rowsPerPage)}
+            </span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage >= Math.ceil(tableData.length / rowsPerPage) - 1}
+              className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
 
