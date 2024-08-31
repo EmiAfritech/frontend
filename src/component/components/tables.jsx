@@ -1159,6 +1159,7 @@ export function ReviewNeedingRisksReportTab() {
 
 
 
+import React, { useRef } from "react";
 export function RiskStatusReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
