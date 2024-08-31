@@ -2430,13 +2430,7 @@ export function RiskStatusReportTab() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <Button onClick={handlePrint} size="small" variant="outlined">
-          Print
-        </Button>
-      </div>
-      <div className="grid grid-cols-4">
-        <div className="col-span-3"></div>
-        <div>
+      <div className="mr-6">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <select
               className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -2452,6 +2446,13 @@ export function RiskStatusReportTab() {
             </select>
           )}
         </div>
+        <Button onClick={handlePrint} size="small" variant="outlined">
+          Print
+        </Button>
+      </div>
+      <div className="grid grid-cols-4">
+        <div className="col-span-3"></div>
+        
       </div>
       <div className="mt-2 w-auto card p-4">
         <table className="w-full border-collapse border border-black">
