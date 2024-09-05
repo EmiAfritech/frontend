@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../../context/AuthContext";
 
-
 import {
   CREATERISKFORM_URL,
   USERSCREATEFORM_URL,
@@ -58,8 +57,8 @@ function getImpactLevelNumber(impact) {
   }
 }
 export function Userforms({ onFormSubmit }) {
-  const {auth} =  useContext(AuthContext);
-  const {t} = useTranslation();
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -245,8 +244,7 @@ export function Userforms({ onFormSubmit }) {
               </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -333,8 +331,8 @@ export function Userforms({ onFormSubmit }) {
 }
 
 export function Departmentforms({ onFormSubmit }) {
-  const {auth} =  React.useContext(AuthContext);
-  const {t} = useTranslation();
+  const { auth } = React.useContext(AuthContext);
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [deptID, setDeptID] = useState("");
   const [location, setLocation] = useState("");
@@ -485,8 +483,8 @@ export function Departmentforms({ onFormSubmit }) {
 }
 
 export function Riskforms({ onFormSubmit, tableData }) {
-  const {auth} =  useContext(AuthContext);
-  const {t} = useTranslation();
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [deptmentName, setdeptmentName] = useState([]);
@@ -567,10 +565,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
     }
 
     try {
-      if (
-        auth.role === "MANAGER" ||
-        auth.role === "AUDITOR"
-      ) {
+      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(
           CREATERISKFORM_URL,
           JSON.stringify({
@@ -655,7 +650,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
     <>
       <ToastContainer hideProgressBar />
       <Button onClick={handleOpen} size="small" variant="outlined">
-       {t("addRisk")}
+        {t("addRisk")}
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
@@ -664,8 +659,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-            {auth.role === "ADMIN" ||
-            auth.role === "GENERALMANAGER" ? (
+            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -684,9 +678,9 @@ export function Riskforms({ onFormSubmit, tableData }) {
                     </option>
                   ))}
                 </select>
-                <label 
-                htmlFor="work-location"
-                className="text-blue-800 absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                <label
+                  htmlFor="work-location"
+                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                   {t("departments")}
                 </label>
               </div>
@@ -815,7 +809,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
                 </div>
               </div>
             </div>
-            <div >
+            <div>
               <div className="relative pb-4" data-te-input-wrapper-init>
                 <select
                   type="text"
@@ -825,7 +819,9 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   onChange={(e) => setCategory(e.target.value)}
                   required>
                   <option></option>
-                  <option value="EXTERNAL FACTORS">{t("externalFactors")}</option>
+                  <option value="EXTERNAL FACTORS">
+                    {t("externalFactors")}
+                  </option>
                   <option value="PEOPLE">{t("people")}</option>
                   <option value="SYSTEM">{t("system")}</option>
                   <option value="PROCESS">{t("process")}</option>
@@ -862,15 +858,14 @@ export function Riskforms({ onFormSubmit, tableData }) {
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                 
                   value={riskResponse}
                   autoComplete="off"
                   onChange={(e) => setRiskResponse(e.target.value)}
                   required>
                   <option></option>
-                  <option value="Exploit">{t('exploit')}</option>
-                  <option value="Accept">{t('accept')}</option>
-                  <option value="Enhance">{t('enhance')}</option>
+                  <option value="Exploit">{t("exploit")}</option>
+                  <option value="Accept">{t("accept")}</option>
+                  <option value="Enhance">{t("enhance")}</option>
                   <option value="Avoid">{t("avoid")}</option>
                   <option value="Transfer">{t("transfer")}</option>
                   <option value="Mitigate">{t("mitigate")}</option>
@@ -901,15 +896,14 @@ export function Riskforms({ onFormSubmit, tableData }) {
               className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               type="submit"
               onClick={handleSubmit}
-              disabled={isLoading} 
-            >
+              disabled={isLoading}>
               {isLoading ? (
                 <div className="flex flex-row justify-center">
                   <p className="text-sm pr-2">{t("loading")}</p>
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                t('submit')
+                t("submit")
               )}
             </button>
           </div>
@@ -919,8 +913,8 @@ export function Riskforms({ onFormSubmit, tableData }) {
   );
 }
 export function RiskReviewforms({ onFormSubmit }) {
-  const {auth} =  useContext(AuthContext);
-  const {t} = useTranslation();
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [riskID, setRiskID] = useState("");
   const [departmentID, setdepartmentID] = useState(" ");
   const [risks, setRiskIDs] = useState([]);
@@ -986,10 +980,7 @@ export function RiskReviewforms({ onFormSubmit }) {
       }
     };
 
-    if (
-      auth.role === "MANAGER" ||
-      auth.role === "AUDITOR"
-    ) {
+    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
       fetchData();
     } else {
       fetchDepartments();
@@ -1068,14 +1059,13 @@ export function RiskReviewforms({ onFormSubmit }) {
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <ToastContainer onClose={1000} hideProgressBar />
         <div className="flex justify-center font-bold py-5  text-black">
-        {t("reviewRisk")}
+          {t("reviewRisk")}
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -1214,8 +1204,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-  const {auth} = useContext(AuthContext);
-  const {t} = useTranslation();
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1296,7 +1286,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " +  auth.token,
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
@@ -1323,10 +1313,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       }
     };
 
-    if (
-      auth.role === "MANAGER" ||
-      auth.role === "AUDITOR"
-    ) {
+    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
       fetchData();
     } else {
       fetchDepartments();
@@ -1341,10 +1328,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setLoading(true);
 
     try {
-      if (
-        auth.role === "MANAGER" ||
-        auth.role === "AUDITOR"
-      ) {
+      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({
@@ -1432,14 +1416,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-        {t("mitigateRisk")}
+          {t("mitigateRisk")}
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -1560,7 +1543,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 </label>
               </div>
             </div>
-            <div >
+            <div>
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <select
                   className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -1572,10 +1555,10 @@ export function RiskMitigationforms({ onFormSubmit }) {
                   required>
                   <option></option>
                   <option value="1">{t("almostImpossible")} (1)</option>
-                    <option value="2">{t("unlikely")} (2)</option>
-                    <option value="3">{t("likely")} (3)</option>
-                    <option value="4">{t("veryLikely")} (4)</option>
-                    <option value="5">{t("almostCertain")} (5)</option>
+                  <option value="2">{t("unlikely")} (2)</option>
+                  <option value="3">{t("likely")} (3)</option>
+                  <option value="4">{t("veryLikely")} (4)</option>
+                  <option value="5">{t("almostCertain")} (5)</option>
                 </select>
                 <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                   {t("mitgatedRiskProbabillityLevel")}
@@ -1728,8 +1711,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
   );
 }
 export function RiskMonitoringforms({ onFormSubmit }) {
-  const {auth} =  useContext(AuthContext);
-  const {t} = useTranslation()
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
   const [riskID, setRiskID] = useState("");
   const [risks, setRiskIDs] = useState([]);
   const [dept, setDept] = useState([]);
@@ -1813,10 +1796,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
     };
 
-    if (
-      auth.role === "MANAGER" ||
-      auth.role === "AUDITOR"
-    ) {
+    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
       fetchData();
     } else {
       fetchDepartments();
@@ -1915,14 +1895,13 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-        {t("monitorRisk")}
+          {t("monitorRisk")}
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
             <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER" ? (
+              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
                 <>
                   <select
                     type="departmentID"
@@ -2104,8 +2083,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
                 onChange={(e) => setRiskClosed(e.target.value)}
                 required>
                 <option></option>
-                <option value="Yes">{("yes")}</option>
-                <option value="No">{("no")}</option>
+                <option value="Yes">{"yes"}</option>
+                <option value="No">{"no"}</option>
               </select>
               <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                 {t("riskClosedStatus")}
@@ -2122,7 +2101,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             >
               {isLoading ? (
                 <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{("loading")}</p>
+                  <p className="text-sm pr-2">{"loading"}</p>
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
