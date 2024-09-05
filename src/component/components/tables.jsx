@@ -1185,7 +1185,7 @@ export function RiskStatusReportTab() {
           <thead>
             <tr className="bg-blue-500 text-white">
               {riskStatusColumns.map((col) => (
-                <th key={col.field} className="border-b border-black p-2 whitespace-nowrap h-6">
+                <th key={col.field} className="border-b border-black p-2 whitespace-nowrap h-12">
                   {col.headerName}
                 </th>
               ))}

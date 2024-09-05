@@ -18,6 +18,7 @@ import { AuthContext } from "../../context/AuthContext";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
 import ecg_logo from "../../assets/images/ecg_logo.jpg"
 import wafi_logo from "../../assets/images/wafi_logo.jpg"
+import ugnpa from "../../assets/images/ugnpa.png"
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
@@ -30,6 +31,8 @@ export function Sidebar() {
   ? ecg_logo 
   : auth.organizationName === "Waficapital" 
   ? wafi_logo 
+  : auth.organizationName === "Uganda NPA" 
+  ? ugnpa
   : afriquetek_logo;
 
 
