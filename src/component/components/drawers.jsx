@@ -542,20 +542,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
         console.error(error);
       });
 
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setdeptmentName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    
   }, []);
   useEffect(() => {
 
