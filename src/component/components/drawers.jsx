@@ -557,6 +557,23 @@ export function Riskforms({ onFormSubmit, tableData }) {
         console.error(error);
       });
   }, []);
+  useEffect(() => {
+
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
