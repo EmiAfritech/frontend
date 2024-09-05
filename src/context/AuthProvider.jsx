@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  if (token === "") {
+  if (auth?.token === "") {
    alert("token empty")
   }
 
