@@ -67,10 +67,9 @@ import { AuthContext } from "../context/AuthContext";
 //   });
 // }
 
-export function Sessions() {
+export function Sessions  () {
   const { clearAuth, auth } = useContext(AuthContext);
   const [session, setSession] = useState("");
-  const [hasAlerted, setHasAlerted] = useState(false); // New state to control alerting
   const navigate = useNavigate();
   const token = auth?.token;
 
@@ -96,12 +95,10 @@ export function Sessions() {
     });
   };
 
+  
+
   useEffect(() => {
     if (!token) {
-      if (!hasAlerted) { // Check if the alert has already been shown
-        alert("Timed Out Kindly Log In");
-        setHasAlerted(true); // Set flag to true after alert
-      }
       navigate("/", { replace: true });
       return;
     }
@@ -127,10 +124,10 @@ export function Sessions() {
     };
 
     validateSession();
-  }, [token, navigate, clearAuth, hasAlerted]); // Add hasAlerted to dependencies
+  }, [token, navigate, clearAuth]);
 
   return null; // Or any appropriate UI if needed
-}
+};
 
 
 
