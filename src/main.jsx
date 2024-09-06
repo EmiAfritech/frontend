@@ -14,7 +14,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <ModaltriggerProvider>
         <App />
-        <Sessions/>
       </ModaltriggerProvider>
     </AuthProvider>
   </React.StrictMode>
