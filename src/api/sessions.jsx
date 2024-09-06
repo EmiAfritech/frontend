@@ -95,10 +95,18 @@ export function Sessions  () {
     });
   };
 
+  const notifyTimeOut = () => {
+    toast.error("Timed Out, kindly Login", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        clearAuth();
+      },
+    });
+  };
+
   useEffect(() => {
     if (!token) {
-      navigate("/", { replace: true });
-      return;
+      notifyTimeOut
     }
 
     const validateSession = async () => {
