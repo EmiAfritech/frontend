@@ -7,7 +7,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
-import { LogIn } from "../component/components/modals";
 
 // export function Sessions() {
 //   const {clearAuth, auth} = useContext(AuthContext);
@@ -71,7 +70,6 @@ import { LogIn } from "../component/components/modals";
 export function Sessions  () {
   const { clearAuth, auth } = useContext(AuthContext);
   const [session, setSession] = useState("");
-  const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
   const token = auth?.token;
 
@@ -99,7 +97,7 @@ export function Sessions  () {
 
   useEffect(() => {
     if (!token) {
-      setShowLogin(true); // Show login modal if token is not present
+      navigate("/", { replace: true });
       return;
     }
 
@@ -126,8 +124,7 @@ export function Sessions  () {
     validateSession();
   }, [token, navigate, clearAuth]);
 
-  return showLogin ? <LogIn /> : null;
-
+  return null; // Or any appropriate UI if needed
 };
 
 
