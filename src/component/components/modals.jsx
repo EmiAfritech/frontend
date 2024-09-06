@@ -2253,24 +2253,21 @@ export function LogOut() {
 }
 
 export function LogIn() {
-  const { setAuth } = useContext(AuthContext);
+  const {setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const [open, setOpen] = useState(true); // Controls the modal visibility
   const navigate = useNavigate();
 
   const notifyNetworkError = () => {
-    toast.error("Server is Currently Unavailable, Please Try Again Later");
+    toast.error("Server is Currently Unavailable, Please Try Again Later", {});
   };
-
   const notifyUnauthorizedUser = () => {
-    toast.error("Unauthorized User! Please check your credentials");
+    toast.error("Unauthorized User! Please check your credentials", {});
   };
-
   const notifyReturningNull = () => {
-    toast.info("Authorization returned null");
+    toast.info("Authorization returned null", {});
   };
 
   const notifyFillForms = () => {
@@ -2298,10 +2295,19 @@ export function LogIn() {
       );
 
       if (response.status === 200) {
-        const { authToken: token, role, department, organizationName } = response.data;
+        const token = response.data.authToken;
+        const role = response.data.role;
+        const department = response.data.department;
+        const organizationName = response.data.organizationName;
+        
 
         if (token && role) {
-          setAuth({ token, role, department, organizationName });
+          setAuth({ 
+            token: token, 
+            role: role, 
+            department: department, 
+            organizationName: organizationName
+          });
           navigate("/dashboard", { replace: true });
         } else {
           notifyReturningNull();
@@ -2320,8 +2326,7 @@ export function LogIn() {
       setLoading(false);
     }
   };
-
-  const handleReset = async () => {
+  const handleReset = async (e) => {
     if (email === "") {
       alert("Enter your email");
     } else {
@@ -2329,8 +2334,6 @@ export function LogIn() {
       navigate("/resetpassword", { replace: true });
     }
   };
-
-  const handleClose = () => setOpen(false);
 
   const style = {
     position: "absolute",
@@ -2348,89 +2351,110 @@ export function LogIn() {
   return (
     <>
       <ToastContainer onClose={5000} hideProgressBar />
+      <button onClick={handleOpen} className="flex flex row items-center p-3 ml-3">
+        <FaSignOutAlt className="icons" />
+       Login
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <div className="flex flex-row items-center justify-center mb-4">
-            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+          <div className="flex flex row items-center justify-center mb-4">
+            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
               <svg
-                className="h-6 w-6 text-red-600"
+                class="h-6 w-6 text-red-600"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
+                stroke-width="1.5"
                 stroke="currentColor"
-                aria-hidden="true"
-              >
+                aria-hidden="true">
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                   d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
                 />
               </svg>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="email">{t("email")}</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  autoComplete="off"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="password">{t("password")}</label>
-                <input
-                  type="password"
-                  id="password"
-                  autoComplete="off"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <button
-                className="login hover:bg-[#2a36b8]"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <div className="flex flex-row justify-center">
-                    <p className="text-sm pr-2">{t("loading")}</p>
-                    <CircularProgress size={27} thickness={6} color="primary" />
+            <form>
+                {/* username */}
+                <div className="">
+                  <div>
+                    <label htmlFor="email">{t("email")}</label>
                   </div>
-                ) : (
-                  t("submit")
-                )}
-              </button>
-              <div className="pt-3">
+                  <div>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      autoComplete="off"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                </div>
+                {/* password */}
+                <div>
+                  <div>
+                    <label htmlFor="password">{t("password")}</label>
+                  </div>
+                  <div>
+                    <input
+                      type="password"
+                      id="password"
+                      autoComplete="off"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {/* login-btn */}
                 <button
-                  style={{ color: "blue" }}
-                  onClick={handleReset}
+                  className="login hover:bg-[#2a36b8]"
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={isLoading} // Disable the button while loading
                 >
-                  {t("passwordReset")}
+                  {isLoading ? (
+                    <div className="flex flex-row justify-center">
+                      <p className="text-sm pr-2">{t("loading")}</p>
+                      <CircularProgress
+                        size={27}
+                        thickness={6}
+                        color="primary"
+                      />
+                    </div>
+                  ) : (
+                    t("submit")
+                  )}
                 </button>
-              </div>
-              <div className="new-user">
-                <span>{t("registerQuestion")}</span>{" "}
-                <span style={{ color: "blue" }}>
-                  <Link className="new" to="/signup">
-                    {t("register")}
-                  </Link>
-                </span>
-              </div>
-            </form>
+                {/* password reset */}
+                <div className="pt-3">
+                  <button
+                    style={{ color: "blue" }}
+                    onClick={handleReset}
+                    className="flex flex row items-center">
+                    {t("passwordReset")}
+                  </button>
+                </div>
+                {/* create a new account */}
+                <div className="new-user">
+                  <span>{t("registerQuestion")}</span>{" "}
+                  <span style={{ color: "blue" }}>
+                    <Link className="new" to="/signup">
+                      {t("register")}
+                    </Link>
+                  </span>
+                </div>
+              </form>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
             <button
-              className="flex flex-row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              onClick={handleClose}
-              disabled={isLoading}
+              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              type="submit"
+              onClick={handleLogOut}
+              disabled={isLoading} // Disable the button while loading
             >
               {isLoading ? (
                 <div className="flex flex-row justify-center">
@@ -2438,7 +2462,7 @@ export function LogIn() {
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                t('close')
+                t('yes')
               )}
             </button>
           </div>
