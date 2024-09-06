@@ -95,17 +95,12 @@ export function Sessions  () {
     });
   };
 
-  const notifyTimeOut = () => {
-    toast.error("Timed Out, kindly Login In", {
-      onClose: () => {
-        navigate("/", { replace: true });
-      },
-    });
-  };
+  
 
   useEffect(() => {
     if (!token) {
-      notifyTimeOut();
+      alert("Timed Out Kindly Log In")
+      navigate("/", { replace: true });
       return;
     }
 
