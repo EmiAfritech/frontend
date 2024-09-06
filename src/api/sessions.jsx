@@ -7,6 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
+import { LogIn } from "../component/components/modals";
 
 // export function Sessions() {
 //   const {clearAuth, auth} = useContext(AuthContext);
@@ -97,7 +98,7 @@ export function Sessions  () {
 
   useEffect(() => {
     if (!token) {
-      navigate("/", { replace: true });
+      <LogIn/>
       return;
     }
 
