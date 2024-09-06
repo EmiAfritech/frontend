@@ -22,10 +22,12 @@ import { ClosedRisk } from "./pages/riskreview/closedrisk";
 import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 import { ResetPassword } from "./pages/resetPassword/resetpassword";
 import { SignUp } from "./pages/signup/signup";
+import { Sessions } from "./api/sessions";
 
 function App() {
   return (
     <BrowserRouter>
+      <Sessions/>
       <Routes>
         <Route path="/signup" element={<SignUp />} />
       </Routes>
