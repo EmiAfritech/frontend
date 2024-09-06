@@ -2257,7 +2257,9 @@ export function LogIn() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(true);
   const [isLoading, setLoading] = useState(false);
+  const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
   const notifyNetworkError = () => {
@@ -2351,10 +2353,7 @@ export function LogIn() {
   return (
     <>
       <ToastContainer onClose={5000} hideProgressBar />
-      <button onClick={handleOpen} className="flex flex row items-center p-3 ml-3">
-        <FaSignOutAlt className="icons" />
-       Login
-      </button>
+    
       <Modal
         open={open}
         onClose={handleClose}
