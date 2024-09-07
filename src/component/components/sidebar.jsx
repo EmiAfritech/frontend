@@ -194,7 +194,6 @@ export function Sidebar() {
       </div>
       <div className="sidebar-main">
         <ul>
-          <Sessions />
           {userRole === "ADMIN" && AdminMainTabs()}
           {userRole === "GENERALMANAGER" && GeneralManagerMainTabs()}
           {userRole === "MANAGER" && ManagerMainTabs()}
