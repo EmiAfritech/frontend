@@ -13,8 +13,8 @@ import { AuthContext } from "../context/AuthContext";
 export function Sessions  () {
   const { clearAuth, auth } = useContext(AuthContext);
   const [session, setSession] = useState("");
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const token = auth?.token;
 
   const notifyUnauthorized = () => {
@@ -40,15 +40,13 @@ export function Sessions  () {
   };
 
   
-  
-  
-   
+
   useEffect(() => {
-    const exemptPaths = ["/signup"];
+    const exemptPaths = ["/signup", "/activation"]; 
+
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
     }
-  }, [token, location.pathname, navigate]);
 
     const validateSession = async () => {
       try {
