@@ -46,30 +46,35 @@ export function Sessions  () {
 
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
+    }else{
+      const validateSession = async () => {
+        try {
+          if (!token) {
+            throw new Error("No token provided");
+          }
+          const response = await axios.post(Sessions_URL, JSON.stringify({ token }), {
+            headers: { "Content-Type": "application/json" },
+          });
+  
+          setSession(response.data.message);
+  
+          if (response.data.message === "Invalid") {
+            notifyUnauthorized();
+          }
+        } catch (err) {
+          if (err.message.includes("Network Error")) {
+            notifyNetwork();
+          } else {
+            notifySystem();
+          }
+        }
+      }; 
     }
 
-    const validateSession = async () => {
-      try {
-        const response = await axios.post(Sessions_URL, JSON.stringify({ token }), {
-          headers: { "Content-Type": "application/json" },
-        });
-
-        setSession(response.data.message);
-
-        if (response.data.message === "Invalid") {
-          notifyUnauthorized();
-        }
-      } catch (err) {
-        if (err.message.includes("Network Error")) {
-          notifyNetwork();
-        } else {
-          notifySystem();
-        }
-      }
-    };
+    
 
     validateSession();
-  }, [token, navigate, clearAuth]);
+  }, [token, navigate,location.pathname, clearAuth]);
 
   return null; 
 };
