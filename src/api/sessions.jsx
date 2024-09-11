@@ -81,7 +81,7 @@ export function Sessions() {
 
   }, [token, navigate, location.pathname, clearAuth]);
 
-  return <ToastContainer hideProgressBar />;
+  return  null; ;
 }
 
 
