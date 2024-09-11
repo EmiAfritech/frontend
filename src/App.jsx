@@ -23,6 +23,7 @@ import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 import { ResetPassword } from "./pages/resetPassword/resetpassword";
 import { Sessions } from "./api/sessions";
 import { SignUp } from "./pages/signup/signup";
+import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Sessions/>
       <Routes>
         <Route path="/signup" element={<SignUp/>} />
+        <Route path = "/activation" element = {<ActivationPage/>}/>
       </Routes>
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
@@ -46,16 +48,13 @@ function App() {
           <Route index element={<ReportRiskDashboard />} />
           <Route path="advice" element={<ReportRiskAdvice />} />
           <Route path="mitigation" element={<ReportRiskMitigation />} />
-
           <Route path="risk-status-report" element={<RiskStatusReport />} />
-
           <Route path="risk-appetite" element={<ReportRiskAppetite />} />
           <Route path="audit-trail" element={<ReportAuditTrail />} />
           <Route
             path="likelyhood-vs-impact"
             element={<ReportLikelyhoodVsImpact />}
           />
-
           <Route
             path="review-needing-risks"
             element={<ReviewNeedingRisksReport />}
