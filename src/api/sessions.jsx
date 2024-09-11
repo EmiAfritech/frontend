@@ -40,15 +40,13 @@ export function Sessions() {
   };
 
   useEffect(() => {
-    const exemptPaths = ["/signup", "/activation"]; // Add paths to exempt from session validation
+    const exemptPaths = ["/signup", "/activation"]; 
 
-    // Check if the path requires validation
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
-      return; // Exit early if no token and path is not exempt
+      return;
     }
 
-    // Validate session if token is present and path requires validation
     const validateSession = async () => {
       try {
         if (!token) {
@@ -57,7 +55,7 @@ export function Sessions() {
 
         const response = await axios.post(
           Sessions_URL,
-          { token }, // Send token as an object
+          { token }, 
           {
             headers: { "Content-Type": "application/json" },
           }
