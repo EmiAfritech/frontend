@@ -3,6 +3,9 @@
 //login url
 export const LOGIN_URL = "/login";
 
+//activation url
+export const ACTIVATE_ACCOUNT ="/Account/Activate";
+
 //login url
 export const CREATE_URL = "/organizations/create";
 
