@@ -119,18 +119,18 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full p-4"
                   />
                 </div>
                 <div>
                   <label className="block mb-1 text-xs">Address</label>
                   <input
-                    type="password"
-                    id="password"
+                    type="text"
+                    id="address"
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
                   />
                 </div>
                 <div>
@@ -141,7 +141,7 @@ export function SignUp() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
@@ -153,7 +153,7 @@ export function SignUp() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-1 text-sm h-12 border border-gray-300 rounded-full"
+                      className="w-full p-1 text-sm h-12 border border-gray-300 rounded-full p-4"
                     />
                   </div>
                   <div>
@@ -164,19 +164,19 @@ export function SignUp() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                      className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
                     />
                   </div>
                 </div>
                 <div>
                   <label className="block mb-1 text-xs">Phone Number</label>
                   <input
-                    type="password"
-                    id="confirmPassword"
+                    type="text"
+                    id="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
                   />
                 </div>
                 <button
