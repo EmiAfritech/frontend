@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Sessions_URL } from "./routes";
 import axios from "./axios";
 import Backdrop from "@mui/material/Backdrop";
@@ -13,6 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 export function Sessions  () {
   const { clearAuth, auth } = useContext(AuthContext);
   const [session, setSession] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
   const token = auth?.token;
 
@@ -39,12 +40,15 @@ export function Sessions  () {
   };
 
   
-
+  
+  
+   
   useEffect(() => {
-    if (!token) {
+    const exemptPaths = ["/signup"];
+    if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
-      return;
     }
+  }, [token, location.pathname, navigate]);
 
     const validateSession = async () => {
       try {
