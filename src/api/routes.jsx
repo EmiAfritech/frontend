@@ -2,9 +2,12 @@
 
 //login url
 export const LOGIN_URL = "/login";
-//skjfbksjfbskfsbf
+
 //login url
 export const CREATE_URL = "/organizations/create";
+
+//signup
+export const CREATE_ORGANIZATION = "/Organization/create"
 
 //logout
 export const LOGOUT_URL = "/logout";
