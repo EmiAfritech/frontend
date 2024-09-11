@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 
 
 
-export function Sessions  () {
+export function Sessions() {
   const { clearAuth, auth } = useContext(AuthContext);
   const [session, setSession] = useState("");
   const navigate = useNavigate();
@@ -39,45 +39,52 @@ export function Sessions  () {
     });
   };
 
-  
-
   useEffect(() => {
-    const exemptPaths = ["/signup"]; 
+    const exemptPaths = ["/signup", "/activation"]; // Add paths to exempt from session validation
 
+    // Check if the path requires validation
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
-    }else{
-      const validateSession = async () => {
-        try {
-          if (!token) {
-            throw new Error("No token provided");
-          }
-          const response = await axios.post(Sessions_URL, JSON.stringify({ token }), {
-            headers: { "Content-Type": "application/json" },
-          });
-  
-          setSession(response.data.message);
-  
-          if (response.data.message === "Invalid") {
-            notifyUnauthorized();
-          }
-        } catch (err) {
-          if (err.message.includes("Network Error")) {
-            notifyNetwork();
-          } else {
-            notifySystem();
-          }
-        }
-      }; 
+      return; // Exit early if no token and path is not exempt
     }
 
-    
+    // Validate session if token is present and path requires validation
+    const validateSession = async () => {
+      try {
+        if (!token) {
+          throw new Error("No token provided");
+        }
 
-    validateSession();
-  }, [token, navigate,location.pathname, clearAuth]);
+        const response = await axios.post(
+          Sessions_URL,
+          { token }, // Send token as an object
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
 
-  return null; 
-};
+        setSession(response.data.message);
+
+        if (response.data.message === "Invalid") {
+          notifyUnauthorized();
+        }
+      } catch (err) {
+        if (err.message.includes("Network Error")) {
+          notifyNetwork();
+        } else {
+          notifySystem();
+        }
+      }
+    };
+
+    if (token && !exemptPaths.includes(location.pathname)) {
+      validateSession();
+    }
+
+  }, [token, navigate, location.pathname, clearAuth]);
+
+  return <ToastContainer hideProgressBar />;
+}
 
 
 
