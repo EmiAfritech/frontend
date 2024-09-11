@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../../api/axios";
-import { CREATE_URL } from "../../api/routes";
+import { CREATE_ORGANIZATION, } from "../../api/routes";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,11 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 export function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
-    confirmPassword: "",
-    password: "",
+    phoneNumber: "",
     name: "",
     firstName: "",
     lastName: "",
+    address: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -38,10 +38,11 @@ export function SignUp() {
     checkPasswords();
     try {
       const response = await axios.post(
-        CREATE_URL,
+        CREATE_ORGANIZATION,
         JSON.stringify({
           email: formData.email,
-          password: formData.password,
+          address: formData.address,
+          phoneNumber: formData.phoneNumber,
           name: formData.name,
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -77,11 +78,11 @@ export function SignUp() {
   const resetForm = () => {
     setFormData({
       email: "",
-      confirmPassword: "",
-      password: "",
+      phoneNumber: "",
       name: "",
       firstName: "",
       lastName: "",
+      address: "",
     });
   };
 
@@ -121,6 +122,28 @@ export function SignUp() {
                     className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
                   />
                 </div>
+                <div>
+                  <label className="block mb-1 text-xs">Address</label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1 text-xs">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
+                  />
+                </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
                     <label className="block mb-1 text-xs">First Name</label>
@@ -146,33 +169,11 @@ export function SignUp() {
                   </div>
                 </div>
                 <div>
-                  <label className="block mb-1 text-xs">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
-                  />
-                </div>
-                <div>
-                  <label className="block mb-1 text-xs">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
-                  />
-                </div>
-                <div>
-                  <label className="block mb-1 text-xs">Confirm Password</label>
+                  <label className="block mb-1 text-xs">Phone Number</label>
                   <input
                     type="password"
                     id="confirmPassword"
-                    value={formData.confirmPassword}
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
                     required
                     className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full"
