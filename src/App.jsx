@@ -28,10 +28,12 @@ import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 function App() {
   return (
     <BrowserRouter>
-      <Sessions/>
+      <Sessions />
       <Routes>
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path = "/activate" element = {<ActivationPage/>}/>
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+      <Routes>
+        <Route path="/activate" element={<ActivationPage />} />
       </Routes>
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
