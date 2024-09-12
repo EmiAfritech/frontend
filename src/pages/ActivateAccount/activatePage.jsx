@@ -12,7 +12,6 @@ export function ActivationPage() {
   const navigate = useNavigate();
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
-
   const email = location.state?.email || "";
 
   const handleInputChange = (e) => {
@@ -25,6 +24,8 @@ export function ActivationPage() {
       toast.error("Please enter the activation token.");
       return;
     }
+
+    console.log(formData.token)
 
     setIsActivating(true);
     try {
