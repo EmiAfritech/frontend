@@ -20,7 +20,7 @@ export function SignUp() {
   const notifyError = (message) => toast.error(message);
   const notifyInfo = (message) => toast.info(message);
   const { email, address, phoneNumber, name, firstName, lastName } = formData;
-
+  console.log(formData);
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
