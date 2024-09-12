@@ -30,9 +30,15 @@ export function ActivationPage() {
     try {
       const response = await axios.post(
         ACTIVATE_ACCOUNT,
-        JSON.stringify({ token }),
-        { headers: { "Content-Type": "application/json" } }
+        JSON.stringify({
+          token
+        }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       );
+
 
       if (response.status === 200) {
         setActivationSuccess(true);
