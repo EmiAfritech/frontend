@@ -1,19 +1,19 @@
 /*************************************************General******************************************************/
 
 //login url
-export const LOGIN_URL = "/login";
+export const LOGIN_URL = "/v1/Auth/login";
 
 //activation url
-export const ACTIVATE_ACCOUNT ="/Account/Activate";
+export const ACTIVATE_ACCOUNT ="/v1/Account/Activate";
 
 //login url
 export const CREATE_URL = "/organizations/create";
 
 //signup
-export const CREATE_ORGANIZATION = "/Organization/create"
+export const CREATE_ORGANIZATION = "/v1/Organization/create"
 
 //logout
-export const LOGOUT_URL = "/logout";
+export const LOGOUT_URL = "/v1/Auth/logout";
 
 //checkSessions
 export const Sessions_URL = "/checkSessionStatus";
