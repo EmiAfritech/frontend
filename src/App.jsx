@@ -24,6 +24,7 @@ import { ResetPassword } from "./pages/resetPassword/resetpassword";
 import { Sessions } from "./api/sessions";
 import { SignUp } from "./pages/signup/signup";
 import { ActivationPage } from "./pages/ActivateAccount/activatePage";
+import { CreatePasswordPage } from "./pages/createPassword/createPassword";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/activate" element={<ActivationPage />} />
-        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/setPassword" element={<CreatePasswordPage/>} />
 
         {/* Private Routes wrapped in Sidebar */}
         <Route path="/" element={<Sidebar />}>
