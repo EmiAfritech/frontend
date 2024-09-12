@@ -13,6 +13,7 @@ export function ActivationPage() {
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
   const email = location.state?.email || "";
+  const { token } = formData;
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -30,7 +31,7 @@ export function ActivationPage() {
     try {
       const response = await axios.post(
         ACTIVATE_ACCOUNT,
-        JSON.stringify({ token: formData.token }),
+        JSON.stringify({ token }),
         { headers: { "Content-Type": "application/json" } }
       );
 
