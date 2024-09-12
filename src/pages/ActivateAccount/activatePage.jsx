@@ -56,18 +56,18 @@ export function ActivationPage() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="flex-col m-16 flex items-center">
-              <img
+              {/* <img
                 src={afriquetek_logo}
                 alt="Afriquetek Logo"
                 className="w-55 h-20 mb-12"
-              />
+              /> */}
               <form className="w-full">
                 <div className="activation-container w-full">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-12 p-4 rounded-full border border-blue-400 font-bold text-sm w-full">
+                      <p className="mb-24 p-4  font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
