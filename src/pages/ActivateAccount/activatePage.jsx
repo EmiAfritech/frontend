@@ -75,11 +75,11 @@ export function ActivationPage() {
                   ) : (
                     <div>
                       <p className="mb-8 p-4 rounded-full border border-gray-400 text-xs">
-                        Activating account for: {email}
+                        email: {email}
                       </p>
                       <div>
                         <label className="block mb-1 text-xs">
-                          Subscription token
+                          Subscription Link
                         </label>
                         <input
                           type="text"
@@ -87,7 +87,7 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
+                          className="w-full p-1 text-sm h-12 mb-2 border border-gray-300"
                         />
                       </div>
                       <button
@@ -95,7 +95,7 @@ export function ActivationPage() {
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
-                        {isActivating ? "Activating..." : "Activate Account"}
+                        {isActivating ? "Activating..." : "Submit Link"}
                       </button>
                     </div>
                   )}
