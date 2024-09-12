@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
@@ -25,7 +25,6 @@ export function ActivationPage() {
       toast.error("Please enter the activation token.");
       return;
     }
-
 
     setIsActivating(true);
     try {
@@ -91,6 +90,14 @@ export function ActivationPage() {
                       >
                         {isActivating ? "Activating..." : "Submit Link"}
                       </button>
+                      <div className="new-user mt-4">
+                        <span>No code sent?</span>{" "}
+                        <span style={{ color: "blue" }}>
+                          <Link className="new" to="/signup">
+                            Return to signUp
+                          </Link>
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
