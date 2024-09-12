@@ -25,13 +25,12 @@ export function ActivationPage() {
       return;
     }
 
-    console.log(formData.token)
 
     setIsActivating(true);
     try {
       const response = await axios.post(
         ACTIVATE_ACCOUNT,
-        { token: formData.token },
+        JSON.stringify({ token: formData.token }),
         { headers: { "Content-Type": "application/json" } }
       );
 
@@ -68,7 +67,7 @@ export function ActivationPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-52 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
+                      <p className="mb-40 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
