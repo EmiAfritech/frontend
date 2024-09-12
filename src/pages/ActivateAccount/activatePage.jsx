@@ -61,12 +61,6 @@ export function ActivationPage() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
           <div className="login-container">
-            <div className="flex flex-row-reverse mt-3 mr-3 items-center">
-              <LanguageButton />
-              <span className="pr-2">
-                <FaLanguage size={20} color="blue" />
-              </span>
-            </div>
             <div className="formstyle flex-col">
               <img
                 src={afriquetek_logo}
