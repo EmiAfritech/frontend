@@ -31,7 +31,7 @@ function App() {
       <Sessions/>
       <Routes>
         <Route path="/signup" element={<SignUp/>} />
-        <Route path = "/activation" element = {<ActivationPage/>}/>
+        <Route path = "/activate" element = {<ActivationPage/>}/>
       </Routes>
       <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
