@@ -77,7 +77,7 @@ export function ActivationPage() {
                       <p className="mb-8 p-4 rounded-full border border-gray-400 text-xs">
                         email: {email}
                       </p>
-                      <div>
+                      <div className="w-full">
                         <label className="block mb-1 text-xs">
                           Subscription Link
                         </label>
@@ -87,7 +87,7 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-12 border border-gray-300"
+                          className="p-1 text-sm h-12 mb-12 border border-gray-300"
                         />
                       </div>
                       <button
