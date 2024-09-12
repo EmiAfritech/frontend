@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
@@ -62,7 +62,7 @@ export function ActivationPage() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3 ">
           <div className="login-container">
-            <div className="formstyle flex-col">
+            <div className="flex-col m-16 flex items-center">
               <img
                 src={afriquetek_logo}
                 alt="Paris"
@@ -70,12 +70,11 @@ export function ActivationPage() {
               />
               <form>
                 <div className="activation-container">
-                  <h2>Account Activation</h2>
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div>
-                      <p className="mb-8 p-4 rounded-full border border-gray-400 text-center">
+                      <p className="mb-8 p-4 rounded-full border border-gray-400 text-xs">
                         Activating account for: {email}
                       </p>
                       <div>
@@ -92,7 +91,7 @@ export function ActivationPage() {
                         />
                       </div>
                       <button
-                        className="activate-button"
+                        className="login hover:bg-[#2a36b8] mt-4 p-4 text-sm"
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
