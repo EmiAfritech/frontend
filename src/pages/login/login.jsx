@@ -180,7 +180,7 @@ export function Login() {
                 <div className="new-user">
                   <span>{t("registerQuestion")}</span>{" "}
                   <span style={{ color: "blue" }}>
-                    <Link className="new" to="/signup">
+                    <Link className="new" to="/activation">
                       {t("register")}
                     </Link>
                   </span>
