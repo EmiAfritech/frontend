@@ -57,7 +57,7 @@ export function SignUp() {
 
       if (status === 201) {
         alert("Organization Created Successfully, Kindly Check your Mail");
-        navigate("/activate", { replace: true });
+        navigate("/activate", { replace: true, state: { email } });
       } else {
         notifyInfo("Authorization returned null");
       }
