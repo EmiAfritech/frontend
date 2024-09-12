@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { Login } from "./pages/login/login";
 import { Dashboard } from "./pages/dasboard/dashboard";
 import { RiskMonitoring } from "./pages/riskmonitoring/riskmonitoring";
 import { Sidebar } from "./component/components/sidebar";
@@ -28,39 +27,41 @@ import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 function App() {
   return (
     <BrowserRouter>
-      <Sessions/>
+      <Sessions />
       <Routes>
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path = "/c" element = {<ActivationPage/>}/>
-      </Routes>
-      <Routes path="/" element={<Sidebar />}>
+        {/* Public Routes */}
         <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/activate" element={<ActivationPage />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/risk-identification" element={<RiskView />} />
-        <Route path="/risk-monitoring" element={<RiskMonitoring />} />
-        <Route path="/risk-review" element={<Riskreview />} />
-        <Route path="/risk-mitigation" element={<RiskMitigation />} />
-        <Route path="/department" element={<Department />} />
-        <Route path="/closed-risks" element={<ClosedRisk />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/report" element={<Report />}>
-          <Route index element={<ReportRiskDashboard />} />
-          <Route path="advice" element={<ReportRiskAdvice />} />
-          <Route path="mitigation" element={<ReportRiskMitigation />} />
-          <Route path="risk-status-report" element={<RiskStatusReport />} />
-          <Route path="risk-appetite" element={<ReportRiskAppetite />} />
-          <Route path="audit-trail" element={<ReportAuditTrail />} />
-          <Route
-            path="likelyhood-vs-impact"
-            element={<ReportLikelyhoodVsImpact />}
-          />
-          <Route
-            path="review-needing-risks"
-            element={<ReviewNeedingRisksReport />}
-          />
-          <Route path="chatbot" element={<ReportRiskChatbot />} />
+
+        {/* Private Routes wrapped in Sidebar */}
+        <Route path="/" element={<Sidebar />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="risk-identification" element={<RiskView />} />
+          <Route path="risk-monitoring" element={<RiskMonitoring />} />
+          <Route path="risk-review" element={<Riskreview />} />
+          <Route path="risk-mitigation" element={<RiskMitigation />} />
+          <Route path="department" element={<Department />} />
+          <Route path="closed-risks" element={<ClosedRisk />} />
+          <Route path="employees" element={<Employees />} />
+          
+          {/* Nested Routes for Reports */}
+          <Route path="report" element={<Report />}>
+            <Route index element={<ReportRiskDashboard />} />
+            <Route path="advice" element={<ReportRiskAdvice />} />
+            <Route path="mitigation" element={<ReportRiskMitigation />} />
+            <Route path="risk-status-report" element={<RiskStatusReport />} />
+            <Route path="risk-appetite" element={<ReportRiskAppetite />} />
+            <Route path="audit-trail" element={<ReportAuditTrail />} />
+            <Route path="likelyhood-vs-impact" element={<ReportLikelyhoodVsImpact />} />
+            <Route path="review-needing-risks" element={<ReviewNeedingRisksReport />} />
+            <Route path="chatbot" element={<ReportRiskChatbot />} />
+          </Route>
         </Route>
+
+        {/* Catch-All Route for 404 */}
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
   );

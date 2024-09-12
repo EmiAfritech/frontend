@@ -5,41 +5,37 @@ import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
 
 export function ActivationPage() {
-  const [formData, setFormData] = useState({
-    token: "",
-  });
+  const [formData, setFormData] = useState({ token: "" });
   const location = useLocation();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
 
+  const email = location.state?.email || ""; // Get email from state, fallback to empty if not available
+
   useEffect(() => {
-    if (location.state && location.state.email) {
-      setEmail(location.state.email);
-    } else {
+    if (!email) {
       toast.error("No email found. Please try signing up again.");
       navigate("/");
     }
-  }, [location.state, navigate]);
+  }, [email, navigate]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const resetForm = () => {
-    setFormData({
-      token: "",
-    });
-  };
-
   const handleActivation = async () => {
+    if (!formData.token) {
+      toast.error("Please enter the activation token.");
+      return;
+    }
+
     setIsActivating(true);
     try {
       const response = await axios.post(
         ACTIVATE_ACCOUNT,
-        { token },
+        { token: formData.token },
         { headers: { "Content-Type": "application/json" } }
       );
 
@@ -83,7 +79,8 @@ export function ActivationPage() {
             <button
               className="activate-button"
               onClick={handleActivation}
-              disabled={isActivating}>
+              disabled={isActivating || !formData.token} // Disable button if no token
+            >
               {isActivating ? "Activating..." : "Activate Account"}
             </button>
           </div>
