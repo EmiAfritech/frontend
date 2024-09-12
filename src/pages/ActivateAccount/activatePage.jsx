@@ -68,7 +68,7 @@ export function ActivationPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-54 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
+                      <p className="mb-52 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
