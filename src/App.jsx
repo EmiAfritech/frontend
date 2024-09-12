@@ -22,7 +22,7 @@ import { ReportLikelyhoodVsImpact } from "./pages/report/likelyhoodvsimpact";
 import { ResetPassword } from "./pages/resetPassword/resetpassword";
 import { Sessions } from "./api/sessions";
 import { SignUp } from "./pages/signup/signup";
-import { ActivationPage } from "./pages/ActivateAccount/activatePage";
+import { ActivationPage } from "./pages/activateAccount/activatePage";
 
 function App() {
   return (

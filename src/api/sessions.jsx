@@ -40,8 +40,7 @@ export function Sessions() {
   };
 
   useEffect(() => {
-    const exemptPaths = [ "/activate", "/signup",]; 
-    console.log(exemptPaths);
+    const exemptPaths = [ "/dashboard", "/signup",]; 
 
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
