@@ -50,7 +50,7 @@ export function Login() {
         LOGIN_URL,
         JSON.stringify({ email, password }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json","Accept": "application/json" },
           withCredentials: true,
         }
       );
