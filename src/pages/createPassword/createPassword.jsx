@@ -7,8 +7,16 @@ export function CreatePasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({ 
+    password: "" ,
+    confirmPassword: "",
+  });
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   useEffect(() => {
     if (location.state && location.state.email) {
@@ -52,7 +60,7 @@ export function CreatePasswordPage() {
           <p>Your account has been activated. You can now log in.</p>
         ) : (
           <div>
-            <p>Activating account for: {email}</p>
+            <p>email: {email}</p>
             <button
               className="activate-button"
               onClick={handleActivation}
