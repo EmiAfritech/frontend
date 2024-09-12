@@ -14,13 +14,6 @@ export function ActivationPage() {
   const [activationSuccess, setActivationSuccess] = useState(false);
 
   const email = location.state?.email || "";
-  console.log(email);
-  useEffect(() => {
-    if (!email) {
-      toast.error("No email found. Please try signing up again.");
-      // navigate("/");
-    }
-  }, [email, navigate]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -74,7 +67,7 @@ export function ActivationPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div>
-                      <p className="mb-8 p-4 rounded-full border border-gray-400 text-xs">
+                      <p className="mb-8 p-4 rounded-full border border-blue-400 text-xs">
                         email: {email}
                       </p>
                       <div className="w-full">
