@@ -61,7 +61,7 @@ export function ActivationPage() {
                 alt="Paris"
                 className="w-55 h-20 mb-12"
               />
-              <form>
+              <form className="w-full">
                 <div className="activation-container">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
@@ -70,7 +70,7 @@ export function ActivationPage() {
                       <p className="mb-8 p-4 rounded-full border border-blue-400 text-xs">
                         email: {email}
                       </p>
-                      <div className="w-full">
+                      <div >
                         <label className="block mb-1 text-xs">
                           Subscription Link
                         </label>
