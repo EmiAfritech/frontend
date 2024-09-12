@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
 import "../login/login.css"
 
 export function ActivationPage() {
