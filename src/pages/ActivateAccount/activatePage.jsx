@@ -16,7 +16,7 @@ export function ActivationPage() {
   useEffect(() => {
     if (!email) {
       toast.error("No email found. Please try signing up again.");
-      navigate("/");
+      // navigate("/");
     }
   }, [email, navigate]);
 
