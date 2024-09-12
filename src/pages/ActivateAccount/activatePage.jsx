@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
+import "../login/login.css"
 
 export function ActivationPage() {
   const [formData, setFormData] = useState({ token: "" });
@@ -11,8 +12,8 @@ export function ActivationPage() {
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
 
-  const email = location.state?.email || ""; 
-  console.log(email)
+  const email = location.state?.email || "";
+  console.log(email);
   useEffect(() => {
     if (!email) {
       toast.error("No email found. Please try signing up again.");
@@ -56,35 +57,59 @@ export function ActivationPage() {
   return (
     <>
       <ToastContainer hideProgressBar />
-      <div className="activation-container">
-        <h2>Account Activation</h2>
-        {activationSuccess ? (
-          <p>Your account has been activated. You can now log in.</p>
-        ) : (
-          <div>
-            <p className="mb-8 p-4 rounded-full border border-gray-400 text-center">
-              Activating account for: {email}
-            </p>
-            <div>
-              <label className="block mb-1 text-xs">Subscription token</label>
-              <input
-                type="text"
-                id="token"
-                value={formData.token}
-                onChange={handleInputChange}
-                required
-                className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
-              />
+      <div className="flex flex-row flex-direction">
+        <div className="basis-2/3 background"></div>
+        <div className="basis-1/3 ">
+          <div className="login-container">
+            <div className="flex flex-row-reverse mt-3 mr-3 items-center">
+              <LanguageButton />
+              <span className="pr-2">
+                <FaLanguage size={20} color="blue" />
+              </span>
             </div>
-            <button
-              className="activate-button"
-              onClick={handleActivation}
-              disabled={isActivating || !formData.token} // Disable button if no token
-            >
-              {isActivating ? "Activating..." : "Activate Account"}
-            </button>
+            <div className="formstyle flex-col">
+              <img
+                src={afriquetek_logo}
+                alt="Paris"
+                className="w-55 h-20 mb-12"
+              />
+              <form>
+                <div className="activation-container">
+                  <h2>Account Activation</h2>
+                  {activationSuccess ? (
+                    <p>Your account has been activated. You can now log in.</p>
+                  ) : (
+                    <div>
+                      <p className="mb-8 p-4 rounded-full border border-gray-400 text-center">
+                        Activating account for: {email}
+                      </p>
+                      <div>
+                        <label className="block mb-1 text-xs">
+                          Subscription token
+                        </label>
+                        <input
+                          type="text"
+                          id="token"
+                          value={formData.token}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full"
+                        />
+                      </div>
+                      <button
+                        className="activate-button"
+                        onClick={handleActivation}
+                        disabled={isActivating || !formData.token} // Disable button if no token
+                      >
+                        {isActivating ? "Activating..." : "Activate Account"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </form>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </>
   );
