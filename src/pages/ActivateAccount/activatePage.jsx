@@ -3,8 +3,8 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
-import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
-import "../login/login.css"
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
+import "../login/login.css";
 
 export function ActivationPage() {
   const [formData, setFormData] = useState({ token: "" });
@@ -53,21 +53,21 @@ export function ActivationPage() {
       <ToastContainer hideProgressBar />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
-        <div className="basis-1/3 ">
+        <div className="basis-1/3">
           <div className="login-container">
             <div className="flex-col m-16 flex items-center">
               <img
                 src={afriquetek_logo}
-                alt="Paris"
+                alt="Afriquetek Logo"
                 className="w-55 h-20 mb-12"
               />
               <form className="w-full">
-                <div className="activation-container">
+                <div className="activation-container w-full">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
-                    <div>
-                      <p className="mb-8 p-4 rounded-full border border-blue-400 text-xs">
+                    <div className="w-full">
+                      <p className="mb-8 p-4 rounded-full border border-blue-400 text-xs w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
@@ -80,11 +80,11 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="p-6 text-sm h-12 mb-12 border border-gray-300"
+                          className="w-full p-1 text-sm h-12 mb-12 border border-gray-300"
                         />
                       </div>
                       <button
-                        className="login hover:bg-[#2a36b8] mt-4 p-4 text-sm"
+                        className="login w-full hover:bg-[#2a36b8] mt-4 p-4 text-sm"
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
