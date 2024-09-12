@@ -55,7 +55,7 @@ export function ActivationPage() {
 
   return (
     <>
-      {/* <ToastContainer hideProgressBar />
+      <ToastContainer hideProgressBar />
       <div className="activation-container">
         <h2>Account Activation</h2>
         {activationSuccess ? (
@@ -85,8 +85,7 @@ export function ActivationPage() {
             </button>
           </div>
         )}
-      </div> */}
-      <p>hi there</p>
+      </div>
     </>
   );
 }
