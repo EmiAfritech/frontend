@@ -11,8 +11,8 @@ export function ActivationPage() {
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
 
-  const email = location.state?.email || ""; // Get email from state, fallback to empty if not available
-
+  const email = location.state?.email || ""; 
+  console.log(email)
   useEffect(() => {
     if (!email) {
       toast.error("No email found. Please try signing up again.");
