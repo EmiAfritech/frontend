@@ -67,12 +67,12 @@ export function ActivationPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-64 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
+                      <p className="mb-54 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
                         <label className="block mb-1 text-xs">
-                          Subscription Link
+                          Activation Token
                         </label>
                         <input
                           type="text"
@@ -80,7 +80,7 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-6 border border-gray-300"
+                          className="w-full p-1 text-sm h-12 mb-6 border border-gray-300 rounded-sm"
                         />
                       </div>
                       <button
