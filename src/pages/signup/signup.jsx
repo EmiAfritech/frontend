@@ -90,7 +90,6 @@ export function SignUp() {
     if (!formData.email) {
       alert("Enter your email");
     } else {
-      localStorage.setItem("email", formData.email);
       navigate("/resetpassword", { replace: true });
     }
   };
