@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-export function ActivationPage() {
+export function CreatePasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');

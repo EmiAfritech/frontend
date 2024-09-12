@@ -69,7 +69,6 @@ export function ActivationPage() {
             <p className="mb-8 p-4 rounded-full border border-gray-400 text-center">
               Activating account for: {email}
             </p>
-
             <div>
               <label className="block mb-1 text-xs">Subscription token</label>
               <input

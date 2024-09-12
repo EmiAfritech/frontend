@@ -19,6 +19,7 @@ export function SignUp() {
   const navigate = useNavigate();
   const notifyError = (message) => toast.error(message);
   const notifyInfo = (message) => toast.info(message);
+  const { email, address, phoneNumber, name, firstName, lastName } = formData;
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -40,12 +41,12 @@ export function SignUp() {
       const response = await axios.post(
         CREATE_ORGANIZATION,
         JSON.stringify({
-          email: formData.email,
-          address: formData.address,
-          phoneNumber: formData.phoneNumber,
-          name: formData.name,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
+          email,
+          address,
+          phoneNumber,
+          name,
+          firstName,
+          lastName,
         }),
         {
           headers: { "Content-Type": "application/json" },
