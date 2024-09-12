@@ -5,57 +5,57 @@ import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
 
 export function ActivationPage() {
-  const [formData, setFormData] = useState({ token: "" });
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isActivating, setIsActivating] = useState(false);
-  const [activationSuccess, setActivationSuccess] = useState(false);
+  // const [formData, setFormData] = useState({ token: "" });
+  // const location = useLocation();
+  // const navigate = useNavigate();
+  // const [isActivating, setIsActivating] = useState(false);
+  // const [activationSuccess, setActivationSuccess] = useState(false);
 
-  const email = location.state?.email || ""; 
-  console.log(email)
-  useEffect(() => {
-    if (!email) {
-      toast.error("No email found. Please try signing up again.");
-      // navigate("/");
-    }
-  }, [email, navigate]);
+  // const email = location.state?.email || ""; 
+  // console.log(email)
+  // useEffect(() => {
+  //   if (!email) {
+  //     toast.error("No email found. Please try signing up again.");
+  //     // navigate("/");
+  //   }
+  // }, [email, navigate]);
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
-  };
+  // const handleInputChange = (e) => {
+  //   const { id, value } = e.target;
+  //   setFormData((prevData) => ({ ...prevData, [id]: value }));
+  // };
 
-  const handleActivation = async () => {
-    if (!formData.token) {
-      toast.error("Please enter the activation token.");
-      return;
-    }
+  // const handleActivation = async () => {
+  //   if (!formData.token) {
+  //     toast.error("Please enter the activation token.");
+  //     return;
+  //   }
 
-    setIsActivating(true);
-    try {
-      const response = await axios.post(
-        ACTIVATE_ACCOUNT,
-        { token: formData.token },
-        { headers: { "Content-Type": "application/json" } }
-      );
+  //   setIsActivating(true);
+  //   try {
+  //     const response = await axios.post(
+  //       ACTIVATE_ACCOUNT,
+  //       { token: formData.token },
+  //       { headers: { "Content-Type": "application/json" } }
+  //     );
 
-      if (response.status === 200) {
-        setActivationSuccess(true);
-        toast.success("Account activated successfully!");
-        navigate("/");
-      } else {
-        toast.error("Activation failed. Please try again.");
-      }
-    } catch (error) {
-      toast.error("Server error. Please try again later.");
-    } finally {
-      setIsActivating(false);
-    }
-  };
+  //     if (response.status === 200) {
+  //       setActivationSuccess(true);
+  //       toast.success("Account activated successfully!");
+  //       navigate("/");
+  //     } else {
+  //       toast.error("Activation failed. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     toast.error("Server error. Please try again later.");
+  //   } finally {
+  //     setIsActivating(false);
+  //   }
+  // };
 
   return (
     <>
-      <ToastContainer hideProgressBar />
+      {/* <ToastContainer hideProgressBar />
       <div className="activation-container">
         <h2>Account Activation</h2>
         {activationSuccess ? (
@@ -85,7 +85,8 @@ export function ActivationPage() {
             </button>
           </div>
         )}
-      </div>
+      </div> */}
+      <p>hi there</p>
     </>
   );
 }
