@@ -87,7 +87,7 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-2 border border-gray-300"
+                          className="w-full p-1 text-sm h-12 mb-12 border border-gray-300"
                         />
                       </div>
                       <button
