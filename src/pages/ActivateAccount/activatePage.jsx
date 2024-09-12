@@ -86,11 +86,11 @@ export function ActivationPage() {
                           value={formData.token}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
+                          className="w-full p-4 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
                         />
                       </div>
                       <button
-                        className="login w-full hover:bg-[#2a36b8] mt-4 p-4 text-sm"
+                        className="login w-full hover:bg-[#2a36b8] mt-4 p-4 text-sm rounded-xl"
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
