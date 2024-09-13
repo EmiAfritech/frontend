@@ -10,7 +10,7 @@ export const ACTIVATE_ACCOUNT ="/Account/Activate";
 export const CREATE_URL = "/organizations/create";
 
 //signup
-export const CREATE_ORGANIZATION = "/Organization/creates"
+export const CREATE_ORGANIZATION = "/Organization/create"
 
 //logout
 export const LOGOUT_URL = "/v1/Auth/logout";
