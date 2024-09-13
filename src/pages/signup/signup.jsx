@@ -63,12 +63,14 @@ export function SignUp() {
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
-        notifyError("Server is Currently Unavailable, Please Try Again Later");
+        notifyError("Network is Currently Unavailable, Please Try Again Later");
         resetForm();
       } else if (err.response?.status === 401) {
         notifyError("Unauthorized User! Please check your credentials");
       } else if ([400, 404].includes(err.response?.status)) {
         notifyError("Kindly check input details");
+      } else if ([500].includes(err.response?.status)) {
+        notifyError("Server is Currently unavailable, please contact admin");
       }
     } finally {
       setIsLoading(false);
