@@ -51,7 +51,6 @@ export function CreatePasswordPage() {
         '/api/activate',  // Replace with your actual activation URL
         {
           email,
-          token: formData.token,
           password: formData.password
         },
         { headers: { 'Content-Type': 'application/json' } }

@@ -7,7 +7,7 @@ export const LOGIN_URL = "/Auth/login";
 export const ACTIVATE_ACCOUNT = "/Account/Activate";
 
 //login url
-export const CREATE_URL = "/organizations/create";
+export const CREAT_PASSWORD = "/Organization/User/Password/set";
 
 //signup
 export const CREATE_ORGANIZATION = "/Organization/create"
