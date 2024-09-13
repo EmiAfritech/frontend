@@ -124,7 +124,7 @@ export function CreatePasswordPage() {
                       <button
                         onClick={handleActivation}
                         className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition duration-300"
-                        disabled={isActivating || !formData.token}
+                        disabled={isActivating}
                       >
                         {isActivating ? "Loading..." : "Submit"}
                       </button>
