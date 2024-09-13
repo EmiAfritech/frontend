@@ -28,11 +28,12 @@ export function CreatePasswordPage() {
   }, [location.state]);
 
   const handleInputChange = (e) => {
-    console.log("hi")
+    console.log(formData)
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  
   const handleActivation = async (e) => {
     e.preventDefault(); // Prevent form submission
 
