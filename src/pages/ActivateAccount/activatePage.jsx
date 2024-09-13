@@ -31,7 +31,7 @@ export function ActivationPage() {
     setIsActivating(true);
     try {
       const response = await axios.post(
-        ACTIVATE_ACCOUNT,
+        "https://risksaasbackend-production.up.railway.app/api/v1/Account/Activate",
         JSON.stringify({
           token
         }),
