@@ -13,7 +13,6 @@ export function CreatePasswordPage() {
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
-    token: ""
   });
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
@@ -29,6 +28,7 @@ export function CreatePasswordPage() {
   }, [location.state]);
 
   const handleInputChange = (e) => {
+    console.log("hi")
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
