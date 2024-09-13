@@ -92,7 +92,7 @@ export function CreatePasswordPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-4 p-4 border border-blue-300 rounded-full font-bold text-sm w-full">
+                      <p className="mb-16 px-4 py-2 border border-blue-300 rounded-full font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full mb-4">
