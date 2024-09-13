@@ -19,14 +19,7 @@ export function CreatePasswordPage() {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  useEffect(() => {
-    if (location.state && location.state.email) {
-      setEmail(location.state.email);
-    } else {
-      toast.error('No email found. Please try signing up again.');
-      navigate('/');
-    }
-  }, [location.state, navigate]);
+
 
   const handleActivation = async () => {
     setIsActivating(true);
