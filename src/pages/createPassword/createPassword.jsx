@@ -64,7 +64,7 @@ export function CreatePasswordPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-48 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
+                      <p className="mb-24 p-4  border border-blue-300 rounded-full font-bold text-sm w-full">
                         email: {email}
                       </p>
                       <div className="w-full">
@@ -77,7 +77,7 @@ export function CreatePasswordPage() {
                           value={formData.password}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-24 border border-gray-300"
+                          className="w-full p-1 text-sm h-12 mb-4 border border-gray-300"
                         />
                       </div>
                       <div className="w-full">
@@ -90,7 +90,7 @@ export function CreatePasswordPage() {
                           value={formData.confirmPassword}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-24 border border-gray-300"
+                          className="w-full p-1 text-sm h-12 mb-4 border border-gray-300"
                         />
                       </div>
                       <button
@@ -98,7 +98,7 @@ export function CreatePasswordPage() {
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
-                        {isActivating ? "Activating..." : "Submit Link"}
+                        {isActivating ? "Loading..." : "Submit"}
                       </button>
                     </div>
                   )}
