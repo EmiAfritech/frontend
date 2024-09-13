@@ -83,7 +83,7 @@ export function CreatePasswordPage() {
                 alt="Afriquetek Logo"
                 className="w-55 h-20 mb-12"
               />
-              <form className="w-full" onSubmit={handleActivation}>
+              <form className="w-full">
                 <div className=" w-full">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
@@ -122,7 +122,7 @@ export function CreatePasswordPage() {
                         />
                       </div>
                       <button
-                        type="submit"
+                        onClick={handleActivation}
                         className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition duration-300"
                         disabled={isActivating || !formData.token}
                       >
