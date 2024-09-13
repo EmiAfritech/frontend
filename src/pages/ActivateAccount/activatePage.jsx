@@ -42,7 +42,7 @@ export function ActivationPage() {
       );
 
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setActivationSuccess(true);
         toast.success("Account activated successfully! Set your password");
         navigate("/setPassword");
