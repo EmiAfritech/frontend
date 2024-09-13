@@ -4,6 +4,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import "../login/login.css";
+import { CREAT_PASSWORD } from "../../api/routes";
 
 export function CreatePasswordPage() {
   const location = useLocation();
@@ -48,15 +49,15 @@ export function CreatePasswordPage() {
     setIsActivating(true);
     try {
       const response = await axios.post(
-        '/api/activate',  // Replace with your actual activation URL
-        {
+        CREAT_PASSWORD,
+        JSON.stringify({
           email,
           password: formData.password
-        },
+        }),
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setActivationSuccess(true);
         toast.success('Account activated successfully!');
         navigate('/'); // Redirect after successful activation
