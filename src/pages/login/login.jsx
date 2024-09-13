@@ -68,7 +68,7 @@ export function Login() {
             department: department, 
             organizationName: organizationName
           });
-          navigate("/dashboard", { replace: true });
+          navigate("dashboard", { replace: true });
         } else {
           notifyReturningNull();
         }
