@@ -14,6 +14,8 @@ export function ActivationPage() {
   const [activationSuccess, setActivationSuccess] = useState(false);
   const email = location.state?.email || "";
   const { token } = formData;
+  console.log(location.pathname)
+  console.log(ACTIVATE_ACCOUNT)
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;

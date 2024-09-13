@@ -4,7 +4,7 @@
 export const LOGIN_URL = "/Auth/login";
 
 //activation url
-export const ACTIVATE_ACCOUNT ="/Account/Activate";
+export const ACTIVATE_ACCOUNT = "/Account/Activate";
 
 //login url
 export const CREATE_URL = "/organizations/create";
