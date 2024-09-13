@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
@@ -14,8 +14,6 @@ export function ActivationPage() {
   const [activationSuccess, setActivationSuccess] = useState(false);
   const email = location.state?.email || "";
   const { token } = formData;
-  console.log(location.pathname)
-  console.log(ACTIVATE_ACCOUNT)
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -31,7 +29,7 @@ export function ActivationPage() {
     setIsActivating(true);
     try {
       const response = await axios.post(
-        "https://risksaasbackend-production.up.railway.app/api/v1/Account/Activate",
+        ACTIVATE_ACCOUNT,
         JSON.stringify({
           token
         }),
