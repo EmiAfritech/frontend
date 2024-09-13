@@ -20,21 +20,17 @@ export function CreatePasswordPage() {
   useEffect(() => {
     if (location.state?.email) {
       setEmail(location.state.email);
-      setFormData((prevData) => ({
-        ...prevData,
-        token: location.state.token,
-      }));
     }
   }, [location.state]);
 
   const handleInputChange = (e) => {
-    console.log(formData)
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
   
   const handleActivation = async (e) => {
+    console.log(formData)
     e.preventDefault(); // Prevent form submission
 
     if (formData.password !== formData.confirmPassword) {
