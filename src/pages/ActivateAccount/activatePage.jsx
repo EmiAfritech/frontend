@@ -44,7 +44,7 @@ export function ActivationPage() {
 
       if (response.status === 201) {
         setActivationSuccess(true);
-        toast.success("Account activated successfully! Set your password");
+        toast.success("Account activated successfully! You almost there,  kindly Set your password");
         navigate("/setPassword" , { replace: true, state: { email } });
       } else {
         toast.error("Activation failed. Please try again.");

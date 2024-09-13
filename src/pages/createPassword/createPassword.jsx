@@ -59,7 +59,7 @@ export function CreatePasswordPage() {
 
       if (response.status === 201) {
         setActivationSuccess(true);
-        toast.success('Account activated successfully!');
+        toast.success('Weldone, Account activated successfully! Now Login');
         navigate('/'); // Redirect after successful activation
       } else {
         toast.error('Activation failed. Please try again.');
