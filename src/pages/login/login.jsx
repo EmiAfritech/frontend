@@ -61,7 +61,7 @@ export function Login() {
         const department = response.data.department;
         const organizationName = response.data.organizationName;
         
-
+        console.log(token)
         if (token && role) {
           setAuth({ 
             token: token, 
