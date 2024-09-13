@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
@@ -30,7 +30,6 @@ export function CreatePasswordPage() {
 
   
   const handleActivation = async (e) => {
-    console.log(formData)
     e.preventDefault(); // Prevent form submission
 
     if (formData.password !== formData.confirmPassword) {
