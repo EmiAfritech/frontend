@@ -29,43 +29,44 @@ import { CreatePasswordPage } from "./pages/createPassword/createPassword";
 function App() {
   return (
     <BrowserRouter>
-      <Sessions />
-      <Routes>
-        {/* Public Routes */}
+      <Sessions/>
+      <Routes path="/" element={<Sidebar />}>
         <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/activate" element={<ActivationPage />} />
         <Route path="/setPassword" element={<CreatePasswordPage/>} />
+        <Routes path= "/signup" element={<SignUp/>}/>
+        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/risk-identification" element={<RiskView />} />
+        <Route path="/risk-monitoring" element={<RiskMonitoring />} />
+        <Route path="/risk-review" element={<Riskreview />} />
+        <Route path="/risk-mitigation" element={<RiskMitigation />} />
+        <Route path="/department" element={<Department />} />
+        <Route path="/closed-risks" element={<ClosedRisk />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/report" element={<Report />}>
+          <Route index element={<ReportRiskDashboard />} />
+          <Route path="advice" element={<ReportRiskAdvice />} />
+          <Route path="mitigation" element={<ReportRiskMitigation />} />
 
-        {/* Private Routes wrapped in Sidebar */}
-        <Route path="/" element={<Sidebar />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="risk-identification" element={<RiskView />} />
-          <Route path="risk-monitoring" element={<RiskMonitoring />} />
-          <Route path="risk-review" element={<Riskreview />} />
-          <Route path="risk-mitigation" element={<RiskMitigation />} />
-          <Route path="department" element={<Department />} />
-          <Route path="closed-risks" element={<ClosedRisk />} />
-          <Route path="employees" element={<Employees />} />
-          
-          {/* Nested Routes for Reports */}
-          <Route path="report" element={<Report />}>
-            <Route index element={<ReportRiskDashboard />} />
-            <Route path="advice" element={<ReportRiskAdvice />} />
-            <Route path="mitigation" element={<ReportRiskMitigation />} />
-            <Route path="risk-status-report" element={<RiskStatusReport />} />
-            <Route path="risk-appetite" element={<ReportRiskAppetite />} />
-            <Route path="audit-trail" element={<ReportAuditTrail />} />
-            <Route path="likelyhood-vs-impact" element={<ReportLikelyhoodVsImpact />} />
-            <Route path="review-needing-risks" element={<ReviewNeedingRisksReport />} />
-            <Route path="chatbot" element={<ReportRiskChatbot />} />
-          </Route>
+          <Route path="risk-status-report" element={<RiskStatusReport />} />
+
+          <Route path="risk-appetite" element={<ReportRiskAppetite />} />
+          <Route path="audit-trail" element={<ReportAuditTrail />} />
+          <Route
+            path="likelyhood-vs-impact"
+            element={<ReportLikelyhoodVsImpact />}
+          />
+
+          <Route
+            path="review-needing-risks"
+            element={<ReviewNeedingRisksReport />}
+          />
+          <Route path="chatbot" element={<ReportRiskChatbot />} />
         </Route>
-
-        {/* Catch-All Route for 404 */}
-        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
+    
   );
 }
 
