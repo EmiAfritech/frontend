@@ -83,7 +83,7 @@ export function CreatePasswordPage() {
               <img
                 src={afriquetek_logo}
                 alt="Afriquetek Logo"
-                className="w-52 h-auto mb-12"
+                className="w-55 h-20 mb-12"
               />
               <form className="w-full" onSubmit={handleActivation}>
                 <div className=" w-full">
