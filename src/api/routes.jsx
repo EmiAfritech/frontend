@@ -13,7 +13,7 @@ export const CREAT_PASSWORD = "/Organization/User/Password/set";
 export const CREATE_ORGANIZATION = "/Organization/create"
 
 //logout
-export const LOGOUT_URL = "/v1/Auth/logout";
+export const LOGOUT_URL = "/Auth/logout";
 
 //checkSessions
 export const Sessions_URL = "/checkSessionStatus";
