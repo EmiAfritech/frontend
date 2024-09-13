@@ -77,7 +77,7 @@ export function CreatePasswordPage() {
                           value={formData.password}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-4 border border-gray-300"
+                          className="w-full p-4 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
                         />
                       </div>
                       <div className="w-full">
@@ -90,7 +90,7 @@ export function CreatePasswordPage() {
                           value={formData.confirmPassword}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-1 text-sm h-12 mb-4 border border-gray-300"
+                          className="w-full p-4 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
                         />
                       </div>
                       <button
