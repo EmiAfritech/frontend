@@ -75,9 +75,9 @@ export function CreatePasswordPage() {
   return (
     <>
       <ToastContainer hideProgressBar />
-      <div className="flex flex-row h-screen">
+      <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
-        <div className="basis-1/3 flex items-center justify-center">
+        <div className="basis-1/3">
           <div className="login-container">
             <div className="flex-col m-16 flex items-center">
               <img
