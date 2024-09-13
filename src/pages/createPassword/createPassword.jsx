@@ -53,12 +53,12 @@ export function CreatePasswordPage() {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setActivationSuccess(true);
-        toast.success('Weldone, Account activated successfully! Now Login');
+        toast.success('Weldone, Password Set successfully! Now Login');
         navigate('/'); // Redirect after successful activation
       } else {
-        toast.error('Activation failed. Please try again.');
+        toast.error('Password Set failed. Please try again.');
       }
     } catch (error) {
       toast.error(
