@@ -27,7 +27,7 @@ export const UploadCsv_URL = "/api/departments/risk/create-many-risks";
 export const USERS_URL = "/users";
 
 //department url
-export const DEPARTMENT_URL = "/departments";
+export const DEPARTMENT_URL = "/Organization/Department/list";
 
 //risk url
 export const VIEWALLRISKS_URL = "/risks";
