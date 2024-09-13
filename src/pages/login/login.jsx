@@ -14,7 +14,7 @@ import { AuthContext } from "../../context/AuthContext";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png"
 
 export function Login() {
-  const {setAuth } = useContext(AuthContext);
+  const {auth, setAuth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +61,7 @@ export function Login() {
         const department = response.data.department;
         const organizationName = response.data.organizationName;
         
-        console.log(token)
+        console.log(auth.token)
         if (token && role) {
           setAuth({ 
             token: token, 
