@@ -181,7 +181,7 @@ export function Login() {
                 </button>
                 <div className="pt-3">
                     <ReCaptcha
-                      sitekey="6Ld4b0MqAAAAAD__F0kAHZ0aBwxua7x2MX-0OO4d" // Replace with your ReCaptcha site key
+                      sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
                       onChange={handleCaptchaSuccess}
                     />
                   </div>
@@ -190,7 +190,7 @@ export function Login() {
                 {verified && (
                   <div className="pt-3">
                     <ReCaptcha
-                      sitekey="6Ld4b0MqAAAAAD__F0kAHZ0aBwxua7x2MX-0OO4d" // Replace with your ReCaptcha site key
+                      sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
                       onChange={handleCaptchaSuccess}
                     />
                   </div>
