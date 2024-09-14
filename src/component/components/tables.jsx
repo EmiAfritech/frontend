@@ -160,9 +160,9 @@ export function RiskReview() {
 
   return (
     <div className="flex flex-col">
-      {localStorage.getItem("role") === "ADMIN" ||
-      localStorage.getItem("role") === "GENERALMANAGER" ||
-      localStorage.getItem("role") === "MANAGER" ? (
+      {auth.role === "ADMIN" ||
+      auth.role === "GENERALMANAGER" ||
+      auth.role === "MANAGER" ? (
         <div className="flex flex-row pb-3 pt-5 flex-row-reverse items-center">
           <div>
             <RiskReviewforms onFormSubmit={handleFormSubmit} />

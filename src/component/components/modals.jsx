@@ -1342,6 +1342,8 @@ export function MitigatedRiskData(params) {
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
   const [ownersName, setOwnersName] = useState([]);
+  const edate = new Date(endDate);
+  const eDate = edate.toISOString().split("T")[0];
   const cdate = new Date(createdAt);
   const cDate = cdate.toISOString().split("T")[0];
   const { trigger, triggerComponent } = React.useContext(Modaltrigger);
@@ -1393,6 +1395,7 @@ export function MitigatedRiskData(params) {
           riskReviewer,
           mitigationCost,
           mitigationControl,
+          endDate,
         }),
         {
           headers: {
