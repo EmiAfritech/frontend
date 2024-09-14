@@ -21,7 +21,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [verified, setVerified] = useState(true);
+  const [verified, setVerified] = useState(false);
   const [captchaResponse, setCaptchaResponse] = useState("");
 
   const notifyNetworkError = () => {
@@ -179,6 +179,12 @@ export function Login() {
                     t("submit")
                   )}
                 </button>
+                <div className="pt-3">
+                    <ReCaptcha
+                      sitekey="6Le4bUMqAAAAAOHL2I9nrbyRgAOdpGz1q67oBtzJ" // Replace with your ReCaptcha site key
+                      onChange={handleCaptchaSuccess}
+                    />
+                  </div>
                 
                 {/* ReCaptcha appears only after successful login */}
                 {verified && (
