@@ -184,7 +184,7 @@ export function Login() {
                 {verified && (
                   <div className="pt-3">
                     <ReCaptcha
-                      sitekey="YOUR_SITE_KEY" // Replace with your ReCaptcha site key
+                      sitekey="6LdHaEMqAAAAAKxZq1eEt7Yeyx00-f_wv7U-5PZe" // Replace with your ReCaptcha site key
                       onChange={handleCaptchaSuccess}
                     />
                   </div>
