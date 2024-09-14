@@ -21,7 +21,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [verified, setVerified] = useState(false);
+  const [verified, setVerified] = useState(true);
   const [captchaResponse, setCaptchaResponse] = useState("");
 
   const notifyNetworkError = () => {
