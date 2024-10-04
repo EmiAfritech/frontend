@@ -72,13 +72,13 @@ export function ActivationPage() {
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
-                    <div className="w-full">
-                      <p className="mb-16 px-4 py-2  border border-blue-300 rounded-full font-bold text-sm w-full">
+                    <div className="w-full ">
+                      <p className="mb-16 px-4 py-2 font-bold text-lg w-full flex justify-center">
                         email: {email}
                       </p>
                       <div className="w-full">
-                        <label className="block mb-1 text-xs">
-                          Activation Token
+                        <label className="block mb-1 text-xs italic font-bold">
+                          token
                         </label>
                         <input
                           type="text"
@@ -94,7 +94,7 @@ export function ActivationPage() {
                         onClick={handleActivation}
                         disabled={isActivating || !formData.token} // Disable button if no token
                       >
-                        {isActivating ? "Activating..." : "Submit Link"}
+                        {isActivating ? "Activating..." : "Submit"}
                       </button>
                       <div className="new-user mt-4">
                         <span>No code sent?</span>{" "}
