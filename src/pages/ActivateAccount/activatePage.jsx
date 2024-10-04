@@ -31,7 +31,7 @@ export function ActivationPage() {
       const response = await axios.post(
         ACTIVATE_ACCOUNT,
         JSON.stringify({
-          token
+          token,
         }),
         {
           headers: { "Content-Type": "application/json" },
@@ -39,11 +39,12 @@ export function ActivationPage() {
         }
       );
 
-
       if (response.status === 201) {
         setActivationSuccess(true);
-        toast.success("Account activated successfully! You almost there,  kindly Set your password");
-        navigate("/setPassword" , { replace: true, state: { email } });
+        toast.success(
+          "Account activated successfully! You almost there,  kindly Set your password"
+        );
+        navigate("/setPassword", { replace: true, state: { email } });
       } else {
         toast.error("Activation failed. Please try again.");
       }
@@ -73,9 +74,13 @@ export function ActivationPage() {
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full ">
-                      <p className="mb-16 px-4 py-2 font-bold text-lg w-full flex justify-center">
-                        email: {email}
-                      </p>
+                      {/* email */}
+                      <div className="flex justify-center items-center space-x-2 mb-8">
+                        <span className="text-lg text-black font-bold">
+                          email:{" "}
+                        </span>
+                        <span className=" text-lg">{email}</span>
+                      </div>
                       <div className="w-full">
                         <label className="block mb-1 text-xs italic font-bold">
                           token
