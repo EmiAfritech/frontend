@@ -1341,6 +1341,7 @@ export function MitigatedRiskData(params) {
     getImpactLevelNumber(params.row.mitigatedRiskImpactLevel)
   );
   const [createdAt, setCreatedAt] = useState(params.row.createdAt);
+  const [endDate, setEndDate] = useState(params.row.endDate);
   const [ownersName, setOwnersName] = useState([]);
   const edate = new Date(endDate);
   const eDate = edate.toISOString().split("T")[0];
@@ -1634,6 +1635,32 @@ export function MitigatedRiskData(params) {
                     style={{ width: "100%" }}
                   />
                 </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                <TextField
+                    type="date"
+                    label="End Date"
+                    value={eDate}
+                    autoComplete="off"
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate =`${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setEndDate(formattedDate);
+                    }}
+                    style={{ width: "100%" }}
+                  />
+                </div>
               </div>
             </div>
             <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -1651,6 +1678,7 @@ export function MitigatedRiskData(params) {
     </>
   );
 }
+
 export function MitigatedRiskReportData(params) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);

@@ -22,7 +22,6 @@ export function Login() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
-  const [captchaResponse, setCaptchaResponse] = useState("");
 
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
@@ -30,8 +29,8 @@ export function Login() {
   const notifyUnauthorizedUser = () => {
     toast.error("Unauthorized User! Please check your credentials", {});
   };
-  const notifyReturningNull = () => {
-    toast.info("Authorization returned null", {});
+  const verifyRecapture = () => {
+    toast.info("Are you a bot?", {});
   };
   const notifyFillForms = () => {
     toast.error("Kindly check Input details");
@@ -43,13 +42,19 @@ export function Login() {
   };
 
   const handleCaptchaSuccess = (value) => {
-    setCaptchaResponse(value);
     axios
-      .post("/verify-recaptcha", { response: value })
+      .post("/verify-captcha",  JSON.stringify({recaptchaResponse: value  }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      },)
       .then((res) => {
-        if (res.data.success) {
-          setVerified(false);  // Once verified, you can reset this if needed.
-          navigate("dashboard", { replace: true });
+        if (res.data) {
+          setVerified(false);  
+          navigate("/dashboard", { replace: true });
         } else {
           toast.error("ReCaptcha verification failed");
         }
@@ -85,9 +90,8 @@ export function Login() {
             department,
             organizationName,
           });
-          setVerified(true); // Trigger ReCaptcha display after login is successful
-        } else {
-          notifyReturningNull();
+          setVerified(true);
+          verifyRecapture();
         }
       }
     } catch (err) {
@@ -179,12 +183,6 @@ export function Login() {
                     t("submit")
                   )}
                 </button>
-                <div className="pt-3">
-                    <ReCaptcha
-                      sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
-                      onChange={handleCaptchaSuccess}
-                    />
-                  </div>
                 
                 {/* ReCaptcha appears only after successful login */}
                 {verified && (

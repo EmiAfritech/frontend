@@ -25,17 +25,11 @@ export function SignUp() {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const checkPasswords = () => {
-    if (formData.password !== formData.confirmPassword) {
-      notifyError("Passwords do not match");
-      setIsLoading(false);
-    }
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    checkPasswords();
     try {
       const response = await axios.post(
         CREATE_ORGANIZATION,
@@ -88,13 +82,7 @@ export function SignUp() {
     });
   };
 
-  const handleReset = () => {
-    if (!formData.email) {
-      alert("Enter your email");
-    } else {
-      navigate("/resetpassword", { replace: true });
-    }
-  };
+
 
   return (
     <>
@@ -120,7 +108,7 @@ export function SignUp() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-full p-4"
+                    className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-lg p-4"
                   />
                 </div>
                 <div>
@@ -131,53 +119,53 @@ export function SignUp() {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 text-xs">Email</label>
+                  <label className="block mb-1 text-xs">Organizational Email</label>
                   <input
                     type="email"
                     id="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
-                    <label className="block mb-1 text-xs">First Name</label>
+                    <label className="block mb-1 text-xs">Admin First Name</label>
                     <input
                       type="text"
                       id="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-1 text-sm h-12 border border-gray-300 rounded-full p-4"
+                      className="w-full p-1 text-sm h-12 border border-gray-300 rounded-lg p-4"
                     />
                   </div>
                   <div>
-                    <label className="block mb-1 text-xs">Last Name</label>
+                    <label className="block mb-1 text-xs">Admin Last Name</label>
                     <input
                       type="text"
                       id="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
+                      className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block mb-1 text-xs">Phone Number</label>
+                  <label className="block mb-1 text-xs">Contact Number</label>
                   <input
                     type="text"
                     id="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-full p-4"
+                    className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                   />
                 </div>
                 <button
