@@ -63,11 +63,12 @@ export function ActivationPage() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="flex-col m-16 flex items-center">
-              <img
-                src={afriquetek_logo}
-                alt="Afriquetek Logo"
-                className="w-55 h-20 mb-12"
-              />
+              <h2 className="text-4xl mb-2 text-black">
+                Activate your Account
+              </h2>
+              <h2 className="text-sm mb-16 text-black">
+                Enter your activation code
+              </h2>
               <form className="w-full">
                 <div className="activation-container w-full">
                   {activationSuccess ? (

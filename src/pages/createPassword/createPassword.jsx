@@ -9,7 +9,7 @@ import { CREAT_PASSWORD } from "../../api/routes";
 export function CreatePasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
@@ -28,17 +28,16 @@ export function CreatePasswordPage() {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  
   const handleActivation = async (e) => {
     e.preventDefault(); // Prevent form submission
 
     if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match!');
+      toast.error("Passwords do not match!");
       return;
     }
 
     if (formData.password.length < 6) {
-      toast.error('Password should be at least 6 characters long.');
+      toast.error("Password should be at least 6 characters long.");
       return;
     }
 
@@ -48,21 +47,21 @@ export function CreatePasswordPage() {
         CREAT_PASSWORD,
         JSON.stringify({
           email,
-          password: formData.password
+          password: formData.password,
         }),
-        { headers: { 'Content-Type': 'application/json' } }
+        { headers: { "Content-Type": "application/json" } }
       );
 
       if (response.status === 200) {
         setActivationSuccess(true);
-        toast.success('Weldone, Password Set successfully! Now Login');
-        navigate('/'); // Redirect after successful activation
+        toast.success("Weldone, Password Set successfully! Now Login");
+        navigate("/"); // Redirect after successful activation
       } else {
-        toast.error('Password Set failed. Please try again.');
+        toast.error("Password Set failed. Please try again.");
       }
     } catch (error) {
       toast.error(
-        error.response?.data?.message || 'Server error. Please try again later.'
+        error.response?.data?.message || "Server error. Please try again later."
       );
     } finally {
       setIsActivating(false);
@@ -76,23 +75,27 @@ export function CreatePasswordPage() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
           <div className="login-container">
+            <div className="px-16">
+              <h2 className="text-4xl mb-2 text-black">Almost there</h2>
+              <h2 className="text-sm mb-16 text-black">Create your password</h2>
+            </div>
             <div className="flex-col m-16 flex items-center">
-              <img
-                src={afriquetek_logo}
-                alt="Afriquetek Logo"
-                className="w-55 h-20 mb-12"
-              />
               <form className="w-full">
                 <div className=" w-full">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <p className="mb-16 px-4 py-2 border border-blue-300 rounded-full font-bold text-sm w-full">
-                        email: {email}
-                      </p>
+                      <div className="flex justify-center items-center space-x-2 mb-8">
+                        <span className="text-lg text-black font-bold">
+                          email:{" "}
+                        </span>
+                        <span className=" text-lg">{email}</span>
+                      </div>
                       <div className="w-full mb-4">
-                        <label className="block mb-1 text-xs" htmlFor="password">
+                        <label
+                          className="block mb-1 text-xs"
+                          htmlFor="password">
                           Password
                         </label>
                         <input
@@ -107,8 +110,7 @@ export function CreatePasswordPage() {
                       <div className="w-full mb-4">
                         <label
                           className="block mb-1 text-xs"
-                          htmlFor="confirmPassword"
-                        >
+                          htmlFor="confirmPassword">
                           Confirm Password
                         </label>
                         <input
@@ -123,8 +125,7 @@ export function CreatePasswordPage() {
                       <button
                         onClick={handleActivation}
                         className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition duration-300"
-                        disabled={isActivating}
-                      >
+                        disabled={isActivating}>
                         {isActivating ? "Loading..." : "Submit"}
                       </button>
                     </div>
