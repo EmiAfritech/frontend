@@ -12,10 +12,11 @@ export function SubscriptionPage() {
   const email = location.state?.email || "";
   const handleButtonClick = (button) => {
     setActiveButton(button); 
-
+    setIsLoading(true)
     if(button === "Free"){
         navigate("/setPassword", { replace: true , state: { email }});
     }
+    setIsLoading(false)
   };
 
   return (
