@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 export function SubscriptionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [activeButton, setActiveButton] = useState("Free"); // Track the active button
+  const [activeButton, setActiveButton] = useState("Free"); 
   const email = location.state?.email || "";
-
+    console.log(email)
   const handleButtonClick = (button) => {
     setActiveButton(button); 
 
