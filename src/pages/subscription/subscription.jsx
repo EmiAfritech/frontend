@@ -10,7 +10,7 @@ export function SubscriptionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState("Free"); 
-  const email = location.state?.email || "";
+  const email = location.state?.email || "sorry";
     console.log(email)
   const handleButtonClick = (button) => {
     setActiveButton(button); 
