@@ -45,6 +45,7 @@ export function ActivationPage() {
           "Account activated successfully! You almost there,  kindly Set your password"
         );
         navigate("/subscription", { replace: true, state: { email } });
+        
       } else {
         toast.error("Activation failed. Please try again.");
       }

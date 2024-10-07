@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "../../api/axios";
-import { CREATE_ORGANIZATION } from "../../api/routes";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,9 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 export function SubscriptionPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeButton, setActiveButton] = useState("Free"); 
-  const email = location.state?.email || "sorry";
-    console.log(email)
+  const email = location.state?.email || "";
   const handleButtonClick = (button) => {
     setActiveButton(button); 
 
