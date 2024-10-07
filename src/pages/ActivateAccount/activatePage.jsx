@@ -3,7 +3,7 @@ import axios from "../../api/axios";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ACTIVATE_ACCOUNT } from "../../api/routes";
-import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
+import { TfiEmail } from "react-icons/tfi";
 import "../login/login.css";
 
 export function ActivationPage() {
@@ -44,7 +44,7 @@ export function ActivationPage() {
         toast.success(
           "Account activated successfully! You almost there,  kindly Set your password"
         );
-        navigate("/setPassword", { replace: true, state: { email } });
+        navigate("/subscription", { replace: true, state: { email } });
       } else {
         toast.error("Activation failed. Please try again.");
       }
@@ -77,8 +77,8 @@ export function ActivationPage() {
                     <div className="w-full ">
                       {/* email */}
                       <div className="flex justify-center items-center space-x-2 mb-8">
-                        <span className="text-lg text-black font-bold">
-                          email:{" "}
+                        <span>
+                          <TfiEmail />
                         </span>
                         <span className=" text-lg">{email}</span>
                       </div>

@@ -25,6 +25,7 @@ import { Sessions } from "./api/sessions";
 import { SignUp } from "./pages/signup/signup";
 import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 import { CreatePasswordPage } from "./pages/createPassword/createPassword";
+import { SubscriptionPage } from "./pages/subscription/subscription";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Routes path="/" element={<Sidebar />}>
         <Route path="/activate" element={<ActivationPage />} />
         <Route path="/setPassword" element={<CreatePasswordPage />} />
+        <Route path="/subscription" element={<SubscriptionPage/>} />
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/resetpassword" element={<ResetPassword />} />

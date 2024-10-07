@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../../api/axios";
-import { CREATE_ORGANIZATION, } from "../../api/routes";
+import { CREATE_ORGANIZATION } from "../../api/routes";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,8 +24,6 @@ export function SignUp() {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,8 +80,6 @@ export function SignUp() {
     });
   };
 
-
-
   return (
     <>
       <ToastContainer hideProgressBar />
@@ -91,12 +87,9 @@ export function SignUp() {
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
           <div className="login-container">
+          <h2 className="text-4xl mx-16 mb-2 text-black mt-8">Get Started Now</h2>
+          <h2 className="text-sm mb-4 mx-16">create your new organization</h2>
             <div className="flex-col m-16 flex items-center">
-              <img
-                src="https://afriquetek.com/wp-content/uploads/2023/07/afriquetek-logo-1.png"
-                alt="Afriquetek Logo"
-                className="w-55 h-20 mb-10"
-              />
               <form onSubmit={handleSubmit}>
                 <div>
                   <label className="block mb-1 text-xs">
@@ -123,7 +116,9 @@ export function SignUp() {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 text-xs">Organizational Email</label>
+                  <label className="block mb-1 text-xs">
+                    Organizational Email
+                  </label>
                   <input
                     type="email"
                     id="email"
@@ -135,7 +130,9 @@ export function SignUp() {
                 </div>
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
-                    <label className="block mb-1 text-xs">Admin First Name</label>
+                    <label className="block mb-1 text-xs">
+                      Admin First Name
+                    </label>
                     <input
                       type="text"
                       id="firstName"
@@ -146,7 +143,9 @@ export function SignUp() {
                     />
                   </div>
                   <div>
-                    <label className="block mb-1 text-xs">Admin Last Name</label>
+                    <label className="block mb-1 text-xs">
+                      Admin Last Name
+                    </label>
                     <input
                       type="text"
                       id="lastName"

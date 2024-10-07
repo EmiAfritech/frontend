@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import "../login/login.css";
 import { CREAT_PASSWORD } from "../../api/routes";
+import { TfiEmail } from "react-icons/tfi";
 
 export function CreatePasswordPage() {
   const location = useLocation();
@@ -76,8 +76,8 @@ export function CreatePasswordPage() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="px-16">
-              <h2 className="text-4xl mb-2 text-black">Almost there</h2>
-              <h2 className="text-sm mb-16 text-black">Create your password</h2>
+              <h2 className="text-4xl mb-2 text-black">Congratulations !</h2>
+              <h2 className="text-sm mb-16 text-black">set you password</h2>
             </div>
             <div className="flex-col m-16 flex items-center">
               <form className="w-full">
@@ -87,8 +87,8 @@ export function CreatePasswordPage() {
                   ) : (
                     <div className="w-full">
                       <div className="flex justify-center items-center space-x-2 mb-8">
-                        <span className="text-lg text-black font-bold">
-                          email:{" "}
+                        <span>
+                          <TfiEmail/>
                         </span>
                         <span className=" text-lg">{email}</span>
                       </div>
