@@ -32,7 +32,7 @@ export function ResetPassword() {
       return;
     }
 
-    if (formData.password.length < 6) {
+    if (formData.password.length < 8) {
       toast.error("Password should be at least 6 characters long.");
       return;
     }
@@ -50,7 +50,7 @@ export function ResetPassword() {
 
       if (response.status === 200) {
         setActivationSuccess(true);
-        toast.success("Weldone, Password Set successfully! Now Login");
+        toast.success("Password Set successfully! Now Login");
         navigate("/"); // Redirect after successful activation
       } else {
         toast.error("Password Set failed. Please try again.");
@@ -72,17 +72,17 @@ export function ResetPassword() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="px-16">
-              <h2 className="text-4xl mb-2 text-black">Reset Password</h2>
+              <h2 className="text-2xl mb-2 text-black">Reset Password</h2>
               <h2 className="text-sm mb-16 text-black">enter your new password</h2>
             </div>
-            <div className="flex-col m-16 flex items-center">
+            <div className="flex-col mx-16 flex items-center">
               <form className="w-full">
                 <div className=" w-full">
                   {activationSuccess ? (
                     <p>Your account has been activated. You can now log in.</p>
                   ) : (
                     <div className="w-full">
-                      <div className="flex justify-center items-center space-x-2 mb-8">
+                      <div className="flex items-center space-x-2 mb-12">
                         <span>
                           <TfiEmail/>
                         </span>
@@ -103,7 +103,7 @@ export function ResetPassword() {
                           className="w-full p-4 text-sm h-16 border border-gray-300 rounded-xl"
                         />
                       </div>
-                      <div className="w-full mb-4">
+                      <div className="w-full mb-8">
                         <label
                           className="block mb-1 text-xs"
                           htmlFor="confirmPassword">

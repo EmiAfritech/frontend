@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import axios from "../../api/axios";
 import { LOGIN_URL, VerifyPasswordEmail } from "../../api/routes";
 import "../login/login.css";
@@ -29,10 +29,10 @@ export function VerifyEmail() {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      alert("verification email sent to you")
-      Cookies.set('email', JSON.stringify(email), {
-        secure: process.env.NODE_ENV === 'production', 
-        sameSite: 'Strict', 
+      alert("verification email sent to you");
+      Cookies.set("email", JSON.stringify(email), {
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "Strict",
       });
     } catch (err) {
       if (err.message.includes("Network Error")) {
@@ -52,8 +52,8 @@ export function VerifyEmail() {
           <div className="login-container">
             <div className="formstyle flex-col w-full px-16">
               <div>
-                <h2 className="text-4xl mb-2 text-black items">
-                  Password Reset!
+                <h2 className="text-2xl mb-2 text-black">
+                  Request password reset!
                 </h2>
                 <h2 className="text-sm mb-8 text-black">
                   A reset link will be sent to your email if your email is
@@ -61,7 +61,7 @@ export function VerifyEmail() {
                 </h2>
               </div>
 
-              <form >
+              <form>
                 <div className="mb-4">
                   <div>
                     <label htmlFor="email">email</label>
@@ -73,6 +73,7 @@ export function VerifyEmail() {
                       autoComplete="off"
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="h-14"
                     />
                   </div>
                 </div>
@@ -87,19 +88,22 @@ export function VerifyEmail() {
                   {isLoading ? (
                     <CircularProgress size={27} thickness={6} color="primary" />
                   ) : (
-                    "Envoyer"
+                    "Request"
                   )}
                 </button>
-                {/* password reset */}
-                <div className="reset">
-                  <Link to="/">Retour à la connexion?</Link>
+                {/* or line */}
+                <div className="flex items-center justify-center my-6">
+                  <div className="flex-grow border-t border-gray-300"></div>
+                  <span className="px-2 text-sm text-gray-500">or</span>
+                  <div className="flex-grow border-t border-gray-300"></div>
                 </div>
-                {/* create a new account */}
-                <div className="new-user">
-                  <span style={{ color: "blue" }}>Nouveau sur EmiRisk ?</span>{" "}
-                  <span>
-                    <Link className="new" to="/signup">
-                      Contactez-nous
+
+                {/* sign up */}
+                <div className="flex justify-center items-center space-x-1">
+                  <span className="text-sm text-black">Return to</span>
+                  <span className="text-blue-500 text-sm">
+                    <Link href="/" prefetch={false}>
+                      Home Page
                     </Link>
                   </span>
                 </div>
