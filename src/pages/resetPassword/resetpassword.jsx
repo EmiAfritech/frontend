@@ -3,7 +3,7 @@ import axios from "../../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../login/login.css";
-import { CREAT_PASSWORD, ResetPasswordUrl } from "../../api/routes";
+import { ResetPasswordUrl } from "../../api/routes";
 import { TfiEmail } from "react-icons/tfi";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -72,8 +72,8 @@ export function ResetPassword() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="px-16">
-              <h2 className="text-4xl mb-2 text-black">Congratulations !</h2>
-              <h2 className="text-sm mb-16 text-black">set you password</h2>
+              <h2 className="text-4xl mb-2 text-black">Reset Password</h2>
+              <h2 className="text-sm mb-16 text-black">enter your new password</h2>
             </div>
             <div className="flex-col m-16 flex items-center">
               <form className="w-full">
@@ -100,7 +100,7 @@ export function ResetPassword() {
                           value={formData.password}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-4 text-sm h-12 border border-gray-300 rounded-xl"
+                          className="w-full p-4 text-sm h-16 border border-gray-300 rounded-xl"
                         />
                       </div>
                       <div className="w-full mb-4">
@@ -115,12 +115,12 @@ export function ResetPassword() {
                           value={formData.confirmPassword}
                           onChange={handleInputChange}
                           required
-                          className="w-full p-4 text-sm h-12 border border-gray-300 rounded-xl"
+                          className="w-full p-4 text-sm h-16 border border-gray-300 rounded-xl"
                         />
                       </div>
                       <button
                         onClick={handleActivation}
-                        className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition duration-300"
+                        className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 transition duration-300 h-16"
                         disabled={isActivating}>
                         {isActivating ? "Loading..." : "Submit"}
                       </button>
