@@ -26,6 +26,7 @@ import { SignUp } from "./pages/signup/signup";
 import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 import { CreatePasswordPage } from "./pages/createPassword/createPassword";
 import { SubscriptionPage } from "./pages/subscription/subscription";
+import { VerifyEmail } from "./pages/resetPassword/verifyemail";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/activate" element={<ActivationPage />} />
         <Route path="/setPassword" element={<CreatePasswordPage />} />
         <Route path="/subscription" element={<SubscriptionPage/>} />
+        <Route path="/verifyemail" element={<VerifyEmail/>} />
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/resetpassword" element={<ResetPassword />} />

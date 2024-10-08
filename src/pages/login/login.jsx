@@ -43,17 +43,16 @@ export function Login() {
 
   const handleCaptchaSuccess = (value) => {
     axios
-      .post("/verify-captcha",  JSON.stringify({recaptchaResponse: value  }),
-      {
+      .post("/verify-captcha", JSON.stringify({ recaptchaResponse: value }), {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         withCredentials: true,
-      },)
+      })
       .then((res) => {
         if (res.data) {
-          setVerified(false);  
+          setVerified(false);
           navigate("/dashboard", { replace: true });
         } else {
           toast.error("ReCaptcha verification failed");
@@ -81,7 +80,12 @@ export function Login() {
       );
 
       if (response.status === 200) {
-        const { authToken: token, role, department, organizationName } = response.data;
+        const {
+          authToken: token,
+          role,
+          department,
+          organizationName,
+        } = response.data;
 
         if (token && role) {
           setAuth({
@@ -163,7 +167,7 @@ export function Login() {
                     required
                   />
                 </div>
-                
+
                 {/* Login button */}
                 <button
                   className="login hover:bg-[#2a36b8]"
@@ -183,7 +187,7 @@ export function Login() {
                     t("submit")
                   )}
                 </button>
-                
+
                 {/* ReCaptcha appears only after successful login */}
                 {verified && (
                   <div className="pt-3">
@@ -196,15 +200,12 @@ export function Login() {
 
                 {/* Password reset */}
                 <div className="pt-3">
-                  <button
-                    style={{ color: "blue" }}
-                    onClick={handleReset}
-                    className="flex flex-row items-center"
-                  >
-                    {t("passwordReset")}
-                  </button>
+                  <span style={{ color: "blue" }}>
+                    <Link className="new" to="/verifyemail">
+                      {t("passwordReset")}
+                    </Link>
+                  </span>
                 </div>
-
                 {/* Create a new account */}
                 <div className="new-user">
                   <span>{t("registerQuestion")}</span>{" "}

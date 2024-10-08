@@ -21,6 +21,9 @@ export const Sessions_URL = "/checkSessionStatus";
 //Upload Csv
 export const UploadCsv_URL = "/api/departments/risk/create-many-risks";
 
+//verify password email
+export const VerifyPasswordEmail = "/forgot-password-email"
+
 /*************************************************Tables******************************************************/
 
 //users list url
