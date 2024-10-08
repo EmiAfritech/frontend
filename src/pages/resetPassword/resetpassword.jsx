@@ -1,112 +1,131 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "../../api/axios";
-import { LOGIN_URL } from "../../api/routes";
-import "../login/login.css"
-import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "../login/login.css";
+import { CREAT_PASSWORD, ResetPasswordUrl } from "../../api/routes";
+import { TfiEmail } from "react-icons/tfi";
+import { AuthContext } from "../../context/AuthContext";
 
 export function ResetPassword() {
-  const [confirmpassword, setConfirmPassword] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const email = localStorage.getItem(email)
+  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+  const [isActivating, setIsActivating] = useState(false);
+  const [activationSuccess, setActivationSuccess] = useState(false);
+  const {auth} = useContext(AuthContext)
 
-  const notifyNetworkError = () => {
-    toast.error("Server is Currently Unavailable, Please Try Again Later", {});
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleActivation = async (e) => {
+    e.preventDefault(); // Prevent form submission
 
-    setLoading(true);
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
 
+    if (formData.password.length < 6) {
+      toast.error("Password should be at least 6 characters long.");
+      return;
+    }
+
+    setIsActivating(true);
     try {
-      await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      ); 
-      navigate("/", { replace: true });
-    } catch (err) {
-      if (err.message.includes("Network Error")) {
-        notifyNetworkError();
+      const response = await axios.post(
+        ResetPasswordUrl,
+        JSON.stringify({
+          email: auth.email,
+          password: formData.password,
+        }),
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      if (response.status === 200) {
+        setActivationSuccess(true);
+        toast.success("Weldone, Password Set successfully! Now Login");
+        navigate("/"); // Redirect after successful activation
+      } else {
+        toast.error("Password Set failed. Please try again.");
       }
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Server error. Please try again later."
+      );
     } finally {
-      setLoading(false);
+      setIsActivating(false);
     }
   };
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer hideProgressBar />
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
-        <div className="basis-1/3 ">
+        <div className="basis-1/3">
           <div className="login-container">
-            <div className="formstyle flex-col">
-              <div className="border-solid border-2 border-indigo-600">
-                <input value={email}/>
-              </div>
-              <form>
-                <div className="">
-                  <div>
-                    <label htmlFor="email">Mot de Passe</label>
-                  </div>
-                  <div>
-                    <input
-                      value={password}
-                      autoComplete="off"
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <label htmlFor="confirm password">Confirmer le mot de passe</label>
-                  </div>
-                  <div>
-                    <input
-                      autoComplete="off"
-                      value={confirmpassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* login-btn */}
-                <button
-                  className="login hover:bg-[#2a36b8]"
-                  type="submit"
-                  onClick={handleSubmit}
-                  disabled={isLoading} // Disable the button while loading
-                >
-                  {isLoading ? (
-                    <CircularProgress size={27} thickness={6} color="primary" />
+            <div className="px-16">
+              <h2 className="text-4xl mb-2 text-black">Congratulations !</h2>
+              <h2 className="text-sm mb-16 text-black">set you password</h2>
+            </div>
+            <div className="flex-col m-16 flex items-center">
+              <form className="w-full">
+                <div className=" w-full">
+                  {activationSuccess ? (
+                    <p>Your account has been activated. You can now log in.</p>
                   ) : (
-                    "Envoyer"
+                    <div className="w-full">
+                      <div className="flex justify-center items-center space-x-2 mb-8">
+                        <span>
+                          <TfiEmail/>
+                        </span>
+                        <span className=" text-lg">{auth.email}</span>
+                      </div>
+                      <div className="w-full mb-4">
+                        <label
+                          className="block mb-1 text-xs"
+                          htmlFor="password">
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          id="password"
+                          value={formData.password}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-4 text-sm h-12 border border-gray-300 rounded-xl"
+                        />
+                      </div>
+                      <div className="w-full mb-4">
+                        <label
+                          className="block mb-1 text-xs"
+                          htmlFor="confirmPassword">
+                          Confirm Password
+                        </label>
+                        <input
+                          type="password"
+                          id="confirmPassword"
+                          value={formData.confirmPassword}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full p-4 text-sm h-12 border border-gray-300 rounded-xl"
+                        />
+                      </div>
+                      <button
+                        onClick={handleActivation}
+                        className="login w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-xl transition duration-300"
+                        disabled={isActivating}>
+                        {isActivating ? "Loading..." : "Submit"}
+                      </button>
+                    </div>
                   )}
-                </button>
-                {/* password reset */}
-                <div className="reset">
-                  <Link to="/">
-                Retour à la connexion?
-                </Link>
-                </div>
-                {/* create a new account */}
-                <div className="new-user">
-                  <span style={{ color: "blue" }}>Nouveau sur EmiRisk ?</span>{" "}
-                  <span>
-                    <Link className="new" to="/signup">
-                      Contactez-nous
-                    </Link>
-                  </span>
                 </div>
               </form>
             </div>

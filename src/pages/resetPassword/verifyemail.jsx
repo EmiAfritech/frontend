@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Cookies from 'js-cookie';
 import axios from "../../api/axios";
 import { LOGIN_URL, VerifyPasswordEmail } from "../../api/routes";
 import "../login/login.css";
@@ -29,6 +30,10 @@ export function VerifyEmail() {
         withCredentials: true,
       });
       alert("verification email sent to you")
+      Cookies.set('email', JSON.stringify(email), {
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: 'Strict', 
+      });
     } catch (err) {
       if (err.message.includes("Network Error")) {
         notifyNetworkError();

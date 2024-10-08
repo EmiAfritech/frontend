@@ -22,7 +22,10 @@ export const Sessions_URL = "/checkSessionStatus";
 export const UploadCsv_URL = "/api/departments/risk/create-many-risks";
 
 //verify password email
-export const VerifyPasswordEmail = "/forgot-password-email"
+export const VerifyPasswordEmail = "/forgot-password-email";
+
+//reset password
+export const ResetPasswordUrl = "/forgot-password-reset"
 
 /*************************************************Tables******************************************************/
 

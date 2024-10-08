@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthContext, Modaltrigger } from "./AuthContext";
+import Cookies from 'js-cookie';
 
 
 export const AuthProvider = ({ children }) => {
@@ -19,6 +20,14 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    const savedAuth = Cookies.get('email');
+    if (savedAuth) {
+      setAuth({
+        email: JSON.parse(savedAuth)
+      }); 
+    }
+  }, []);
 
 
   return (
