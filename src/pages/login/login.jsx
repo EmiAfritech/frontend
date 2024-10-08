@@ -136,12 +136,14 @@ export function Login() {
                 <FaLanguage size={20} color="blue" />
               </span>
             </div>
-            <div className="formstyle flex-col">
-              <img
-                src={afriquetek_logo}
-                alt="Afriquetek logo"
-                className="w-55 h-20 mb-12"
-              />
+            <div className="formstyle flex-col px-16">
+              <div className="flex justify-center">
+                <img
+                  src={afriquetek_logo}
+                  alt="Afriquetek logo"
+                  className="w-36 h-20 mb-12 "
+                />
+              </div>
               <form onSubmit={handleSubmit}>
                 {/* Email */}
                 <div>
