@@ -1184,7 +1184,7 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap2() {
+export function HeatMap3() {
 
   const series = [
     {
@@ -1301,4 +1301,58 @@ export function HeatMap2() {
   );
 }
 
+
+export function HeatMap2() {
+    // Example heatmap data (can be replaced with dynamic data)
+    const data = [
+        [1, 2, 3, 6, 8],
+        [0, 4, 5, 7, 9],
+        [2, 5, 6, 9, 10],
+        [3, 5, 8, 10, 12],
+        [4, 6, 9, 11, 13],
+    ];
+
+    // Colors for the heatmap (0-5 as "low", >5 as "high")
+    function getColor(value) {
+        if (value >= 0 && value <= 5) {
+            return 'rgba(0, 128, 0, 0.8)'; // Green for low (0-5)
+        } else {
+            return 'rgba(255, 0, 0, 0.8)'; // Red for high (>5)
+        }
+    }
+
+    // Flatten the data and map colors
+    const backgroundColors = data.map(row => row.map(value => getColor(value)));
+
+    // Create a Chart.js instance (or use an existing canvas element in your HTML)
+    const ctx = document.getElementById('heatmapCanvas').getContext('2d');
+    const heatmap = new Chart(ctx, {
+        type: 'matrix', // Chart.js matrix/heatmap plugin (if installed)
+        data: {
+            datasets: [{
+                label: 'Heatmap',
+                data: data.flat().map((value, index) => {
+                    return {
+                        x: index % 5,  // x-position in the matrix
+                        y: Math.floor(index / 5),  // y-position in the matrix
+                        v: value  // value at this position
+                    };
+                }),
+                backgroundColor: backgroundColors.flat(),
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category',
+                    labels: ['1', '2', '3', '4', '5'] // Labels for x-axis
+                },
+                y: {
+                    type: 'category',
+                    labels: ['A', 'B', 'C', 'D', 'E'] // Labels for y-axis
+                }
+            }
+        }
+    });
+}
 
