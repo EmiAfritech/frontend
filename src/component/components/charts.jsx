@@ -1301,58 +1301,127 @@ export function HeatMap3() {
   );
 }
 
-
 export function HeatMap2() {
-    // Example heatmap data (can be replaced with dynamic data)
-    const data = [
-        [1, 2, 3, 6, 8],
-        [0, 4, 5, 7, 9],
-        [2, 5, 6, 9, 10],
-        [3, 5, 8, 10, 12],
-        [4, 6, 9, 11, 13],
-    ];
 
-    // Colors for the heatmap (0-5 as "low", >5 as "high")
-    function getColor(value) {
-        if (value >= 0 && value <= 5) {
-            return 'rgba(0, 128, 0, 0.8)'; // Green for low (0-5)
-        } else {
-            return 'rgba(255, 0, 0, 0.8)'; // Red for high (>5)
-        }
-    }
+  const series = [
+    {
+      name: t("rare"),
+      data: [
+        { x: t("insignificant"), y: 1 },
+        { x: t("minor"), y: 2 },
+        { x: t("moderate"), y: 3 },
+        { x: t("major"), y: 4 },
+        { x: t("critical"), y: 5 },
+      ],
+    },
+    {
+      name: t("unlikely"),
+      data: [
+        { x: t("insignificant"), y: 2 },
+        { x: t("minor"), y: 4 },
+        { x: t("moderate"), y: 6 },
+        { x: t("major"), y: 8 },
+        { x: t("critical"), y: 10 },
+      ],
+    },
+    {
+      name: t("possible"),
+      data: [
+        { x: t("insignificant"), y: 3 },
+        { x: t("minor"), y: 6 },
+        { x: t("moderate"), y: 9 },
+        { x: t("major"), y: 12},
+        { x: t("critical"), y: 15 },
+      ],
+    },
+    {
+      name: t("likely"),
+      data: [
+        { x: t("insignificant"), y: 4 },
+        { x: t("minor"), y: 8 },
+        { x: t("moderate"), y: 12 },
+        { x: t("major"), y: 16 },
+        { x: t("critical"), y: 20 },
+      ],
+    },
+    {
+      name: t("almostCertain"),
+      data: [
+        { x: t("insignificant"), y: 5 },
+        { x: t("minor"), y: 10 },
+        { x: t("moderate"), y: 15 },
+        { x: t("major"), y: 20 },
+        { x: t("critical"), y: 25 },
+      ],
+    },
+  ];
 
-    // Flatten the data and map colors
-    const backgroundColors = data.map(row => row.map(value => getColor(value)));
-
-    // Create a Chart.js instance (or use an existing canvas element in your HTML)
-    const ctx = document.getElementById('heatmapCanvas').getContext('2d');
-    const heatmap = new Chart(ctx, {
-        type: 'matrix', // Chart.js matrix/heatmap plugin (if installed)
-        data: {
-            datasets: [{
-                label: 'Heatmap',
-                data: data.flat().map((value, index) => {
-                    return {
-                        x: index % 5,  // x-position in the matrix
-                        y: Math.floor(index / 5),  // y-position in the matrix
-                        v: value  // value at this position
-                    };
-                }),
-                backgroundColor: backgroundColors.flat(),
-            }]
+  const options = {
+    chart: {
+      type: "heatmap",
+    },
+    plotOptions: {
+      heatmap: {
+        colorScale: {
+          ranges: [
+            {
+              from: 1,
+              to: 5,
+              name: t("low"),
+              color: "#008000",
+            },
+            {
+              from: 6,
+              to: 9,
+              name: t("medium"),
+              color: "#002db3",
+            },
+            {
+              from: 10,
+              to: 15,
+              name: t("high"),
+              color: "#ffcc00",
+            },
+            {
+              from: 16,
+              to: 25,
+              name: t("veryHigh"),
+              color: "#ff0000",
+            },
+          ],
         },
-        options: {
-            scales: {
-                x: {
-                    type: 'category',
-                    labels: ['1', '2', '3', '4', '5'] // Labels for x-axis
-                },
-                y: {
-                    type: 'category',
-                    labels: ['A', 'B', 'C', 'D', 'E'] // Labels for y-axis
-                }
-            }
-        }
-    });
+      },
+    },
+    xaxis: {
+      title: {
+        text: t("impact"), // Label for the x-axis
+      },
+    },
+    yaxis: {
+      title: {
+        text: t("likelihood"), // Label for the y-axis
+      },
+      categories: [
+        t("veryLow"),
+        t("low"),
+        t("medium"),
+        t("high"),
+        t("veryHigh"),
+      ],
+    },
+  };
+
+  return (
+    <div>
+      <Chart
+        options={options}
+        series={series}
+        type="heatmap"
+        height={550}
+        width={1100}
+      />
+    </div>
+  );
 }
+
 
