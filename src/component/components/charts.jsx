@@ -1401,15 +1401,18 @@ export function HeatMap2() {
       title: {
         text: t("likelihood"), // Label for the y-axis
       },
-      labels: {
-        formatter: function (value) {
-          // Map y-values to custom labels
-          return yLabels[value - 1]; // Adjust to index from 0
-        },
-      },
     },
     dataLabels: {
-      enabled: false, // Disable default data labels to avoid confusion
+      enabled: true, // Enable data labels
+      formatter: function (val) {
+        // Map the data label to custom yLabels based on the value
+        if (val >= 1 && val <= 5) return yLabels[0];  // "veryLow"
+        if (val >= 6 && val <= 9) return yLabels[1];  // "low"
+        if (val >= 10 && val <= 15) return yLabels[2]; // "medium"
+        if (val >= 16 && val <= 20) return yLabels[3]; // "high"
+        if (val >= 21 && val <= 25) return yLabels[4]; // "veryHigh"
+        return val;  // Fallback to default value if out of range
+      },
     },
   };
 
