@@ -21,7 +21,7 @@
 }
 .sidebar-main li {
   margin-left: 15px;
-  padding: "10%";
+  padding: 10%;
   display: flex;
   align-items: center;
   white-space: nowrap;

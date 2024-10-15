@@ -12,7 +12,7 @@ export function Dashboard() {
   return (
     <div className="flex flex-col bg-slate-100 h-lvh">
       <Sidebar />
-      <div className="ml-[18%] m-6 h-screen grid-rows-2">
+      <div className="ml-[18%] m-6 h-screen grid grid-rows-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2">
           <OpenVsClose />
           <ReviewedVsUnreviewed />
