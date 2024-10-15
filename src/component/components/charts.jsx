@@ -1302,7 +1302,7 @@ export function HeatMap3() {
 }
 
 export function HeatMap2() {
-
+ const yLabels = [t("veryLow"), t("low"), t("medium"), t("high"), t("veryHigh")];
   const series = [
     {
       name: t("rare"),
@@ -1401,13 +1401,15 @@ export function HeatMap2() {
       title: {
         text: t("likelihood"), // Label for the y-axis
       },
-      categories: [
-        t("veryLow"),
-        t("low"),
-        t("medium"),
-        t("high"),
-        t("veryHigh"),
-      ],
+      labels: {
+        formatter: function (value) {
+          // Map y-values to custom labels
+          return yLabels[value - 1]; // Adjust to index from 0
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false, // Disable default data labels to avoid confusion
     },
   };
 
