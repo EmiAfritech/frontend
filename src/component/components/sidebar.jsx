@@ -122,7 +122,7 @@ export function Sidebar() {
 
   return (
     <div className="sidebar-container bg-[#2B6CB0]">
-      <div className="sidebar-header mb-1">
+      <div className="sidebar-header mb-1 h-[20%]">
         <img
           src={SidebarLogo}
           style={{ height: 80, borderRadius: 20 }}
@@ -131,7 +131,7 @@ export function Sidebar() {
         <span>{t("riskApplication")}</span>
       </div>
       <div className="sidebar-main">
-        <ul>
+        <ul className="p-[10%]">
           {renderTabsByRole()}
           <LoadingPopup isLoading={isLoading} />
         </ul>
