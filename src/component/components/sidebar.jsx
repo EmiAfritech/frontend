@@ -131,7 +131,7 @@ export function Sidebar() {
         <span>{t("riskApplication")}</span>
       </div>
       <div className="sidebar-main">
-        <ul className="p-[10%]">
+        <ul>
           {renderTabsByRole()}
           <LoadingPopup isLoading={isLoading} />
         </ul>

@@ -389,7 +389,7 @@ export function RiskLineChart() {
           </select>
         </div>
       </div>
-      <ResponsiveContainer height={300}>
+      <ResponsiveContainer>
       <LineChart  data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
