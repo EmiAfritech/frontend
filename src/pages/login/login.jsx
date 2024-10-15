@@ -146,7 +146,7 @@ export function Login() {
               </div>
               <form onSubmit={handleSubmit}>
                 {/* Email */}
-                <div>
+                <div className="mb-5">
                   <label htmlFor="email">{t("email")}</label>
                   <input
                     type="email"
@@ -158,7 +158,7 @@ export function Login() {
                   />
                 </div>
                 {/* Password */}
-                <div>
+                <div className="mb-8">
                   <label htmlFor="password">{t("password")}</label>
                   <input
                     type="password"
