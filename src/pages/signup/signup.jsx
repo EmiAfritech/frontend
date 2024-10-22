@@ -88,7 +88,6 @@ export function SignUp() {
         <div className="basis-1/3">
           <div className="login-container">
           <h2 className="text-4xl mx-16 mb-2 text-black mt-8">Get Started Now</h2>
-          <h2 className="text-sm mx-16">create your new organization</h2>
             <div className="flex-col m-8 flex items-center">
               <form onSubmit={handleSubmit}>
                 <div>
