@@ -144,7 +144,7 @@ export function Login() {
                   className="w-36 h-20 mb-12 "
                 />
               </div>
-              <div className="mx-16 ">
+              <div className="mx-8 ">
                 <form onSubmit={handleSubmit}>
                   {/* Email */}
                   <div className="mb-5">
