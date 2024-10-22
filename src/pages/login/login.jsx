@@ -144,7 +144,7 @@ export function Login() {
                   className="w-36 h-20 mb-12 "
                 />
               </div>
-              <div className="flex-col mx-4 flex items-center">
+              <div className="mx-4 ">
                 <form onSubmit={handleSubmit}>
                   {/* Email */}
                   <div className="mb-5">
