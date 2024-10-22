@@ -14,7 +14,7 @@ export function Riskreview() {
   return (
     <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar />
-      <div className="ml-[18%] m-6">
+      <div className="ml-[18%] m-6 h-screen">
         <div>
           {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
             <>

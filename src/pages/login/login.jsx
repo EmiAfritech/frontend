@@ -144,80 +144,82 @@ export function Login() {
                   className="w-36 h-20 mb-12 "
                 />
               </div>
-              <form onSubmit={handleSubmit}>
-                {/* Email */}
-                <div className="mb-5">
-                  <label htmlFor="email">{t("email")}</label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    autoComplete="off"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                {/* Password */}
-                <div className="mb-8">
-                  <label htmlFor="password">{t("password")}</label>
-                  <input
-                    type="password"
-                    id="password"
-                    autoComplete="off"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-
-                {/* Login button */}
-                <button
-                  className="login hover:bg-[#2a36b8]"
-                  type="submit"
-                  disabled={isLoading} // Disable the button while loading
-                >
-                  {isLoading ? (
-                    <div className="flex flex-row justify-center">
-                      <p className="text-sm pr-2">{t("loading")}</p>
-                      <CircularProgress
-                        size={27}
-                        thickness={6}
-                        color="primary"
-                      />
-                    </div>
-                  ) : (
-                    t("submit")
-                  )}
-                </button>
-
-                {/* ReCaptcha appears only after successful login */}
-                {verified && (
-                  <div className="pt-3">
-                    <ReCaptcha
-                      sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
-                      onChange={handleCaptchaSuccess}
+              <div className="flex-col m-16 flex items-center">
+                <form onSubmit={handleSubmit}>
+                  {/* Email */}
+                  <div className="mb-5">
+                    <label htmlFor="email">{t("email")}</label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      autoComplete="off"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
-                )}
+                  {/* Password */}
+                  <div className="mb-8">
+                    <label htmlFor="password">{t("password")}</label>
+                    <input
+                      type="password"
+                      id="password"
+                      autoComplete="off"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
 
-                {/* Password reset */}
-                <div className="pt-3">
-                  <span style={{ color: "blue" }}>
-                    <Link className="new" to="/verifyemail">
-                      {t("passwordReset")}
-                    </Link>
-                  </span>
-                </div>
-                {/* Create a new account */}
-                <div className="new-user">
-                  <span>{t("registerQuestion")}</span>{" "}
-                  <span style={{ color: "blue" }}>
-                    <Link className="new" to="/signup">
-                      {t("register")}
-                    </Link>
-                  </span>
-                </div>
-              </form>
+                  {/* Login button */}
+                  <button
+                    className="login hover:bg-[#2a36b8]"
+                    type="submit"
+                    disabled={isLoading} // Disable the button while loading
+                  >
+                    {isLoading ? (
+                      <div className="flex flex-row justify-center">
+                        <p className="text-sm pr-2">{t("loading")}</p>
+                        <CircularProgress
+                          size={27}
+                          thickness={6}
+                          color="primary"
+                        />
+                      </div>
+                    ) : (
+                      t("submit")
+                    )}
+                  </button>
+
+                  {/* ReCaptcha appears only after successful login */}
+                  {verified && (
+                    <div className="pt-3">
+                      <ReCaptcha
+                        sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
+                        onChange={handleCaptchaSuccess}
+                      />
+                    </div>
+                  )}
+
+                  {/* Password reset */}
+                  <div className="pt-3">
+                    <span style={{ color: "blue" }}>
+                      <Link className="new" to="/verifyemail">
+                        {t("passwordReset")}
+                      </Link>
+                    </span>
+                  </div>
+                  {/* Create a new account */}
+                  <div className="new-user">
+                    <span>{t("registerQuestion")}</span>{" "}
+                    <span style={{ color: "blue" }}>
+                      <Link className="new" to="/signup">
+                        {t("register")}
+                      </Link>
+                    </span>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

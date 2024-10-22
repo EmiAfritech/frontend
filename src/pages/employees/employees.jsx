@@ -6,7 +6,7 @@ export function Employees() {
   return (
     <div className="flex flex-col bg-slate-100 h-lvh">
       <Sidebar/>
-      <div className="ml-[18%] m-6">
+      <div className="ml-[18%] m-6 h-screen">
         <EmployeesTable />
       </div>
     </div>

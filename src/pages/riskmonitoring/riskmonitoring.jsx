@@ -12,7 +12,7 @@ export function RiskMonitoring() {
   return (
     <div className="flex bg-slate-100 flex-col h-lvh">
       <Sidebar />
-      <div className=" ml-[18%] m-6">
+      <div className=" ml-[18%] m-6 h-screen">
         <div className="flex flex-col">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="col-span-2"><RiskBarChart /></div>
