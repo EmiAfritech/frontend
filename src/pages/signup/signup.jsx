@@ -94,7 +94,7 @@ export function SignUp() {
               <h2 className="text-sm mb-16">create your new organization</h2>
               <div>
                 <form onSubmit={handleSubmit}>
-                  <div>
+                  <div className="mb-4">
                     <label className="block mb-1 text-xs">
                       Organizational Name
                     </label>
@@ -107,7 +107,7 @@ export function SignUp() {
                       className="w-full p-1 text-sm h-12 mb-2 border border-gray-300 rounded-lg p-4"
                     />
                   </div>
-                  <div>
+                  <div className="mb-4">
                     <label className="block mb-1 text-xs">Address</label>
                     <input
                       type="text"
@@ -118,7 +118,7 @@ export function SignUp() {
                       className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                     />
                   </div>
-                  <div>
+                  <div className="mb-4">
                     <label className="block mb-1 text-xs">
                       Organizational Email
                     </label>
@@ -131,7 +131,7 @@ export function SignUp() {
                       className="w-full p-1 text-sm h-12 border mb-2 border-gray-300 rounded-lg p-4"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mb-2">
+                  <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <label className="block mb-1 text-xs">
                         Admin First Name
@@ -159,7 +159,7 @@ export function SignUp() {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="mb-4">
                     <label className="block mb-1 text-xs">Contact Number</label>
                     <input
                       type="text"
