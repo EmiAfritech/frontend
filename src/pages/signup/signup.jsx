@@ -86,7 +86,7 @@ export function SignUp() {
       <div className="flex flex-row">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
-          <div className="login-container">
+          <div className="login-container overflow-auto hide-scrollbar">
             <div className="m-16">
               <h2 className="text-4xl  mb-2 text-black mt-8">
                 Get Started Now
