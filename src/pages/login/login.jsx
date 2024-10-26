@@ -136,7 +136,7 @@ export function Login() {
                 <FaLanguage size={20} color="blue" />
               </span>
             </div>
-            <div className="formstyle flex-col px-16">
+            <div className="formstyle flex-col">
               <div className="flex justify-center">
                 <img
                   src={afriquetek_logo}
@@ -144,7 +144,7 @@ export function Login() {
                   className="w-36 h-20 mb-12 "
                 />
               </div>
-              <div className="mx-12 ">
+              <div className="mx-20 ">
                 <form onSubmit={handleSubmit}>
                   {/* Email */}
                   <div className="mb-5">
