@@ -140,7 +140,7 @@ export function ReviewedVsUnreviewed() {
       })
       .then((data) => setData(data.data));
   }, []);
-
+  console.log(data)
   return (
     <div className=" items-center flex flex-col px-6 pb-5">
       <h3 className="pb-3">
