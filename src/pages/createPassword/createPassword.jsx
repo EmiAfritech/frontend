@@ -76,7 +76,7 @@ export function CreatePasswordPage() {
         <div className="basis-1/3">
           <div className="login-container">
             <div className="px-16">
-              <h2 className="text-4xl mb-2 text-black">Congratulations You are almost done!</h2>
+              <h2 className="text-2xl mb-2 text-black">Congratulations you are almost done!</h2>
               <h2 className="text-sm mb-16 text-black">set you password</h2>
             </div>
             <div className="flex-col m-16 flex items-center">
