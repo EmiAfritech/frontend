@@ -77,11 +77,11 @@ export function ActivationPage() {
                   ) : (
                     <div className="w-full ">
                       {/* email */}
-                      <div className="flex justify-center items-center space-x-2 mb-8">
+                      <div className="flex justify-start items-center space-x-2 mb-8">
                         <span>
                           <TfiEmail />
                         </span>
-                        <span className=" text-lg">{email}</span>
+                        <span color="blue "className=" text-lg">{email}</span>
                       </div>
                       <div className="w-full">
                         <label className="block mb-1 text-xs italic font-bold">
