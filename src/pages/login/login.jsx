@@ -53,7 +53,7 @@ export function Login() {
         withCredentials: true,
       },)
       .then((res) => {
-        if (res.data) {
+        if (res.data.success) {
           setVerified(false);  
           navigate("/dashboard", { replace: true });
         } else {
@@ -197,7 +197,7 @@ export function Login() {
                   {verified && (
                     <div className="pt-3">
                       <ReCaptcha
-                        sitekey="6Lfpb0MqAAAAAJY1ZTnC7CABPTiZyQHkqiKAIfCb" // Replace with your ReCaptcha site key
+                        sitekey="6LeMLcoqAAAAABSIV1J_0Mwv85poKjvHnDouW5al" // Replace with your ReCaptcha site key
                         onChange={handleCaptchaSuccess}
                       />
                     </div>
