@@ -77,7 +77,7 @@ export const RISKSTATUSREPORT_URL = "/getAllOpenedRisksStatus";
 export const USERSCREATEFORM_URL = "/users/create";
 
 //create department url
-export const DEPARTMENTCREATEFORM_URL = "/departments";
+export const DEPARTMENTCREATEFORM_URL = "/Organization/Department/create";
 
 // risk form
 export const CREATERISKFORM_URL = "/departments/risk/create";
