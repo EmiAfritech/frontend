@@ -24,23 +24,12 @@ export function Login() {
   const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
   const [notification,setNotification] = useState({
-    authorized: "",
-    serverDown: "",
-    errorMessage: ""
+    authorized: false,
+    serverDown: false,
+    errorMessage: false
   })
 
-  const notifyNetworkError = () => {
-    toast.error("Server is Currently Unavailable, Please Try Again Later", {});
-  };
-  const notifyUnauthorizedUser = () => {
-    toast.error("Unauthorized User! Please check your credentials", {});
-  };
-  const verifyRecapture = () => {
-    toast.info("Are you a bot?", {});
-  };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
+  
 
   const reload = () => {
     setEmail("");
@@ -121,12 +110,12 @@ export function Login() {
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
-        notifyNetworkError();
+        setNotification({ ...notification, serverDown: true });
         reload();
       } else if (err.response?.status === 401) {
-        notifyUnauthorizedUser();
+        setNotification({ ...notification, authorized: true });
       } else if ([400, 404].includes(err.response?.status)) {
-        notifyFillForms();
+        setNotification({ ...notification, errorMessage: true });
       }
     } finally {
       setLoading(false);
@@ -134,13 +123,13 @@ export function Login() {
   };
 
   const getNotification = () => {
-    if (authorized) {
+    if (notification.authorized) {
       return <Notification message="Your email or password may be incorrect" type="error" />;
     }
-    if (serverDown) {
+    if (notification.serverDown) {
       return <Notification message="Server is currently unavailable. Contact Admin." type="error" />;
     }
-    if (errorMessage) {
+    if (notification.errorMessage) {
       return <Notification message="missing fields" type="error" />;
     }
     return null;
