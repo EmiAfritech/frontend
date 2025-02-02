@@ -16,9 +16,8 @@ export const AuthProvider = ({ children }) => {
     const savedToken = Cookies.get("token");
     const savedName = Cookies.get("name");
     const savedRef = Cookies.get("role");
-    if (savedEmail || savedToken) {
+    if ( savedToken) {
       setAuth({
-        email: savedEmail ? savedEmail : null,
         token: savedToken ? savedToken : null,
         name: savedName ? savedName : null,
         refNum: savedRef ? savedRef : null,
@@ -33,14 +32,6 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    const savedAuth = Cookies.get('email');
-    if (savedAuth) {
-      setAuth({
-        email: JSON.parse(savedAuth)
-      }); 
-    }
-  }, []);
 
 
   return (

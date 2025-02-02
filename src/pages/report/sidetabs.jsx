@@ -159,7 +159,7 @@ export const Tabs = [
 ];
 
 
-export default function ReportSideTabs({ onTabChange }) {
+export function ReportSideTabs({ onTabChange }) {
     const [activeTab, setActiveTab] = useState(Tabs[0].title);
   
     const handleTabChange = (tab) => {
