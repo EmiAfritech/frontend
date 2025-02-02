@@ -53,7 +53,8 @@ export function Login() {
       },)
       .then((res) => {
         if (res.data) {
-          setVerified(false);  
+          setVerified(false); 
+
           navigate("/dashboard", { replace: true });
         } else {
           toast.error("ReCaptcha verification failed");
@@ -88,6 +89,18 @@ export function Login() {
           organizationName,
         } = response.data;
 
+        Cookies.set("token", authToken, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+        });
+        Cookies.set("name", department, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+        });
+        Cookies.set("refNum", role, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
+        });
         if (token && role) {
           setAuth({
             token,
