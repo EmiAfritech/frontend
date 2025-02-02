@@ -13,6 +13,7 @@ import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ReCaptcha from "react-google-recaptcha";
+import { Notification } from "../../component/components/notifications";
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -22,6 +23,11 @@ export function Login() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
+  const [notification,setNotification] = useState({
+    authorized: "",
+    serverDown: "",
+    errorMessage: ""
+  })
 
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
@@ -127,20 +133,21 @@ export function Login() {
     }
   };
 
-  const handleReset = async (e) => {
-    e.preventDefault();
-    if (email === "") {
-      alert("Enter your email");
-    } else {
-      localStorage.setItem("email", email);
-      navigate("/resetpassword", { replace: true });
+  const getNotification = () => {
+    if (authorized) {
+      return <Notification message="Your email or password may be incorrect" type="error" />;
     }
+    if (serverDown) {
+      return <Notification message="Server is currently unavailable. Contact Admin." type="error" />;
+    }
+    if (errorMessage) {
+      return <Notification message="missing fields" type="error" />;
+    }
+    return null;
   };
 
   return (
     <>
-      <ToastContainer hideProgressBar />
-
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
         <div className="basis-1/3">
@@ -151,6 +158,7 @@ export function Login() {
                 <FaLanguage size={20} color="blue" />
               </span>
             </div>
+            <div className="mb-[15%]"> {getNotification()}</div>
             <div className="formstyle flex-col">
               <div className="flex justify-center">
                 <img

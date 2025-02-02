@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function VerifyEmail() {
+  const [sent, setSent] = useState(false)
   const [email, setEmail] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -26,7 +27,7 @@ export function VerifyEmail() {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      alert("verification email sent to you");
+      setSent(true)
       Cookies.set("email", JSON.stringify(email), {
         secure: process.env.NODE_ENV === "production",
         sameSite: "Strict",
@@ -80,7 +81,7 @@ export function VerifyEmail() {
                   className="login hover:bg-[#2a36b8]"
                   type="submit"
                   onClick={handleSubmit}
-                  disabled={isLoading} // Disable the button while loading
+                  disabled={isLoading} 
                 >
                   {isLoading ? (
                     <CircularProgress size={27} thickness={6} color="primary" />
@@ -88,6 +89,8 @@ export function VerifyEmail() {
                     "Request"
                   )}
                 </button>
+                {/*Notification*/}
+                {sent && (<div className="text-green-800 mt-2">A message has been sent to your email</div>)}
                 {/* or line */}
                 <div className="flex items-center justify-center my-6">
                   <div className="flex-grow border-t border-gray-300"></div>
