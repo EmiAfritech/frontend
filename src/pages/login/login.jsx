@@ -42,6 +42,7 @@ export function Login() {
   };
 
   const handleCaptchaSuccess = (value) => {
+    console.log(value)
     axios
       .post("/verify-captcha",  {recaptchaResponse: value  },
       {
