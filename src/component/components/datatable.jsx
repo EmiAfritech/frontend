@@ -28,6 +28,101 @@ export const useUserColumns = () => {
     },
   ];
 };
+export function useCDSDashboardTableData() {
+  return [
+    {
+      id: 1,
+      name: "John Doe",
+      date: "30 July 2023",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 2,
+      name: "John Kumma",
+      date: "30/12/2014",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 3,
+      name: "Sara Anti",
+      date: "25/3/2009",
+      status: "Pending",
+      action: "",
+    },{
+      id: 1,
+      name: "John Doe",
+      date: "30 July 2023",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 2,
+      name: "John Kumma",
+      date: "30/12/2014",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 3,
+      name: "Sara Anti",
+      date: "25/3/2009",
+      status: "Pending",
+      action: "",
+    },{
+      id: 1,
+      name: "John Doe",
+      date: "30 July 2023",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 2,
+      name: "John Kumma",
+      date: "30/12/2014",
+      status: "Cleared",
+      action: "",
+    },
+    {
+      id: 3,
+      name: "Sara Anti",
+      date: "25/3/2009",
+      status: "Pending",
+      action: "",
+    },
+  ];
+}
+export const useRiskStatuscolumns = () => {
+  return [
+    {
+      accessorKey: "id",
+      header: "ID",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "name",
+      header: "Name",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorFn: (row) => row.date,
+      id: "date",
+      header: "Date of Issue",
+      Header: () => <i>Date of Issue</i>,
+    },
+    {
+      accessorKey: "status",
+      header: "Status",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "action",
+      header: "Action",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+};
 
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();

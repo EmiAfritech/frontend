@@ -11,8 +11,17 @@ import {
   useReportAuditTrailColumns,
   useRiskMitigationColumns,
   useReportRiskMitigationColumns,
+  useRiskStatuscolumns,
+  useCDSDashboardTableData,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
+import { jsPDF } from 'jspdf'; 
+import autoTable from 'jspdf-autotable';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+} from "material-react-table";
 import {
   DataGrid,
   GridToolbar,
@@ -1022,7 +1031,7 @@ export function ReviewNeedingRisksReportTab() {
   );
 }
 
-export function RiskStatusReportTab() {
+export function RiskStatusReportTab2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -1294,6 +1303,121 @@ export function RiskStatusReportTab() {
       </div>
     </div>
   );
+}
+
+
+export function RiskStatusReportTab() {
+  const [rowSelection, setRowSelection] = useState({});
+  const columns = useRiskStatuscolumns();
+  const [data, setTableData] = useState("")
+
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableData = rows.map((row) => Object.values(row.original));
+    const tableHeaders = columns.map((c) => c.header);
+  
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+  
+    doc.save('mrt-pdf-example.pdf');
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(data);
+    download(csvConfig)(csv);
+  };
+  
+ 
+
+  useEffect(() => {}, [rowSelection]);
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "#08376B",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },  
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",  
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto", 
+      },
+    },
+    columns,
+    data,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    //export function is already imported use when needing to export data, using jdPDF
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '16px',
+          padding: '8px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <Button
+          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
+          onClick={handleExportData}
+          startIcon={<FileDownloadIcon/>}
+        >
+          Export Data
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          //only export selected rows
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
+  });
+
+  const someEventHandler = () => {
+    console.log(table.getState().sorting);
+  };
+
+  return <MaterialReactTable table={table} />;
 }
 
 

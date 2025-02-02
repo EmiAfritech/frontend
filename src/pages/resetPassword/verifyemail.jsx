@@ -1,19 +1,16 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "../../api/axios";
-import { LOGIN_URL, VerifyPasswordEmail } from "../../api/routes";
+import { VerifyPasswordEmail } from "../../api/routes";
 import "../login/login.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function VerifyEmail() {
-  const [confirmpassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const notifyNetworkError = () => {
     toast.error("Server is Currently Unavailable, Please Try Again Later", {});
