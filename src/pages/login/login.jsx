@@ -43,7 +43,7 @@ export function Login() {
 
   const handleCaptchaSuccess = (value) => {
     axios
-      .post("/verify-captcha",  JSON.stringify({recaptchaResponse: value  }),
+      .post("/verify-captcha",  {recaptchaResponse: value  },
       {
         headers: {
           "Content-Type": "application/json",
