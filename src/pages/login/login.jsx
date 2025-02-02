@@ -53,7 +53,7 @@ export function Login() {
         withCredentials: true,
       },)
       .then((res) => {
-        if (res.data.success) {
+        if (res.data) {
           setVerified(false);  
           navigate("/dashboard", { replace: true });
         } else {
