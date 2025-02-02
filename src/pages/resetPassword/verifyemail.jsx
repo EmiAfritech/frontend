@@ -102,7 +102,7 @@ export function VerifyEmail() {
                 <div className="flex justify-center items-center space-x-1">
                   <span className="text-sm text-black">Return to</span>
                   <span className="text-blue-500 text-sm">
-                    <Link href="/" prefetch={false}>
+                    <Link className="new" to="/">
                       Home Page
                     </Link>
                   </span>
