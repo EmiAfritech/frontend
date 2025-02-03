@@ -118,7 +118,7 @@ export function Login() {
       return <Notification message="Server is currently unavailable. Contact Admin." type="error" />;
     }
     if (notification.errorMessage) {
-      return <Notification message="missing fields" type="error" />;
+      return <Notification message="Server issue. Contact Admin" type="error" />;
     }
     return null;
   };
