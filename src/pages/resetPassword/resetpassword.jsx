@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "../../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "../login/login.css";
 import { ResetPasswordUrl } from "../../api/routes";
 import { TfiEmail } from "react-icons/tfi";
-import { AuthContext } from "../../context/AuthContext";
+import Cookies from "js-cookie";
 
 export function ResetPassword() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
-  const {auth} = useContext(AuthContext)
-
+  const email = Cookies.get('email')
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -42,7 +40,7 @@ export function ResetPassword() {
       const response = await axios.post(
         ResetPasswordUrl,
         JSON.stringify({
-          email: auth.email,
+          email: email,
           password: formData.password,
         }),
         { headers: { "Content-Type": "application/json" } }
@@ -73,7 +71,9 @@ export function ResetPassword() {
           <div className="login-container">
             <div className="px-16">
               <h2 className="text-2xl mb-2 text-black">Reset Password</h2>
-              <h2 className="text-sm mb-16 text-black">enter your new password</h2>
+              <h2 className="text-sm mb-16 text-black">
+                enter your new password
+              </h2>
             </div>
             <div className="flex-col mx-16 flex items-center">
               <form className="w-full">
@@ -84,9 +84,9 @@ export function ResetPassword() {
                     <div className="w-full">
                       <div className="flex items-center space-x-2 mb-12">
                         <span>
-                          <TfiEmail/>
+                          <TfiEmail />
                         </span>
-                        <span className=" text-lg">{auth.email}</span>
+                        <span className=" text-lg">{email}</span>
                       </div>
                       <div className="w-full mb-4">
                         <label
