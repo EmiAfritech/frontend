@@ -83,7 +83,10 @@ export function Login() {
           department,
           organizationName,
         } = response.data;
-        const token = authToken
+        Cookies.set('token', authToken, {
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'Strict'
+        });
         if (token && role) {
           setAuth({
             token,

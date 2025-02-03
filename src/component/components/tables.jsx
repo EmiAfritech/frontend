@@ -526,11 +526,6 @@ export function DepartmentTab() {
   const data = departmentList;
 
 
-
- 
-
-  useEffect(() => {}, [rowSelection]);
-
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
@@ -571,13 +566,8 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    //export function is already imported use when needing to export data, using jdPDF
     
   });
-
-  const someEventHandler = () => {
-    console.log(table.getState().sorting);
-  };
 
   return <MaterialReactTable table={table} />;
 }

@@ -197,6 +197,7 @@ export const useDeptColumns2 = () => {
 };
 
 export const useDeptColumns = () => {
+  const { t } = useTranslation();
   return [
     {
       accessorKey: "deptID",

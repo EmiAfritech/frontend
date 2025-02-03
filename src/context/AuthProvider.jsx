@@ -14,11 +14,9 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedToken = Cookies.get("token");
-    const savedName = Cookies.get("name");
     if ( savedToken) {
       setAuth({
         token: savedToken ? savedToken : null,
-        name: savedName ? savedName : null,
       });
     }
   }, []);
