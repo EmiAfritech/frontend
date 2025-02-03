@@ -521,10 +521,12 @@ export function DepartmentTab2() {
 
 export function DepartmentTab() {
   const columns = useDeptColumns();
-  const data = departmentList;
   const [rowSelection, setRowSelection] = useState({});
   const { departmentList, fetchData } = useDepartmentTable();
-  
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleFormSubmit = () => {
     fetchData();
   };
@@ -562,7 +564,7 @@ export function DepartmentTab() {
       },
     },
     columns,
-    data,
+    data: departmentList,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
