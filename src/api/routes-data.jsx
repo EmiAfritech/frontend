@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { DEPARTMENTDROPDOWN_URL } from "./routes";
+import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL } from "./routes";
 
 export function useDepartmentDropdown() {
   const [departmentList, setDepartmentList] = useState("");
@@ -23,3 +23,26 @@ export function useDepartmentDropdown() {
 
   return { departmentList };
 }
+
+
+export function useDepartmentTable() {
+    const [departmentList, setDepartmentList] = useState("");
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(DEPARTMENT_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+        });
+  
+        setDepartmentList(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
+  
+    return { departmentList };
+  }

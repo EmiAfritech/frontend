@@ -28,71 +28,7 @@ export const useUserColumns = () => {
     },
   ];
 };
-export function useCDSDashboardTableData() {
-  return [
-    {
-      id: 1,
-      name: "John Doe",
-      date: "30 July 2023",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 2,
-      name: "John Kumma",
-      date: "30/12/2014",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 3,
-      name: "Sara Anti",
-      date: "25/3/2009",
-      status: "Pending",
-      action: "",
-    },{
-      id: 1,
-      name: "John Doe",
-      date: "30 July 2023",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 2,
-      name: "John Kumma",
-      date: "30/12/2014",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 3,
-      name: "Sara Anti",
-      date: "25/3/2009",
-      status: "Pending",
-      action: "",
-    },{
-      id: 1,
-      name: "John Doe",
-      date: "30 July 2023",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 2,
-      name: "John Kumma",
-      date: "30/12/2014",
-      status: "Cleared",
-      action: "",
-    },
-    {
-      id: 3,
-      name: "Sara Anti",
-      date: "25/3/2009",
-      status: "Pending",
-      action: "",
-    },
-  ];
-}
+
 export const useRiskStatuscolumns = () => {
   return [
     {
@@ -123,6 +59,8 @@ export const useRiskStatuscolumns = () => {
     },
   ];
 };
+
+
 
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
@@ -241,7 +179,7 @@ export const useReportAuditTrailColumns = () => {
   ];
 };
 
-export const useDeptColumns = () => {
+export const useDeptColumns2 = () => {
   const { t } = useTranslation();
   return [
     { field: "deptID", headerName: t("departmentCode"), flex: 1 },
@@ -254,6 +192,36 @@ export const useDeptColumns = () => {
       headerName: t("Action"),
       flex: 0.5,
       renderCell: (params) => DepartmentData(params),
+    },
+  ];
+};
+
+export const useDeptColumns = () => {
+  return [
+    {
+      accessorKey: "deptID",
+      header: t("departmentCode"),
+    },
+    {
+      accessorKey: "name",
+      header: t("departmentName"),
+    },
+    {
+      accessorKey: "manager",
+      header: t("departmentManager"),
+    },
+    {
+      accessorKey: "location",
+      header: t("location"),
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("createdAt"),
+    },
+    {
+      accessorKey: "view",
+      header: "Action",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
   ];
 };
