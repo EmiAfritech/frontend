@@ -1339,7 +1339,7 @@ export function RiskStatusReportTab() {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "#08376B",
+        background: "#2B6CB0",
         color: "white",
       },
     },
