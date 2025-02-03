@@ -13,7 +13,6 @@ import Cookies from 'js-cookie';
 
 export function Sessions() {
   const { clearAuth, auth } = useContext(AuthContext);
-  const [session, setSession] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const token = Cookies.get("token")
@@ -63,7 +62,6 @@ export function Sessions() {
           }
         );
 
-        setSession(response.data.message);
 
         if (response.data.message === "Invalid") {
           notifyUnauthorized();
@@ -71,8 +69,10 @@ export function Sessions() {
       } catch (err) {
         if (err.message.includes("Network Error")) {
           notifyNetwork();
+          Cookies.remove("token")
         } else {
           notifySystem();
+          Cookies.remove("token")
         }
       }
     };
