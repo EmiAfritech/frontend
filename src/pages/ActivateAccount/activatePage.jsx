@@ -94,7 +94,7 @@ export function ActivationPage() {
                       <button
                         className="login w-full hover:bg-[#2a36b8] mt-4 p-4 text-sm rounded-xl"
                         onClick={handleActivation}
-                        disabled={isActivating || !formData.token} // Disable button if no token
+                        disabled={isActivating || token} // Disable button if no token
                       >
                         {isActivating ? "Activating..." : "Submit"}
                       </button>
