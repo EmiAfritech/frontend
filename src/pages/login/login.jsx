@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
 import "./login.css";
+
+import Cookies from 'js-cookie';
 import CircularProgress from "@mui/material/CircularProgress";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { LanguageButton } from "../../language/language_switcher";
@@ -14,7 +14,6 @@ import { AuthContext } from "../../context/AuthContext";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ReCaptcha from "react-google-recaptcha";
 import { Notification } from "../../component/components/notifications";
-import Cookies from 'js-cookie';
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -77,17 +76,15 @@ export function Login() {
           withCredentials: true,
         }
       );
-      console.log({"login response": response})
       if (response.status === 200) {
         const {authToken, role, department, organizationName,} = response.data;
         const token = authToken
         setAuth({ token, role, department, organizationName, });
         setVerified(true);
         verifyRecapture();
-        console.log({"login token": token})
-        Cookies.set('token', authToken, {
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'Strict'
+        Cookies.set('token', JSON.stringify(authToken), {
+          secure: process.env.NODE_ENV === 'production', 
+          sameSite: 'Strict', 
         });
       }
     } catch (err) {
