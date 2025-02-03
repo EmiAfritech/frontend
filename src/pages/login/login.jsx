@@ -85,7 +85,7 @@ export function Login() {
         setVerified(true);
         verifyRecapture();
         console.log({"login token": token})
-        Cookies.set('token', token, {
+        Cookies.set('token', authToken, {
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'Strict'
         });
