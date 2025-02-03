@@ -14,6 +14,7 @@ import { AuthContext } from "../../context/AuthContext";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ReCaptcha from "react-google-recaptcha";
 import { Notification } from "../../component/components/notifications";
+import Cookies from 'js-cookie';
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
