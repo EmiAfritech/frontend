@@ -94,10 +94,6 @@ export function Login() {
           });
           setVerified(true);
           verifyRecapture();
-          Cookies.set('token', token, {
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Strict'
-          });
         }
       }
     } catch (err) {

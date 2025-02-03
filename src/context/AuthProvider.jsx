@@ -11,9 +11,14 @@ export const AuthProvider = ({ children }) => {
     organizationName: "",
 
   });
-
+  
+  Cookies.set('token', auth.token, {
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'Strict'
+  });
   useEffect(() => {
     const savedToken = Cookies.get("token");
+    console.log({"savedToken": savedToken})
     if ( savedToken) {
       setAuth({
         token: savedToken ? savedToken : null,
