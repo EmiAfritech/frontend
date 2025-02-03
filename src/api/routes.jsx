@@ -25,7 +25,7 @@ export const UploadCsv_URL = "/api/departments/risk/create-many-risks";
 export const VerifyPasswordEmail = "/forgot-password-email";
 
 //reset password
-export const ResetPasswordUrl = "/forgot-password-reset"
+export const ResetPasswordUrl = "/Organization/User/Password/forgot-password-reset"
 
 /*************************************************Tables******************************************************/
 
