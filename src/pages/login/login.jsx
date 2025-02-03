@@ -80,7 +80,8 @@ export function Login() {
       console.log({"login response": response})
       if (response.status === 200) {
         const {authToken, role, department, organizationName,} = response.data;
-        setAuth({ token: authToken, role, department, organizationName, });
+        const token = authToken
+        setAuth({ token, role, department, organizationName, });
         setVerified(true);
         verifyRecapture();
         console.log({"login token": token})
