@@ -39,7 +39,7 @@ export function ResetPassword() {
       const response = await axios.post(
         ResetPasswordUrl,
         JSON.stringify({
-          email: JSON.parse(email),
+          email: "rkoomson@mailto.plus",
           password: formData.password,
         }),
         { headers: { "Content-Type": "application/json" } }
