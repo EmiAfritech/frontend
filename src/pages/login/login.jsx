@@ -76,7 +76,7 @@ export function Login() {
           withCredentials: true,
         }
       );
-      console.log(response)
+      console.log(response.status)
       if (response.status === 200) {
         const {
           authToken,
