@@ -84,7 +84,10 @@ export function Login() {
           organizationName,
         } = response.data;
         const token = authToken
-        console.log(token)
+        Cookies.set('token', token, {
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'Strict'
+        });
         if (token && role) {
           setAuth({
             token,
