@@ -45,8 +45,6 @@ import { useTranslation } from "react-i18next";
 import "react-tabs/style/react-tabs.css";
 import { AuthContext } from "../../context/AuthContext";
 
-
-
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
     return "Low";
@@ -102,9 +100,8 @@ const style = {
   borderRadius: 1,
 };
 
-
 export function UserData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [userName, setUserName] = useState(params.row.userName);
@@ -467,7 +464,7 @@ export function UserData(params) {
 }
 
 export function RiskData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -684,7 +681,6 @@ export function RiskData(params) {
                   )}
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                    
                   {auth.role === "MANAGER" || auth.role === "AUDITOR" ? (
                     <>
                       <InputLabel>Department Name</InputLabel>
@@ -904,7 +900,8 @@ export function ReviewRiskData({ params }) {
   const { auth } = useContext(AuthContext);
   const { triggerComponent } = useContext(ModalTriggerContext);
   const [open, setOpen] = useState(false);
-  const formattedDate = (dateString) => new Date(dateString).toISOString().split("T")[0];
+  const formattedDate = (dateString) =>
+    new Date(dateString).toISOString().split("T")[0];
   const handleOpen = useCallback(() => setOpen((prev) => !prev), []);
   const close = useCallback(() => setOpen(false), []);
   const [riskData, setRiskData] = useState({
@@ -919,17 +916,27 @@ export function ReviewRiskData({ params }) {
     const { name, value } = e.target;
     setRiskData((prev) => ({ ...prev, [name]: value }));
   }, []);
-  const notify = useCallback((type, message) => {
-    toast[type](message, { onClose: close });
-  }, [close]);
+  const notify = useCallback(
+    (type, message) => {
+      toast[type](message, { onClose: close });
+    },
+    [close]
+  );
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const { riskID, riskReview, nextRiskReviewDate, riskReviewComments } = riskData;
+    const { riskID, riskReview, nextRiskReviewDate, riskReviewComments } =
+      riskData;
     try {
       await axios.put(
         EDITREVIEW_URL,
-        JSON.stringify({ riskID, riskReview, NextRiskReviewDate: nextRiskReviewDate, riskReviewComments, id: params.row.id }),
+        JSON.stringify({
+          riskID,
+          riskReview,
+          NextRiskReviewDate: nextRiskReviewDate,
+          riskReviewComments,
+          id: params.row.id,
+        }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -959,8 +966,7 @@ export function ReviewRiskData({ params }) {
         open={open}
         onClose={close}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={{ ...style, width: 1200 }}>
           <FormControl fullWidth>
             <div className="px-10 py-10">
@@ -991,8 +997,7 @@ export function ReviewRiskData({ params }) {
                     value={riskData.riskReview}
                     autoComplete="off"
                     onChange={handleInputChange}
-                    fullWidth
-                  >
+                    fullWidth>
                     <MenuItem value="accept risk">Accept Risk</MenuItem>
                     <MenuItem value="reject risk">Reject Risk</MenuItem>
                     <MenuItem value="close risk">Close Risk</MenuItem>
@@ -1034,8 +1039,7 @@ export function ReviewRiskData({ params }) {
               <button
                 className="flex items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 type="submit"
-                onClick={handleEditSubmit}
-              >
+                onClick={handleEditSubmit}>
                 <FaSave className="icons" />
                 Save
               </button>
@@ -1047,9 +1051,8 @@ export function ReviewRiskData({ params }) {
   );
 }
 
-
 export function MonitoredRiskData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -1314,7 +1317,7 @@ export function MonitoredRiskData(params) {
 }
 
 export function MitigatedRiskData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const id = params.row.id;
@@ -1635,7 +1638,7 @@ export function MitigatedRiskData(params) {
                   />
                 </div>
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                <TextField
+                  <TextField
                     type="date"
                     label="End Date"
                     value={eDate}
@@ -1653,7 +1656,7 @@ export function MitigatedRiskData(params) {
                       const day = String(dateObj.getDate()).padStart(2, "0");
 
                       // Format the date as "yyyy-MM-dd"
-                      const formattedDate =`${year}-${month}-${day}`;
+                      const formattedDate = `${year}-${month}-${day}`;
                       // Set the formatted date to state
                       setEndDate(formattedDate);
                     }}
@@ -1851,7 +1854,7 @@ export function MitigatedRiskReportData(params) {
 }
 
 export function DepartmentData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [deptID, setDepartmentID] = useState(params.row.deptID);
@@ -1972,13 +1975,23 @@ export function DepartmentData(params) {
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
-      <Modal
-        open={open}
-        onClose={close}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <FormControl fullWidth>
+      <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="relative bg-white p-6 rounded-lg shadow-lg max-h-screen w-[85vw] h-[95vh]">
+          {/* Close button in top-right corner */}
+          <button
+            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            // onClick={onClose}
+            >
+            {/* <IoClose size={24} /> */}
+          </button>
+
+          {/* Header */}
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
+            {header}
+          </div>
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto max-h-[75%]">
             <div className=" px-10 py-10">
               <div className="grid grid-cols-4 gap-3 mb-6">
                 <div className="relative mb-6" data-te-input-wrapper-init>
@@ -2116,9 +2129,9 @@ export function DepartmentData(params) {
                 Delete
               </button>
             </div>
-          </FormControl>
-        </Box>
-      </Modal>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
@@ -2166,13 +2179,13 @@ export function CsvModal() {
 }
 
 export function LogOut() {
-  const {clearAuth, auth} = useContext(AuthContext);
+  const { clearAuth, auth } = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
       onClose: () => {
@@ -2226,9 +2239,11 @@ export function LogOut() {
   return (
     <>
       <ToastContainer onClose={5000} hideProgressBar />
-      <button onClick={handleOpen} className="flex flex row items-center p-3 ml-3">
+      <button
+        onClick={handleOpen}
+        className="flex flex row items-center p-3 ml-3">
         <FaSignOutAlt className="icons" />
-       {t("logout")}
+        {t("logout")}
       </button>
       <Modal
         open={open}
@@ -2253,9 +2268,7 @@ export function LogOut() {
               </svg>
             </div>
             <div className="ml-2">
-              <Typography component="h2">
-                {t('logoutMessage')}
-              </Typography>
+              <Typography component="h2">{t("logoutMessage")}</Typography>
             </div>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
@@ -2271,7 +2284,7 @@ export function LogOut() {
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                t('yes')
+                t("yes")
               )}
             </button>
           </div>
@@ -2281,10 +2294,8 @@ export function LogOut() {
   );
 }
 
-
-
 export function RiskAdviceReportData(params) {
-  const {auth} = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [riskName, setRiskName] = useState(params.row.riskName);
@@ -2388,39 +2399,44 @@ export function RiskAdviceReportData(params) {
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk ID:</p>
                         <input
-                        value={riskID}
-                        autoComplete="off"
-                        onChange={(e) => setRiskID(e.target.value)}
-                        required
-                        className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                          value={riskID}
+                          autoComplete="off"
+                          onChange={(e) => setRiskID(e.target.value)}
+                          required
+                          className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                        />
                       </div>
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Risk Name:</p>
                         <input
-                        value={riskName}
-                        autoComplete="off"
-                        onChange={(e) => setRiskName(e.target.value)}
-                        required
-                        className="block py-2.5 w-full text-sm bg-transparent border-0 appearance-none focus:border-gray-200 peer"/>
+                          value={riskName}
+                          autoComplete="off"
+                          onChange={(e) => setRiskName(e.target.value)}
+                          required
+                          className="block py-2.5 w-full text-sm bg-transparent border-0 appearance-none focus:border-gray-200 peer"
+                        />
                       </div>
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Department Name:</p>
-                        <select 
-                        value={deptmentName}
-                        autoComplete="off"
-                        onChange={(e) => setdeptmentName(e.target.value)}
-                        class="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                        <select
+                          value={deptmentName}
+                          autoComplete="off"
+                          onChange={(e) => setdeptmentName(e.target.value)}
+                          class="block py-2.5 pr-16  w-auto text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                           <option>hi</option>
                         </select>
                       </div>
                       <div class="flex flex-row items-center p-2 space-x-4 w-full max-w-lg">
                         <p class="m-0">Probability Levels:</p>
                         <input
-                        value={riskProbabilityLevell}
-                        autoComplete="off"
-                        onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                        required
-                        className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"/>
+                          value={riskProbabilityLevell}
+                          autoComplete="off"
+                          onChange={(e) =>
+                            setRiskProbabilityLevel(e.target.value)
+                          }
+                          required
+                          className="block py-2.5 pr-16  w-full text-sm bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                        />
                       </div>
                       <TextField
                         sx={{

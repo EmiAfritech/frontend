@@ -76,7 +76,7 @@ export function Login() {
           withCredentials: true,
         }
       );
-
+      console.log(response)
       if (response.status === 200) {
         const {
           authToken: token,
@@ -147,7 +147,7 @@ export function Login() {
                 <FaLanguage size={20} color="blue" />
               </span>
             </div>
-            <div className="mb-[15%]"> {getNotification()}</div>
+            <div className="mb-[10%] flex justify-content"> {getNotification()}</div>
             <div className="formstyle flex-col">
               <div className="flex justify-center">
                 <img
