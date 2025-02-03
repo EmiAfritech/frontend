@@ -374,7 +374,6 @@ export function Departmentforms({ onFormSubmit }) {
           withCredentials: true,
         }
       );
-      then((res)=> (console.log({"Department Creation": res})))
       notify();
     } catch (error) {
       if (error.response.status === 400) {
