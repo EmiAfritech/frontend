@@ -93,7 +93,7 @@ export function Login() {
         reload();
       } else if (err.response?.status === 401) {
         setNotification({ ...notification, authorized: true });
-      } else if ([400, 404].includes(err.response?.status)) {
+      } else if ([400,].includes(err.response?.status)) {
         setNotification({ ...notification, errorMessage: true });
       }
     } finally {
