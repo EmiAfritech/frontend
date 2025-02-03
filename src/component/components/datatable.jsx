@@ -208,10 +208,6 @@ export const useDeptColumns = () => {
       header: t("departmentName"),
     },
     {
-      accessorKey: "manager",
-      header: t("departmentManager"),
-    },
-    {
       accessorKey: "location",
       header: t("location"),
     },
