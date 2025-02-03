@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL } from "./routes";
+import axios from "./axios";
 
 export function useDepartmentDropdown() {
   const [departmentList, setDepartmentList] = useState("");
