@@ -79,7 +79,7 @@ export function Login() {
       console.log(response)
       if (response.status === 200) {
         const {
-          authToken: token,
+          token: authToken,
           role,
           department,
           organizationName,
@@ -97,6 +97,7 @@ export function Login() {
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
         });
+        console.log({token, role})
         if (token && role) {
           setAuth({
             token,
