@@ -524,9 +524,7 @@ export function DepartmentTab() {
   const [rowSelection, setRowSelection] = useState({});
   const { departmentList, fetchData } = useDepartmentTable();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  
   const handleFormSubmit = () => {
     fetchData();
   };
