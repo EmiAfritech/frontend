@@ -65,7 +65,7 @@ export function Sessions() {
 
         if (response.data.message === "Invalid") {
           notifyUnauthorized();
-          // Cookies.remove("token")
+          Cookies.remove("token")
         }
       } catch (err) {
         if (err.message.includes("Network Error")) {
