@@ -84,6 +84,7 @@ export function Login() {
           organizationName,
         } = response.data;
         const token = authToken
+        console.log(token)
         if (token && role) {
           setAuth({
             token,
