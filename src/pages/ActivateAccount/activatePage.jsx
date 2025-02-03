@@ -16,7 +16,7 @@ export function ActivationPage() {
 
 
   const handleActivation = async () => {
-    if (!formData.token) {
+    if (!token) {
       toast.error("Please enter the activation token.");
       return;
     }
