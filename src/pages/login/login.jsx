@@ -84,8 +84,6 @@ export function Login() {
           department,
           organizationName,
         } = response.data;
-        const token = authToken
-        if (token && role) {
           setAuth({
             token,
             role,
@@ -94,7 +92,13 @@ export function Login() {
           });
           setVerified(true);
           verifyRecapture();
-        }
+
+          // Set the token in cookies
+          Cookies.set('token', token, {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Strict'
+          });
+       
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
@@ -118,7 +122,7 @@ export function Login() {
       return <Notification message="Server is currently unavailable. Contact Admin." type="error" />;
     }
     if (notification.errorMessage) {
-      return <Notification message="Server issue. Contact Admin" type="error" />;
+      return <Notification message="Account Not Found, Kindly Register for Free" type="error" />;
     }
     return null;
   };
