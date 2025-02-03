@@ -58,7 +58,6 @@ import {
 } from "../../api/routes";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { CsvModal } from "./modals";
 import { Modaltrigger } from "../../context/AuthContext";
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
@@ -572,13 +571,9 @@ export function DepartmentTab() {
     state: { rowSelection },
     enableRowActions: true,
     renderRowActions: ({ cell, row, table }) => (
-      <MRT_ActionMenuItem
-        icon={<Edit />}
-        key="edit"
-        label="Edit"
-        onClick={() => console.info('Edit row info')}
-        table={table}
-      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Edit onClick={() => console.log('Row info:', row.original)} />
+      </div>
     ),
   });
 
