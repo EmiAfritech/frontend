@@ -12,10 +12,15 @@ export const AuthProvider = ({ children }) => {
 
   });
   
-  Cookies.set('token', auth.token, {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'Strict'
-  });
+  useEffect(() => {
+    if (auth.token) {
+      Cookies.set('token', auth.token, {
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict'
+      });
+    }
+  }, [auth.token]);
+  
   useEffect(() => {
     const savedToken = Cookies.get("token");
     console.log({"savedToken": savedToken})
