@@ -17,9 +17,11 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import { Edit } from '@mui/icons-material';
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   MaterialReactTable,
+  MRT_ActionMenuItem,
   useMaterialReactTable,
 } from "material-react-table";
 import {
@@ -568,6 +570,16 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
+    enableRowActions: true,
+    renderRowActions: ({ cell, row, table }) => (
+      <MRT_ActionMenuItem
+        icon={<Edit />}
+        key="edit"
+        label="Edit"
+        onClick={() => console.info('Edit row info')}
+        table={table}
+      />
+    ),
   });
 
   return (
