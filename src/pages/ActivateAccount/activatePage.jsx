@@ -7,18 +7,13 @@ import { TfiEmail } from "react-icons/tfi";
 import "../login/login.css";
 
 export function ActivationPage() {
-  const [formData, setFormData] = useState({ token: "" });
+  const [token, setToken] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const [isActivating, setIsActivating] = useState(false);
   const [activationSuccess, setActivationSuccess] = useState(false);
   const email = location.state?.email || "";
-  const { token } = formData;
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
-  };
 
   const handleActivation = async () => {
     if (!formData.token) {
@@ -90,8 +85,8 @@ export function ActivationPage() {
                         <input
                           type="text"
                           id="token"
-                          value={formData.token}
-                          onChange={handleInputChange}
+                          value={token}
+                          onChange={(e) =>setToken( e.target.value,)}
                           required
                           className="w-full p-4 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
                         />
