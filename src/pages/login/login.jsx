@@ -82,7 +82,7 @@ export function Login() {
         setAuth({ token, role, department, organizationName, });
         setVerified(true);
         verifyRecapture();
-        Cookies.set('token', JSON.stringify(authToken), {
+        Cookies.set('token', JSON.stringify(token), {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
