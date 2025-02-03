@@ -15,9 +15,9 @@ import {
   useCDSDashboardTableData,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
-import { jsPDF } from 'jspdf'; 
-import autoTable from 'jspdf-autotable';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -522,9 +522,8 @@ export function DepartmentTab2() {
 export function DepartmentTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useDeptColumns();
-  const {departmentList} = useDepartmentTable()
+  const { departmentList } = useDepartmentTable();
   const data = departmentList;
-
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
@@ -545,18 +544,18 @@ export function DepartmentTab() {
       sx: {
         "& tr:nth-of-type(even) > td": {
           backgroundColor: "#f5f5f5",
-        },  
+        },
         overflowY: "auto",
       },
     },
     muiTableContainerProps: {
       sx: {
-        height: "70vh",  
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
       sx: {
-        overflowY: "auto", 
+        overflowY: "auto",
       },
     },
     columns,
@@ -566,12 +565,19 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
   });
 
-  return <MaterialReactTable table={table} />;
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div>
+          <Departmentforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
 }
-
 
 export function RiskmitigationTab() {
   const { auth } = useContext(AuthContext);
@@ -1152,7 +1158,7 @@ export function RiskStatusReportTab2() {
   const handlePrint = () => {
     const printContent =
       document.getElementById("printableFullTable").innerHTML;
-    const printWindow = window.open("", "",);
+    const printWindow = window.open("", "");
     //  "height=650,width=900"
     printWindow.document.write(`
       <html>
@@ -1224,7 +1230,7 @@ export function RiskStatusReportTab2() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-      <div className="mr-6">
+        <div className="mr-6">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <select
               className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -1240,16 +1246,24 @@ export function RiskStatusReportTab2() {
             </select>
           )}
         </div>
-        <Button onClick={handlePrint} size="small" variant="outlined" style={{ width: '120px' }}>
+        <Button
+          onClick={handlePrint}
+          size="small"
+          variant="outlined"
+          style={{ width: "120px" }}>
           Print Report
         </Button>
       </div>
       <div className="mt-2 w-auto card p-4 rounded-md">
-        <table className="w-full border-collapse border border-black text-sm table-fixed" style={{ height: 650 }}>
+        <table
+          className="w-full border-collapse border border-black text-sm table-fixed"
+          style={{ height: 650 }}>
           <thead>
             <tr className="bg-blue-500 text-white">
               {riskStatusColumns.map((col) => (
-                <th key={col.field} className="border-b border-black p-2 whitespace-nowrap h-14">
+                <th
+                  key={col.field}
+                  className="border-b border-black p-2 whitespace-nowrap h-14">
                   {col.headerName}
                 </th>
               ))}
@@ -1360,32 +1374,28 @@ export function RiskStatusReportTab2() {
   );
 }
 
-
 export function RiskStatusReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
-  const [data, setTableData] = useState("")
-
+  const [data, setTableData] = useState("");
 
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableData = rows.map((row) => Object.values(row.original));
     const tableHeaders = columns.map((c) => c.header);
-  
+
     autoTable(doc, {
       head: [tableHeaders],
       body: tableData,
     });
-  
-    doc.save('mrt-pdf-example.pdf');
+
+    doc.save("mrt-pdf-example.pdf");
   };
 
   const handleExportData = () => {
     const csv = generateCsv(csvConfig)(data);
     download(csvConfig)(csv);
   };
-  
- 
 
   useEffect(() => {}, [rowSelection]);
 
@@ -1408,18 +1418,18 @@ export function RiskStatusReportTab() {
       sx: {
         "& tr:nth-of-type(even) > td": {
           backgroundColor: "#f5f5f5",
-        },  
+        },
         overflowY: "auto",
       },
     },
     muiTableContainerProps: {
       sx: {
-        height: "70vh",  
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
       sx: {
-        overflowY: "auto", 
+        overflowY: "auto",
       },
     },
     columns,
@@ -1433,25 +1443,22 @@ export function RiskStatusReportTab() {
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
         sx={{
-          display: 'flex',
-          gap: '16px',
-          padding: '8px',
-          flexWrap: 'wrap',
-        }}
-      >
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}>
         <Button
           //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
           onClick={handleExportData}
-          startIcon={<FileDownloadIcon/>}
-        >
+          startIcon={<FileDownloadIcon />}>
           Export Data
         </Button>
         <Button
           disabled={table.getRowModel().rows.length === 0}
           //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
           onClick={() => handleExportRows(table.getRowModel().rows)}
-          startIcon={<FileDownloadIcon />}
-        >
+          startIcon={<FileDownloadIcon />}>
           Export Page Rows
         </Button>
         <Button
@@ -1460,8 +1467,7 @@ export function RiskStatusReportTab() {
           }
           //only export selected rows
           onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-          startIcon={<FileDownloadIcon />}
-        >
+          startIcon={<FileDownloadIcon />}>
           Export Selected Rows
         </Button>
       </Box>
@@ -1474,5 +1480,3 @@ export function RiskStatusReportTab() {
 
   return <MaterialReactTable table={table} />;
 }
-
-

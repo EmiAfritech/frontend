@@ -84,10 +84,6 @@ export function Login() {
           organizationName,
         } = response.data;
         const token = authToken
-        Cookies.set('token', token, {
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: 'Strict'
-        });
         if (token && role) {
           setAuth({
             token,
@@ -98,6 +94,11 @@ export function Login() {
           setVerified(true);
           verifyRecapture();
         }
+        
+        Cookies.set('token', token, {
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'Strict'
+        });
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
