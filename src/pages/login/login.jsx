@@ -79,12 +79,12 @@ export function Login() {
       console.log(response)
       if (response.status === 200) {
         const {
-          token: authToken,
+          authToken,
           role,
           department,
           organizationName,
         } = response.data;
-
+        const token = authToken
         Cookies.set("token", authToken, {
           secure: process.env.NODE_ENV === "production",
           sameSite: "Strict",
