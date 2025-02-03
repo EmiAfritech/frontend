@@ -520,15 +520,14 @@ export function DepartmentTab2() {
 }
 
 export function DepartmentTab() {
-  const [rowSelection, setRowSelection] = useState({});
   const columns = useDeptColumns();
-  const { departmentList } = useDepartmentTable();
   const data = departmentList;
-
+  const [rowSelection, setRowSelection] = useState({});
+  const { departmentList, fetchData } = useDepartmentTable();
+  
   const handleFormSubmit = () => {
-    useDepartmentTable();
+    fetchData();
   };
-
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {

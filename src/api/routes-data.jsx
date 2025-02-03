@@ -48,5 +48,5 @@ export function useDepartmentTable() {
   
     fetchData();
   
-    return { departmentList };
+    return { departmentList, fetchData };
   }
