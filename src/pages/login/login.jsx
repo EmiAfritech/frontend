@@ -88,12 +88,12 @@ export function Login() {
         });
       }
     } catch (err) {
-      if (err.message.includes("Network Error")) {
+      if (err.response?.status === 500 || err.response?.status === 400) {
         setNotification({ ...notification, serverDown: true });
         reload();
       } else if (err.response?.status === 401) {
         setNotification({ ...notification, authorized: true });
-      } else if ([400,].includes(err.response?.status)) {
+      } else if ([404].includes(err.response?.status)) {
         setNotification({ ...notification, errorMessage: true });
       }
     } finally {
