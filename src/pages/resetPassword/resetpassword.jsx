@@ -34,7 +34,7 @@ export function ResetPassword() {
       toast.error("Password should be at least 6 characters long.");
       return;
     }
-
+    console.log(email)
     setIsActivating(true);
     try {
       const response = await axios.post(
