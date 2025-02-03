@@ -78,27 +78,14 @@ export function Login() {
       );
       console.log({"login response": response})
       if (response.status === 200) {
-        const {
-          authToken,
-          role,
-          department,
-          organizationName,
-        } = response.data;
-          setAuth({
-            token,
-            role,
-            department,
-            organizationName,
-          });
-          setVerified(true);
-          verifyRecapture();
-
-          // Set the token in cookies
-          Cookies.set('token', token, {
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Strict'
-          });
-       
+        const {authToken, role, department, organizationName,} = response.data;
+        setAuth({ token: authToken, role, department, organizationName, });
+        setVerified(true);
+        verifyRecapture();
+        Cookies.set('token', token, {
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'Strict'
+        });
       }
     } catch (err) {
       if (err.message.includes("Network Error")) {
