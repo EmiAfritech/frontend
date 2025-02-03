@@ -83,6 +83,7 @@ export function Login() {
         setAuth({ token: authToken, role, department, organizationName, });
         setVerified(true);
         verifyRecapture();
+        console.log({"login token": token})
         Cookies.set('token', token, {
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'Strict'
