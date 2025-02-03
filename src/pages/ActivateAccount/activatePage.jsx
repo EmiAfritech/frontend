@@ -86,7 +86,7 @@ export function ActivationPage() {
                           type="text"
                           id="token"
                           value={token}
-                          onChange={(e) =>setToken( e.target.value,)}
+                          onChange={(e) =>setToken( e.target.value)}
                           required
                           className="w-full p-4 text-sm h-12 mb-6 border border-gray-300 rounded-xl"
                         />
