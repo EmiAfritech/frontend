@@ -84,7 +84,7 @@ export function ResetPassword() {
                     <div className="w-full">
                       <div className="flex items-center space-x-2 mb-12">
                         <span>
-                          <TfiEmail />
+                          <TfiEmail color="blue"/>
                         </span>
                         <span className=" text-lg">{email}</span>
                       </div>
