@@ -525,6 +525,10 @@ export function DepartmentTab() {
   const { departmentList } = useDepartmentTable();
   const data = departmentList;
 
+  const handleFormSubmit = () => {
+    useDepartmentTable();
+  };
+
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {

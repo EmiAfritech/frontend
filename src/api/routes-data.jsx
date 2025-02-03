@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL } from "./routes";
 import axios from "./axios";
+import { AuthContext } from "../context/AuthContext";
 
 export function useDepartmentDropdown() {
+  const {auth} = useContext(AuthContext)
   const [departmentList, setDepartmentList] = useState("");
   const fetchData = async () => {
     try {
@@ -27,6 +29,7 @@ export function useDepartmentDropdown() {
 
 
 export function useDepartmentTable() {
+    const {auth} = useContext(AuthContext)
     const [departmentList, setDepartmentList] = useState("");
     const fetchData = async () => {
       try {
