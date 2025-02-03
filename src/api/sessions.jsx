@@ -16,7 +16,7 @@ export function Sessions() {
   const navigate = useNavigate();
   const location = useLocation();
   const token = auth?.token;
-  console.log(token)
+  console.log({"sessions": token})
 
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
