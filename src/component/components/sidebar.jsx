@@ -121,7 +121,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="sidebar-container bg-[#2B6CB0]">
+    <div className="sidebar-container bg-[#04026b]">
       <div className="sidebar-header mb-1 h-[20%]">
         <img
           src={SidebarLogo}
