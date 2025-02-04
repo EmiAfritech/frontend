@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
       });
     }
   }, []);
+  
   const clearAuth = () => {
     setAuth({
       token: "",
