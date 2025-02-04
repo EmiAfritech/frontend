@@ -11,6 +11,7 @@ import {
   RiskAdviceReportData,
 } from "./modals";
 import { useTranslation } from "react-i18next";
+import { FaEye } from "react-icons/fa";
 
 export const useUserColumns = () => {
   const { t } = useTranslation();
@@ -62,7 +63,7 @@ export const useRiskStatuscolumns = () => {
             onClick={() => console.log(row.original.deptID)}
             color="primary"
           >
-            hi
+            <FaEye/>
           </IconButton>
         </Tooltip>
       ),

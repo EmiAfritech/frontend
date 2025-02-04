@@ -568,7 +568,6 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    enableRowActions: true,
     
   });
 

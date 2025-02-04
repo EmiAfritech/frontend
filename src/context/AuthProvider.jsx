@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedToken = Cookies.get("token");
-    const savedRole = Cookies.get("role");
+    const savedRole = JSON.parse(Cookies.get("role"));
     console.log({"savedRole": savedRole})
     if ( savedToken) {
       setAuth({
