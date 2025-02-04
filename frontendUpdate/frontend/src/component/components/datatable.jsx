@@ -230,7 +230,7 @@ export const useDeptColumns = () => {
       accessorKey: "view",
       header: "Action",
       Cell: ({ row }) => (
-        <Tooltip title="View Details">
+        <Tooltip title="View Detail">
           <IconButton
             onClick={() => console.log(row.original)}
             color="primary"
