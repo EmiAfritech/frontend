@@ -1,0 +1,116 @@
+
+.sidebar-container {
+  width: 17%;
+  height: 100vh;
+  position: fixed;
+}
+.sidebar-header {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #000c8e;
+}
+.sidebar-main {
+  width: 150px; 
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding-top: 22px;
+}
+.sidebar-main li {
+  margin-left: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.sidebar-main li:hover {
+  background-color: #1E4D7E; 
+  border-radius: 6px;
+}
+
+
+.icons {
+  size: 8px;
+  margin-right: 5px;
+  color: #b1ea09;
+}
+.card {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  margin: 10px;
+  text-align: center;
+  background-color: white;
+}
+.cardTable {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  text-align: center;
+  background-color: white;
+}
+.card-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: 5px;
+}
+.MuiDataGrid-row:nth-child(odd) {
+  background-color: rgb(243, 243, 243);
+}
+.MuiDataGrid-columnHeaders{
+  background-color: #2B6CB0;
+  color: white
+}
+.report-container {
+  margin-top: 100px; /* Set margin with units */
+}
+.report-main {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row; /* Horizontal layout for the list */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: center; /* Center items horizontally */
+}
+
+.report-main ul {
+  list-style: none; /* Remove default list styles */
+  display: flex; /* Align list items horizontally */
+}
+
+.report-main li {
+  display: flex;
+  font-size: 15px;
+  margin: 10px;
+}
+
+
+.modal{
+    position: 'absolute';
+    top: '50%';
+    left: '50%';
+    transform: 'translate(-50%, -50%)';
+    width: 400;
+    background-color: 'background.paper';
+    border: '2px solid #000';
+    box-shadow: 24;
+    padding: 4;
+
+}
+
+.recharts-legend-item-text{
+  font-size: 8px;
+}
+
+.heatmap-cell {
+  padding: 20px; /* Adjust the padding as needed */
+  color: white;
+  text-align: center;
+}
+
+.sidebar-main button:hover {
+  background-color: #1E4D7E; /* Change color on hover */
+  border-radius: 6px;
+}
+
