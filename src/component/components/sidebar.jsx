@@ -25,7 +25,7 @@ export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = Cookies.get("role");
+  const userRole = JSON.parse(Cookies.get("role"));
   console.log({"sidebar": userRole})
 
   // Determine the organization logo
