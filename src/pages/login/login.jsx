@@ -133,16 +133,16 @@ export function Login() {
               </span>
             </div>
             
-            <div className="formstyle flex-col">
-            <div className="flex justify-center mb-12 mx-20"> {getNotification()}</div>
+            <div className="formstyle flex-col mx-12">
+            <div className="flex justify-center mb-12"> {getNotification()}</div>
               <div className="flex justify-center">
                 <img
                   src={afriquetek_logo}
                   alt="Afriquetek logo"
-                  className="w-36 h-20 mb-8 "
+                  className="w-46 h-30 mb-16 "
                 />
               </div>
-              <div className="mx-20 ">
+              <div>
                 <form onSubmit={handleSubmit}>
                   {/* Email */}
                   <div className="mb-5">

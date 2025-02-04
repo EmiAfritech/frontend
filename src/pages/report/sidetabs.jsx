@@ -230,7 +230,7 @@ export function ReportingNavigation({ onTabChange }) {
               <li key={tab.title}>
                 <button
                   onClick={() => handleTabChange(tab.title)}
-                  className={`text-md font-thin font-[Open_Sans] p-4 ${activeTab === tab.title ? 'text-[#08376B] border-b-2 border-[#08376B]' : 'text-black'}`}
+                  className={`text-md font-thin font-[Open_Sans] p-4 ${activeTab === tab.title ? 'text-[#04026b] border-b-2 border-[#04026b]' : 'text-black'}`}
                 >
                   <span className=" transition duration-300 ease-out">
                     {t(tab.title)}

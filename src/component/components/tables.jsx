@@ -12,7 +12,6 @@ import {
   useRiskMitigationColumns,
   useReportRiskMitigationColumns,
   useRiskStatuscolumns,
-  useCDSDashboardTableData,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
@@ -1414,7 +1413,7 @@ export function RiskStatusReportTab() {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "#2B6CB0",
+        background: "#04026b",
         color: "white",
       },
     },
