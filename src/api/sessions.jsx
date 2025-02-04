@@ -104,7 +104,7 @@ const LoadingPopup = () => {
   }, []);
 
   return (
-    <Backdrop open={isLoading} style={{ zIndex: 999, color: "#fff" }}>
+    <Backdrop open={isLoading} style={{ zIndex: 999, color: "#fff" , backgroundColor: 'rgb(253, 253, 253)'}}>
       <CircularProgress color="inherit" />
     </Backdrop>
   );
