@@ -82,11 +82,12 @@ export function Login() {
         const token = authToken
         setAuth({ token, role, department, organizationName, });
         setVerified(true);
-        verifyRecapture();
         Cookies.set('token', JSON.stringify(token), {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
+        verifyRecapture();
+        
       }
     } catch (err) {
       if (err.response?.status === 500 || err.response?.status === 400) {
