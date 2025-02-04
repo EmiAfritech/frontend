@@ -1,19 +1,20 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import axios from "../../api/axios";
-import { LOGIN_URL } from "../../api/routes";
-import "./login.css";
-
-import Cookies from 'js-cookie';
-import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate, Link } from "react-router-dom";
 import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+
+
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
+import axios from "../../api/axios";
+import { LOGIN_URL } from "../../api/routes";
 import { LanguageButton } from "../../language/language_switcher";
 import { AuthContext } from "../../context/AuthContext";
-import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
-import ReCaptcha from "react-google-recaptcha";
 import { Notification } from "../../component/components/notifications";
+
+import "./login.css";
+import Cookies from 'js-cookie';
+import CircularProgress from "@mui/material/CircularProgress";
+import ReCaptcha from "react-google-recaptcha";
 
 export function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -101,6 +102,7 @@ export function Login() {
     }
   };
 
+  console.log({"setCookies Login": Cookies.get("token")})
   const getNotification = () => {
     if (notification.authorized) {
       return <Notification message="Your email or password may be incorrect" type="error" />;
