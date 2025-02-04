@@ -569,11 +569,7 @@ export function DepartmentTab() {
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
     enableRowActions: true,
-    renderRowActions: ({ cell, row, table }) => (
-      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Edit onClick={() => console.log('Row info:', row.original)} />
-      </div>
-    ),
+    
   });
 
   return (
