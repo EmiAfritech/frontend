@@ -40,13 +40,12 @@ export function Sidebar() {
 
   // Component for individual nav links
   const NavItem = ({ to, icon: Icon, label }) => (
-    <li className="flex flex-row items-center p-3 px-4">
+    <li className= {`flex flex-row items-center p-3  ${isActive ? 'bg-white' : ''} `}>
       <Icon className="icons" />
       <NavLink
         to={to}
         style={({ isActive }) => ({
           color: isActive ? "greenyellow" : "white",
-          background: isActive ? "white" : ""
         })}
       >
         {label}
