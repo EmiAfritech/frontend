@@ -94,20 +94,20 @@ const LoadingPopup = () => {
 
   useEffect(() => {
     const delay = setTimeout(() => {
-      setLoading(false); 
-      clearTimeout(delay);
+      setLoading(false);
     }, 2000);
 
-    return () => {
-      clearTimeout(delay);
-    };
+    return () => clearTimeout(delay);
   }, []);
 
+  if (!isLoading) return null; // Hide when loading is false
+
   return (
-    <Backdrop open={isLoading} style={{ zIndex: 999, color: "#fff" , backgroundColor: 'rgb(253, 253, 253)'}}>
-      <CircularProgress color="inherit" />
-    </Backdrop>
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-transparent">
+      <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
   );
 };
+
 
 export default LoadingPopup;
