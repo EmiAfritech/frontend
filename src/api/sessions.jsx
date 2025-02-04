@@ -4,23 +4,25 @@ import { Sessions_URL } from "./routes";
 import axios from "./axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthContext";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
+
+
 
 export function Sessions() {
   const { clearAuth, auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const token = Cookies.get("token");
+  const token = Cookies.get("token")
 
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {
       onClose: () => {
         navigate("/", { replace: true });
         clearAuth();
-        Cookies.remove("token");
+        Cookies.remove("token")
       },
     });
   };
@@ -39,15 +41,7 @@ export function Sessions() {
   };
 
   useEffect(() => {
-    const exemptPaths = [
-      "/activate",
-      "/signup",
-      "/setPassword",
-      "/subscription",
-      "/verifyemail",
-      "/resetpassword",
-      "/report",
-    ];
+    const exemptPaths = [ "/activate", "/signup", "/setPassword", "/subscription", "/verifyemail", "/resetpassword", "/report"]; 
 
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
@@ -62,11 +56,12 @@ export function Sessions() {
 
         const response = await axios.post(
           Sessions_URL,
-          { token },
+          { token }, 
           {
             headers: { "Content-Type": "application/json" },
           }
         );
+
 
         if (response.data.message === "Invalid") {
           notifyUnauthorized();
@@ -79,24 +74,27 @@ export function Sessions() {
         //   notifySystem();
         //   Cookies.remove("token")
         // }
-        console.log(err);
+        console.log(err)
       }
     };
 
     if (token && !exemptPaths.includes(location.pathname)) {
       validateSession();
     }
+
   }, [token, navigate, location.pathname, clearAuth]);
 
-  return null;
+  return  null; ;
 }
+
+
 
 const LoadingPopup = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const delay = setTimeout(() => {
-      setLoading(false);
+      setLoading(false); 
       clearTimeout(delay);
     }, 2000);
 
@@ -106,9 +104,7 @@ const LoadingPopup = () => {
   }, []);
 
   return (
-    <Backdrop open={isLoading} sx={{zIndex: 9999,color: "#fff",backgroundColor: "rgba(255, 255, 255, 0.9)",}}>
       <CircularProgress color="inherit" />
-    </Backdrop>
   );
 };
 
