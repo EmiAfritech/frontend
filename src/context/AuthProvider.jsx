@@ -14,10 +14,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedToken = Cookies.get("token");
-    console.log({"savedToken": savedToken})
+    const savedRole = Cookies.get("role");
+    console.log({"savedRole": savedRole})
     if ( savedToken) {
       setAuth({
         token: savedToken ? savedToken : null,
+        role: savedRole ? savedRole : null,
       });
     }
   }, []);
