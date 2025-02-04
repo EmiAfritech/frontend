@@ -106,7 +106,7 @@ export function Login() {
     }
   };
 
-  console.log({"setCookies Login": Cookies.get("token")})
+  console.log({"setCookies Login": Cookies.get("role")})
   const getNotification = () => {
     if (notification.authorized) {
       return <Notification message="Your email or password may be incorrect" type="error" />;
