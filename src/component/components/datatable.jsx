@@ -1,5 +1,4 @@
 import { IconButton,Tooltip } from "@mui/material";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import "../comstyles/component.css";
 import {
   DepartmentData,
@@ -63,7 +62,7 @@ export const useRiskStatuscolumns = () => {
             onClick={() => console.log(row.original.deptID)}
             color="primary"
           >
-            <VisibilityIcon />
+            hi
           </IconButton>
         </Tooltip>
       ),
