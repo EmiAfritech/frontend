@@ -19,12 +19,13 @@ import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ecg_logo from "../../assets/images/ecg_logo.jpg";
 import wafi_logo from "../../assets/images/wafi_logo.jpg";
 import ugnpa from "../../assets/images/ugnpa.png";
+import Cookies from 'js-cookie';
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = auth?.role;
+  const userRole = Cookies.get("role");
 
   // Determine the organization logo
   const SidebarLogo =
