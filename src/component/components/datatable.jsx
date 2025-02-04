@@ -235,7 +235,7 @@ export const useDeptColumns = () => {
             onClick={() => console.log(row.original)}
             color="primary"
           >
-            <VisibilityIcon />
+            <FaEye/>
           </IconButton>
         </Tooltip>
       ),
