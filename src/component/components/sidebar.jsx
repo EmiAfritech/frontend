@@ -10,11 +10,11 @@ import {
   FaThList,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import LoadingPopup, { Sessions } from "../../api/sessions";
-import { useState, useContext } from "react";
+import LoadingPopup from "../../api/sessions";
+import { useState } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
-import { AuthContext } from "../../context/AuthContext";
+
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ecg_logo from "../../assets/images/ecg_logo.jpg";
 import wafi_logo from "../../assets/images/wafi_logo.jpg";
@@ -22,11 +22,9 @@ import ugnpa from "../../assets/images/ugnpa.png";
 import Cookies from 'js-cookie';
 
 export function Sidebar() {
-  const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = JSON.parse(Cookies.get("role"));
-  console.log({"sidebar": userRole})
 
   // Determine the organization logo
   const SidebarLogo =
