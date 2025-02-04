@@ -87,7 +87,6 @@ export function Login() {
           sameSite: 'Strict', 
         });
         verifyRecapture();
-        
       }
     } catch (err) {
       if (err.response?.status === 500 || err.response?.status === 400) {

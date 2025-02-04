@@ -15,7 +15,7 @@ export function Sessions() {
   const { clearAuth, auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const token = auth?.token
+  const token = Cookies.get("token")
   console.log({"sessions": token})
 
   const notifyUnauthorized = () => {
