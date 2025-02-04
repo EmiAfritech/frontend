@@ -1,3 +1,5 @@
+import { IconButton,Tooltip } from "@mui/material";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import "../comstyles/component.css";
 import {
   DepartmentData,
@@ -53,9 +55,18 @@ export const useRiskStatuscolumns = () => {
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorKey: "action",
+      accessorKey: "view",
       header: "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      Cell: ({ row }) => (
+        <Tooltip title="View Details">
+          <IconButton
+            onClick={() => console.log(row.original.deptID)}
+            color="primary"
+          >
+            <VisibilityIcon />
+          </IconButton>
+        </Tooltip>
+      ),
     },
   ];
 };
@@ -218,7 +229,16 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      Cell: ({ row }) => (
+        <Tooltip title="View Details">
+          <IconButton
+            onClick={() => console.log(row.original)}
+            color="primary"
+          >
+            <VisibilityIcon />
+          </IconButton>
+        </Tooltip>
+      ),
     },
   ];
 };
