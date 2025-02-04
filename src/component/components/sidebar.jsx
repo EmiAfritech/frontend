@@ -26,6 +26,7 @@ export function Sidebar() {
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = Cookies.get("role");
+  console.log({"sidebar": userRole})
 
   // Determine the organization logo
   const SidebarLogo =
