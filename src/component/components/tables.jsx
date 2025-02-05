@@ -578,7 +578,7 @@ export function DepartmentTab() {
           <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <MaterialReactTable table={table} />
+      <div className="card bg-white rounded-lg p-6"><MaterialReactTable table={table} /></div>
     </div>
   );
 }
