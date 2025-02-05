@@ -191,7 +191,7 @@ export function Login() {
 
                   {/* ReCaptcha appears only after successful login */}
                   {verified && (
-                    <div className="pt-3">
+                    <div className="pt-3 flex justify-center item-center">
                       <ReCaptcha
                         sitekey="6LeGM8oqAAAAACTKpjN2jsXPk5Z_3o64ZAR3PKgs" // Replace with your ReCaptcha site key
                         onChange={handleCaptchaSuccess}
