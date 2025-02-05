@@ -2620,24 +2620,23 @@ export function RiskAdviceReportData() {
 }
 
 
-export function CDSMainForm() {
+export function CDSMainForm(open) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openModel, setOpenModel] = useState(open)
 
-  function openPopUp() {
-    setIsModalOpen(true);
-  }
+ if(openModel){
+  setIsModalOpen(true);
+ }
+    
+  
 
   function handleCloseModal() {
     setIsModalOpen(false);
+    setIsModalOpen(false)
   }
 
   return (
     <div className="p-2">
-      <button
-        className="custom-class rounded-full p-2 px-5"
-        onClick={() => openPopUp()}
-      />
-
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
         <div className="relative bg-white p-6 rounded-lg shadow-lg w-[85vw] h-[95vh]">
