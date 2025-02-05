@@ -2621,6 +2621,15 @@ export function RiskAdviceReportData() {
 
 
 export function CDSMainForm() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function openPopUp() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
 
   return (
     <div className="p-2">
