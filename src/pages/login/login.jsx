@@ -201,7 +201,7 @@ export function Login() {
 
                   {/* Password reset */}
                   <div className="pt-3">
-                    <span style={{ color: "blue" }}>
+                    <span style={{ color: "rgb(7, 7, 60)" }}>
                       <Link className="new" to="/verifyemail">
                         {t("passwordReset")}
                       </Link>
@@ -210,7 +210,7 @@ export function Login() {
                   {/* Create a new account */}
                   <div className="new-user">
                     <span>{t("registerQuestion")}</span>{" "}
-                    <span style={{ color: "blue" }}>
+                    <span style={{ color: "rgb(7, 7, 60)" }}>
                       <Link className="new" to="/signup">
                         {t("register")}
                       </Link>
