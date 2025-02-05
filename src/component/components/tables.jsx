@@ -533,7 +533,7 @@ export function DepartmentTab() {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "#121127",
+        background: "rgb(7, 7, 60);",
         color: "white",
       },
     },
