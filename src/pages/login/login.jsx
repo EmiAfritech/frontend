@@ -198,18 +198,8 @@ export function Login() {
                     </span>
                   </div>
 
-                  {/* ReCaptcha appears only after successful login */}
-                  {verified && (
-                    <div className="pt-3 flex justify-center item-center">
-                      <ReCaptcha
-                        sitekey="6LeGM8oqAAAAACTKpjN2jsXPk5Z_3o64ZAR3PKgs" // Replace with your ReCaptcha site key
-                        onChange={handleCaptchaSuccess}
-                      />
-                    </div>
-                  )}
-                  
                   {/* Create a new account */}
-                  <div className="new-user">
+                  <div className="new-user pt-3">
                     <span>{t("registerQuestion")}</span>{" "}
                     <span style={{ color: "rgb(7, 7, 60)" }}>
                       <Link className="new" to="/signup">
@@ -217,6 +207,18 @@ export function Login() {
                       </Link>
                     </span>
                   </div>
+
+                  
+                  {/* ReCaptcha appears only after successful login */}
+                  {verified && (
+                    <div className="flex justify-center item-center">
+                      <ReCaptcha
+                        sitekey="6LeGM8oqAAAAACTKpjN2jsXPk5Z_3o64ZAR3PKgs" // Replace with your ReCaptcha site key
+                        onChange={handleCaptchaSuccess}
+                      />
+                    </div>
+                  )}
+                  
                 </form>
               </div>
             </div>
