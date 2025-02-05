@@ -189,6 +189,15 @@ export function Login() {
                     )}
                   </button>
 
+                  {/* Password reset */}
+                  <div className="pt-3">
+                    <span style={{ color: "rgb(7, 7, 60)" }}>
+                      <Link className="new" to="/verifyemail">
+                        {t("passwordReset")}
+                      </Link>
+                    </span>
+                  </div>
+
                   {/* ReCaptcha appears only after successful login */}
                   {verified && (
                     <div className="pt-3 flex justify-center item-center">
@@ -198,15 +207,7 @@ export function Login() {
                       />
                     </div>
                   )}
-
-                  {/* Password reset */}
-                  <div className="pt-3">
-                    <span style={{ color: "rgb(7, 7, 60)" }}>
-                      <Link className="new" to="/verifyemail">
-                        {t("passwordReset")}
-                      </Link>
-                    </span>
-                  </div>
+                  
                   {/* Create a new account */}
                   <div className="new-user">
                     <span>{t("registerQuestion")}</span>{" "}
