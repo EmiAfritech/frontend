@@ -574,7 +574,7 @@ export function DepartmentTab() {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="m-6">
+        <div className="mx-5">
           <Departmentforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>

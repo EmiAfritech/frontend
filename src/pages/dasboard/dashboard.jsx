@@ -10,7 +10,7 @@ import "../../component/comstyles/component.css";
 
 export function Dashboard() {
   return (
-    <div className="flex flex-col bg-slate-100 h-lvh">
+    <div className="flex flex-col">
       <Sidebar />
       <div className="ml-[18%] m-6 h-screen">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 mb-8">
