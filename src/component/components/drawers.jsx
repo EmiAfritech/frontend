@@ -405,7 +405,7 @@ export function Departmentforms({ onFormSubmit }) {
   return (
     <>
       <ToastContainer autoClose={1000} hideProgressBar />
-      <Button onClick={handleOpen} size="small" variant="outlined">
+      <Button onClick={handleOpen} size="medium" variant="outlined">
         {t("addDepartment")}
       </Button>
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
