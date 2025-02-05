@@ -232,7 +232,7 @@ export const useDeptColumns = () => {
       Cell: ({ row }) => (
         <Tooltip title="View Detail">
           <IconButton
-            onClick={() => console.log(row.original)}
+            onClick={() => RiskAdviceReportData()}
             color="primary"
           >
             <FaEye/>
