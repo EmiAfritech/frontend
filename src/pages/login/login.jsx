@@ -199,7 +199,7 @@ export function Login() {
                   </div>
 
                   {/* Create a new account */}
-                  <div className="new-user pt-3">
+                  <div className="pt-3">
                     <span>{t("registerQuestion")}</span>{" "}
                     <span style={{ color: "rgb(7, 7, 60)" }}>
                       <Link className="new" to="/signup">
