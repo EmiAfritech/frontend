@@ -129,7 +129,7 @@ export function Login() {
             <div className="flex flex-row-reverse mt-3 mr-3 items-center">
               <LanguageButton />
               <span className="pr-2">
-                <FaLanguage size={20} color="blue" />
+                <FaLanguage size={20} color="rgb(7, 7, 60)" />
               </span>
             </div>
             
