@@ -9,6 +9,7 @@ import {
   UserData,
   MitigatedRiskReportData,
   RiskAdviceReportData,
+  CDSMainForm,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -232,7 +233,7 @@ export const useDeptColumns = () => {
       Cell: ({ row }) => (
         <Tooltip title="View Detail">
           <IconButton
-            onClick={() => RiskAdviceReportData(row.original)}
+            onClick={() => CDSMainForm()}
             color="primary"
           >
             <FaEye/>
