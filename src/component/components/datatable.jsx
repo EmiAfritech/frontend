@@ -1,3 +1,4 @@
+import { IconButton,Tooltip } from "@mui/material";
 import "../comstyles/component.css";
 import {
   DepartmentData,
@@ -10,6 +11,7 @@ import {
   RiskAdviceReportData,
 } from "./modals";
 import { useTranslation } from "react-i18next";
+import { FaEye } from "react-icons/fa";
 
 export const useUserColumns = () => {
   const { t } = useTranslation();
@@ -53,9 +55,18 @@ export const useRiskStatuscolumns = () => {
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorKey: "action",
+      accessorKey: "view",
       header: "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      Cell: ({ row }) => (
+        <Tooltip title="View Details">
+          <IconButton
+            onClick={() => console.log(row.original.deptID)}
+            color="primary"
+          >
+            <FaEye/>
+          </IconButton>
+        </Tooltip>
+      ),
     },
   ];
 };
@@ -218,7 +229,16 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      Cell: ({ row }) => (
+        <Tooltip title="View Details">
+          <IconButton
+            onClick={() => console.log(row.original)}
+            color="primary"
+          >
+            <FaEye/>
+          </IconButton>
+        </Tooltip>
+      ),
     },
   ];
 };

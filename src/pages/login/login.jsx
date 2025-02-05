@@ -129,7 +129,7 @@ export function Login() {
             <div className="flex flex-row-reverse mt-3 mr-3 items-center">
               <LanguageButton />
               <span className="pr-2">
-                <FaLanguage size={20} color="blue" />
+                <FaLanguage size={20} color="rgb(7, 7, 60)" />
               </span>
             </div>
             
@@ -189,28 +189,29 @@ export function Login() {
                     )}
                   </button>
 
+                  {/* Password reset */}
+                  <div className="pt-3">
+                    <span style={{ color: "rgb(7, 7, 60)" }}>
+                      <Link className="new" to="/verifyemail">
+                        {t("passwordReset")}
+                      </Link>
+                    </span>
+                  </div>
+
                   {/* ReCaptcha appears only after successful login */}
                   {verified && (
-                    <div className="pt-3">
+                    <div className="pt-3 flex justify-center item-center">
                       <ReCaptcha
                         sitekey="6LeGM8oqAAAAACTKpjN2jsXPk5Z_3o64ZAR3PKgs" // Replace with your ReCaptcha site key
                         onChange={handleCaptchaSuccess}
                       />
                     </div>
                   )}
-
-                  {/* Password reset */}
-                  <div className="pt-3">
-                    <span style={{ color: "blue" }}>
-                      <Link className="new" to="/verifyemail">
-                        {t("passwordReset")}
-                      </Link>
-                    </span>
-                  </div>
+                  
                   {/* Create a new account */}
                   <div className="new-user">
                     <span>{t("registerQuestion")}</span>{" "}
-                    <span style={{ color: "blue" }}>
+                    <span style={{ color: "rgb(7, 7, 60)" }}>
                       <Link className="new" to="/signup">
                         {t("register")}
                       </Link>

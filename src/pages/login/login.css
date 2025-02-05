@@ -1,6 +1,6 @@
 .background {
   height: 100vh;
-  background-image: url("https://cdn.corporatefinanceinstitute.com/assets/financial-risk-management-strategies.jpeg");
+  background-image: url("https://th.bing.com/th/id/R.69e6f7b04c1b9eb830b81a795002694e?rik=RQ03PzhSH6v3Aw&riu=http%3a%2f%2froadmapforjbc.com%2fimages%2fJBC_Management.jpg&ehk=rlx9V9i3XsK9Lmt%2fyNFM%2bWcChhtpsCrKFg8dzwgHDQU%3d&risl=&pid=ImgRaw&r=0");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -48,7 +48,8 @@
   font-weight: 500;
 }
 .login-container .login {
-  background-color: blue;
+  background-color: rgb(7, 7, 60);
   color: white;
   width: 100%;
+  border-radius: 5px;
 }
