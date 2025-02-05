@@ -40,7 +40,7 @@ export function Sidebar() {
 
   // Component for individual nav links
   const NavItem = ({ to, icon: Icon, label }) => (
-    <li className="flex flex-row items-center p-3">
+    <li className="flex flex-row items-center p-3 px-12">
       <Icon className="icons" />
       <NavLink
         to={to}
@@ -118,7 +118,7 @@ export function Sidebar() {
       case "AUDITOR":
         return <AuditorTabs />;
       default:
-        return null;
+        return <AuditorTabs />;
     }
   };
 
