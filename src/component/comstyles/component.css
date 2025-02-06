@@ -34,7 +34,6 @@
   border-radius: 6px;
 }
 
-
 .icons {
   size: 8px;
   margin-right: 5px;
@@ -58,13 +57,6 @@
   border-radius: 5px;
   margin: 5px;
 }
-.MuiDataGrid-row:nth-child(odd) {
-  background-color: rgb(243, 243, 243);
-}
-.MuiDataGrid-columnHeaders{
-  background-color: #2B6CB0;
-  color: white
-}
 .report-container {
   margin-top: 100px; /* Set margin with units */
 }
@@ -87,19 +79,6 @@
   margin: 10px;
 }
 
-
-.modal{
-    position: 'absolute';
-    top: '50%';
-    left: '50%';
-    transform: 'translate(-50%, -50%)';
-    width: 400;
-    background-color: 'background.paper';
-    border: '2px solid #000';
-    box-shadow: 24;
-    padding: 4;
-
-}
 
 .recharts-legend-item-text{
   font-size: 8px;
