@@ -93,7 +93,7 @@ export function EmployeesTable() {
       console.error(error);
     }
   };
-
+  console.log({"employees": tableData})
   useEffect(() => {
     getUsers();
   }, []);
