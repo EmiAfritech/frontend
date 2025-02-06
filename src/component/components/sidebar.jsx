@@ -46,6 +46,8 @@ export function Sidebar() {
         to={to}
         style={({ isActive }) => ({
           color: isActive ? "greenyellow" : "white",
+          background: isActive ? "blue" : "",
+          padding: isActive ? 4 : 
         })}
       >
         {label}
