@@ -228,12 +228,12 @@ export function Userforms({ onFormSubmit }) {
                     required>
                     <option></option>
 
-                    {departmentList.map((departmentList) => (
+                    {departmentList.map((department) => (
                       <option
-                        key={departmentList.names.id}
-                        value={departmentList.names.name}>
+                        key={department.names.id}
+                        value={department.names.name}>
                         {" "}
-                        {departmentList.names.name}
+                        {department.names.name}
                       </option>
                     ))}
                   </select>
@@ -472,6 +472,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
   const [isLoading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
   const {departmentList} = useDepartmentDropdown()
+  console.log(departmentList)
   useEffect(() => {
     setTableDataTest(tableData.map((item) => item.riskID));
   }, [tableData]);
@@ -626,12 +627,12 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   onChange={(e) => setDepartmentName(e.target.value)}
                   required>
                   <option></option>
-                  {departmentList.map((departmentList) => (
+                  {departmentList.map((department) => (
                     <option
-                      key={departmentList.names.id}
-                      value={departmentList.names.name}>
+                      key={department.names.id}
+                      value={department.names.name}>
                       {" "}
-                      {departmentList.names.name}
+                      {department.names.name}
                     </option>
                   ))}
                 </select>
