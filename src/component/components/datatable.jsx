@@ -230,16 +230,7 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ row }) => (
-        <Tooltip title="View Detail">
-          <IconButton
-            onClick={() => RiskAdviceReportData()}
-            color="primary"
-          >
-            <FaEye/>
-          </IconButton>
-        </Tooltip>
-      ),
+      Cell: ({ row }) => <RiskAdviceReportData/>
     },
   ];
 };
