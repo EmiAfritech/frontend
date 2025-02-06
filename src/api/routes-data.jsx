@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export function useDepartmentDropdown() {
   const {auth} = useContext(AuthContext)
-  const [departmentList, setDepartmentList] = useState("");
+  const [departmentList, setDepartmentList] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
