@@ -16,7 +16,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import { Edit } from '@mui/icons-material';
+import { Edit } from "@mui/icons-material";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   MaterialReactTable,
@@ -524,7 +524,6 @@ export function DepartmentTab() {
   const [rowSelection, setRowSelection] = useState({});
   const { departmentList, fetchData } = useDepartmentTable();
 
-  
   const handleFormSubmit = () => {
     fetchData();
   };
@@ -535,6 +534,7 @@ export function DepartmentTab() {
         fontSize: "14px",
         background: "rgb(7, 7, 60);",
         color: "white",
+        z,
       },
     },
     muiTablePaperProps: {
@@ -553,7 +553,9 @@ export function DepartmentTab() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "70vh",
+        height: "70%",
+        position: "relative", // Ensures it stays within its own stacking context
+        zIndex: 1,
       },
     },
     muiTableBodyCellProps: {
@@ -568,11 +570,10 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
   });
 
   return (
-    <div className="flex flex-col">
+    <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="mx-5">
           <Departmentforms onFormSubmit={handleFormSubmit} />
