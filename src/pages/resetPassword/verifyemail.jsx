@@ -28,7 +28,7 @@ export function VerifyEmail() {
         withCredentials: true,
       });
       setSent(true)
-      Cookies.set("email", JSON.stringify(email), {
+      Cookies.set("email", email, {
         secure: process.env.NODE_ENV === "production",
         sameSite: "Strict",
       });
