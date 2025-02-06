@@ -86,7 +86,7 @@ export function Login() {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
-        Cookies.set('role', JSON.stringify(role), {
+        Cookies.set('role', role, {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
