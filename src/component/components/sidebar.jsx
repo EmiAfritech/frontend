@@ -45,7 +45,7 @@ export function Sidebar() {
         to={to}
         className={({ isActive }) =>
           `flex flex-row items-center px-8 rounded-lg transition-all duration-300 ${
-            isActive ? "bg-blue-500 text-black " : "bg-transparent text-white"
+            isActive ? "bg-blue-500 text-black px-8" : "bg-transparent text-white"
           }`
         }>
         <Icon className="mr-2" />
