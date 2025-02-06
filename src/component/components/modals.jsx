@@ -2342,7 +2342,7 @@ export function RiskAdviceReportData() {
   }, []);
 
   return (
-    <>
+    <div>
       <button onClick={handleOpen} className="px-2">
         <FaEye className="icons" />
       </button>
@@ -2448,6 +2448,6 @@ export function RiskAdviceReportData() {
         </div>
       </div>
       )}
-    </>
+    </div>
   );
 }
