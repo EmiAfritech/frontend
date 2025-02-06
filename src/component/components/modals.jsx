@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoPerson } from "react-icons/io5";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -32,15 +32,27 @@ import {
   Select,
   Modal,
   Typography,
-  InputAdornment,
-  NativeSelect,
   IconButton,
 } from "@mui/material";
+import {
+  IoPerson,
+  IoLocationOutline,
+  IoClose,
+  IoQrCodeOutline,
+  IoBarcodeSharp,
+} from "react-icons/io5";
+import {
+  MdOutlineMarkEmailRead,
+  MdOutlineLocalPhone,
+  MdEmojiFlags,
+} from "react-icons/md";
+import { GoOrganization } from "react-icons/go";
+import { BsMailboxFlag } from "react-icons/bs";
+import { GiModernCity } from "react-icons/gi";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Modaltrigger } from "../../context/AuthContext";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
@@ -2452,12 +2464,10 @@ export function UserAccountDetails() {
             <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
               <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
                 <div className="flex flex-col items-center">
-                  <Image
-                    src={avatar}
-                    alt="Paris"
-                    className="rounded-full border-2 mb-4"
-                    width={156}
-                    height={156}
+                  <img
+                    src="https://th.bing.com/th/id/OIP.wBMp4cKdcuUYNQpa332M1QHaHl?w=176&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    alt="Sample"
+                    className="rounded-lg shadow-lg"
                   />
                   <h6 className="mb-12 text-sm">Upload Image</h6>
                 </div>
