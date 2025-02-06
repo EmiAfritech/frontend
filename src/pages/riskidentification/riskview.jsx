@@ -10,14 +10,13 @@ export function RiskView() {
   const {t}= useTranslation()
   const {auth} = useContext(AuthContext);
   return (
-    <div className="flex bg-slate-100 flex-col h-lvh">
+    <div className="flex flex-col">
       <Sidebar />
-      <div className=" ml-[18%] m-6 h-screen">
+      <div className=" ml-[18%] m-6">
         <div >
           {auth.role === "ADMIN" || auth.role=== "GENERALMANAGER" || auth.role=== "MANAGER"? (
             <>
               <ViewClosedRisk />
-              
             </>
           ) : (
             <p>{t("contentPermission")}</p>
