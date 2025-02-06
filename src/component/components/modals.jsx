@@ -2486,7 +2486,7 @@ export function UserAccountDetails() {
               </div>
               <div className="flex-[2]">
                 <div className="grid grid-cols-2 gap-8 p-4">
-                  <InputField
+                  <input
                     label="Last Name"
                     type="text"
                     id="lname"
@@ -2496,7 +2496,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Other Name"
                     type="text"
                     id="Oname"
@@ -2506,7 +2506,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Email"
                     type="email"
                     id="email"
@@ -2516,7 +2516,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Phone"
                     type="phone"
                     id="phone"
@@ -2526,7 +2526,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Address 1"
                     type="text"
                     id="address1"
@@ -2536,7 +2536,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Nationality"
                     type="text"
                     id="nationality"
@@ -2546,7 +2546,7 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="DOB"
                     type="text"
                     id="dob"
@@ -2556,21 +2556,21 @@ export function UserAccountDetails() {
                     required
                     // error={error && !email ? "Email is required" : ""}
                   />
-                  <InputField
+                  <input
                     label="Name"
                     type="text"
                     id="name"
                     placeholder="Enter your email"
                     required
                   />
-                  <InputField
+                  <input
                     label="Name"
                     type="text"
                     id="name"
                     placeholder="Enter your email"
                     required
                   />
-                  <InputField
+                  <input
                     label="Name"
                     type="text"
                     id="name"
