@@ -1,8 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import { FaEye } from "react-icons/fa";
-import { useState, useContext } from "react";
-import { FaTrashAlt, FaSave } from "react-icons/fa";
+import { useState, useContext, useEffect } from "react";
+import { FaTrashAlt, FaSave, FaEye, FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +30,7 @@ import {
   Typography,
   IconButton,
   TextField,
+  Box,
 } from "@mui/material";
 import {
   IoPerson,
@@ -42,14 +41,10 @@ import {
   MdOutlineMarkEmailRead,
   MdOutlineLocalPhone,
 } from "react-icons/md";
-import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
-import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
-import "react-tabs/style/react-tabs.css";
 import { AuthContext } from "../../context/AuthContext";
 
 function getRiskScore(score) {
