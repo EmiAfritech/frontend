@@ -20,7 +20,7 @@ import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ecg_logo from "../../assets/images/ecg_logo.jpg";
 import wafi_logo from "../../assets/images/wafi_logo.jpg";
 import ugnpa from "../../assets/images/ugnpa.png";
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
@@ -40,15 +40,14 @@ export function Sidebar() {
 
   // Component for individual nav links
   const NavItem = ({ to, icon: Icon, label }) => (
-    <li>
+    <li className="flex flex-row items-center p-3 px-24">
+      <Icon className="icons" />
       <NavLink
         to={to}
-        className={({ isActive }) =>
-          `flex flex-row items-center px-8 rounded-lg transition-all duration-300 ${
-            isActive ? "bg-blue-500 text-black px-8" : "bg-transparent text-white"
-          }`
-        }>
-        <Icon className="mr-2" />
+        style={({ isActive }) => ({
+          color: isActive ? "greenyellow" : "white",
+        })}
+      >
         {label}
       </NavLink>
     </li>
@@ -58,21 +57,9 @@ export function Sidebar() {
   const AuditorTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem
-        to="/risk-identification"
-        icon={FaRegShareSquare}
-        label={t("newRisk")}
-      />
-      <NavItem
-        to="/risk-mitigation"
-        icon={FaPencilAlt}
-        label={t("mitigateRisk")}
-      />
-      <NavItem
-        to="/risk-review"
-        icon={FaClipboardList}
-        label={t("reviewRisk")}
-      />
+      <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
+      <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
+      <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="#" icon={FaClipboardList} label="Governance" />
       <NavItem to="#" icon={FaCopy} label="Compliance" />
@@ -83,26 +70,10 @@ export function Sidebar() {
   const AdminTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem
-        to="/risk-identification"
-        icon={FaRegShareSquare}
-        label={t("newRisk")}
-      />
-      <NavItem
-        to="/risk-mitigation"
-        icon={FaPencilAlt}
-        label={t("mitigateRisk")}
-      />
-      <NavItem
-        to="/risk-review"
-        icon={FaClipboardList}
-        label={t("reviewRisk")}
-      />
-      <NavItem
-        to="/risk-monitoring"
-        icon={FaClipboardCheck}
-        label={t("monitorRisk")}
-      />
+      <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
+      <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
+      <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
+      <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
@@ -115,26 +86,10 @@ export function Sidebar() {
   const GeneralManagerTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem
-        to="/risk-identification"
-        icon={FaRegShareSquare}
-        label={t("newRisk")}
-      />
-      <NavItem
-        to="/risk-mitigation"
-        icon={FaPencilAlt}
-        label={t("mitigateRisk")}
-      />
-      <NavItem
-        to="/risk-review"
-        icon={FaClipboardList}
-        label={t("reviewRisk")}
-      />
-      <NavItem
-        to="/risk-monitoring"
-        icon={FaClipboardCheck}
-        label={t("monitorRisk")}
-      />
+      <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
+      <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
+      <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
+      <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
@@ -147,26 +102,10 @@ export function Sidebar() {
   const ManagerTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem
-        to="/risk-identification"
-        icon={FaRegShareSquare}
-        label={t("newRisk")}
-      />
-      <NavItem
-        to="/risk-mitigation"
-        icon={FaPencilAlt}
-        label={t("mitigateRisk")}
-      />
-      <NavItem
-        to="/risk-review"
-        icon={FaClipboardList}
-        label={t("reviewRisk")}
-      />
-      <NavItem
-        to="/risk-monitoring"
-        icon={FaClipboardCheck}
-        label={t("monitorRisk")}
-      />
+      <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
+      <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
+      <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
+      <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="#" icon={FaClipboardList} label="Governance" />
