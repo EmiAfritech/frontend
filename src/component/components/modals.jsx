@@ -2300,28 +2300,10 @@ export function RiskAdviceReportData() {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const [riskName, setRiskName] = useState("");
-  const [riskID, setRiskID] = useState("");
-  const [departmentID, setDepartmentID] = useState("");
-  const [departmentName, setDepartmentName] = useState("");
-  const [deptmentName, setdeptmentName] = useState([]);
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState("");
 
   function handleOpen() {
     setOpen(!open);
   }
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "#FFFFFF",
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 1,
-    width: 1200,
-  };
 
   useEffect(() => {
     axios
@@ -2445,6 +2427,173 @@ export function RiskAdviceReportData() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function UserAccountDetails() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+  return (
+    <div>
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
+      {open && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-[9999]">
+          <div className="relative bg-white p-6 rounded-lg shadow-lg w-[80vw] h-[95vh]">
+            <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
+              <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+                <div className="flex flex-col items-center">
+                  <Image
+                    src={avatar}
+                    alt="Paris"
+                    className="rounded-full border-2 mb-4"
+                    width={156}
+                    height={156}
+                  />
+                  <h6 className="mb-12 text-sm">Upload Image</h6>
+                </div>
+                <div className="mb-4 flex flex-row items-center">
+                  <span className="mr-4">
+                    <IoPerson color="blue" />
+                  </span>
+                  <span>Robert Knaihv</span>
+                </div>
+                <div className="mb-2 flex flex-row items-center">
+                  <span className="mr-4">
+                    <MdOutlineMarkEmailRead color="blue" />
+                  </span>
+                  <span>knaihv@ymail.com</span>
+                </div>
+                <div className="mb-2 flex flex-row items-center">
+                  <span className="mr-4">
+                    <MdOutlineLocalPhone color="blue" />
+                  </span>
+                  <span>+233 544-5342</span>
+                </div>
+                <div className="mb-2 flex flex-row items-center">
+                  <span className="mr-4">
+                    <IoLocationOutline color="blue" />
+                  </span>
+                  <span>JohnBull Street</span>
+                </div>
+              </div>
+              <div className="flex-[2]">
+                <div className="grid grid-cols-2 gap-8 p-4">
+                  <InputField
+                    label="Last Name"
+                    type="text"
+                    id="lname"
+                    // value={formData.name}
+                    // onChange={handleInputChange}
+                    placeholder="last name"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Other Name"
+                    type="text"
+                    id="Oname"
+                    // value={formData.name}
+                    // onChange={handleInputChange}
+                    placeholder="other name"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Email"
+                    type="email"
+                    id="email"
+                    // value={formData.name}
+                    // onChange={handleInputChange}
+                    placeholder="Enter your email"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Phone"
+                    type="phone"
+                    id="phone"
+                    // value={formData.name}
+                    // onChange={handleInputChange}
+                    placeholder="phone number"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Address 1"
+                    type="text"
+                    id="address1"
+                    // value={formData.name}
+                    // onChange={handleInputChange}
+                    placeholder="address 1"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Nationality"
+                    type="text"
+                    id="nationality"
+                    // value="hi"
+                    // onChange={handleInputChange}
+                    placeholder="nationality"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="DOB"
+                    type="text"
+                    id="dob"
+                    // value="hi"
+                    // onChange={handleInputChange}
+                    placeholder="date of birth"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                  <InputField
+                    label="Name"
+                    type="text"
+                    id="name"
+                    placeholder="Enter your email"
+                    required
+                  />
+                  <InputField
+                    label="Name"
+                    type="text"
+                    id="name"
+                    placeholder="Enter your email"
+                    required
+                  />
+                  <InputField
+                    label="Name"
+                    type="text"
+                    id="name"
+                    // value="hi"
+                    // onChange={handleInputChange}
+                    placeholder="Enter your email"
+                    required
+                    // error={error && !email ? "Email is required" : ""}
+                  />
+                </div>
+                <div className="px-16 mt-8">
+                  <CustomButton
+                    label="Submit"
+                    // onClick={handleSubmit}
+                    type="submit"
+                    className="custom-class"
+                    // loading={isSubmitting}
+                  />
+                </div>
+              </div>
+            </main>
           </div>
         </div>
       )}

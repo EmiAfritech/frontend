@@ -10,6 +10,7 @@ import {
   MitigatedRiskReportData,
   RiskAdviceReportData,
   CDSMainForm,
+  UserAccountDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -230,7 +231,7 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ row }) => <RiskAdviceReportData/>
+      Cell: ({ row }) => <UserAccountDetails/>
     },
   ];
 };
