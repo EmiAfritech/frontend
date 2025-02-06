@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
-import {IoClose} from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +34,7 @@ import {
   Typography,
   InputAdornment,
   NativeSelect,
+  IconButton,
 } from "@mui/material";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
@@ -2343,110 +2344,112 @@ export function RiskAdviceReportData() {
 
   return (
     <div>
-      <button onClick={handleOpen} className="px-2">
-        <FaEye className="icons" />
-      </button>
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
       {open && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-        <div className="relative bg-white p-6 rounded-lg shadow-lg w-[40vw] h-[60vh]">
-          {/* Close button in top-right corner */}
-          <button
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 mb-6"
-            onClick={close}>
-            <IoClose size={24} />
-          </button>
-          <div className="grid grid-cols-6 bg-gray-300 mb-10 p-4">
-            <div className="col-span-2 grid grid-cols-2 gap-4">
-              <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
-                <p>Inherent Risk</p>
-                <p>32</p>
+          <div className="relative bg-white p-6 rounded-lg shadow-lg w-[40vw] h-[60vh]">
+            {/* Close button in top-right corner */}
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 mb-6"
+              onClick={close}>
+              <IoClose size={24} />
+            </button>
+            <div className="grid grid-cols-6 bg-gray-300 mb-10 p-4">
+              <div className="col-span-2 grid grid-cols-2 gap-4">
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
+                  <p>Inherent Risk</p>
+                  <p>32</p>
+                </div>
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
+                  <p>Inherent Risk</p>
+                  <p>32</p>
+                </div>
               </div>
-              <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
-                <p>Inherent Risk</p>
-                <p>32</p>
+              <div className="col-span-3 py-10 text-center">
+                <div className="grid grid-cols-2 pb-4">
+                  <h1>ID: {riskID}</h1>
+                  <div>Status: Management Review</div>
+                </div>
+                <hr className="my-4" />
+                <h3>Subject</h3>
               </div>
             </div>
-            <div className="col-span-3 py-10 text-center">
-              <div className="grid grid-cols-2 pb-4">
-                <h1>ID: {riskID}</h1>
-                <div>Status: Management Review</div>
-              </div>
-              <hr className="my-4" />
-              <h3>Subject</h3>
-            </div>
-          </div>
 
-          <div>
-            <div className="flex space-x-4 border-b pb-2">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded">
-                Details
-              </button>
-              <button className="px-4 py-2 bg-gray-200 rounded">
-                Mitigation
-              </button>
-              <button className="px-4 py-2 bg-gray-200 rounded">Review</button>
-            </div>
-            <div className="grid grid-cols-2 gap-4 pt-5">
-              <div>
-                <div className="flex items-center space-x-4">
-                  <p>Risk ID:</p>
-                  <input
-                    type="text"
-                    value={riskID}
-                    onChange={(e) => setRiskID(e.target.value)}
-                    className="border p-2 w-full"
-                  />
-                </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Risk Name:</p>
-                  <input
-                    type="text"
-                    value={riskName}
-                    onChange={(e) => setRiskName(e.target.value)}
-                    className="border p-2 w-full"
-                  />
-                </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Department Name:</p>
-                  <select
-                    value={deptmentName}
-                    onChange={(e) => setdeptmentName(e.target.value)}
-                    className="border p-2 w-full">
-                    <option>hi</option>
-                  </select>
-                </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Probability Levels:</p>
-                  <input
-                    type="text"
-                    value={riskProbabilityLevel}
-                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                    className="border p-2 w-full"
-                  />
-                </div>
+            <div>
+              <div className="flex space-x-4 border-b pb-2">
+                <button className="px-4 py-2 bg-blue-500 text-white rounded">
+                  Details
+                </button>
+                <button className="px-4 py-2 bg-gray-200 rounded">
+                  Mitigation
+                </button>
+                <button className="px-4 py-2 bg-gray-200 rounded">
+                  Review
+                </button>
               </div>
-              <div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Risk Description:</p>
-                  <input type="text" className="border p-2 w-full" />
+              <div className="grid grid-cols-2 gap-4 pt-5">
+                <div>
+                  <div className="flex items-center space-x-4">
+                    <p>Risk ID:</p>
+                    <input
+                      type="text"
+                      value={riskID}
+                      onChange={(e) => setRiskID(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Name:</p>
+                    <input
+                      type="text"
+                      value={riskName}
+                      onChange={(e) => setRiskName(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Department Name:</p>
+                    <select
+                      value={deptmentName}
+                      onChange={(e) => setdeptmentName(e.target.value)}
+                      className="border p-2 w-full">
+                      <option>hi</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Probability Levels:</p>
+                    <input
+                      type="text"
+                      value={riskProbabilityLevel}
+                      onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Risk Impact Level:</p>
-                  <input type="text" className="border p-2 w-full" />
-                </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Risk Objective:</p>
-                  <input type="text" className="border p-2 w-full" />
-                </div>
-                <div className="flex items-center space-x-4 mt-4">
-                  <p>Risk Owner:</p>
-                  <input type="text" className="border p-2 w-full" />
+                <div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Description:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Impact Level:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Objective:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Owner:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       )}
     </div>
   );
