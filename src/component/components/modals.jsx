@@ -4,7 +4,6 @@ import { FaEye } from "react-icons/fa";
 import { useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
-import { IoClose, IoPerson } from "react-icons/io5";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -46,9 +45,6 @@ import {
   MdOutlineLocalPhone,
   MdEmojiFlags,
 } from "react-icons/md";
-import { GoOrganization } from "react-icons/go";
-import { BsMailboxFlag } from "react-icons/bs";
-import { GiModernCity } from "react-icons/gi";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
