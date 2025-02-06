@@ -24,6 +24,7 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
+import { useDepartmentDropdown } from "../../api/routes-data";
 
 function getProbabiltyLevelNumber(probabilitys) {
   if (probabilitys === 1) {
@@ -487,7 +488,6 @@ export function Riskforms({ onFormSubmit, tableData }) {
   const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
-  const [deptmentName, setdeptmentName] = useState([]);
   const [ownersName, setOwnersName] = useState([]);
   const [riskOwner, setRiskOwner] = useState("");
   const [riskID, setRiskID] = useState("");
@@ -501,6 +501,8 @@ export function Riskforms({ onFormSubmit, tableData }) {
   const [tableDataTest, setTableDataTest] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const {departmentList} = useDepartmentDropdown()
+  const [deptmentName, setdeptmentName] = useState([]);
   useEffect(() => {
     setTableDataTest(tableData.map((item) => item.riskID));
   }, [tableData]);
@@ -539,21 +541,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
       .catch((error) => {
         console.error(error);
       });
-
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setdeptmentName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    
   }, []);
 
   const handleSubmit = async (e) => {
@@ -669,12 +657,12 @@ export function Riskforms({ onFormSubmit, tableData }) {
                   onChange={(e) => setDepartmentName(e.target.value)}
                   required>
                   <option></option>
-                  {deptmentName.map((deptmentName) => (
+                  {departmentList.map((departmentList) => (
                     <option
-                      key={deptmentName.names.id}
-                      value={deptmentName.names.name}>
+                      key={departmentList.names.id}
+                      value={departmentList.names.name}>
                       {" "}
-                      {deptmentName.names.name}
+                      {departmentList.names.name}
                     </option>
                   ))}
                 </select>

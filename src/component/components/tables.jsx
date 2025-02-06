@@ -554,7 +554,7 @@ export function DepartmentTab() {
     muiTableContainerProps: {
       sx: {
         height: "70%",
-        position: "relative", // Ensures it stays within its own stacking context
+        position: "relative", 
         zIndex: 1,
       },
     },

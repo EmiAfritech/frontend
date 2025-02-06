@@ -171,7 +171,7 @@ export const RISKIDSMITIGATION_URL = "/risks/getAllOpenedRiskIDSToBeMitigated";
 export const RISKIDSREVIEW_URL = "/risks/getAllOpenedRiskIDSToBeReviewed";
 
 //department dropdown
-export const DEPARTMENTDROPDOWN_URL = "/departments/namesOrDeptIds";
+export const DEPARTMENTDROPDOWN_URL = "/Organization/Department/listNamesAndDeptIds";
 
 //user dropdown
 export const OWNERSDROPDOWN_URL = "/getTheNamesOfUserAllUsers";
