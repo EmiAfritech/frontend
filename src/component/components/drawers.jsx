@@ -69,6 +69,7 @@ export function Userforms({ onFormSubmit }) {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const {departmentList} = useDepartmentDropdown()
+  console.log(departmentList)
 
   const notify = () => {
     toast.success("User Saved Successfully", {
