@@ -34,6 +34,11 @@
   border-radius: 6px;
 }
 
+.sidebar-main li.active {
+  background-color: #1E4D7E; 
+  border-radius: 6px;
+}
+
 .icons {
   size: 8px;
   margin-right: 5px;
