@@ -15,7 +15,7 @@ export function useDepartmentDropdown() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      console.log({"departmentdropdown": response})
+      console.log({"departmentdropdown": response.data})
       setDepartmentList(response.data);
     } catch (error) {
       console.error(error);
