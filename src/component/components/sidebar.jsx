@@ -44,7 +44,7 @@ export function Sidebar() {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `flex flex-row items-center px-8 rounded-lg transition-all duration-300 ${
+          `flex flex-row items-center px-24 py- rounded-lg transition-all duration-300 ${
             isActive ? "bg-blue-500 text-black" : "bg-transparent text-white"
           }`
         }>
