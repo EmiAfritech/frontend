@@ -233,7 +233,7 @@ export const useDeptColumns = () => {
       Cell: ({ row }) => (
         <Tooltip title="View Detail">
           <IconButton
-            onClick={() => CDSMainForm(true)}
+            onClick={() => RiskAdviceReportData()}
             color="primary"
           >
             <FaEye/>
