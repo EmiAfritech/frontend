@@ -23,6 +23,7 @@ export function useDepartmentDropdown() {
   };
 
   fetchData();
+  console.log({"departmentList": departmentList})
 
   return { departmentList };
 }
