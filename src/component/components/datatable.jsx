@@ -192,22 +192,7 @@ export const useReportAuditTrailColumns = () => {
   ];
 };
 
-export const useDeptColumns2 = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "deptID", headerName: t("departmentCode"), flex: 1 },
-    { field: "name", headerName: t("departmentName"), flex: 1 },
-    { field: "manager", headerName: t("departmentManager"), flex: 1 },
-    { field: "location", headerName: t("location"), flex: 1 },
-    { field: "createdAt", headerName: t("createdAt"), flex: 1 },
-    {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
-      renderCell: (params) => DepartmentData(params),
-    },
-  ];
-};
+
 
 export const useDeptColumns = () => {
   const { t } = useTranslation();
