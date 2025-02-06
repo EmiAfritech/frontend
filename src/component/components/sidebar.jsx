@@ -44,8 +44,8 @@ export function Sidebar() {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `flex flex-row items-center p-3 px-24 rounded-lg transition-all duration-300 ${
-            isActive ? "bg-green-500 text-black" : "bg-transparent text-white"
+          `flex flex-row items-center px- rounded-lg transition-all duration-300 ${
+            isActive ? "bg-blue-500 text-black" : "bg-transparent text-white"
           }`
         }>
         <Icon className="mr-2" />
