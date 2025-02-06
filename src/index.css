@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --bodyColor: #f0f0f0; /* light gray */
+  }
+  
 body {
     background-color: var(--bodyColor);
 }
