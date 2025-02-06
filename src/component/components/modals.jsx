@@ -2346,7 +2346,7 @@ export function RiskAdviceReportData() {
         <FaEye />
       </IconButton>
       {open && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-[9999]">
           <div className="relative bg-white p-6 rounded-lg shadow-lg w-[80vw] h-[95vh]">
             {/* Close button in top-right corner */}
             <button
@@ -2374,7 +2374,6 @@ export function RiskAdviceReportData() {
                 <h3>Subject</h3>
               </div>
             </div>
-
             <div>
               <div className="flex space-x-4 border-b pb-2">
                 <button className="px-4 py-2 bg-blue-500 text-white rounded">
