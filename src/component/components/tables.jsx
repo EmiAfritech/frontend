@@ -541,7 +541,10 @@ export function DepartmentTab() {
       elevation: 0,
       sx: {
         borderRadius: "10",
-        zIndex: "1"
+        
+      },
+      style: {
+        zIndex: "1",
       },
     },
     muiTableBodyProps: {
