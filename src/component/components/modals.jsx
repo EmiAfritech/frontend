@@ -2434,7 +2434,7 @@ export function RiskAdviceReportData() {
   );
 }
 
-export function UserAccountDetails() {
+export function AccountDetails() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
