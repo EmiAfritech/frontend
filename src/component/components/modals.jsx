@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { FaEye } from "react-icons/fa";
 import { useState, useContext } from "react";
-import TextField from "@mui/material/TextField";
 import { FaTrashAlt, FaSave } from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
@@ -32,18 +31,16 @@ import {
   Modal,
   Typography,
   IconButton,
+  TextField,
 } from "@mui/material";
 import {
   IoPerson,
   IoLocationOutline,
   IoClose,
-  IoQrCodeOutline,
-  IoBarcodeSharp,
 } from "react-icons/io5";
 import {
   MdOutlineMarkEmailRead,
   MdOutlineLocalPhone,
-  MdEmojiFlags,
 } from "react-icons/md";
 import { FaSignOutAlt, FaExclamation } from "react-icons/fa";
 import { useEffect } from "react";
@@ -2590,13 +2587,13 @@ export function UserAccountDetails() {
                   />
                 </div>
                 <div className="px-16 mt-8">
-                  <CustomButton
+                  {/* <CustomButton
                     label="Submit"
                     // onClick={handleSubmit}
                     type="submit"
                     className="custom-class"
                     // loading={isSubmitting}
-                  />
+                  /> */}
                 </div>
               </div>
             </main>
