@@ -30,7 +30,7 @@ export const ResetPasswordUrl = "/Organization/User/Password/forgot-password-res
 /*************************************************Tables******************************************************/
 
 //users list url
-export const USERS_URL = "/users";
+export const USERS_URL = "/Organization/User/list";
 
 //department url
 export const DEPARTMENT_URL = "/Organization/Department/list";
