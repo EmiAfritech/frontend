@@ -16,7 +16,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import { Edit } from "@mui/icons-material";
+import { Edit } from '@mui/icons-material';
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import {
   MaterialReactTable,
@@ -524,6 +524,7 @@ export function DepartmentTab() {
   const [rowSelection, setRowSelection] = useState({});
   const { departmentList, fetchData } = useDepartmentTable();
 
+  
   const handleFormSubmit = () => {
     fetchData();
   };
@@ -534,7 +535,6 @@ export function DepartmentTab() {
         fontSize: "14px",
         background: "rgb(7, 7, 60);",
         color: "white",
-        z,
       },
     },
     muiTablePaperProps: {
@@ -553,7 +553,7 @@ export function DepartmentTab() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "70%",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
@@ -568,6 +568,7 @@ export function DepartmentTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
+    
   });
 
   return (
