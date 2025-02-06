@@ -15,11 +15,7 @@ export function Sessions() {
   const { clearAuth, auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const Sessionstoken = Cookies.get("token")
-  
-  if (Sessionstoken){
-    const token = JSON.parse(Sessionstoken)
-  }
+  const token = Cookies.get("token")
 
   const notifyUnauthorized = () => {
     toast.error("Unauthorized User!", {

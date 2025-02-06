@@ -82,11 +82,11 @@ export function Login() {
         const token = authToken
         setAuth({ token, role, department, organizationName, });
         setVerified(true);
-        Cookies.set('token', JSON.stringify(token), {
+        Cookies.set('token', token, {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
-        Cookies.set('role', JSON.stringify(role), {
+        Cookies.set('role', role, {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
