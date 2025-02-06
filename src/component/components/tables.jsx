@@ -554,7 +554,6 @@ export function DepartmentTab() {
     muiTableContainerProps: {
       sx: {
         height: "70%",
-        position: "relative", 
       },
     },
     muiTableBodyCellProps: {
