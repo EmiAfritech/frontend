@@ -26,7 +26,7 @@ export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
-  const userRole = Cookies.get("role");
+  const userRole = JSON.;
 
   // Determine the organization logo
   const SidebarLogo =
@@ -47,7 +47,7 @@ export function Sidebar() {
         style={({ isActive }) => ({
           color: isActive ? "greenyellow" : "white",
           background: isActive ? "blue" : "",
-          padding: isActive ? 4 : 
+          padding: 4
         })}
       >
         {label}
