@@ -555,7 +555,6 @@ export function DepartmentTab() {
       sx: {
         height: "70%",
         position: "relative", 
-        zIndex: 1,
       },
     },
     muiTableBodyCellProps: {
