@@ -1031,22 +1031,27 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [riskID, setRiskID] = useState("");
-  const [risks, setRiskIDs] = useState([]);
-  const [dept, setDept] = useState([]);
+  const [riskName, setRiskName] = useState("");
   const [ownersName, setOwnersName] = useState([]);
   const [departmentID, setdepartmentID] = useState(" ");
-  const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] =
-    useState("");
-  const [riskResponseImplementation, setRiskResponseImplementation] =
-    useState("");
-  const [challenges, setChallenges] = useState("");
-  const [recommendedChanges, setRecommendedChanges] = useState("");
+  const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
-  const [comments, setComments] = useState("");
   const [closeStatus, setRiskClosed] = useState("");
-  const [isLoading, setLoading] = useState(false);
-  
+  const { departmentList } = useDepartmentDropdown();
   const [open, setOpen] = useState(false);
+  const GRCFormArray = GRCFormsArray(t);
+  const [monitoringValue, setMonitoringValue] = useState({
+    riskID: "",
+    riskResponseImplementation: "",
+    challenges: "",
+    recommendedChanges: "",
+    comments: "",
+  })
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setMonitoringValue((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
@@ -1057,59 +1062,9 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       },
     });
   };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
 
-  useEffect(() => {
-    axios
-      .get(OWNERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setOwnersName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKIDSMONITORING_URL,
-          JSON.stringify({ departmentID }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setRiskIDs(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
-      fetchData();
-    } else {
-      fetchDepartments();
-      if (departmentID !== "") {
-        fetchData();
-      }
-    }
-  }, [departmentID]);
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1162,9 +1117,9 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
       setLoading(false);
@@ -1186,11 +1141,13 @@ export function RiskMonitoringforms({ onFormSubmit }) {
  
 
   return (
-    <>
-      <ToastContainer onClose={1000} hideProgressBar />
-      <Button onClick={setOpen(true)} size="small" variant="outlined">
-        {t("monitorRisk")}
-      </Button>
+    <div>
+      <CustomButton
+        label={t("monitorRisk")}
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
       <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("monitorRisk")}
@@ -1204,18 +1161,18 @@ export function RiskMonitoringforms({ onFormSubmit }) {
                 label={t("departmentId")}
                 value={departmentID}
                 onChange={setdepartmentID}
-                options={mitigationEffort}
+                options={departmentList}
                 searchable={true}
                 required
                 group={false}
               />
             )}
             <CustomSelect
-              id="riskID"
+              id="riskName"
               label={t("riskName")}
-              value={riskID}
-              onChange={setRiskID}
-              options={mitigationEffort}
+              value={riskName}
+              onChange={setRiskName}
+              options={GRCFormArray.mitigationEffort}
               searchable={true}
               required
               group={false}
@@ -1223,7 +1180,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             <FormInputField
               id="riskid"
               label={t("riskId")}
-              value={riskID}
+              value={monitoringValue.riskID}
               required
               onChange={handleInputChange}
             />
@@ -1232,7 +1189,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               label={t("responseActivityStatus")}
               value={riskResponseActivitiyStatus}
               onChange={setRiskResponseActivitiyStatus}
-              options={mitigationEffort}
+              options={GRCFormArray.responseActivityStatus}
               searchable={true}
               required
               group={false}
@@ -1240,28 +1197,28 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             <FormInputField
               id="riskResponseImplementation"
               label={t("responseImplementation")}
-              value={riskResponseImplementation}
+              value={monitoringValue.riskResponseImplementation}
               required
               onChange={handleInputChange}
             />
             <FormInputField
               id="challenges"
               label={t("challenges")}
-              value={challenges}
+              value={monitoringValue.challenges}
               required
               onChange={handleInputChange}
             />
             <FormInputField
               id="recommendedChanges"
               label={t("recommendedChanges")}
-              value={recommendedChanges}
+              value={monitoringValue.recommendedChanges}
               required
               onChange={handleInputChange}
             />
             <FormInputField
               id="comments"
               label={t("comments")}
-              value={comments}
+              value={monitoringValue.comments}
               required
               onChange={handleInputChange}
             />
@@ -1270,7 +1227,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               label={t("responseActivityStatus")}
               value={mitigationOwner}
               onChange={setmitigationOwner}
-              options={mitigationEffort}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -1280,22 +1237,22 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               label={t("riskClosedStatus")}
               value={closeStatus}
               onChange={setRiskClosed}
-              options={responseActivityStatus}
+              options={GRCFormArray.responseActivityStatus}
               searchable={true}
               required
               group={false}
             />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
-    </>
+    </div>
   );
 }
 

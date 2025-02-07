@@ -4,6 +4,7 @@ import {
   DEPARTMENT_URL,
   DEPARTMENTDROPDOWN_URL,
   RISKIDSMITIGATION_URL,
+  RISKIDSMONITORING_URL,
   RISKMITIGATION_URL,
   RISKREVIEWERSDROPDOWN_URL,
   USERS_URL,
@@ -149,6 +150,33 @@ export function useRiskIDReview({ departmentID }) {
   fetchData();
   return { riskReviewIDs };
 }
+
+export function useRiskIDReview({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMONITORING_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setMonitoringIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+  return { monitoringIDs };
+}
+
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
