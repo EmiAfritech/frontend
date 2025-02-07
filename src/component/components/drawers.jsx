@@ -568,15 +568,29 @@ export function RiskReviewforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
-  const { departmentList } = useDepartmentDropdown();
+  const [departmentID, setDepartmentID] = useState("");
+  const [riskName, setRiskName] = useState("");
+  const [riskReview, setRiskReview] = useState("");
+  const { departmentList } = useDepartmentDropdown(); 
+  const [open, setOpen] = React.useState(false);
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
   })
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setReviewValue((prevData) => ({ ...prevData, [id]: value }));
   };
+
   const notify = () => {
     toast.success("Review Saved Successfully", {
       onClose: () => {
@@ -586,48 +600,9 @@ export function RiskReviewforms({ onFormSubmit }) {
       },
     });
   };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
 
-  const [open, setOpen] = React.useState(false);
-
-  function handleOpen() {
-    setOpen(!open);
-  }
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKIDSREVIEW_URL,
-          JSON.stringify({ departmentID }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setRiskIDs(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
-      fetchData();
-    } else {
-      fetchDepartments();
-      if (departmentID !== "") {
-        fetchData();
-      }
-    }
-  }, [departmentID]);
+ 
+  
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -644,16 +619,16 @@ export function RiskReviewforms({ onFormSubmit }) {
     setNextRiskReviewDate(formattedDate);
   };
 
-  function handleClose() {
-    setOpen(false);
-  }
+  
 
   const reload = () => {
-    setRiskID("");
-    setdepartmentID("");
+    setReviewValue({
+      riskID: "",
+      riskReviewComments: "",
+    });
+    setDepartmentID("");
     setRiskReview("");
     setNextRiskReviewDate("");
-    setriskReviewComments("");
   };
 
   const handleSubmit = async (e) => {
@@ -681,9 +656,9 @@ export function RiskReviewforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
       setLoading(false);
@@ -692,9 +667,12 @@ export function RiskReviewforms({ onFormSubmit }) {
 
   return (
     <main>
-      <Button onClick={handleOpen} size="small" variant="outlined">
-        {t("reviewRisk")}
-      </Button>
+      <CustomButton
+        label={t("reviewRisk")}
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <ToastContainer onClose={1000} hideProgressBar />
         <div className="flex justify-center font-bold py-5  text-black">
@@ -702,13 +680,13 @@ export function RiskReviewforms({ onFormSubmit }) {
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-10 flex space-y-6">
+          <div className=" px-10 py-10 flex flex-col space-y-6">
             {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
               <CustomSelect
                 id="departmentID"
                 label={t("departmentId")}
                 value={departmentID}
-                onChange={setdepartmentID}
+                onChange={setDepartmentID}
                 options={departmentList}
                 searchable={true}
                 required
@@ -719,7 +697,7 @@ export function RiskReviewforms({ onFormSubmit }) {
                 id="riskName"
                 label={t("riskName")}
                 value={riskName}
-                onChange={setriskName}
+                onChange={setRiskName}
                 options={departmentList}
                 searchable={true}
                 required
@@ -743,17 +721,13 @@ export function RiskReviewforms({ onFormSubmit }) {
                 group={false}
               />
               {riskReview === "reject risk" && (
-                <div>
-                  <input
-                    type="date"
-                    value={NextRiskReviewDate}
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    onChange={handleDateChange}
-                  />
-                  <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("nextReviewDate")}
-                  </label>
-                </div>
+                <FormInputField
+                type="date"
+                label={t("nextReviewDate")}
+                value={NextRiskReviewDate}
+                onChange={handleDateChange}
+                required
+              />
               )}
               <FormInputField
                 id="description"
@@ -762,14 +736,14 @@ export function RiskReviewforms({ onFormSubmit }) {
                 onChange={handleInputChange}
                 required
               />
+              <CustomButton
+                label="submit"
+                onClick={handleSubmit}
+                type="submit"
+                className="custom-class"
+                loading={isSubmitting}
+              />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
     </main>

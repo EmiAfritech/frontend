@@ -124,6 +124,32 @@ export function useRiskIDMitigation({ departmentID }) {
   return { riskIDs };
 }
 
+export function useRiskIDReview({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [riskReviewIDs, setRiskReviewIDs] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSREVIEW_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setRiskReviewIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+  return { riskReviewIDs };
+}
+
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
   const [ownersName, setOwnersName] = useState([]);
