@@ -74,6 +74,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
   return gridFilteredSortedRowIdsSelector(apiRef);
 };
 
+
 export function EmployeesTable2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
@@ -462,142 +463,6 @@ export function RiskAppetiteReportLower() {
 }
 
 
-export function DepartmentTab() {
-  const columns = useDeptColumns();
-  const [rowSelection, setRowSelection] = useState({});
-  const { departmentTable, fetchData } = useDepartmentTable();
-
-  
-  const handleFormSubmit = () => {
-    fetchData();
-  };
-  const table = useMaterialReactTable({
-    muiTableHeadCellProps: {
-      sx: {
-        fontWeight: "normal",
-        fontSize: "14px",
-        background: "rgb(7, 7, 60);",
-        color: "white",
-      },
-    },
-    muiTablePaperProps: {
-      elevation: 0,
-      sx: {
-        borderRadius: "10",
-        
-      },
-      style: {
-        zIndex: "1",
-      },
-    },
-    muiTableBodyProps: {
-      sx: {
-        "& tr:nth-of-type(even) > td": {
-          backgroundColor: "#f5f5f5",
-        },
-        overflowY: "auto",
-      },
-    },
-    muiTableContainerProps: {
-      sx: {
-        height: "70vh",
-      },
-    },
-    muiTableBodyCellProps: {
-      sx: {
-        overflowY: "auto",
-      },
-    },
-    columns,
-    data: departmentTable,
-    enableColumnOrdering: true,
-    enableRowSelection: true,
-    enablePagination: true,
-    onRowSelectionChange: setRowSelection,
-    state: { rowSelection },
-    
-  });
-
-  return (
-    <div>
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="mx-5">
-          <Departmentforms onFormSubmit={handleFormSubmit} />
-        </div>
-      </div>
-      <MaterialReactTable table={table} />
-    </div>
-  );
-}
-
-export function EmployeesTable() {
-  const columns = useUserColumns();
-  const [rowSelection, setRowSelection] = useState({});
-  const { employeeTable, fetchData } = useEmployeeTable();
-
-  
-  const handleFormSubmit = () => {
-    fetchData();
-  };
-
-  const table = useMaterialReactTable({
-    muiTableHeadCellProps: {
-      sx: {
-        fontWeight: "normal",
-        fontSize: "14px",
-        background: "rgb(7, 7, 60);",
-        color: "white",
-      },
-    },
-    muiTablePaperProps: {
-      elevation: 0,
-      sx: {
-        borderRadius: "10",
-        
-      },
-      style: {
-        zIndex: "1",
-      },
-    },
-    muiTableBodyProps: {
-      sx: {
-        "& tr:nth-of-type(even) > td": {
-          backgroundColor: "#f5f5f5",
-        },
-        overflowY: "auto",
-      },
-    },
-    muiTableContainerProps: {
-      sx: {
-        height: "70vh",
-      },
-    },
-    muiTableBodyCellProps: {
-      sx: {
-        overflowY: "auto",
-      },
-    },
-    columns,
-    data: employeeTable,
-    enableColumnOrdering: true,
-    enableRowSelection: true,
-    enablePagination: true,
-    onRowSelectionChange: setRowSelection,
-    state: { rowSelection },
-    
-  });
-
-  return (
-    <div>
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="mx-5">
-          <Userforms onFormSubmit={handleFormSubmit} />
-        </div>
-      </div>
-      <MaterialReactTable table={table} />
-    </div>
-  );
-}
 
 export function RiskmitigationTab() {
   const { auth } = useContext(AuthContext);
@@ -774,74 +639,6 @@ export function RiskViewTable2() {
   );
 }
 
-export function RiskViewTable() {
-  const columns = useRiskViewColumns();
-  const [rowSelection, setRowSelection] = useState({});
-  const { riskTable, fetchData } = useEmployeeTable();
-
-  
-  const handleFormSubmit = () => {
-    fetchData();
-  };
-
-  const table = useMaterialReactTable({
-    muiTableHeadCellProps: {
-      sx: {
-        fontWeight: "normal",
-        fontSize: "14px",
-        background: "rgb(7, 7, 60);",
-        color: "white",
-      },
-    },
-    muiTablePaperProps: {
-      elevation: 0,
-      sx: {
-        borderRadius: "10",
-        
-      },
-      style: {
-        zIndex: "1",
-      },
-    },
-    muiTableBodyProps: {
-      sx: {
-        "& tr:nth-of-type(even) > td": {
-          backgroundColor: "#f5f5f5",
-        },
-        overflowY: "auto",
-      },
-    },
-    muiTableContainerProps: {
-      sx: {
-        height: "70vh",
-      },
-    },
-    muiTableBodyCellProps: {
-      sx: {
-        overflowY: "auto",
-      },
-    },
-    columns,
-    data: riskTable,
-    enableColumnOrdering: true,
-    enableRowSelection: true,
-    enablePagination: true,
-    onRowSelectionChange: setRowSelection,
-    state: { rowSelection },
-    
-  });
-
-  return (
-    <div>
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="mx-5">
-          <Riskforms onFormSubmit={handleFormSubmit} />
-        </div>
-      </div>
-      <MaterialReactTable table={table} />
-    </div>
-  );
-}
 
 export function Reportaudittrail() {
   const { auth } = useContext(AuthContext);
@@ -1568,4 +1365,214 @@ export function RiskStatusReportTab() {
   };
 
   return <MaterialReactTable table={table} />;
+}
+
+
+{/*New Tables*/}
+
+export function DepartmentTab() {
+  const columns = useDeptColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { departmentTable, fetchData } = useDepartmentTable();
+
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: departmentTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          <Departmentforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
+}
+
+export function EmployeesTable() {
+  const columns = useUserColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { employeeTable, fetchData } = useEmployeeTable();
+
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: employeeTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          <Userforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
+}
+
+export function RiskViewTable() {
+  const columns = useRiskViewColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  // const { riskTable, fetchData } = useEmployeeTable();
+  const { employeeTable, fetchData } = useEmployeeTable();
+
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: employeeTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          <Riskforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
 }
