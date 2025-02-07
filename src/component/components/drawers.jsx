@@ -333,7 +333,8 @@ export function Riskforms({onFormSubmit}) {
     riskResponseActivity: ""
   });
 
-  console.log(probabilityLevel)
+  console.log({"probabilityLevel": probabilityLevel})
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
