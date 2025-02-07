@@ -362,7 +362,7 @@ export function Riskforms({onFormSubmit}) {
     setIsSubmitting(true);
 
     if (departmentList.includes(riskID)) {
-      showToast("Risk ID already exists. Please enter a different one.", "error")
+      showToast("Risk ID already exists. Please enter a different one!", "error")
     }
 
     try {
