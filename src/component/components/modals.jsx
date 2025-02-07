@@ -2622,7 +2622,7 @@ export function DepartmentAccountDetails() {
         <Box sx={style}>
           <button
             onClick={close}
-            className="absolute top-4 right-4 bg-gray-300 text-black p-2 rounded-full hover:bg-gray-400">
+            className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
             ✖
           </button>
           <main className="flex text-black p-4 justify-center rounded-lg">
@@ -2631,7 +2631,7 @@ export function DepartmentAccountDetails() {
                 <img
                   src={afriquetek_logo}
                   alt="Sample"
-                  className="h-40 w-44 rounded-full shadow-lg"
+                  className="h-35 w-35 rounded-full shadow-lg"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
