@@ -25,6 +25,7 @@ import {
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import { useDepartmentDropdown } from "../../api/routes-data";
+import { CustomButton } from "./widgets";
 
 function getProbabiltyLevelNumber(probabilitys) {
   if (probabilitys === 1) {
@@ -148,9 +149,12 @@ export function Userforms({ onFormSubmit }) {
   return (
     <>
       <ToastContainer autoClose={1000} hideProgressBar />
-      <Button onClick={handleOpen} size="small" variant="outlined">
-        {t("addEmployee")}
-      </Button>
+      <CustomButton
+        label= {t("addEmployee")}
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newEmployee")}
