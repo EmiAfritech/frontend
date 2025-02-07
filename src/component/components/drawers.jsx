@@ -25,7 +25,7 @@ import {
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import { useDepartmentDropdown } from "../../api/routes-data";
-import { CustomButton } from "./widgets";
+import { CustomButton, CDSFormInputField } from "./widgets";
 
 function getProbabiltyLevelNumber(probabilitys) {
   if (probabilitys === 1) {
