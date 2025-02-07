@@ -24,22 +24,22 @@ export const GRCFormsArray = (t) => ({
     { value: "Mitigate", label: t("mitigate") },
   ],
   impactLevel: [
-    { value: "1", label: `${t("insignificant")} (1)` },
-    { value: "2", label: `${t("minor")} (2)` },
-    { value: "3", label: `${t("moderate")} (3)` },
-    { value: "4", label: `${t("major")} (4)` },
-    { value: "5", label: `${t("critical")} (5)` },
+    { value: "1", label: t("insignificant") },
+    { value: "2", label: t("minor") },
+    { value: "3", label: t("moderate") },
+    { value: "4", label: t("major") },
+    { value: "5", label: t("critical") },
   ],
   riskReview: [
-    { value: "accept risk", label: `${t("acceptRisk")}` },
-    { value: "reject risk", label: `${t("rejectRisk")}` },
+    { value: "accept risk", label: t("acceptRisk") },
+    { value: "reject risk", label: t("rejectRisk") },
   ],
   mitigationEffort: [
-    { value: "Trivial", label: `${t("trivial")}` },
-    { value: "Minor", label: `${t("minor")}` },
-    { value: "Considerable", label: `${t("considerable")}` },
-    { value: "Significant", label: `${t("significant")}` },
-    { value: "Exceptional", label: `${t("exceptional")}` },
+    { value: "Trivial", label: t("trivial") },
+    { value: "Minor", label: t("minor") },
+    { value: "Considerable", label: t("considerable")},
+    { value: "Significant", label: t("significant") },
+    { value: "Exceptional", label: t("exceptional") },
   ],
   mitigationCost: [
     { value: "$0 TO $100 000", label:"$0 -$100,000" },
@@ -53,8 +53,8 @@ export const GRCFormsArray = (t) => ({
     { value: "$900 001 TO $1000 000", label: "$900 001 -$1000,000" },
   ],
   responseActivityStatus: [
-    { value: "YES", label: `${t("yes")}` },
-    { value: "NO", label: `${t("no")}` },
+    { value: "YES", label: t("yes")},
+    { value: "NO", label: t("no") },
   ],
 });
 
