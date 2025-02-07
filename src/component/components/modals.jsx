@@ -2619,7 +2619,7 @@ export function DepartmentAccountDetails() {
                 <img
                   src={afriquetek_logo}
                   alt="Sample"
-                  className="rounded-lg shadow-lg"
+                  className="h-20 w-24 rounded-full shadow-lg"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
