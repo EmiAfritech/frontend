@@ -96,6 +96,8 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "#FFFFFF",
+  width: "85vw", 
+  height: "90vh",
   boxShadow: 24,
   p: 4,
   borderRadius: 1,
@@ -2451,16 +2453,8 @@ export function AccountDetails() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
+          <main className="flex text-black p-4 justify-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
-              <div className="flex flex-col items-center">
-                <img
-                  src="https://th.bing.com/th/id/OIP.wBMp4cKdcuUYNQpa332M1QHaHl?w=176&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                  alt="Sample"
-                  className="rounded-lg shadow-lg"
-                />
-                <h6 className="mb-12 text-sm">Upload Image</h6>
-              </div>
               <div className="mb-4 flex flex-row items-center">
                 <span className="mr-4">
                   <IoPerson color="blue" />
