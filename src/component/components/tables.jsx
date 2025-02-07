@@ -62,7 +62,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentTable } from "../../api/routes-data";
+import { useDepartmentTable, useEmployeeTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -74,7 +74,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
   return gridFilteredSortedRowIdsSelector(apiRef);
 };
 
-export function EmployeesTable() {
+export function EmployeesTable2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(ModaltriggerProvider);
@@ -461,69 +461,11 @@ export function RiskAppetiteReportLower() {
   );
 }
 
-export function DepartmentTab2() {
-  const { auth } = useContext(AuthContext);
-  const [tableData, setTableData] = useState([]);
-  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
-  const deptcolumn = useDeptColumns();
-
-  const getDepartment = async () => {
-    try {
-      const response = await axios.get(DEPARTMENT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-      });
-
-      setTableData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    getDepartment();
-  }, []);
-
-  const handleFormSubmit = () => {
-    // Call the function to fetch updated data after form submission
-    getDepartment();
-  };
-
-  useEffect(() => {
-    if (trigger) {
-      getDepartment();
-      resettriggerComponent();
-    }
-  }, [trigger]);
-
-  return (
-    <div className="flex flex-col">
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div>
-          <Departmentforms onFormSubmit={handleFormSubmit} />
-        </div>
-      </div>
-      <div className="mt-2 w-auto cardTable p-4">
-        <Box sx={{ height: 650 }}>
-          <DataGrid
-            rows={tableData}
-            columns={deptcolumn}
-            pageSize={10}
-            pagination
-            getRowId={(row) => row.id}
-          />
-        </Box>
-      </div>
-    </div>
-  );
-}
 
 export function DepartmentTab() {
   const columns = useDeptColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { departmentList, fetchData } = useDepartmentTable();
+  const { departmentTable, fetchData } = useDepartmentTable();
 
   
   const handleFormSubmit = () => {
@@ -567,7 +509,7 @@ export function DepartmentTab() {
       },
     },
     columns,
-    data: departmentList,
+    data: departmentTable,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
@@ -581,6 +523,75 @@ export function DepartmentTab() {
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="mx-5">
           <Departmentforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
+}
+
+export function EmployeesTable() {
+  const columns = useDeptColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { employeeTable, fetchData } = useEmployeeTable();
+
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: employeeTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          <Userforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />

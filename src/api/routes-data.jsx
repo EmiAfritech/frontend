@@ -30,7 +30,7 @@ export function useDepartmentDropdown() {
 
 export function useDepartmentTable() {
     const {auth} = useContext(AuthContext)
-    const [departmentList, setDepartmentList] = useState("");
+    const [departmentTable, setDepartmentTable] = useState("");
     const fetchData = async () => {
       try {
         const response = await axios.get(DEPARTMENT_URL, {
@@ -40,7 +40,7 @@ export function useDepartmentTable() {
           },
         });
   
-        setDepartmentList(response.data);
+        setDepartmentTable(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -48,5 +48,28 @@ export function useDepartmentTable() {
   
     fetchData();
   
-    return { departmentList, fetchData };
-  }
+    return { departmentTable, fetchData };
+}
+
+export function useEmployeeTable() {
+  const {auth} = useContext(AuthContext)
+  const [employeeTable, setEmployeeTable] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(USERS_UR, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setEmployeeTable(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+
+  return { employeeTable, fetchData };
+}
