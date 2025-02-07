@@ -338,6 +338,12 @@ export function Riskforms({onFormSubmit}) {
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const handleClose = () =>{
+    setOpen(false)
+  }
+  const handleOpen = () =>{
+    setOpen(true)
+  }
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
@@ -436,11 +442,11 @@ export function Riskforms({onFormSubmit}) {
   
 
   return (
-    <>
-      <Button onClick={setOpen(true)} size="small" variant="outlined">
+    <div>
+      <Button onClick={handleOpen} size="small" variant="outlined">
         {t("addRisk")}
       </Button>
-      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newRisk")}
         </div>
@@ -551,7 +557,7 @@ export function Riskforms({onFormSubmit}) {
           />
         </form>
       </Drawer>
-    </>
+    </div>
   );
 }
 export function RiskReviewforms({ onFormSubmit }) {
