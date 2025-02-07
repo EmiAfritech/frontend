@@ -74,6 +74,7 @@ export function Userforms({ onFormSubmit }) {
       password: "",
     },
   ];
+  console.log(departmentList);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -488,7 +489,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
   const [isLoading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(false);
   const { departmentList } = useDepartmentDropdown();
-  console.log(departmentList);
+  
   useEffect(() => {
     setTableDataTest(tableData.map((item) => item.riskID));
   }, [tableData]);

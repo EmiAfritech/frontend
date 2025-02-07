@@ -110,7 +110,7 @@ return (
         required={required}
         isSearchable={true}
         options={options}
-        onChange={(selectedOption) => onChange(selectedOption.value)}
+        onChange={onChange}
         defaultValue={ value}
         isClearable={true}
         styles={{
