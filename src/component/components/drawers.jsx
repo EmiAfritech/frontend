@@ -70,7 +70,15 @@ export function Userforms({ onFormSubmit }) {
   const [password, setPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
   const {departmentList} = useDepartmentDropdown()
-  console.log(departmentList)
+  const [open, setOpen] = React.useState(false);
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   const notify = () => {
     toast.success("User Saved Successfully", {
@@ -81,9 +89,11 @@ export function Userforms({ onFormSubmit }) {
       },
     });
   };
+
   const notifyFillForms = () => {
     toast.error("Kindly check Input details");
   };
+  
   const notifyServerDown = () => {
     toast.error("Server is currently down Contact your admin");
   };
@@ -136,15 +146,7 @@ export function Userforms({ onFormSubmit }) {
     setPassword("");
   };
 
-  const [open, setOpen] = React.useState(false);
-
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
+ 
 
   return (
     <>

@@ -49,7 +49,7 @@ export function InputField({
         type={type}
         onClick={onClick}
         disabled={disabled || loading}
-        className={`w-full p-2 bg-"greenyellow" rounded-xl text-white rounded-lg ${className} ${
+        className={`w-full p-2 bg-[#adff2f] rounded-xl text-white rounded-lg ${className} ${
           disabled || loading ? "opacity-50 cursor-not-allowed" : ""
         }`}>
         {loading ? (
