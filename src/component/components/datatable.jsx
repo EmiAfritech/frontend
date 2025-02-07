@@ -110,23 +110,11 @@ export const useRiskViewColumns = () => {
 };
 
 export const useRiskMitigationColumns = () => {
-  const { t } = useTranslation();
+  const {t } = useTranslation();
   return [
-    {
-      accessorKey: "riskID",
-      header: t("riskCode"),
-    },
     {
       accessorKey: "riskName",
       header: t("riskName"),
-    },
-    {
-      accessorKey: "mitigatedRiskProbabilityLevel",
-      header: t("mitgatedRiskProbabillityLevel"),
-    },
-    {
-      accessorKey: "mitigatedRiskImpactLevel",
-      header: t("mitigatedRiskImpactLevel"),
     },
     {
       accessorKey: "mitigatedRiskScore",
