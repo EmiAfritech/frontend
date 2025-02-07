@@ -1637,7 +1637,7 @@ export function RiskmitigationTab() {
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="mx-5">
-          <Riskforms onFormSubmit={handleFormSubmit} />
+          <RiskMitigationforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />
