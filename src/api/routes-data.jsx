@@ -91,6 +91,6 @@ export function useRiskTable() {
   };
 
   fetchData();
-
+  console.log({"risk items": riskTable})
   return { riskTable, fetchData };
 }
