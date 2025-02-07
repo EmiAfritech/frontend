@@ -571,7 +571,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [departmentID, setDepartmentID] = useState("");
   const [riskName, setRiskName] = useState("");
   const [riskReview, setRiskReview] = useState("");
-  const { departmentList } = useDepartmentDropdown(); 
+  const { departmentList } = useDepartmentDropdown();
+  const [isSubmitting, setIsSubmitting] = useState(false); 
   const [open, setOpen] = React.useState(false);
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
@@ -601,9 +602,6 @@ export function RiskReviewforms({ onFormSubmit }) {
     });
   };
 
- 
-  
-
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     const dateObj = new Date(selectedDate);
@@ -619,8 +617,6 @@ export function RiskReviewforms({ onFormSubmit }) {
     setNextRiskReviewDate(formattedDate);
   };
 
-  
-
   const reload = () => {
     setReviewValue({
       riskID: "",
@@ -633,7 +629,7 @@ export function RiskReviewforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       await axios.post(
@@ -661,7 +657,7 @@ export function RiskReviewforms({ onFormSubmit }) {
         showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
