@@ -2465,7 +2465,7 @@ export function UserAccountDetails() {
                 <img
                   src="https://shorturl.at/VaxG1"
                   alt="Sample"
-                  className="h-30 w-25"
+                  style={{ height: 80, borderRadius: 20 }}
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
