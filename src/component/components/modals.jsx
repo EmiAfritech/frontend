@@ -2456,11 +2456,11 @@ export function UserAccountDetails() {
         <Box sx={style}>
           <main className="flex text-black p-4 justify-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
-              <div className="flex justify-center items-center h-screen bg-gray-100">
+              <div className="flex justify-center items-center bg-gray-100">
                 <img
                   src={afriquetek_logo}
                   alt="Sample"
-                  className="h-20 w-24 rounded-full shadow-lg"
+                  className="h-40 w-44 rounded-full shadow-lg"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
@@ -2627,11 +2627,11 @@ export function DepartmentAccountDetails() {
           </button>
           <main className="flex text-black p-4 justify-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
-              <div className="flex justify-center items-center h-screen bg-gray-100">
+              <div className="flex justify-center items-center">
                 <img
                   src={afriquetek_logo}
                   alt="Sample"
-                  className="h-20 w-24 rounded-full shadow-lg"
+                  className="h-40 w-44 rounded-full shadow-lg"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
