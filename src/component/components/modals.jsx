@@ -7,6 +7,7 @@ import {
   FaSignOutAlt,
   FaExclamation,
 } from "react-icons/fa";
+import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +97,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "#FFFFFF",
-  width: "85vw", 
+  width: "85vw",
   height: "90vh",
   boxShadow: 24,
   p: 4,
@@ -2435,7 +2436,7 @@ export function RiskAdviceReportData() {
   );
 }
 
-export function AccountDetails() {
+export function UserAccountDetails() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
@@ -2455,6 +2456,172 @@ export function AccountDetails() {
         <Box sx={style}>
           <main className="flex text-black p-4 justify-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+              <div className="mb-4 flex flex-row items-center">
+                <span className="mr-4">
+                  <IoPerson color="blue" />
+                </span>
+                <span>Robert Knaihv</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <MdOutlineMarkEmailRead color="blue" />
+                </span>
+                <span>knaihv@ymail.com</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <MdOutlineLocalPhone color="blue" />
+                </span>
+                <span>+233 544-5342</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <IoLocationOutline color="blue" />
+                </span>
+                <span>JohnBull Street</span>
+              </div>
+            </div>
+            <div className="flex-[2]">
+              <div className="grid grid-cols-2 gap-8 p-4">
+                <input
+                  label="Last Name"
+                  type="text"
+                  id="lname"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="last name"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Other Name"
+                  type="text"
+                  id="Oname"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="other name"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Email"
+                  type="email"
+                  id="email"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Phone"
+                  type="phone"
+                  id="phone"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="phone number"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Address 1"
+                  type="text"
+                  id="address1"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="address 1"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Nationality"
+                  type="text"
+                  id="nationality"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="nationality"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="DOB"
+                  type="text"
+                  id="dob"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="date of birth"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your email"
+                  required
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your email"
+                  required
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+              </div>
+              <div className="px-16 mt-8">
+                {/* <CustomButton
+                    label="Submit"
+                    // onClick={handleSubmit}
+                    type="submit"
+                    className="custom-class"
+                    // loading={isSubmitting}
+                  /> */}
+              </div>
+            </div>
+          </main>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+export function DepartmentAccountDetails() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+  return (
+    <div>
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <main className="flex text-black p-4 justify-center rounded-lg">
+            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+              <div className="flex justify-center items-center h-screen bg-gray-100">
+                <img
+                  src={afriquetek_logo}
+                  alt="Sample"
+                  className="rounded-lg shadow-lg"
+                />
+              </div>
               <div className="mb-4 flex flex-row items-center">
                 <span className="mr-4">
                   <IoPerson color="blue" />

@@ -10,7 +10,8 @@ import {
   MitigatedRiskReportData,
   RiskAdviceReportData,
   CDSMainForm,
-  AccountDetails,
+  UserAccountDetails,
+  DepartmentAccountDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -41,7 +42,7 @@ export const useUserColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ row }) => <AccountDetails/>
+      Cell: ({ row }) => <UserAccountDetails/>
     },
   ];
 };
@@ -68,7 +69,7 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ row }) => <AccountDetails/>
+      Cell: ({ row }) => <DepartmentAccountDetails/>
     },
   ];
 };
