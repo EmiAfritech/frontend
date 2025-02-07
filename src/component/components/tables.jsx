@@ -63,6 +63,7 @@ import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
 import { useDepartmentTable } from "../../api/routes-data";
+import { ModaltriggerProvider } from "../../context/AuthProvider";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -76,7 +77,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 export function EmployeesTable() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
-  const { trigger, resettriggerComponent } = useContext(Modaltrigger);
+  const { trigger, resettriggerComponent } = useContext(ModaltriggerProvider);
   const usercolumns = useUserColumns();
 
   const getUsers = async () => {
