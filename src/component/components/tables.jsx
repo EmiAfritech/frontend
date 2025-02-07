@@ -1636,7 +1636,7 @@ export function RiskmitigationTab() {
   return (
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        <div className="mx-5">
+        <div className="m-5">
           <RiskMitigationforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
