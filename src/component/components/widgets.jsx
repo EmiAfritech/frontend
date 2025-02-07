@@ -114,7 +114,7 @@ return (
         defaultValue={ value}
         isClearable={true}
         styles={{
-        control: (baseStyles, state) => ({
+        control: (baseStyles) => ({
             ...baseStyles,
             height: "40px",
             padding: "2px",
