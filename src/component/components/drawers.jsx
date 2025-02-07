@@ -325,7 +325,7 @@ export function Departmentforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [isLoading, setLoading] = useState(false);
-  const [departmentValue, seetDepartmentValue] = ({
+  const [departmentValue, seetDepartmentValue] = useState({
     departmentName: "",
     departmentID: "",
     location: "",
