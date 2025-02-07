@@ -1,3 +1,5 @@
+import Select from "react-select";
+
 export function InputField({
     label,
     type = "text",
