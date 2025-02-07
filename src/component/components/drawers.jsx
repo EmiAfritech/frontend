@@ -781,6 +781,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [riskName, setRiskName] = useState("");
   const [departmentID, setdepartmentID] = useState(" ");
   const [mitigationEffort, setMitigationEffort] = useState(" ");
+  const [mitigationControl, setMitigationControl] = useState(" ");
+  const [mitigationCost, setMitigationCost] = useState(" ");
+  const [riskReviewer, setRiskReviewer] = useState(" ");
   const [endDate, setEndDate] = useState(new Date());
   const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] = useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
@@ -1007,7 +1010,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               id="mitigationControl"
               label={t("mitigationControl")}
               value={mitigationControl}
-              onChange={setmitigationControl}
+              onChange={setMitigationControl}
               options={FormArray.mitigationEffort}
               searchable={true}
               required
@@ -1025,7 +1028,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               id="mitigationCost"
               label={t("mitigationCost")}
               value={mitigationCost}
-              onChange={setmitigationCost}
+              onChange={setMitigationCost}
               options={FormArray.mitigationCost}
               searchable={true}
               required
