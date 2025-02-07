@@ -135,7 +135,6 @@ return (
 };
 
 export function FormInputField({
-    fieldLabel = false,
     label,
     disabled = false,
     type = "text",
@@ -145,7 +144,6 @@ export function FormInputField({
     required = false,
     error = "",
     id,
-    IsMultiInput = false,
   }) {
     return (
       <div className="mb-1">
@@ -159,7 +157,6 @@ export function FormInputField({
             </label>
           )}
         </div>
-        {fieldLabel && <div className="my-2.5" />}
         <input
           id={id}
           type={type}
@@ -173,12 +170,6 @@ export function FormInputField({
             (error ? "border border-red-500" : "", disabled ? "bg-gray-100" : "")
           }`}
         />
-        {IsMultiInput && (
-          <DynamicInput 
-            label={label}
-            initialValue= {value} 
-          />
-        )}
       </div>
     );
   }

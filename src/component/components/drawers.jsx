@@ -329,7 +329,6 @@ export function Departmentforms({ onFormSubmit }) {
     departmentName: "",
     departmentID: "",
     location: "",
-
   })
 
   const handleInputChange = (e) => {
@@ -337,6 +336,7 @@ export function Departmentforms({ onFormSubmit }) {
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  console.log(departmentValue)
   const notify = () => {
     toast.success("Department Saved Successfully", {
       onClose: () => {
