@@ -336,7 +336,7 @@ export function Departmentforms({ onFormSubmit }) {
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  console.log(departmentValue)
+  console.log({"departmentValue": departmentValue})
   const notify = () => {
     toast.success("Department Saved Successfully", {
       onClose: () => {
