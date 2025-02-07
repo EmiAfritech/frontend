@@ -93,7 +93,7 @@ required = false,
 id,
 label,
 options = [],
-group = true,
+group = false,
 }) => {
 return (
     <div>
