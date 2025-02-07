@@ -1,6 +1,12 @@
 import * as React from "react";
 import { useState, useContext, useEffect } from "react";
-import { FaTrashAlt, FaSave, FaEye, FaSignOutAlt, FaExclamation } from "react-icons/fa";
+import {
+  FaTrashAlt,
+  FaSave,
+  FaEye,
+  FaSignOutAlt,
+  FaExclamation,
+} from "react-icons/fa";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -32,15 +38,8 @@ import {
   TextField,
   Box,
 } from "@mui/material";
-import {
-  IoPerson,
-  IoLocationOutline,
-  IoClose,
-} from "react-icons/io5";
-import {
-  MdOutlineMarkEmailRead,
-  MdOutlineLocalPhone,
-} from "react-icons/md";
+import { IoPerson, IoLocationOutline, IoClose } from "react-icons/io5";
+import { MdOutlineMarkEmailRead, MdOutlineLocalPhone } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -2446,155 +2445,157 @@ export function AccountDetails() {
       <IconButton onClick={handleOpen} color="primary">
         <FaEye />
       </IconButton>
-      {open && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-[9999]">
-          <div className="absolute bg-white p-6 rounded-lg shadow-lg w-[80vw] h-[95vh]">
-            <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
-              <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
-                <div className="flex flex-col items-center">
-                  <img
-                    src="https://th.bing.com/th/id/OIP.wBMp4cKdcuUYNQpa332M1QHaHl?w=176&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
-                    alt="Sample"
-                    className="rounded-lg shadow-lg"
-                  />
-                  <h6 className="mb-12 text-sm">Upload Image</h6>
-                </div>
-                <div className="mb-4 flex flex-row items-center">
-                  <span className="mr-4">
-                    <IoPerson color="blue" />
-                  </span>
-                  <span>Robert Knaihv</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <MdOutlineMarkEmailRead color="blue" />
-                  </span>
-                  <span>knaihv@ymail.com</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <MdOutlineLocalPhone color="blue" />
-                  </span>
-                  <span>+233 544-5342</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <IoLocationOutline color="blue" />
-                  </span>
-                  <span>JohnBull Street</span>
-                </div>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
+            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+              <div className="flex flex-col items-center">
+                <img
+                  src="https://th.bing.com/th/id/OIP.wBMp4cKdcuUYNQpa332M1QHaHl?w=176&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                  alt="Sample"
+                  className="rounded-lg shadow-lg"
+                />
+                <h6 className="mb-12 text-sm">Upload Image</h6>
               </div>
-              <div className="flex-[2]">
-                <div className="grid grid-cols-2 gap-8 p-4">
-                  <input
-                    label="Last Name"
-                    type="text"
-                    id="lname"
-                    // value={formData.name}
-                    // onChange={handleInputChange}
-                    placeholder="last name"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Other Name"
-                    type="text"
-                    id="Oname"
-                    // value={formData.name}
-                    // onChange={handleInputChange}
-                    placeholder="other name"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Email"
-                    type="email"
-                    id="email"
-                    // value={formData.name}
-                    // onChange={handleInputChange}
-                    placeholder="Enter your email"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Phone"
-                    type="phone"
-                    id="phone"
-                    // value={formData.name}
-                    // onChange={handleInputChange}
-                    placeholder="phone number"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Address 1"
-                    type="text"
-                    id="address1"
-                    // value={formData.name}
-                    // onChange={handleInputChange}
-                    placeholder="address 1"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Nationality"
-                    type="text"
-                    id="nationality"
-                    // value="hi"
-                    // onChange={handleInputChange}
-                    placeholder="nationality"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="DOB"
-                    type="text"
-                    id="dob"
-                    // value="hi"
-                    // onChange={handleInputChange}
-                    placeholder="date of birth"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                  <input
-                    label="Name"
-                    type="text"
-                    id="name"
-                    placeholder="Enter your email"
-                    required
-                  />
-                  <input
-                    label="Name"
-                    type="text"
-                    id="name"
-                    placeholder="Enter your email"
-                    required
-                  />
-                  <input
-                    label="Name"
-                    type="text"
-                    id="name"
-                    // value="hi"
-                    // onChange={handleInputChange}
-                    placeholder="Enter your email"
-                    required
-                    // error={error && !email ? "Email is required" : ""}
-                  />
-                </div>
-                <div className="px-16 mt-8">
-                  {/* <CustomButton
+              <div className="mb-4 flex flex-row items-center">
+                <span className="mr-4">
+                  <IoPerson color="blue" />
+                </span>
+                <span>Robert Knaihv</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <MdOutlineMarkEmailRead color="blue" />
+                </span>
+                <span>knaihv@ymail.com</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <MdOutlineLocalPhone color="blue" />
+                </span>
+                <span>+233 544-5342</span>
+              </div>
+              <div className="mb-2 flex flex-row items-center">
+                <span className="mr-4">
+                  <IoLocationOutline color="blue" />
+                </span>
+                <span>JohnBull Street</span>
+              </div>
+            </div>
+            <div className="flex-[2]">
+              <div className="grid grid-cols-2 gap-8 p-4">
+                <input
+                  label="Last Name"
+                  type="text"
+                  id="lname"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="last name"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Other Name"
+                  type="text"
+                  id="Oname"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="other name"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Email"
+                  type="email"
+                  id="email"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Phone"
+                  type="phone"
+                  id="phone"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="phone number"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Address 1"
+                  type="text"
+                  id="address1"
+                  // value={formData.name}
+                  // onChange={handleInputChange}
+                  placeholder="address 1"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Nationality"
+                  type="text"
+                  id="nationality"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="nationality"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="DOB"
+                  type="text"
+                  id="dob"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="date of birth"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your email"
+                  required
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your email"
+                  required
+                />
+                <input
+                  label="Name"
+                  type="text"
+                  id="name"
+                  // value="hi"
+                  // onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  required
+                  // error={error && !email ? "Email is required" : ""}
+                />
+              </div>
+              <div className="px-16 mt-8">
+                {/* <CustomButton
                     label="Submit"
                     // onClick={handleSubmit}
                     type="submit"
                     className="custom-class"
                     // loading={isSubmitting}
                   /> */}
-                </div>
               </div>
-            </main>
-          </div>
-        </div>
-      )}
+            </div>
+          </main>
+        </Box>
+      </Modal>
     </div>
   );
 }
