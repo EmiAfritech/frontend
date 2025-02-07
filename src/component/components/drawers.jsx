@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
+import {Drawer, Button} from "@mui/material";
 import axios from "../../api/axios";
 import { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CircularProgress from "@mui/material/CircularProgress";
 import { AuthContext } from "../../context/AuthContext";
 
 import {
@@ -27,45 +25,17 @@ import { useTranslation } from "react-i18next";
 import { useDepartmentDropdown } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
+import { showToast } from "./notifications";
 
-function getProbabiltyLevelNumber(probabilitys) {
-  if (probabilitys === 1) {
-    return "Almost Impossible (1)";
-  } else if (probabilitys === 2) {
-    return "Unlikely (2)";
-  } else if (probabilitys === 3) {
-    return "Likely (3)";
-  } else if (probabilitys === 4) {
-    return "Very Likely (4)";
-  } else if (probabilitys === 5) {
-    return "Almost Certain (5)";
-  } else {
-    return " ";
-  }
-}
-
-function getImpactLevelNumber(impact) {
-  if (impact === 1) {
-    return "Insignificant (1)";
-  } else if (impact === 2) {
-    return "Minor (2)";
-  } else if (impact === 3) {
-    return "Moderate (3)";
-  } else if (impact === 4) {
-    return "Major (4)";
-  } else if (impact === 5) {
-    return "Catastrophic (5)";
-  } else {
-    return " ";
-  }
-}
 export function Userforms({ onFormSubmit }) {
+  const [open, setOpen] = useState(false);
+  const [departmentName, setDepartment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [role, setRole] = useState("");
+  const { userRole } = GRCFormsArray;
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const { departmentList } = useDepartmentDropdown();
-  const [open, setOpen] = useState(false);
-  const [department, setDepartment] = useState("");
-  const { role } = GRCFormsArray;
   const [userValue, setUserValue] = [
     {
       firstName: "",
@@ -81,13 +51,6 @@ export function Userforms({ onFormSubmit }) {
     setUserValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
 
   const notify = () => {
     toast.success("User Saved Successfully", {
@@ -99,17 +62,10 @@ export function Userforms({ onFormSubmit }) {
     });
   };
 
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       await axios.post(
@@ -134,12 +90,12 @@ export function Userforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
   const reload = () => {
@@ -154,15 +110,14 @@ export function Userforms({ onFormSubmit }) {
   };
 
   return (
-    <>
-      <ToastContainer autoClose={1000} hideProgressBar />
+    <div>
       <CustomButton
         label={t("addEmployee")}
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
-        onClick={handleOpen}
+        onClick={setOpen(true)}
       />
-      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newEmployee")}
         </div>
@@ -202,7 +157,7 @@ export function Userforms({ onFormSubmit }) {
                 <CustomSelect
                   id="department"
                   label={t("departments")}
-                  value={department}
+                  value={departmentName}
                   onChange={setDepartment}
                   options={departmentList}
                   searchable={true}
@@ -220,9 +175,9 @@ export function Userforms({ onFormSubmit }) {
             <CustomSelect
               id="role"
               label={t("role")}
-              value={department}
-              onChange={setDepartment}
-              options={role}
+              value={role}
+              onChange={setRole}
+              options={userRole}
               searchable={true}
               required
               group={false}
@@ -237,14 +192,15 @@ export function Userforms({ onFormSubmit }) {
           />
         </form>
       </Drawer>
-    </>
+    </div>
   );
 }
 
 export function Departmentforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [isLoading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [open, setOpen] = useState(false);
   const [departmentValue, seetDepartmentValue] = useState({
     departmentName: "",
     departmentID: "",
@@ -256,7 +212,6 @@ export function Departmentforms({ onFormSubmit }) {
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  console.log({ departmentValue: departmentValue });
   const notify = () => {
     toast.success("Department Saved Successfully", {
       onClose: () => {
@@ -266,24 +221,18 @@ export function Departmentforms({ onFormSubmit }) {
       },
     });
   };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       await axios.post(
         DEPARTMENTCREATEFORM_URL,
         JSON.stringify({
-          name,
-          deptID,
-          location,
+          name: departmentValue.departmentName,
+          deptID: departmentValue.departmentID,
+          location: departmentValue.location,
         }),
         {
           headers: {
@@ -296,12 +245,12 @@ export function Departmentforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -311,26 +260,15 @@ export function Departmentforms({ onFormSubmit }) {
     setLocation("");
   };
 
-  const [open, setOpen] = useState(false);
-
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
   return (
-    <>
-      <ToastContainer autoClose={1000} hideProgressBar />
+    <div>
       <CustomButton
         label={t("addDepartment")}
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
-        onClick={handleOpen}
+        onClick={setOpen(true)}
       />
-      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
         <div>
           <div className="flex justify-center font-bold py-5  text-black">
             {t("NewDepartment")}
@@ -370,7 +308,7 @@ export function Departmentforms({ onFormSubmit }) {
           />
         </form>
       </Drawer>
-    </>
+    </div>
   );
 }
 
@@ -378,9 +316,13 @@ export function Riskforms({onFormSubmit}) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [departmentName, setDepartmentName] = useState("");
-  const [ownersName, setOwnersName] = useState([]);
   const [riskOwner, setRiskOwner] = useState("");
+  const [riskProbabilityLevel, setProbabityilLevel] = useState("");
+  const [riskCategory, setCategory] = useState("");
+  const [riskImpactLevel, setImpactLevel] = useState("");
+  const [riskResponse, setRiskResponse] = useState("");
   const [open, setOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray;
   const { departmentList } = useDepartmentDropdown();
   const [riskValue, setRiskValue] = useState({
@@ -405,39 +347,14 @@ export function Riskforms({onFormSubmit}) {
       },
     });
   };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
-  const ExistingRiskID = () => {
-    toast.error("Risk ID already exists. Please enter a different one.");
-  };
-
-  useEffect(() => {
-    axios
-      .get(OWNERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setOwnersName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     if (departmentList.includes(riskID)) {
-      ExistingRiskID();
+      showToast("Risk ID already exists. Please enter a different one.", "error")
     }
 
     try {
@@ -445,15 +362,15 @@ export function Riskforms({onFormSubmit}) {
         await axios.post(
           CREATERISKFORM_URL,
           JSON.stringify({
-            riskID,
-            riskName,
+            riskID: riskValue.riskID,
+            riskName: riskValue.riskName,
             riskOwner,
             riskImpactLevel,
             riskProbabilityLevel,
             riskCategory,
-            riskDescription,
-            riskObjective,
-            riskResponseActivity,
+            riskDescription: riskValue.riskDescription,
+            riskObjective: riskValue.riskObjective,
+            riskResponseActivity: riskValue.riskResponseActivity,
             riskResponse,
           }),
           {
@@ -468,16 +385,16 @@ export function Riskforms({onFormSubmit}) {
         await axios.post(
           CREATERISKFORM_URL,
           JSON.stringify({
-            riskID,
-            riskName,
+            riskID: riskValue.riskID,
+            riskName: riskValue.riskName,
             departmentName,
             riskOwner,
             riskImpactLevel,
             riskProbabilityLevel,
             riskCategory,
-            riskDescription,
-            riskObjective,
-            riskResponseActivity,
+            riskDescription: riskValue.riskDescription,
+            riskObjective: riskValue.riskObjective,
+            riskResponseActivity: riskValue.riskResponseActivity,
             riskResponse,
           }),
           {
@@ -492,43 +409,38 @@ export function Riskforms({onFormSubmit}) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   const reload = () => {
-    setRiskName("");
     setDepartmentName("");
     setRiskOwner("");
-    setRiskID("");
     setImpactLevel("");
     setProbabityilLevel("");
     setCategory("");
-    setDescription("");
-    setObjective("");
+    setRiskValue({
+      riskName: "",
+      riskID: "",
+      riskObjective: "",
+      riskDescription: "",
+      riskResponseActivity: ""
+    })
   };
 
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-    reload();
-  }
+  
 
   return (
     <>
-      <ToastContainer hideProgressBar />
-      <Button onClick={handleOpen} size="small" variant="outlined">
+      <Button onClick={setOpen(true)} size="small" variant="outlined">
         {t("addRisk")}
       </Button>
-      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newRisk")}
         </div>
@@ -1218,6 +1130,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [comments, setComments] = useState("");
   const [closeStatus, setRiskClosed] = useState("");
   const [isLoading, setLoading] = useState(false);
+  
+  const [open, setOpen] = useState(false);
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
@@ -1367,238 +1281,117 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     setComments("");
   };
 
-  const [open, setOpen] = React.useState(false);
 
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
+ 
 
   return (
     <>
       <ToastContainer onClose={1000} hideProgressBar />
-      <Button onClick={handleOpen} size="small" variant="outlined">
+      <Button onClick={setOpen(true)} size="small" variant="outlined">
         {t("monitorRisk")}
       </Button>
-      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("monitorRisk")}
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-                <>
-                  <select
-                    type="departmentID"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="departmentID"
-                    aria-describedby="departmentID"
-                    value={departmentID}
-                    autoComplete="off"
-                    onChange={(e) => setdepartmentID(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {dept.map((dept) => (
-                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                        {" "}
-                        {dept.deptIDs.deptID}
-                      </option>
-                    ))}
-                  </select>
-                  <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("departmentId")}
-                  </label>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="riskID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskID"
-                aria-describedby="riskID"
-                value={riskID}
-                autoComplete="off"
-                onChange={(e) => setRiskID(e.target.value)}
-                required>
-                <option></option>
-                {risks.map((risks) => (
-                  <option key={risks.id} value={risks.riskID}>
-                    {" "}
-                    {risks.riskName}
-                  </option>
-                ))}
-              </select>
-              <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskName")}
-              </label>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
-                type="riskid"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskID"
-                aria-describedby="riskID"
-                value={riskID}
-                autoComplete="off"
+            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
+              <CustomSelect
+                id="departmentID"
+                label={t("departmentId")}
+                value={departmentID}
+                onChange={setdepartmentID}
+                options={mitigationEffort}
+                searchable={true}
+                required
+                group={false}
               />
-
-              <label className="text-blue-800   pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskId")}
-              </label>
-            </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  type="riskResponseActivityStatus"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskResponseActivitiyStatus"
-                  value={riskResponseActivitiyStatus}
-                  autoComplete="off"
-                  onChange={(e) =>
-                    setRiskResponseActivitiyStatus(e.target.value)
-                  }
-                  required>
-                  <option></option>
-                  <option value="YES">{t("yes")}</option>
-                  <option value="NO">{t("no")}</option>
-                </select>
-
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("responseActivityStatus")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6">
-                <input
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskResponseImplementation"
-                  value={riskResponseImplementation}
-                  autoComplete="off"
-                  onChange={(e) =>
-                    setRiskResponseImplementation(e.target.value)
-                  }
-                  required
-                />
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("responseImplementation")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6">
-                <input
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="challenges"
-                  value={challenges}
-                  autoComplete="off"
-                  onChange={(e) => setChallenges(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("challenges")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6">
-                <input
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="recommendedChanges"
-                  value={recommendedChanges}
-                  autoComplete="off"
-                  onChange={(e) => setRecommendedChanges(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("recommendedChanges")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6">
-                <textarea
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="comments"
-                  value={comments}
-                  autoComplete="off"
-                  onChange={(e) => setComments(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("comments")}
-                </label>
-              </div>
-            </div>
-            <div className="relative pb-4" data-te-input-wrapper-init>
-              <select
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                value={mitigationOwner}
-                autoComplete="off"
-                onChange={(e) => setmitigationOwner(e.target.value)}
-                required>
-                <option></option>
-
-                {ownersName.map((ownersName) => (
-                  <option key={ownersName.id} value={ownersName.value}>
-                    {" "}
-                    {ownersName.value}
-                  </option>
-                ))}
-              </select>
-              <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("mitigationOwner")}
-              </label>
-            </div>
-            <div className="relative mb-4" data-te-input-wrapper-init>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskReview"
-                value={closeStatus}
-                autoComplete="off"
-                onChange={(e) => setRiskClosed(e.target.value)}
-                required>
-                <option></option>
-                <option value="Yes">{"yes"}</option>
-                <option value="No">{"no"}</option>
-              </select>
-              <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskClosedStatus")}
-              </label>
-            </div>
+            )}
+            <CustomSelect
+              id="riskID"
+              label={t("riskName")}
+              value={riskID}
+              onChange={setRiskID}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <FormInputField
+              id="riskid"
+              label={t("riskId")}
+              value={riskID}
+              required
+              onChange={handleInputChange}
+            />
+            <CustomSelect
+              id="riskResponseActivityStatus"
+              label={t("responseActivityStatus")}
+              value={riskResponseActivitiyStatus}
+              onChange={setRiskResponseActivitiyStatus}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <FormInputField
+              id="riskResponseImplementation"
+              label={t("responseImplementation")}
+              value={riskResponseImplementation}
+              required
+              onChange={handleInputChange}
+            />
+            <FormInputField
+              id="challenges"
+              label={t("challenges")}
+              value={challenges}
+              required
+              onChange={handleInputChange}
+            />
+            <FormInputField
+              id="recommendedChanges"
+              label={t("recommendedChanges")}
+              value={recommendedChanges}
+              required
+              onChange={handleInputChange}
+            />
+            <FormInputField
+              id="comments"
+              label={t("comments")}
+              value={comments}
+              required
+              onChange={handleInputChange}
+            />
+            <CustomSelect
+              id="mitigationOwner"
+              label={t("responseActivityStatus")}
+              value={mitigationOwner}
+              onChange={setmitigationOwner}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <CustomSelect
+              id="closeStatus"
+              label={t("riskClosedStatus")}
+              value={closeStatus}
+              onChange={setRiskClosed}
+              options={responseActivityStatus}
+              searchable={true}
+              required
+              group={false}
+            />
           </div>
-
-          <div className="px-7">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading} // Disable the button while loading
-            >
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{"loading"}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("submit")
-              )}
-            </button>
-          </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
     </>

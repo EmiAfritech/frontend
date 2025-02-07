@@ -11,7 +11,7 @@ export const GRCFormsArray = (t) => ({
     { value: "SYSTEM", label: `${t("system")}` },
     { value: "PROCESS", label: `${t("process")}` },
   ],
-  role: [
+  userRole: [
     { value: "MANAGER", label: `${t("departmentManager")}` },
     { value: "AUDITOR", label: `${t("riskAnalyst")}` },
   ],
@@ -52,4 +52,9 @@ export const GRCFormsArray = (t) => ({
     { value: "$800 001 TO $900 000", label: "$800,001 -$900,000" },
     { value: "$900 001 TO $1000 000", label: "$900 001 -$1000,000" },
   ],
+  responseActivityStatus: [
+    { value: "YES", label: `${t("yes")}` },
+    { value: "NO", label: `${t("no")}` },
+  ],
 });
+

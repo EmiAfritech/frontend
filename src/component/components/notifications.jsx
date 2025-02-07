@@ -1,4 +1,16 @@
 import React from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+export function showToast (message, type = "success"){
+  toast(message, { type });
+};
+
+export const ToastProvider = () => {
+  return <ToastContainer position="top-right" autoClose={3000}  hideProgressBar/>;
+};
+
 
 export function Notification({ message, type }) {
   let typeHeader;
