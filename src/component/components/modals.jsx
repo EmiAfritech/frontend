@@ -2456,6 +2456,13 @@ export function UserAccountDetails() {
         <Box sx={style}>
           <main className="flex text-black p-4 justify-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+              <div className="flex justify-center items-center h-screen bg-gray-100">
+                <img
+                  src={afriquetek_logo}
+                  alt="Sample"
+                  className="h-20 w-24 rounded-full shadow-lg"
+                />
+              </div>
               <div className="mb-4 flex flex-row items-center">
                 <span className="mr-4">
                   <IoPerson color="blue" />
@@ -2613,10 +2620,9 @@ export function DepartmentAccountDetails() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box sx={style}>
-        <button
+          <button
             onClick={close}
-            className="absolute top-4 right-4 bg-gray-300 text-black p-2 rounded-full hover:bg-gray-400"
-          >
+            className="absolute top-4 right-4 bg-gray-300 text-black p-2 rounded-full hover:bg-gray-400">
             ✖
           </button>
           <main className="flex text-black p-4 justify-center rounded-lg">
