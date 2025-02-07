@@ -53,7 +53,7 @@ export function useDepartmentTable() {
 
 export function useEmployeeTable() {
   const {auth} = useContext(AuthContext)
-  const [employeeTable, setEmployeeTable] = useState("");
+  const [employeeTable, setEmployeeTable] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(USERS_URL, {
@@ -62,7 +62,6 @@ export function useEmployeeTable() {
           Authorization: "Bearer " + auth.token,
         },
       });
-
       setEmployeeTable(response.data);
     } catch (error) {
       console.error(error);
