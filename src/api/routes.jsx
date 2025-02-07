@@ -36,7 +36,7 @@ export const USERS_URL = "/Organization/User/list";
 export const DEPARTMENT_URL = "/Organization/Department/list";
 
 //risk url
-export const VIEWALLRISKS_URL = "/risks";
+export const VIEWALLRISKS_URL = "/Organization/Risk/Open/list";
 
 //risk url based on department selected
 export const VIEWALLRISKSBASEDONDEPARTMENT_URL = "/getRisks";
