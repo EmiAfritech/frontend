@@ -688,7 +688,7 @@ export function RiskmitigationTab() {
   );
 }
 
-export function RiskViewTable() {
+export function RiskViewTable2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const { trigger, resettriggerComponent } = useContext(Modaltrigger);
@@ -770,6 +770,75 @@ export function RiskViewTable() {
           />
         </Box>
       </div>
+    </div>
+  );
+}
+
+export function RiskViewTable() {
+  const columns = useUserColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { employeeTable, fetchData } = useEmployeeTable();
+
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: employeeTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          <Userforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
     </div>
   );
 }
