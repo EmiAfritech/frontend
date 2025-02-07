@@ -123,7 +123,7 @@ export function Login() {
     <>
       <div className="flex flex-row flex-direction">
         <div className="basis-2/3 background"></div>
-        <div className="basis-1/3">
+        <div className="basis-1/3 bg-white">
           <div className="login-container">
             <div className="flex flex-row-reverse mt-3 mr-3 items-center">
               <LanguageButton />
