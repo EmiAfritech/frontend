@@ -32,10 +32,6 @@ export const useUserColumns = () => {
     },
     {
       accessorKey: "email",
-      header: t("createdAt"),
-    },
-    {
-      accessorKey: "email",
       header: t("email"),
     },
     {
