@@ -75,7 +75,7 @@ i18n.use(initReactI18next).init({
         riskReviewer: "Risk Reviewer",
         mitgatedRiskProbabillityLevel: "Mitigated Probability Level",
         mitigatedRiskImpactLevel:"Mitigated Impact Level",
-        mitigatedRiskScore: "Mitigated Risk Score",
+        mitigatedRiskScore: "Mitigated Score",
         dateMitigated: "Date Mitigated",
         riskScore: "Risk Score",
         subject: "subject",
