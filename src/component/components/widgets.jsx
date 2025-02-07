@@ -85,7 +85,6 @@ return (
 
 export const CustomSelect = ({
 isMulti = false,
-fieldLabel = false,
 value,
 onChange,
 error,
@@ -93,7 +92,6 @@ required = false,
 id,
 label,
 options = [],
-group = false,
 }) => {
 return (
     <div>
@@ -106,21 +104,14 @@ return (
         {label} {required && <span className="required">*</span>}
         </label>
     )}
-    {fieldLabel && <div className="my-2.5" />}
     <Select
         id={id}
         isMulti={isMulti}
         required={required}
         isSearchable={true}
         options={options}
-        onChange={(selectedOption) =>
-        group
-            ? onChange(id, selectedOption ? selectedOption.value : "")
-            : onChange(selectedOption.value)
-        }
-        defaultValue={
-        group ? options.find((option) => option.value === value) : value
-        }
+        onChange={(selectedOption) => onChange(selectedOption.value)}
+        defaultValue={ value}
         isClearable={true}
         styles={{
         control: (baseStyles, state) => ({
