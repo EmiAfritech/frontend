@@ -2448,7 +2448,7 @@ export function AccountDetails() {
       </IconButton>
       {open && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-[9999]">
-          <div className="relative bg-white p-6 rounded-lg shadow-lg w-[80vw] h-[95vh]">
+          <div className="absolute bg-white p-6 rounded-lg shadow-lg w-[80vw] h-[95vh]">
             <main className="flex text-black card bg-white p-4 justify-center rounded-lg">
               <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
                 <div className="flex flex-col items-center">
