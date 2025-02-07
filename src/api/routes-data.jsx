@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useState } from "react";
-import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL } from "./routes";
+import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL, USERS_URL } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
 
@@ -56,7 +56,7 @@ export function useEmployeeTable() {
   const [employeeTable, setEmployeeTable] = useState("");
   const fetchData = async () => {
     try {
-      const response = await axios.get(USERS_UR, {
+      const response = await axios.get(USERS_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
