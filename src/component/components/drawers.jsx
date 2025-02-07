@@ -1044,14 +1044,14 @@ export function RiskMitigationforms({ onFormSubmit }) {
               required
               group={false}
             />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
     </div>

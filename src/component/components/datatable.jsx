@@ -41,7 +41,7 @@ export const useUserColumns = () => {
     },
     {
       accessorKey: "view",
-      header: "Action",
+      header: t("Action"),
       Cell: ({ row }) => <UserAccountDetails/>
     },
   ];
@@ -68,7 +68,7 @@ export const useDeptColumns = () => {
     },
     {
       accessorKey: "view",
-      header: "Action",
+      header: t("Action"),
       Cell: ({ row }) => <DepartmentAccountDetails/>
     },
   ];
@@ -103,11 +103,67 @@ export const useRiskViewColumns = () => {
     },
     {
       accessorKey: "view",
-      header: "Action",
+      header: t("Action"),
       Cell: ({ row }) => <DepartmentAccountDetails/>
     },
   ];
 };
+
+export const useRiskMitigationColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+    },
+    {
+      accessorKey: "riskName",
+      header: t("riskName"),
+    },
+    {
+      accessorKey: "mitigatedRiskProbabilityLevel",
+      header: t("mitgatedRiskProbabillityLevel"),
+    },
+    {
+      accessorKey: "mitigatedRiskImpactLevel",
+      header: t("mitigatedRiskImpactLevel"),
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+    },
+    {
+      accessorKey: "riskReviewer",
+      header: t("riskReviewer"),
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("dateMitigated"),
+    },
+    {
+      accessorKey: "view",
+      header: t("Action"),
+      Cell: ({ row }) => <DepartmentAccountDetails/>
+    },
+  ];
+  return [
+    {
+      field: "mitigatedRiskScore",
+      headerName: t("mitigatedRiskScore"),
+      flex: 1,
+    },
+    { field: "riskReviewer", headerName: t("riskReviewer"), flex: 1 },
+    { field: "createdAt", headerName: t("dateMitigated"), flex: 1 },
+    {
+      field: "view",
+      headerName: t("Action"),
+      flex: 0.5,
+      renderCell: (params) => MitigatedRiskData(params),
+    },
+  ];
+};
+
+
 
 export const useRiskStatuscolumns = () => {
   return [
@@ -171,36 +227,6 @@ export const useRiskReviewColumns = () => {
 };
 
 
-export const useRiskMitigationColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 1 },
-    {
-      field: "mitigatedRiskProbabilityLevel",
-      headerName: t("mitgatedRiskProbabillityLevel"),
-      flex: 1,
-    },
-    {
-      field: "mitigatedRiskImpactLevel",
-      headerName: t("mitigatedRiskImpactLevel"),
-      flex: 1,
-    },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-    { field: "riskReviewer", headerName: t("riskReviewer"), flex: 1 },
-    { field: "createdAt", headerName: t("dateMitigated"), flex: 1 },
-    {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
-      renderCell: (params) => MitigatedRiskData(params),
-    },
-  ];
-};
 
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();

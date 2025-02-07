@@ -4,6 +4,7 @@ import {
   DEPARTMENT_URL,
   DEPARTMENTDROPDOWN_URL,
   RISKIDSMITIGATION_URL,
+  RISKMITIGATION_URL,
   RISKREVIEWERSDROPDOWN_URL,
   USERS_URL,
 } from "./routes";
@@ -143,4 +144,27 @@ export function useRiskReviewer() {
   };
   fetchData();
   return { ownersName };
+}
+
+export function useMitigationTable() {
+  const { auth } = useContext(AuthContext);
+  const [mitigationTable, setMitigationTable] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKMITIGATION_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setMitigationTable(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+  return { mitigationTable, fetchData };
 }
