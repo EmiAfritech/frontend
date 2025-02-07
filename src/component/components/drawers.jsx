@@ -26,6 +26,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useDepartmentDropdown } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
+import { GRCFormsArray } from "./formarrays";
 
 function getProbabiltyLevelNumber(probabilitys) {
   if (probabilitys === 1) {
@@ -61,10 +62,10 @@ function getImpactLevelNumber(impact) {
 export function Userforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [isLoading, setLoading] = useState(false);
   const { departmentList } = useDepartmentDropdown();
   const [open, setOpen] = useState(false);
-  const [department, setDepartment] = useState("")
+  const [department, setDepartment] = useState("");
+  const { role } = GRCFormsArray;
   const [userValue, setUserValue] = [
     {
       firstName: "",
@@ -167,129 +168,73 @@ export function Userforms({ onFormSubmit }) {
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-8">
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="firstName"
-                label={t("departmentCode")}
-                value={userValue.firstName}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="lastName"
-                label={t("lastName")}
-                value={userValue.lastName}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="Email"
-                label={t("email")}
-                value={userValue.email}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="phoneNumber"
-                label={t("phoneNumber")}
-                value={userValue.phoneNumber}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-                <>
-                  {/* <select
-                    type="departmentID"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="departmentID"
-                    aria-describedby="departmentID"
-                    // value={departmentName}
-                    // autoComplete="off"
-                    // onChange={(e) => setDepartmentName(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {departmentList.map((department) => (
-                      <option
-                        key={department.names.id}
-                        value={department.names.name}>
-                        {" "}
-                        {department.names.name}
-                      </option>
-                    ))}
-                  </select>
-                  <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("department")}
-                  </label> */}
-                  <CustomSelect
-                    id="department"
-                    label={t("department")}
-                    value={department}
-                    onChange={setDepartment}
-                    options={departmentList}
-                    searchable={true}
-                    required
-                    group={false}
-                  />
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="password"
-                label={t("password")}
-                value={userValue.password}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {/* <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="role"
-                value={role}
-                autoComplete="off"
-                onChange={(e) => setRole(e.target.value)}
-                required>
-                <option></option>
-                <option value="MANAGER">{t("departmentManager")}</option>
-                <option value="AUDITOR">{t("riskAnalyst")}</option>
-              </select> */}
-              {/* <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("role")}
-              </label> */}
-            </div>
+          <div className=" px-10 py-8 flex flex-cols space-y-6">
+            <FormInputField
+              id="firstName"
+              label={t("departmentCode")}
+              value={userValue.firstName}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="lastName"
+              label={t("lastName")}
+              value={userValue.lastName}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="Email"
+              label={t("email")}
+              value={userValue.email}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="phoneNumber"
+              label={t("phoneNumber")}
+              value={userValue.phoneNumber}
+              onChange={handleInputChange}
+              required
+            />
+            {auth.role === "ADMIN" ||
+              (auth.role === "GENERALMANAGER" && (
+                <CustomSelect
+                  id="department"
+                  label={t("departments")}
+                  value={department}
+                  onChange={setDepartment}
+                  options={departmentList}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              ))}
+            <FormInputField
+              id="password"
+              label={t("password")}
+              value={userValue.password}
+              onChange={handleInputChange}
+              required
+            />
+            <CustomSelect
+              id="role"
+              label={t("role")}
+              value={department}
+              onChange={setDepartment}
+              options={role}
+              searchable={true}
+              required
+              group={false}
+            />
           </div>
-
-          <div className="px-10">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading} // Disable the button while loading
-            >
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("submit")
-              )}
-            </button>
-          </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
     </>
@@ -304,14 +249,14 @@ export function Departmentforms({ onFormSubmit }) {
     departmentName: "",
     departmentID: "",
     location: "",
-  })
+  });
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  console.log({"departmentValue": departmentValue})
+  console.log({ departmentValue: departmentValue });
   const notify = () => {
     toast.success("Department Saved Successfully", {
       onClose: () => {
@@ -386,87 +331,70 @@ export function Departmentforms({ onFormSubmit }) {
         onClick={handleOpen}
       />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
-        <div className="flex justify-center font-bold py-5  text-black">
-          {t("NewDepartment")}
+        <div>
+          <div className="flex justify-center font-bold py-5  text-black">
+            {t("NewDepartment")}
+          </div>
+          <hr />
         </div>
-        <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="departmentID"
-                label={t("departmentCode")}
-                value={departmentValue.departmentID}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="departmentName"
-                label={t("departmentName")}
-                value={departmentValue.departmentName}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <FormInputField
-                id="work_location"
-                label={t("work-location")}
-                value={departmentValue.location}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+            <FormInputField
+              id="departmentID"
+              label={t("departmentCode")}
+              value={departmentValue.departmentID}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="departmentName"
+              label={t("departmentName")}
+              value={departmentValue.departmentName}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="work_location"
+              label={t("work-location")}
+              value={departmentValue.location}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-
-          <div className="px-10">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading} // Disable the button while loading
-            >
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("submit")
-              )}
-            </button>
-          </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
     </>
   );
 }
 
-export function Riskforms({ onFormSubmit, tableData }) {
+export function Riskforms({onFormSubmit}) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [riskName, setRiskName] = useState("");
   const [departmentName, setDepartmentName] = useState("");
   const [ownersName, setOwnersName] = useState([]);
   const [riskOwner, setRiskOwner] = useState("");
-  const [riskID, setRiskID] = useState("");
-  const [riskImpactLevel, setImpactLevel] = useState("");
-  const [riskProbabilityLevel, setProbabityilLevel] = useState("");
-  const [riskCategory, setCategory] = useState("");
-  const [riskDescription, setDescription] = useState("");
-  const [riskObjective, setObjective] = useState("");
-  const [riskResponse, setRiskResponse] = useState("");
-  const [riskResponseActivity, setRiskResponseActivitiy] = useState("");
-  const [tableDataTest, setTableDataTest] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray;
   const { departmentList } = useDepartmentDropdown();
-  
-  useEffect(() => {
-    setTableDataTest(tableData.map((item) => item.riskID));
-  }, [tableData]);
+  const [riskValue, setRiskValue] = useState({
+    riskName: "",
+    riskID: "",
+    riskObjective: "",
+    riskDescription: "",
+    riskResponseActivity: ""
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setRiskValue((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   const notify = () => {
     toast.success("Risk Saved Successfully", {
@@ -508,7 +436,7 @@ export function Riskforms({ onFormSubmit, tableData }) {
     e.preventDefault();
     setLoading(true);
 
-    if (tableDataTest.includes(riskID)) {
+    if (departmentList.includes(riskID)) {
       ExistingRiskID();
     }
 
@@ -607,254 +535,108 @@ export function Riskforms({ onFormSubmit, tableData }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10">
-            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="departmentName"
-                  value={departmentName}
-                  autoComplete="off"
-                  onChange={(e) => setDepartmentName(e.target.value)}
-                  required>
-                  <option></option>
-                  {departmentList.map((department) => (
-                    <option
-                      key={department.names.id}
-                      value={department.names.name}>
-                      {" "}
-                      {department.names.name}
-                    </option>
-                  ))}
-                </select>
-                <label
-                  htmlFor="work-location"
-                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("departments")}
-                </label>
-              </div>
-            ) : (
-              <></>
+            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
+              <CustomSelect
+                id="departmentName"
+                label={t("departments")}
+                value={departmentName}
+                onChange={setDepartmentName}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
             )}
             <div className="grid grid-cols-2 gap-2">
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="riskID"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskID"
-                  aria-describedby="riskID"
-                  value={riskID}
-                  autoComplete="off"
-                  onChange={(e) => setRiskID(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="fullname"
-                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskCode")}
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="FullName"
-                  aria-describedby="fullname"
-                  value={riskName}
-                  autoComplete="off"
-                  onChange={(e) => setRiskName(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskName")}
-                </label>
-              </div>
-            </div>
-
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <textarea
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="objective"
-                aria-describedby="objective"
-                value={riskObjective}
-                autoComplete="off"
-                onChange={(e) => setObjective(e.target.value)}
+              <FormInputField
+                id="riskID"
+                label={t("riskCode")}
+                value={riskValue.riskID}
+                onChange={handleInputChange}
                 required
               />
-              <label
-                htmlFor="work-location"
-                className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("objective")}
-              </label>
+              <FormInputField
+                id="riskName"
+                label={t("riskName")}
+                value={riskValue.riskName}
+                onChange={handleInputChange}
+                required
+              />
             </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="description"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="description"
-                  aria-describedby="description"
-                  value={riskDescription}
-                  autoComplete="off"
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="department-head"
-                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("description")}
-                </label>
-              </div>
-              <div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <select
-                    type="departmentID"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="departmentID"
-                    aria-describedby="departmentID"
-                    value={riskOwner}
-                    autoComplete="off"
-                    onChange={(e) => setRiskOwner(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {ownersName.map((ownersName) => (
-                      <option key={ownersName.id} value={ownersName.value}>
-                        {" "}
-                        {ownersName.value}
-                      </option>
-                    ))}
-                  </select>
-                  <label
-                    htmlFor="work-location"
-                    className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("ownerdrawer")}
-                  </label>
-                </div>
-
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <select
-                    type="probabilityLevel"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="probabilityLevel"
-                    aria-describedby="probabilityLevel"
-                    value={riskProbabilityLevel}
-                    autoComplete="off"
-                    onChange={(e) => setProbabityilLevel(e.target.value)}
-                    required>
-                    <option></option>
-                    <option value="1">{t("almostImpossible")} (1)</option>
-                    <option value="2">{t("unlikely")} (2)</option>
-                    <option value="3">{t("likely")} (3)</option>
-                    <option value="4">{t("veryLikely")} (4)</option>
-                    <option value="5">{t("almostCertain")} (5)</option>
-                  </select>
-                  <label
-                    htmlFor="department-head"
-                    className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("probabilityLevel")}
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="relative pb-4" data-te-input-wrapper-init>
-                <select
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  value={riskCategory}
-                  autoComplete="off"
-                  onChange={(e) => setCategory(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="EXTERNAL FACTORS">
-                    {t("externalFactors")}
-                  </option>
-                  <option value="PEOPLE">{t("people")}</option>
-                  <option value="SYSTEM">{t("system")}</option>
-                  <option value="PROCESS">{t("process")}</option>
-                </select>
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("categorydrawer")}
-                </label>
-              </div>
-              <div className="relative pb-4" data-te-input-wrapper-init>
-                <select
-                  type="impactLevel"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="impactLevel"
-                  aria-describedby="impactLevel"
-                  value={riskImpactLevel}
-                  autoComplete="off"
-                  onChange={(e) => setImpactLevel(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="1">{t("insignificant")}t (1)</option>
-                  <option value="2">{t("minor")} (2)</option>
-                  <option value="3">{t("moderate")} (3)</option>
-                  <option value="4">{t("major")} (4)</option>
-                  <option value="5">{t("critical")} (5)</option>
-                </select>
-                <label
-                  htmlFor="department-head"
-                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("impactLevel")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  value={riskResponse}
-                  autoComplete="off"
-                  onChange={(e) => setRiskResponse(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="Exploit">{t("exploit")}</option>
-                  <option value="Accept">{t("accept")}</option>
-                  <option value="Enhance">{t("enhance")}</option>
-                  <option value="Avoid">{t("avoid")}</option>
-                  <option value="Transfer">{t("transfer")}</option>
-                  <option value="Mitigate">{t("mitigate")}</option>
-                </select>
-                <label
-                  htmlFor="work-location"
-                  className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskResponsedrawer")}
-                </label>
-              </div>
-              <div className="relative">
-                <textarea
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  aria-describedby="objective"
-                  value={riskResponseActivity}
-                  autoComplete="off"
-                  onChange={(e) => setRiskResponseActivitiy(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskResponseActivity")}
-                </label>
-              </div>
-            </div>
+            <FormInputField
+              id="objective"
+              label={t("objective")}
+              value={riskValue.riskObjective}
+              onChange={handleInputChange}
+              required
+            />
+            <FormInputField
+              id="description"
+              label={t("description")}
+              value={riskValue.riskDescription}
+              onChange={handleInputChange}
+              required
+            />
+            <CustomSelect
+              id="riskOwner"
+              label={t("ownerdrawer")}
+              value={riskOwner}
+              onChange={setRiskOwner}
+              options={departmentList}
+              searchable={true}
+              required
+            />
+            <CustomSelect
+              id="probabilityLevel"
+              label={t("probabilityLevel")}
+              value={riskProbabilityLevel}
+              onChange={setProbabityilLevel}
+              options={probabilityLevel}
+              searchable={true}
+              required
+            />
+            <CustomSelect
+              id="riskCategory"
+              label={t("categorydrawer")}
+              value={riskCategory}
+              onChange={setCategory}
+              options={categorydrawer}
+              searchable={true}
+              required
+            />
+            <CustomSelect
+              id="impactLevel"
+              label={t("impactLevel")}
+              value={riskImpactLevel}
+              onChange={setImpactLevel}
+              options={impactLevel}
+              searchable={true}
+              required
+            />
+            <CustomSelect
+              id="riskResponse"
+              label={t("riskResponsedrawer")}
+              value={riskResponse}
+              onChange={setRiskResponse}
+              options={riskResponsedrawer}
+              searchable={true}
+              required
+            />
+            <FormInputField
+              id="riskResponseActivity"
+              label={t("riskResponseActivity")}
+              value={riskValue.riskResponseActivity}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-          <div className="px-10">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading}>
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("submit")
-              )}
-            </button>
-          </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
     </>
@@ -863,15 +645,16 @@ export function Riskforms({ onFormSubmit, tableData }) {
 export function RiskReviewforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [riskID, setRiskID] = useState("");
-  const [departmentID, setdepartmentID] = useState(" ");
-  const [risks, setRiskIDs] = useState([]);
-  const [dept, setDept] = useState([]);
-  const [riskReview, setRiskReview] = useState("");
   const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
-  const [riskReviewComments, setriskReviewComments] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
+  const { departmentList } = useDepartmentDropdown();
+  const [reviewValue, setReviewValue] = useState({
+    riskID: "",
+    riskReviewComments: "",
+  })
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setReviewValue((prevData) => ({ ...prevData, [id]: value }));
+  };
   const notify = () => {
     toast.success("Review Saved Successfully", {
       onClose: () => {
@@ -909,20 +692,6 @@ export function RiskReviewforms({ onFormSubmit }) {
         );
 
         setRiskIDs(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const fetchDepartments = async () => {
-      try {
-        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        });
-        setDept(data.data);
       } catch (error) {
         console.error(error);
       }
@@ -1000,7 +769,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   };
 
   return (
-    <>
+    <main>
       <Button onClick={handleOpen} size="small" variant="outlined">
         {t("reviewRisk")}
       </Button>
@@ -1011,93 +780,48 @@ export function RiskReviewforms({ onFormSubmit }) {
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-10">
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-                <>
-                  <select
-                    type="departmentID"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="departmentID"
-                    aria-describedby="departmentID"
-                    value={departmentID}
-                    autoComplete="off"
-                    onChange={(e) => setdepartmentID(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {dept.map((dept) => (
-                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                        {" "}
-                        {dept.deptIDs.deptID}
-                      </option>
-                    ))}
-                  </select>
-                  <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("departmentId")}
-                  </label>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="riskID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskID"
-                aria-describedby="riskID"
-                value={riskID}
-                autoComplete="off"
-                onChange={(e) => setRiskID(e.target.value)}
-                required>
-                <option></option>
-                {risks.map((risks) => (
-                  <option key={risks.id} value={risks.riskID}>
-                    {" "}
-                    {risks.riskName}
-                  </option>
-                ))}
-              </select>
-              <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskName")}
-              </label>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <input
-                type="riskid"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="riskID"
-                aria-describedby="riskID"
-                value={riskID}
-                autoComplete="off"
+          <div className=" px-10 py-10 flex space-y-6">
+            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
+              <CustomSelect
+                id="departmentID"
+                label={t("departmentId")}
+                value={departmentID}
+                onChange={setdepartmentID}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
               />
-              <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskId")}
-              </label>
-            </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskReview"
-                  value={riskReview}
-                  autoComplete="off"
-                  onChange={(e) => setRiskReview(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="accept risk">{t("acceptRisk")}</option>
-                  <option value="reject risk">{t("rejectRisk")}</option>
-                </select>
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskReview")}
-                </label>
-              </div>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {riskReview === "reject risk" ? (
-                <>
+              )}
+              <CustomSelect
+                id="riskName"
+                label={t("riskName")}
+                value={riskName}
+                onChange={setriskName}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+              <FormInputField
+                id="riskID"
+                label={t("riskId")}
+                value={reviewValue.riskID}
+                onChange={handleInputChange}
+                required
+              />
+              <CustomSelect
+                id="riskReview"
+                label={t("riskReview")}
+                value={riskReview}
+                onChange={setRiskReview}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+              {riskReview === "reject risk" && (
+                <div>
                   <input
                     type="date"
                     value={NextRiskReviewDate}
@@ -1107,48 +831,26 @@ export function RiskReviewforms({ onFormSubmit }) {
                   <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     {t("nextReviewDate")}
                   </label>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div>
-              <div className="relative mb-6">
-                <textarea
-                  type="description"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskReviewComments"
-                  value={riskReviewComments}
-                  autoComplete="off"
-                  onChange={(e) => setriskReviewComments(e.target.value)}
-                  required
-                />
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("comments")}
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="px-10">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading} // Disable the button while loading
-            >
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
-              ) : (
-                t("submit")
               )}
-            </button>
+              <FormInputField
+                id="description"
+                label={t("comments")}
+                value={reviewValue.riskReviewComments}
+                onChange={handleInputChange}
+                required
+              />
           </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
-    </>
+    </main>
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
@@ -1368,291 +1070,131 @@ export function RiskMitigationforms({ onFormSubmit }) {
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-10">
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-                <>
-                  <select
-                    type="departmentID"
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    id="departmentID"
-                    aria-describedby="departmentID"
-                    value={departmentID}
-                    autoComplete="off"
-                    onChange={(e) => setdepartmentID(e.target.value)}
-                    required>
-                    <option></option>
-
-                    {dept.map((dept) => (
-                      <option key={dept.deptIDs.id} value={dept.deptIDs.deptID}>
-                        {" "}
-                        {dept.deptIDs.deptID}
-                      </option>
-                    ))}
-                  </select>
-                  <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("departmentId")}
-                  </label>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="riskID"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          <div className=" px-10 py-10 flex space-y-6">
+              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
+                <CustomSelect
+                id="departmentID"
+                label={t("departmentId")}
+                value={departmentID}
+                onChange={setdepartmentID}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />   
+              )} 
+              <CustomSelect
                 id="riskID"
-                aria-describedby="riskID"
+                label={t("riskName")}
                 value={riskName}
-                autoComplete="off"
-                onChange={(e) => setRiskName(e.target.value)}
-                required>
-                <option></option>
-                {risks.map((risks) => (
-                  <option
-                    key={risks.id}
-                    value={[
-                      risks.riskID,
-                      risks.riskCategory,
-                      risks.impact,
-                      risks.probability,
-                    ]}>
-                    {" "}
-                    {risks.riskName}
-                  </option>
-                ))}
-              </select>
-              <label className="text-blue-800   pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("riskName")}
-              </label>
-            </div>
+                onChange={setRiskName}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
             <div className="grid grid-cols-2 gap-2">
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="riskid"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="riskID"
-                  aria-describedby="riskID"
-                  value={riskID}
-                  autoComplete="off"
-                  readOnly
-                />
-
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskId")}
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="category"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="category"
-                  aria-describedby="riskID"
-                  value={riskCategory}
-                  autoComplete="off"
-                  readOnly
-                />
-
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("categorydrawer")}
-                </label>
-              </div>
+              <FormInputField
+                id="riskid"
+                label={t("riskId")}
+                value={riskID}
+                required
+              />
+              <FormInputField
+                id="category"
+                label={t("categorydrawer")}
+                value={riskCategory}
+                required
+              />
             </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="impact"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="impact"
-                  aria-describedby="riskID"
-                  value={impactLevelNumber}
-                  autoComplete="off"
-                  readOnly
-                />
-
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("mitigatedRiskImpactLevel")}
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <input
-                  type="probability"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="probability"
-                  aria-describedby="riskID"
-                  value={probabilityLevelNumber}
-                  autoComplete="off"
-                  readOnly
-                />
-
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("probabilityLevel")}
-                </label>
-              </div>
-            </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  value={mitigatedRiskProbabilityLevel}
-                  autoComplete="off"
-                  onChange={(e) =>
-                    setmitigatedRiskProbabilityLevel(e.target.value)
-                  }
-                  required>
-                  <option></option>
-                  <option value="1">{t("almostImpossible")} (1)</option>
-                  <option value="2">{t("unlikely")} (2)</option>
-                  <option value="3">{t("likely")} (3)</option>
-                  <option value="4">{t("veryLikely")} (4)</option>
-                  <option value="5">{t("almostCertain")} (5)</option>
-                </select>
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("mitgatedRiskProbabillityLevel")}
-                </label>
-              </div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  value={mitigatedRiskImpactLevel}
-                  autoComplete="off"
-                  onChange={(e) => setmitigatedRiskImpactLevel(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="1">{t("insignificant")}t (1)</option>
-                  <option value="2">{t("minor")} (2)</option>
-                  <option value="3">{t("moderate")} (3)</option>
-                  <option value="4">{t("major")} (4)</option>
-                  <option value="5">{t("critical")} (5)</option>
-                </select>
-                <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("mitigatedRiskImpactLevel")}l
-                </label>
-              </div>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="mitigationEffort"
-                value={mitigationEffort}
-                autoComplete="off"
-                onChange={(e) => setmitigationEffort(e.target.value)}
-                required>
-                <option></option>
-                <option value="Trivial">{t("trivial")}</option>
-                <option value="Minor">{t("minor")}</option>
-                <option value="Considerable">{t("considerable")}</option>
-                <option value="Significant">{t("significant")}</option>
-                <option value="Exceptional">{t("exceptional")}</option>
-              </select>
-
-              <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("mitigationEffort")}
-              </label>
-            </div>
-            <div>
-              <div className="relative mb-6" data-te-input-wrapper-init>
-                <select
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="mitigationControl"
-                  value={mitigationControl}
-                  autoComplete="off"
-                  onChange={(e) => setmitigationControl(e.target.value)}
-                  required>
-                  <option></option>
-                  <option value="MANUAL">{t("manual")}</option>
-                  <option value="SYSTEMATIC">{t("systematic")}</option>
-                </select>
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("mitigationControl")}
-                </label>
-              </div>
-              <div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <input
-                    type="date"
-                    value={endDate}
-                    className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                    onChange={handleDateChange}
-                  />
-                  <label className="text-blue-800  pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                    {t("mitigationDueDate")}
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="relative mb-6" data-te-input-wrapper-init>
-              <select
-                data-te-select-init
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-5 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                value={mitigationCost}
-                autoComplete="off"
-                onChange={(e) => setmitigationCost(e.target.value)}
-                required>
-                <option></option>
-                <option value="$0 TO $100 000" className="mb-6">
-                  $0 -$100,000
-                </option>
-                <option value="$100 001 TO $200 000">$100,001 -$200,000</option>
-                <option value="$300 001 TO 400 000">$300,001 -$400,000</option>
-                <option value="$400 001 TO $500 000">$400,001 -$500,000</option>
-                <option value="$500 001 TO $600 000">$500,001 -$600,000</option>
-                <option value="$600 001 TO $700 000">$600,001 -$700,000</option>
-                <option value="$700 001 TO $800 000">$700,001 -$800,000</option>
-                <option value="$800 001 TO $900 000">$800,001 -$900,000</option>
-                <option value="$900 001 TO $1000 000">
-                  $900 001 -$1000,000
-                </option>
-              </select>
-              <label
-                htmlFor="department-head"
-                className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                {t("mitigationCost")}
-              </label>
-            </div>
-            <div>
-              <div className="relative pb-4" data-te-input-wrapper-init>
-                <select
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  value={riskReviewer}
-                  autoComplete="off"
-                  onChange={(e) => setRiskReviewer(e.target.value)}
-                  required>
-                  <option></option>
-
-                  {ownersName.map((ownersName) => (
-                    <option key={ownersName.id} value={ownersName.value}>
-                      {" "}
-                      {ownersName.value}
-                    </option>
-                  ))}
-                </select>
-                <label className="text-blue-800 pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-blue-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-blue-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-blue-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                  {t("riskReviewer")}
-                </label>
-              </div>
-            </div>
+            <FormInputField
+              id="impact"
+              label={t("mitigatedRiskImpactLevel")}
+              value={impactLevelNumber}
+              required
+            />
+            <FormInputField
+              id="probability"
+              label={t("probabilityLevel")}
+              value={probabilityLevelNumber}
+              required
+            />
+            <CustomSelect
+              id="riskID"
+              label={t("mitgatedRiskProbabillityLevel")}
+              value={mitigatedRiskProbabilityLevel}
+              onChange={setRiskName}
+              options={probabilityLevel}
+              searchable={true}
+              required
+              group={false}
+            />
+            <CustomSelect
+              id="mitigatedRiskImpactLevel"
+              label={t("mitigatedRiskImpactLevel")}
+              value={mitigatedRiskImpactLevel}
+              onChange={setmitigatedRiskImpactLevel}
+              options={impactLevel}
+              searchable={true}
+              required
+              group={false}
+            />
+            <CustomSelect
+              id="mitigationEffort"
+              label={t("mitigationEffort")}
+              value={mitigationEffort}
+              onChange={setmitigationEffort}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <CustomSelect
+              id="mitigationControl"
+              label={t("mitigationControl")}
+              value={mitigationControl}
+              onChange={setmitigationControl}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <FormInputField
+              type="date"
+              id="date"
+              label={t("mitigationDueDate")}
+              value={endDate}
+              required
+              onChange={handleDateChange}
+            />
+            <CustomSelect
+              id="mitigationCost"
+              label={t("mitigationCost")}
+              value={mitigationCost}
+              onChange={setmitigationCost}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
+            <CustomSelect
+              id="riskReviewer"
+              label={t("riskReviewer")}
+              value={riskReviewer}
+              onChange={setRiskReviewer}
+              options={mitigationEffort}
+              searchable={true}
+              required
+              group={false}
+            />
           </div>
-
-          <div className="px-10">
-            <button
-              className="inline-block w-full rounded bg-[#000c8e] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-[#2a36b8] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isLoading}>
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("submit")
-              )}
-            </button>
-          </div>
+          <CustomButton
+            label="submit"
+            onClick={handleSubmit}
+            type="submit"
+            className="custom-class"
+            loading={isSubmitting}
+          />
         </form>
       </Drawer>
     </>
