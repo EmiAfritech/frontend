@@ -323,7 +323,7 @@ export function Riskforms({onFormSubmit}) {
   const [riskResponse, setRiskResponse] = useState("");
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray;
+  const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
   const [riskValue, setRiskValue] = useState({
     riskName: "",
@@ -333,6 +333,7 @@ export function Riskforms({onFormSubmit}) {
     riskResponseActivity: ""
   });
 
+  console.log(probabilityLevel)
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
