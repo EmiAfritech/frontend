@@ -12,7 +12,7 @@ export function RiskView() {
   return (
     <div className="flex flex-col">
       <Sidebar />
-      <div className=" ml-[18%] m-6">
+      <div className=" ml-[18%] m-6 p-6 card bg-white rounded-lg">
         <div >
           {auth.role === "ADMIN" || auth.role=== "GENERALMANAGER" || auth.role=== "MANAGER"? (
             <>
