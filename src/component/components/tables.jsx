@@ -775,9 +775,9 @@ export function RiskViewTable2() {
 }
 
 export function RiskViewTable() {
-  const columns = useUserColumns();
+  const columns = useRiskViewColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { employeeTable, fetchData } = useEmployeeTable();
+  const { riskTable, fetchData } = useEmployeeTable();
 
   
   const handleFormSubmit = () => {
@@ -822,7 +822,7 @@ export function RiskViewTable() {
       },
     },
     columns,
-    data: employeeTable,
+    data: riskTable,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
@@ -835,7 +835,7 @@ export function RiskViewTable() {
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="mx-5">
-          <Userforms onFormSubmit={handleFormSubmit} />
+          <Riskforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />

@@ -73,6 +73,42 @@ export const useDeptColumns = () => {
     },
   ];
 };
+
+export const useRiskViewColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+    },
+    {
+      accessorKey: "riskName",
+      header: t("riskName"),
+    },
+    {
+      accessorKey: "riskDescription",
+      header: t("riskDescription"),
+    },
+    {
+      accessorKey: "riskCategory",
+      header: t("riskCategory"),
+    },
+    {
+      accessorKey: "riskStatus",
+      header: t("riskStatusdatatable"),
+    },
+    {
+      accessorKey: "riskScore",
+      header: t("riskScore"),
+    },
+    {
+      accessorKey: "view",
+      header: "Action",
+      Cell: ({ row }) => <DepartmentAccountDetails/>
+    },
+  ];
+};
+
 export const useRiskStatuscolumns = () => {
   return [
     {
@@ -112,8 +148,6 @@ export const useRiskStatuscolumns = () => {
     },
   ];
 };
-
-
 
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
@@ -288,20 +322,4 @@ export const useRiskAppetiteReportLowerColumns = () => {
   ];
 };
 
-export const useRiskViewColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 2 },
-    { field: "riskDescription", headerName: t("riskDescription"), flex: 2 },
-    { field: "riskCategory", headerName: t("riskCategory"), flex: 1 },
-    { field: "riskStatus", headerName: t("riskStatusdatatable"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
-      renderCell: (params) => RiskData(params),
-    },
-  ];
-};
+

@@ -72,3 +72,25 @@ export function useEmployeeTable() {
 
   return { employeeTable, fetchData };
 }
+
+export function useRiskTable() {
+  const {auth} = useContext(AuthContext)
+  const [riskTable, setRiskTable] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(USERS_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRiskTable(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+
+  return { riskTable, fetchData };
+}
