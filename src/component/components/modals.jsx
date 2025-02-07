@@ -2458,9 +2458,9 @@ export function UserAccountDetails() {
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
               <div className="flex justify-center items-center">
                 <img
-                  src={afriquetek_logo}
+                  src="https://shorturl.at/VaxG1"
                   alt="Sample"
-                  className="h-30 w-25 rounded-full shadow-lg"
+                  className="h-30 w-25"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
