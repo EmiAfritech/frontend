@@ -78,7 +78,7 @@ export function useRiskTable() {
   const [riskTable, setRiskTable] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get(USERS_URL, {
+      const response = await axios.get(VIEWALLRISKS_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
