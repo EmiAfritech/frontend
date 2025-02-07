@@ -22,7 +22,7 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
-import { useDepartmentDropdown } from "../../api/routes-data";
+import { useDepartmentDropdown, useRiskReviewer } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import { showToast } from "./notifications";
@@ -779,28 +779,22 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
-  const [risks, setRiskIDs] = useState([]);
-  const [dept, setDept] = useState([]);
-  const [ownersName, setOwnersName] = useState([]);
   const [departmentID, setdepartmentID] = useState(" ");
   const [endDate, setEndDate] = useState(new Date());
-  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
-    useState("");
+  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] = useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
-  const [mitigationControl, setmitigationControl] = useState("");
-  const [mitigationEffort, setmitigationEffort] = useState("");
-  const [riskReviewer, setRiskReviewer] = useState("");
-  const [mitigationCost, setmitigationCost] = useState("");
-  const [isLoading, setLoading] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] =
-    riskName.split(",");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [riskID, riskCategory, impactLevel, probabilityLevel] = riskName.split(",");//
 
   const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
   const probabilityLevelNumber = getProbabiltyLevelNumber(
     parseInt(probabilityLevel, 10)
   );
+  const FormArray = GRCFormsArray(t);
+  const {ownersName} = useRiskReviewer()
+  const { departmentList } = useDepartmentDropdown();
   const hostaddress = "http://localhost:5173/risk-mitigation";
-
+  const [open, setOpen] = React.useState(false);
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -810,12 +804,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
       },
     });
   };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
+ 
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -832,72 +821,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate(formattedDate);
   };
 
-  useEffect(() => {
-    axios
-      .get(RISKREVIEWERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setOwnersName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKIDSMITIGATION_URL,
-          JSON.stringify({ departmentID }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setRiskIDs(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const fetchDepartments = async () => {
-      try {
-        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        });
-        setDept(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
-      fetchData();
-    } else {
-      fetchDepartments();
-      if (departmentID !== "") {
-        fetchData();
-      }
-    }
-  }, [departmentID]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
@@ -949,12 +879,12 @@ export function RiskMitigationforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        notifyFillForms();
+        showToast("Kindly check Input details", "error")
       } else if (error.response.status === 500) {
-        notifyServerDown();
+        showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -970,7 +900,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setEndDate("");
   };
 
-  const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
     setOpen(!open);
@@ -981,11 +910,13 @@ export function RiskMitigationforms({ onFormSubmit }) {
   }
 
   return (
-    <>
-      <ToastContainer onClose={1000} hideProgressBar />
-      <Button onClick={handleOpen} size="small" variant="outlined">
-        {t("mitigateRisk")}
-      </Button>
+    <div>
+      <CustomButton
+        label={t("mitigateRisk")}
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("mitigateRisk")}
@@ -1006,7 +937,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               />   
               )} 
               <CustomSelect
-                id="riskID"
+                id="riskName"
                 label={t("riskName")}
                 value={riskName}
                 onChange={setRiskName}
@@ -1045,8 +976,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
               id="riskID"
               label={t("mitgatedRiskProbabillityLevel")}
               value={mitigatedRiskProbabilityLevel}
-              onChange={setRiskName}
-              options={probabilityLevel}
+              onChange={setmitigatedRiskProbabilityLevel}
+              options={FormArray.probabilityLevel}
               searchable={true}
               required
               group={false}
@@ -1056,7 +987,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("mitigatedRiskImpactLevel")}
               value={mitigatedRiskImpactLevel}
               onChange={setmitigatedRiskImpactLevel}
-              options={impactLevel}
+              options={FormArray.impactLevel}
               searchable={true}
               required
               group={false}
@@ -1066,7 +997,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("mitigationEffort")}
               value={mitigationEffort}
               onChange={setmitigationEffort}
-              options={mitigationEffort}
+              options={FormArray.mitigationEffort}
               searchable={true}
               required
               group={false}
@@ -1076,7 +1007,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("mitigationControl")}
               value={mitigationControl}
               onChange={setmitigationControl}
-              options={mitigationEffort}
+              options={FormArray.mitigationEffort}
               searchable={true}
               required
               group={false}
@@ -1094,7 +1025,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("mitigationCost")}
               value={mitigationCost}
               onChange={setmitigationCost}
-              options={mitigationEffort}
+              options={FormArray.mitigationCost}
               searchable={true}
               required
               group={false}
@@ -1104,7 +1035,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("riskReviewer")}
               value={riskReviewer}
               onChange={setRiskReviewer}
-              options={mitigationEffort}
+              options={ownersName}
               searchable={true}
               required
               group={false}
@@ -1119,7 +1050,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
           />
         </form>
       </Drawer>
-    </>
+    </div>
   );
 }
 export function RiskMonitoringforms({ onFormSubmit }) {
@@ -1406,4 +1337,36 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       </Drawer>
     </>
   );
+}
+
+function getProbabiltyLevelNumber(probabilitys) {
+  if (probabilitys === 1) {
+    return "Almost Impossible (1)";
+  } else if (probabilitys === 2) {
+    return "Unlikely (2)";
+  } else if (probabilitys === 3) {
+    return "Likely (3)";
+  } else if (probabilitys === 4) {
+    return "Very Likely (4)";
+  } else if (probabilitys === 5) {
+    return "Almost Certain (5)";
+  } else {
+    return " ";
+  }
+}
+
+function getImpactLevelNumber(impact) {
+  if (impact === 1) {
+    return "Insignificant (1)";
+  } else if (impact === 2) {
+    return "Minor (2)";
+  } else if (impact === 3) {
+    return "Moderate (3)";
+  } else if (impact === 4) {
+    return "Major (4)";
+  } else if (impact === 5) {
+    return "Catastrophic (5)";
+  } else {
+    return " ";
+  }
 }

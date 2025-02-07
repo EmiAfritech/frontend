@@ -1,11 +1,16 @@
 "use client";
 import { useContext, useState } from "react";
-import { DEPARTMENT_URL, DEPARTMENTDROPDOWN_URL, USERS_URL } from "./routes";
+import {
+  DEPARTMENT_URL,
+  DEPARTMENTDROPDOWN_URL,
+  RISKIDSMITIGATION_URL,
+  USERS_URL,
+} from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
 
 export function useDepartmentDropdown() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentList, setDepartmentList] = useState([]);
   const fetchData = async () => {
     try {
@@ -26,32 +31,31 @@ export function useDepartmentDropdown() {
   return { departmentList };
 }
 
-
 export function useDepartmentTable() {
-    const {auth} = useContext(AuthContext)
-    const [departmentTable, setDepartmentTable] = useState("");
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENT_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-  
-        setDepartmentTable(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    fetchData();
-  
-    return { departmentTable, fetchData };
+  const { auth } = useContext(AuthContext);
+  const [departmentTable, setDepartmentTable] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(DEPARTMENT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setDepartmentTable(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+
+  return { departmentTable, fetchData };
 }
 
 export function useEmployeeTable() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [employeeTable, setEmployeeTable] = useState([]);
   const fetchData = async () => {
     try {
@@ -73,7 +77,7 @@ export function useEmployeeTable() {
 }
 
 export function useRiskTable() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [riskTable, setRiskTable] = useState([]);
   const fetchData = async () => {
     try {
@@ -90,6 +94,52 @@ export function useRiskTable() {
   };
 
   fetchData();
-  console.log({"risk items": riskTable})
   return { riskTable, fetchData };
+}
+
+export function useRiskTable({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [riskIDs, setRiskIDs] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMITIGATION_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+  return { riskIDs };
+}
+
+export function useRiskReviewer() {
+  const { auth } = useContext(AuthContext);
+  const [ownersName, setOwnersName] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKREVIEWERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      }
+    );
+      setOwnersName(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+  return { ownersName };
 }
