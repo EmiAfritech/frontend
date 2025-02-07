@@ -2465,7 +2465,7 @@ export function UserAccountDetails() {
                 <img
                   src="https://shorturl.at/VaxG1"
                   alt="Sample"
-                  style={{ height: 120, borderRadius: 20 }}
+                  className="h-[120] w-40"
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
@@ -2636,7 +2636,7 @@ export function DepartmentAccountDetails() {
                 <img
                   src={afriquetek_logo}
                   alt="Sample"
-                  style={{ height: 120, borderRadius: 20 }}
+                  style={{ height: 80, borderRadius: 20 }}
                 />
               </div>
               <div className="mb-4 flex flex-row items-center">
