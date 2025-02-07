@@ -531,7 +531,7 @@ export function DepartmentTab() {
 }
 
 export function EmployeesTable() {
-  const columns = useDeptColumns();
+  const columns = useUserColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { employeeTable, fetchData } = useEmployeeTable();
 

@@ -17,22 +17,65 @@ import { FaEye } from "react-icons/fa";
 
 export const useUserColumns = () => {
   const { t } = useTranslation();
-
   return [
-    { field: "firstName", headerName: t("firstName"), flex: 1 },
-    { field: "lastName", headerName: t("lastName"), flex: 1 },
-    { field: "phoneNumber", headerName: t("phoneNumber"), flex: 1 },
-    { field: "email", headerName: t("email"), flex: 1 },
-    { field: "role", headerName: t("role"), flex: 1 },
     {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
-      renderCell: (params) => UserData(params),
+      accessorKey: "firstName",
+      header: t("firstName"),
+    },
+    {
+      accessorKey: "lastName",
+      header: t("lastName"),
+    },
+    {
+      accessorKey: "phoneNumber",
+      header: t("phoneNumber"),
+    },
+    {
+      accessorKey: "email",
+      header: t("createdAt"),
+    },
+    {
+      accessorKey: "email",
+      header: t("email"),
+    },
+    {
+      accessorKey: "role",
+      header: t("role"),
+    },
+    {
+      accessorKey: "view",
+      header: "Action",
+      Cell: ({ row }) => <AccountDetails/>
     },
   ];
 };
 
+export const useDeptColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "deptID",
+      header: t("departmentCode"),
+    },
+    {
+      accessorKey: "name",
+      header: t("departmentName"),
+    },
+    {
+      accessorKey: "location",
+      header: t("location"),
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("createdAt"),
+    },
+    {
+      accessorKey: "view",
+      header: "Action",
+      Cell: ({ row }) => <AccountDetails/>
+    },
+  ];
+};
 export const useRiskStatuscolumns = () => {
   return [
     {
@@ -194,32 +237,6 @@ export const useReportAuditTrailColumns = () => {
 
 
 
-export const useDeptColumns = () => {
-  const { t } = useTranslation();
-  return [
-    {
-      accessorKey: "deptID",
-      header: t("departmentCode"),
-    },
-    {
-      accessorKey: "name",
-      header: t("departmentName"),
-    },
-    {
-      accessorKey: "location",
-      header: t("location"),
-    },
-    {
-      accessorKey: "createdAt",
-      header: t("createdAt"),
-    },
-    {
-      accessorKey: "view",
-      header: "Action",
-      Cell: ({ row }) => <AccountDetails/>
-    },
-  ];
-};
 
 export const useRiskMonitoringColumns = () => {
   const { t } = useTranslation();
