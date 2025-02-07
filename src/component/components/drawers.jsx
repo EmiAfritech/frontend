@@ -443,16 +443,19 @@ export function Riskforms({onFormSubmit}) {
 
   return (
     <div>
-      <Button onClick={handleOpen} size="small" variant="outlined">
-        {t("addRisk")}
-      </Button>
+      <CustomButton
+        label={t("addRisk")}
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newRisk")}
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-10">
+          <div className=" px-10 py-10 flex space-y-6">
             {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
               <CustomSelect
                 id="departmentName"
@@ -547,14 +550,14 @@ export function Riskforms({onFormSubmit}) {
               onChange={handleInputChange}
               required
             />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
     </div>
