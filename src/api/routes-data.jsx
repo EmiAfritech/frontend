@@ -97,7 +97,7 @@ export function useRiskTable() {
   return { riskTable, fetchData };
 }
 
-export function useRiskTable({ departmentID }) {
+export function useRiskIDMitigation({ departmentID }) {
   const { auth } = useContext(AuthContext);
   const [riskIDs, setRiskIDs] = useState([]);
   const fetchData = async () => {

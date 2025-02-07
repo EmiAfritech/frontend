@@ -1126,20 +1126,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         console.error(error);
       }
     };
-    const fetchDepartments = async () => {
-      try {
-        const data = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        });
-        setDept(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
     if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
       fetchData();
