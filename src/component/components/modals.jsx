@@ -2776,10 +2776,10 @@ export function RiskDetails() {
 
               {/* Right Section: Details */}
               <div className="col-span-3 flex flex-col items-center justify-center py-10">
-                <div className="grid grid-cols-3 w-full text-lg font-medium pb-4">
-                  <h1 className="text-gray-700">
+                <div className="flex flex-row space-x-6 w-full text-lg font-medium pb-4">
+                  <div className="text-gray-700">
                     ID: <span className="font-semibold">2830093244</span>
-                  </h1>
+                  </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
@@ -2794,7 +2794,7 @@ export function RiskDetails() {
                   </div>
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
-                <div className="text-gray-700">
+                <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
                     Check on all the computers in the office and work on them

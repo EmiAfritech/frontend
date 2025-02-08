@@ -222,7 +222,7 @@ export const CustomDetailsSelect = ({
   options = [],
 }) => {
   return (
-    <div className="flex flex-col w-full gap-2 mt-4">
+    <div className="flex items-center w-full gap-4 mt-4">
       {label && (
         <label
           htmlFor={id}
@@ -336,7 +336,7 @@ export function RiskInfo({
   auth
 }) {
   return (
-    <main className="grid grid-cols-2 gap-4 pt-5">
+    <main className="grid grid-cols-2 gap-8 pt-5">
       <div className="flex flex-col space-y-6">
         <FormDetailsField
           id="riskID"
