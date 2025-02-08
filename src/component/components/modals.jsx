@@ -2643,124 +2643,131 @@ export function DepartmentAccountDetails() {
             className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
             ✖
           </button>
+
           {/* Header */}
-          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-24">
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
             Account Details
           </div>
-          <main className="flex text-black p-4 justify-center items-center rounded-lg">
-            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
-              <div className="flex justify-center items-center">
-                <img
-                  src="https://shorturl.at/VaxG1"
-                  alt="Sample"
-                  className="h-[120] w-40"
-                />
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto max-h-[70vh] p-4">
+            <main className="flex text-black p-4 justify-center items-center rounded-lg">
+              <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
+                <div className="flex justify-center items-center">
+                  <img
+                    src="https://shorturl.at/VaxG1"
+                    alt="Sample"
+                    className="h-[120] w-40"
+                  />
+                </div>
+                <div className="mb-4 flex flex-row items-center">
+                  <span className="mr-4">
+                    <IoPerson color="blue" />
+                  </span>
+                  <span>Robert Knaihv</span>
+                </div>
+                <div className="mb-2 flex flex-row items-center">
+                  <span className="mr-4">
+                    <MdOutlineLocalPhone color="blue" />
+                  </span>
+                  <span>+233 544-5342</span>
+                </div>
+                <div className="mb-2 flex flex-row items-center">
+                  <span className="mr-4">
+                    <IoLocationOutline color="blue" />
+                  </span>
+                  <span>JohnBull Street</span>
+                </div>
               </div>
-              <div className="mb-4 flex flex-row items-center">
-                <span className="mr-4">
-                  <IoPerson color="blue" />
-                </span>
-                <span>Robert Knaihv</span>
+              <div className="flex-[2] ml-8">
+                <div className="grid grid-cols-2 gap-8 p-4">
+                  <FormInputField
+                    id="dname"
+                    label="Department Name"
+                    value={accountValue.departmentName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="manager"
+                    label="Department Manager"
+                    value={accountValue.departmentManager}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    type="email"
+                    id="email"
+                    label="Email"
+                    value={accountValue.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    type="phone"
+                    id="phone"
+                    label="Phone"
+                    value={accountValue.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="address1"
+                    label="Address 1"
+                    value={accountValue.address1}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="nationality"
+                    label="Nationality"
+                    value={accountValue.nationality}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="dob"
+                    label="Date of Birth"
+                    value={accountValue.dob}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="officelocation"
+                    label="Office Location"
+                    value={accountValue.officeLocation}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="department"
+                    label="Department"
+                    value={accountValue.department}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    id="role"
+                    label="Role"
+                    value={accountValue.role}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="mb-2 flex flex-row items-center">
-                <span className="mr-4">
-                  <MdOutlineLocalPhone color="blue" />
-                </span>
-                <span>+233 544-5342</span>
-              </div>
-              <div className="mb-2 flex flex-row items-center">
-                <span className="mr-4">
-                  <IoLocationOutline color="blue" />
-                </span>
-                <span>JohnBull Street</span>
-              </div>
-            </div>
-            <div className="flex-[2] ml-8">
-              <div className="grid grid-cols-2 gap-8 p-4">
-                <FormInputField
-                  id="dname"
-                  label="Department Name"
-                  value={accountValue.departmentName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="manager"
-                  label="Department Manager"
-                  value={accountValue.departmentManager}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  type="email"
-                  id="email"
-                  label="Email"
-                  value={accountValue.email}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  type="phone"
-                  id="phone"
-                  label="Phone"
-                  value={accountValue.phone}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="address1"
-                  label="Address 1"
-                  value={accountValue.address1}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="nationality"
-                  label="Nationality"
-                  value={accountValue.nationality}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="dob"
-                  label="Date of Birth"
-                  value={accountValue.dob}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="officelocation"
-                  label="Office Location"
-                  value={accountValue.officeLocation}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="department"
-                  label="Department"
-                  value={accountValue.department}
-                  onChange={handleInputChange}
-                  required
-                />
-                <FormInputField
-                  id="role"
-                  label="Role"
-                  value={accountValue.role}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="px-16 mt-8">
-                <CustomButton
-                  label="Submit"
-                  onClick={handleSubmit}
-                  type="submit"
-                  className="custom-class"
-                  loading={isSubmitting}
-                />
-              </div>
-            </div>
-          </main>
+            </main>
+          </div>
+
+          {/* Footer with Submit Button */}
+          <div className="px-16 mt-4 pb-4">
+            <CustomButton
+              label="Submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
+          </div>
         </Box>
       </Modal>
     </div>
