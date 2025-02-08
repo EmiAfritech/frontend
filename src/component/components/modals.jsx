@@ -2464,7 +2464,7 @@ export function UserAccountDetails() {
   }
 
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: accountValue });
+    console.log({ "userAccountDetials": accountValue });
   };
 
   return (
@@ -2643,9 +2643,9 @@ export function DepartmentAccountDetails() {
   };
 
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: accountValue });
+    console.log({ "userAccountDetials": accountValue });
   };
-  
+
   function handleOpen() {
     setOpen(!open);
   }
