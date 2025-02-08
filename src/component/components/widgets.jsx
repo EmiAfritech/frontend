@@ -187,7 +187,7 @@ export function FormDetailsField({
       <div className="flex flex-row">
         {label && (
           <label
-            className={`block min-w-[120px] text-[12.5px] whitespace-nowrap text-[#08376B] ${
+            className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
               (error ? "text-red-500" : "", disabled ? "text-gray-300" : "")
             }`}>
             {label} {required && <span className="required">*</span>}
