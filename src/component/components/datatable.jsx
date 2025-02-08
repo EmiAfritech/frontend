@@ -1,15 +1,7 @@
-import { IconButton,Tooltip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import "../comstyles/component.css";
 import {
-  DepartmentData,
-  MitigatedRiskData,
-  MonitoredRiskData,
-  ReviewRiskData,
-  RiskData,
-  UserData,
-  MitigatedRiskReportData,
   RiskAdviceReportData,
-  CDSMainForm,
   UserAccountDetails,
   DepartmentAccountDetails,
   RiskDetails,
@@ -43,7 +35,7 @@ export const useUserColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <UserAccountDetails/>
+      Cell: ({ row }) => <UserAccountDetails />,
     },
   ];
 };
@@ -70,7 +62,7 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails/>
+      Cell: ({ row }) => <DepartmentAccountDetails />,
     },
   ];
 };
@@ -97,13 +89,13 @@ export const useRiskViewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails/>
+      Cell: ({ row }) => <RiskDetails />,
     },
   ];
 };
 
 export const useRiskMitigationColumns = () => {
-  const {t } = useTranslation();
+  const { t } = useTranslation();
   return [
     {
       accessorKey: "riskName",
@@ -124,13 +116,13 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails/>
+      Cell: ({ row }) => <RiskDetails />,
     },
   ];
 };
 
 export const useRiskReviewColumns = () => {
-  const {t } = useTranslation();
+  const { t } = useTranslation();
   return [
     {
       accessorKey: "riskID",
@@ -155,13 +147,13 @@ export const useRiskReviewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails/>
+      Cell: ({ row }) => <RiskDetails />,
     },
   ];
 };
 
 export const useRiskMonitoringColumns = () => {
-  const {t } = useTranslation();
+  const { t } = useTranslation();
   return [
     {
       accessorKey: "riskID",
@@ -186,11 +178,10 @@ export const useRiskMonitoringColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails/>
+      Cell: ({ row }) => <RiskDetails />,
     },
   ];
 };
-
 
 export const useRiskStatuscolumns = () => {
   return [
@@ -222,19 +213,14 @@ export const useRiskStatuscolumns = () => {
         <Tooltip title="View Details">
           <IconButton
             onClick={() => console.log(row.original.deptID)}
-            color="primary"
-          >
-            <FaEye/>
+            color="primary">
+            <FaEye />
           </IconButton>
         </Tooltip>
       ),
     },
   ];
 };
-
-
-
-
 
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
@@ -300,18 +286,17 @@ export const useReportAuditTrailColumns = () => {
   ];
 };
 
-
-
-
-
-
 export const useRiskAppetiteReportGreaterColumns = () => {
   const { t } = useTranslation();
   return [
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
     { field: "riskName", headerName: t("subject"), flex: 1 },
     { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    { field: "mitigatedRiskScore", headerName: t("mitigatedRiskScore"), flex: 1 },
+    {
+      field: "mitigatedRiskScore",
+      headerName: t("mitigatedRiskScore"),
+      flex: 1,
+    },
   ];
 };
 
@@ -321,8 +306,10 @@ export const useRiskAppetiteReportLowerColumns = () => {
     { field: "riskID", headerName: t("riskCode"), flex: 1 },
     { field: "riskName", headerName: t("subject"), flex: 1 },
     { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    { field: "mitigatedRiskScore", headerName: t("mitigatedRiskScore"), flex: 1 },
+    {
+      field: "mitigatedRiskScore",
+      headerName: t("mitigatedRiskScore"),
+      flex: 1,
+    },
   ];
 };
-
-
