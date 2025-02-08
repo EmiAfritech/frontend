@@ -269,9 +269,11 @@ export function Departmentforms({ onFormSubmit }) {
   };
 
   const reload = () => {
-    setName("");
-    setDeptID("");
-    setLocation("");
+    seetDepartmentValue({
+      departmentName: "",
+    departmentID: "",
+    location: "",
+    })
   };
 
   return (
