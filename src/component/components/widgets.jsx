@@ -1,4 +1,5 @@
 import Select from "react-select";
+import LoadingPopup from "../../api/sessions";
 
 export function InputField({
   label,
@@ -167,13 +168,10 @@ export function FormInputField({
   );
 }
 
-export function RiskDetailsCard(){
 
-}
-
-export function ReportSideTabs() {
+export function RiskDetailsSideTabs() {
   const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState("report"); 
+  const [activeTab, setActiveTab] = useState("Risk Info"); 
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -182,29 +180,21 @@ export function ReportSideTabs() {
   console.log(activeTab)
   const renderComponent = () => {
     switch (activeTab) {
-      case "report":
-        return <ReportRiskDashboard/>;
-      case "likelyhoodvsimpact":
-        return <ReportLikelyhoodVsImpact/>;
-      case "riskAppetite":
-        return <ReportRiskAppetite/>;
-      case "mitigationByDate":
-        return <ReportRiskMitigation/>;
-      case "riskStatusReport":
-        return <RiskStatusReport/>;
-      case "allOpenedRiskNeedingReview":
-        return <ReviewNeedingRisksReport/>;
-      case "riskAdvice":
-        return <ReportRiskAdvice/>;
+      case "Risk Info":
+        return <RiskInfo/>;
+      case "Mitigate":
+        return <MitigateRIsk/>;
+      case "Review":
+        return <ReviewRIsk/>;
       default:
-        return <ReportRiskDashboard/>;
+        return <RiskInfo/>;
     }
   };
 
   return (
     <div>
       <LoadingPopup/>
-      <ReportingNavigation onTabChange={handleTabChange} />
+      <RiskDetailNavigation onTabChange={handleTabChange} />
       <div className="mt-6">
         {renderComponent()}
       </div>
@@ -243,9 +233,20 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export const RiskDetailTabs = [
+export function RiskInfo(){
+  return<div>Risk Info</div>
+}
+
+export function MitigateRIsk(){
+  return<div>Mitigate Risk</div>
+}
+
+export function ReviewRIsk(){
+  return<div>Review Risk</div>
+}
+export const Tabs = [
   {
-    title: "report"
+    title: "Risk Info"
   },
   {
     title: "Mitigate",

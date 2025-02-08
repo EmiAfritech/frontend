@@ -46,7 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { CustomButton, FormInputField } from "./widgets";
+import { CustomButton, FormInputField, RiskDetailsSideTabs } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2730,7 +2730,7 @@ export function LogOut() {
   );
 }
 
-export function RiskDataDetails() {
+export function RiskDetails() {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
@@ -2784,75 +2784,7 @@ export function RiskDataDetails() {
               </div>
             </div>
             <div>
-              <div className="flex space-x-4 border-b pb-2">
-                <button className="px-4 py-2 bg-blue-500 text-white rounded">
-                  Details
-                </button>
-                <button className="px-4 py-2 bg-gray-200 rounded">
-                  Mitigation
-                </button>
-                <button className="px-4 py-2 bg-gray-200 rounded">
-                  Review
-                </button>
-              </div>
-              <div className="grid grid-cols-2 gap-4 pt-5">
-                <div>
-                  <div className="flex items-center space-x-4">
-                    <p>Risk ID:</p>
-                    <input
-                      type="text"
-                      value={riskID}
-                      onChange={(e) => setRiskID(e.target.value)}
-                      className="border p-2 w-full"
-                    />
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Risk Name:</p>
-                    <input
-                      type="text"
-                      value={riskName}
-                      onChange={(e) => setRiskName(e.target.value)}
-                      className="border p-2 w-full"
-                    />
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Department Name:</p>
-                    <select
-                      value={deptmentName}
-                      onChange={(e) => setdeptmentName(e.target.value)}
-                      className="border p-2 w-full">
-                      <option>hi</option>
-                    </select>
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Probability Levels:</p>
-                    <input
-                      type="text"
-                      value={riskProbabilityLevel}
-                      onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                      className="border p-2 w-full"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Risk Description:</p>
-                    <input type="text" className="border p-2 w-full" />
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Risk Impact Level:</p>
-                    <input type="text" className="border p-2 w-full" />
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Risk Objective:</p>
-                    <input type="text" className="border p-2 w-full" />
-                  </div>
-                  <div className="flex items-center space-x-4 mt-4">
-                    <p>Risk Owner:</p>
-                    <input type="text" className="border p-2 w-full" />
-                  </div>
-                </div>
-              </div>
+              <RiskDetailsSideTabs/>
             </div>
           </div>
         </Box>
