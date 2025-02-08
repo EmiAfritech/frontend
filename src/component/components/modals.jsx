@@ -2775,8 +2775,8 @@ export function RiskDetails() {
               </div>
 
               {/* Right Section: Details */}
-              <div className="col-span-4 flex flex-col items-center justify-between py-10">
-                <div className="flex flex-row space-x-6 w-full text-lg font-medium pb-4">
+              <div className="col-span-4 flex flex-col py-10">
+                <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
                     ID: <span className="font-semibold">2830093244</span>
                   </div>

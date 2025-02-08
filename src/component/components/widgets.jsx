@@ -426,7 +426,7 @@ export function RiskInfo({
         />
         <CustomDetailsSelect
           id="riskProbabilityLevel"
-          label="Risk Probability Level"
+          label="Probability Level"
           value={value}
           onChange={onChange}
           options={options}
@@ -444,7 +444,7 @@ export function RiskInfo({
         />
         <FormDetailsField
           id="riskResponseActivity"
-          label="Risk Response Activity"
+          label="Response Activity"
           value={value}
           onChange={onChange}
           disabled={disabled}
