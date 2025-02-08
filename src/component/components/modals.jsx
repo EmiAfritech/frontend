@@ -2642,6 +2642,10 @@ export function DepartmentAccountDetails() {
     setAccountValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const handleSubmit = async (e) => {
+    console.log({ userAccountDetials: accountValue });
+  };
+  
   function handleOpen() {
     setOpen(!open);
   }
