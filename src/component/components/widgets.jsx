@@ -328,6 +328,7 @@ export function RiskInfo({
   options,
   isSubmitting,
   handleSubmit,
+  auth
 }) {
   return (
     <main className="grid grid-cols-2 gap-4 pt-5">
