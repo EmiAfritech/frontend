@@ -306,7 +306,7 @@ export function Departmentforms({ onFormSubmit }) {
               required
             />
             <FormInputField
-              id="work_location"
+              id="location"
               label={t("work-location")}
               value={departmentValue.location}
               onChange={handleInputChange}
@@ -443,19 +443,7 @@ export function Riskforms({ onFormSubmit }) {
     }
   };
 
-  console.log( JSON.stringify({
-    riskID: riskValue.riskID,
-    riskName: riskValue.riskName,
-    riskOwner,
-    riskCategory: riskCategory,
-    riskImpactLevel,
-    deptId: departmentName,
-    riskProbabilityLevel,
-    riskDescription: riskValue.riskDescription,
-    riskObjective: riskValue.riskObjective,
-    riskResponseActivity: riskValue.riskResponseActivity,
-    riskResponse,
-  }),);
+  
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");

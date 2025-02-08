@@ -126,7 +126,7 @@ export function Sidebar() {
       case "AUDITOR":
         return <AuditorTabs />;
       default:
-        return <AuditorTabs />;
+        return <AdminTabs />;
     }
   };
 
