@@ -183,17 +183,16 @@ export function FormDetailsField({
   id,
 }) {
   return (
-    <div className="flex items-center gap-4 mt-4">
-      <div className="flex flex-row">
-        {label && (
-          <label
-            className={`block text-[12.5px] whitespace-nowrap text-[#08376B] ${
-              (error ? "text-red-500" : "", disabled ? "text-gray-300" : "")
-            }`}>
-            {label} {required && <span className="required">*</span>}
-          </label>
-        )}
-      </div>
+    <div className="flex items-center gap-4 w-full">
+      {label && (
+        <label
+          htmlFor={id}
+          className={`min-w-[150px] text-sm font-medium text-[#08376B] ${
+            error ? "text-red-500" : ""
+          } ${disabled ? "text-gray-400" : ""}`}>
+          {label} {required && <span className="text-red-500">*</span>}
+        </label>
+      )}
       <input
         id={id}
         type={type}
@@ -202,11 +201,12 @@ export function FormDetailsField({
         disabled={disabled}
         onChange={onChange}
         required={required}
-        autoComplete="false"
-        className={`w-full p-2 bg-gray-200  ${
-          (error ? "border border-red-500" : "", disabled ? "bg-gray-100" : "")
-        }`}
+        autoComplete="off"
+        className={`flex-1 p-3 rounded-md border focus:ring focus:ring-blue-300 ${
+          error ? "border-red-500" : "border-gray-300"
+        } ${disabled ? "bg-gray-100" : "bg-gray-200"}`}
       />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 }
@@ -222,43 +222,49 @@ export const CustomDetailsSelect = ({
   options = [],
 }) => {
   return (
-    <div className="flex items-center w-full gap-4 mt-4">
+    <div className="flex items-center gap-4 w-full">
       {label && (
         <label
           htmlFor={id}
-          className={`block text-[12.5px] whitespace-nowrap text-[#08376B] ${error ? "text-red-500" : ""}`}>
+          className={`min-w-[150px] text-sm font-medium text-[#08376B] ${
+            error ? "text-red-500" : ""
+          }`}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
-      <Select
-        id={id}
-        isMulti={isMulti}
-        required={required}
-        isSearchable={true}
-        options={options}
-        onChange={onChange}
-        defaultValue={value}
-        isClearable={true}
-        className="w-full"
-        styles={{
-          control: (baseStyles) => ({
-            ...baseStyles,
-            width: "100%", 
-            height: "40px",
-            padding: "2px",
-            backgroundColor: "#E5E7EB",
-            border: "none",
-            borderRadius: "4px",
-          }),
-          menu: (baseStyles) => ({
-            ...baseStyles,
-            width: "100%",
-          }),
-        }}
-      />
+      <div className="flex-1">
+        <Select
+          id={id}
+          isMulti={isMulti}
+          required={required}
+          isSearchable={true}
+          options={options}
+          onChange={onChange}
+          defaultValue={value}
+          isClearable={true}
+          className="w-full"
+          styles={{
+            control: (baseStyles) => ({
+              ...baseStyles,
+              width: "100%",
+              height: "40px",
+              padding: "2px",
+              backgroundColor: "#E5E7EB",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+            }),
+            menu: (baseStyles) => ({
+              ...baseStyles,
+              width: "100%",
+            }),
+          }}
+        />
+      </div>
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 };
+
 
 
 export function RiskDetailsSideTabs() {
