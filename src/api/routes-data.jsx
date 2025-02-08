@@ -50,7 +50,7 @@ export function useRiskOwnersDropdown() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      setOwnersList(response.data);
+      setOwnersList(response);
     } catch (error) {
       console.error(error);
     }
