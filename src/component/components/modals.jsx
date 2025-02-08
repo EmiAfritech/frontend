@@ -2622,7 +2622,25 @@ export function UserAccountDetails() {
 
 export function DepartmentAccountDetails() {
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
+  const close = () => setOpen(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [accountValue, setAccountValue] = useState({
+    departmentName: "",
+    departmentManager: "",
+    email: "",
+    phone: "",
+    address1: "",
+    nationality: "",
+    dob: "",
+    officeLocation: "",
+    department: "",
+    role: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setAccountValue((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   function handleOpen() {
     setOpen(!open);
