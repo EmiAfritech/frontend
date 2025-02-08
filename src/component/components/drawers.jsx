@@ -46,6 +46,13 @@ export function Userforms({ onFormSubmit }) {
     },
   ];
 
+  const handleClose = () =>{
+    setOpen(false)
+  }
+  const handleOpen = () =>{
+    setOpen(true)
+  }
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setUserValue((prevData) => ({ ...prevData, [id]: value }));
@@ -115,9 +122,9 @@ export function Userforms({ onFormSubmit }) {
         label={t("addEmployee")}
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
-        onClick={setOpen(true)}
+        onClick={handleOpen}
       />
-      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("newEmployee")}
         </div>
@@ -207,6 +214,13 @@ export function Departmentforms({ onFormSubmit }) {
     location: "",
   });
 
+  const handleClose = () =>{
+    setOpen(false)
+  }
+  const handleOpen = () =>{
+    setOpen(true)
+  }
+  
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
@@ -266,9 +280,9 @@ export function Departmentforms({ onFormSubmit }) {
         label={t("addDepartment")}
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
-        onClick={setOpen(true)}
+        onClick={handleOpen}
       />
-      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div>
           <div className="flex justify-center font-bold py-5  text-black">
             {t("NewDepartment")}
