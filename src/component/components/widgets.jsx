@@ -336,131 +336,136 @@ export function RiskInfo({
   auth
 }) {
   return (
-    <main className="grid grid-cols-2 gap-8 pt-5">
-      <div className="flex flex-col space-y-6">
+    <main className="grid grid-cols-2 gap-12 pt-5">
+  {/* Left Column */}
+  <div className="flex flex-col gap-8">
+    <FormDetailsField
+      id="riskID"
+      label="Risk Code"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+    <FormDetailsField
+      id="riskName"
+      label="Risk Name"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+    {(auth === "MANAGER" || auth === "AUDITOR") && (
+      <div className="flex flex-col gap-8">
         <FormDetailsField
-          id="riskID"
-          label="Risk Code"
+          id="departmentId"
+          label="Department Id"
           value={value}
           onChange={onChange}
           disabled={disabled}
           required
         />
         <FormDetailsField
-          id="riskName"
-          label="Risk Name"
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          required
-        />
-        {auth  === "MANAGER" ||
-          (auth === "AUDITOR" && (
-            <div className="flex flex-col">
-              <FormDetailsField
-                id="departmentId"
-                label="Department Id"
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                required
-              />
-              <FormDetailsField
-                id="departmentName"
-                label="Department Name"
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                required
-              />
-            </div>
-          ))}
-        <CustomDetailsSelect
           id="departmentName"
-          label="Risk Owner"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <FormDetailsField
-          type="date"
-          id="createdAt"
-          label="Created At"
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          required
-        />
-        <FormDetailsField
-          id="riskScore"
-          label="Risk Score"
+          label="Department Name"
           value={value}
           onChange={onChange}
           disabled={disabled}
           required
         />
       </div>
-      <div className="flex flex-col space-y-6">
-        <CustomDetailsSelect
-          id="riskResponse"
-          label="Risk Response"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <CustomDetailsSelect
-          id="riskCategory"
-          label="Risk Category"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <CustomDetailsSelect
-          id="riskProbabilityLevel"
-          label="Probability Level"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <FormDetailsField
-          id="riskDescription"
-          label="Risk Description"
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          required
-        />
-        <FormDetailsField
-          id="riskResponseActivity"
-          label="Response Activity"
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          required
-        />
-      </div>
-      <div className="flex flex-row pb-3 pt-2 px-2 flex justify end">
-        <CustomButton
-          label="submit"
-          onClick={handleSubmit}
-          type="submit"
-          className="custom-class"
-          loading={isSubmitting}
-        />
-      </div>
-    </main>
+    )}
+    <CustomDetailsSelect
+      id="departmentName"
+      label="Risk Owner"
+      value={value}
+      onChange={onChange}
+      options={options}
+      searchable={true}
+      required
+      group={false}
+    />
+    <FormDetailsField
+      type="date"
+      id="createdAt"
+      label="Created At"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+    <FormDetailsField
+      id="riskScore"
+      label="Risk Score"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+  </div>
+
+  {/* Right Column */}
+  <div className="flex flex-col gap-8">
+    <CustomDetailsSelect
+      id="riskResponse"
+      label="Risk Response"
+      value={value}
+      onChange={onChange}
+      options={options}
+      searchable={true}
+      required
+      group={false}
+    />
+    <CustomDetailsSelect
+      id="riskCategory"
+      label="Risk Category"
+      value={value}
+      onChange={onChange}
+      options={options}
+      searchable={true}
+      required
+      group={false}
+    />
+    <CustomDetailsSelect
+      id="riskProbabilityLevel"
+      label="Probability Level"
+      value={value}
+      onChange={onChange}
+      options={options}
+      searchable={true}
+      required
+      group={false}
+    />
+    <FormDetailsField
+      id="riskDescription"
+      label="Risk Description"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+    <FormDetailsField
+      id="riskResponseActivity"
+      label="Response Activity"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+      required
+    />
+  </div>
+
+  {/* Submit Button */}
+  <div className="col-span-2 flex justify-end pt-6">
+    <CustomButton
+      label="Submit"
+      onClick={handleSubmit}
+      type="submit"
+      className="custom-class"
+      loading={isSubmitting}
+    />
+  </div>
+</main>
+
   );
 }
 
