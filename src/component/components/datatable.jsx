@@ -124,7 +124,7 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails/>
+      Cell: ({ row }) => <RiskDetails/>
     },
   ];
 };
@@ -155,7 +155,7 @@ export const useRiskReviewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails/>
+      Cell: ({ row }) => <RiskDetails/>
     },
   ];
 };
@@ -186,7 +186,7 @@ export const useRiskMonitoringColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails/>
+      Cell: ({ row }) => <RiskDetails/>
     },
   ];
 };
