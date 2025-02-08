@@ -347,7 +347,6 @@ export function Riskforms({onFormSubmit}) {
     riskDescription: "",
     riskResponseActivity: ""
   });
-  console.log(riskValue)
 
 
   const handleInputChange = (e) => {
