@@ -349,8 +349,8 @@ export function RiskInfo({
           disabled={disabled}
           required
         />
-        {auth.role === "MANAGER" ||
-          (auth.role === "AUDITOR" && (
+        {auth  === "MANAGER" ||
+          (auth === "AUDITOR" && (
             <div className="flex flex-col">
               <FormDetailsField
                 id="departmentId"
