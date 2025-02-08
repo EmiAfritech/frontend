@@ -519,7 +519,7 @@ export function Riskforms({onFormSubmit}) {
               label={t("ownerdrawer")}
               value={riskOwner}
               onChange={setRiskOwner}
-              options={departmentList}
+              options={ownersList}
               searchable={true}
               required
             />
