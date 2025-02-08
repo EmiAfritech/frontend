@@ -410,7 +410,7 @@ export function Riskforms({onFormSubmit}) {
           JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
-            deptId: parseInt(departmentName, 10),
+            deptId: departmentName,
             riskOwner,
             riskImpactLevel,
             riskProbabilityLevel,
@@ -433,6 +433,7 @@ export function Riskforms({onFormSubmit}) {
     } catch (error) {
       if (error.response.status === 400) {
         showToast("Kindly check Input details", "error")
+        console.log(error)
       } else if (error.response.status === 500) {
         showToast("Server is currently down Contact your admin", "error")
       }
