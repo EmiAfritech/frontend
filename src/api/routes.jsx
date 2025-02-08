@@ -80,7 +80,7 @@ export const USERSCREATEFORM_URL = "/users/create";
 export const DEPARTMENTCREATEFORM_URL = "/Organization/Department/create";
 
 // risk form
-export const CREATERISKFORM_URL = "/departments/risk/create";
+export const CREATERISKFORM_URL = "/Organization/Risk/create";
 
 // mitigation form
 export const MITIGATERISKFORM_URL = "/departments/risk/riskmitigation/create";
