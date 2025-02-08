@@ -502,14 +502,14 @@ export function Riskforms({onFormSubmit}) {
               />
             </div>
             <FormInputField
-              id="objective"
+              id="riskobjective"
               label={t("objective")}
               value={riskValue.riskObjective}
               onChange={handleInputChange}
               required
             />
             <FormInputField
-              id="description"
+              id="riskDescription"
               label={t("description")}
               value={riskValue.riskDescription}
               onChange={handleInputChange}
