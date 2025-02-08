@@ -29,12 +29,12 @@ import { showToast } from "./notifications";
 
 export function Userforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
   const [departmentName, setDepartment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [role, setRole] = useState("");
   const { userRole } = GRCFormsArray(t);
   const { auth } = useContext(AuthContext);
-  const { t } = useTranslation();
   const { departmentList } = useDepartmentDropdown();
   const [userValue, setUserValue] = useState(
     {
