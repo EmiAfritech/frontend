@@ -2464,7 +2464,7 @@ export function UserAccountDetails() {
   }
 
   const handleSubmit = async (e) => {
-    console.log({ "userAccountDetials": accountValue });
+    console.log({ userAccountDetials: accountValue });
   };
 
   return (
@@ -2600,19 +2600,18 @@ export function UserAccountDetails() {
                     required
                   />
                 </div>
+                {/* Footer with Submit Button */}
+                <div className="px-16 mt-4 pb-4">
+                  <CustomButton
+                    label="Submit"
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="custom-class"
+                    loading={isSubmitting}
+                  />
+                </div>
               </div>
             </main>
-          </div>
-
-          {/* Footer with Submit Button */}
-          <div className="px-16 mt-4 pb-4">
-            <CustomButton
-              label="Submit"
-              onClick={handleSubmit}
-              type="submit"
-              className="custom-class"
-              loading={isSubmitting}
-            />
           </div>
         </Box>
       </Modal>
@@ -2622,7 +2621,7 @@ export function UserAccountDetails() {
 
 export function DepartmentAccountDetails() {
   const [open, setOpen] = useState(false);
-  const close = () => setOpen(false); 
+  const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [accountValue, setAccountValue] = useState({
     departmentName: "",
@@ -2643,7 +2642,7 @@ export function DepartmentAccountDetails() {
   };
 
   const handleSubmit = async (e) => {
-    console.log({ "userAccountDetials": accountValue });
+    console.log({ userAccountDetials: accountValue });
   };
 
   function handleOpen() {
@@ -2776,19 +2775,18 @@ export function DepartmentAccountDetails() {
                     required
                   />
                 </div>
+                {/* Footer with Submit Button */}
+                <div className="px-16 mt-4 pb-4">
+                  <CustomButton
+                    label="Submit"
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="custom-class"
+                    loading={isSubmitting}
+                  />
+                </div>
               </div>
             </main>
-          </div>
-
-          {/* Footer with Submit Button */}
-          <div className="px-16 mt-4 pb-4">
-            <CustomButton
-              label="Submit"
-              onClick={handleSubmit}
-              type="submit"
-              className="custom-class"
-              loading={isSubmitting}
-            />
           </div>
         </Box>
       </Modal>
