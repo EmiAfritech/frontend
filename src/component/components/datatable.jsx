@@ -12,7 +12,7 @@ import {
   CDSMainForm,
   UserAccountDetails,
   DepartmentAccountDetails,
-  RiskDataDetails,
+  RiskDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -97,7 +97,7 @@ export const useRiskViewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDataDetails/>
+      Cell: ({ row }) => <RiskDetails/>
     },
   ];
 };

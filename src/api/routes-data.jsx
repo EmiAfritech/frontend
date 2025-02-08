@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import {
   DEPARTMENT_URL,
   DEPARTMENTDROPDOWN_URL,
+  OWNERSDROPDOWN_URL,
   RISKIDSMITIGATION_URL,
   RISKIDSMONITORING_URL,
   RISKMITIGATION_URL,
@@ -20,6 +21,30 @@ export function useDepartmentDropdown() {
   const fetchData = async () => {
     try {
       const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setDepartmentList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { departmentList };
+}
+
+export function useRiskOwnersDropdown() {
+  const { auth } = useContext(AuthContext);
+  const [departmentList, setDepartmentList] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(OWNERSDROPDOWN_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
