@@ -2460,7 +2460,7 @@ export function UserAccountDetails(){
             ✖
           </button>
           {/* Header */}
-          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-12">
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-24">
               Account Details
             </div>
           <main className="flex text-black p-4 justify-center items-center rounded-lg">
@@ -2635,7 +2635,7 @@ export function DepartmentAccountDetails() {
             ✖
           </button>
           {/* Header */}
-          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-12">
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-24">
               Account Details
             </div>
           <main className="flex text-black p-4 justify-center items-center rounded-lg">
