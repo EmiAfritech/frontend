@@ -125,7 +125,8 @@ export const CustomSelect = ({
             border: "none",
             borderRadius: "0",
           }),
-        }}/>
+        }}
+      />
     </div>
   );
 };
@@ -170,41 +171,123 @@ export function FormInputField({
   );
 }
 
+export function FormDetailsField({
+  label,
+  disabled = false,
+  type = "text",
+  value,
+  placeholder,
+  onChange,
+  required = false,
+  error = "",
+  id,
+}) {
+  return (
+    <div className="flex items-center gap-4 mt-4">
+      <div className="flex flex-row">
+        {label && (
+          <label
+            className={`block text-[12.5px] text-[#08376B] ${
+              (error ? "text-red-500" : "", disabled ? "text-gray-300" : "")
+            }`}>
+            {label} {required && <span className="required">*</span>}
+          </label>
+        )}
+      </div>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        disabled={disabled}
+        onChange={onChange}
+        required={required}
+        autoComplete="false"
+        className={`w-full p-2 bg-gray-200  ${
+          (error ? "border border-red-500" : "", disabled ? "bg-gray-100" : "")
+        }`}
+      />
+    </div>
+  );
+}
+
+export const CustomDetailsSelect = ({
+  isMulti = false,
+  value,
+  onChange,
+  error,
+  required = false,
+  id,
+  label,
+  options = [],
+}) => {
+  return (
+    <div className="flex items-center gap-4 mt-4">
+      {label && (
+        <label
+          htmlFor={id}
+          className={`block text-[12.5px] text-[#08376B] ${
+            error ? "text-red-500" : ""
+          }`}>
+          {label} {required && <span className="required">*</span>}
+        </label>
+      )}
+      <Select
+        id={id}
+        isMulti={isMulti}
+        required={required}
+        isSearchable={true}
+        options={options}
+        onChange={onChange}
+        defaultValue={value}
+        isClearable={true}
+        styles={{
+          control: (baseStyles) => ({
+            ...baseStyles,
+            height: "40px",
+            padding: "2px",
+            backgroundColor: "#E5E7EB",
+            border: "none",
+            borderRadius: "0",
+          }),
+        }}
+      />
+    </div>
+  );
+};
 
 export function RiskDetailsSideTabs() {
-  const [activeTab, setActiveTab] = useState("Risk Info"); 
+  const [activeTab, setActiveTab] = useState("Risk Info");
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  console.log(activeTab)
+  console.log(activeTab);
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo/>;
+        return <RiskInfo />;
       case "Mitigate":
-        return <MitigateRIsk/>;
+        return <MitigateRIsk />;
       case "Review":
-        return <ReviewRIsk/>;
+        return <ReviewRIsk />;
       default:
-        return <RiskInfo/>;
+        return <RiskInfo />;
     }
   };
 
   return (
     <div>
-      <LoadingPopup/>
+      <LoadingPopup />
       <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="mt-6">
-        {renderComponent()}
-      </div>
+      <div className="mt-6">{renderComponent()}</div>
     </div>
   );
 }
 
 export function RiskDetailNavigation({ onTabChange }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(Tabs[0].title);
 
   const handleTabChange = (tab) => {
@@ -221,8 +304,11 @@ export function RiskDetailNavigation({ onTabChange }) {
             <li key={tab.title}>
               <button
                 onClick={() => handleTabChange(tab.title)}
-                className={`text-md font-thin font-[Open_Sans] p-4 ${activeTab === tab.title ? 'text-[#04026b] border-b-2 border-[#04026b]' : 'text-black'}`}
-              >
+                className={`text-md font-thin font-[Open_Sans] p-4 ${
+                  activeTab === tab.title
+                    ? "text-[#04026b] border-b-2 border-[#04026b]"
+                    : "text-black"
+                }`}>
                 <span className=" transition duration-300 ease-out">
                   {t(tab.title)}
                 </span>
@@ -235,20 +321,153 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo(){
-  return<div>Risk Info</div>
+export function RiskInfo({
+  onChange,
+  value,
+  disabled,
+  options,
+  isSubmitting,
+  handleSubmit,
+}) {
+  return (
+    <main className="grid grid-cols-2 gap-4 pt-5">
+      <div className="flex flex-col">
+        <FormDetailsField
+          id="riskID"
+          label="Risk Code"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+        <FormDetailsField
+          id="riskName"
+          label="Risk Name"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+        {auth.role === "MANAGER" ||
+          (auth.role === "AUDITOR" && (
+            <div className="flex flex-col">
+              <FormDetailsField
+                id="departmentId"
+                label="Department Id"
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
+                required
+              />
+              <FormDetailsField
+                id="departmentName"
+                label="Department Name"
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
+                required
+              />
+            </div>
+          ))}
+        <CustomDetailsSelect
+          id="departmentName"
+          label="Risk Owner"
+          value={value}
+          onChange={onChange}
+          options={options}
+          searchable={true}
+          required
+          group={false}
+        />
+        <FormDetailsField
+          type="date"
+          id="createdAt"
+          label="Created At"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+        <FormDetailsField
+          id="riskScore"
+          label="Risk Score"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+      </div>
+      <div className="flex flex-col">
+        <CustomDetailsSelect
+          id="riskResponse"
+          label="Risk Response"
+          value={value}
+          onChange={onChange}
+          options={options}
+          searchable={true}
+          required
+          group={false}
+        />
+        <CustomDetailsSelect
+          id="riskCategory"
+          label="Risk Category"
+          value={value}
+          onChange={onChange}
+          options={options}
+          searchable={true}
+          required
+          group={false}
+        />
+        <CustomDetailsSelect
+          id="riskProbabilityLevel"
+          label="Risk Probability Level"
+          value={value}
+          onChange={onChange}
+          options={options}
+          searchable={true}
+          required
+          group={false}
+        />
+        <FormDetailsField
+          id="riskDescription"
+          label="Risk Description"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+        <FormDetailsField
+          id="riskResponseActivity"
+          label="Risk Response Activity"
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+          required
+        />
+      </div>
+      <div className="flex flex-row pb-3 pt-2 px-2 flex justify end">
+        <CustomButton
+          label="submit"
+          onClick={handleSubmit}
+          type="submit"
+          className="custom-class"
+          loading={isSubmitting}
+        />
+      </div>
+    </main>
+  );
 }
 
-export function MitigateRIsk(){
-  return<div>Mitigate Risk</div>
+export function MitigateRIsk() {
+  return <div>Mitigate Risk</div>;
 }
 
-export function ReviewRIsk(){
-  return<div>Review Risk</div>
+export function ReviewRIsk() {
+  return <div>Review Risk</div>;
 }
 export const Tabs = [
   {
-    title: "Risk Info"
+    title: "Risk Info",
   },
   {
     title: "Mitigate",
@@ -256,7 +475,4 @@ export const Tabs = [
   {
     title: "Review",
   },
-  
 ];
-
-
