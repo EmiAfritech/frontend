@@ -172,7 +172,6 @@ export function FormInputField({
 
 
 export function RiskDetailsSideTabs() {
-  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState("Risk Info"); 
 
   const handleTabChange = (tab) => {
@@ -205,6 +204,7 @@ export function RiskDetailsSideTabs() {
 }
 
 export function RiskDetailNavigation({ onTabChange }) {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState(Tabs[0].title);
 
   const handleTabChange = (tab) => {
