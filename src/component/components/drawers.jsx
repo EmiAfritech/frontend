@@ -380,6 +380,7 @@ export function Riskforms({onFormSubmit}) {
     }
 
     try {
+      
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(
           CREATERISKFORM_URL,
@@ -409,7 +410,7 @@ export function Riskforms({onFormSubmit}) {
           JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
-            departmentName,
+            deptId: departmentName,
             riskOwner,
             riskImpactLevel,
             riskProbabilityLevel,
