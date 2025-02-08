@@ -1053,6 +1053,13 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     setMonitoringValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const handleClose = () =>{
+    setOpen(false)
+  }
+  const handleOpen = () =>{
+    setOpen(true)
+  }
+
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
       onClose: () => {
@@ -1148,7 +1155,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         className="custom-class rounded-full p-2 px-5"
         onClick={handleOpen}
       />
-      <Drawer anchor={"right"} open={open} onClose={setOpen(false)}>
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
           {t("monitorRisk")}
         </div>

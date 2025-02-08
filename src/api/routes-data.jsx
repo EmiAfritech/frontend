@@ -9,6 +9,7 @@ import {
   RISKMONITORING_URL,
   RISKREVIEWERSDROPDOWN_URL,
   USERS_URL,
+  VIEWALLRISKS_URL,
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
