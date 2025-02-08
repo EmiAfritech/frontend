@@ -57,10 +57,9 @@ export function useRiskOwnersDropdown() {
   };
 
   useEffect(() => {
-    fetchData(); 
-    console.log({"ownerslist": ownersList})
+    fetchData();
   }, []);
-
+  console.log({"ownerslist": ownersList})
   return { ownersList };
 }
 
