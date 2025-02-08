@@ -113,7 +113,7 @@ export function ReportingNavigation({ onTabChange }) {
         </div>
       </div>
     );
-  }
+}
 
 
 

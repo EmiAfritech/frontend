@@ -166,3 +166,94 @@ export function FormInputField({
     </div>
   );
 }
+
+export function RiskDetailsCard(){
+
+}
+
+export function ReportSideTabs() {
+  const { t } = useTranslation()
+  const [activeTab, setActiveTab] = useState("report"); 
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  console.log(activeTab)
+  const renderComponent = () => {
+    switch (activeTab) {
+      case "report":
+        return <ReportRiskDashboard/>;
+      case "likelyhoodvsimpact":
+        return <ReportLikelyhoodVsImpact/>;
+      case "riskAppetite":
+        return <ReportRiskAppetite/>;
+      case "mitigationByDate":
+        return <ReportRiskMitigation/>;
+      case "riskStatusReport":
+        return <RiskStatusReport/>;
+      case "allOpenedRiskNeedingReview":
+        return <ReviewNeedingRisksReport/>;
+      case "riskAdvice":
+        return <ReportRiskAdvice/>;
+      default:
+        return <ReportRiskDashboard/>;
+    }
+  };
+
+  return (
+    <div>
+      <LoadingPopup/>
+      <ReportingNavigation onTabChange={handleTabChange} />
+      <div className="mt-6">
+        {renderComponent()}
+      </div>
+    </div>
+  );
+}
+
+export function RiskDetailNavigation({ onTabChange }) {
+  const [activeTab, setActiveTab] = useState(Tabs[0].title);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    onTabChange(tab);
+  };
+
+  return (
+    <div>
+      {/* Tabs Navigation */}
+      <div className="flex p-6 justify-center">
+        <ul className="flex flex-row space-x-1 border-b border-gray-300">
+          {Tabs.map((tab) => (
+            <li key={tab.title}>
+              <button
+                onClick={() => handleTabChange(tab.title)}
+                className={`text-md font-thin font-[Open_Sans] p-4 ${activeTab === tab.title ? 'text-[#04026b] border-b-2 border-[#04026b]' : 'text-black'}`}
+              >
+                <span className=" transition duration-300 ease-out">
+                  {t(tab.title)}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export const RiskDetailTabs = [
+  {
+    title: "report"
+  },
+  {
+    title: "Mitigate",
+  },
+  {
+    title: "Review",
+  },
+  
+];
+
+

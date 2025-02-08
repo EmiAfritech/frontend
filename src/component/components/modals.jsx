@@ -2758,7 +2758,7 @@ export function RiskDataDetails() {
 
           {/* Header */}
           <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
-            Account Details
+            Risk Details
           </div>
 
           {/* Scrollable Body */}
@@ -2776,7 +2776,7 @@ export function RiskDataDetails() {
               </div>
               <div className="col-span-3 py-10 text-center">
                 <div className="grid grid-cols-2 pb-4">
-                  <h1>ID: {riskID}</h1>
+                  <h1>ID: 2830093244</h1>
                   <div>Status: Management Review</div>
                 </div>
                 <hr className="my-4" />
