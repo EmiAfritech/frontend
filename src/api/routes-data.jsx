@@ -41,7 +41,7 @@ export function useDepartmentDropdown() {
 
 export function useRiskOwnersDropdown() {
   const { auth } = useContext(AuthContext);
-  const [departmentList, setDepartmentList] = useState([]);
+  const [ownersList, setOwnersList] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(OWNERSDROPDOWN_URL, {
@@ -50,7 +50,7 @@ export function useRiskOwnersDropdown() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      setDepartmentList(response.data);
+      setOwnersList(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -58,9 +58,10 @@ export function useRiskOwnersDropdown() {
 
   useEffect(() => {
     fetchData(); 
+    console.log({"ownerslist": ownersList})
   }, []);
 
-  return { departmentList };
+  return { ownersList };
 }
 
 export function useDepartmentTable() {
