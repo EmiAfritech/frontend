@@ -207,11 +207,6 @@ export const useRiskStatuscolumns = () => {
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorKey: "name",
-      header: "Name",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
-    },
-    {
       accessorFn: (row) => row.date,
       id: "date",
       header: "Date of Issue",
