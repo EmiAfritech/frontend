@@ -1778,7 +1778,7 @@ export function RiskMonitor() {
           <RiskMonitoringforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
-      <MaterialReactTable table={table} />
+      <MaterialReactTable table={table} className="p-6"/>
     </div>
   );
 }
