@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from "react";
-import {Drawer, Button} from "@mui/material";
+import { Drawer, Button } from "@mui/material";
 import axios from "../../api/axios";
 import { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,7 +22,11 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
-import { useDepartmentDropdown, useRiskOwnersDropdown, useRiskReviewer } from "../../api/routes-data";
+import {
+  useDepartmentDropdown,
+  useRiskOwnersDropdown,
+  useRiskReviewer,
+} from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import { showToast } from "./notifications";
@@ -36,28 +40,25 @@ export function Userforms({ onFormSubmit }) {
   const { userRole } = GRCFormsArray(t);
   const { auth } = useContext(AuthContext);
   const { departmentList } = useDepartmentDropdown();
-  const [userValue, setUserValue] = useState(
-    {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      password: "",
-    },
-  );
+  const [userValue, setUserValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+  });
 
-  const handleClose = () =>{
-    setOpen(false)
-  }
-  const handleOpen = () =>{
-    setOpen(true)
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setUserValue((prevData) => ({ ...prevData, [id]: value }));
   };
-
 
   const notify = () => {
     toast.success("User Saved Successfully", {
@@ -68,7 +69,6 @@ export function Userforms({ onFormSubmit }) {
       },
     });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,9 +97,9 @@ export function Userforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
+        showToast("Kindly check Input details", "error");
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -214,13 +214,13 @@ export function Departmentforms({ onFormSubmit }) {
     location: "",
   });
 
-  const handleClose = () =>{
-    setOpen(false)
-  }
-  const handleOpen = () =>{
-    setOpen(true)
-  }
-  
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     seetDepartmentValue((prevData) => ({ ...prevData, [id]: value }));
@@ -259,9 +259,9 @@ export function Departmentforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
+        showToast("Kindly check Input details", "error");
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -326,7 +326,7 @@ export function Departmentforms({ onFormSubmit }) {
   );
 }
 
-export function Riskforms({onFormSubmit}) {
+export function Riskforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [departmentName, setDepartmentName] = useState("");
@@ -337,29 +337,29 @@ export function Riskforms({onFormSubmit}) {
   const [riskResponse, setRiskResponse] = useState("");
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray(t);
+  const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } =
+    GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
-  const {ownersList} = useRiskOwnersDropdown()
+  const { ownersList } = useRiskOwnersDropdown();
   const [riskValue, setRiskValue] = useState({
     riskName: "",
     riskID: "",
     riskObjective: "",
     riskDescription: "",
-    riskResponseActivity: ""
+    riskResponseActivity: "",
   });
-
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleClose = () =>{
-    setOpen(false)
-  }
-  const handleOpen = () =>{
-    setOpen(true)
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
@@ -369,18 +369,19 @@ export function Riskforms({onFormSubmit}) {
       },
     });
   };
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     if (departmentList.includes(riskID)) {
-      showToast("Risk ID already exists. Please enter a different one!", "error")
+      showToast(
+        "Risk ID already exists. Please enter a different one!",
+        "error"
+      );
     }
 
     try {
-      
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(
           CREATERISKFORM_URL,
@@ -410,11 +411,11 @@ export function Riskforms({onFormSubmit}) {
           JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
-            deptId: departmentName,
             riskOwner,
-            riskImpactLevel,
-            riskProbabilityLevel,
             riskCategory,
+            riskImpactLevel,
+            deptId: departmentName,
+            riskProbabilityLevel,
             riskDescription: riskValue.riskDescription,
             riskObjective: riskValue.riskObjective,
             riskResponseActivity: riskValue.riskResponseActivity,
@@ -432,29 +433,31 @@ export function Riskforms({onFormSubmit}) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
-        console.log(error)
+        showToast("Kindly check Input details", "error");
+        console.log(error);
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  console.log(JSON.stringify({
-    riskID: riskValue.riskID,
-    riskName: riskValue.riskName,
-    riskOwner,
-    riskCategory,
-    riskImpactLevel,
-    deptId: departmentName,
-    riskProbabilityLevel,
-    riskDescription: riskValue.riskDescription,
-    riskObjective: riskValue.riskObjective,
-    riskResponseActivity: riskValue.riskResponseActivity,
-    riskResponse,
-  }),)
+  console.log(
+    JSON.stringify({
+      riskID: riskValue.riskID,
+      riskName: riskValue.riskName,
+      riskOwner,
+      riskCategory,
+      riskImpactLevel,
+      deptId: departmentName,
+      riskProbabilityLevel,
+      riskDescription: riskValue.riskDescription,
+      riskObjective: riskValue.riskObjective,
+      riskResponseActivity: riskValue.riskResponseActivity,
+      riskResponse,
+    })
+  );
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");
@@ -466,11 +469,9 @@ export function Riskforms({onFormSubmit}) {
       riskID: "",
       riskObjective: "",
       riskDescription: "",
-      riskResponseActivity: ""
-    })
+      riskResponseActivity: "",
+    });
   };
-
-  
 
   return (
     <div>
@@ -602,12 +603,12 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [riskName, setRiskName] = useState("");
   const [riskReview, setRiskReview] = useState("");
   const { departmentList } = useDepartmentDropdown();
-  const [isSubmitting, setIsSubmitting] = useState(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
-  })
+  });
 
   function handleOpen() {
     setOpen(!open);
@@ -682,9 +683,9 @@ export function RiskReviewforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
+        showToast("Kindly check Input details", "error");
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -707,68 +708,69 @@ export function RiskReviewforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
-              <CustomSelect
-                id="departmentID"
-                label={t("departmentId")}
-                value={departmentID}
-                onChange={setDepartmentID}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />
-              )}
-              <CustomSelect
-                id="riskName"
-                label={t("riskName")}
-                value={riskName}
-                onChange={setRiskName}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />
+            {auth.role === "ADMIN" ||
+              (auth.role === "GENERALMANAGER" && (
+                <CustomSelect
+                  id="departmentID"
+                  label={t("departmentId")}
+                  value={departmentID}
+                  onChange={setDepartmentID}
+                  options={departmentList}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              ))}
+            <CustomSelect
+              id="riskName"
+              label={t("riskName")}
+              value={riskName}
+              onChange={setRiskName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
+            <FormInputField
+              id="riskID"
+              label={t("riskId")}
+              value={reviewValue.riskID}
+              onChange={handleInputChange}
+              required
+            />
+            <CustomSelect
+              id="riskReview"
+              label={t("riskReview")}
+              value={riskReview}
+              onChange={setRiskReview}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
+            {riskReview === "reject risk" && (
               <FormInputField
-                id="riskID"
-                label={t("riskId")}
-                value={reviewValue.riskID}
-                onChange={handleInputChange}
-                required
-              />
-              <CustomSelect
-                id="riskReview"
-                label={t("riskReview")}
-                value={riskReview}
-                onChange={setRiskReview}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />
-              {riskReview === "reject risk" && (
-                <FormInputField
                 type="date"
                 label={t("nextReviewDate")}
                 value={NextRiskReviewDate}
                 onChange={handleDateChange}
                 required
               />
-              )}
-              <FormInputField
-                id="description"
-                label={t("comments")}
-                value={reviewValue.riskReviewComments}
-                onChange={handleInputChange}
-                required
-              />
-              <CustomButton
-                label="submit"
-                onClick={handleSubmit}
-                type="submit"
-                className="custom-class"
-                loading={isSubmitting}
-              />
+            )}
+            <FormInputField
+              id="description"
+              label={t("comments")}
+              value={reviewValue.riskReviewComments}
+              onChange={handleInputChange}
+              required
+            />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
         </form>
       </Drawer>
@@ -785,17 +787,19 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigationCost, setMitigationCost] = useState(" ");
   const [riskReviewer, setRiskReviewer] = useState(" ");
   const [endDate, setEndDate] = useState(new Date());
-  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] = useState("");
+  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
+    useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] = riskName.split(",");//
+  const [riskID, riskCategory, impactLevel, probabilityLevel] =
+    riskName.split(","); //
 
   const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
   const probabilityLevelNumber = getProbabiltyLevelNumber(
     parseInt(probabilityLevel, 10)
   );
   const FormArray = GRCFormsArray(t);
-  const {ownersName} = useRiskReviewer()
+  const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = React.useState(false);
@@ -808,7 +812,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
       },
     });
   };
- 
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -824,10 +827,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
     // Set the formatted date to state
     setEndDate(formattedDate);
   };
-
-  
-
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -883,9 +882,9 @@ export function RiskMitigationforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
+        showToast("Kindly check Input details", "error");
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -903,7 +902,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setmitigationCost("");
     setEndDate("");
   };
-
 
   function handleOpen() {
     setOpen(!open);
@@ -928,28 +926,29 @@ export function RiskMitigationforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-              {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
+            {auth.role === "ADMIN" ||
+              (auth.role === "GENERALMANAGER" && (
                 <CustomSelect
-                id="departmentID"
-                label={t("departmentId")}
-                value={departmentID}
-                onChange={setdepartmentID}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />   
-              )} 
-              <CustomSelect
-                id="riskName"
-                label={t("riskName")}
-                value={riskName}
-                onChange={setRiskName}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />
+                  id="departmentID"
+                  label={t("departmentId")}
+                  value={departmentID}
+                  onChange={setdepartmentID}
+                  options={departmentList}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              ))}
+            <CustomSelect
+              id="riskName"
+              label={t("riskName")}
+              value={riskName}
+              onChange={setRiskName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
             <div className="grid grid-cols-2 gap-2">
               <FormInputField
                 id="riskid"
@@ -1064,7 +1063,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [riskName, setRiskName] = useState("");
   const [ownersName, setOwnersName] = useState([]);
   const [departmentID, setdepartmentID] = useState(" ");
-  const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] = useState("");
+  const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] =
+    useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [closeStatus, setRiskClosed] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -1077,19 +1077,19 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     challenges: "",
     recommendedChanges: "",
     comments: "",
-  })
+  });
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setMonitoringValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  const handleClose = () =>{
-    setOpen(false)
-  }
-  const handleOpen = () =>{
-    setOpen(true)
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const notify = () => {
     toast.success("Risk Monitoring Saved Successfully", {
@@ -1100,9 +1100,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       },
     });
   };
-
-  
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1155,9 +1152,9 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       notify();
     } catch (error) {
       if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error")
+        showToast("Kindly check Input details", "error");
       } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error")
+        showToast("Server is currently down Contact your admin", "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -1175,9 +1172,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     setComments("");
   };
 
-
- 
-
   return (
     <div>
       <CustomButton
@@ -1193,18 +1187,19 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" && (
-              <CustomSelect
-                id="departmentID"
-                label={t("departmentId")}
-                value={departmentID}
-                onChange={setdepartmentID}
-                options={departmentList}
-                searchable={true}
-                required
-                group={false}
-              />
-            )}
+            {auth.role === "ADMIN" ||
+              (auth.role === "GENERALMANAGER" && (
+                <CustomSelect
+                  id="departmentID"
+                  label={t("departmentId")}
+                  value={departmentID}
+                  onChange={setdepartmentID}
+                  options={departmentList}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              ))}
             <CustomSelect
               id="riskName"
               label={t("riskName")}
