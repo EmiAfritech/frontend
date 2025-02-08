@@ -441,20 +441,20 @@ export function Riskforms({onFormSubmit}) {
     }
   };
 
-  // const reload = () => {
-  //   setDepartmentName("");
-  //   setRiskOwner("");
-  //   setImpactLevel("");
-  //   setProbabityilLevel("");
-  //   setCategory("");
-  //   setRiskValue({
-  //     riskName: "",
-  //     riskID: "",
-  //     riskObjective: "",
-  //     riskDescription: "",
-  //     riskResponseActivity: ""
-  //   })
-  // };
+  const reload = () => {
+    setDepartmentName("");
+    setRiskOwner("");
+    setImpactLevel("");
+    setProbabityilLevel("");
+    setCategory("");
+    setRiskValue({
+      riskName: "",
+      riskID: "",
+      riskObjective: "",
+      riskDescription: "",
+      riskResponseActivity: ""
+    })
+  };
 
   
 
