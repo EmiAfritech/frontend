@@ -130,7 +130,7 @@ export function Userforms({ onFormSubmit }) {
         </div>
         <hr />
         <form className="w-96">
-          <div className=" px-10 py-8 flex flex-cols space-y-6">
+          <div className=" px-10 py-8 flex flex-col space-y-6">
             <FormInputField
               id="firstName"
               label={t("departmentCode")}
@@ -189,14 +189,14 @@ export function Userforms({ onFormSubmit }) {
               required
               group={false}
             />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
     </div>
@@ -290,7 +290,7 @@ export function Departmentforms({ onFormSubmit }) {
           <hr />
         </div>
         <form className="w-96">
-          <div className=" px-10 py-10">
+          <div className=" px-10 py-10 flex flex-col space-y-6">
             <FormInputField
               id="departmentID"
               label={t("departmentCode")}
@@ -312,14 +312,14 @@ export function Departmentforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
           </div>
-          <CustomButton
-            label="submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
         </form>
       </Drawer>
     </div>
