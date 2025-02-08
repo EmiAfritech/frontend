@@ -2754,7 +2754,7 @@ export function RiskDetails() {
 
           {/* Header */}
           <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
-            Risk Details
+            GRC Risk Management
           </div>
 
           {/* Scrollable Body */}
