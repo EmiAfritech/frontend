@@ -1753,7 +1753,7 @@ export function RiskMonitor() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "70vh",
+        height: "60vh",
       },
     },
     muiTableBodyCellProps: {
