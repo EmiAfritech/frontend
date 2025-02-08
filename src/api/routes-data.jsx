@@ -152,7 +152,7 @@ export function useRiskIDReview({ departmentID }) {
   return { riskReviewIDs };
 }
 
-export function useRiskIDReview({ departmentID }) {
+export function useRiskIDMonitoring({ departmentID }) {
   const { auth } = useContext(AuthContext);
   const [monitoringIDs, setMonitoringIDs] = useState([]);
   const fetchData = async () => {
