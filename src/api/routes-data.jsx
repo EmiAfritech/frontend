@@ -31,7 +31,9 @@ export function useDepartmentDropdown() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
 
   return { departmentList };
 }
@@ -54,7 +56,9 @@ export function useDepartmentTable() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
 
   return { departmentTable, fetchData };
 }
@@ -76,7 +80,9 @@ export function useEmployeeTable() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
 
   return { employeeTable, fetchData };
 }
@@ -98,7 +104,9 @@ export function useRiskTable() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { riskTable, fetchData };
 }
 
@@ -123,7 +131,9 @@ export function useRiskIDMitigation({ departmentID }) {
       console.error(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { riskIDs };
 }
 
@@ -149,7 +159,9 @@ export function useRiskIDReview({ departmentID }) {
       console.error(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { riskReviewIDs };
 }
 
@@ -175,7 +187,9 @@ export function useRiskIDMonitoring({ departmentID }) {
       console.error(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { monitoringIDs };
 }
 
@@ -201,7 +215,9 @@ export function useRiskStatusReport({ departmentID }) {
       console.error(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { monitoringIDs };
 }
 
@@ -224,7 +240,9 @@ export function useRiskReviewer() {
       console.error(error);
     }
   };
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { ownersName };
 }
 
@@ -247,7 +265,9 @@ export function useMitigationTable() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { mitigationTable, fetchData };
 }
 
@@ -270,7 +290,9 @@ export function useMonitoringTable() {
     }
   };
 
-  fetchData();
+  useEffect(() => {
+    fetchData(); 
+  }, []);
   return { monitoringTable, fetchData };
 }
 

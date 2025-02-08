@@ -1373,7 +1373,7 @@ export function RiskStatusReportTab() {
 export function DepartmentTab() {
   const columns = useDeptColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { departmentTable, fetchData } = useDepartmentTable();
+  const { departmentTable, fetchData} = useDepartmentTable();
 
   
   const handleFormSubmit = () => {

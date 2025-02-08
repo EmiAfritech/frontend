@@ -2467,7 +2467,7 @@ export function UserAccountDetails() {
   const handleSubmit = async(e)=>{
     console.log({"userAccountDetials": accountValue})
   }
-  
+
   return (
     <div>
       <IconButton onClick={handleOpen} color="primary">
@@ -2642,10 +2642,10 @@ export function DepartmentAccountDetails() {
             Account Details
           </div>
           <main className="flex text-black p-4 justify-center items-center rounded-lg">
-            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
-              <div className="flex justify-center items-center mb-8">
+            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
+              <div className="flex justify-center items-center">
                 <img
-                  src={afriquetek_logo}
+                  src="https://shorturl.at/VaxG1"
                   alt="Sample"
                   className="h-[120] w-40"
                 />
@@ -2655,12 +2655,6 @@ export function DepartmentAccountDetails() {
                   <IoPerson color="blue" />
                 </span>
                 <span>Robert Knaihv</span>
-              </div>
-              <div className="mb-2 flex flex-row items-center">
-                <span className="mr-4">
-                  <MdOutlineMarkEmailRead color="blue" />
-                </span>
-                <span>knaihv@ymail.com</span>
               </div>
               <div className="mb-2 flex flex-row items-center">
                 <span className="mr-4">
@@ -2675,111 +2669,89 @@ export function DepartmentAccountDetails() {
                 <span>JohnBull Street</span>
               </div>
             </div>
-            <div className="flex-[2]">
+            <div className="flex-[2] ml-8">
               <div className="grid grid-cols-2 gap-8 p-4">
-                <input
-                  label="Last Name"
-                  type="text"
-                  id="lname"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="last name"
+                <FormInputField
+                  id="dname"
+                  label="Department Name"
+                  value={accountValue.departmentName}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Other Name"
-                  type="text"
-                  id="Oname"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="other name"
+                <FormInputField
+                  id="manager"
+                  label="Department Manager"
+                  value={accountValue.departmentManager}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Email"
+                <FormInputField
                   type="email"
                   id="email"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="Enter your email"
+                  label="Email"
+                  value={accountValue.email}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Phone"
+                <FormInputField
                   type="phone"
                   id="phone"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="phone number"
+                  label="Phone"
+                  value={accountValue.phone}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Address 1"
-                  type="text"
+                <FormInputField
                   id="address1"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="address 1"
+                  label="Address 1"
+                  value={accountValue.address1}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Nationality"
-                  type="text"
+                <FormInputField
                   id="nationality"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="nationality"
+                  label="Nationality"
+                  value={accountValue.nationality}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="DOB"
-                  type="text"
+                <FormInputField
                   id="dob"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="date of birth"
-                  required
-                  // error={error && !email ? "Email is required" : ""}
-                />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  placeholder="Enter your email"
+                  label="Date of Birth"
+                  value={accountValue.dob}
+                  onChange={handleInputChange}
                   required
                 />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  placeholder="Enter your email"
+                <FormInputField
+                  id="officelocation"
+                  label="Office Location"
+                  value={accountValue.officeLocation}
+                  onChange={handleInputChange}
                   required
                 />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="Enter your email"
+                <FormInputField
+                  id="department"
+                  label="Department"
+                  value={accountValue.department}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
+                />
+                <FormInputField
+                  id="role"
+                  label="Role"
+                  value={accountValue.role}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className="px-16 mt-8">
-                {/* <CustomButton
-                    label="Submit"
-                    // onClick={handleSubmit}
-                    type="submit"
-                    className="custom-class"
-                    // loading={isSubmitting}
-                  /> */}
+                <CustomButton
+                  label="Submit"
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="custom-class"
+                  loading={isSubmitting}
+                />
               </div>
             </div>
           </main>
