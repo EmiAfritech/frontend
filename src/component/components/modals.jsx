@@ -2459,7 +2459,11 @@ export function UserAccountDetails(){
             className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
             ✖
           </button>
-          <main className="flex text-black p-4 justify-center rounded-lg">
+          {/* Header */}
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-12">
+              Account Details
+            </div>
+          <main className="flex text-black p-4 justify-center items-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
               <div className="flex justify-center items-center">
                 <img
@@ -2630,7 +2634,11 @@ export function DepartmentAccountDetails() {
             className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
             ✖
           </button>
-          <main className="flex text-black p-4 justify-center rounded-lg">
+          {/* Header */}
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-12">
+              Account Details
+            </div>
+          <main className="flex text-black p-4 justify-center items-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
               <div className="flex justify-center items-center mb-8">
                 <img
