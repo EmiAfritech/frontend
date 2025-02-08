@@ -12,6 +12,7 @@ import {
   CDSMainForm,
   UserAccountDetails,
   DepartmentAccountDetails,
+  RiskDataDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -86,10 +87,6 @@ export const useRiskViewColumns = () => {
       header: t("riskName"),
     },
     {
-      accessorKey: "riskDescription",
-      header: t("riskDescription"),
-    },
-    {
       accessorKey: "riskCategory",
       header: t("riskCategory"),
     },
@@ -98,13 +95,9 @@ export const useRiskViewColumns = () => {
       header: t("riskStatusdatatable"),
     },
     {
-      accessorKey: "riskScore",
-      header: t("riskScore"),
-    },
-    {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails/>
+      Cell: ({ row }) => <RiskDataDetails/>
     },
   ];
 };

@@ -468,438 +468,7 @@ export function UserData(params) {
   );
 }
 
-export function RiskData(params) {
-  const { auth } = useContext(AuthContext);
-  const [open, setOpen] = useState(false);
-  const close = () => setOpen(false);
-  const id = params.row.id;
-  const [riskName, setRiskName] = useState(params.row.riskName);
-  const [riskID, setRiskID] = useState(params.row.riskID);
-  const [departmentID, setDepartmentID] = useState(params.row.departmentID);
-  const [departmentName, setDepartmentName] = useState(params.row.department);
-  const [riskDescription, setRiskDescription] = useState(
-    params.row.riskDescription
-  );
-  const [riskCategory, setRiskCategory] = useState(params.row.riskCategory);
-  const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
-  const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
-  const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
 
-  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
-    getProbabiltyLevelNumber(params.row.riskProbabilityLevel)
-  );
-  const [riskImpactLevell, setRiskImpactLevel] = useState(
-    getImpactLevelNumber(params.row.riskImpactLevel)
-  );
-
-  const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
-  const [riskResponseActivity, setRiskResponseActivity] = useState(
-    params.row.riskResponseActivity
-  );
-  const [deptmentName, setdeptmentName] = useState([]);
-  const [ownersName, setOwnersName] = useState([]);
-  const cdate = new Date(riskCreatedAt);
-  const cDate = cdate.toISOString().split("T")[0];
-  const { triggerComponent } = React.useContext(Modaltrigger);
-
-  const notify = () => {
-    toast.success("Risk Saved Successfully", {
-      onClose: () => {
-        close();
-      },
-    });
-  };
-  const notifyFillForms = () => {
-    toast.error("Kindly check Input details");
-  };
-  const notifyServerDown = () => {
-    toast.error("Server is currently down Contact your admin");
-  };
-
-  const notifyDelete = () => {
-    toast.error("Risk Deleted", {
-      onClose: () => {
-        close();
-      },
-    });
-  };
-
-  useEffect(() => {
-    axios
-      .get(DEPARTMENTDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setdeptmentName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(OWNERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setOwnersName(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "#FFFFFF",
-    boxShadow: 24,
-    p: 4,
-    borderRadius: 1,
-    width: 1200,
-  };
-
-  function handleOpen() {
-    setOpen(!open);
-  }
-
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const riskProbabilityLevel = riskProbabilityLevell;
-
-      const riskImpactLevel = riskImpactLevell;
-
-      await axios.put(
-        EDITRISK_URL,
-        JSON.stringify({
-          id,
-          riskName,
-          riskID,
-          riskDescription,
-          riskCategory,
-          riskObjective,
-          riskImpactLevel,
-          riskProbabilityLevel,
-          riskResponse,
-          riskResponseActivity,
-          riskOwner,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
-      notify();
-      triggerComponent();
-    } catch (error) {
-      if (error.response.status === 400) {
-        notifyFillForms();
-      } else if (error.response.status === 500) {
-        notifyServerDown();
-      }
-    }
-  };
-  console.log(auth.role);
-  const handleDeleteSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.delete(`${DELETERISK_URL}/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      });
-      notifyDelete();
-    } catch (error) {
-      if (error.response.status === 400) {
-        notifyFillForms();
-      } else if (error.response.status === 500) {
-        notifyServerDown();
-      }
-    }
-  };
-
-  return (
-    <>
-      <ToastContainer hideProgressBar autoClose={1000} />
-      <button onClick={handleOpen} className="px-2">
-        <FaEye className="icons" />
-      </button>
-      <Modal
-        open={open}
-        onClose={close}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <FormControl fullWidth>
-            <div className=" px-10 py-10">
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Code"
-                    value={riskID}
-                    autoComplete="off"
-                    onChange={(e) => setRiskID(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Name"
-                    value={riskName}
-                    autoComplete="off"
-                    onChange={(e) => setRiskName(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  {auth.role === "MANAGER" || auth.role === "AUDITOR" ? (
-                    <TextField
-                      label="Department ID"
-                      value={departmentID}
-                      autoComplete="off"
-                      disabled
-                      onChange={(e) => setDepartmentID(e.target.value)}
-                      required
-                      style={{ width: "100%" }}
-                    />
-                  ) : (
-                    <> </>
-                  )}
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  {auth.role === "MANAGER" || auth.role === "AUDITOR" ? (
-                    <>
-                      <InputLabel>Department Name</InputLabel>
-                      <Select
-                        label="Department Name"
-                        value={departmentName}
-                        autoComplete="off"
-                        onChange={(e) => setDepartmentName(e.target.value)}
-                        required
-                        style={{ width: "100%" }}>
-                        {deptmentName.map((deptmentName) => (
-                          <MenuItem
-                            key={deptmentName.names.id}
-                            value={deptmentName.names.name}
-                            onClick={() =>
-                              setDepartmentID(deptmentName.deptIDs.deptID)
-                            }>
-                            {" "}
-                            {deptmentName.names.name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Risk Owner</InputLabel>
-                  <Select
-                    label="Risk Owner"
-                    value={riskOwner}
-                    autoComplete="off"
-                    onChange={(e) => setRiskOwner(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {ownersName.map((ownersName) => (
-                      <MenuItem key={ownersName.id} value={ownersName.value}>
-                        {" "}
-                        {ownersName.value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    type="date"
-                    label="Created At"
-                    value={cDate}
-                    autoComplete="off"
-                    disabled
-                    onChange={(e) => {
-                      const selectedDate = e.target.value;
-                      const dateObj = new Date(selectedDate);
-
-                      // Extract year, month, and day components
-                      const year = dateObj.getFullYear();
-                      const month = String(dateObj.getMonth() + 1).padStart(
-                        2,
-                        "0"
-                      );
-                      const day = String(dateObj.getDate()).padStart(2, "0");
-
-                      // Format the date as "yyyy-MM-dd"
-                      const formattedDate = `${year}-${month}-${day}`;
-                      // Set the formatted date to state
-                      setRiskCreatedAt(formattedDate);
-                    }}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Score"
-                    value={getRiskScore(
-                      riskProbabilityLevell * riskImpactLevell
-                    )}
-                    autoComplete="off"
-                    disabled
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Risk Response</InputLabel>
-                  <Select
-                    label="Risk Response"
-                    value={riskResponse}
-                    autoComplete="off"
-                    onChange={(e) => setRiskResponse(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    <MenuItem value="Exploit">Exploit</MenuItem>
-                    <MenuItem value="Accept">Accept</MenuItem>
-                    <MenuItem value="Enhance">Enhance</MenuItem>
-                    <MenuItem value="Avoid">Avoid</MenuItem>
-                    <MenuItem value="Transfer">Transfer</MenuItem>
-                    <MenuItem value="Mitigate">Mitigate</MenuItem>
-                  </Select>
-                </div>
-              </div>
-              <div className="grid grid-cols-4 gap-3 mb-6">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Risk Category</InputLabel>
-                  <Select
-                    label="Risk Category"
-                    value={riskCategory}
-                    autoComplete="off"
-                    onChange={(e) => setRiskCategory(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    <MenuItem value="EXTERNAL FACTORS">
-                      External Factors
-                    </MenuItem>
-                    <MenuItem value="PEOPLE">People</MenuItem>
-                    <MenuItem value="SYSTEM">System</MenuItem>
-                    <MenuItem value="PROCESS">Process</MenuItem>
-                  </Select>
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Risk Probability Level</InputLabel>
-                  <Select
-                    label="Risk Probability Level"
-                    value={riskProbabilityLevell}
-                    autoComplete="off"
-                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    <MenuItem value={1}>Almost Impossible (1)</MenuItem>
-                    <MenuItem value={2}>Unlikely (2)</MenuItem>
-                    <MenuItem value={3}>Likely (3)</MenuItem>
-                    <MenuItem value={4}>Very Likely (4)</MenuItem>
-                    <MenuItem value={5}>Almost Certain (5)</MenuItem>
-                  </Select>
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <InputLabel>Risk Impact level</InputLabel>
-                  <Select
-                    label="Risk Impact level"
-                    value={riskImpactLevell}
-                    autoComplete="off"
-                    onChange={(e) => setRiskImpactLevel(e.target.value)}
-                    required
-                    style={{ width: "100%" }}>
-                    {" "}
-                    <MenuItem value={1}>Insignificant (1)</MenuItem>
-                    <MenuItem value={2}>Minor (2)</MenuItem>
-                    <MenuItem value={3}>Moderate (3)</MenuItem>
-                    <MenuItem value={4}>Major (4)</MenuItem>
-                    <MenuItem value={5}>Catastrophic (5)</MenuItem>
-                  </Select>
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Objective"
-                    multiline
-                    value={riskObjective}
-                    autoComplete="off"
-                    onChange={(e) => setRiskObjective(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-4 gap-3">
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Description"
-                    multiline
-                    value={riskDescription}
-                    autoComplete="off"
-                    onChange={(e) => setRiskDescription(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="relative mb-6" data-te-input-wrapper-init>
-                  <TextField
-                    label="Risk Response Activity"
-                    multiline
-                    value={riskResponseActivity}
-                    autoComplete="off"
-                    onChange={(e) => setRiskResponseActivity(e.target.value)}
-                    required
-                    style={{ width: "100%" }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-              <button
-                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                type="submit"
-                onClick={handleEditSubmit}>
-                <FaSave className="icons" />
-                Save
-              </button>
-              <button
-                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                type="submit"
-                onClick={handleDeleteSubmit}>
-                <FaTrashAlt className="icons" color="red" />
-                Delete
-              </button>
-            </div>
-          </FormControl>
-        </Box>
-      </Modal>
-    </>
-  );
-}
 
 export function ReviewRiskData({ params }) {
   const { auth } = useContext(AuthContext);
@@ -2141,163 +1710,7 @@ export function DepartmentData(params) {
   );
 }
 
-export function CsvModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  const style = {
-    position: "absolute",
-    top: "20%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "white",
-    border: "2px solid #000",
-    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-    borderRadius: "8px",
-    p: 4,
-  };
-  return (
-    <>
-      <Button onClick={handleOpen} size="small" variant="outlined">
-        Upload CsvFile
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{ mb: 3 }}>
-            Select to choose a file
-          </Typography>
-          <CsvUploader onAccepting={handleClose} />
-        </Box>
-      </Modal>
-    </>
-  );
-}
-
-export function LogOut() {
-  const { clearAuth, auth } = useContext(AuthContext);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
-  const { t } = useTranslation();
-  const notifyUnauthorized = () => {
-    toast.error("Unauthorized User!", {
-      onClose: () => {
-        navigate("/", { replace: true });
-        clearAuth();
-      },
-    });
-  };
-  const notifyNetwork = () => {
-    toast.error("Server is Currently Unavailable, Please Try Again Later!", {});
-  };
-
-  const handleLogOut = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      await axios.get(LOGOUT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      });
-      navigate("/", { replace: true });
-      clearAuth();
-    } catch (error) {
-      if (error.response.status === 401) {
-        notifyUnauthorized();
-      } else if (error.response.status === 500) {
-        notifyNetwork();
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const style = {
-    position: "absolute",
-    top: "20%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 450,
-    bgcolor: "white",
-    borderBottom: "4px solid #000",
-    boxShadow: "40px rgba(0, 0, 0, 0.2)",
-    borderRadius: "8px",
-    p: 2,
-  };
-
-  return (
-    <>
-      <ToastContainer onClose={5000} hideProgressBar />
-      <button
-        onClick={handleOpen}
-        className="flex flex row items-center p-3 ml-3">
-        <FaSignOutAlt className="icons" />
-        {t("logout")}
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <div className="flex flex row items-center justify-center mb-4">
-            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <svg
-                class="h-6 w-6 text-red-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                />
-              </svg>
-            </div>
-            <div className="ml-2">
-              <Typography component="h2">{t("logoutMessage")}</Typography>
-            </div>
-          </div>
-          <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-            <button
-              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              type="submit"
-              onClick={handleLogOut}
-              disabled={isLoading} // Disable the button while loading
-            >
-              {isLoading ? (
-                <div className="flex flex-row justify-center">
-                  <p className="text-sm pr-2">{t("loading")}</p>
-                  <CircularProgress size={27} thickness={6} color="primary" />
-                </div>
-              ) : (
-                t("yes")
-              )}
-            </button>
-          </div>
-        </Box>
-      </Modal>
-    </>
-  );
-}
 
 export function RiskAdviceReportData() {
   const { auth } = useContext(AuthContext);
@@ -2436,6 +1849,441 @@ export function RiskAdviceReportData() {
     </div>
   );
 }
+
+export function RiskData2(params) {
+  const { auth } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  const id = params.row.id;
+  const [riskName, setRiskName] = useState(params.row.riskName);
+  const [riskID, setRiskID] = useState(params.row.riskID);
+  const [departmentID, setDepartmentID] = useState(params.row.departmentID);
+  const [departmentName, setDepartmentName] = useState(params.row.department);
+  const [riskDescription, setRiskDescription] = useState(
+    params.row.riskDescription
+  );
+  const [riskCategory, setRiskCategory] = useState(params.row.riskCategory);
+  const [riskObjective, setRiskObjective] = useState(params.row.riskObjective);
+  const [riskOwner, setRiskOwner] = useState(params.row.riskOwner);
+  const [riskCreatedAt, setRiskCreatedAt] = useState(params.row.createdAt);
+
+  const [riskProbabilityLevell, setRiskProbabilityLevel] = useState(
+    getProbabiltyLevelNumber(params.row.riskProbabilityLevel)
+  );
+  const [riskImpactLevell, setRiskImpactLevel] = useState(
+    getImpactLevelNumber(params.row.riskImpactLevel)
+  );
+
+  const [riskResponse, setRiskResponse] = useState(params.row.riskResponse);
+  const [riskResponseActivity, setRiskResponseActivity] = useState(
+    params.row.riskResponseActivity
+  );
+  const [deptmentName, setdeptmentName] = useState([]);
+  const [ownersName, setOwnersName] = useState([]);
+  const cdate = new Date(riskCreatedAt);
+  const cDate = cdate.toISOString().split("T")[0];
+  const { triggerComponent } = React.useContext(Modaltrigger);
+
+  const notify = () => {
+    toast.success("Risk Saved Successfully", {
+      onClose: () => {
+        close();
+      },
+    });
+  };
+  const notifyFillForms = () => {
+    toast.error("Kindly check Input details");
+  };
+  const notifyServerDown = () => {
+    toast.error("Server is currently down Contact your admin");
+  };
+
+  const notifyDelete = () => {
+    toast.error("Risk Deleted", {
+      onClose: () => {
+        close();
+      },
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get(DEPARTMENTDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setdeptmentName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(OWNERSDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      })
+      .then((data) => {
+        setOwnersName(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "#FFFFFF",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: 1,
+    width: 1200,
+  };
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const riskProbabilityLevel = riskProbabilityLevell;
+
+      const riskImpactLevel = riskImpactLevell;
+
+      await axios.put(
+        EDITRISK_URL,
+        JSON.stringify({
+          id,
+          riskName,
+          riskID,
+          riskDescription,
+          riskCategory,
+          riskObjective,
+          riskImpactLevel,
+          riskProbabilityLevel,
+          riskResponse,
+          riskResponseActivity,
+          riskOwner,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      notify();
+      triggerComponent();
+    } catch (error) {
+      if (error.response.status === 400) {
+        notifyFillForms();
+      } else if (error.response.status === 500) {
+        notifyServerDown();
+      }
+    }
+  };
+  console.log(auth.role);
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.delete(`${DELETERISK_URL}/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+      notifyDelete();
+    } catch (error) {
+      if (error.response.status === 400) {
+        notifyFillForms();
+      } else if (error.response.status === 500) {
+        notifyServerDown();
+      }
+    }
+  };
+
+  return (
+    <>
+      <ToastContainer hideProgressBar autoClose={1000} />
+      <button onClick={handleOpen} className="px-2">
+        <FaEye className="icons" />
+      </button>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <FormControl fullWidth>
+            <div className=" px-10 py-10">
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Code"
+                    value={riskID}
+                    autoComplete="off"
+                    onChange={(e) => setRiskID(e.target.value)}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Name"
+                    value={riskName}
+                    autoComplete="off"
+                    onChange={(e) => setRiskName(e.target.value)}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  {auth.role === "MANAGER" || auth.role === "AUDITOR" ? (
+                    <TextField
+                      label="Department ID"
+                      value={departmentID}
+                      autoComplete="off"
+                      disabled
+                      onChange={(e) => setDepartmentID(e.target.value)}
+                      required
+                      style={{ width: "100%" }}
+                    />
+                  ) : (
+                    <> </>
+                  )}
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  {auth.role === "MANAGER" || auth.role === "AUDITOR" ? (
+                    <>
+                      <InputLabel>Department Name</InputLabel>
+                      <Select
+                        label="Department Name"
+                        value={departmentName}
+                        autoComplete="off"
+                        onChange={(e) => setDepartmentName(e.target.value)}
+                        required
+                        style={{ width: "100%" }}>
+                        {deptmentName.map((deptmentName) => (
+                          <MenuItem
+                            key={deptmentName.names.id}
+                            value={deptmentName.names.name}
+                            onClick={() =>
+                              setDepartmentID(deptmentName.deptIDs.deptID)
+                            }>
+                            {" "}
+                            {deptmentName.names.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Owner</InputLabel>
+                  <Select
+                    label="Risk Owner"
+                    value={riskOwner}
+                    autoComplete="off"
+                    onChange={(e) => setRiskOwner(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    {ownersName.map((ownersName) => (
+                      <MenuItem key={ownersName.id} value={ownersName.value}>
+                        {" "}
+                        {ownersName.value}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    type="date"
+                    label="Created At"
+                    value={cDate}
+                    autoComplete="off"
+                    disabled
+                    onChange={(e) => {
+                      const selectedDate = e.target.value;
+                      const dateObj = new Date(selectedDate);
+
+                      // Extract year, month, and day components
+                      const year = dateObj.getFullYear();
+                      const month = String(dateObj.getMonth() + 1).padStart(
+                        2,
+                        "0"
+                      );
+                      const day = String(dateObj.getDate()).padStart(2, "0");
+
+                      // Format the date as "yyyy-MM-dd"
+                      const formattedDate = `${year}-${month}-${day}`;
+                      // Set the formatted date to state
+                      setRiskCreatedAt(formattedDate);
+                    }}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Score"
+                    value={getRiskScore(
+                      riskProbabilityLevell * riskImpactLevell
+                    )}
+                    autoComplete="off"
+                    disabled
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Response</InputLabel>
+                  <Select
+                    label="Risk Response"
+                    value={riskResponse}
+                    autoComplete="off"
+                    onChange={(e) => setRiskResponse(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    <MenuItem value="Exploit">Exploit</MenuItem>
+                    <MenuItem value="Accept">Accept</MenuItem>
+                    <MenuItem value="Enhance">Enhance</MenuItem>
+                    <MenuItem value="Avoid">Avoid</MenuItem>
+                    <MenuItem value="Transfer">Transfer</MenuItem>
+                    <MenuItem value="Mitigate">Mitigate</MenuItem>
+                  </Select>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Category</InputLabel>
+                  <Select
+                    label="Risk Category"
+                    value={riskCategory}
+                    autoComplete="off"
+                    onChange={(e) => setRiskCategory(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    <MenuItem value="EXTERNAL FACTORS">
+                      External Factors
+                    </MenuItem>
+                    <MenuItem value="PEOPLE">People</MenuItem>
+                    <MenuItem value="SYSTEM">System</MenuItem>
+                    <MenuItem value="PROCESS">Process</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Probability Level</InputLabel>
+                  <Select
+                    label="Risk Probability Level"
+                    value={riskProbabilityLevell}
+                    autoComplete="off"
+                    onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    <MenuItem value={1}>Almost Impossible (1)</MenuItem>
+                    <MenuItem value={2}>Unlikely (2)</MenuItem>
+                    <MenuItem value={3}>Likely (3)</MenuItem>
+                    <MenuItem value={4}>Very Likely (4)</MenuItem>
+                    <MenuItem value={5}>Almost Certain (5)</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <InputLabel>Risk Impact level</InputLabel>
+                  <Select
+                    label="Risk Impact level"
+                    value={riskImpactLevell}
+                    autoComplete="off"
+                    onChange={(e) => setRiskImpactLevel(e.target.value)}
+                    required
+                    style={{ width: "100%" }}>
+                    {" "}
+                    <MenuItem value={1}>Insignificant (1)</MenuItem>
+                    <MenuItem value={2}>Minor (2)</MenuItem>
+                    <MenuItem value={3}>Moderate (3)</MenuItem>
+                    <MenuItem value={4}>Major (4)</MenuItem>
+                    <MenuItem value={5}>Catastrophic (5)</MenuItem>
+                  </Select>
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Objective"
+                    multiline
+                    value={riskObjective}
+                    autoComplete="off"
+                    onChange={(e) => setRiskObjective(e.target.value)}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-3">
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Description"
+                    multiline
+                    value={riskDescription}
+                    autoComplete="off"
+                    onChange={(e) => setRiskDescription(e.target.value)}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div className="relative mb-6" data-te-input-wrapper-init>
+                  <TextField
+                    label="Risk Response Activity"
+                    multiline
+                    value={riskResponseActivity}
+                    autoComplete="off"
+                    onChange={(e) => setRiskResponseActivity(e.target.value)}
+                    required
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleEditSubmit}>
+                <FaSave className="icons" />
+                Save
+              </button>
+              <button
+                className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                type="submit"
+                onClick={handleDeleteSubmit}>
+                <FaTrashAlt className="icons" color="red" />
+                Delete
+              </button>
+            </div>
+          </FormControl>
+        </Box>
+      </Modal>
+    </>
+  );
+}
+
+//new modals
 
 export function UserAccountDetails() {
   const [open, setOpen] = useState(false);
@@ -2676,7 +2524,7 @@ export function DepartmentAccountDetails() {
               <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
                 <div className="flex justify-center items-center">
                   <img
-                    src="https://shorturl.at/VaxG1"
+                    src="https://th.bing.com/th/id/OIF.tVJjXsRXmyzpnTV2UwfQVA?w=175&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
                     alt="Sample"
                     className="h-[120] w-40"
                   />
@@ -2740,37 +2588,9 @@ export function DepartmentAccountDetails() {
                     required
                   />
                   <FormInputField
-                    id="nationality"
-                    label="Nationality"
-                    value={accountValue.nationality}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="dob"
-                    label="Date of Birth"
-                    value={accountValue.dob}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
                     id="officelocation"
                     label="Office Location"
                     value={accountValue.officeLocation}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="department"
-                    label="Department"
-                    value={accountValue.department}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="role"
-                    label="Role"
-                    value={accountValue.role}
                     onChange={handleInputChange}
                     required
                   />
@@ -2787,6 +2607,253 @@ export function DepartmentAccountDetails() {
                 </div>
               </div>
             </main>
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+export function LogOut() {
+  const { clearAuth, auth } = useContext(AuthContext);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
+  const { t } = useTranslation();
+  const notifyUnauthorized = () => {
+    toast.error("Unauthorized User!", {
+      onClose: () => {
+        navigate("/", { replace: true });
+        clearAuth();
+      },
+    });
+  };
+  const notifyNetwork = () => {
+    toast.error("Server is Currently Unavailable, Please Try Again Later!", {});
+  };
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await axios.get(LOGOUT_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+      navigate("/", { replace: true });
+      clearAuth();
+    } catch (error) {
+      if (error.response.status === 401) {
+        notifyUnauthorized();
+      } else if (error.response.status === 500) {
+        notifyNetwork();
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const style = {
+    position: "absolute",
+    top: "20%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 450,
+    bgcolor: "white",
+    borderBottom: "4px solid #000",
+    boxShadow: "40px rgba(0, 0, 0, 0.2)",
+    borderRadius: "8px",
+    p: 2,
+  };
+
+  return (
+    <>
+      <ToastContainer onClose={5000} hideProgressBar />
+      <button
+        onClick={handleOpen}
+        className="flex flex row items-center p-3 ml-3">
+        <FaSignOutAlt className="icons" />
+        {t("logout")}
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <div className="flex flex row items-center justify-center mb-4">
+            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg
+                class="h-6 w-6 text-red-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                />
+              </svg>
+            </div>
+            <div className="ml-2">
+              <Typography component="h2">{t("logoutMessage")}</Typography>
+            </div>
+          </div>
+          <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+            <button
+              className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              type="submit"
+              onClick={handleLogOut}
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? (
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">{t("loading")}</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
+                </div>
+              ) : (
+                t("yes")
+              )}
+            </button>
+          </div>
+        </Box>
+      </Modal>
+    </>
+  );
+}
+
+export function RiskDataDetails() {
+  const { auth } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  return (
+    <div>
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <button
+            onClick={close}
+            className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
+            ✖
+          </button>
+
+          {/* Header */}
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
+            Account Details
+          </div>
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto max-h-[70vh] p-4">
+          <div className="grid grid-cols-6 bg-gray-300 mb-10 p-4">
+              <div className="col-span-2 grid grid-cols-2 gap-4">
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
+                  <p>Inherent Risk</p>
+                  <p>32</p>
+                </div>
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
+                  <p>Inherent Risk</p>
+                  <p>32</p>
+                </div>
+              </div>
+              <div className="col-span-3 py-10 text-center">
+                <div className="grid grid-cols-2 pb-4">
+                  <h1>ID: {riskID}</h1>
+                  <div>Status: Management Review</div>
+                </div>
+                <hr className="my-4" />
+                <h3>Subject</h3>
+              </div>
+            </div>
+            <div>
+              <div className="flex space-x-4 border-b pb-2">
+                <button className="px-4 py-2 bg-blue-500 text-white rounded">
+                  Details
+                </button>
+                <button className="px-4 py-2 bg-gray-200 rounded">
+                  Mitigation
+                </button>
+                <button className="px-4 py-2 bg-gray-200 rounded">
+                  Review
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-4 pt-5">
+                <div>
+                  <div className="flex items-center space-x-4">
+                    <p>Risk ID:</p>
+                    <input
+                      type="text"
+                      value={riskID}
+                      onChange={(e) => setRiskID(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Name:</p>
+                    <input
+                      type="text"
+                      value={riskName}
+                      onChange={(e) => setRiskName(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Department Name:</p>
+                    <select
+                      value={deptmentName}
+                      onChange={(e) => setdeptmentName(e.target.value)}
+                      className="border p-2 w-full">
+                      <option>hi</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Probability Levels:</p>
+                    <input
+                      type="text"
+                      value={riskProbabilityLevel}
+                      onChange={(e) => setRiskProbabilityLevel(e.target.value)}
+                      className="border p-2 w-full"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Description:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Impact Level:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Objective:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                  <div className="flex items-center space-x-4 mt-4">
+                    <p>Risk Owner:</p>
+                    <input type="text" className="border p-2 w-full" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Box>
       </Modal>
