@@ -6,6 +6,7 @@ import {
   RISKIDSMITIGATION_URL,
   RISKIDSMONITORING_URL,
   RISKMITIGATION_URL,
+  RISKMONITORING_URL,
   RISKREVIEWERSDROPDOWN_URL,
   USERS_URL,
 } from "./routes";
@@ -222,3 +223,27 @@ export function useMitigationTable() {
   fetchData();
   return { mitigationTable, fetchData };
 }
+
+export function useMonitoringTable() {
+  const { auth } = useContext(AuthContext);
+  const [monitoringTable, setMonitoringTable] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKMONITORING_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setMonitoringTable(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchData();
+  return { monitoringTable, fetchData };
+}
+

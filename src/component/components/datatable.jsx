@@ -167,6 +167,37 @@ export const useRiskReviewColumns = () => {
   ];
 };
 
+export const useRiskMonitoringColumns = () => {
+  const {t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+    },
+    {
+      accessorKey: "riskName",
+      header: t("riskName"),
+    },
+    {
+      accessorKey: "riskResponseImplementation",
+      header: t("riskImplementation"),
+    },
+    {
+      accessorKey: "recommendedChanges",
+      header: t("recommendedChanges"),
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("dateMonitored"),
+    },
+    {
+      accessorKey: "view",
+      header: t("Action"),
+      Cell: ({ row }) => <DepartmentAccountDetails/>
+    },
+  ];
+};
+
 
 export const useRiskStatuscolumns = () => {
   return [
@@ -279,38 +310,7 @@ export const useReportAuditTrailColumns = () => {
 
 
 
-export const useRiskMonitoringColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 1 },
-    {
-      field: "riskResponseImplementation",
-      headerName: t("riskImplementation"),
-      flex: 1,
-    },
-    {
-      field: "riskResponseActivitiyStatus",
-      headerName: t("riskActivityStatus"),
-      flex: 1,
-    },
-    {
-      field: "recommendedChanges",
-      headerName: t("recommendedChanges"),
-      flex: 1,
-    },
-    { field: "challenges", headerName: t("challenges"), flex: 1 },
-    { field: "comments", headerName: t("comments"), flex: 1 },
-    { field: "mitigationOwner", headerName: t("mitigationOwner"), flex: 1 },
-    { field: "createdAt", headerName: t("dateMonitored"), flex: 1 },
-    {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
-      renderCell: (params) => MonitoredRiskData(params),
-    },
-  ];
-};
+
 
 export const useRiskAppetiteReportGreaterColumns = () => {
   const { t } = useTranslation();
