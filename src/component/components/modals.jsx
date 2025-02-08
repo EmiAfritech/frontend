@@ -468,8 +468,6 @@ export function UserData(params) {
   );
 }
 
-
-
 export function ReviewRiskData({ params }) {
   const { auth } = useContext(AuthContext);
   const { triggerComponent } = useContext(ModalTriggerContext);
@@ -1710,8 +1708,6 @@ export function DepartmentData(params) {
   );
 }
 
-
-
 export function RiskAdviceReportData() {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -2763,29 +2759,51 @@ export function RiskDetails() {
 
           {/* Scrollable Body */}
           <div className="overflow-y-auto max-h-[70vh] p-4">
-          <div className="grid grid-cols-6 bg-gray-300 mb-10 p-4">
+            <div className="grid grid-cols-6 bg-gray-300 mb-10 p-6 rounded-lg shadow-md">
+              {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
-                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
-                  <p>Inherent Risk</p>
-                  <p>32</p>
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
+                  <p className="text-2xl font-semibold">Inherent Risk</p>
+                  <p className="text-4xl font-bold">32</p>
+                  <p className="text-2xl font-bold">Very High</p>
                 </div>
-                <div className="bg-blue-700 text-white h-48 w-40 p-5 m-3">
-                  <p>Inherent Risk</p>
-                  <p>32</p>
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
+                  <p className="text-2xl font-semibold">Residual Risk</p>
+                  <p className="text-4xl font-bold">32</p>
+                  <p className="text-2xl font-bold">Very High</p>
                 </div>
               </div>
-              <div className="col-span-3 py-10 text-center">
-                <div className="grid grid-cols-2 pb-4">
-                  <h1>ID: 2830093244</h1>
-                  <div>Status: Management Review</div>
+
+              {/* Right Section: Details */}
+              <div className="col-span-3 flex flex-col items-center justify-center py-10">
+                <div className="grid grid-cols-3 w-full text-lg font-medium pb-4">
+                  <h1 className="text-gray-700">
+                    ID: <span className="font-semibold">2830093244</span>
+                  </h1>
+                  <div className="text-gray-700">
+                    Status:{" "}
+                    <span className="font-semibold text-blue-700">
+                      Management Review
+                    </span>
+                  </div>
+                  <div className="text-gray-700">
+                    Category:{" "}
+                    <span className="font-semibold text-blue-700">
+                      System
+                    </span>
+                  </div>
                 </div>
-                <hr className="my-4" />
-                <h3>Subject</h3>
+                <hr className="my-4 w-full border-gray-400" />
+                <div className="text-gray-700">
+                  Subject:{" "}
+                  <span className="font-semibold text-blue-700">
+                    Check on all the computers in the office and work on them
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <div>
-              <RiskDetailsSideTabs/>
-            </div>
+            <RiskDetailsSideTabs />
           </div>
         </Box>
       </Modal>
