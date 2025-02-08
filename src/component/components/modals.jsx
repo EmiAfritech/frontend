@@ -46,6 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
+import { CustomButton, FormInputField } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2436,13 +2437,37 @@ export function RiskAdviceReportData() {
   );
 }
 
-export function UserAccountDetails(){
+export function UserAccountDetails() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [accountValue, setAccountValue] = useState({
+    lastName: "",
+    otherName: "",
+    email: "",
+    phone: "",
+    address1: "",
+    nationality: "",
+    dob: "",
+    officeLocation: "",
+    department: "",
+    role: "",
+  })
+
+  
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setAccountValue((prevData) => ({ ...prevData, [id]: value }));
+  };
 
   function handleOpen() {
     setOpen(!open);
   }
+
+  const handleSubmit = async(e)=>{
+    console.log({"userAccountDetials": accountValue})
+  }
+  
   return (
     <div>
       <IconButton onClick={handleOpen} color="primary">
@@ -2461,10 +2486,10 @@ export function UserAccountDetails(){
           </button>
           {/* Header */}
           <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-24">
-              Account Details
-            </div>
+            Account Details
+          </div>
           <main className="flex text-black p-4 justify-center items-center rounded-lg">
-            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
+            <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
               <div className="flex justify-center items-center">
                 <img
                   src="https://shorturl.at/VaxG1"
@@ -2497,111 +2522,89 @@ export function UserAccountDetails(){
                 <span>JohnBull Street</span>
               </div>
             </div>
-            <div className="flex-[2]">
+            <div className="flex-[2] ml-8">
               <div className="grid grid-cols-2 gap-8 p-4">
-                <input
-                  label="Last Name"
-                  type="text"
+                <FormInputField
                   id="lname"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="last name"
+                  label="Last Name"
+                  value={accountValue.lastName}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Other Name"
-                  type="text"
+                <FormInputField
                   id="Oname"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="other name"
+                  label="Other Name"
+                  value={accountValue.otherName}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Email"
+                <FormInputField
                   type="email"
                   id="email"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="Enter your email"
+                  label="Email"
+                  value={accountValue.email}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Phone"
+                <FormInputField
                   type="phone"
                   id="phone"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="phone number"
+                  label="Phone"
+                  value={accountValue.phone}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Address 1"
-                  type="text"
+                <FormInputField
                   id="address1"
-                  // value={formData.name}
-                  // onChange={handleInputChange}
-                  placeholder="address 1"
+                  label="Address 1"
+                  value={accountValue.address1}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="Nationality"
-                  type="text"
+                <FormInputField
                   id="nationality"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="nationality"
+                  label="Nationality"
+                  value={accountValue.nationality}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
                 />
-                <input
-                  label="DOB"
-                  type="text"
+                <FormInputField
                   id="dob"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="date of birth"
-                  required
-                  // error={error && !email ? "Email is required" : ""}
-                />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  placeholder="Enter your email"
+                  label="Date of Birth"
+                  value={accountValue.dob}
+                  onChange={handleInputChange}
                   required
                 />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  placeholder="Enter your email"
+                <FormInputField
+                  id="officelocation"
+                  label="Office Location"
+                  value={accountValue.officeLocation}
+                  onChange={handleInputChange}
                   required
                 />
-                <input
-                  label="Name"
-                  type="text"
-                  id="name"
-                  // value="hi"
-                  // onChange={handleInputChange}
-                  placeholder="Enter your email"
+                <FormInputField
+                  id="department"
+                  label="Department"
+                  value={accountValue.department}
+                  onChange={handleInputChange}
                   required
-                  // error={error && !email ? "Email is required" : ""}
+                />
+                <FormInputField
+                  id="role"
+                  label="Role"
+                  value={accountValue.role}
+                  onChange={handleInputChange}
+                  required
                 />
               </div>
               <div className="px-16 mt-8">
-                {/* <CustomButton
-                    label="Submit"
-                    // onClick={handleSubmit}
-                    type="submit"
-                    className="custom-class"
-                    // loading={isSubmitting}
-                  /> */}
+                <CustomButton
+                  label="Submit"
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="custom-class"
+                  loading={isSubmitting}
+                />
               </div>
             </div>
           </main>
@@ -2636,8 +2639,8 @@ export function DepartmentAccountDetails() {
           </button>
           {/* Header */}
           <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-24">
-              Account Details
-            </div>
+            Account Details
+          </div>
           <main className="flex text-black p-4 justify-center items-center rounded-lg">
             <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6">
               <div className="flex justify-center items-center mb-8">

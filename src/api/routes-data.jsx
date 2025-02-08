@@ -179,6 +179,32 @@ export function useRiskIDMonitoring({ departmentID }) {
   return { monitoringIDs };
 }
 
+export function useRiskStatusReport({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMONITORING_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setMonitoringIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  fetchData();
+  return { monitoringIDs };
+}
+
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
