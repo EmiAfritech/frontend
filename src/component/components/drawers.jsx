@@ -410,7 +410,7 @@ export function Riskforms({onFormSubmit}) {
           JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
-            deptId: departmentName,
+            deptId: parseInt(departmentName, 10),
             riskOwner,
             riskImpactLevel,
             riskProbabilityLevel,
