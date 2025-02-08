@@ -22,7 +22,7 @@ import {
   OWNERSDROPDOWN_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
-import { useDepartmentDropdown, useRiskReviewer } from "../../api/routes-data";
+import { useDepartmentDropdown, useRiskOwnersDropdown, useRiskReviewer } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import { showToast } from "./notifications";
@@ -339,6 +339,7 @@ export function Riskforms({onFormSubmit}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer}= GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
+  const {ownersList} = useRiskOwnersDropdown()
   const [riskValue, setRiskValue] = useState({
     riskName: "",
     riskID: "",
