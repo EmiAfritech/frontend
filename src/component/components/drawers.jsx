@@ -32,11 +32,11 @@ export function Userforms({ onFormSubmit }) {
   const [departmentName, setDepartment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [role, setRole] = useState("");
-  const { userRole } = GRCFormsArray;
+  const { userRole } = GRCFormsArray(t);
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const { departmentList } = useDepartmentDropdown();
-  const [userValue, setUserValue] = [
+  const [userValue, setUserValue] = useState(
     {
       firstName: "",
       lastName: "",
@@ -44,7 +44,7 @@ export function Userforms({ onFormSubmit }) {
       phoneNumber: "",
       password: "",
     },
-  ];
+  );
 
   const handleClose = () =>{
     setOpen(false)
