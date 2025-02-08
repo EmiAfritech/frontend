@@ -2763,13 +2763,13 @@ export function RiskDetails() {
               {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
-                  <p className="text-2xl font-semibold">Inherent Risk</p>
-                  <p className="text-4xl font-bold">32</p>
+                  <p className="text-lg font-semibold">Inherent Risk</p>
+                  <p className="text-7xl font-bold">32</p>
                   <p className="text-2xl font-bold">Very High</p>
                 </div>
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
-                  <p className="text-2xl font-semibold">Residual Risk</p>
-                  <p className="text-4xl font-bold">32</p>
+                  <p className="text-lg font-semibold">Residual Risk</p>
+                  <p className="text-7xl font-bold">32</p>
                   <p className="text-2xl font-bold">Very High</p>
                 </div>
               </div>

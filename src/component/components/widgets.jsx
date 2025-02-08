@@ -187,7 +187,7 @@ export function FormDetailsField({
       <div className="flex flex-row">
         {label && (
           <label
-            className={`block text-[12.5px] text-[#08376B] ${
+            className={`block text-[12.5px] whitespace-nowrap text-[#08376B] ${
               (error ? "text-red-500" : "", disabled ? "text-gray-300" : "")
             }`}>
             {label} {required && <span className="required">*</span>}
@@ -222,14 +222,12 @@ export const CustomDetailsSelect = ({
   options = [],
 }) => {
   return (
-    <div className="flex items-center gap-4 mt-4">
+    <div className="flex flex-col w-full gap-2 mt-4">
       {label && (
         <label
           htmlFor={id}
-          className={`block text-[12.5px] text-[#08376B] ${
-            error ? "text-red-500" : ""
-          }`}>
-          {label} {required && <span className="required">*</span>}
+          className={`block text-[12.5px] text-[#08376B] ${error ? "text-red-500" : ""}`}>
+          {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
       <Select
@@ -241,20 +239,27 @@ export const CustomDetailsSelect = ({
         onChange={onChange}
         defaultValue={value}
         isClearable={true}
+        className="w-full"
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
+            width: "100%", 
             height: "40px",
             padding: "2px",
             backgroundColor: "#E5E7EB",
             border: "none",
-            borderRadius: "0",
+            borderRadius: "4px",
+          }),
+          menu: (baseStyles) => ({
+            ...baseStyles,
+            width: "100%",
           }),
         }}
       />
     </div>
   );
 };
+
 
 export function RiskDetailsSideTabs() {
   const [activeTab, setActiveTab] = useState("Risk Info");
@@ -332,7 +337,7 @@ export function RiskInfo({
 }) {
   return (
     <main className="grid grid-cols-2 gap-4 pt-5">
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-6">
         <FormDetailsField
           id="riskID"
           label="Risk Code"
@@ -398,7 +403,7 @@ export function RiskInfo({
           required
         />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-6">
         <CustomDetailsSelect
           id="riskResponse"
           label="Risk Response"
