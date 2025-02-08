@@ -113,7 +113,7 @@ export const CustomSelect = ({
         required={required}
         isSearchable={true}
         options={options}
-        onChange={onChange}
+        onChange={(selectedOption) => onChange(selectedOption ? selectedOption.value : "")}
         defaultValue={value}
         isClearable={true}
         styles={{

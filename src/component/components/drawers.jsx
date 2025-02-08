@@ -412,7 +412,7 @@ export function Riskforms({ onFormSubmit }) {
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
             riskOwner,
-            riskCategory,
+            riskCategory: riskCategory,
             riskImpactLevel,
             deptId: departmentName,
             riskProbabilityLevel,
@@ -443,21 +443,7 @@ export function Riskforms({ onFormSubmit }) {
     }
   };
 
-  console.log(
-    JSON.stringify({
-      riskID: riskValue.riskID,
-      riskName: riskValue.riskName,
-      riskOwner,
-      riskCategory,
-      riskImpactLevel,
-      deptId: departmentName,
-      riskProbabilityLevel,
-      riskDescription: riskValue.riskDescription,
-      riskObjective: riskValue.riskObjective,
-      riskResponseActivity: riskValue.riskResponseActivity,
-      riskResponse,
-    })
-  );
+  console.log({"riskCategory": riskCategory} );
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");
