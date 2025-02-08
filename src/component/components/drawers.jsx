@@ -1037,6 +1037,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] = useState("");
   const [mitigationOwner, setmitigationOwner] = useState("");
   const [closeStatus, setRiskClosed] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { departmentList } = useDepartmentDropdown();
   const [open, setOpen] = useState(false);
   const GRCFormArray = GRCFormsArray(t);
@@ -1075,7 +1076,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       if (auth.role === "MANAGER") {
@@ -1129,7 +1130,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         showToast("Server is currently down Contact your admin", "error")
       }
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
