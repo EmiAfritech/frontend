@@ -2559,7 +2559,7 @@ export function UserAccountDetails() {
                   />
                   <FormInputField
                     id="address1"
-                    label="Address 1"
+                    label="Address "
                     value={accountValue.address1}
                     onChange={handleInputChange}
                     required
