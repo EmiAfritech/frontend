@@ -407,7 +407,7 @@ export function Riskforms({onFormSubmit}) {
       } else {
         await axios.post(
           CREATERISKFORM_URL,
-          {
+          JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
             deptId: departmentName,
@@ -419,7 +419,7 @@ export function Riskforms({onFormSubmit}) {
             riskObjective: riskValue.riskObjective,
             riskResponseActivity: riskValue.riskResponseActivity,
             riskResponse,
-          },
+          }),
           {
             headers: {
               "Content-Type": "application/json",
@@ -442,6 +442,19 @@ export function Riskforms({onFormSubmit}) {
     }
   };
 
+  console.log(JSON.stringify({
+    riskID: riskValue.riskID,
+    riskName: riskValue.riskName,
+    deptId: departmentName,
+    riskOwner,
+    riskImpactLevel,
+    riskProbabilityLevel,
+    riskCategory,
+    riskDescription: riskValue.riskDescription,
+    riskObjective: riskValue.riskObjective,
+    riskResponseActivity: riskValue.riskResponseActivity,
+    riskResponse,
+  }),)
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");
