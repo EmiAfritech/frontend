@@ -226,7 +226,7 @@ export const CustomDetailsSelect = ({
       {label && (
         <label
           htmlFor={id}
-          className={`block text-[12.5px] text-[#08376B] ${error ? "text-red-500" : ""}`}>
+          className={`block text-[12.5px] whitespace-nowrap text-[#08376B] ${error ? "text-red-500" : ""}`}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
