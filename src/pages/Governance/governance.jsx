@@ -7,7 +7,7 @@ import {
   MonitoredVsUnmonitored,
 } from "../../component/components/charts";
 import "../../component/comstyles/component.css";
-import { DeleteBox } from "../../component/components/widgets";
+import { DeleteBox , CustomSelectInitialize} from "../../component/components/widgets";
 import { UserAccountDetails } from "../../component/components/modals";
 
 export function Governance() {
@@ -16,6 +16,7 @@ export function Governance() {
       <Sidebar />
       <div className="ml-[18%] m-6 ">
       <UserAccountDetails/>
+      <CustomSelectInitialize/>
       </div>
     </div>
   );

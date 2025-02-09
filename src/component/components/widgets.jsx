@@ -136,6 +136,43 @@ export const CustomSelect = ({
   );
 };
 
+export const CustomSelectInitialize = ({
+  value,
+  onChange,
+  error,
+  required = false,
+  id,
+  label,
+  options = [],
+}) => {
+  return (
+    <div>
+      {label && (
+        <label
+          htmlFor={id}
+          className={`block text-[12.5px] text-[#08376B] ${error ? "text-red-500" : ""}`}
+        >
+          {label} {required && <span className="required">*</span>}
+        </label>
+      )}
+      <select
+        id={id}
+        required={required}
+        value={value} // Controlled value
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full p-2 appearance-none bg-[#E5E7EB]"
+      >
+        <option value="" className="text-gray-400">Select ...</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 
 export function FormInputField({
   label,
@@ -383,7 +420,7 @@ export function RiskInfo({data, disabled}) {
           disabled={disabled}
           required
         />
-        <CustomDetailsSelect
+        <CustomSelectInitialize
           id="riskOwner"
           label="Risk Owner"
           value={riskOwner}
