@@ -292,7 +292,7 @@ export function RiskDetailsSideTabs() {
     <div>
       <LoadingPopup />
       <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="mt-6">{renderComponent()}</div>
+      <div className="mt-6 mb-12">{renderComponent()}</div>
       <DeleteBox/>
     </div>
   );
@@ -462,7 +462,7 @@ export function RiskInfo({
       </div>
 
       {/* Submit Button */}
-      <div className="col-span-2 flex justify-end pt-6 px-[300px]">
+      <div className="col-span-2 flex justify-end pt-2 px-[300px]">
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
