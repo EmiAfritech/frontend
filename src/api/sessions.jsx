@@ -39,7 +39,7 @@ export function Sessions() {
   };
 
   useEffect(() => {
-    const exemptPaths = [ "/login","/activate", "/signup", "/setPassword", "/subscription", "/verifyemail", "/resetpassword",]; 
+    const exemptPaths = [ "/login","/activate", "/signup", "/setPassword", "/subscription", "/verifyemail", "/resetpassword","/governance", "/dashboard"]; 
 
     console.log({"session": token})
     if (!token && !exemptPaths.includes(location.pathname)) {

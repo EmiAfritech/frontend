@@ -2,6 +2,7 @@ import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { Button } from "@mui/material";
 
 export function InputField({
   label,
@@ -113,7 +114,9 @@ export const CustomSelect = ({
         required={required}
         isSearchable={true}
         options={options}
-        onChange={(selectedOption) => onChange(selectedOption ? selectedOption.value : "")}
+        onChange={(selectedOption) =>
+          onChange(selectedOption ? selectedOption.value : "")
+        }
         defaultValue={value}
         isClearable={true}
         styles={{
@@ -290,6 +293,7 @@ export function RiskDetailsSideTabs() {
       <LoadingPopup />
       <RiskDetailNavigation onTabChange={handleTabChange} />
       <div className="mt-6">{renderComponent()}</div>
+      <DeleteBox/>
     </div>
   );
 }
@@ -876,3 +880,40 @@ export const Tabs = [
     title: "Monitor Risk",
   },
 ];
+
+export function DeleteBox() {
+  const [deleteItem, setDelete] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = () => {
+    setIsSubmitting(true);
+    console.log("Delete");
+  };
+  return (
+    <main>
+      <div className=" bg-gray-300 my-10 p-6 rounded-lg shadow-md h-44 flex flex-col space-y-4">
+        <h1 className="font-bold text-red-500">
+          Are you sure you Wish to Delete Item? This action is irrevisible
+        </h1>
+        <div className="font-bold flex space-x-1">
+          <span>Type</span> <p className="text-red-500 font-bold">Delete.</p>{" "}
+          <span>In the container below</span>
+        </div>
+        <div className="grid grid-cols-3 gap-4 w-full items-center">
+          <FormInputField
+            id="deleteItem"
+            label="Delete."
+            value={deleteItem}
+            onChange={(e) => setDelete(e.target.value)}
+            required
+            className="col-span-2 w-full"
+          />
+          <div className="col-span-1 w-full mt-3">
+            <Button variant="contained"  className="h-10" color="error">
+              Delete
+            </Button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
