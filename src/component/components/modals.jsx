@@ -2732,6 +2732,8 @@ export function RiskDetails( data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const riskInfo = data.data;
+  console.log(riskInfo)
 
   function handleOpen() {
     setOpen(!open);
