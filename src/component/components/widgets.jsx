@@ -340,7 +340,6 @@ export function RiskInfo({ data, disabled }) {
   const { t } = useTranslation();
   const { ownersList } = useRiskOwnersDropdown();
   const options = GRCFormsArray(t);
-  const RiskInfoInitialize = data?.data || {}; // Ensuring data is available
 
   const [riskOwner, setRiskOwner] = useState("");
   const [riskResponse, setRiskResponse] = useState("");
