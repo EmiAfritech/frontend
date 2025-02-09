@@ -27,6 +27,9 @@ import { ActivationPage } from "./pages/ActivateAccount/activatePage";
 import { CreatePasswordPage } from "./pages/createPassword/createPassword";
 import { SubscriptionPage } from "./pages/subscription/subscription";
 import { VerifyEmail } from "./pages/resetPassword/verifyemail";
+import { Compliance } from "./pages/Compliance/complaince";
+import { Governance } from "./pages/Governance/governance";
+import { RiskManagement } from "./pages/riskManagement/riskManagement";
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
       <Routes path="/" element={<Sidebar />}>
         <Route path="/activate" element={<ActivationPage />} />
         <Route path="/setPassword" element={<CreatePasswordPage />} />
+        <Route path="/complaince" element={<Compliance />} />
+        <Route path="/governance" element={<Governance />} />
+        <Route path="/riskManagement" element={<RiskManagement />} />
         <Route path="/subscription" element={<SubscriptionPage/>} />
         <Route path="/verifyemail" element={<VerifyEmail/>} />
         <Route path="/" element={<Login />} />

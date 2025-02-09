@@ -9,7 +9,7 @@ import {
   FaPencilAlt,
   FaThList,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import LoadingPopup from "../../api/sessions";
 import { useState, useContext } from "react";
 import { LogOut } from "./modals";
@@ -21,12 +21,16 @@ import ecg_logo from "../../assets/images/ecg_logo.jpg";
 import wafi_logo from "../../assets/images/wafi_logo.jpg";
 import ugnpa from "../../assets/images/ugnpa.png";
 import Cookies from 'js-cookie';
+import { Governance } from "../../pages/Governance/governance";
+import { Button } from "devextreme-react";
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
   const [isLoading] = useState(false);
   const { t } = useTranslation();
   const userRole = Cookies.get("role");
+  const location = useLocation();
+  console.log(location.pathname)
 
   // Determine the organization logo
   const SidebarLogo =
@@ -39,8 +43,9 @@ export function Sidebar() {
       : afriquetek_logo;
 
   // Component for individual nav links
-  const NavItem = ({ to, icon: Icon, label }) => (
-    <li className="flex flex-row items-center p-3 px-24">
+  function NavItem  ({ to, icon: Icon, label, active })  {
+    return(
+      <li className="flex flex-row items-center p-3 px-24">
       <Icon className="icons" />
       <NavLink
         to={to}
@@ -51,7 +56,8 @@ export function Sidebar() {
         {label}
       </NavLink>
     </li>
-  );
+    )
+  }
 
   // Tab components for each role
   const AuditorTabs = () => (
@@ -67,9 +73,11 @@ export function Sidebar() {
     </>
   );
 
+  
   const AdminTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
+      <NavItem to="#" icon={FaClipboardList} label="Governance" />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
@@ -77,7 +85,6 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="#" icon={FaClipboardList} label="Governance" />
       <NavItem to="#" icon={FaCopy} label="Compliance" />
       <LogOut />
     </>
@@ -114,6 +121,11 @@ export function Sidebar() {
     </>
   );
 
+
+  
+
+ 
+
   // Function to render tabs based on the role
   const renderTabsByRole = () => {
     switch (userRole) {
@@ -129,6 +141,8 @@ export function Sidebar() {
         return <AdminTabs />;
     }
   };
+
+  
 
   return (
     <div className="sidebar-container bg-[#07073C]">
@@ -149,3 +163,5 @@ export function Sidebar() {
     </div>
   );
 }
+
+
