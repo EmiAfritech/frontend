@@ -292,7 +292,7 @@ export function RiskDetailsSideTabs() {
     <div>
       <LoadingPopup />
       <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="mt-6 mb-12">{renderComponent()}</div>
+      <div className="mt-6 mb-40">{renderComponent()}</div>
       <DeleteBox/>
     </div>
   );
