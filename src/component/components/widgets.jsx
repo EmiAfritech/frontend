@@ -2,7 +2,6 @@ import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { Button } from "@mui/material";
 
 export function InputField({
   label,
@@ -114,9 +113,7 @@ export const CustomSelect = ({
         required={required}
         isSearchable={true}
         options={options}
-        onChange={(selectedOption) =>
-          onChange(selectedOption ? selectedOption.value : "")
-        }
+        onChange={(selectedOption) => onChange(selectedOption ? selectedOption.value : "")}
         defaultValue={value}
         isClearable={true}
         styles={{
@@ -343,12 +340,6 @@ export function RiskInfo({
 }) {
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
-      <div className="flex space-x-4 justify-start">
-        {" "}
-        <Button variant="contained">Contained</Button>
-        <Button variant="contained">Contained</Button>
-        <Button variant="contained">Contained</Button>
-      </div>
       {/* Left Column */}
       <div className="flex flex-col gap-8">
         <FormDetailsField
