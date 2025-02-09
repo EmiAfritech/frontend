@@ -1,8 +1,9 @@
 import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@mui/material";
+import { AuthContext } from "../../context/AuthContext";
 
 export function InputField({
   label,
@@ -332,17 +333,26 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({
-  onChange,
-  value,
-  disabled,
-  options,
-  isSubmitting,
-  handleSubmit,
-  auth,
-  data
-}) {
-  
+export function RiskInfo({data, disabled}) {
+  const {auth} = useContext(AuthContext)
+  const [value]= useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [riskInfo, setRiskInfo] = useState({
+    riskID: "",
+    riskName: "",
+    createdAt: "",
+    riskScore: "",
+    riskDescription: "",
+    riskResponseActivity
+
+  })
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
+  const handleSubmit =()=>{
+    isSubmitting(true)
+  }
   console.log({"row data": data})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
@@ -351,7 +361,7 @@ export function RiskInfo({
         <FormDetailsField
           id="riskID"
           label="Risk Code"
-          value={value}
+          value={riskInfo.riskID}
           onChange={onChange}
           disabled={disabled}
           required
@@ -359,12 +369,12 @@ export function RiskInfo({
         <FormDetailsField
           id="riskName"
           label="Risk Name"
-          value={value}
+          value={riskInfo.riskName}
           onChange={onChange}
           disabled={disabled}
           required
         />
-        {(auth === "MANAGER" || auth === "AUDITOR") && (
+        {(auth.role === "MANAGER" || auth.role === "AUDITOR") && (
           <div className="flex flex-col gap-8">
             <FormDetailsField
               id="departmentId"
@@ -385,7 +395,7 @@ export function RiskInfo({
           </div>
         )}
         <CustomDetailsSelect
-          id="departmentName"
+          id="riskOwner"
           label="Risk Owner"
           value={value}
           onChange={onChange}
@@ -398,7 +408,7 @@ export function RiskInfo({
           type="date"
           id="createdAt"
           label="Created At"
-          value={value}
+          value={riskInfo.createdAt}
           onChange={onChange}
           disabled={disabled}
           required
@@ -406,7 +416,7 @@ export function RiskInfo({
         <FormDetailsField
           id="riskScore"
           label="Risk Score"
-          value={value}
+          value={riskInfo.riskScore}
           onChange={onChange}
           disabled={disabled}
           required
@@ -448,7 +458,7 @@ export function RiskInfo({
         <FormDetailsField
           id="riskDescription"
           label="Risk Description"
-          value={value}
+          value={riskInfo.riskDescription}
           onChange={onChange}
           disabled={disabled}
           required
@@ -456,7 +466,7 @@ export function RiskInfo({
         <FormDetailsField
           id="riskResponseActivity"
           label="Response Activity"
-          value={value}
+          value={riskInfo.riskResponseActivity}
           onChange={onChange}
           disabled={disabled}
           required
