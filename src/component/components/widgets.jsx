@@ -334,6 +334,7 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo({data, disabled}) {
+  const RiskInfoInitialize = data.data;
   const {auth} = useContext(AuthContext)
   const [value]= useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -353,7 +354,7 @@ export function RiskInfo({data, disabled}) {
   const handleSubmit =()=>{
     isSubmitting(true)
   }
-  console.log({"row data": data})
+  console.log({"row data": RiskInfoInitialize})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
