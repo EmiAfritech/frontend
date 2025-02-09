@@ -2782,18 +2782,18 @@ export function RiskDetails( data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{data.riskID}</span>
+                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {data.riskStatus}
+                      {riskInfo.riskStatus}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {data.riskCategory}
+                      {riskInfo.riskCategory}
                     </span>
                   </div>
                 </div>
@@ -2801,14 +2801,14 @@ export function RiskDetails( data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {data.riskDescription}
+                    {riskInfo.riskDescription}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <div className="mb-10">To Delete an Item Scroll to the end of the container</div>
-            <RiskDetailsSideTabs data= {data} />
+            <div className="mb-10">To Delete an Item scroll to the end of the container</div>
+            <RiskDetailsSideTabs data= {riskInfo} />
           </div>
         </Box>
       </Modal>
