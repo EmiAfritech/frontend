@@ -361,7 +361,8 @@ export function RiskInfo({data, disabled}) {
   const handleSubmit =()=>{
     setIsSubmitting(true)
   }
-  console.log({"row owner": riskOwner})
+  console.log({"row owner": riskOwner, "row owner from data": RiskInfoInitialize.riskOwner})
+  
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
