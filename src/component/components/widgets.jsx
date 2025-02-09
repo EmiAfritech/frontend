@@ -136,42 +136,6 @@ export const CustomSelect = ({
   );
 };
 
-export const CustomSelectInitialize = ({
-  value,
-  onChange,
-  error,
-  required = false,
-  id,
-  label,
-  options = [],
-}) => {
-  return (
-    <div>
-      {label && (
-        <label
-          htmlFor={id}
-          className={`block text-[12.5px] text-[#08376B] ${error ? "text-red-500" : ""}`}
-        >
-          {label} {required && <span className="required">*</span>}
-        </label>
-      )}
-      <select
-        id={id}
-        required={required}
-        value={value} // Controlled value
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full p-2 appearance-none bg-[#E5E7EB]"
-      >
-        <option value="" className="text-gray-400">Select ...</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-};
 
 
 export function FormInputField({
@@ -377,10 +341,7 @@ export function RiskInfo({data, disabled}) {
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
-  const [riskOwner, setRiskOwner]= useState(RiskInfoInitialize.riskOwner)
-  const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse)
-  const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory)
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel)
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
     riskID: RiskInfoInitialize.riskID,
@@ -389,6 +350,10 @@ export function RiskInfo({data, disabled}) {
     riskScore: RiskInfoInitialize.riskScore,
     riskDescription: RiskInfoInitialize.riskDescription,
     riskResponseActivity: RiskInfoInitialize.riskResponseActivity,
+    riskOwner: RiskInfoInitialize.riskOwner,
+    riskResponse: RiskInfoInitialize.riskResponse,
+    riskCategory: RiskInfoInitialize.riskCategory,
+    riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
 
   })
   const onChange = (e) => {
@@ -398,7 +363,6 @@ export function RiskInfo({data, disabled}) {
   const handleSubmit =()=>{
     setIsSubmitting(true)
   }
-  console.log({"row owner": riskOwner, "row owner from data": RiskInfoInitialize.riskOwner})
   
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
@@ -420,15 +384,13 @@ export function RiskInfo({data, disabled}) {
           disabled={disabled}
           required
         />
-        <CustomSelectInitialize
+        <FormDetailsField
           id="riskOwner"
           label="Risk Owner"
-          value={riskOwner}
-          onChange={setRiskOwner}
-          options={ownersList}
-          searchable={true}
+          value={riskInfo.riskOwner}
+          onChange={onChange}
+          disabled={disabled}
           required
-          group={false}
         />
         <FormDetailsField
           type="date"
@@ -451,35 +413,29 @@ export function RiskInfo({data, disabled}) {
 
       {/* Right Column */}
       <div className="flex flex-col gap-8">
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskResponse"
           label="Risk Response"
-          value={riskResponse}
-          onChange={setRiskResponse}
-          options={options.riskResponsedrawer}
-          searchable={true}
+          value={riskInfo.riskResponse}
+          onChange={onChange}
+          disabled={disabled}
           required
-          group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskCategory"
           label="Risk Category"
-          value={riskCategory}
-          onChange={setRiskCategory}
-          options={options.categorydrawer}
-          searchable={true}
+          value={riskInfo.riskCategory}
+          onChange={onChange}
+          disabled={disabled}
           required
-          group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskProbabilityLevel"
           label="Probability Level"
-          value={riskProbabilityLevel}
-          onChange={setRiskProbabilityLevel}
-          options={options.probabilityLevel}
-          searchable={true}
+          value={riskInfo.riskProbabilityLevel}
+          onChange={onChange}
+          disabled={disabled}
           required
-          group={false}
         />
         <FormDetailsField
           id="riskDescription"
