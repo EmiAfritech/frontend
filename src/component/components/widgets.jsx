@@ -101,7 +101,6 @@ export const CustomSelect = ({
   options = [],
 }) => {
   
-  const selectedValue = options.find((option) => option.value === value) || null;
 
   return (
     <div>
@@ -119,7 +118,7 @@ export const CustomSelect = ({
         required={required}
         isSearchable={true}
         options={options}
-        value={selectedValue} 
+        value={value} 
         onChange={(selectedOption) => onChange(selectedOption ? selectedOption.value : "")}
         isClearable={true}
         styles={{
