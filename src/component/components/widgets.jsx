@@ -265,9 +265,10 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskDetailsSideTabs() {
+export function RiskDetailsSideTabs( data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
-
+  
+  console.log({"row data": data})
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };

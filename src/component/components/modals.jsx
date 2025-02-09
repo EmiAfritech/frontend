@@ -2732,7 +2732,6 @@ export function RiskDetails( data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  console.log({"row data": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -2781,18 +2780,18 @@ export function RiskDetails( data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">2830093244</span>
+                    ID: <span className="font-semibold">{data.riskID}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      Management Review
+                      {data.riskStatus}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      System
+                      {data.riskCategory}
                     </span>
                   </div>
                 </div>
@@ -2800,13 +2799,13 @@ export function RiskDetails( data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    Check on all the computers in the office and work on them
+                    {data.riskDescription}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskDetailsSideTabs />
+            <RiskDetailsSideTabs data= {data} />
           </div>
         </Box>
       </Modal>
