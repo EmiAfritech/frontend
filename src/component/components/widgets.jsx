@@ -462,7 +462,7 @@ export function RiskInfo({
       </div>
 
       {/* Submit Button */}
-      <div className="col-span-2 flex justify-end pt-6">
+      <div className="col-span-2 flex justify-end pt-6 px-[300px]">
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
@@ -913,6 +913,16 @@ export function DeleteBox() {
             </Button>
           </div>
         </div>
+        <div className=" pt-6 ">
+  <CustomButton
+    label="Submit"
+    onClick={handleSubmit}
+    type="submit"
+    className="custom-class"
+    loading={isSubmitting}
+  />
+</div>
+
       </div>
     </main>
   );
