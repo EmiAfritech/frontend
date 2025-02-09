@@ -2733,7 +2733,6 @@ export function RiskDetails( data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const riskInfo = data.data;
-  console.log(riskInfo)
 
   function handleOpen() {
     setOpen(!open);

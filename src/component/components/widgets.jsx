@@ -268,7 +268,6 @@ export const CustomDetailsSelect = ({
 export function RiskDetailsSideTabs( data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
   
-  console.log({"row data": data})
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -277,7 +276,7 @@ export function RiskDetailsSideTabs( data) {
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo />;
+        return <RiskInfo  data={data}/>;
       case "Mitigate":
         return <MitigateRIsk />;
       case "Review":
@@ -341,7 +340,10 @@ export function RiskInfo({
   isSubmitting,
   handleSubmit,
   auth,
+  data
 }) {
+  
+  console.log({"row data": data})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
