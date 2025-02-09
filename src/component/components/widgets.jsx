@@ -120,7 +120,7 @@ export const CustomSelect = ({
         onChange={(selectedOption) =>
           onChange(selectedOption ? selectedOption.value : "")
         }
-        defaultValue={value}
+        value={value}
         isClearable={true}
         styles={{
           control: (baseStyles) => ({
