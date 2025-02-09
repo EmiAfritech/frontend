@@ -9,6 +9,7 @@ import {
   FaPencilAlt,
   FaThList,
 } from "react-icons/fa";
+import { RiGovernmentLine } from "react-icons/ri";
 import { NavLink, useLocation } from "react-router-dom";
 import LoadingPopup from "../../api/sessions";
 import { useState, useContext } from "react";
@@ -21,8 +22,6 @@ import ecg_logo from "../../assets/images/ecg_logo.jpg";
 import wafi_logo from "../../assets/images/wafi_logo.jpg";
 import ugnpa from "../../assets/images/ugnpa.png";
 import Cookies from 'js-cookie';
-import { Governance } from "../../pages/Governance/governance";
-import { Button } from "devextreme-react";
 
 export function Sidebar() {
   const { auth } = useContext(AuthContext);
@@ -75,7 +74,7 @@ export function Sidebar() {
   const AdminTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
+      <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
@@ -90,6 +89,7 @@ export function Sidebar() {
   const GeneralManagerTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
+      <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
@@ -97,7 +97,6 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
       <LogOut />
     </>
   );
