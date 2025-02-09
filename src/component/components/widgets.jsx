@@ -335,33 +335,63 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled}) {
-  const {t} = useTranslation()
-  const {ownersList} = useRiskOwnersDropdown()
-  const options = GRCFormsArray(t)
-  const RiskInfoInitialize = data.data;
-  const [riskOwner, setRiskOwner]= useState(RiskInfoInitialize.riskOwner)
-  const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse)
-  const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory)
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [riskInfo, setRiskInfo] = useState({
-    riskID: RiskInfoInitialize.riskID,
-    riskName: RiskInfoInitialize.riskName,
-    createdAt: RiskInfoInitialize.updatedAt,
-    riskScore: RiskInfoInitialize.riskScore,
-    riskDescription: RiskInfoInitialize.riskDescription,
-    riskResponseActivity: RiskInfoInitialize.riskResponseActivity
+import { useEffect, useState } from 'react';
 
-  })
+export function RiskInfo({ data, disabled }) {
+  const { t } = useTranslation();
+  const { ownersList } = useRiskOwnersDropdown();
+  const options = GRCFormsArray(t);
+  const RiskInfoInitialize = data?.data || {}; // Ensuring data is available
+
+  const [riskOwner, setRiskOwner] = useState("");
+  const [riskResponse, setRiskResponse] = useState("");
+  const [riskCategory, setRiskCategory] = useState("");
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Initialize risk info with state
+  const [riskInfo, setRiskInfo] = useState({
+    riskID: "",
+    riskName: "",
+    createdAt: "",
+    riskScore: "",
+    riskDescription: "",
+    riskResponseActivity: "",
+  });
+
+  // Effect to initialize values based on data
+  useEffect(() => {
+    if (data?.data) {
+      const RiskInfoInitialize = data.data;
+
+      // Set the select fields with data from the response
+      setRiskOwner(RiskInfoInitialize.riskOwner || "");
+      setRiskResponse(RiskInfoInitialize.riskResponse || "");
+      setRiskCategory(RiskInfoInitialize.riskCategory || "");
+      setRiskProbabilityLevel(RiskInfoInitialize.riskProbabilityLevel || "");
+
+      // Set the text fields with data from the response
+      setRiskInfo({
+        riskID: RiskInfoInitialize.riskID || "",
+        riskName: RiskInfoInitialize.riskName || "",
+        createdAt: RiskInfoInitialize.updatedAt || "",
+        riskScore: RiskInfoInitialize.riskScore || "",
+        riskDescription: RiskInfoInitialize.riskDescription || "",
+        riskResponseActivity: RiskInfoInitialize.riskResponseActivity || "",
+      });
+    }
+  }, [data]); // Dependency on `data`, will run whenever data changes
+
   const onChange = (e) => {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
-  const handleSubmit =()=>{
-    setIsSubmitting(true)
-  }
-  console.log({"row data": RiskInfoInitialize})
+
+  const handleSubmit = () => {
+    console.log("Submitting:", { riskInfo, riskOwner, riskResponse, riskCategory, riskProbabilityLevel });
+    setIsSubmitting(true);
+  };
+
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -474,6 +504,7 @@ export function RiskInfo({data, disabled}) {
     </main>
   );
 }
+
 
 export function MitigateRIsk({
   onChange,
