@@ -335,8 +335,10 @@ export function RiskDetailNavigation({ onTabChange }) {
 
 export function RiskInfo({data, disabled}) {
   const RiskInfoInitialize = data.data;
-  const {auth} = useContext(AuthContext)
-  const [value]= useState("")
+  const [riskOwner, setRiskOwner]= useState("")
+  const [riskResponse, setRiskResponse] = useState("")
+  const [riskCategory, setRiskCategory] = useState("")
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
     riskID: "",
@@ -344,7 +346,7 @@ export function RiskInfo({data, disabled}) {
     createdAt: "",
     riskScore: "",
     riskDescription: "",
-    riskResponseActivity
+    riskResponseActivity: "",
 
   })
   const onChange = (e) => {
@@ -352,7 +354,7 @@ export function RiskInfo({data, disabled}) {
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
   const handleSubmit =()=>{
-    isSubmitting(true)
+    setIsSubmitting(true)
   }
   console.log({"row data": RiskInfoInitialize})
   return (
@@ -375,31 +377,11 @@ export function RiskInfo({data, disabled}) {
           disabled={disabled}
           required
         />
-        {(auth.role === "MANAGER" || auth.role === "AUDITOR") && (
-          <div className="flex flex-col gap-8">
-            <FormDetailsField
-              id="departmentId"
-              label="Department Id"
-              value={value}
-              onChange={onChange}
-              disabled={disabled}
-              required
-            />
-            <FormDetailsField
-              id="departmentName"
-              label="Department Name"
-              value={value}
-              onChange={onChange}
-              disabled={disabled}
-              required
-            />
-          </div>
-        )}
         <CustomDetailsSelect
           id="riskOwner"
           label="Risk Owner"
-          value={value}
-          onChange={onChange}
+          value={riskOwner}
+          onChange={setRiskOwner}
           options={options}
           searchable={true}
           required
@@ -429,8 +411,8 @@ export function RiskInfo({data, disabled}) {
         <CustomDetailsSelect
           id="riskResponse"
           label="Risk Response"
-          value={value}
-          onChange={onChange}
+          value={riskResponse}
+          onChange={setRiskResponse}
           options={options}
           searchable={true}
           required
@@ -439,8 +421,8 @@ export function RiskInfo({data, disabled}) {
         <CustomDetailsSelect
           id="riskCategory"
           label="Risk Category"
-          value={value}
-          onChange={onChange}
+          value={riskCategory}
+          onChange={setRiskCategory}
           options={options}
           searchable={true}
           required
@@ -449,8 +431,8 @@ export function RiskInfo({data, disabled}) {
         <CustomDetailsSelect
           id="riskProbabilityLevel"
           label="Probability Level"
-          value={value}
-          onChange={onChange}
+          value={riskProbabilityLevel}
+          onChange={setRiskProbabilityLevel}
           options={options}
           searchable={true}
           required
