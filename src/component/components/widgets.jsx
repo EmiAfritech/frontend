@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
+import { GRCFormsArray } from "./formarrays";
+import { useRiskOwnersDropdown } from "../../api/routes-data";
 
 export function InputField({
   label,
@@ -333,20 +335,23 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled, options}) {
+export function RiskInfo({data, disabled}) {
+  const {t} = useTranslation()
+  const {ownersList} = useRiskOwnersDropdown()
+  const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
-  const [riskOwner, setRiskOwner]= useState("")
-  const [riskResponse, setRiskResponse] = useState("")
-  const [riskCategory, setRiskCategory] = useState("")
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState("")
+  const [riskOwner, setRiskOwner]= useState(RiskInfoInitialize.riskOwner)
+  const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse)
+  const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory)
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
-    riskID: "",
-    riskName: "",
-    createdAt: "",
-    riskScore: "",
-    riskDescription: "",
-    riskResponseActivity: "",
+    riskID: RiskInfoInitialize.riskID,
+    riskName: RiskInfoInitialize.riskName,
+    createdAt: RiskInfoInitialize.updatedAt,
+    riskScore: RiskInfoInitialize.riskScore,
+    riskDescription: RiskInfoInitialize.riskDescription,
+    riskResponseActivity: RiskInfoInitialize.riskResponseActivity
 
   })
   const onChange = (e) => {
@@ -382,7 +387,7 @@ export function RiskInfo({data, disabled, options}) {
           label="Risk Owner"
           value={riskOwner}
           onChange={setRiskOwner}
-          options={options}
+          options={ownersList}
           searchable={true}
           required
           group={false}
@@ -413,7 +418,7 @@ export function RiskInfo({data, disabled, options}) {
           label="Risk Response"
           value={riskResponse}
           onChange={setRiskResponse}
-          options={options}
+          options={options.riskResponsedrawer}
           searchable={true}
           required
           group={false}
@@ -423,7 +428,7 @@ export function RiskInfo({data, disabled, options}) {
           label="Risk Category"
           value={riskCategory}
           onChange={setRiskCategory}
-          options={options}
+          options={options.categorydrawer}
           searchable={true}
           required
           group={false}
@@ -433,7 +438,7 @@ export function RiskInfo({data, disabled, options}) {
           label="Probability Level"
           value={riskProbabilityLevel}
           onChange={setRiskProbabilityLevel}
-          options={options}
+          options={options.probabilityLevel}
           searchable={true}
           required
           group={false}
