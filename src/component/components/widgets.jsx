@@ -1,7 +1,7 @@
 import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -335,77 +335,33 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-
-export function RiskInfo({ data, disabled }) {
-  const { t } = useTranslation();
-  const { ownersList } = useRiskOwnersDropdown();
-  const options = GRCFormsArray(t);
-  const RiskInfoInitialize = data?.data || {};
-
-  const [riskOwner, setRiskOwner] = useState(null); // Initialize as null for react-select
-  const [riskResponse, setRiskResponse] = useState(null);
-  const [riskCategory, setRiskCategory] = useState(null);
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Initialize risk info with state
+export function RiskInfo({data, disabled}) {
+  const {t} = useTranslation()
+  const {ownersList} = useRiskOwnersDropdown()
+  const options = GRCFormsArray(t)
+  const RiskInfoInitialize = data.data;
+  const [riskOwner, setRiskOwner]= useState(RiskInfoInitialize.riskOwner)
+  const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse)
+  const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory)
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
-    riskID: "",
-    riskName: "",
-    createdAt: "",
-    riskScore: "",
-    riskDescription: "",
-    riskResponseActivity: "",
-  });
+    riskID: RiskInfoInitialize.riskID,
+    riskName: RiskInfoInitialize.riskName,
+    createdAt: RiskInfoInitialize.updatedAt,
+    riskScore: RiskInfoInitialize.riskScore,
+    riskDescription: RiskInfoInitialize.riskDescription,
+    riskResponseActivity: RiskInfoInitialize.riskResponseActivity,
 
-  // Effect to initialize values based on data
-  useEffect(() => {
-    if (data?.data) {
-      const RiskInfoInitialize = data.data;
-
-      // Set the select fields with data from the response
-      setRiskOwner({
-        value: RiskInfoInitialize.riskOwner, // Make sure it's an object with { value, label }
-        label: RiskInfoInitialize.riskOwner, // Assuming you have the label as well, else use the value
-      });
-
-      setRiskResponse({
-        value: RiskInfoInitialize.riskResponse,
-        label: RiskInfoInitialize.riskResponse,
-      });
-
-      setRiskCategory({
-        value: RiskInfoInitialize.riskCategory,
-        label: RiskInfoInitialize.riskCategory,
-      });
-
-      setRiskProbabilityLevel({
-        value: RiskInfoInitialize.riskProbabilityLevel,
-        label: RiskInfoInitialize.riskProbabilityLevel,
-      });
-
-      // Set the text fields with data from the response
-      setRiskInfo({
-        riskID: RiskInfoInitialize.riskID || "",
-        riskName: RiskInfoInitialize.riskName || "",
-        createdAt: RiskInfoInitialize.updatedAt || "",
-        riskScore: RiskInfoInitialize.riskScore || "",
-        riskDescription: RiskInfoInitialize.riskDescription || "",
-        riskResponseActivity: RiskInfoInitialize.riskResponseActivity || "",
-      });
-    }
-  }, [data]);
-
+  })
   const onChange = (e) => {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
-
-  const handleSubmit = () => {
-    console.log("Submitting:", { riskInfo, riskOwner, riskResponse, riskCategory, riskProbabilityLevel });
-    setIsSubmitting(true);
-  };
-
+  const handleSubmit =()=>{
+    setIsSubmitting(true)
+  }
+  console.log({"row data": RiskInfoInitialize})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -429,9 +385,9 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskOwner"
           label="Risk Owner"
-          value={riskOwner} // Make sure `value` is in { label, value } format
+          value={riskOwner}
           onChange={setRiskOwner}
-          options={ownersList} // Ensure your `ownersList` has the right format [{ label, value }]
+          options={ownersList}
           searchable={true}
           required
           group={false}
@@ -460,7 +416,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskResponse"
           label="Risk Response"
-          value={riskResponse} // Correct value format
+          value={riskResponse}
           onChange={setRiskResponse}
           options={options.riskResponsedrawer}
           searchable={true}
@@ -470,7 +426,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskCategory"
           label="Risk Category"
-          value={riskCategory} // Correct value format
+          value={riskCategory}
           onChange={setRiskCategory}
           options={options.categorydrawer}
           searchable={true}
@@ -480,7 +436,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskProbabilityLevel"
           label="Probability Level"
-          value={riskProbabilityLevel} // Correct value format
+          value={riskProbabilityLevel}
           onChange={setRiskProbabilityLevel}
           options={options.probabilityLevel}
           searchable={true}
@@ -518,7 +474,6 @@ export function RiskInfo({ data, disabled }) {
     </main>
   );
 }
-
 
 export function MitigateRIsk({
   onChange,
