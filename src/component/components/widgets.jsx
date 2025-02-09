@@ -913,16 +913,6 @@ export function DeleteBox() {
             </Button>
           </div>
         </div>
-        <div className=" pt-6 ">
-  <CustomButton
-    label="Submit"
-    onClick={handleSubmit}
-    type="submit"
-    className="custom-class"
-    loading={isSubmitting}
-  />
-</div>
-
       </div>
     </main>
   );

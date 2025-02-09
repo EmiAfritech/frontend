@@ -46,7 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { CustomButton, FormInputField, RiskDetailsSideTabs } from "./widgets";
+import { CustomButton, DeleteBox, FormInputField, RiskDetailsSideTabs } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2456,6 +2456,7 @@ export function UserAccountDetails() {
                 </div>
               </div>
             </main>
+            <DeleteBox/>
           </div>
         </Box>
       </Modal>
@@ -2603,6 +2604,7 @@ export function DepartmentAccountDetails() {
                 </div>
               </div>
             </main>
+            <DeleteBox/>
           </div>
         </Box>
       </Modal>
