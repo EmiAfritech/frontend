@@ -1,7 +1,7 @@
 import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -340,13 +340,14 @@ export function RiskInfo({ data, disabled }) {
   const { t } = useTranslation();
   const { ownersList } = useRiskOwnersDropdown();
   const options = GRCFormsArray(t);
+  const RiskInfoInitialize = data?.data || {};
 
-  const [riskOwner, setRiskOwner] = useState("");
-  const [riskResponse, setRiskResponse] = useState("");
-  const [riskCategory, setRiskCategory] = useState("");
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState("");
+  const [riskOwner, setRiskOwner] = useState(null); // Initialize as null for react-select
+  const [riskResponse, setRiskResponse] = useState(null);
+  const [riskCategory, setRiskCategory] = useState(null);
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   // Initialize risk info with state
   const [riskInfo, setRiskInfo] = useState({
     riskID: "",
@@ -363,10 +364,25 @@ export function RiskInfo({ data, disabled }) {
       const RiskInfoInitialize = data.data;
 
       // Set the select fields with data from the response
-      setRiskOwner(RiskInfoInitialize.riskOwner || "");
-      setRiskResponse(RiskInfoInitialize.riskResponse || "");
-      setRiskCategory(RiskInfoInitialize.riskCategory || "");
-      setRiskProbabilityLevel(RiskInfoInitialize.riskProbabilityLevel || "");
+      setRiskOwner({
+        value: RiskInfoInitialize.riskOwner, // Make sure it's an object with { value, label }
+        label: RiskInfoInitialize.riskOwner, // Assuming you have the label as well, else use the value
+      });
+
+      setRiskResponse({
+        value: RiskInfoInitialize.riskResponse,
+        label: RiskInfoInitialize.riskResponse,
+      });
+
+      setRiskCategory({
+        value: RiskInfoInitialize.riskCategory,
+        label: RiskInfoInitialize.riskCategory,
+      });
+
+      setRiskProbabilityLevel({
+        value: RiskInfoInitialize.riskProbabilityLevel,
+        label: RiskInfoInitialize.riskProbabilityLevel,
+      });
 
       // Set the text fields with data from the response
       setRiskInfo({
@@ -378,7 +394,7 @@ export function RiskInfo({ data, disabled }) {
         riskResponseActivity: RiskInfoInitialize.riskResponseActivity || "",
       });
     }
-  }, [data]); // Dependency on `data`, will run whenever data changes
+  }, [data]);
 
   const onChange = (e) => {
     const { id, value } = e.target;
@@ -413,9 +429,9 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskOwner"
           label="Risk Owner"
-          value={riskOwner}
+          value={riskOwner} // Make sure `value` is in { label, value } format
           onChange={setRiskOwner}
-          options={ownersList}
+          options={ownersList} // Ensure your `ownersList` has the right format [{ label, value }]
           searchable={true}
           required
           group={false}
@@ -444,7 +460,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskResponse"
           label="Risk Response"
-          value={riskResponse}
+          value={riskResponse} // Correct value format
           onChange={setRiskResponse}
           options={options.riskResponsedrawer}
           searchable={true}
@@ -454,7 +470,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskCategory"
           label="Risk Category"
-          value={riskCategory}
+          value={riskCategory} // Correct value format
           onChange={setRiskCategory}
           options={options.categorydrawer}
           searchable={true}
@@ -464,7 +480,7 @@ export function RiskInfo({ data, disabled }) {
         <CustomDetailsSelect
           id="riskProbabilityLevel"
           label="Probability Level"
-          value={riskProbabilityLevel}
+          value={riskProbabilityLevel} // Correct value format
           onChange={setRiskProbabilityLevel}
           options={options.probabilityLevel}
           searchable={true}
