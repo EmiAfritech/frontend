@@ -67,8 +67,6 @@ export function Sidebar() {
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="#" icon={FaClipboardList} label="Governance" />
-      <NavItem to="#" icon={FaCopy} label="Compliance" />
       <LogOut />
     </>
   );
@@ -77,7 +75,7 @@ export function Sidebar() {
   const AdminTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
-      <NavItem to="#" icon={FaClipboardList} label="Governance" />
+      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
@@ -85,7 +83,6 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="#" icon={FaCopy} label="Compliance" />
       <LogOut />
     </>
   );
@@ -100,8 +97,7 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="#" icon={FaClipboardList} label="Governance" />
-      <NavItem to="#" icon={FaCopy} label="Compliance" />
+      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
       <LogOut />
     </>
   );
@@ -115,8 +111,6 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
-      <NavItem to="#" icon={FaCopy} label="Compliance" />
       <LogOut />
     </>
   );
