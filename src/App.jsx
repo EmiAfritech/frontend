@@ -40,7 +40,6 @@ function App() {
         <Route path="/setPassword" element={<CreatePasswordPage />} />
         <Route path="/complaince" element={<Compliance />} />
         <Route path="/governance" element={<Governance />} />
-        <Route path="/riskManagement" element={<RiskManagement />} />
         <Route path="/subscription" element={<SubscriptionPage/>} />
         <Route path="/verifyemail" element={<VerifyEmail/>} />
         <Route path="/" element={<Login />} />

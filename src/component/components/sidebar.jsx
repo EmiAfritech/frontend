@@ -115,7 +115,7 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="#" icon={FaClipboardList} label="Governance" />
+      <NavItem to="/governance" icon={FaClipboardList} label="Governance" />
       <NavItem to="#" icon={FaCopy} label="Compliance" />
       <LogOut />
     </>
@@ -145,22 +145,23 @@ export function Sidebar() {
   
 
   return (
-    <div className="sidebar-container bg-[#07073C]">
-      <div className="sidebar-header mb-1 h-[20%]">
+    <div className="sidebar-container bg-[#07073C] h-screen flex flex-col">
+      <div className="sidebar-header mb-1 h-[20%] flex flex-col items-center">
         <img
           src={SidebarLogo}
           style={{ height: 80, borderRadius: 20 }}
           alt="Organization Logo"
         />
-        <span>{t("riskApplication")}</span>
+        <span className="text-white">{t("riskApplication")}</span>
       </div>
-      <div className="sidebar-main">
+      <div className="sidebar-main flex-1 overflow-y-auto overflow-x-hidden p-2">
         <ul>
           {renderTabsByRole()}
           <LoadingPopup isLoading={isLoading} />
         </ul>
       </div>
     </div>
+
   );
 }
 
