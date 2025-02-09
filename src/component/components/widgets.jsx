@@ -100,14 +100,16 @@ export const CustomSelect = ({
   label,
   options = [],
 }) => {
+  // Find the selected option from options list based on value
+  const selectedValue = options.find((option) => option.value === value) || null;
+
   return (
     <div>
       {label && (
         <label
           htmlFor={id}
-          className={`block text-[12.5px] text-[#08376B] ${
-            error ? "text-red-500" : ""
-          }`}>
+          className={`block text-[12.5px] text-[#08376B] ${error ? "text-red-500" : ""}`}
+        >
           {label} {required && <span className="required">*</span>}
         </label>
       )}
@@ -117,10 +119,8 @@ export const CustomSelect = ({
         required={required}
         isSearchable={true}
         options={options}
-        onChange={(selectedOption) =>
-          onChange(selectedOption ? selectedOption.value : "")
-        }
-        value={value}
+        value={selectedValue} // Instead of defaultValue, use value
+        onChange={(selectedOption) => onChange(selectedOption ? selectedOption.value : "")}
         isClearable={true}
         styles={{
           control: (baseStyles) => ({
@@ -136,6 +136,7 @@ export const CustomSelect = ({
     </div>
   );
 };
+
 
 export function FormInputField({
   label,
