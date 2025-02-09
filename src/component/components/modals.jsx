@@ -2761,7 +2761,7 @@ export function RiskDetails( data) {
 
           {/* Scrollable Body */}
           <div className="overflow-y-auto max-h-[70vh] p-4">
-            <div className="grid grid-cols-6 bg-gray-300 mb-10 p-6 rounded-lg shadow-md">
+            <div className="grid grid-cols-6 bg-gray-300 mb-2 p-6 rounded-lg shadow-md">
               {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
@@ -2805,6 +2805,7 @@ export function RiskDetails( data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
+            <div className="mb-10">To Delete an Item Scroll to the end of the container</div>
             <RiskDetailsSideTabs data= {data} />
           </div>
         </Box>
