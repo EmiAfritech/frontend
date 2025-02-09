@@ -333,7 +333,7 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled}) {
+export function RiskInfo({data, disabled, options}) {
   const RiskInfoInitialize = data.data;
   const [riskOwner, setRiskOwner]= useState("")
   const [riskResponse, setRiskResponse] = useState("")
