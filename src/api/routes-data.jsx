@@ -460,10 +460,6 @@ export function useRiskLineChartData(year) {
 
 
 
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { AuthContext } from "../context/AuthContext"; // Adjust the path as needed
-
 export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState([]);
