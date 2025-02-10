@@ -267,7 +267,7 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskDetailsSideTabs() {
+export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
   
   const handleTabChange = (tab) => {
@@ -278,7 +278,7 @@ export function RiskDetailsSideTabs() {
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo/>;
+        return <RiskInfo data={data}/>;
       case "Mitigate":
         return <MitigateRIsk />;
       case "Review":
