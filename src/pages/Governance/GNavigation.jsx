@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Controle } from "./control";
 import { Framework } from "./framework";
 import { useTranslation } from "react-i18next";
+import { DeleteBox } from "../../component/components/widgets";
 
 export const Tabs = [
     {
