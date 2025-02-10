@@ -476,7 +476,7 @@ export function useRiskLineChartYearData() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      console.log({ "years response": response.data });
+      console.log({ "years response": response });
       setRiskLineYearChart(response.data);
     } catch (error) {
       console.error("Error fetching risk year chart data:", error);
