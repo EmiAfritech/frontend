@@ -271,12 +271,8 @@ export function RiskLineChart() {
   const {riskLineChart} = useRiskLineChartData(year)
   console.log({ "riskLineYearChart": riskLineChart})
 
-  
-
-  
   const handleYearChange = (e) => {
     setYear(e.target.value);
-
   };
 
   return (
@@ -289,7 +285,7 @@ export function RiskLineChart() {
           </section>
           <select
             type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            className="block w-full px-2 py-2 bg-[#E5E7EB] border-none rounded-md"
             id="departmentName"
             aria-describedby="departmentName"
             value={year}
