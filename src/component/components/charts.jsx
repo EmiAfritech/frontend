@@ -271,24 +271,7 @@ export function RiskLineChart() {
   const [year, setYear] = useState(yr.toString());
   const [years, setYears] = useState([]);
 
-  useEffect(() => {
-    const fetchRiskData = async () => {
-      try {
-        const response = await axios.get(RISKYEARSCHART_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setYears(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRiskData();
-  }, []);
+  
 
   useEffect(() => {
     const fetchData = async () => {

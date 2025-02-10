@@ -471,20 +471,18 @@ export function RiskLineChartYearData() {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
         },
-        withCredentials: true,
       });
-      console.log(response)
+
       setRiskLineYearChart(response.data);
     } catch (error) {
       console.error(error);
     }
-  };
 
   useEffect(() => {
       fetchData();
   },[]); 
 
-  console.log(riskLineYearChart)
+  console.log({"years": riskLineYearChart})
   return { riskLineYearChart, fetchData };
 }
   
