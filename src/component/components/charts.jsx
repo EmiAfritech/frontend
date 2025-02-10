@@ -265,8 +265,7 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 export function RiskLineChart() {
   const {riskLineYearChart} = useRiskLineChartYearData()
-  const year = riskLineYearChart.year
-  console.log({"year":year, "riskLineYearChart": riskLineYearChart})
+  console.log({"year": year, "riskLineYearChart": riskLineYearChart})
 
   
 
