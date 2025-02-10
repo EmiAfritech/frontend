@@ -335,7 +335,7 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled = true}) {
+export function RiskInfo(data) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
