@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -139,56 +139,12 @@ export function MonitoredVsUnmonitored() {
   );
 }
 export function RiskBarChart() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
-  const [years, setYears] = useState([]);
+  const {openVrscloseChart} = useOpenVsCloseBarChartData(year)
+  const {riskLineYearChart} = useRiskLineChartYearData()
+  console.log({ "riskLineYearChart": openVrscloseChart})
 
-  useEffect(() => {
-    const fetchRiskData = async () => {
-      try {
-        const response = await axios.get(RISKYEARSCHART_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setYears(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRiskData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          OPENVSCLOSEBARCHART_URL,
-          JSON.stringify({ year }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [year]);
-
-  console.log(data)
   const handleYearChange = (e) => {
     setYear(e.target.value);
   };
@@ -202,13 +158,13 @@ export function RiskBarChart() {
           </section>
           <select
             type="text"
-            className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+            className="block w-full px-2 py-2 bg-[#E5E7EB] border-none rounded-md"
             id="departmentName"
             aria-describedby="departmentName"
             value={year}
             autoComplete="off"
             onChange={handleYearChange}>
-            {years.map((years) => (
+            {riskLineYearChart.map((years) => (
               <option key={years.id} value={years.year}>
                 {years.year}
               </option>
@@ -217,7 +173,7 @@ export function RiskBarChart() {
         </div>
       </div>
       <ResponsiveContainer height={300}>
-      <BarChart data={data}>
+      <BarChart data={openVrscloseChart}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />
@@ -264,7 +220,6 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
-  const data = 23
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
   const {riskLineYearChart} = useRiskLineChartYearData()
