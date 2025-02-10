@@ -270,14 +270,14 @@ export function RiskLineChart() {
   
 
   
-  const handleYearChange = (e) => {
-    setYear(e.target.value);
+  // const handleYearChange = (e) => {
+  //   setYear(e.target.value);
 
-  };
+  // };
 
   return (
     <div className="p-12 mt-12 card bg-white">
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
@@ -298,7 +298,7 @@ export function RiskLineChart() {
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
       <ResponsiveContainer height="100%" minHeight={400}>
       <LineChart  data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
