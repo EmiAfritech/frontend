@@ -646,7 +646,7 @@ export function Pyramidchat() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
@@ -676,28 +676,7 @@ export function Pyramidchat() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
 
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
 
   const handleItemClick = (e) => {
     setPyramidRiskTable(true);
@@ -713,32 +692,19 @@ export function Pyramidchat() {
     <>
       <div>
         <div className="grid grid-cols-4">
-          <div>
-            {auth.role === "ADMIN" ||
-            auth.role === "GENERALMANAGER" ? (
-              <>
-                <select
-                  type="text"
-                  className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                  id="departmentName"
-                  aria-describedby="departmentName"
-                  value={departmentName}
-                  autoComplete="off"
-                  onChange={handleDeptNameChange}>
-                  <option value="All Departments">{t("allDepartment")}</option>
-                  {deptmentNames.map((deptmentNames) => (
-                    <option
-                      key={deptmentNames.names.id}
-                      value={deptmentNames.names.name}>
-                      {deptmentNames.names.name}
-                    </option>
-                  ))}
-                </select>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
+        {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
+          )}
         </div>
         <div className=" m-3 flex flex-row-reverse">
           <ReactToPrint
