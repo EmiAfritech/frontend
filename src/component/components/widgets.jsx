@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useRiskOwnersDropdown } from "../../api/routes-data";
-import { useLocation } from "react-router-dom";
 
 export function InputField({
   label,
@@ -269,17 +268,14 @@ export const CustomDetailsSelect = ({
 };
 
 export function RiskDetailsSideTabs( data) {
-  const location = useLocation()
   const [activeTab, setActiveTab] = useState("Risk Info");
   
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  
-  
+  console.log(activeTab);
   const renderComponent = () => {
-    
     switch (activeTab) {
       case "Risk Info":
         return <RiskInfo/>;
