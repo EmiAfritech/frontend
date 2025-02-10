@@ -1044,7 +1044,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     </div>
   );
 }
-export function Governaceforms({ onFormSubmit }) {
+export function Governanceforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
