@@ -269,7 +269,7 @@ export function RiskLineChart() {
   const [year, setYear] = useState(yr.toString());
   const {riskLineYearChart} = useRiskLineChartYearData()
   const {riskLineChart} = useRiskLineChartData(year)
-  console.log({ "riskLineYearChart": year})
+  console.log({ "riskLineYearChart": riskLineChart})
 
   
 
