@@ -101,22 +101,10 @@ export function MitigatedVsUnmitigated() {
   );
 }
 export function ReviewedVsUnreviewed() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
+  const { t } = useTranslation();
   const {reviewedVrunrevieweddPieData} = ReviewedVrsUnReviewedPieChart()
 
-  useEffect(() => {
-    axios
-      .get(REVIEWEDVSUNREVIEWEDCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
-  console.log(data)
+  
   return (
     <div className=" items-center flex flex-col px-6 pb-5">
       <h3 className="pb-3">
@@ -125,7 +113,7 @@ export function ReviewedVsUnreviewed() {
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={reviewedVrunrevieweddPieData} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
