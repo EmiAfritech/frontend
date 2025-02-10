@@ -1043,7 +1043,7 @@ export function Governanceforms({ onFormSubmit }) {
   const { t } = useTranslation();
   const [description, setDescription] = useState("")
   const FormArray = GRCFormsArray(t);
-  cosnt [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
 
   const handleSubmit = async (e) => {
