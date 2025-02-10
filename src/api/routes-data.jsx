@@ -466,7 +466,7 @@ export function RiskLineChartYearData() {
         },
         withCredentials: true,
       });
-
+      console.log(response)
       setRiskLineYearChart(response.data);
     } catch (error) {
       console.error(error);
