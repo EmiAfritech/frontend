@@ -291,11 +291,12 @@ export function RiskDetailsSideTabs( data) {
         return <RiskInfo />;
     }
   };
+  
 
   return (
     <div>
       <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="mt-6 mb-96">{renderComponent()}</div>
+      <div className="mt-6 mb-60">{renderComponent()}</div>
       <DeleteBox/>
     </div>
   );
@@ -336,7 +337,7 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled}) {
+export function RiskInfo({data, disabled = true}) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
@@ -360,10 +361,53 @@ export function RiskInfo({data, disabled}) {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
-  const handleSubmit =()=>{
-    setIsSubmitting(true)
-  }
   
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      setIsSubmitting(true);
+  
+      try {
+        const response = await axios.post(
+          LOGIN_URL,
+          JSON.stringify({ email, password }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            withCredentials: true,
+          }
+        );
+        if (response.status === 200) {
+          const {authToken, role, department, organizationName,} = response.data;
+          const token = authToken
+          setAuth({ token, role, department, organizationName, });
+          setVerified(true);
+          Cookies.set('token', token, {
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'Strict', 
+          });
+          Cookies.set('role', role, {
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'Strict', 
+          });
+          verifyRecapture();
+        }
+      } catch (err) {
+        if (err.response?.status === 500 || err.response?.status === 400) {
+          setNotification({ ...notification, serverDown: true });
+          reload();
+        } else if (err.response?.status === 401) {
+          setNotification({ ...notification, authorized: true });
+        } else if ([404].includes(err.response?.status)) {
+          setNotification({ ...notification, errorMessage: true });
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
