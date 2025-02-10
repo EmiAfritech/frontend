@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -272,7 +272,7 @@ export function ReportRiskLevel() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -298,28 +298,7 @@ export function ReportRiskLevel() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
+ 
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -328,29 +307,18 @@ export function ReportRiskLevel() {
       </h3>
       <div>
         <div>
-          {auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+          {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
         </div>
       </div>
@@ -366,9 +334,9 @@ export function ReportRiskLevel() {
 }
 export function ReportRiskStatus() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -394,28 +362,7 @@ export function ReportRiskStatus() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
+  
 
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -423,32 +370,19 @@ export function ReportRiskStatus() {
         <span>{t("riskStatus")}</span>
       </h3>
       <div>
-        <div>
-        {auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER" ?  (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+      {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
-        </div>
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
@@ -464,7 +398,7 @@ export function ReportRiskLocation() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -490,28 +424,7 @@ export function ReportRiskLocation() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
+  
 
   return (
     <div className="card items-center flex flex-col  pb-12">
@@ -519,32 +432,19 @@ export function ReportRiskLocation() {
         <span>{t("location")}</span>
       </h3>
       <div>
-        <div>
-          {auth.role === "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+      {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
-        </div>
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
@@ -560,7 +460,7 @@ export function ReportRiskCategory() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -586,61 +486,25 @@ export function ReportRiskCategory() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
-
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
         <span>{t("category")}</span>
       </h3>
       <div>
-        <div>
-          {auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+      {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
-        </div>
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
@@ -656,7 +520,7 @@ export function ReportRiskResponse() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -682,61 +546,25 @@ export function ReportRiskResponse() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
-
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
       <h3 className="py-3">
         <span>{t("riskResponse")}</span>
       </h3>
       <div>
-        <div>
-          {auth.role === "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+      {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
-        </div>
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
@@ -752,7 +580,7 @@ export function ReportRiskOwner() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -778,24 +606,6 @@ export function ReportRiskOwner() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
 
   const handleDeptNameChange = (e) => {
     setDeptmentName(e.target.value);
@@ -807,32 +617,19 @@ export function ReportRiskOwner() {
         <span>{t("owner")}</span>
       </h3>
       <div>
-        <div>
-          {auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
-                value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">All Departments</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
+      {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
           )}
-        </div>
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
