@@ -1042,6 +1042,7 @@ export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [description, setDescription] = useState("")
+  const [frameWorkSelect, setFrameWorkSelect] = useState(true)
   const FormArray = GRCFormsArray(t);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
@@ -1076,10 +1077,19 @@ export function Framworkforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            
-            <CustomSelect
-              id="riskName"
-              label={t("riskName")}
+          <CustomSelect
+              id="frameWorkSelect"
+              label="Select a Framework"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={FormArray.responseActivityStatus}
+              searchable={true}
+              required
+            />
+            {frameWorkSelect ? (
+              <CustomSelect
+              id="framework"
+              label= "Framework Select"
               value={framework}
               onChange={setFramework}
               options={FormArray.governance}
@@ -1087,13 +1097,22 @@ export function Framworkforms({ onFormSubmit }) {
               required
               group={false}
             />
+            ):(
+              <FormInputField
+              id="frameworkText"
+              label="Type In your Framework Name"
+              value={description}
+              onChange={setDescription((e)=>(e.target.value))}
+              required
+            />
+            )}
             <FormInputField
-                id="description"
-                label="Description"
-                value={description}
-                onChange={setDescription((e)=>(e.target.value))}
-                required
-              />
+              id="description"
+              label="Description"
+              value={description}
+              onChange={setDescription((e)=>(e.target.value))}
+              required
+            />
             <CustomButton
               label="submit"
               onClick={handleSubmit}

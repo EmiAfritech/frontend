@@ -23,7 +23,7 @@ export const Tabs = [
     console.log(activeTab);
     const renderComponent = () => {
       switch (activeTab) {
-        case "c":
+        case "FrameworkTab":
           return <Framework/>;
         case "Controle":
           return <Controle />;
