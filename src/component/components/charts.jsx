@@ -158,7 +158,7 @@ export function RiskBarChart() {
           </section>
           <select
             type="text"
-            className="block w-full px-2 py-2 bg-[#E5E7EB] border-none rounded-md"
+            className="block w-full px-2 py-1 bg-[#E5E7EB] border-none"
             id="departmentName"
             aria-describedby="departmentName"
             value={year}
@@ -240,7 +240,7 @@ export function RiskLineChart() {
           </section>
           <select
             type="text"
-            className="block w-full px-2 py-2 bg-[#E5E7EB] border-none rounded-md"
+            className="block w-full px-2 py-1 bg-[#E5E7EB] border-none"
             id="departmentName"
             aria-describedby="departmentName"
             value={year}
