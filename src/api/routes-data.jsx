@@ -429,8 +429,6 @@ export function useReviewedVrsUnReviewedPieChart() {
   return { reviewedVrunrevieweddPieData, fetchData };
 }
 
-import axios from "axios";
-import { AuthContext } from "../context/AuthContext"; // Adjust the import path if needed
 
 export function useRiskLineChartData(year) {
   const { auth } = useContext(AuthContext);
