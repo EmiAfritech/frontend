@@ -327,3 +327,6 @@ export const useRiskAppetiteReportLowerColumns = () => {
     },
   ];
 };
+
+
+

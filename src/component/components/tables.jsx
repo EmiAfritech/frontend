@@ -1588,17 +1588,7 @@ export function GovernanceTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { mitigationTable, fetchData } = useMitigationTable();
-  const data = [
-    {
-      govFramework: 'ISO2700',
-      govDescription: 'Terms for Information security management ',
-    },
-    {
-      govFramework: 'ISO3100',
-      govDescription: 'International standard for risk management',
-    },
-    
-  ];
+  
   
   
   const handleFormSubmit = () => {
@@ -1643,7 +1633,7 @@ export function GovernanceTab() {
       },
     },
     columns,
-    data: data,
+    data: mitigationTable,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
