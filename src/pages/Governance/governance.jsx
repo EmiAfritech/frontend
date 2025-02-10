@@ -1,21 +1,13 @@
 import { Sidebar } from "../../component/components/sidebar";
-import {
-  OpenVsClose,
-  ReviewedVsUnreviewed,
-  MitigatedVsUnmitigated,
-  RiskLineChart,
-  MonitoredVsUnmonitored,
-} from "../../component/components/charts";
+import { RiskmitigationTab } from "../../component/components/tables";
 import "../../component/comstyles/component.css";
-import { DeleteBox , } from "../../component/components/widgets";
-import { RiskDetails, UserAccountDetails } from "../../component/components/modals";
-
 export function Governance() {
+  
   return (
-    <div className="flex flex-col h-screen">
-      <Sidebar />
-      <div className="ml-[18%] m-6 ">
-      <UserAccountDetails/>
+    <div className="flex flex-col">
+      <Sidebar/>
+      <div className="ml-[18%] p-6 m-6 card bg-white rounded-lg">
+        <RiskmitigationTab />
       </div>
     </div>
   );
