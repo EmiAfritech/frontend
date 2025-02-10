@@ -56,5 +56,6 @@ export const GRCFormsArray = (t) => ({
     { value: "YES", label: t("yes")},
     { value: "NO", label: t("no") },
   ],
+  
 });
 

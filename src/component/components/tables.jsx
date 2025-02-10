@@ -1587,6 +1587,7 @@ export function RiskmitigationTab() {
 export function GovernanceTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
+  const { mitigationTable, fetchData } = useMitigationTable();
   
   const handleFormSubmit = () => {
     fetchData();
