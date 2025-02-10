@@ -155,7 +155,7 @@ export function MonitoredVsUnmonitored() {
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={monitoredVrunmonitoredPieData} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
