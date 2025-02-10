@@ -302,6 +302,7 @@ export function useMitigationTable() {
   return { mitigationTable, fetchData };
 }
 
+
 export function useMonitoringTable() {
   const { auth } = useContext(AuthContext);
   const [monitoringTable, setMonitoringTable] = useState([]);
