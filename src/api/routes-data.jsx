@@ -484,8 +484,7 @@ export function RiskLineChartYearData() {
 
   console.log({"years": riskLineYearChart})
   return { riskLineYearChart, fetchData };
-}
-  
+}} 
 
 export function OpenVsCloseBarChartData() {
   const { auth } = useContext(AuthContext);
@@ -511,4 +510,3 @@ export function OpenVsCloseBarChartData() {
   }, []);
   return { openVrscloseChart, fetchData };
 }
-
