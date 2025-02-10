@@ -434,18 +434,19 @@ export function RiskLineChartData(year) {
   const [riskLineChart, setRiskLineChart] = useState("");
   const fetchData = async () => {
     try {
-      const response = await axios.post(RISKLINECHART_URL, 
+      const response = await axios.post(
+        RISKLINECHART_URL,
+        JSON.stringify({ year }),
         {
-          year
-        }, 
-        { headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      });
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
 
-      setRiskLineChart({});
+      setRiskLineChart(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -456,7 +457,6 @@ export function RiskLineChartData(year) {
   }, []);
   return { riskLineChart, fetchData };
 }
-
 
 
 
