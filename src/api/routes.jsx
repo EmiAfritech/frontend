@@ -97,7 +97,7 @@ export const MONITORINGRISKFORM_URL ="/departments/risk/riskmonitorings/create";
 export const MONITOREDVSUNMONITOREDRISKSCHART_URL = "/Organization/Analytics/monitored-vs-unmonitored";
 
 //unreviewedVsreviewed risk chat url
-export const REVIEWEDVSUNREVIEWEDCHART_URL = "/risks/reviewed-vs-unreviewed";
+export const REVIEWEDVSUNREVIEWEDCHART_URL = "/Organization/Analytics/reviewed-vs-unreviewed";
 
 //mitigatedvsunmitigated risk chat url
 export const MITIGATEDVSUNMITIGATEDCHAT_URL = "/Organization/Analytics/mitigated-vs-unmitigated";
