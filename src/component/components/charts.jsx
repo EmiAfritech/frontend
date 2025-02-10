@@ -477,7 +477,7 @@ export function ReportRiskCategory() {
             withCredentials: true,
           }
         );
-
+        console.log({"category response": response})
         setData(response.data);
       } catch (error) {
         console.error(error);
