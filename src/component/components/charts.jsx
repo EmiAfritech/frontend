@@ -265,7 +265,8 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
-  const { riskLineChart} = RiskLineChart()
+  const {auth} = useContext(AuthContext)
+  const [data, setData] = useState();
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
   const [years, setYears] = useState([]);
