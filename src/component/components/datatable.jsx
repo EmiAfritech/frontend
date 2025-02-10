@@ -121,6 +121,20 @@ export const useRiskMitigationColumns = () => {
   ];
 };
 
+export const useGovernanceColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "govFramework",
+      header: "Governance Framework",
+    },
+    {
+      accessorKey: "govDescription",
+      header: "Governance Description",
+    },
+  ];
+};
+
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
   return [

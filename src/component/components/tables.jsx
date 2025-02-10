@@ -33,7 +33,7 @@ import {
 import {
   Departmentforms,
   RiskMitigationforms,
-  Governaceforms,
+  Governanceforms,
   RiskReviewforms,
   Riskforms,
   Userforms,
@@ -1647,10 +1647,8 @@ export function RiskmitigationTab() {
 }
 
 export function GovernanceTab() {
-  const columns = useRiskMitigationColumns();
+  const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { mitigationTable, fetchData } = useMitigationTable();
-
   
   const handleFormSubmit = () => {
     fetchData();
