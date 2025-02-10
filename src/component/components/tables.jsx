@@ -1591,7 +1591,7 @@ export function GovernanceTab() {
   const data = [
     {
       govFramework: 'ISO2700',
-      govDescription: 'International ',
+      govDescription: 'Terms for Information security management ',
     },
     {
       govFramework: 'ISO3100',

@@ -1041,6 +1041,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
 export function Governanceforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
+  const [description, setDescription] = useState("")
   const FormArray = GRCFormsArray(t);
   cosnt [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
@@ -1087,11 +1088,12 @@ export function Governanceforms({ onFormSubmit }) {
               group={false}
             />
             <FormInputField
-              id="description"
-              label="Description"
-              value={impactLevelNumber}
-              required
-            />
+                id="description"
+                label="Description"
+                value={description}
+                onChange={setDescription((e)=>(e.target.value))}
+                required
+              />
             <CustomButton
               label="submit"
               onClick={handleSubmit}
