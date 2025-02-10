@@ -344,6 +344,7 @@ export function OpenVrsClosedPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
+  console.log(openVrsClosePieData)
   return { openVrsClosePieData, fetchData };
 }
 
