@@ -1074,84 +1074,6 @@ export function Governanceforms({ onFormSubmit }) {
     });
   };
 
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const dateObj = new Date(selectedDate);
-
-    // Extract year, month, and day components
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-    const day = String(dateObj.getDate()).padStart(2, "0");
-
-    // Format the date as "yyyy-MM-dd"
-    const formattedDate = `${year}-${month}-${day}`;
-    // Set the formatted date to state
-    setEndDate(formattedDate);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
-        await axios.post(
-          MITIGATERISKFORM_URL,
-          JSON.stringify({
-            riskID,
-            mitigatedRiskProbabilityLevel,
-            mitigatedRiskImpactLevel,
-            mitigationControl,
-            mitigationEffort,
-            riskReviewer,
-            mitigationCost,
-            endDate,
-            hostaddress,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            withCredentials: true,
-          }
-        );
-      } else {
-        await axios.post(
-          MITIGATERISKFORM_URL,
-          JSON.stringify({
-            riskID,
-            mitigatedRiskProbabilityLevel,
-            mitigatedRiskImpactLevel,
-            mitigationControl,
-            mitigationEffort,
-            riskReviewer,
-            mitigationCost,
-            departmentID,
-            endDate,
-            hostaddress,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-      }
-      notify();
-    } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const reload = () => {
     setRiskName("");
     setdepartmentID("");
@@ -1175,31 +1097,19 @@ export function Governanceforms({ onFormSubmit }) {
   return (
     <div>
       <CustomButton
-        label={t("mitigateRisk")}
+        label="Add a Rule"
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
         onClick={handleOpen}
       />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-          {t("mitigateRisk")}
+          Governance Framework
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            {auth.role === "ADMIN" ||
-              (auth.role === "GENERALMANAGER" && (
-                <CustomSelect
-                  id="departmentID"
-                  label={t("departmentId")}
-                  value={departmentID}
-                  onChange={setdepartmentID}
-                  options={departmentList}
-                  searchable={true}
-                  required
-                  group={false}
-                />
-              ))}
+            
             <CustomSelect
               id="riskName"
               label={t("riskName")}
@@ -1210,99 +1120,11 @@ export function Governanceforms({ onFormSubmit }) {
               required
               group={false}
             />
-            <div className="grid grid-cols-2 gap-2">
-              <FormInputField
-                id="riskid"
-                label={t("riskId")}
-                value={riskID}
-                required
-              />
-              <FormInputField
-                id="category"
-                label={t("categorydrawer")}
-                value={riskCategory}
-                required
-              />
-            </div>
             <FormInputField
               id="impact"
               label={t("mitigatedRiskImpactLevel")}
               value={impactLevelNumber}
               required
-            />
-            <FormInputField
-              id="probability"
-              label={t("probabilityLevel")}
-              value={probabilityLevelNumber}
-              required
-            />
-            <CustomSelect
-              id="riskID"
-              label={t("mitgatedRiskProbabillityLevel")}
-              value={mitigatedRiskProbabilityLevel}
-              onChange={setmitigatedRiskProbabilityLevel}
-              options={FormArray.probabilityLevel}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigatedRiskImpactLevel"
-              label={t("mitigatedRiskImpactLevel")}
-              value={mitigatedRiskImpactLevel}
-              onChange={setmitigatedRiskImpactLevel}
-              options={FormArray.impactLevel}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigationEffort"
-              label={t("mitigationEffort")}
-              value={mitigationEffort}
-              onChange={setMitigationEffort}
-              options={FormArray.mitigationEffort}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigationControl"
-              label={t("mitigationControl")}
-              value={mitigationControl}
-              onChange={setMitigationControl}
-              options={FormArray.mitigationEffort}
-              searchable={true}
-              required
-              group={false}
-            />
-            <FormInputField
-              type="date"
-              id="date"
-              label={t("mitigationDueDate")}
-              value={endDate}
-              required
-              onChange={handleDateChange}
-            />
-            <CustomSelect
-              id="mitigationCost"
-              label={t("mitigationCost")}
-              value={mitigationCost}
-              onChange={setMitigationCost}
-              options={FormArray.mitigationCost}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="riskReviewer"
-              label={t("riskReviewer")}
-              value={riskReviewer}
-              onChange={setRiskReviewer}
-              options={ownersName}
-              searchable={true}
-              required
-              group={false}
             />
             <CustomButton
               label="submit"
