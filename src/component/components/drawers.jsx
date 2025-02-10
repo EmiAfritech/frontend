@@ -159,8 +159,8 @@ export function Userforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
-            {auth.role === "ADMIN" ||
-              (auth.role === "GENERALMANAGER" && (
+            {(auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER") && (
                 <CustomSelect
                   id="department"
                   label={t("departments")}
@@ -171,7 +171,7 @@ export function Userforms({ onFormSubmit }) {
                   required
                   group={false}
                 />
-              ))}
+              )}
             <FormInputField
               id="password"
               label={t("password")}
