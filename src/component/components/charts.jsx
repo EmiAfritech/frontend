@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -66,7 +66,6 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 export function OpenVsClose() {
   const { t } = useTranslation();
   const {openVrsClosePieData} = OpenVrsClosedPieChart()
-  console.log({"openvrsclose": openVrsClosePieData})
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
@@ -146,19 +145,8 @@ export function ReviewedVsUnreviewed() {
 }
 export function MonitoredVsUnmonitored() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(MONITOREDVSUNMONITOREDRISKSCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
+  const {monitoredVrunmonitoredPieData} = MonitoredVrsUnMonitoredPieChart()
+  
   return (
     <div className=" items-center flex flex-col px-4 pb-5">
       <h3 className="pb-3">

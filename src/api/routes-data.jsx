@@ -12,6 +12,7 @@ import {
   RISKREVIEWERSDROPDOWN_URL,
   USERS_URL,
   VIEWALLRISKS_URL,
+  MONITOREDVSUNMONITOREDRISKCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -348,4 +349,28 @@ export function OpenVrsClosedPieChart() {
   return { openVrsClosePieData, fetchData };
 }
 
+export function MonitoredVrsUnMonitoredPieChart() {
+  const { auth } = useContext(AuthContext);
+  const [monitoredVrunmonitoredPieData, setMonitoredVrunmonitoredPieData] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(MONITOREDVSUNMONITOREDRISKSCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setOpenVrsClosePieData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { monitoredVrunmonitoredPieData, fetchData };
+}
 
