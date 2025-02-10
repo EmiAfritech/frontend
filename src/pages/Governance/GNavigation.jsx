@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Controle } from "./control";
 import { Framework } from "./framework";
+import { useTranslation } from "react-i18next";
 
 export const Tabs = [
     {
@@ -10,8 +12,8 @@ export const Tabs = [
     },
   ];
 
-  export function GovernanceRendering(data) {
-    const [activeTab, setActiveTab] = useState("Risk Info");
+  export function GovernanceRendering() {
+    const [activeTab, setActiveTab] = useState("FrameworkTab");
     
     const handleTabChange = (tab) => {
       setActiveTab(tab);
@@ -20,9 +22,9 @@ export const Tabs = [
     console.log(activeTab);
     const renderComponent = () => {
       switch (activeTab) {
-        case "Risk Info":
+        case "c":
           return <Framework/>;
-        case "Mitigate":
+        case "Controle":
           return <Controle />;
         default:
           return <Framework />;

@@ -34,7 +34,7 @@ import {
 import {
   Departmentforms,
   RiskMitigationforms,
-  Governanceforms,
+  Framworkforms,
   RiskReviewforms,
   Riskforms,
   Userforms,
@@ -1584,7 +1584,7 @@ export function RiskmitigationTab() {
   );
 }
 
-export function GovernanceTab() {
+export function FrameworkTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { mitigationTable, fetchData } = useMitigationTable();
@@ -1646,7 +1646,7 @@ export function GovernanceTab() {
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="m-5">
-          <Governanceforms onFormSubmit={handleFormSubmit} />
+          <Framworkforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />
