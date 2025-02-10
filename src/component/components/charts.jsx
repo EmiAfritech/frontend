@@ -64,9 +64,12 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 };
 
 export function OpenVsClose() {
+  const {auth} = useContext(AuthContext)
+  const [data, setData] = useState();
   const { t } = useTranslation();
-  const {openVrsClosePieData} = OpenVrsClosedPieChart()
 
+  const {openVrsClosePieData} = OpenVrsClosedPieChart()
+ console.log(openVrsClosePieData)
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
@@ -75,7 +78,7 @@ export function OpenVsClose() {
       </h3>
       <ResponsiveContainer height={180}>
         <PieChart>
-          <Pie dataKey="value" data={openVrsClosePieData} outerRadius={85} innerRadius={50} />
+          <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>
