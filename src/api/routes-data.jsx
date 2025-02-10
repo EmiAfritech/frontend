@@ -16,7 +16,8 @@ import {
   MITIGATEDVSUNMITIGATEDCHAT_URL,
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
-  OPENVSCLOSEBARCHART_URL
+  OPENVSCLOSEBARCHART_URL,
+  RISKYEARSCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -375,7 +376,6 @@ export function MonitoredVrsUnMonitoredPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log(monitoredVrunmonitoredPieData)
   return { monitoredVrunmonitoredPieData, fetchData };
 }
 
@@ -401,7 +401,6 @@ export function MitigatedVrsUnMitigatedPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log(mitigatedVrunmitigatedPieData)
   return { mitigatedVrunmitigatedPieData, fetchData };
 }
 
@@ -430,12 +429,12 @@ export function ReviewedVrsUnReviewedPieChart() {
   return { reviewedVrunrevieweddPieData, fetchData };
 }
 
-export function RiskLineChartData() {
+export function RiskLineChartData(year) {
   const { auth } = useContext(AuthContext);
   const [riskLineChart, setRiskLineChart] = useState("");
   const fetchData = async () => {
     try {
-      const response = await axios.get(RISKLINECHART_URL, {
+      const response = await axios.post(RISKLINECHART_URL, {year}, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
@@ -452,8 +451,32 @@ export function RiskLineChartData() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log({"riskline": riskLineChart} )
   return { riskLineChart, fetchData };
+}
+
+export function RiskLineChartYearData() {
+  const { auth } = useContext(AuthContext);
+  const [riskLineYearChart, setRiskLineYearChart] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKYEARSCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskLineYearChart(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskLineYearChart, fetchData };
 }
 
 export function OpenVsCloseBarChartData() {

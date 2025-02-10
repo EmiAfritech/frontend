@@ -109,7 +109,7 @@ export const OPENVSCLOSECHART_URL = "/Organization/Analytics/opened-vs-closed";
 export const RISKLINECHART_URL = "/Organization/Analytics/getRiskPerMonthChartData";
 
 //unreviewed risk chat per month dashboard url
-export const RISKYEARSCHART_URL = "/risks/getRisksYears";
+export const RISKYEARSCHART_URL = "/Organization/Risk/getRisksYears";
 
 //risk status report chart data
 export const RISKSTATUSREPORTCHART_URL = "/risks/getRiskStatusChartData";

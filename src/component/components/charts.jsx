@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData, OpenVsCloseBarChartData } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData, OpenVsCloseBarChartData, RiskLineChartYearData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -213,11 +213,12 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
+  const [year, setYear] = useState("")
   const { riskLineChart} = RiskLineChartData()
-
+  const {riskLineYearChart} = RiskLineChartYearData(year)
   return (
     <div className="p-12 mt-12 card bg-white">
-      {/* <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
@@ -230,15 +231,15 @@ export function RiskLineChart() {
             aria-describedby="departmentName"
             value={year}
             autoComplete="off"
-            onChange={handleYearChange}>
-            {years.map((years) => (
+            onChange={(e) => setYear(e.target.value)}>
+            {riskLineYearChart.map((years) => (
               <option key={years.id} value={years.year}>
                 {years.year}
               </option>
             ))}
           </select>
         </div>
-      </div> */}
+      </div>
       <ResponsiveContainer height="100%" minHeight={400}>
       <LineChart  data={riskLineChart} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
