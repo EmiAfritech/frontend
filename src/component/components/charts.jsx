@@ -121,7 +121,6 @@ export function ReviewedVsUnreviewed() {
   );
 }
 export function MonitoredVsUnmonitored() {
-  const {auth} = useContext(AuthContext)
   const {monitoredVrunmonitoredPieData} = useMonitoredVrsUnMonitoredPieChart()
   
   return (

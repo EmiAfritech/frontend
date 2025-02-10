@@ -460,6 +460,10 @@ export function useRiskLineChartData(year) {
 
 
 
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext"; // Adjust the path as needed
+
 export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState([]);
@@ -472,19 +476,22 @@ export function useRiskLineChartYearData() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      console.log({"years response": response})
+      console.log({ "years response": response.data });
       setRiskLineYearChart(response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching risk year chart data:", error);
     }
+  };
 
   useEffect(() => {
-      fetchData();
-  },[]); 
+    fetchData();
+  }, []); 
 
-  console.log({"years": riskLineYearChart})
+  console.log({ "years": riskLineYearChart });
+
   return { riskLineYearChart, fetchData };
-}} 
+}
+
 
 export function useOpenVsCloseBarChartData() {
   const { auth } = useContext(AuthContext);
