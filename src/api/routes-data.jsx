@@ -320,3 +320,41 @@ export function useMonitoringTable() {
   return { monitoringTable, fetchData };
 }
 
+
+export function OpenVrsClosedPieChart() {
+  const { auth } = useContext(AuthContext);
+  const [openVrsClosePieData, setOpenVrsClosePieData] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(OPENVSCLOSECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setOpenVrsClosePieData(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { openVrsClosePieData, fetchData };
+}
+
+
+useEffect(() => {
+    axios
+      .get(OPENVSCLOSECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      })
+      .then((data) => setData(data.data));
+  }, [data]);

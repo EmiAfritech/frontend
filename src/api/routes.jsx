@@ -103,7 +103,7 @@ export const REVIEWEDVSUNREVIEWEDCHART_URL = "/risks/reviewed-vs-unreviewed";
 export const MITIGATEDVSUNMITIGATEDCHAT_URL = "risks/mitigated-vs-unmitigated";
 
 //unreviewed risk chat url
-export const OPENVSCLOSECHART_URL = "/risks/opened-vs-closed";
+export const OPENVSCLOSECHART_URL = "/Organization/Analytics/opened-vs-closed";
 
 //unreviewed risk chat per month dashboard url
 export const RISKLINECHART_URL = "/risks/getRiskPerMonthChartData";
