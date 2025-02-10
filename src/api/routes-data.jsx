@@ -463,8 +463,6 @@ export function useRiskLineChartData(year) {
   return { riskLineChart, fetchData };
 }
 
-
-
 export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState([]);
@@ -492,20 +490,23 @@ export function useRiskLineChartYearData() {
   return { riskLineYearChart, fetchData };
 }
 
-
-export function useOpenVsCloseBarChartData() {
+export function useOpenVsCloseBarChartData(year) {
   const { auth } = useContext(AuthContext);
   const [openVrscloseChart, setOpenVrscloseChart] = useState("");
+
   const fetchData = async () => {
     try {
-      const response = await axios.get(OPENVSCLOSEBARCHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      });
-
+      const response = await axios.post(
+        OPENVSCLOSEBARCHART_URL,
+        JSON.stringify({ year }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
       setOpenVrscloseChart(response.data);
     } catch (error) {
       console.error(error);
@@ -513,7 +514,9 @@ export function useOpenVsCloseBarChartData() {
   };
 
   useEffect(() => {
-    fetchData(); 
-  }, []);
+    if (year) {
+      fetchData();
+    }
+  }, [year]); 
   return { openVrscloseChart, fetchData };
 }
