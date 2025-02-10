@@ -215,8 +215,6 @@ export function MonitoredVsUnmonitoredBarchart() {
 export function RiskLineChart() {
   const { riskLineChart} = RiskLineChartData()
 
- 
-
   return (
     <div className="p-12 mt-12 card bg-white">
       {/* <div className="grid grid-cols-5 gap-4">

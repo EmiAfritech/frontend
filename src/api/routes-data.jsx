@@ -452,6 +452,7 @@ export function RiskLineChartData() {
   useEffect(() => {
     fetchData(); 
   }, []);
+  console.log({"riskline": riskLineChart} )
   return { riskLineChart, fetchData };
 }
 
