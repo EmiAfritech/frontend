@@ -12,6 +12,7 @@ import {
   useRiskMitigationColumns,
   useReportRiskMitigationColumns,
   useRiskStatuscolumns,
+  useGovernanceColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
