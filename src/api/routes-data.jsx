@@ -363,7 +363,7 @@ export function MonitoredVrsUnMonitoredPieChart() {
         withCredentials: true,
       });
 
-      setOpenVrsClosePieData(response.data);
+      setMonitoredVrunmonitoredPieData(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -401,4 +401,5 @@ export function MitigatedVrsUnMitigatedPieChart() {
   console.log(mitigatedVrunmitigatedPieData)
   return { mitigatedVrunmitigatedPieData, fetchData };
 }
+
 
