@@ -39,6 +39,7 @@ import {
   Riskforms,
   Userforms,
   RiskMonitoringforms,
+  Controlforms,
 } from "./drawers";
 import axios from "../../api/axios";
 import {
@@ -1647,6 +1648,76 @@ export function FrameworkTab() {
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="m-5">
           <Framworkforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
+}
+
+export function ControleTab() {
+  const columns = useGovernanceColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { mitigationTable, fetchData } = useMitigationTable();
+  
+  
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: mitigationTable,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="m-5">
+          <Controlforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />

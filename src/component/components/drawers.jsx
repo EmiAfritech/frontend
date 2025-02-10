@@ -1107,6 +1107,78 @@ export function Framworkforms({ onFormSubmit }) {
     </div>
   );
 }
+
+export function Controlforms({ onFormSubmit }) {
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
+  const [description, setDescription] = useState("")
+  const FormArray = GRCFormsArray(t);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [framework, setFramework] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    onFormSubmit()
+
+  };
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  return (
+    <div>
+      <CustomButton
+        label="Add a Rule"
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+        <div className="flex justify-center font-bold py-5  text-black">
+          Governance Framework
+        </div>
+        <hr />
+        <form className="w-96">
+          <div className=" px-10 py-10 flex flex-col space-y-6">
+            
+            <CustomSelect
+              id="riskName"
+              label={t("riskName")}
+              value={framework}
+              onChange={setFramework}
+              options={FormArray.governance}
+              searchable={true}
+              required
+              group={false}
+            />
+            <FormInputField
+                id="description"
+                label="Description"
+                value={description}
+                onChange={setDescription((e)=>(e.target.value))}
+                required
+              />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
+          </div>
+        </form>
+      </Drawer>
+    </div>
+  );
+}
+
+
 export function RiskMonitoringforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();

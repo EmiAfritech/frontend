@@ -34,7 +34,7 @@ export const Tabs = [
   
     return (
       <div>
-        <RiskDetailNavigation onTabChange={handleTabChange} />
+        <GovernanceRendering onTabChange={handleTabChange} />
         <div className="mt-6 mb-60">{renderComponent()}</div>
         <DeleteBox/>
       </div>
