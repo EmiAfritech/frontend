@@ -486,7 +486,7 @@ export function useRiskLineChartYearData() {
     fetchData();
   }, []); 
 
-  console.log({ "years": riskLineYearChart });
+  console.log({ "years data": riskLineYearChart });
 
   return { riskLineYearChart, fetchData };
 }
