@@ -100,7 +100,7 @@ export const MONITOREDVSUNMONITOREDRISKSCHART_URL = "/Organization/Analytics/mon
 export const REVIEWEDVSUNREVIEWEDCHART_URL = "/risks/reviewed-vs-unreviewed";
 
 //mitigatedvsunmitigated risk chat url
-export const MITIGATEDVSUNMITIGATEDCHAT_URL = "risks/mitigated-vs-unmitigated";
+export const MITIGATEDVSUNMITIGATEDCHAT_URL = "/Organization/Analytics/mitigated-vs-unmitigated";
 
 //unreviewed risk chat url
 export const OPENVSCLOSECHART_URL = "/Organization/Analytics/opened-vs-closed";

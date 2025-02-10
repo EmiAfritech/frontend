@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -82,20 +82,8 @@ export function OpenVsClose() {
   );
 }
 export function MitigatedVsUnmitigated() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(MITIGATEDVSUNMITIGATEDCHAT_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, []);
+  const { t } = useTranslation();
+  const {mitigatedVrunmitigatedPieData} = MitigatedVrsUnMitigatedPieChart()
 
   return (
     <div className="items-center flex flex-col  px-4 pb-5">
@@ -105,7 +93,7 @@ export function MitigatedVsUnmitigated() {
       </h3>
       <ResponsiveContainer height={180}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={85} innerRadius={50} />
+        <Pie dataKey="value" data={mitigatedVrunmitigatedPieData} outerRadius={85} innerRadius={50} />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
