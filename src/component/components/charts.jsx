@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartYearData } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -65,7 +65,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function OpenVsClose() {
   const { t } = useTranslation();
-  const {openVrsClosePieData} = OpenVrsClosedPieChart()
+  const {openVrsClosePieData} = useOpenVrsClosedPieChart()
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
@@ -83,7 +83,7 @@ export function OpenVsClose() {
 }
 export function MitigatedVsUnmitigated() {
   const { t } = useTranslation();
-  const {mitigatedVrunmitigatedPieData} = MitigatedVrsUnMitigatedPieChart()
+  const {mitigatedVrunmitigatedPieData} = useMitigatedVrsUnMitigatedPieChart()
 
   return (
     <div className="items-center flex flex-col  px-4 pb-5">
@@ -102,7 +102,7 @@ export function MitigatedVsUnmitigated() {
 }
 export function ReviewedVsUnreviewed() {
   const { t } = useTranslation();
-  const {reviewedVrunrevieweddPieData} = ReviewedVrsUnReviewedPieChart()
+  const {reviewedVrunrevieweddPieData} = useReviewedVrsUnReviewedPieChart()
 
   
   return (
@@ -122,7 +122,7 @@ export function ReviewedVsUnreviewed() {
 }
 export function MonitoredVsUnmonitored() {
   const {auth} = useContext(AuthContext)
-  const {monitoredVrunmonitoredPieData} = MonitoredVrsUnMonitoredPieChart()
+  const {monitoredVrunmonitoredPieData} = useMonitoredVrsUnMonitoredPieChart()
   
   return (
     <div className=" items-center flex flex-col px-4 pb-5">

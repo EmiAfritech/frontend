@@ -328,7 +328,7 @@ export function useMonitoringTable() {
 }
 
 
-export function OpenVrsClosedPieChart() {
+export function useOpenVrsClosedPieChart() {
   const { auth } = useContext(AuthContext);
   const [openVrsClosePieData, setOpenVrsClosePieData] = useState("");
   const fetchData = async () => {
@@ -354,7 +354,7 @@ export function OpenVrsClosedPieChart() {
   return { openVrsClosePieData, fetchData };
 }
 
-export function MonitoredVrsUnMonitoredPieChart() {
+export function useMonitoredVrsUnMonitoredPieChart() {
   const { auth } = useContext(AuthContext);
   const [monitoredVrunmonitoredPieData, setMonitoredVrunmonitoredPieData] = useState("");
   const fetchData = async () => {
@@ -379,7 +379,7 @@ export function MonitoredVrsUnMonitoredPieChart() {
   return { monitoredVrunmonitoredPieData, fetchData };
 }
 
-export function MitigatedVrsUnMitigatedPieChart() {
+export function useMitigatedVrsUnMitigatedPieChart() {
   const { auth } = useContext(AuthContext);
   const [mitigatedVrunmitigatedPieData, setMitigatedVrunmitigatedPieData] = useState("");
   const fetchData = async () => {
@@ -404,7 +404,7 @@ export function MitigatedVrsUnMitigatedPieChart() {
   return { mitigatedVrunmitigatedPieData, fetchData };
 }
 
-export function ReviewedVrsUnReviewedPieChart() {
+export function useReviewedVrsUnReviewedPieChart() {
   const { auth } = useContext(AuthContext);
   const [reviewedVrunrevieweddPieData, setReviewedVrunReviewedPieData] = useState("");
   const fetchData = async () => {
@@ -429,7 +429,7 @@ export function ReviewedVrsUnReviewedPieChart() {
   return { reviewedVrunrevieweddPieData, fetchData };
 }
 
-export function RiskLineChartData(year) {
+export function useRiskLineChartData(year) {
   const { auth } = useContext(AuthContext);
   const [riskLineChart, setRiskLineChart] = useState("");
   const fetchData = async () => {
@@ -460,7 +460,7 @@ export function RiskLineChartData(year) {
 
 
 
-export function RiskLineChartYearData() {  
+export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState([]);
 
@@ -486,7 +486,7 @@ export function RiskLineChartYearData() {
   return { riskLineYearChart, fetchData };
 }} 
 
-export function OpenVsCloseBarChartData() {
+export function useOpenVsCloseBarChartData() {
   const { auth } = useContext(AuthContext);
   const [openVrscloseChart, setOpenVrscloseChart] = useState("");
   const fetchData = async () => {
