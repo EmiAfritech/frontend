@@ -131,13 +131,19 @@ export function Userforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-8 flex flex-col space-y-6">
-            <FormInputField
-              id="firstName"
-              label={t("departmentCode")}
-              value={userValue.firstName}
-              onChange={handleInputChange}
-              required
-            />
+          {(auth.role === "ADMIN" ||
+              auth.role === "GENERALMANAGER") && (
+                <CustomSelect
+                  id="department"
+                  label={t("departments")}
+                  value={departmentName}
+                  onChange={setDepartment}
+                  options={departmentList}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              )}
             <FormInputField
               id="lastName"
               label={t("lastName")}
@@ -159,19 +165,7 @@ export function Userforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
-            {(auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER") && (
-                <CustomSelect
-                  id="department"
-                  label={t("departments")}
-                  value={departmentName}
-                  onChange={setDepartment}
-                  options={departmentList}
-                  searchable={true}
-                  required
-                  group={false}
-                />
-              )}
+            
             <FormInputField
               id="password"
               label={t("password")}
