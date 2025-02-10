@@ -458,7 +458,7 @@ export function RiskLineChartData(year) {
 }
 
 
-export function useRiskLineChartYearData() {  
+export function RiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState(null);
 
