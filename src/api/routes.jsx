@@ -53,8 +53,8 @@ export const VIEWCLOSEDRISKS_URL = "/Organization/Risk/Closed/list";
 //risk review url
 export const RISKREVIEW_URL = "/risks/reviews";
 
-//report audit trail url
-export const REPORTAUDITTRAIL_URL = "/getAudits";
+//report audit trail url (ea)
+export const REPORTAUDITTRAIL_URL = "/Auth/Audits/list";
 
 // risk appetite report table Greater(la)
 export const RISKAPPETITEREPORTGREATER_URL = "/Organization/Analytics/getRiskAppetiteGreater";
@@ -63,13 +63,13 @@ export const RISKAPPETITEREPORTGREATER_URL = "/Organization/Analytics/getRiskApp
 export const RISKAPPETITEREPORTLESSER_URL = "/Organization/Analytics/getRiskAppetiteLesser";
 
 //risk needing review report table
-export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
+export const RISKNEEDINGREVIEWREPORT_URL = "/Organization/Analytics/getAllOpenedRisksNeedingReview";
 
-//mitigations by Date
-export const MITIGATIONBYDATE_URL = "/getMitigtionsByDate";
+//mitigations by Date (ea)
+export const MITIGATIONBYDATE_URL = "/Organization/Analytics/getMitigtionsByDate";
 
-//risk status report table
-export const RISKSTATUSREPORT_URL = "/getAllOpenedRisksStatus";
+//risk status report table (ea)
+export const RISKSTATUSREPORT_URL = "/Organization/Analytics/getAllOpenedRisksStatus";
 
 /*************************************************Forms******************************************************/
 
