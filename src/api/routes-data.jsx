@@ -429,9 +429,13 @@ export function useReviewedVrsUnReviewedPieChart() {
   return { reviewedVrunrevieweddPieData, fetchData };
 }
 
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext"; // Adjust the import path if needed
+
 export function useRiskLineChartData(year) {
   const { auth } = useContext(AuthContext);
-  const [riskLineChart, setRiskLineChart] = useState("");
+  const [riskLineChart, setRiskLineChart] = useState(""); 
+
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -453,10 +457,13 @@ export function useRiskLineChartData(year) {
   };
 
   useEffect(() => {
-    fetchData(); 
-  }, []);
+    if (year) {
+      fetchData();
+    }
+  }, [year]); 
   return { riskLineChart, fetchData };
 }
+
 
 
 export function useRiskLineChartYearData() {  
