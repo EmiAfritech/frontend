@@ -335,7 +335,7 @@ export function OpenVrsClosedPieChart() {
         withCredentials: true,
       });
 
-      setOpenVrsClosePieData(response.data.Data);
+      setOpenVrsClosePieData(response.data);
     } catch (error) {
       console.error(error);
     }
