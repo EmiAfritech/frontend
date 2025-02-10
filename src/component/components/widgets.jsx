@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useRiskOwnersDropdown } from "../../api/routes-data";
+import { useLocation } from "react-router-dom";
 
 export function InputField({
   label,
@@ -136,11 +137,9 @@ export const CustomSelect = ({
   );
 };
 
-
-
 export function FormInputField({
   label,
-  disabled = false,
+  disabled,
   type = "text",
   value,
   placeholder,
@@ -171,7 +170,7 @@ export function FormInputField({
         required={required}
         autoComplete="false"
         className={`w-full p-2 bg-gray-200  ${
-          (error ? "border border-red-500" : "", disabled ? "bg-gray-100" : "")
+          (error ? "border border-red-500" : "", disabled ? "bg-gray-100 text-gray-100" : "")
         }`}
       />
     </div>
@@ -270,17 +269,21 @@ export const CustomDetailsSelect = ({
 };
 
 export function RiskDetailsSideTabs( data) {
+  const location = useLocation()
   const [activeTab, setActiveTab] = useState("Risk Info");
   
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  console.log(activeTab);
+  
+  
   const renderComponent = () => {
+    const riskInfo = location.pathname === "/riskidentification";
+    
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo  data={data}/>;
+        return <RiskInfo disabled = {!riskInfo}/>;
       case "Mitigate":
         return <MitigateRIsk />;
       case "Review":
@@ -337,7 +340,7 @@ export function RiskDetailNavigation({ onTabChange }) {
   );
 }
 
-export function RiskInfo({data, disabled = true}) {
+export function RiskInfo({data, disabled}) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
@@ -425,7 +428,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Name"
           value={riskInfo.riskName}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -433,7 +436,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Owner"
           value={riskInfo.riskOwner}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -442,7 +445,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Created At"
           value={riskInfo.createdAt}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -450,7 +453,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Score"
           value={riskInfo.riskScore}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
       </div>
@@ -462,7 +465,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Response"
           value={riskInfo.riskResponse}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -470,7 +473,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Category"
           value={riskInfo.riskCategory}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -478,7 +481,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Probability Level"
           value={riskInfo.riskProbabilityLevel}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -486,7 +489,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Risk Description"
           value={riskInfo.riskDescription}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
         <FormDetailsField
@@ -494,7 +497,7 @@ export function RiskInfo({data, disabled = true}) {
           label="Response Activity"
           value={riskInfo.riskResponseActivity}
           onChange={onChange}
-          disabled={disabled}
+          disabled={riskInfo}
           required
         />
       </div>

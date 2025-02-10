@@ -2728,7 +2728,7 @@ export function LogOut() {
   );
 }
 
-export function RiskDetails( data) {
+export function RiskDetails( {data}) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
