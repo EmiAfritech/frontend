@@ -267,7 +267,7 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskDetailsSideTabs( data) {
+export function RiskDetailsSideTabs() {
   const [activeTab, setActiveTab] = useState("Risk Info");
   
   const handleTabChange = (tab) => {
