@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Controle } from "./control";
 import { Framework } from "./framework";
 import { useTranslation } from "react-i18next";
-import { DeleteBox } from "../../component/components/widgets";
 
 export const Tabs = [
     {
@@ -14,7 +13,7 @@ export const Tabs = [
   ];
 
   export function GovernanceRendering() {
-    const [activeTab, setActiveTab] = useState("FrameworkTab");
+    const [activeTab, setActiveTab] = useState("Frame Work");
     
     const handleTabChange = (tab) => {
       setActiveTab(tab);
@@ -23,7 +22,7 @@ export const Tabs = [
     console.log(activeTab);
     const renderComponent = () => {
       switch (activeTab) {
-        case "FrameworkTab":
+        case "Frame Work":
           return <Framework/>;
         case "Controle":
           return <Controle />;
@@ -35,9 +34,8 @@ export const Tabs = [
   
     return (
       <div>
-        <GovernanceRendering onTabChange={handleTabChange} />
-        <div className="mt-6 mb-60">{renderComponent()}</div>
-        <DeleteBox/>
+        <GovernanceNavigation onTabChange={handleTabChange} />
+        <div>{renderComponent()}</div>
       </div>
     );
   }

@@ -784,7 +784,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const hostaddress = "http://localhost:5173/risk-mitigation";
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -1042,10 +1042,12 @@ export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [description, setDescription] = useState("")
-  const [frameWorkSelect, setFrameWorkSelect] = useState(true)
+  const [frameWorkSelect, setFrameWorkSelect] = useState("")
+  const [frameworkText, setFrameworkText] = useState("")
   const FormArray = GRCFormsArray(t);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1079,38 +1081,40 @@ export function Framworkforms({ onFormSubmit }) {
           <div className=" px-10 py-10 flex flex-col space-y-6">
           <CustomSelect
               id="frameWorkSelect"
-              label="Select a Framework"
+              label="Want to select a new Framework?"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
               options={FormArray.responseActivityStatus}
               searchable={true}
               required
             />
-            {frameWorkSelect ? (
-              <CustomSelect
-              id="framework"
-              label= "Framework Select"
-              value={framework}
-              onChange={setFramework}
-              options={FormArray.governance}
-              searchable={true}
-              required
-              group={false}
-            />
-            ):(
-              <FormInputField
-              id="frameworkText"
-              label="Type In your Framework Name"
-              value={description}
-              onChange={setDescription((e)=>(e.target.value))}
-              required
-            />
+            {frameWorkSelect && (
+              frameWorkSelect === "YES" ? (
+                <CustomSelect
+                  id="framework"
+                  label="Framework Select"
+                  value={framework}
+                  onChange={setFramework}
+                  options={FormArray.governance}
+                  searchable={true}
+                  required
+                  group={false}
+                />
+              ) : (
+                <FormInputField
+                  id="frameworkText"
+                  label="Type In your Framework Name"
+                  value={frameworkText}
+                  onChange={(e) => setFrameworkText(e.target.value)}
+                  required
+                />
+              )
             )}
             <FormInputField
               id="description"
               label="Description"
               value={description}
-              onChange={setDescription((e)=>(e.target.value))}
+              onChange={(e) => setDescription(e.target.value)}
               required
             />
             <CustomButton
@@ -1131,9 +1135,12 @@ export function Controlforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [description, setDescription] = useState("")
+  const [frameWorkSelect, setFrameWorkSelect] = useState(true)
+  const [frameworkText, setFrameworkText] = useState("")
   const FormArray = GRCFormsArray(t);
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1153,22 +1160,31 @@ export function Controlforms({ onFormSubmit }) {
   return (
     <div>
       <CustomButton
-        label="Add a Rule"
+        label="Set a New Control"
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
         onClick={handleOpen}
       />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-          Governance Framework
+          Governance Control
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            
-            <CustomSelect
-              id="riskName"
-              label={t("riskName")}
+          <CustomSelect
+            id="frameWorkSelect"
+            label="Select a Framework"
+            value={frameWorkSelect}
+            onChange={setFrameWorkSelect}
+            options={FormArray.responseActivityStatus}
+            searchable={true}
+            required
+          />
+            {frameWorkSelect ? (
+              <CustomSelect
+              id="framework"
+              label= "Framework Select"
               value={framework}
               onChange={setFramework}
               options={FormArray.governance}
@@ -1176,13 +1192,22 @@ export function Controlforms({ onFormSubmit }) {
               required
               group={false}
             />
+            ):(
+              <FormInputField
+              id="frameworkText"
+              label="Type In your Framework Name"
+              value={frameworkText}
+              onChange={(e) => setFrameworkText(e.target.value)}
+              required
+            />
+            )}
             <FormInputField
-                id="description"
-                label="Description"
-                value={description}
-                onChange={setDescription((e)=>(e.target.value))}
-                required
-              />
+              id="description"
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
             <CustomButton
               label="submit"
               onClick={handleSubmit}
