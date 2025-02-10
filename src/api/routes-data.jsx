@@ -14,7 +14,8 @@ import {
   VIEWALLRISKS_URL,
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
   MITIGATEDVSUNMITIGATEDCHAT_URL,
-  REVIEWEDVSUNREVIEWEDCHART_URL
+  REVIEWEDVSUNREVIEWEDCHART_URL,
+  RISKLINECHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -425,7 +426,31 @@ export function ReviewedVrsUnReviewedPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log(reviewedVrunrevieweddPieData)
   return { reviewedVrunrevieweddPieData, fetchData };
+}
+
+export function RiskLineChartData() {
+  const { auth } = useContext(AuthContext);
+  const [riskLineChart, setRiskLineChart] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKLINECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskLineChart(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskLineChart, fetchData };
 }
 

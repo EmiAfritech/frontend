@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -265,62 +265,13 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-  const yr = new Date().getFullYear();
-  const [year, setYear] = useState(yr.toString());
-  const [years, setYears] = useState([]);
+  const { riskLineChart} = RiskLineChartData()
 
-  useEffect(() => {
-    const fetchRiskData = async () => {
-      try {
-        const response = await axios.get(RISKYEARSCHART_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setYears(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRiskData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKLINECHART_URL,
-          JSON.stringify({ year }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [year]);
-  const handleYearChange = (e) => {
-    setYear(e.target.value);
-
-  };
+ 
 
   return (
     <div className="p-12 mt-12 card bg-white">
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
@@ -341,9 +292,9 @@ export function RiskLineChart() {
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
       <ResponsiveContainer height="100%" minHeight={400}>
-      <LineChart  data={data} margin={{ top: 5 }}>
+      <LineChart  data={riskLineChart} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
