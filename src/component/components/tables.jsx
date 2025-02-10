@@ -63,8 +63,9 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskTable } from "../../api/routes-data";
+import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
+import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -713,7 +714,7 @@ export function RiskMitigationReportTable() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
   const { t } = useTranslation();
   const reportriskmitigationcolumn = useReportRiskMitigationColumns();
 
@@ -741,57 +742,25 @@ export function RiskMitigationReportTable() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
 
   return (
     <div>
       <div className="grid grid-cols-4 justify-end">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
+          {(auth.role=== "ADMIN" ||
+            auth.role === "GENERALMANAGER") && (
+              <CustomSelect
+                id="department"
+                label={t("departments")}
                 value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
-          )}
+                onChange={setDeptmentName}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+            )}
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
@@ -848,7 +817,7 @@ export function ReviewNeedingRisksReportTab() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const [deptmentNames, setDeptmentNames] = useState([]);
+  const { departmentList } = useDepartmentDropdown();
   const reportopenrisktoreviewcolumn = useReportOpenRiskToReviewColumns();
 
   useEffect(() => {
@@ -875,57 +844,25 @@ export function ReviewNeedingRisksReportTab() {
     fetchData();
   }, [departmentName]);
 
-  useEffect(() => {
-    const fetchDeptData = async () => {
-      try {
-        const response = await axios.get(DEPARTMENTDROPDOWN_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setDeptmentNames(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDeptData();
-  }, []);
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
 
   return (
     <div>
       <div className="grid grid-cols-4">
         <div className="col-span-3"></div>
         <div>
-          {auth.role === "ADMIN" || auth.role === "GENERALMANAGER" ? (
-            <>
-              <select
-                type="text"
-                className="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-                id="departmentName"
-                aria-describedby="departmentName"
+        {(auth.role=== "ADMIN" ||
+            auth.role === "GENERALMANAGER") && (
+              <CustomSelect
+                id="department"
+                label={t("departments")}
                 value={departmentName}
-                autoComplete="off"
-                onChange={handleDeptNameChange}>
-                <option value="All Departments">{t("allDepartment")}</option>
-                {deptmentNames.map((deptmentNames) => (
-                  <option
-                    key={deptmentNames.names.id}
-                    value={deptmentNames.names.name}>
-                    {deptmentNames.names.name}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <></>
-          )}
+                onChange={setDeptmentName}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+            )}
         </div>
       </div>
       <div style={{ height: 650 }} className="  mt-2 w-auto card p-4">
