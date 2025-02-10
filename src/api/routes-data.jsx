@@ -434,8 +434,11 @@ export function RiskLineChartData(year) {
   const [riskLineChart, setRiskLineChart] = useState("");
   const fetchData = async () => {
     try {
-      const response = await axios.post(RISKLINECHART_URL, {year}, {
-        headers: {
+      const response = await axios.post(RISKLINECHART_URL, 
+        {
+          year
+        }, 
+        { headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
         },
@@ -454,17 +457,14 @@ export function RiskLineChartData(year) {
   return { riskLineChart, fetchData };
 }
 
-import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
 
-export function useRiskLineChartYearData(year) {  // Renamed to follow React hook convention
+export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${RISKYEARSCHART_URL}?year=${year}`, {  // Assuming year is used in API
+      const response = await axios.get(RISKYEARSCHART_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
@@ -478,14 +478,12 @@ export function useRiskLineChartYearData(year) {  // Renamed to follow React hoo
   };
 
   useEffect(() => {
-    if (year) {
       fetchData();
-    }
-  }, [year]);  // Re-fetch data when `year` changes
-
+  }); 
+  console.log(riskLineYearChart)
   return { riskLineYearChart, fetchData };
 }
-
+  
 
 export function OpenVsCloseBarChartData() {
   const { auth } = useContext(AuthContext);
