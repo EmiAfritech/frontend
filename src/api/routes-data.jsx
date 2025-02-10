@@ -445,7 +445,7 @@ export function RiskLineChartData(year) {
         withCredentials: true,
       });
 
-      setRiskLineChart(response.data);
+      setRiskLineChart({});
     } catch (error) {
       console.error(error);
     }

@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData, OpenVsCloseBarChartData, RiskLineChartYearData } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -104,6 +104,7 @@ export function ReviewedVsUnreviewed() {
   const { t } = useTranslation();
   const {reviewedVrunrevieweddPieData} = ReviewedVrsUnReviewedPieChart()
 
+  
   return (
     <div className=" items-center flex flex-col px-6 pb-5">
       <h3 className="pb-3">
@@ -139,11 +140,62 @@ export function MonitoredVsUnmonitored() {
   );
 }
 export function RiskBarChart() {
-  const {openVrscloseChart} = OpenVsCloseBarChartData()
+  const {auth} = useContext(AuthContext)
+  const [data, setData] = useState();
+  const yr = new Date().getFullYear();
+  const [year, setYear] = useState(yr.toString());
+  const [years, setYears] = useState([]);
 
+  useEffect(() => {
+    const fetchRiskData = async () => {
+      try {
+        const response = await axios.get(RISKYEARSCHART_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+        });
+
+        setYears(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRiskData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          OPENVSCLOSEBARCHART_URL,
+          JSON.stringify({ year }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [year]);
+
+  console.log(data)
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+  };
   return (
     <div className="p-3 card">
-      {/* <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
@@ -164,9 +216,9 @@ export function RiskBarChart() {
             ))}
           </select>
         </div>
-      </div> */}
+      </div>
       <ResponsiveContainer height={300}>
-      <BarChart data={openVrscloseChart}>
+      <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />
@@ -213,10 +265,58 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
-  const [year, setYear] = useState("")
-  const { riskLineChart} = RiskLineChartData(year)
-  const {riskLineYearChart} = RiskLineChartYearData()
-  console.log({"riskLineYearChart": riskLineYearChart, "riskLineYearChart": riskLineChart})
+  const { riskLineChart} = RiskLineChart()
+  const yr = new Date().getFullYear();
+  const [year, setYear] = useState(yr.toString());
+  const [years, setYears] = useState([]);
+
+  useEffect(() => {
+    const fetchRiskData = async () => {
+      try {
+        const response = await axios.get(RISKYEARSCHART_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+        });
+
+        setYears(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRiskData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          RISKLINECHART_URL,
+          JSON.stringify({ year }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+          }
+        );
+
+        setData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [year]);
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+
+  };
+
   return (
     <div className="p-12 mt-12 card bg-white">
       <div className="grid grid-cols-5 gap-4">
@@ -232,8 +332,8 @@ export function RiskLineChart() {
             aria-describedby="departmentName"
             value={year}
             autoComplete="off"
-            onChange={(e) => setYear(e.target.value)}>
-            {riskLineYearChart.map((years) => (
+            onChange={handleYearChange}>
+            {years.map((years) => (
               <option key={years.id} value={years.year}>
                 {years.year}
               </option>
@@ -242,7 +342,7 @@ export function RiskLineChart() {
         </div>
       </div>
       <ResponsiveContainer height="100%" minHeight={400}>
-      <LineChart  data={riskLineChart} margin={{ top: 5 }}>
+      <LineChart  data={data} margin={{ top: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
