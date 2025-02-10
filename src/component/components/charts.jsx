@@ -52,7 +52,6 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -68,8 +67,18 @@ export function OpenVsClose() {
   const [data, setData] = useState();
   const { t } = useTranslation();
 
-  const {openVrsClosePieData} = OpenVrsClosedPieChart()
- console.log(openVrsClosePieData)
+  useEffect(() => {
+    axios
+      .get(OPENVSCLOSECHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      })
+      .then((data) => setData(data.data));
+  }, [data]);
+
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
