@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -103,6 +103,7 @@ export function MitigatedVsUnmitigated() {
 export function ReviewedVsUnreviewed() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
+  const {reviewedVrunrevieweddPieData} = ReviewedVrsUnReviewedPieChart()
 
   useEffect(() => {
     axios

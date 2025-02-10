@@ -13,7 +13,8 @@ import {
   USERS_URL,
   VIEWALLRISKS_URL,
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
-  MITIGATEDVSUNMITIGATEDCHAT_URL
+  MITIGATEDVSUNMITIGATEDCHAT_URL,
+  REVIEWEDVSUNREVIEWEDCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -402,4 +403,29 @@ export function MitigatedVrsUnMitigatedPieChart() {
   return { mitigatedVrunmitigatedPieData, fetchData };
 }
 
+export function ReviewedVrsUnReviewedPieChart() {
+  const { auth } = useContext(AuthContext);
+  const [reviewedVrunrevieweddPieData, setReviewedVrunReviewedPieData] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(REVIEWEDVSUNREVIEWEDCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setReviewedVrunReviewedPieData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  console.log(reviewedVrunrevieweddPieData)
+  return { reviewedVrunrevieweddPieData, fetchData };
+}
 
