@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -264,13 +264,8 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 
 export function RiskLineChart() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-  const yr = new Date().getFullYear();
-  const [year, setYear] = useState(yr.toString());
-  const [years, setYears] = useState([]);
   const {riskLineYearChart} = useRiskLineChartYearData()
-  console.log({"line year": riskLineYearChart})
+  console.log({ "riskLineYearChart": riskLineYearChart})
 
   
 

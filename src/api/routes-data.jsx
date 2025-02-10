@@ -429,9 +429,11 @@ export function useReviewedVrsUnReviewedPieChart() {
   return { reviewedVrunrevieweddPieData, fetchData };
 }
 
+
 export function useRiskLineChartData(year) {
   const { auth } = useContext(AuthContext);
-  const [riskLineChart, setRiskLineChart] = useState("");
+  const [riskLineChart, setRiskLineChart] = useState(""); 
+
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -453,8 +455,10 @@ export function useRiskLineChartData(year) {
   };
 
   useEffect(() => {
-    fetchData(); 
-  }, []);
+    if (year) {
+      fetchData();
+    }
+  }, [year]); 
   return { riskLineChart, fetchData };
 }
 
@@ -472,7 +476,7 @@ export function useRiskLineChartYearData() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      console.log({ "years response": response.data });
+      console.log({ "years response": response });
       setRiskLineYearChart(response.data);
     } catch (error) {
       console.error("Error fetching risk year chart data:", error);

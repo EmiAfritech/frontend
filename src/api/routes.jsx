@@ -47,8 +47,8 @@ export const OPENVSCLOSEBASEDONDEPARTMENT_URL = "/getOpenedVsClosedByDepartmentG
 //open-vs-closed based on department selected chart
 export const OPENVSCLOSEBASEDONDEPARTMENTCHART_URL = "/risks/getOpenedVsClosedByDepartment";
 
-//closed risk url
-export const VIEWCLOSEDRISKS_URL = "/risks/getAllClosedRisks";
+//closed risk url(la)
+export const VIEWCLOSEDRISKS_URL = "/Organization/Risk/Closed/list";
 
 //risk review url
 export const RISKREVIEW_URL = "/risks/reviews";
@@ -56,11 +56,11 @@ export const RISKREVIEW_URL = "/risks/reviews";
 //report audit trail url
 export const REPORTAUDITTRAIL_URL = "/getAudits";
 
-// risk appetite report table Greater
-export const RISKAPPETITEREPORTGREATER_URL = "/getRiskAppetiteGreater";
+// risk appetite report table Greater(la)
+export const RISKAPPETITEREPORTGREATER_URL = "/Organization/Analytics/getRiskAppetiteGreater";
 
-// risk appetite report table Lesser
-export const RISKAPPETITEREPORTLESSER_URL = "/getRiskAppetiteLesser";
+// risk appetite report table Lesser(la)
+export const RISKAPPETITEREPORTLESSER_URL = "/Organization/Analytics/getRiskAppetiteLesser";
 
 //risk needing review report table
 export const RISKNEEDINGREVIEWREPORT_URL = "/getAllOpenedRisksNeedingReview";
@@ -108,14 +108,14 @@ export const OPENVSCLOSECHART_URL = "/Organization/Analytics/opened-vs-closed";
 //unreviewed risk chat per month dashboard url
 export const RISKLINECHART_URL = "/Organization/Analytics/getRiskPerMonthChartData";
 
-//unreviewed risk chat per month dashboard url
+//unreviewed risk chat per month dashboard url(la)
 export const RISKYEARSCHART_URL = "/Organization/Risk/getRisksYears";
 
-//risk status report chart data
-export const RISKSTATUSREPORTCHART_URL = "/risks/getRiskStatusChartData";
+//risk status report chart data(la)
+export const RISKSTATUSREPORTCHART_URL = "/Organization/Analytics/getRiskStatusChartData";
 
-//risk status report chart data
-export const RISKCATEGORYREPORTCHART_URL = "/risks/getRiskCategoryChartData";
+//risk status report chart data (la)
+export const RISKCATEGORYREPORTCHART_URL = "/Organization/Analytics/getRiskCategoryChartData";
 
 //openvsclose bar chart data
 export const OPENVSCLOSEBARCHART_URL = "/Organization/Analytics/getOpenedVsClosedGraphData";
@@ -126,23 +126,23 @@ export const RISKMONITORING_URL = "/risks/monitorings";
 //risk mitigations bar chat chart data
 export const RISKMITIGATION_URL = "/risks/mitigations";
 
-// risk level pyramid chart
-export const RISKLEVELPYRAMIDCHART_URL = "/getRiskPyramidChartData";
+// risk level pyramid chart(la)
+export const RISKLEVELPYRAMIDCHART_URL = "/Organization/Analytics/getRiskPyramidChartData";
 
-//risk response report chat
-export const RISKRESPONSEREPORT_URL = "/getRiskResponseChartData";
+//risk response report chat(la)
+export const RISKRESPONSEREPORT_URL = "/Organization/Analytics/getRiskResponseChartData";
 
-//risk level report chat
-export const RISKLEVELREPORT_URL = "/risks/getRiskLevelChartData";
+//risk level report chat (la)
+export const RISKLEVELREPORT_URL = "/Organization/Analytics/getRiskLevelChartData";
 
-//risk location report chat
-export const RISKLOCATIONREPORT_URL = "/getLocationChartData";
+//risk location report chat (la)
+export const RISKLOCATIONREPORT_URL = "/Organization/Analytics/getLocationChartData";
 
 // risk category report chat
 export const RISKCATEGORYREPORT_URL = "/risks/getRiskCategoryChartData";
 
-//risk owner report chat
-export const RISKOWNERREPORT_URL = "/getRiskOwnerChartData";
+//risk owner report chat(la)
+export const RISKOWNERREPORT_URL = "/Organization/Analytics/getRiskOwnerChartData";
 
 //monitored vs unmonitored bar  chat
 export const MONITOREDVSUNMONITOREDBARCHARTDATA_URL = "/getMonitoredVsUnMonitoredGraphData";
