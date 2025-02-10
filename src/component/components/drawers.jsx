@@ -1041,49 +1041,15 @@ export function RiskMitigationforms({ onFormSubmit }) {
 export function Governanceforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [riskName, setRiskName] = useState("");
-  const [departmentID, setdepartmentID] = useState(" ");
-  const [mitigationEffort, setMitigationEffort] = useState(" ");
-  const [mitigationControl, setMitigationControl] = useState(" ");
-  const [mitigationCost, setMitigationCost] = useState(" ");
-  const [riskReviewer, setRiskReviewer] = useState(" ");
-  const [endDate, setEndDate] = useState(new Date());
-  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
-    useState("");
-  const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] =
-    riskName.split(","); //
-
-  const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
-  const probabilityLevelNumber = getProbabiltyLevelNumber(
-    parseInt(probabilityLevel, 10)
-  );
   const FormArray = GRCFormsArray(t);
-  const { ownersName } = useRiskReviewer();
-  const { departmentList } = useDepartmentDropdown();
-  const hostaddress = "http://localhost:5173/risk-mitigation";
-  const [open, setOpen] = React.useState(false);
-  const notify = () => {
-    toast.success("Risk Mitigation Saved Successfully", {
-      onClose: () => {
-        handleClose();
-        onFormSubmit();
-        reload();
-      },
-    });
-  };
+  cosnt [isSubmitting, setIsSubmitting] = useState(false)
+  const [framework, setFramework] = useState("")
 
-  const reload = () => {
-    setRiskName("");
-    setdepartmentID("");
-    setmitigatedRiskProbabilityLevel("");
-    setmitigatedRiskImpactLevel("");
-    setmitigationControl("");
-    setmitigationEffort("");
-    setRiskReviewer("");
-    setmitigationCost("");
-    setEndDate("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+
   };
 
   function handleOpen() {
@@ -1113,16 +1079,16 @@ export function Governanceforms({ onFormSubmit }) {
             <CustomSelect
               id="riskName"
               label={t("riskName")}
-              value={riskName}
-              onChange={setRiskName}
-              options={departmentList}
+              value={framework}
+              onChange={setFramework}
+              options={FormArray.governance}
               searchable={true}
               required
               group={false}
             />
             <FormInputField
-              id="impact"
-              label={t("mitigatedRiskImpactLevel")}
+              id="description"
+              label="Description"
               value={impactLevelNumber}
               required
             />

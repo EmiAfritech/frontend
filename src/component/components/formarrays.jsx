@@ -56,6 +56,10 @@ export const GRCFormsArray = (t) => ({
     { value: "YES", label: t("yes")},
     { value: "NO", label: t("no") },
   ],
+  governance: [
+    { value: "ISO3000", label: "ISO3000"},
+    { value: "ISO2700", label: "ISO2700" },
+  ],
   
 });
 
