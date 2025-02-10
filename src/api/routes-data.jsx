@@ -480,7 +480,7 @@ export function RiskLineChartYearData() {
 
   useEffect(() => {
       fetchData();
-  }); 
+  },[]); 
   console.log(riskLineYearChart)
   return { riskLineYearChart, fetchData };
 }
