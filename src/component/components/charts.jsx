@@ -214,8 +214,9 @@ export function MonitoredVsUnmonitoredBarchart() {
 
 export function RiskLineChart() {
   const [year, setYear] = useState("")
-  const { riskLineChart} = RiskLineChartData()
-  const {riskLineYearChart} = RiskLineChartYearData(year)
+  const { c} = RiskLineChartData(year)
+  const {riskLineYearChart} = RiskLineChartYearData()
+  console.log({"riskLineYearChart": riskLineYearChart, "riskLineYearChart": riskLineYearChart})
   return (
     <div className="p-12 mt-12 card bg-white">
       <div className="grid grid-cols-5 gap-4">
