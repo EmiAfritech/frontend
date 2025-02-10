@@ -118,7 +118,7 @@ export const RISKSTATUSREPORTCHART_URL = "/risks/getRiskStatusChartData";
 export const RISKCATEGORYREPORTCHART_URL = "/risks/getRiskCategoryChartData";
 
 //openvsclose bar chart data
-export const OPENVSCLOSEBARCHART_URL = "/getOpenedVsClosedGraphData";
+export const OPENVSCLOSEBARCHART_URL = "/Organization/Analytics/getOpenedVsClosedGraphData";
 
 //risk monitoring bar chat chart data
 export const RISKMONITORING_URL = "/risks/monitorings";

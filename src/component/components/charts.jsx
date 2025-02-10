@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData } from "../../api/routes-data";
+import { OpenVrsClosedPieChart, MonitoredVrsUnMonitoredPieChart, MitigatedVrsUnMitigatedPieChart, ReviewedVrsUnReviewedPieChart, RiskLineChartData, OpenVsCloseBarChartData } from "../../api/routes-data";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
   const selectedRowIds = selectedGridRowsSelector(apiRef);
@@ -139,62 +139,11 @@ export function MonitoredVsUnmonitored() {
   );
 }
 export function RiskBarChart() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-  const yr = new Date().getFullYear();
-  const [year, setYear] = useState(yr.toString());
-  const [years, setYears] = useState([]);
+  const {openVrscloseChart} = OpenVsCloseBarChartData()
 
-  useEffect(() => {
-    const fetchRiskData = async () => {
-      try {
-        const response = await axios.get(RISKYEARSCHART_URL, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-        });
-
-        setYears(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchRiskData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          OPENVSCLOSEBARCHART_URL,
-          JSON.stringify({ year }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [year]);
-
-  console.log(data)
-  const handleYearChange = (e) => {
-    setYear(e.target.value);
-  };
   return (
     <div className="p-3 card">
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4">
         <div className="col-span-4" />
         <div className="flex flex-row">
           <section className="m-2">
@@ -215,9 +164,9 @@ export function RiskBarChart() {
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
       <ResponsiveContainer height={300}>
-      <BarChart data={data}>
+      <BarChart data={openVrscloseChart}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />

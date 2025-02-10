@@ -15,7 +15,8 @@ import {
   MONITOREDVSUNMONITOREDRISKSCHART_URL,
   MITIGATEDVSUNMITIGATEDCHAT_URL,
   REVIEWEDVSUNREVIEWEDCHART_URL,
-  RISKLINECHART_URL
+  RISKLINECHART_URL,
+  OPENVSCLOSEBARCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -452,5 +453,30 @@ export function RiskLineChartData() {
     fetchData(); 
   }, []);
   return { riskLineChart, fetchData };
+}
+
+export function OpenVsCloseBarChartData() {
+  const { auth } = useContext(AuthContext);
+  const [openVrscloseChart, setOpenVrscloseChart] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(OPENVSCLOSEBARCHART_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setOpenVrscloseChart(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { openVrscloseChart, fetchData };
 }
 
