@@ -459,7 +459,6 @@ export function useRiskLineChartData(year) {
 }
 
 
-
 export function useRiskLineChartYearData() {  
   const { auth } = useContext(AuthContext);
   const [riskLineYearChart, setRiskLineYearChart] = useState([]);
