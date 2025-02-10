@@ -347,14 +347,3 @@ export function OpenVrsClosedPieChart() {
 }
 
 
-useEffect(() => {
-    axios
-      .get(OPENVSCLOSECHART_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => setData(data.data));
-  }, [data]);

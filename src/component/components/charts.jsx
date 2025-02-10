@@ -65,9 +65,7 @@ const getSelectedRowsToExport = ({ apiRef }) => {
 
 export function OpenVsClose() {
   const { t } = useTranslation();
-
   const {openVrsClosePieData} = OpenVrsClosedPieChart()
- console.log(openVrsClosePieData)
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
