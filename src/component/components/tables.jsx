@@ -1922,7 +1922,7 @@ export function RiskAppetiteReportLower() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
@@ -1981,7 +1981,7 @@ export function RiskAppetiteReportGreater() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
@@ -2063,7 +2063,7 @@ export function RiskMitigationReportTable() {
 
   return (
     <main>
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
       {(auth.role=== "ADMIN" ||
         auth.role === "GENERALMANAGER") && (
           <CustomSelect

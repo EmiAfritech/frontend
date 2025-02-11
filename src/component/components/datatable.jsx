@@ -306,7 +306,7 @@ export const useRiskStatuscolumns = () => {
       },
     },
     {
-      accessorFn: "createdOn",
+      accessorKey: "createdOn",
       header: "Date of Issue",
     },
     {
@@ -553,7 +553,7 @@ export const useReportRiskMitigationColumns = () => {
       header: t("dateMitigated"),
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
-  ];;
+  ];
   
 };
 
