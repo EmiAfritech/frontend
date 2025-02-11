@@ -638,7 +638,8 @@ export const useReportAuditTrailColumns = () => {
     {
       accessorKey: "action",
       header:  "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableHeadCellProps: { sx: { minWidth: "450px" } }, 
+      muiTableBodyCellProps: { sx: { minWidth: "450px" } },
     },
     {
       accessorKey: "submittedBy",
