@@ -392,6 +392,22 @@ export const useReportAuditTrailColumns = () => {
   
 };
 
+export const useRiskStatusColumns = () => {
+  const { t } = useTranslation();
+  return [
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("riskName"), flex: 1 },
+    { field: "riskDescription", headerName: t("riskDescription"), flex: 1 },
+    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
+    {
+      field: "view",
+      headerName: t("Action"),
+      flex: 0.5,
+      renderCell: (params) => RiskAdviceReportData(params),
+    },
+  ];
+};
+
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
