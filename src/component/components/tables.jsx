@@ -2075,6 +2075,7 @@ export function RiskMitigationReportTable() {
             searchable={true}
             required
             group={false}
+            className="w-full"
           />
         )}
       </div>
