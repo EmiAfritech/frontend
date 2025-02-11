@@ -308,7 +308,6 @@ export const useRiskStatuscolumns = () => {
     {
       accessorFn: "createdOn",
       header: "Date of Issue",
-      Header: () => <i>Date of Issue</i>,
     },
     {
       accessorKey: "status",

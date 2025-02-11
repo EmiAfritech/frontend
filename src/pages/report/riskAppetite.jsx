@@ -19,10 +19,10 @@ export function ReportRiskAppetite() {
           </Tab>
         </TabList>
 
-        <TabPanel className="m-6 p-6 card bg-white rounded-lg">
+        <TabPanel>
           <RiskAppetiteReportGreater />
         </TabPanel>
-        <TabPanel className="m-6 p-6 card bg-white rounded-lg">
+        <TabPanel>
           <RiskAppetiteReportLower />
         </TabPanel>
       </Tabs>

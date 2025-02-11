@@ -1867,7 +1867,8 @@ export function RiskStatusReportTab() {
   };
 
   return (
-    <div>
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
       {(auth.role=== "ADMIN" ||
         auth.role === "GENERALMANAGER") && (
           <CustomSelect
@@ -1881,8 +1882,9 @@ export function RiskStatusReportTab() {
             group={false}
           />
         )}
+      </div>
       <MaterialReactTable table={table} className="p-6"/>
-    </div>
+    </main>
   );
 }
 
@@ -2060,7 +2062,8 @@ export function RiskMitigationReportTable() {
   });
 
   return (
-    <div>
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
       {(auth.role=== "ADMIN" ||
         auth.role === "GENERALMANAGER") && (
           <CustomSelect
@@ -2074,8 +2077,9 @@ export function RiskMitigationReportTable() {
             group={false}
           />
         )}
+      </div>
       <MaterialReactTable table={table} className="p-6"/>
-    </div>
+    </main>
   );
 }
 
@@ -2137,20 +2141,20 @@ export function ReviewNeedingRisksReportTab() {
   return (
     <main>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-        {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
-        </div>
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
+      </div>
       <MaterialReactTable table={table} className="p-6"/>
     </main>
   );
