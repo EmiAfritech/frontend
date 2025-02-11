@@ -12,6 +12,7 @@ import { RiskStatusReport } from "./riskStatusReport";
 import { ReviewNeedingRisksReport } from "./reviewNeedingRisks";
 import { ReportRiskAdvice } from "./advice";
 import { useTranslation } from "react-i18next";
+import { ReportAuditTrail } from "./auditTrail";
 
 
 
@@ -40,6 +41,8 @@ export function ReportSideTabs() {
         return <RiskStatusReport/>;
       case "allOpenedRiskNeedingReview":
         return <ReviewNeedingRisksReport/>;
+      case "auditTrail":
+        return <ReportAuditTrail/>;
       case "riskAdvice":
         return <ReportRiskAdvice/>;
       default:
@@ -77,6 +80,10 @@ export const Tabs = [
   },
   {
     title: "allOpenedRiskNeedingReview",
+  },
+  
+  {
+    title: "Audit Trail",
   },
   {
     title: "riskAdvice",
