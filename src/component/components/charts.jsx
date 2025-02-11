@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -271,7 +271,6 @@ export function RiskLineChart() {
 
 export function ReportRiskLevel() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   const {riskLevel} = useRiskLevelReport(departmentName)
@@ -312,7 +311,6 @@ export function ReportRiskLevel() {
 }
 export function ReportRiskStatus() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   const {riskStatus} = useRiskStatusReportPieChart(departmentName)
@@ -350,33 +348,9 @@ export function ReportRiskStatus() {
 }
 export function ReportRiskLocation() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKLOCATIONREPORT_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
+  const {riskLocation} = useRiskLocationReport();
 
   
 
@@ -402,7 +376,7 @@ export function ReportRiskLocation() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskLocation} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
@@ -412,7 +386,6 @@ export function ReportRiskLocation() {
 }
 export function ReportRiskCategory() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   const {riskCategory} = useRiskCategoryReport(departmentName)
@@ -489,38 +462,11 @@ export function ReportRiskResponse() {
 }
 export function ReportRiskOwner() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
+  const {riskOwner} = useRiskOwnerReport(departmentName)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKOWNERREPORT_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
-
-
-  const handleDeptNameChange = (e) => {
-    setDeptmentName(e.target.value);
-  };
+ 
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -544,7 +490,7 @@ export function ReportRiskOwner() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskOwner} outerRadius={90} />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>
@@ -554,37 +500,13 @@ export function ReportRiskOwner() {
 
 export function Pyramidchat() {
   const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
+  const {riskAdviceChart} = useRiskAdviceChart(departmentName)
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
   const pyramidTable = useReportRiskPyramidColumns()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKLEVELPYRAMIDCHART_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
 
 
 
@@ -626,7 +548,7 @@ export function Pyramidchat() {
           <div className="m-20">
             <Funnel
               id="pyramid"
-              dataSource={data}
+              dataSource={riskAdviceChart}
               sortData={false}
               inverted={true}
               algorithm="dynamicHeight"

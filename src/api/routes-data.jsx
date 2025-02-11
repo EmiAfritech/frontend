@@ -22,7 +22,9 @@ import {
   RISKSTATUSREPORTCHART_URL,
   RISKCATEGORYREPORTCHART_URL,
   RISKRESPONSEREPORT_URL,
-  RISKLOCATIONREPORT_URL
+  RISKLOCATIONREPORT_URL,
+  RISKOWNERREPORT_URL,
+  RISKLEVELPYRAMIDCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -680,3 +682,66 @@ export function useRiskLocationReport(departmentName) {
   }, [departmentName]); 
   return { riskLocation, fetchData };
 }
+
+export function useRiskOwnerReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskOwner, setRiskOwner] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKOWNERREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskOwner(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskOwner, fetchData };
+}
+
+export function useRiskAdviceChart(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskAdviceChart, setRiskAdviceChart] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKLEVELPYRAMIDCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskAdviceChart(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskAdviceChart, fetchData };
+}
+
