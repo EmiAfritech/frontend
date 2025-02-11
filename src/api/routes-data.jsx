@@ -17,7 +17,8 @@ import {
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
   OPENVSCLOSEBARCHART_URL,
-  RISKYEARSCHART_URL
+  RISKYEARSCHART_URL,
+  RISKLEVELREPORT_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -528,7 +529,7 @@ export function useRiskLevelReport(departmentName) {
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        OPENVSCLOSEBARCHART_URL,
+        RISKLEVELREPORT_URL,
         JSON.stringify({ departmentName }),
         {
           headers: {
