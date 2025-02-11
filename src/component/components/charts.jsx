@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -275,6 +275,7 @@ export function ReportRiskLevel() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   const {riskLevel} = useRiskLevelReport(departmentName)
+  console.log({"report risk Level": riskLevel})
 
 
   return (
@@ -414,30 +415,10 @@ export function ReportRiskCategory() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
+  const {riskCategory} = useRiskCategoryReport(departmentName)
+  
+  console.log({"report risk Category": riskCategory})
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKCATEGORYREPORT_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-        console.log({"category response": response})
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -461,7 +442,7 @@ export function ReportRiskCategory() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskCategory} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
