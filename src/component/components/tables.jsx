@@ -2043,7 +2043,7 @@ export function RiskMitigationReportTable() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
