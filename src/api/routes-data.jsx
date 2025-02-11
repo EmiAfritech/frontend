@@ -25,7 +25,9 @@ import {
   RISKLOCATIONREPORT_URL,
   RISKOWNERREPORT_URL,
   RISKLEVELPYRAMIDCHART_URL,
-  RISKSTATUSREPORT_URL
+  RISKSTATUSREPORT_URL,
+  RISKAPPETITEREPORTLESSER_URL,
+  RISKAPPETITEREPORTGREATER_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -744,5 +746,55 @@ export function useRiskAdviceChart(departmentName) {
     }
   }, [departmentName]); 
   return { riskAdviceChart, fetchData };
+}
+
+export function useRiskAppetiteReportLow() {
+  const { auth } = useContext(AuthContext);
+  const [riskAppetiteLow, setRiskAppetiteLow] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKAPPETITEREPORTLESSER_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskAppetiteLow(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskAppetiteLow, fetchData };
+}
+
+export function useRiskAppetiteReportHigh() {
+  const { auth } = useContext(AuthContext);
+  const [riskAppetiteHigh, setRiskAppetiteHigh] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKAPPETITEREPORTGREATER_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskAppetiteHigh(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskAppetiteHigh, fetchData };
 }
 

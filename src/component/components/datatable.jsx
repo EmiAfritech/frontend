@@ -236,6 +236,61 @@ export const useRiskStatuscolumns = () => {
   ];
 };
 
+
+export const useRiskAppetiteReportLowerColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskScore",
+      header:  t("riskScore"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
+export const useRiskAppetiteReportGreaterColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskScore",
+      header:  t("riskScore"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
@@ -300,33 +355,8 @@ export const useReportAuditTrailColumns = () => {
   ];
 };
 
-export const useRiskAppetiteReportGreaterColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("subject"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-  ];
-};
 
-export const useRiskAppetiteReportLowerColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("subject"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-  ];
-};
+
 
 
 
