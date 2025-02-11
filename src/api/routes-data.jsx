@@ -34,6 +34,7 @@ import {
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
+import { ConstantLine } from "devextreme-react/chart";
 
 export function useDepartmentDropdown() {
   const { auth } = useContext(AuthContext);
@@ -895,6 +896,7 @@ export function useRiskOwnersDropdown(departmentName) {
           withCredentials: true,
         }
       );
+      console.log({"owners response":response})
       setOwnersList(response.data);
     } catch (error) {
       console.error(error);
@@ -906,6 +908,7 @@ export function useRiskOwnersDropdown(departmentName) {
       fetchData();
     }
   }, [departmentName]); 
+  console.log({"owners":ownersList})
   return { ownersList, fetchData };
 }
 
