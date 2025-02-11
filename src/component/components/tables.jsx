@@ -1728,7 +1728,7 @@ export function RiskMonitor() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "50vh",
       },
     },
     muiTableBodyCellProps: {
@@ -2116,7 +2116,7 @@ export function ReviewNeedingRisksReportTab() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
