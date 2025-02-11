@@ -86,6 +86,11 @@ export const useRiskViewColumns = () => {
       accessorKey: "riskStatus",
       header: t("riskStatusdatatable"),
     },
+    
+    {
+      accessorKey: "riskScore",
+      header: t("riskScore"),
+    },
     {
       accessorKey: "view",
       header: t("Action"),
