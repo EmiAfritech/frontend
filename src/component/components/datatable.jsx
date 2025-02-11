@@ -263,18 +263,50 @@ export const useRiskMonitoringColumns = () => {
 export const useRiskStatuscolumns = () => {
   return [
     {
-      accessorKey: "id",
-      header: "ID",
+      accessorKey: "riskCode",
+      header: "Risk Code",
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorKey: "name",
+      accessorKey: "Subject",
       header: "Name",
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorFn: (row) => row.date,
-      id: "date",
+      accessorKey: "riskScore",
+      header: "Risk Score",
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
+          } 
+        };
+      },
+    },
+    {
+      accessorFn: "createdOn",
       header: "Date of Issue",
       Header: () => <i>Date of Issue</i>,
     },
