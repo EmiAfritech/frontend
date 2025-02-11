@@ -904,10 +904,10 @@ export function useRiskOwnersDropdown(deptId) {
   };
 
   useEffect(() => {
-    if (departmentName) {
+    if (deptId) {
       fetchData();
     }
-  }, [departmentName]); 
+  }, [deptId]); 
   console.log({"owners":ownersList})
   return { ownersList, fetchData };
 }

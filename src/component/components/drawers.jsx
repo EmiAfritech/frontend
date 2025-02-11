@@ -336,8 +336,7 @@ export function Riskforms({ onFormSubmit }) {
   const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } =
     GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
-  const deptId = departmentName
-  const { ownersList } = useRiskOwnersDropdown(deptId);
+  const { ownersList } = useRiskOwnersDropdown({departmentName});
   const [riskValue, setRiskValue] = useState({
     riskName: "",
     riskID: "",
