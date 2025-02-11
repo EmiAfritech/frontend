@@ -2162,6 +2162,7 @@ export function ReviewNeedingRisksReportTab() {
 }
 
 export function Reportaudittrail() {
+  const { auth } = useContext(AuthContext);
   const columns = useReportAuditTrailColumns();
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");

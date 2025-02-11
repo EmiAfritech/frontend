@@ -59,29 +59,6 @@ export function useDepartmentDropdown() {
   return { departmentList };
 }
 
-export function useRiskOwnersDropdown() {
-  const { auth } = useContext(AuthContext);
-  const [ownersList, setOwnersList] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(OWNERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-      });
-      setOwnersList(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  return { ownersList };
-}
-
 export function useDepartmentTable() {
   const { auth } = useContext(AuthContext);
   const [departmentTable, setDepartmentTable] = useState("");
@@ -838,30 +815,6 @@ export function useRiskNeedingToBeReviewed(departmentName) {
   return { riskToReview, fetchData };
 }
 
-export function DepartmenID() {
-  const { auth } = useContext(AuthContext);
-  const [auditTrail, setAuditTrail] = useState("");
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(REPORTAUDITTRAIL_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      });
-
-      setAuditTrail(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { auditTrail, fetchData };
-}
 
 export function useAuditTrail(departmentName) {
   const { auth } = useContext(AuthContext);
@@ -923,6 +876,37 @@ export function useRiskStatusReport(departmentName) {
     }
   }, [departmentName]); 
   return { riskStatus, fetchData };
+}
+
+export function useRiskOwnersDropdown(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [ownersList, setOwnersList] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        OWNERSDROPDOWN_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setOwnersList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { ownersList, fetchData };
 }
 
 
