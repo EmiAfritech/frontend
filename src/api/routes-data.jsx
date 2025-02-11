@@ -19,7 +19,10 @@ import {
   OPENVSCLOSEBARCHART_URL,
   RISKYEARSCHART_URL,
   RISKLEVELREPORT_URL,
-  RISKSTATUSREPORTCHART_URL
+  RISKSTATUSREPORTCHART_URL,
+  RISKCATEGORYREPORTCHART_URL,
+  RISKRESPONSEREPORT_URL,
+  RISKLOCATIONREPORT_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -592,7 +595,7 @@ export function useRiskCategoryReport(departmentName) {
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTATUSREPORTCHART_URL,
+        RISKCATEGORYREPORTCHART_URL,
         JSON.stringify({ departmentName }),
         {
           headers: {
@@ -623,7 +626,7 @@ export function useRiskResponseReport(departmentName) {
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTATUSREPORTCHART_URL,
+        RISKRESPONSEREPORT_URL,
         JSON.stringify({ departmentName }),
         {
           headers: {
@@ -647,14 +650,14 @@ export function useRiskResponseReport(departmentName) {
   return { riskResponse, fetchData };
 }
 
-export function useRiskResponseReport(departmentName) {
+export function useRiskLocationReport(departmentName) {
   const { auth } = useContext(AuthContext);
-  const [riskResponse, setRiskResponse] = useState("");
+  const [riskLocation, setRiskLocation] = useState("");
 
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTATUSREPORTCHART_URL,
+        RISKLOCATIONREPORT_URL,
         JSON.stringify({ departmentName }),
         {
           headers: {
@@ -664,7 +667,7 @@ export function useRiskResponseReport(departmentName) {
           withCredentials: true,
         }
       );
-      setRiskResponse(response.data);
+      setRiskLocation(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -675,5 +678,5 @@ export function useRiskResponseReport(departmentName) {
       fetchData();
     }
   }, [departmentName]); 
-  return { riskResponse, fetchData };
+  return { riskLocation, fetchData };
 }
