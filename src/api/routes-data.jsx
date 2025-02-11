@@ -29,7 +29,8 @@ import {
   RISKAPPETITEREPORTLESSER_URL,
   RISKAPPETITEREPORTGREATER_URL,
   MITIGATIONBYDATE_URL,
-  RISKNEEDINGREVIEWREPORT_URL
+  RISKNEEDINGREVIEWREPORT_URL,
+  REPORTAUDITTRAIL_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -860,6 +861,31 @@ export function useRiskNeedingToBeReviewed(departmentName) {
     }
   }, [departmentName]); 
   return { riskToReview, fetchData };
+}
+
+export function useAuditTrail() {
+  const { auth } = useContext(AuthContext);
+  const [auditTrail, setAuditTrail] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(REPORTAUDITTRAIL_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setAuditTrail(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { auditTrail, fetchData };
 }
 
 

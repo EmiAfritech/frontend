@@ -360,6 +360,38 @@ export const useReportOpenRiskToReviewColumns = () => {
   
 };
 
+export const useReportAuditTrailColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "id",
+      header: "ID",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "type",
+      header: "Type",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "action",
+      header:  "Action",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "submittedBy",
+      header: "Submitted By",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
@@ -378,26 +410,8 @@ export const useReportRiskPyramidColumns = () => {
 
 
 
-export const useRiskStatusColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskCode", headerName: t("riskCode"), flex: 1 },
-    { field: "status", headerName: t("status"), flex: 1 },
-    { field: "Subject", headerName: t("subject"), flex: 1 },
-    { field: "department", headerName: t("department"), flex: 1 },
-    { field: "riskScore", headerName: t("inherentRisk"), flex: 1 },
-    { field: "daysOpen", headerName: t("daysOpen"), flex: 1 },
-    { field: "createdOn", headerName: t("submittedOn"), flex: 1 },
-  ];
-};
 
-export const useReportAuditTrailColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "action", headerName: t("Action"), width: 500 },
-    { field: "createdAt", headerName: t("createdAt"), width: 200 },
-  ];
-};
+
 
 
 

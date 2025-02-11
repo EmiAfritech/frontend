@@ -65,7 +65,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useAuditTrail, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -644,7 +644,7 @@ export function RiskViewTable2() {
 }
 
 
-export function Reportaudittrail() {
+export function Reportaudittrail2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const reportaudittrailcolumn = useReportAuditTrailColumns();
@@ -2130,6 +2130,65 @@ export function ReviewNeedingRisksReportTab() {
             group={false}
           />
         )}
+      <MaterialReactTable table={table} className="p-6"/>
+    </div>
+  );
+}
+
+export function Reportaudittrail() {
+  const columns = useReportAuditTrailColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { auditTrail } = useAuditTrail();
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "40vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: auditTrail,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
       <MaterialReactTable table={table} className="p-6"/>
     </div>
   );
