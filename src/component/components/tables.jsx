@@ -65,7 +65,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -2066,7 +2066,7 @@ export function ReviewNeedingRisksReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {mitigationByDate} = useMitigationByDate(departmentName)
+  const {riskToReview} = useRiskNeedingToBeReviewed(departmentName)
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
@@ -2106,7 +2106,7 @@ export function ReviewNeedingRisksReportTab() {
       },
     },
     columns,
-    data: mitigationByDate,
+    data: riskToReview,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
