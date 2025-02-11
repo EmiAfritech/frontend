@@ -83,7 +83,7 @@ export const Tabs = [
   },
   
   {
-    title: "Audit Trail",
+    title: "auditTrail",
   },
   {
     title: "riskAdvice",
