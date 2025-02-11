@@ -2167,7 +2167,8 @@ export function Reportaudittrail() {
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const { auditTrail } = useAuditTrail(departmentName);
+  const { auditTrail } = useAuditTrail({ deptId: departmentName });
+
   console.log({"audit trail":auditTrail})
   
 
