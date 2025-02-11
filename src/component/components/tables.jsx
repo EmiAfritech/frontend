@@ -65,7 +65,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskTable } from "../../api/routes-data";
+import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -1203,7 +1203,9 @@ export function RiskStatusReportTab2() {
 export function RiskStatusReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
-  const [data, setTableData] = useState("");
+  const data = 2
+  const {riskStatus} = useRiskStatusReport()
+  console.log({"riskstatus table": riskStatus})
 
   const handleExportRows = (rows) => {
     const doc = new jsPDF();

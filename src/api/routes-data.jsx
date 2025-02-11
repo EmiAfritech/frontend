@@ -24,7 +24,8 @@ import {
   RISKRESPONSEREPORT_URL,
   RISKLOCATIONREPORT_URL,
   RISKOWNERREPORT_URL,
-  RISKLEVELPYRAMIDCHART_URL
+  RISKLEVELPYRAMIDCHART_URL,
+  RISKSTATUSREPORT_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -233,11 +234,11 @@ export function useRiskIDMonitoring({ departmentID }) {
 
 export function useRiskStatusReport({ departmentID }) {
   const { auth } = useContext(AuthContext);
-  const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const [riskStatus, setRiskStatus] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKIDSMONITORING_URL,
+        RISKSTATUSREPORT_URL,
         JSON.stringify({ departmentID }),
         {
           headers: {
@@ -248,7 +249,7 @@ export function useRiskStatusReport({ departmentID }) {
         }
       );
 
-      setMonitoringIDs(response.data);
+      setRiskStatus(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -256,7 +257,7 @@ export function useRiskStatusReport({ departmentID }) {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { monitoringIDs };
+  return { riskStatus };
 }
 
 
