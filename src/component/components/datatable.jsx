@@ -91,10 +91,11 @@ export const useRiskViewColumns = () => {
       accessorKey: "riskScore",
       header: t("riskScore"),
       muiTableBodyCellProps: ({ cell }) => {
-        const priority = cell.getValue();
-        let backgroundColor = "transparent"; // Default color
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
       
-        // Set color based on priority
+        let backgroundColor = "transparent";
+      
         switch (priority) {
           case "veryhigh":
             backgroundColor = "#F84626";
@@ -111,13 +112,14 @@ export const useRiskViewColumns = () => {
           default:
             backgroundColor = "transparent";
         }
+      
         return { 
           sx: { 
             backgroundColor, 
-            color: "white" 
+            color: priority ? "white" : "black",
           } 
         };
-      },
+      }      
       
     },
     {
