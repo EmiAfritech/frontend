@@ -27,7 +27,8 @@ import {
   RISKLEVELPYRAMIDCHART_URL,
   RISKSTATUSREPORT_URL,
   RISKAPPETITEREPORTLESSER_URL,
-  RISKAPPETITEREPORTGREATER_URL
+  RISKAPPETITEREPORTGREATER_URL,
+  MITIGATIONBYDATE_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -797,4 +798,37 @@ export function useRiskAppetiteReportHigh() {
   }, []);
   return { riskAppetiteHigh, fetchData };
 }
+
+export function useMitigationByDate(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [mitigationByDate, setMitigationByDate] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        MITIGATIONBYDATE_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setMitigationByDate(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { mitigationByDate, fetchData };
+}
+
+
 

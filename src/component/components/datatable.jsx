@@ -291,6 +291,37 @@ export const useRiskAppetiteReportGreaterColumns = () => {
   
 };
 
+export const useReportRiskMitigationColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskReviewer",
+      header:  t("riskReviewer"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("dateMitigated"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];;
+  
+};
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
@@ -307,20 +338,6 @@ export const useReportRiskPyramidColumns = () => {
   ];
 };
 
-export const useReportRiskMitigationColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 2 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-    { field: "riskReviewer", headerName: t("riskReviewer"), flex: 1 },
-    { field: "createdAt", headerName: t("dateMitigated"), flex: 1 },
-  ];
-};
 
 export const useReportOpenRiskToReviewColumns = () => {
   const { t } = useTranslation();

@@ -65,7 +65,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -712,7 +712,7 @@ export function Reportaudittrail() {
   );
 }
 
-export function RiskMitigationReportTable() {
+export function RiskMitigationReportTable2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
@@ -1980,6 +1980,80 @@ export function RiskAppetiteReportGreater() {
 
   return (
     <div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </div>
+  );
+}
+
+export function RiskMitigationReportTable() {
+  const columns = useReportRiskMitigationColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const {mitigationByDate} = useMitigationByDate(departmentName)
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "40vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: mitigationByDate,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       <MaterialReactTable table={table} className="p-6"/>
     </div>
   );
