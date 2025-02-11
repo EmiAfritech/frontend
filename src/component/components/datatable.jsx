@@ -140,7 +140,6 @@ export const useRiskMitigationColumns = () => {
       header: t("mitigatedRiskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -163,11 +162,11 @@ export const useRiskMitigationColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
           } 
         };
-      }      
+      },    
     },
     {
       accessorKey: "riskReviewer",
@@ -319,7 +318,6 @@ export const useRiskAppetiteReportLowerColumns = () => {
       header:  t("riskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -342,18 +340,17 @@ export const useRiskAppetiteReportLowerColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
           } 
         };
-      }      
+      },    
     },
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -376,11 +373,11 @@ export const useRiskAppetiteReportLowerColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
           } 
         };
-      }      
+      },     
     },
   ];
   
@@ -404,7 +401,6 @@ export const useRiskAppetiteReportGreaterColumns = () => {
       header:  t("riskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -427,18 +423,17 @@ export const useRiskAppetiteReportGreaterColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
           } 
         };
-      }      
+      },     
     },
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -461,11 +456,11 @@ export const useRiskAppetiteReportGreaterColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
           } 
         };
-      }      
+      },     
     },
   ];
   
@@ -494,7 +489,6 @@ export const useReportRiskMitigationColumns = () => {
       header: t("mitigatedRiskScore"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -517,11 +511,11 @@ export const useReportRiskMitigationColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
           } 
         };
-      }      
+      },     
     },
     {
       accessorKey: "createdAt",
@@ -555,7 +549,6 @@ export const useReportOpenRiskToReviewColumns = () => {
       header: t("inherentRisk"),
       muiTableBodyCellProps: ({ cell }) => {
         const priority = String(cell.getValue()).toLowerCase();
-        console.log("Cell value:", priority);
       
         let backgroundColor = "transparent";
       
@@ -578,11 +571,11 @@ export const useReportOpenRiskToReviewColumns = () => {
       
         return { 
           sx: { 
-            backgroundColor, 
-            color: priority ? "white" : "black",
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
           } 
         };
-      }      
+      },     
     },
     {
       accessorKey: "daysOpen",
