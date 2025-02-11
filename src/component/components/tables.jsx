@@ -2135,22 +2135,24 @@ export function ReviewNeedingRisksReportTab() {
   });
 
   return (
-    <div>
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        {(auth.role=== "ADMIN" ||
+          auth.role === "GENERALMANAGER") && (
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
+            />
+          )}
+        </div>
       <MaterialReactTable table={table} className="p-6"/>
-    </div>
+    </main>
   );
 }
 
