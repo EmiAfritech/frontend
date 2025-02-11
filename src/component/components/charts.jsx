@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -301,7 +301,7 @@ export function ReportRiskLevel() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskLevel} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>
@@ -314,32 +314,8 @@ export function ReportRiskStatus() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKSTATUSREPORTCHART_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
-
-  
+  const {riskStatus} = useRiskStatusReport(departmentName)
+ 
 
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -363,7 +339,7 @@ export function ReportRiskStatus() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskStatus} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>

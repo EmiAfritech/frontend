@@ -18,7 +18,8 @@ import {
   RISKLINECHART_URL,
   OPENVSCLOSEBARCHART_URL,
   RISKYEARSCHART_URL,
-  RISKLEVELREPORT_URL
+  RISKLEVELREPORT_URL,
+  RISKSTATUSREPORTCHART_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -551,4 +552,35 @@ export function useRiskLevelReport(departmentName) {
     }
   }, [departmentName]); 
   return { riskLevel, fetchData };
+}
+
+export function useRiskStatusReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskStatus, setRiskStatus] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTATUSREPORTCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskStatus(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskStatus, fetchData };
 }
