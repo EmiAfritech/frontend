@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -315,7 +315,7 @@ export function ReportRiskStatus() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskStatus} = useRiskStatusReport(departmentName)
+  const {riskStatus} = useRiskStatusReportPieChart(departmentName)
  
 
   return (
@@ -455,30 +455,7 @@ export function ReportRiskResponse() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKRESPONSEREPORT_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
+  const {riskResponse} = useRiskResponseReport(departmentName)
 
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -502,7 +479,7 @@ export function ReportRiskResponse() {
       </div>
       <ResponsiveContainer height={250}>
       <PieChart >
-        <Pie dataKey="value" data={data} outerRadius={90} />
+        <Pie dataKey="value" data={riskResponse} outerRadius={90} />
         <Legend iconSize={10} />
         <Tooltip />
       </PieChart>

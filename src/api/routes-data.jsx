@@ -554,7 +554,7 @@ export function useRiskLevelReport(departmentName) {
   return { riskLevel, fetchData };
 }
 
-export function useRiskStatusReport(departmentName) {
+export function useRiskStatusReportPieChart(departmentName) {
   const { auth } = useContext(AuthContext);
   const [riskStatus, setRiskStatus] = useState("");
 
@@ -614,6 +614,37 @@ export function useRiskCategoryReport(departmentName) {
     }
   }, [departmentName]); 
   return { riskCategory, fetchData };
+}
+
+export function useRiskResponseReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskResponse, setRiskResponse] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTATUSREPORTCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskResponse(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskResponse, fetchData };
 }
 
 export function useRiskResponseReport(departmentName) {
