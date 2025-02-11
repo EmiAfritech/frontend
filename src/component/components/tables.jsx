@@ -2164,7 +2164,9 @@ export function ReviewNeedingRisksReportTab() {
 export function Reportaudittrail() {
   const columns = useReportAuditTrailColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { auditTrail } = useAuditTrail();
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const { auditTrail } = useAuditTrail(departmentName);
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
@@ -2214,9 +2216,25 @@ export function Reportaudittrail() {
   });
 
   return (
-    <div>
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+            className="w-full"
+          />
+        )}
+      </div>
       <MaterialReactTable table={table} className="p-6"/>
-    </div>
+    </main>
   );
 }
 

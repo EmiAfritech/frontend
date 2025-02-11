@@ -838,7 +838,7 @@ export function useRiskNeedingToBeReviewed(departmentName) {
   return { riskToReview, fetchData };
 }
 
-export function useAuditTrail() {
+export function DepartmenID() {
   const { auth } = useContext(AuthContext);
   const [auditTrail, setAuditTrail] = useState("");
   const fetchData = async () => {
@@ -860,6 +860,37 @@ export function useAuditTrail() {
   useEffect(() => {
     fetchData(); 
   }, []);
+  return { auditTrail, fetchData };
+}
+
+export function useAuditTrail(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [auditTrail, setAuditTrail] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        REPORTAUDITTRAIL_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setAuditTrail(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
   return { auditTrail, fetchData };
 }
 
