@@ -1041,10 +1041,12 @@ export function RiskMitigationforms({ onFormSubmit }) {
 export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [description, setDescription] = useState("")
-  const [frameWorkSelect, setFrameWorkSelect] = useState("")
-  const [frameworkText, setFrameworkText] = useState("")
   const FormArray = GRCFormsArray(t);
+  const [description, setDescription] = useState("")
+
+
+  const [frameWorkSelect, setFrameWorkSelect] = useState([FormArray.responseActivityStatus[0]])
+  const [frameworkText, setFrameworkText] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
   const [open, setOpen] = useState(false);
