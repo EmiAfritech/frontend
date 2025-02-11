@@ -150,13 +150,13 @@ export const useRiskMitigationColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
@@ -329,13 +329,13 @@ export const useRiskAppetiteReportLowerColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
@@ -363,13 +363,13 @@ export const useRiskAppetiteReportLowerColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
@@ -414,13 +414,13 @@ export const useRiskAppetiteReportGreaterColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
@@ -448,13 +448,13 @@ export const useRiskAppetiteReportGreaterColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
@@ -565,13 +565,13 @@ export const useReportOpenRiskToReviewColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "High":
+          case "high":
             backgroundColor = "#ecbe2f";
             break;
-          case "Medium":
+          case "medium":
             backgroundColor = "#0B37D6";
             break;
-          case "Low":
+          case "low":
             backgroundColor = "#4A7C0B";
             break;
           default:
