@@ -100,13 +100,13 @@ export const useRiskViewColumns = () => {
           case "veryhigh":
             backgroundColor = "#F84626";
             break;
-          case "high":
+          case "High":
             backgroundColor = "#ecbe2f";
             break;
-          case "medium":
+          case "Medium":
             backgroundColor = "#0B37D6";
             break;
-          case "low":
+          case "Low":
             backgroundColor = "#4A7C0B";
             break;
           default:
