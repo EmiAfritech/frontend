@@ -1761,7 +1761,6 @@ export function RiskMonitor() {
 export function RiskStatusReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
-  const data = 2
   const {riskStatus} = useRiskStatusReport()
   console.log({"riskstatus table": riskStatus})
 
@@ -1819,7 +1818,7 @@ export function RiskStatusReportTab() {
       },
     },
     columns,
-    data,
+    data: riskStatus,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
