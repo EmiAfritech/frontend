@@ -1045,7 +1045,7 @@ export function Framworkforms({ onFormSubmit }) {
   const [description, setDescription] = useState("")
 
 
-  const [frameWorkSelect, setFrameWorkSelect] = useState([FormArray.responseActivityStatus[0]])
+  const [frameWorkSelect, setFrameWorkSelect] = useState("")
   const [frameworkText, setFrameworkText] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [framework, setFramework] = useState("")
