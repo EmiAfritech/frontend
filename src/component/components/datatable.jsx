@@ -140,6 +140,36 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
     {
       accessorKey: "riskReviewer",
@@ -289,12 +319,70 @@ export const useRiskAppetiteReportLowerColumns = () => {
     {
       accessorKey: "riskScore",
       header:  t("riskScore"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
   ];
   
@@ -316,12 +404,70 @@ export const useRiskAppetiteReportGreaterColumns = () => {
     {
       accessorKey: "riskScore",
       header:  t("riskScore"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
   ];
   
@@ -348,7 +494,36 @@ export const useReportRiskMitigationColumns = () => {
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
     {
       accessorKey: "createdAt",
@@ -380,7 +555,36 @@ export const useReportOpenRiskToReviewColumns = () => {
     {
       accessorKey: "riskScore",
       header: t("inherentRisk"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+        console.log("Cell value:", priority);
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "High":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "Medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "Low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: priority ? "white" : "black",
+          } 
+        };
+      }      
     },
     {
       accessorKey: "daysOpen",
