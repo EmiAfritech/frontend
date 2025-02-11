@@ -2188,7 +2188,7 @@ export function Reportaudittrail() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "70vh",
       },
     },
     muiTableBodyCellProps: {
