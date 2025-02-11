@@ -350,7 +350,7 @@ export function ReportRiskLocation() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskLocation} = useRiskLocationReport();
+  const {riskLocation} = useRiskLocationReport(departmentName);
 
   
 
