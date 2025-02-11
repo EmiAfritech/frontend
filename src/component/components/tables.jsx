@@ -1759,6 +1759,7 @@ export function RiskMonitor() {
 }
 
 export function RiskStatusReportTab() {
+  const { auth } = useContext(AuthContext);
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
   const [departmentName, setDeptmentName] = useState("All Departments");
