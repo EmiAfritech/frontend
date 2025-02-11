@@ -834,7 +834,6 @@ export function useAuditTrail(departmentName) {
           withCredentials: true,
         }
       );
-      console.log({"audittrail response":response})
       setAuditTrail(response.data);
     } catch (error) {
       console.error(error);
@@ -846,7 +845,6 @@ export function useAuditTrail(departmentName) {
       fetchData();
     }
   }, [departmentName]); 
-  console.log({"audit trail":auditTrail})
   return { auditTrail, fetchData };
 }
 
