@@ -879,7 +879,7 @@ export function useRiskStatusReport(departmentName) {
   return { riskStatus, fetchData };
 }
 
-export function useRiskOwnersDropdown(departmentName) {
+export function useRiskOwnersDropdown(deptId) {
   const { auth } = useContext(AuthContext);
   const [ownersList, setOwnersList] = useState([]);
 
@@ -887,7 +887,7 @@ export function useRiskOwnersDropdown(departmentName) {
     try {
       const response = await axios.post(
         OWNERSDROPDOWN_URL,
-        JSON.stringify({ departmentName }),
+        JSON.stringify({ deptId }),
         {
           headers: {
             "Content-Type": "application/json",
