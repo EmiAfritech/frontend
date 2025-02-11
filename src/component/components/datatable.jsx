@@ -90,6 +90,35 @@ export const useRiskViewColumns = () => {
     {
       accessorKey: "riskScore",
       header: t("riskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = cell.getValue();
+        let backgroundColor = "transparent"; // Default color
+      
+        // Set color based on priority
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+        return { 
+          sx: { 
+            backgroundColor, 
+            color: "white" 
+          } 
+        };
+      },
+      
     },
     {
       accessorKey: "view",
