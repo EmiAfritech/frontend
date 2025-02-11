@@ -2062,7 +2062,7 @@ export function RiskMitigationReportTable() {
 
 export function ReviewNeedingRisksReportTab() {
   const { auth } = useContext(AuthContext);
-  const columns = useReportRiskMitigationColumns();
+  const columns = useReportOpenRiskToReviewColumns();
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
