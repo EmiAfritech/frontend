@@ -1761,7 +1761,9 @@ export function RiskMonitor() {
 export function RiskStatusReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
-  const {riskStatus} = useRiskStatusReport()
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const {riskStatus} = useRiskStatusReport(departmentName)
   console.log({"riskstatus table": riskStatus})
 
   const handleExportRows = (rows) => {
@@ -1863,7 +1865,24 @@ export function RiskStatusReportTab() {
     console.log(table.getState().sorting);
   };
 
-  return <MaterialReactTable table={table} />;
+  return (
+    <div>
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
+      <MaterialReactTable table={table} className="p-6"/>
+    </div>
+  );
 }
 
 export function RiskAppetiteReportLower() {

@@ -237,33 +237,7 @@ export function useRiskIDMonitoring({ departmentID }) {
   return { monitoringIDs };
 }
 
-export function useRiskStatusReport({ departmentID }) {
-  const { auth } = useContext(AuthContext);
-  const [riskStatus, setRiskStatus] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKSTATUSREPORT_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
 
-      setRiskStatus(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { riskStatus };
-}
 
 
 export function useRiskReviewer() {
@@ -564,6 +538,7 @@ export function useRiskLevelReport(departmentName) {
   }, [departmentName]); 
   return { riskLevel, fetchData };
 }
+
 
 export function useRiskStatusReportPieChart(departmentName) {
   const { auth } = useContext(AuthContext);
@@ -886,6 +861,37 @@ export function useAuditTrail() {
     fetchData(); 
   }, []);
   return { auditTrail, fetchData };
+}
+
+export function useRiskStatusReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskStatus, setRiskStatus] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTATUSREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskStatus(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskStatus, fetchData };
 }
 
 
