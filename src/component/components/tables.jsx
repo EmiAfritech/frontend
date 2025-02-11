@@ -2167,10 +2167,7 @@ export function Reportaudittrail() {
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const deptId = departmentName
-  const { auditTrail } = useAuditTrail(deptId);
-
-  console.log({"audit trail":auditTrail})
+  const { auditTrail } = useAuditTrail(departmentName);
   
 
   const table = useMaterialReactTable({
