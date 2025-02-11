@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -274,32 +274,8 @@ export function ReportRiskLevel() {
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
+  const {riskLevel} = useRiskLevelReport(departmentName)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          RISKLEVELREPORT_URL,
-          JSON.stringify({ departmentName }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [departmentName]);
-
- 
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
