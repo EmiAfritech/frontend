@@ -195,6 +195,11 @@ export const useGovernanceColumns = () => {
       accessorKey: "govDescription",
       header: "Governance Description",
     },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
   ];
 };
 

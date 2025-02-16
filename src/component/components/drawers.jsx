@@ -20,6 +20,7 @@ import {
   RISKIDSMITIGATION_URL,
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
+  FRAMEWORKFORM_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
@@ -1051,11 +1052,36 @@ export function Framworkforms({ onFormSubmit }) {
   const [framework, setFramework] = useState("")
   const [open, setOpen] = useState(false);
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    onFormSubmit()
 
+    try {
+      await axios.post(
+        FRAMEWORKFORM_URL,
+        JSON.stringify({
+          name: frameworkText,
+          description: description,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      notify();
+    } catch (error) {
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   function handleOpen() {

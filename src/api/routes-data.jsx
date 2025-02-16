@@ -30,7 +30,8 @@ import {
   RISKAPPETITEREPORTGREATER_URL,
   MITIGATIONBYDATE_URL,
   RISKNEEDINGREVIEWREPORT_URL,
-  REPORTAUDITTRAIL_URL
+  REPORTAUDITTRAIL_URL,
+  FRAMEWORK_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -83,6 +84,31 @@ export function useDepartmentTable() {
   }, []);
 
   return { departmentTable, fetchData };
+}
+
+export function useFrameWorkTable() {
+  const { auth } = useContext(AuthContext);
+  const [framework, setFramework] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(FRAMEWORK_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setFramework(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { framework, fetchData };
 }
 
 export function useEmployeeTable() {
@@ -214,9 +240,6 @@ export function useRiskIDMonitoring({ departmentID }) {
   }, []);
   return { monitoringIDs };
 }
-
-
-
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
