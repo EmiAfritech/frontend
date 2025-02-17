@@ -587,7 +587,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const {responseActivityStatus} = GRCFormsArray()
+  const {responseActivityStatus} = GRCFormsArray(t)
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
