@@ -65,7 +65,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useAuditTrail, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useAuditTrail, useControlTable, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -1554,7 +1554,8 @@ export function FrameworkTab() {
 export function ControleTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { mitigationTable, fetchData } = useMitigationTable();
+  const { control, fetchData } = useControlTable();
+  console.log({"control":control })
   
   
   
@@ -1600,7 +1601,7 @@ export function ControleTab() {
       },
     },
     columns,
-    data: mitigationTable,
+    data: control,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,

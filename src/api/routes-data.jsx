@@ -111,6 +111,31 @@ export function useFrameWorkTable() {
   return { framework, fetchData };
 }
 
+export function useControlTable() {
+  const { auth } = useContext(AuthContext);
+  const [control, setControl] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(FRAMEWORK_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setControl(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { control, fetchData };
+}
+
 export function useEmployeeTable() {
   const { auth } = useContext(AuthContext);
   const [employeeTable, setEmployeeTable] = useState([]);

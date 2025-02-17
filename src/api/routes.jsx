@@ -71,8 +71,12 @@ export const MITIGATIONBYDATE_URL = "/Organization/Analytics/getMitigtionsByDate
 //risk status report table (ea)
 export const RISKSTATUSREPORT_URL = "/Organization/Analytics/getAllOpenedRisksStatus";
 
-//governance tbale
-export const FRAMEWORK_URL = "/Governance/Framework/list"
+//governance framework tbale
+export const FRAMEWORK_URL = "/Governance/Framework/list";
+
+//governance controle tbale
+export const CONTROL_URL = "/Governance/Control/list";
+
 
 /*************************************************Forms******************************************************/
 
