@@ -30,7 +30,7 @@ export const GRCFormsArray = (t) => ({
     { value: "4", label: t("major") },
     { value: "5", label: t("critical") },
   ],
-  riskReview: [
+  riskReviewArray: [
     { value: "accept risk", label: t("acceptRisk") },
     { value: "reject risk", label: t("rejectRisk") },
   ],
