@@ -21,6 +21,7 @@ import {
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
   FRAMEWORKFORM_URL,
+  CONTROLFORM_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
@@ -1170,16 +1171,54 @@ export function Controlforms({ onFormSubmit }) {
   const { t } = useTranslation();
   const [description, setDescription] = useState("");
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
-  const [frameworkText, setFrameworkText] = useState("");
+  const [controlItem, setControlItem] = useState("");
+  
   const FormArray = GRCFormsArray(t);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [framework, setFramework] = useState("");
   const [open, setOpen] = useState(false);
+
+  const notify = () => {
+    toast.success("User Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        onFormSubmit();
+        reload();
+      },
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    onFormSubmit();
+
+    try {
+      await axios.post(
+        CONTROLFORM_URL,
+        JSON.stringify({
+          name: frameworkText,
+          description: description,
+          controlItem:"kdbcbskjbvs",
+          frameworkId:1
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      notify();
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   function handleOpen() {
@@ -1205,6 +1244,13 @@ export function Controlforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
+            <FormInputField
+              id="controlItem"
+              label="Control Item"
+              value={controlItem}
+              onChange={setControlItem}
+              required
+            />
             <CustomSelect
               id="frameWorkSelect"
               label="Select a Framework"
@@ -1214,26 +1260,6 @@ export function Controlforms({ onFormSubmit }) {
               searchable={true}
               required
             />
-            {frameWorkSelect ? (
-              <CustomSelect
-                id="framework"
-                label="Framework Select"
-                value={framework}
-                onChange={setFramework}
-                options={FormArray.governance}
-                searchable={true}
-                required
-                group={false}
-              />
-            ) : (
-              <FormInputField
-                id="frameworkText"
-                label="Type In your Framework Name"
-                value={frameworkText}
-                onChange={(e) => setFrameworkText(e.target.value)}
-                required
-              />
-            )}
             <FormInputField
               id="description"
               label="Description"

@@ -99,7 +99,10 @@ export const REVIEWRISKFORM_URL = "/departments/risk/riskreview/create";
 export const MONITORINGRISKFORM_URL ="/departments/risk/riskmonitorings/create";
 
 //governance framework form
-export const FRAMEWORKFORM_URL = "/Governance/Framework/create"
+export const FRAMEWORKFORM_URL = "/Governance/Framework/create"; 
+
+//governance Control form
+export const CONTROLFORM_URL = "/Governance/Control/create";
 
 /************************************************ Chat ******************************************************/
 
