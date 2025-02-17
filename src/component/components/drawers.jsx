@@ -1049,6 +1049,16 @@ export function Framworkforms({ onFormSubmit }) {
   const [framework, setFramework] = useState("");
   const [open, setOpen] = useState(false);
 
+  const notify = () => {
+    toast.success("User Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        onFormSubmit();
+        reload();
+      },
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
