@@ -587,6 +587,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const {responseActivityStatus} = GRCFormsArray()
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
@@ -725,7 +726,7 @@ export function RiskReviewforms({ onFormSubmit }) {
               label={t("riskReview")}
               value={riskReview}
               onChange={setRiskReview}
-              options={departmentList}
+              options={responseActivityStatus}
               searchable={true}
               required
               group={false}
