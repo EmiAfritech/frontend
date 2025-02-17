@@ -13,6 +13,7 @@ import {
   useReportRiskMitigationColumns,
   useRiskStatuscolumns,
   useGovernanceColumns,
+  useGovernanceControlColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
@@ -1552,7 +1553,7 @@ export function FrameworkTab() {
 }
 
 export function ControleTab() {
-  const columns = useGovernanceColumns();
+  const columns = useGovernanceControlColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { control, fetchData } = useControlTable();
   console.log({"control":control })

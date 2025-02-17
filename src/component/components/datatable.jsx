@@ -207,6 +207,29 @@ export const useGovernanceColumns = () => {
   ];
 };
 
+export const useGovernanceControlColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "name",
+      header: "Governance Framework",
+    },
+    {
+      accessorKey: "description",
+      header: "Governance Description",
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+    },
+    
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+    },
+  ];
+};
+
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
   return [

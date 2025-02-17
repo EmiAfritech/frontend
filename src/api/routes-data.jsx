@@ -31,7 +31,8 @@ import {
   MITIGATIONBYDATE_URL,
   RISKNEEDINGREVIEWREPORT_URL,
   REPORTAUDITTRAIL_URL,
-  FRAMEWORK_URL
+  FRAMEWORK_URL,
+  CONTROL_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -116,7 +117,7 @@ export function useControlTable() {
   const [control, setControl] = useState("");
   const fetchData = async () => {
     try {
-      const response = await axios.get(FRAMEWORK_URL, {
+      const response = await axios.get(CONTROL_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
