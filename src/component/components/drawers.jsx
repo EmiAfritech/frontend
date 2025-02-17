@@ -1257,7 +1257,7 @@ export function Controlforms({ onFormSubmit }) {
               label="Select a Framework"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
-              options={FormArray.responseActivityStatus}
+              options={FormArray.governance}
               searchable={true}
               required
             />
