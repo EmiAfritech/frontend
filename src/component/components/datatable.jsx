@@ -241,12 +241,12 @@ export const useRiskReviewColumns = () => {
       header: t("riskName"),
     },
     {
-      accessorKey: "riskReview",
-      header: t("riskReview"),
+      accessorKey: "riskOwner",
+      header: t("owner"),
     },
     {
-      accessorKey: "NextRiskReviewDate",
-      header: t("nextReviewDate"),
+      accessorKey: "riskResponse",
+      header: t("riskResponse"),
     },
     {
       accessorKey: "createdAt",
@@ -286,7 +286,7 @@ export const useRiskMonitoringColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails />,
+      Cell: ({ row }) => <RiskDetails data={row.original}/>,
     },
   ];
 };
