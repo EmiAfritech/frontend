@@ -1628,7 +1628,7 @@ export function RiskReview() {
   const [rowSelection, setRowSelection] = useState({});
   const { riskTable, fetchData } = useRiskTable();
 
-  
+  console.log({"riskReview": riskTable})
   const handleFormSubmit = () => {
     fetchData();
   };
