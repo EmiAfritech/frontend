@@ -188,17 +188,21 @@ export const useGovernanceColumns = () => {
   const { t } = useTranslation();
   return [
     {
-      accessorKey: "govFramework",
+      accessorKey: "name",
       header: "Governance Framework",
     },
     {
-      accessorKey: "govDescription",
+      accessorKey: "description",
       header: "Governance Description",
     },
     {
       accessorKey: "createdAt",
       header: "Creted At",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
     },
   ];
 };
