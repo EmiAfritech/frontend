@@ -1484,6 +1484,7 @@ export function FrameworkTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { framework, fetchData } = useFrameWorkTable();
+  console.log({"framework":framework })
   
   
   
