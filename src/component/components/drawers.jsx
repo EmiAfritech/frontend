@@ -132,19 +132,18 @@ export function Userforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-8 flex flex-col space-y-6">
-          {(auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER") && (
-                <CustomSelect
-                  id="department"
-                  label={t("departments")}
-                  value={departmentName}
-                  onChange={setDepartment}
-                  options={departmentList}
-                  searchable={true}
-                  required
-                  group={false}
-                />
-              )}
+            {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+              <CustomSelect
+                id="department"
+                label={t("departments")}
+                value={departmentName}
+                onChange={setDepartment}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+            )}
             <FormInputField
               id="lastName"
               label={t("lastName")}
@@ -166,7 +165,7 @@ export function Userforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
-            
+
             <FormInputField
               id="password"
               label={t("password")}
@@ -266,9 +265,9 @@ export function Departmentforms({ onFormSubmit }) {
   const reload = () => {
     seetDepartmentValue({
       departmentName: "",
-    departmentID: "",
-    location: "",
-    })
+      departmentID: "",
+      location: "",
+    });
   };
 
   return (
@@ -337,7 +336,7 @@ export function Riskforms({ onFormSubmit }) {
   const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } =
     GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
-  const { ownersList } = useRiskOwnersDropdown({departmentName});
+  const { ownersList } = useRiskOwnersDropdown({ departmentName });
   const [riskValue, setRiskValue] = useState({
     riskName: "",
     riskID: "",
@@ -345,7 +344,7 @@ export function Riskforms({ onFormSubmit }) {
     riskDescription: "",
     riskResponseActivity: "",
   });
-  console.log({"departmentID":departmentName})
+  console.log({ departmentID: departmentName });
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
@@ -440,7 +439,6 @@ export function Riskforms({ onFormSubmit }) {
     }
   };
 
-  
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");
@@ -1043,16 +1041,14 @@ export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const FormArray = GRCFormsArray(t);
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
 
-
-  const [frameWorkSelect, setFrameWorkSelect] = useState("")
-  const [frameworkText, setFrameworkText] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [framework, setFramework] = useState("")
+  const [frameWorkSelect, setFrameWorkSelect] = useState("");
+  const [frameworkText, setFrameworkText] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [framework, setFramework] = useState("");
   const [open, setOpen] = useState(false);
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -1074,11 +1070,12 @@ export function Framworkforms({ onFormSubmit }) {
       );
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
     } finally {
       setIsSubmitting(false);
     }
@@ -1107,7 +1104,7 @@ export function Framworkforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-          <CustomSelect
+            <CustomSelect
               id="frameWorkSelect"
               label="Want to select a new Framework?"
               value={frameWorkSelect}
@@ -1116,8 +1113,8 @@ export function Framworkforms({ onFormSubmit }) {
               searchable={true}
               required
             />
-            {frameWorkSelect && (
-              frameWorkSelect === "YES" ? (
+            {frameWorkSelect &&
+              (frameWorkSelect === "YES" ? (
                 <CustomSelect
                   id="framework"
                   label="Framework Select"
@@ -1136,8 +1133,7 @@ export function Framworkforms({ onFormSubmit }) {
                   onChange={(e) => setFrameworkText(e.target.value)}
                   required
                 />
-              )
-            )}
+              ))}
             <FormInputField
               id="description"
               label="Description"
@@ -1162,19 +1158,18 @@ export function Framworkforms({ onFormSubmit }) {
 export function Controlforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [description, setDescription] = useState("")
-  const [frameWorkSelect, setFrameWorkSelect] = useState(true)
-  const [frameworkText, setFrameworkText] = useState("")
+  const [description, setDescription] = useState("");
+  const [frameWorkSelect, setFrameWorkSelect] = useState(true);
+  const [frameworkText, setFrameworkText] = useState("");
   const FormArray = GRCFormsArray(t);
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [framework, setFramework] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [framework, setFramework] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    onFormSubmit()
-
+    onFormSubmit();
   };
 
   function handleOpen() {
@@ -1200,34 +1195,34 @@ export function Controlforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-          <CustomSelect
-            id="frameWorkSelect"
-            label="Select a Framework"
-            value={frameWorkSelect}
-            onChange={setFrameWorkSelect}
-            options={FormArray.responseActivityStatus}
-            searchable={true}
-            required
-          />
-            {frameWorkSelect ? (
-              <CustomSelect
-              id="framework"
-              label= "Framework Select"
-              value={framework}
-              onChange={setFramework}
-              options={FormArray.governance}
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Select a Framework"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={FormArray.responseActivityStatus}
               searchable={true}
               required
-              group={false}
             />
-            ):(
+            {frameWorkSelect ? (
+              <CustomSelect
+                id="framework"
+                label="Framework Select"
+                value={framework}
+                onChange={setFramework}
+                options={FormArray.governance}
+                searchable={true}
+                required
+                group={false}
+              />
+            ) : (
               <FormInputField
-              id="frameworkText"
-              label="Type In your Framework Name"
-              value={frameworkText}
-              onChange={(e) => setFrameworkText(e.target.value)}
-              required
-            />
+                id="frameworkText"
+                label="Type In your Framework Name"
+                value={frameworkText}
+                onChange={(e) => setFrameworkText(e.target.value)}
+                required
+              />
             )}
             <FormInputField
               id="description"
@@ -1249,7 +1244,6 @@ export function Controlforms({ onFormSubmit }) {
     </div>
   );
 }
-
 
 export function RiskMonitoringforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
