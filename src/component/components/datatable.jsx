@@ -211,21 +211,20 @@ export const useGovernanceControlColumns = () => {
   const { t } = useTranslation();
   return [
     {
-      accessorKey: "name",
-      header: "Governance Framework",
+      accessorKey: "controlItem",
+      header: "Control Item",
     },
     {
       accessorKey: "description",
-      header: "Governance Description",
+      header: "Description",
+    },
+    {
+      accessorKey: "name",
+      header: "Framework",
     },
     {
       accessorKey: "createdAt",
       header: "Creted At",
-    },
-    
-    {
-      accessorKey: "updatedAt",
-      header: "Last Updated",
     },
   ];
 };
