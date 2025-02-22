@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Drawer, Button } from "@mui/material";
 import axios from "../../api/axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext";
@@ -20,6 +20,8 @@ import {
   RISKIDSMITIGATION_URL,
   DEPARTMENTDROPDOWN_URL,
   OWNERSDROPDOWN_URL,
+  FRAMEWORKFORM_URL,
+  CONTROLFORM_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
@@ -131,19 +133,18 @@ export function Userforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-8 flex flex-col space-y-6">
-          {(auth.role === "ADMIN" ||
-              auth.role === "GENERALMANAGER") && (
-                <CustomSelect
-                  id="department"
-                  label={t("departments")}
-                  value={departmentName}
-                  onChange={setDepartment}
-                  options={departmentList}
-                  searchable={true}
-                  required
-                  group={false}
-                />
-              )}
+            {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+              <CustomSelect
+                id="department"
+                label={t("departments")}
+                value={departmentName}
+                onChange={setDepartment}
+                options={departmentList}
+                searchable={true}
+                required
+                group={false}
+              />
+            )}
             <FormInputField
               id="lastName"
               label={t("lastName")}
@@ -165,7 +166,7 @@ export function Userforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
-            
+
             <FormInputField
               id="password"
               label={t("password")}
@@ -265,9 +266,9 @@ export function Departmentforms({ onFormSubmit }) {
   const reload = () => {
     seetDepartmentValue({
       departmentName: "",
-    departmentID: "",
-    location: "",
-    })
+      departmentID: "",
+      location: "",
+    });
   };
 
   return (
@@ -336,7 +337,7 @@ export function Riskforms({ onFormSubmit }) {
   const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } =
     GRCFormsArray(t);
   const { departmentList } = useDepartmentDropdown();
-  const { ownersList } = useRiskOwnersDropdown();
+  const { ownersList } = useRiskOwnersDropdown({ departmentName });
   const [riskValue, setRiskValue] = useState({
     riskName: "",
     riskID: "",
@@ -344,7 +345,7 @@ export function Riskforms({ onFormSubmit }) {
     riskDescription: "",
     riskResponseActivity: "",
   });
-
+  console.log({ departmentID: departmentName });
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
@@ -439,7 +440,6 @@ export function Riskforms({ onFormSubmit }) {
     }
   };
 
-  
   const reload = () => {
     setDepartmentName("");
     setRiskOwner("");
@@ -587,6 +587,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const {riskReviewArray} = GRCFormsArray(t)
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
@@ -725,7 +726,7 @@ export function RiskReviewforms({ onFormSubmit }) {
               label={t("riskReview")}
               value={riskReview}
               onChange={setRiskReview}
-              options={departmentList}
+              options={riskReview}
               searchable={true}
               required
               group={false}
@@ -784,7 +785,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const hostaddress = "http://localhost:5173/risk-mitigation";
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
       onClose: () => {
@@ -1038,34 +1039,20 @@ export function RiskMitigationforms({ onFormSubmit }) {
     </div>
   );
 }
-export function Governanceforms({ onFormSubmit }) {
+export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [riskName, setRiskName] = useState("");
-  const [departmentID, setdepartmentID] = useState(" ");
-  const [mitigationEffort, setMitigationEffort] = useState(" ");
-  const [mitigationControl, setMitigationControl] = useState(" ");
-  const [mitigationCost, setMitigationCost] = useState(" ");
-  const [riskReviewer, setRiskReviewer] = useState(" ");
-  const [endDate, setEndDate] = useState(new Date());
-  const [mitigatedRiskProbabilityLevel, setmitigatedRiskProbabilityLevel] =
-    useState("");
-  const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] =
-    riskName.split(","); //
-
-  const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
-  const probabilityLevelNumber = getProbabiltyLevelNumber(
-    parseInt(probabilityLevel, 10)
-  );
   const FormArray = GRCFormsArray(t);
-  const { ownersName } = useRiskReviewer();
-  const { departmentList } = useDepartmentDropdown();
-  const hostaddress = "http://localhost:5173/risk-mitigation";
-  const [open, setOpen] = React.useState(false);
+  const [description, setDescription] = useState("");
+
+  const [frameWorkSelect, setFrameWorkSelect] = useState("");
+  const [frameworkText, setFrameworkText] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [framework, setFramework] = useState("");
+  const [open, setOpen] = useState(false);
+
   const notify = () => {
-    toast.success("Risk Mitigation Saved Successfully", {
+    toast.success("User Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
@@ -1074,94 +1061,36 @@ export function Governanceforms({ onFormSubmit }) {
     });
   };
 
-  const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    const dateObj = new Date(selectedDate);
-
-    // Extract year, month, and day components
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, "0");
-    const day = String(dateObj.getDate()).padStart(2, "0");
-
-    // Format the date as "yyyy-MM-dd"
-    const formattedDate = `${year}-${month}-${day}`;
-    // Set the formatted date to state
-    setEndDate(formattedDate);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
-        await axios.post(
-          MITIGATERISKFORM_URL,
-          JSON.stringify({
-            riskID,
-            mitigatedRiskProbabilityLevel,
-            mitigatedRiskImpactLevel,
-            mitigationControl,
-            mitigationEffort,
-            riskReviewer,
-            mitigationCost,
-            endDate,
-            hostaddress,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            withCredentials: true,
-          }
-        );
-      } else {
-        await axios.post(
-          MITIGATERISKFORM_URL,
-          JSON.stringify({
-            riskID,
-            mitigatedRiskProbabilityLevel,
-            mitigatedRiskImpactLevel,
-            mitigationControl,
-            mitigationEffort,
-            riskReviewer,
-            mitigationCost,
-            departmentID,
-            endDate,
-            hostaddress,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-      }
+      await axios.post(
+        FRAMEWORKFORM_URL,
+        JSON.stringify({
+          name: frameworkText,
+          description: description,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const reload = () => {
-    setRiskName("");
-    setdepartmentID("");
-    setmitigatedRiskProbabilityLevel("");
-    setmitigatedRiskImpactLevel("");
-    setmitigationControl("");
-    setmitigationEffort("");
-    setRiskReviewer("");
-    setmitigationCost("");
-    setEndDate("");
   };
 
   function handleOpen() {
@@ -1175,134 +1104,54 @@ export function Governanceforms({ onFormSubmit }) {
   return (
     <div>
       <CustomButton
-        label={t("mitigateRisk")}
+        label="Add a Rule"
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
         onClick={handleOpen}
       />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-          {t("mitigateRisk")}
+          Governance Framework
         </div>
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            {auth.role === "ADMIN" ||
-              (auth.role === "GENERALMANAGER" && (
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Want to select a new Framework?"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={FormArray.responseActivityStatus}
+              searchable={true}
+              required
+            />
+            {frameWorkSelect &&
+              (frameWorkSelect === "YES" ? (
                 <CustomSelect
-                  id="departmentID"
-                  label={t("departmentId")}
-                  value={departmentID}
-                  onChange={setdepartmentID}
-                  options={departmentList}
+                  id="framework"
+                  label="Framework Select"
+                  value={framework}
+                  onChange={setFramework}
+                  options={FormArray.governance}
                   searchable={true}
                   required
                   group={false}
                 />
+              ) : (
+                <FormInputField
+                  id="frameworkText"
+                  label="Type In your Framework Name"
+                  value={frameworkText}
+                  onChange={(e) => setFrameworkText(e.target.value)}
+                  required
+                />
               ))}
-            <CustomSelect
-              id="riskName"
-              label={t("riskName")}
-              value={riskName}
-              onChange={setRiskName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-            <div className="grid grid-cols-2 gap-2">
-              <FormInputField
-                id="riskid"
-                label={t("riskId")}
-                value={riskID}
-                required
-              />
-              <FormInputField
-                id="category"
-                label={t("categorydrawer")}
-                value={riskCategory}
-                required
-              />
-            </div>
             <FormInputField
-              id="impact"
-              label={t("mitigatedRiskImpactLevel")}
-              value={impactLevelNumber}
+              id="description"
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               required
-            />
-            <FormInputField
-              id="probability"
-              label={t("probabilityLevel")}
-              value={probabilityLevelNumber}
-              required
-            />
-            <CustomSelect
-              id="riskID"
-              label={t("mitgatedRiskProbabillityLevel")}
-              value={mitigatedRiskProbabilityLevel}
-              onChange={setmitigatedRiskProbabilityLevel}
-              options={FormArray.probabilityLevel}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigatedRiskImpactLevel"
-              label={t("mitigatedRiskImpactLevel")}
-              value={mitigatedRiskImpactLevel}
-              onChange={setmitigatedRiskImpactLevel}
-              options={FormArray.impactLevel}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigationEffort"
-              label={t("mitigationEffort")}
-              value={mitigationEffort}
-              onChange={setMitigationEffort}
-              options={FormArray.mitigationEffort}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="mitigationControl"
-              label={t("mitigationControl")}
-              value={mitigationControl}
-              onChange={setMitigationControl}
-              options={FormArray.mitigationEffort}
-              searchable={true}
-              required
-              group={false}
-            />
-            <FormInputField
-              type="date"
-              id="date"
-              label={t("mitigationDueDate")}
-              value={endDate}
-              required
-              onChange={handleDateChange}
-            />
-            <CustomSelect
-              id="mitigationCost"
-              label={t("mitigationCost")}
-              value={mitigationCost}
-              onChange={setMitigationCost}
-              options={FormArray.mitigationCost}
-              searchable={true}
-              required
-              group={false}
-            />
-            <CustomSelect
-              id="riskReviewer"
-              label={t("riskReviewer")}
-              value={riskReviewer}
-              onChange={setRiskReviewer}
-              options={ownersName}
-              searchable={true}
-              required
-              group={false}
             />
             <CustomButton
               label="submit"
@@ -1317,6 +1166,122 @@ export function Governanceforms({ onFormSubmit }) {
     </div>
   );
 }
+
+export function Controlforms({ onFormSubmit }) {
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
+  const [description, setDescription] = useState("");
+  const [frameWorkSelect, setFrameWorkSelect] = useState(true);
+  const [controlItem, setControlItem] = useState("");
+  
+  const FormArray = GRCFormsArray(t);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const notify = () => {
+    toast.success("User Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        onFormSubmit();
+        reload();
+      },
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await axios.post(
+        CONTROLFORM_URL,
+        JSON.stringify({
+          name: frameworkText,
+          description: description,
+          controlItem:"kdbcbskjbvs",
+          frameworkId:1
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      notify();
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  return (
+    <div>
+      <CustomButton
+        label="Set a New Control"
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+        <div className="flex justify-center font-bold py-5  text-black">
+          Governance Control
+        </div>
+        <hr />
+        <form className="w-96">
+          <div className=" px-10 py-10 flex flex-col space-y-6">
+            <FormInputField
+              id="controlItem"
+              label="Control Item"
+              value={controlItem}
+              onChange={setControlItem}
+              required
+            />
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Select a Framework"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={FormArray.governance}
+              searchable={true}
+              required
+            />
+            <FormInputField
+              id="description"
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
+          </div>
+        </form>
+      </Drawer>
+    </div>
+  );
+}
+
 export function RiskMonitoringforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();

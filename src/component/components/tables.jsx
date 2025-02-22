@@ -12,6 +12,8 @@ import {
   useRiskMitigationColumns,
   useReportRiskMitigationColumns,
   useRiskStatuscolumns,
+  useGovernanceColumns,
+  useGovernanceControlColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
@@ -33,11 +35,12 @@ import {
 import {
   Departmentforms,
   RiskMitigationforms,
-  Governanceforms,
+  Framworkforms,
   RiskReviewforms,
   Riskforms,
   Userforms,
   RiskMonitoringforms,
+  Controlforms,
 } from "./drawers";
 import axios from "../../api/axios";
 import {
@@ -63,7 +66,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useMitigationTable, useMonitoringTable, useRiskTable } from "../../api/routes-data";
+import { useAuditTrail, useControlTable, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -324,7 +327,7 @@ export function RiskMonitor2() {
   );
 }
 
-export function RiskAppetiteReportGreater() {
+export function RiskAppetiteReportGreater2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const riskappetitereportgreatercolumn = useRiskAppetiteReportGreaterColumns();
@@ -394,7 +397,7 @@ export function RiskAppetiteReportGreater() {
   );
 }
 
-export function RiskAppetiteReportLower() {
+export function RiskAppetiteReportLower2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const riskappetitereportlowercolumn = useRiskAppetiteReportLowerColumns();
@@ -642,7 +645,7 @@ export function RiskViewTable2() {
 }
 
 
-export function Reportaudittrail() {
+export function Reportaudittrail2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const reportaudittrailcolumn = useReportAuditTrailColumns();
@@ -710,7 +713,7 @@ export function Reportaudittrail() {
   );
 }
 
-export function RiskMitigationReportTable() {
+export function RiskMitigationReportTable2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
@@ -813,7 +816,7 @@ export function RiskMitigationReportTable() {
   );
 }
 
-export function ReviewNeedingRisksReportTab() {
+export function ReviewNeedingRisksReportTab2() {
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [departmentName, setDeptmentName] = useState("All Departments");
@@ -1199,113 +1202,6 @@ export function RiskStatusReportTab2() {
   );
 }
 
-export function RiskStatusReportTab() {
-  const { t } = useTranslation();
-  const [rowSelection, setRowSelection] = useState({});
-  const columns = useRiskStatuscolumns();
-  const [data, setTableData] = useState("");
-
-  const handleExportRows = (rows) => {
-    const doc = new jsPDF();
-    const tableData = rows.map((row) => Object.values(row.original));
-    const tableHeaders = columns.map((c) => c.header);
-
-    autoTable(doc, {
-      head: [tableHeaders],
-      body: tableData,
-    });
-
-    doc.save("mrt-pdf-example.pdf");
-  };
-
-  const handleExportData = () => {
-    const csv = generateCsv(csvConfig)(data);
-    download(csvConfig)(csv);
-  };
-
-  useEffect(() => {}, [rowSelection]);
-
-  const table = useMaterialReactTable({
-    muiTableHeadCellProps: {
-      sx: {
-        fontWeight: "normal",
-        fontSize: "14px",
-        background: "rgb(7, 7, 60)",
-        color: "white",
-      },
-    },
-    muiTablePaperProps: {
-      elevation: 0,
-      sx: {
-        borderRadius: "10",
-      },
-    },
-    muiTableBodyProps: {
-      sx: {
-        "& tr:nth-of-type(even) > td": {
-          backgroundColor: "#f5f5f5",
-        },
-        overflowY: "auto",
-      },
-    },
-    muiTableContainerProps: {
-      sx: {
-        height: "70vh",
-      },
-    },
-    muiTableBodyCellProps: {
-      sx: {
-        overflowY: "auto",
-      },
-    },
-    columns,
-    data,
-    enableColumnOrdering: true,
-    enableRowSelection: true,
-    enablePagination: true,
-    onRowSelectionChange: setRowSelection,
-    state: { rowSelection },
-    //export function is already imported use when needing to export data, using jdPDF
-    renderTopToolbarCustomActions: ({ table }) => (
-      <Box
-        sx={{
-          display: "flex",
-          gap: "16px",
-          padding: "8px",
-          flexWrap: "wrap",
-        }}>
-        <Button
-          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
-          onClick={handleExportData}
-          startIcon={<FileDownloadIcon />}>
-          {t("exportData")},
-        </Button>
-        <Button
-          disabled={table.getRowModel().rows.length === 0}
-          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
-          onClick={() => handleExportRows(table.getRowModel().rows)}
-          startIcon={<FileDownloadIcon />}>
-          {t("exportPageRows")},
-        </Button>
-        <Button
-          disabled={
-            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
-          }
-          //only export selected rows
-          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-          startIcon={<FileDownloadIcon />}>
-          {t("exportSelectedRows")}
-        </Button>
-      </Box>
-    ),
-  });
-
-  const someEventHandler = () => {
-    console.log(table.getState().sorting);
-  };
-
-  return <MaterialReactTable table={table} />;
-}
 
 
 {/*New Tables*/}
@@ -1585,9 +1481,13 @@ export function RiskmitigationTab() {
   );
 }
 
-export function GovernanceTab() {
+export function FrameworkTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
+  const { framework, fetchData } = useFrameWorkTable();
+  console.log({"framework":framework })
+  
+  
   
   const handleFormSubmit = () => {
     fetchData();
@@ -1631,7 +1531,7 @@ export function GovernanceTab() {
       },
     },
     columns,
-    data: mitigationTable,
+    data: framework,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,
@@ -1644,7 +1544,78 @@ export function GovernanceTab() {
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="m-5">
-          <Governanceforms onFormSubmit={handleFormSubmit} />
+          <Framworkforms onFormSubmit={handleFormSubmit} />
+        </div>
+      </div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
+}
+
+export function ControleTab() {
+  const columns = useGovernanceControlColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { control, fetchData } = useControlTable();
+  console.log({"control":control })
+  
+  
+  
+  const handleFormSubmit = () => {
+    fetchData();
+  };
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: control,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="m-5">
+          <Controlforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />
@@ -1657,7 +1628,7 @@ export function RiskReview() {
   const [rowSelection, setRowSelection] = useState({});
   const { riskTable, fetchData } = useRiskTable();
 
-  
+  console.log({"riskReview": riskTable})
   const handleFormSubmit = () => {
     fetchData();
   };
@@ -1760,7 +1731,7 @@ export function RiskMonitor() {
     },
     muiTableContainerProps: {
       sx: {
-        height: "40vh",
+        height: "50vh",
       },
     },
     muiTableBodyCellProps: {
@@ -1789,3 +1760,486 @@ export function RiskMonitor() {
     </div>
   );
 }
+
+export function RiskStatusReportTab() {
+  const { auth } = useContext(AuthContext);
+  const [rowSelection, setRowSelection] = useState({});
+  const columns = useRiskStatuscolumns();
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const {riskStatus} = useRiskStatusReport(departmentName)
+  console.log({"riskstatus table": riskStatus})
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableData = rows.map((row) => Object.values(row.original));
+    const tableHeaders = columns.map((c) => c.header);
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save("mrt-pdf-example.pdf");
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(data);
+    download(csvConfig)(csv);
+  };
+
+  useEffect(() => {}, [rowSelection]);
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60)",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: riskStatus,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    //export function is already imported use when needing to export data, using jdPDF
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}>
+        <Button
+          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
+          onClick={handleExportData}
+          startIcon={<FileDownloadIcon />}>
+          Export Data
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}>
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          //only export selected rows
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}>
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
+  });
+
+  const someEventHandler = () => {
+    console.log(table.getState().sorting);
+  };
+
+  return (
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
+      </div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </main>
+  );
+}
+
+export function RiskAppetiteReportLower() {
+  const columns = useRiskAppetiteReportLowerColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { riskAppetiteLow } = useRiskAppetiteReportLow();
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: riskAppetiteLow,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </div>
+  );
+}
+
+export function RiskAppetiteReportGreater() {
+  const columns = useRiskAppetiteReportGreaterColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const { riskAppetiteLow } = useRiskAppetiteReportLow();
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: riskAppetiteLow,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </div>
+  );
+}
+
+export function RiskMitigationReportTable() {
+  const { auth } = useContext(AuthContext);
+  const columns = useReportRiskMitigationColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const {mitigationByDate} = useMitigationByDate(departmentName)
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: mitigationByDate,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+            className="w-full"
+          />
+        )}
+      </div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </main>
+  );
+}
+
+export function ReviewNeedingRisksReportTab() {
+  const { auth } = useContext(AuthContext);
+  const columns = useReportOpenRiskToReviewColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const {riskToReview} = useRiskNeedingToBeReviewed(departmentName)
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: riskToReview,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
+      </div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </main>
+  );
+}
+
+export function Reportaudittrail() {
+  const { auth } = useContext(AuthContext);
+  const columns = useReportAuditTrailColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  const { auditTrail } = useAuditTrail(departmentName);
+  
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: auditTrail,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+            className="w-full"
+          />
+        )}
+      </div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </main>
+  );
+}
+

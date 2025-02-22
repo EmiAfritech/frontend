@@ -30,7 +30,7 @@ export const GRCFormsArray = (t) => ({
     { value: "4", label: t("major") },
     { value: "5", label: t("critical") },
   ],
-  riskReview: [
+  riskReviewArray: [
     { value: "accept risk", label: t("acceptRisk") },
     { value: "reject risk", label: t("rejectRisk") },
   ],
@@ -56,5 +56,13 @@ export const GRCFormsArray = (t) => ({
     { value: "YES", label: t("yes")},
     { value: "NO", label: t("no") },
   ],
+  governance: [
+    { value: "ISO37000", label: "ISO37000"},
+    { value: "ISO31000", label: "ISO31000" },
+    { value: "ISO37301", label: "ISO37301"},
+    { value: "ISO37302", label: "ISO37302" },
+    { value: "ISO22301", label: "ISO22301" }
+  ],
+  
 });
 

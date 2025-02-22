@@ -87,6 +87,40 @@ export const useRiskViewColumns = () => {
       accessorKey: "riskStatus",
       header: t("riskStatusdatatable"),
     },
+    
+    {
+      accessorKey: "riskScore",
+      header: t("riskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },
+    },
     {
       accessorKey: "view",
       header: t("Action"),
@@ -110,6 +144,35 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
+          } 
+        };
+      },    
     },
     {
       accessorKey: "riskReviewer",
@@ -122,20 +185,52 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails />,
+      Cell: ({ row }) => <RiskDetails data={row.original}/>,
     },
   ];
 };
 
 export const useGovernanceColumns = () => {
+  const { t } = useTranslation();
   return [
     {
-      accessorKey: "govFramework",
+      accessorKey: "name",
       header: "Governance Framework",
     },
     {
-      accessorKey: "frameworkDescription",
-      header: "Framework Description",
+      accessorKey: "description",
+      header: "Governance Description",
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+    },
+    
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
+    },
+  ];
+};
+
+export const useGovernanceControlColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "controlItem",
+      header: "Control Item",
+    },
+    {
+      accessorKey: "description",
+      header: "Description",
+    },
+    {
+      accessorKey: "name",
+      header: "Framework",
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
     },
   ];
 };
@@ -152,12 +247,12 @@ export const useRiskReviewColumns = () => {
       header: t("riskName"),
     },
     {
-      accessorKey: "riskReview",
-      header: t("riskReview"),
+      accessorKey: "riskOwner",
+      header: t("owner"),
     },
     {
-      accessorKey: "NextRiskReviewDate",
-      header: t("nextReviewDate"),
+      accessorKey: "riskResponse",
+      header: t("riskResponse"),
     },
     {
       accessorKey: "createdAt",
@@ -166,7 +261,7 @@ export const useRiskReviewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails />,
+      Cell: ({ row }) => <RiskDetails data={row.original}/>,
     },
   ];
 };
@@ -197,7 +292,7 @@ export const useRiskMonitoringColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails />,
+      Cell: ({ row }) => <RiskDetails data={row.original}/>,
     },
   ];
 };
@@ -206,20 +301,51 @@ export const useRiskStatuscolumns = () => {
   const { t } = useTranslation();
   return [
     {
-      accessorKey: "id",
-      header: "ID",
+      accessorKey: "riskCode",
+      header: "Risk Code",
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorKey: "name",
+      accessorKey: "Subject",
       header: "Name",
       Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
-      accessorFn: (row) => row.date,
-      id: "date",
+      accessorKey: "riskScore",
+      header: "Risk Score",
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
+          } 
+        };
+      },
+    },
+    {
+      accessorKey: "createdOn",
       header: "Date of Issue",
-      Header: () => <i>{t("dateOfIssue")} </i>,
     },
     {
       accessorKey: "status",
@@ -242,6 +368,346 @@ export const useRiskStatuscolumns = () => {
   ];
 };
 
+
+export const useRiskAppetiteReportLowerColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskScore",
+      header:  t("riskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, 
+            color: "white",
+          } 
+        };
+      },    
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },     
+    },
+  ];
+  
+};
+
+export const useRiskAppetiteReportGreaterColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskScore",
+      header:  t("riskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },     
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },     
+    },
+  ];
+  
+};
+
+export const useReportRiskMitigationColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskID",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskName",
+      header: t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskReviewer",
+      header:  t("riskReviewer"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "mitigatedRiskScore",
+      header: t("mitigatedRiskScore"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },     
+    },
+    {
+      accessorKey: "createdAt",
+      header: t("dateMitigated"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
+export const useReportOpenRiskToReviewColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "riskCode",
+      header: t("riskCode"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "status",
+      header: t("status"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "Subject",
+      header:  t("subject"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "riskScore",
+      header: t("inherentRisk"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "veryhigh":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },     
+    },
+    {
+      accessorKey: "daysOpen",
+      header: t("daysOpen"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "nextReviewDate",
+      header: t("nextReviewDate"),
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
+export const useReportAuditTrailColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "id",
+      header: "ID",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "type",
+      header: "Type",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "action",
+      header:  "Action",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "submittedBy",
+      header: "Submitted By",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
+    },
+  ];
+  
+};
+
+export const useRiskStatusColumns = () => {
+  const { t } = useTranslation();
+  return [
+    { field: "riskID", headerName: t("riskCode"), flex: 1 },
+    { field: "riskName", headerName: t("riskName"), flex: 1 },
+    { field: "riskDescription", headerName: t("riskDescription"), flex: 1 },
+    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
+    {
+      field: "view",
+      headerName: t("Action"),
+      flex: 0.5,
+      renderCell: (params) => RiskAdviceReportData(params),
+    },
+  ];
+};
+
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
@@ -258,78 +724,13 @@ export const useReportRiskPyramidColumns = () => {
   ];
 };
 
-export const useReportRiskMitigationColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 2 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-    { field: "riskReviewer", headerName: t("riskReviewer"), flex: 1 },
-    { field: "createdAt", headerName: t("dateMitigated"), flex: 1 },
-  ];
-};
 
-export const useReportOpenRiskToReviewColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskCode", headerName: t("riskCode"), flex: 1 },
-    { field: "status", headerName: t("status"), flex: 1 },
-    { field: "Subject", headerName: t("subject"), flex: 1 },
-    { field: "riskScore", headerName: t("inherentRisk"), flex: 1 },
-    { field: "daysOpen", headerName: t("daysOpen"), flex: 1 },
-    { field: "nextReviewDate", headerName: t("nextReviewDate"), flex: 1 },
-  ];
-};
 
-export const useRiskStatusColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskCode", headerName: t("riskCode"), flex: 1 },
-    { field: "status", headerName: t("status"), flex: 1 },
-    { field: "Subject", headerName: t("subject"), flex: 1 },
-    { field: "department", headerName: t("department"), flex: 1 },
-    { field: "riskScore", headerName: t("inherentRisk"), flex: 1 },
-    { field: "daysOpen", headerName: t("daysOpen"), flex: 1 },
-    { field: "createdOn", headerName: t("submittedOn"), flex: 1 },
-  ];
-};
 
-export const useReportAuditTrailColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "action", headerName: t("Action"), width: 500 },
-    { field: "createdAt", headerName: t("createdAt"), width: 200 },
-  ];
-};
 
-export const useRiskAppetiteReportGreaterColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("subject"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-  ];
-};
 
-export const useRiskAppetiteReportLowerColumns = () => {
-  const { t } = useTranslation();
-  return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("subject"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
-    {
-      field: "mitigatedRiskScore",
-      headerName: t("mitigatedRiskScore"),
-      flex: 1,
-    },
-  ];
-};
+
+
+
+
+

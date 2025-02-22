@@ -18,10 +18,25 @@ import {
   RISKLINECHART_URL,
   OPENVSCLOSEBARCHART_URL,
   RISKYEARSCHART_URL,
-  DELETERISK_URL
+  RISKLEVELREPORT_URL,
+  RISKSTATUSREPORTCHART_URL,
+  RISKCATEGORYREPORTCHART_URL,
+  RISKRESPONSEREPORT_URL,
+  RISKLOCATIONREPORT_URL,
+  RISKOWNERREPORT_URL,
+  RISKLEVELPYRAMIDCHART_URL,
+  RISKSTATUSREPORT_URL,
+  RISKAPPETITEREPORTLESSER_URL,
+  RISKAPPETITEREPORTGREATER_URL,
+  MITIGATIONBYDATE_URL,
+  RISKNEEDINGREVIEWREPORT_URL,
+  REPORTAUDITTRAIL_URL,
+  FRAMEWORK_URL,
+  CONTROL_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
+import { ConstantLine } from "devextreme-react/chart";
 
 export function useDepartmentDropdown() {
   const { auth } = useContext(AuthContext);
@@ -47,29 +62,6 @@ export function useDepartmentDropdown() {
   return { departmentList };
 }
 
-export function useRiskOwnersDropdown() {
-  const { auth } = useContext(AuthContext);
-  const [ownersList, setOwnersList] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(OWNERSDROPDOWN_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-      });
-      setOwnersList(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-  return { ownersList };
-}
-
 export function useDepartmentTable() {
   const { auth } = useContext(AuthContext);
   const [departmentTable, setDepartmentTable] = useState("");
@@ -93,6 +85,56 @@ export function useDepartmentTable() {
   }, []);
 
   return { departmentTable, fetchData };
+}
+
+export function useFrameWorkTable() {
+  const { auth } = useContext(AuthContext);
+  const [framework, setFramework] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(FRAMEWORK_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setFramework(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { framework, fetchData };
+}
+
+export function useControlTable() {
+  const { auth } = useContext(AuthContext);
+  const [control, setControl] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(CONTROL_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+
+      setControl(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { control, fetchData };
 }
 
 export function useEmployeeTable() {
@@ -224,35 +266,6 @@ export function useRiskIDMonitoring({ departmentID }) {
   }, []);
   return { monitoringIDs };
 }
-
-export function useRiskStatusReport({ departmentID }) {
-  const { auth } = useContext(AuthContext);
-  const [monitoringIDs, setMonitoringIDs] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSMONITORING_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
-
-      setMonitoringIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { monitoringIDs };
-}
-
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
@@ -521,14 +534,16 @@ export function useDelete({id, riskID, deptId}) {
   }, [year]); 
   return { riskDelete, fetchData };
 }
-export function useRiskIDMonitoring({ departmentID }) {
+
+export function useRiskLevelReport(departmentName) {
   const { auth } = useContext(AuthContext);
-  const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const [riskLevel, setRiskLevel] = useState("");
+
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKIDSMONITORING_URL,
-        JSON.stringify({ departmentID }),
+        RISKLEVELREPORT_URL,
+        JSON.stringify({ departmentName }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -537,14 +552,415 @@ export function useRiskIDMonitoring({ departmentID }) {
           withCredentials: true,
         }
       );
-
-      setMonitoringIDs(response.data);
+      setRiskLevel(response.data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskLevel, fetchData };
+}
+
+
+export function useRiskStatusReportPieChart(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskStatus, setRiskStatus] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTATUSREPORTCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskStatus(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskStatus, fetchData };
+}
+
+export function useRiskCategoryReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskCategory, setRiskCategory] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKCATEGORYREPORTCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskCategory(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskCategory, fetchData };
+}
+
+export function useRiskResponseReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskResponse, setRiskResponse] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKRESPONSEREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskResponse(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskResponse, fetchData };
+}
+
+export function useRiskLocationReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskLocation, setRiskLocation] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKLOCATIONREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskLocation(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskLocation, fetchData };
+}
+
+export function useRiskOwnerReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskOwner, setRiskOwner] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKOWNERREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskOwner(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskOwner, fetchData };
+}
+
+export function useRiskAdviceChart(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskAdviceChart, setRiskAdviceChart] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKLEVELPYRAMIDCHART_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskAdviceChart(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskAdviceChart, fetchData };
+}
+
+export function useRiskAppetiteReportLow() {
+  const { auth } = useContext(AuthContext);
+  const [riskAppetiteLow, setRiskAppetiteLow] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKAPPETITEREPORTLESSER_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskAppetiteLow(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { monitoringIDs };
+  return { riskAppetiteLow, fetchData };
 }
+
+export function useRiskAppetiteReportHigh() {
+  const { auth } = useContext(AuthContext);
+  const [riskAppetiteHigh, setRiskAppetiteHigh] = useState("");
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKAPPETITEREPORTGREATER_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setRiskAppetiteHigh(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskAppetiteHigh, fetchData };
+}
+
+export function useMitigationByDate(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [mitigationByDate, setMitigationByDate] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        MITIGATIONBYDATE_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setMitigationByDate(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { mitigationByDate, fetchData };
+}
+
+export function useRiskNeedingToBeReviewed(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskToReview, setRiskToReview] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKNEEDINGREVIEWREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskToReview(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskToReview, fetchData };
+}
+
+
+export function useAuditTrail(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [auditTrail, setAuditTrail] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        REPORTAUDITTRAIL_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setAuditTrail(response.data.audits);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { auditTrail, fetchData };
+}
+
+export function useRiskStatusReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskStatus, setRiskStatus] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTATUSREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskStatus(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskStatus, fetchData };
+}
+
+export function useRiskOwnersDropdown(deptId) {
+  const { auth } = useContext(AuthContext);
+  const [ownersList, setOwnersList] = useState([]);
+  console.log({"ownersr id": deptId})
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        OWNERSDROPDOWN_URL,
+        JSON.stringify({ deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log({"owners response":response})
+      setOwnersList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (deptId) {
+      fetchData();
+    }
+  }, [deptId]); 
+  console.log({"owners":ownersList})
+  return { ownersList, fetchData };
+}
+
+
+
