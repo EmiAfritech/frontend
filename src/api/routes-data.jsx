@@ -985,11 +985,7 @@ export function useDelete({id, riskID, deptId}) {
     }
   };
 
-  useEffect(() => {
-    if (year) {
-      fetchData();
-    }
-  }, [year]); 
+  
   return { riskDelete, fetchData };
 }
 
