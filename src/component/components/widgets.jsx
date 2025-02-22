@@ -957,6 +957,7 @@ export function DeleteBox() {
 }
 
 export function Delete (data){
+  set[open, setOpen] = useState(false)
   const RiskInfoInitialize = data.data;
   const [id, setId] = useState("")
   const [riskID, setRiskID] = useState("")
@@ -970,6 +971,23 @@ export function Delete (data){
     setRiskID(RiskInfoInitialize.riskID),
     setDeptId(RiskInfoInitialize.deptId)
   } 
+  
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: "absolute",
+    top: "20%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 450,
+    bgcolor: "white",
+    borderBottom: "4px solid #000",
+    boxShadow: "40px rgba(0, 0, 0, 0.2)",
+    borderRadius: "8px",
+    p: 2,
+  };
+  
   return(
     <div>
     <MdDelete onClick={handleOpen}/>
