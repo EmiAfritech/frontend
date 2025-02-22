@@ -993,8 +993,8 @@ export function Delete (data){
 
   return(
     <div>
-    <IconButton onClick={handleOpen} color="red">
-      <MdDelete/>
+    <IconButton onClick={handleOpen} >
+      <MdDelete color="red"/>
     </IconButton>
     <Modal
       open={open}
