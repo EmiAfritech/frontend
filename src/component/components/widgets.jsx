@@ -971,6 +971,7 @@ export function Delete (data){
     setId(RiskInfoInitialize.id),
     setRiskID(RiskInfoInitialize.riskID),
     setDeptId(RiskInfoInitialize.deptId)
+    handleClose()
   } 
   
   const handleOpen = () => setOpen(true);
