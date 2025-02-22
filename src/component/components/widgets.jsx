@@ -962,18 +962,19 @@ export function Delete (data){
   const [id, setId] = useState("")
   const [riskID, setRiskID] = useState("")
   const [deptId, setDeptId] = useState("")
-
-  const {riskDelete} = useDelete({
-    id, riskID, deptId
-  })
+  console.log({"delete details": id, riskID, deptId})
+  const {riskDelete} = useDelete({id, riskID, deptId})
   const handleDelete = () => {
     console.log("I am working")
     setId(RiskInfoInitialize.id),
     setRiskID(RiskInfoInitialize.riskID),
     setDeptId(RiskInfoInitialize.deptId)
-    handleClose()
+    
   } 
   
+  if(riskDelete){
+    handleClose()
+  }
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
