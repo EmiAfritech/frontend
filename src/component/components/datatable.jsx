@@ -125,10 +125,10 @@ export const useRiskViewColumns = () => {
       accessorKey: "view",
       header: t("Action"),
       Cell: ({ row }) => (
-        <>
+        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <RiskDetails data={row.original} />
           <Delete data={row.original} />
-        </>
+        </div>
       ),
     },
   ];
