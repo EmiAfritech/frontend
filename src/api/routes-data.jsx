@@ -354,6 +354,37 @@ export function useOpenVrsClosedPieChart() {
   
   return { openVrsClosePieData, fetchData };
 }
+export function useRiskLevelReport(departmentName) {
+  const { auth } = useContext(AuthContext);
+  const [riskLevel, setRiskLevel] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKLEVELREPORT_URL,
+        JSON.stringify({ departmentName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskLevel(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (departmentName) {
+      fetchData();
+    }
+  }, [departmentName]); 
+  return { riskLevel, fetchData };
+}
+
 
 export function useMonitoredVrsUnMonitoredPieChart() {
   const { auth } = useContext(AuthContext);
