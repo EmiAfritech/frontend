@@ -61,7 +61,7 @@ export function Userforms({ onFormSubmit }) {
   };
 
   const notify = () => {
-    toast.success("User Saved Successfully", {
+    toast.success(t("userSavedSuccessfully") , {
       onClose: () => {
         handleClose();
         onFormSubmit();

@@ -5,7 +5,8 @@ import { useContext, useState } from "react";
 import { Button } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
-import { useRiskOwnersDropdown } from "../../api/routes-data";
+import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
+import { MdDelete } from "react-icons/md";
 
 export function InputField({
   label,
@@ -952,5 +953,42 @@ export function DeleteBox() {
         </div>
       </div>
     </main>
+  );
+}
+
+export function Delete (data){
+  const RiskInfoInitialize = data.data;
+  const [id, setId] = useState("")
+  const [riskID, setRiskID] = useState("")
+  const [deptId, setDeptId] = useState("")
+
+  const {riskDelete} = useDelete({
+    id, riskID, deptId
+  })
+  const handleDelete = () => {
+    setId(RiskInfoInitialize.id),
+    setRiskID(RiskInfoInitialize.riskID),
+    setDeptId(RiskInfoInitialize.deptId)
+  } 
+  return(
+    <div>
+    <MdDelete onClick={handleOpen}/>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Text in a modal
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        </Typography>
+        <Button onClick={handleDelete}>Delete</Button>
+      </Box>
+    </Modal>
+    </div>
   );
 }

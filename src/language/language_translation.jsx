@@ -10,6 +10,7 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         //login
+        userSavedSuccessfully: "User Saved Successfully",
         email: "Email",
         password: "Password",
         submit: "Submit",
@@ -43,6 +44,8 @@ i18n.use(initReactI18next).init({
         category: "CATEGORY",
         riskResponse: "RISK RESPONSE",
         printChart: "Print Chart",
+        printReport: "Print Report", 
+        rowsPerPage: "Rows per page", 
         owner: "OWNER",
         riskPyramidChartName: "Risk Pyramid Chart",
         rare: "rare",
@@ -63,6 +66,7 @@ i18n.use(initReactI18next).init({
         likelihood: "Vraisemblance",
         impact: "Impact",
         //datatable
+        dateOfIssue: "Date of Issue",
         firstName: "First Name",
         lastName: "Last Name",
         phoneNumber: "Phone Number",
@@ -99,6 +103,13 @@ i18n.use(initReactI18next).init({
         //table
         viewAllRiskReviews: "VIEW ALL RISK REVIEWS",
         viewAllOpenedRisks: "VIEW ALL OPENED RISKS",
+        previous: "Previous",
+        page: "Page", 
+        of: "of", 
+        next: "Next",
+        exportData: "Export Data",  
+        exportPageRows: "Export Page Rows",  
+        exportSelectedRows: "Export Selected Rows", 
         //info
         reviewInfo1: "to identify item details",
         reviewInfo2: "click on the charts",
@@ -183,6 +194,7 @@ i18n.use(initReactI18next).init({
     fr: {
       translation: {
         //login
+        userSavedSuccessfully: "Utilisateur enregistré avec succès",
         email: "Messagerie électronique",
         password: "Mot de Passe",
         submit: "Envoyer",
@@ -217,6 +229,8 @@ i18n.use(initReactI18next).init({
         category: "CATÉGORIE",
         riskResponse: "RÉPONSE AUX RISQUES",
         printChart: "Imprimer le tableau",
+        printReport: "Imprimer le rapport", 
+        rowsPerPage: "Lignes par page",  
         owner: "PROPRIÉTAIRE",
         status: "Status",
         riskPyramidChartName: "Graphique pyramidal des risques",
@@ -238,6 +252,7 @@ i18n.use(initReactI18next).init({
         likelihood: "vraisemblance",
         impact: "Impact",
         //datatable
+        dateOfIssue: "Date d'émission",
         firstName: "Prénom",
         lastName: "Nom",
         phoneNumber: "Numéro de téléphone",
@@ -275,6 +290,13 @@ i18n.use(initReactI18next).init({
         //table
         viewAllRiskReviews: "VOIR TOUS LES EXAMENS DES RISQUES",
         viewAllOpenedRisks: "VOIR TOUS LES RISQUES OUVERTS",
+        exportData: "Exporter les données",  
+        exportPageRows: "Exporter les lignes de la page",  
+        exportSelectedRows: "Exporter les lignes sélectionnées",  
+        previous: "Précédent",  
+        page: "Page",  
+        of: "de",  
+        next: "Suivant", 
         //info
         reviewInfo1: "pour identifier les détails de l’article",
         reviewInfo2: "Cliquez sur les graphiques",

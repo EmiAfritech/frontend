@@ -17,7 +17,8 @@ import {
   REVIEWEDVSUNREVIEWEDCHART_URL,
   RISKLINECHART_URL,
   OPENVSCLOSEBARCHART_URL,
-  RISKYEARSCHART_URL
+  RISKYEARSCHART_URL,
+  DELETERISK_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -490,15 +491,15 @@ export function useRiskLineChartYearData() {
   return { riskLineYearChart, fetchData };
 }
 
-export function useOpenVsCloseBarChartData(year) {
+export function useDelete({id, riskID, deptId}) {
   const { auth } = useContext(AuthContext);
-  const [openVrscloseChart, setOpenVrscloseChart] = useState("");
+  const [riskDelete, setRiskDelete] = useState("");
 
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        OPENVSCLOSEBARCHART_URL,
-        JSON.stringify({ year }),
+        DELETERISK_URL,
+        JSON.stringify({ id, riskID, deptId }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -507,7 +508,7 @@ export function useOpenVsCloseBarChartData(year) {
           withCredentials: true,
         }
       );
-      setOpenVrscloseChart(response.data);
+      setRiskDelete(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -518,5 +519,32 @@ export function useOpenVsCloseBarChartData(year) {
       fetchData();
     }
   }, [year]); 
-  return { openVrscloseChart, fetchData };
+  return { riskDelete, fetchData };
+}
+export function useRiskIDMonitoring({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKIDSMONITORING_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setMonitoringIDs(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { monitoringIDs };
 }

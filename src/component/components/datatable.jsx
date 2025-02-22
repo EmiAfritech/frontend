@@ -8,6 +8,7 @@ import {
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
+import { Delete } from "./widgets";
 
 export const useUserColumns = () => {
   const { t } = useTranslation();
@@ -89,7 +90,12 @@ export const useRiskViewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails data={row.original} />,
+      Cell: ({ row }) => (
+        <>
+          <RiskDetails data={row.original} />
+          <Delete data={row.original} />
+        </>
+      ),
     },
   ];
 };
@@ -122,15 +128,14 @@ export const useRiskMitigationColumns = () => {
 };
 
 export const useGovernanceColumns = () => {
-  const { t } = useTranslation();
   return [
     {
       accessorKey: "govFramework",
       header: "Governance Framework",
     },
     {
-      accessorKey: "govDescription",
-      header: "Governance Description",
+      accessorKey: "frameworkDescription",
+      header: "Framework Description",
     },
   ];
 };
@@ -198,6 +203,7 @@ export const useRiskMonitoringColumns = () => {
 };
 
 export const useRiskStatuscolumns = () => {
+  const { t } = useTranslation();
   return [
     {
       accessorKey: "id",
@@ -213,7 +219,7 @@ export const useRiskStatuscolumns = () => {
       accessorFn: (row) => row.date,
       id: "date",
       header: "Date of Issue",
-      Header: () => <i>Date of Issue</i>,
+      Header: () => <i>{t("dateOfIssue")} </i>,
     },
     {
       accessorKey: "status",

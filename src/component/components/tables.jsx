@@ -917,6 +917,7 @@ export function ReviewNeedingRisksReportTab() {
 }
 
 export function RiskStatusReportTab2() {
+  const { t } = useTranslation();
   const { auth } = useContext(AuthContext);
   const [tableData, setTableData] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -1061,7 +1062,7 @@ export function RiskStatusReportTab2() {
               id="departmentName"
               value={departmentName}
               onChange={handleDeptNameChange}>
-              <option value="All Departments">All Departments</option>
+              <option value="All Departments">{t("allDepartment")} </option>
               {departmentNames.map((dept) => (
                 <option key={dept.names.id} value={dept.names.name}>
                   {dept.names.name}
@@ -1075,7 +1076,7 @@ export function RiskStatusReportTab2() {
           size="small"
           variant="outlined"
           style={{ width: "120px" }}>
-          Print Report
+          {t("printReport")}  
         </Button>
       </div>
       <div className="mt-2 w-auto card p-4 rounded-md">
@@ -1120,7 +1121,7 @@ export function RiskStatusReportTab2() {
         <div className="mt-4 flex justify-between items-center">
           <div className="flex items-center">
             <label htmlFor="rowsPerPage" className="mr-2">
-              Rows per page:
+            {t("rowsPerPage")}:
             </label>
             <select
               id="rowsPerPage"
@@ -1139,10 +1140,10 @@ export function RiskStatusReportTab2() {
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 0}
               className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50">
-              Previous
+              {t("previous")}, 
             </button>
             <span className="mx-2">
-              Page {currentPage + 1} of{" "}
+            {t("page")} {currentPage + 1} {t("of")}{" "}
               {Math.ceil(tableData.length / rowsPerPage)}
             </span>
             <button
@@ -1151,7 +1152,7 @@ export function RiskStatusReportTab2() {
                 currentPage >= Math.ceil(tableData.length / rowsPerPage) - 1
               }
               className="px-4 py-2 bg-gray-300 text-black rounded disabled:opacity-50">
-              Next
+              {t("next")}
             </button>
           </div>
         </div>
@@ -1199,6 +1200,7 @@ export function RiskStatusReportTab2() {
 }
 
 export function RiskStatusReportTab() {
+  const { t } = useTranslation();
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
   const [data, setTableData] = useState("");
@@ -1276,14 +1278,14 @@ export function RiskStatusReportTab() {
           //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
           onClick={handleExportData}
           startIcon={<FileDownloadIcon />}>
-          Export Data
+          {t("exportData")},
         </Button>
         <Button
           disabled={table.getRowModel().rows.length === 0}
           //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
           onClick={() => handleExportRows(table.getRowModel().rows)}
           startIcon={<FileDownloadIcon />}>
-          Export Page Rows
+          {t("exportPageRows")},
         </Button>
         <Button
           disabled={
@@ -1292,7 +1294,7 @@ export function RiskStatusReportTab() {
           //only export selected rows
           onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
           startIcon={<FileDownloadIcon />}>
-          Export Selected Rows
+          {t("exportSelectedRows")}
         </Button>
       </Box>
     ),
