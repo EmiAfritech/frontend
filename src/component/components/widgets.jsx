@@ -957,7 +957,7 @@ export function DeleteBox() {
 }
 
 export function Delete (data){
-  set[open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const RiskInfoInitialize = data.data;
   const [id, setId] = useState("")
   const [riskID, setRiskID] = useState("")
@@ -987,7 +987,7 @@ export function Delete (data){
     borderRadius: "8px",
     p: 2,
   };
-  
+
   return(
     <div>
     <MdDelete onClick={handleOpen}/>
