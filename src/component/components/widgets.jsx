@@ -962,7 +962,7 @@ export function Delete (data){
   const [id, setId] = useState("")
   const [riskID, setRiskID] = useState("")
   const [deptId, setDeptId] = useState("")
-  console.log({"delete details": id, riskID, deptId})
+  console.log({ id, riskID, deptId})
   const {riskDelete} = useDelete({id, riskID, deptId})
   const handleDelete = () => {
     console.log("I am working")
@@ -993,7 +993,7 @@ export function Delete (data){
 
   return(
     <div>
-    <MdDelete onClick={handleOpen}/>
+    <MdDelete onClick={handleOpen} size={24} color="red"/>
     <Modal
       open={open}
       onClose={handleClose}
