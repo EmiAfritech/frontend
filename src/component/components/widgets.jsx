@@ -967,6 +967,7 @@ export function Delete (data){
     id, riskID, deptId
   })
   const handleDelete = () => {
+    console.log("I am working")
     setId(RiskInfoInitialize.id),
     setRiskID(RiskInfoInitialize.riskID),
     setDeptId(RiskInfoInitialize.deptId)
