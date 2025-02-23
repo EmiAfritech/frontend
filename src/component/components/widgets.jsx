@@ -959,11 +959,11 @@ export function DeleteBox() {
 
 export function Delete ({data, message, name}){
   const [open, setOpen] = useState(false)
-  const ItemInfoInitialize = data.data;
-  const [id, setId] = useState("")
-  const [riskID, setRiskID] = useState("")
-  const [deptId, setDeptId] = useState("")
-  console.log({ id, riskID, deptId})
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  console.log({ id: data.data.id,
+    riskID: data.data.riskID ,
+    deptId: data.data.deptID,
+  })
   
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -980,19 +980,16 @@ export function Delete ({data, message, name}){
       }
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-        console.log(error);
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      //   console.log(error);
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
     } finally {
       setIsSubmitting(false);
     }
   };
-  if(riskDelete){
-    handleClose()
-  }
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -1037,17 +1034,17 @@ export function Delete ({data, message, name}){
                   </svg>
                 </div>
                 <div className="ml-2">
-                  <Typography component="h2">{Message}</Typography>
+                  <Typography component="h2">{message}</Typography>
                 </div>
               </div>
               <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
                 <button
                   className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                   type="submit"
-                  onClick={handleLogOut}
-                  disabled={isLoading} // Disable the button while loading
+                  onClick={handleDelete}
+                  disabled={isSubmitting} // Disable the button while loading
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <div className="flex flex-row justify-center">
                       <p className="text-sm pr-2">{t("loading")}</p>
                       <CircularProgress size={27} thickness={6} color="primary" />
