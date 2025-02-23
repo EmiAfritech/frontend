@@ -32,7 +32,8 @@ import {
   RISKNEEDINGREVIEWREPORT_URL,
   REPORTAUDITTRAIL_URL,
   FRAMEWORK_URL,
-  CONTROL_URL
+  CONTROL_URL,
+  FRAMEWORKDROPDOWN
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -316,6 +317,30 @@ export function useMitigationTable() {
   return { mitigationTable, fetchData };
 }
 
+export function useFrameWorkDropDown() {
+  const { auth } = useContext(AuthContext);
+  const [framework, setFramework] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(FRAMEWORKDROPDOWN, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setFramework(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { framework, fetchData };
+}
 
 export function useMonitoringTable() {
   const { auth } = useContext(AuthContext);

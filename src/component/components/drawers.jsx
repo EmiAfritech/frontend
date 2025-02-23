@@ -26,6 +26,7 @@ import {
 import { useTranslation } from "react-i18next";
 import {
   useDepartmentDropdown,
+  useFrameWorkDropDown,
   useRiskOwnersDropdown,
   useRiskReviewer,
 } from "../../api/routes-data";
@@ -1188,8 +1189,7 @@ export function Controlforms({ onFormSubmit }) {
   const [description, setDescription] = useState("");
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
   const [controlItem, setControlItem] = useState("");
-  
-  const FormArray = GRCFormsArray(t);
+  const {framework} = useFrameWorkDropDown()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -1211,10 +1211,9 @@ export function Controlforms({ onFormSubmit }) {
       await axios.post(
         CONTROLFORM_URL,
         JSON.stringify({
-          name: frameWorkSelect,
           description: description,
           controlItem: controlItem,
-          frameworkId:1
+          frameworkId: frameWorkSelect,
         }),
         {
           headers: {
@@ -1272,7 +1271,7 @@ export function Controlforms({ onFormSubmit }) {
               label="Select a Framework"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
-              options={FormArray.governance}
+              options={framework}
               searchable={true}
               required
             />

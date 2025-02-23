@@ -198,6 +198,9 @@ export const RISKREVIEWERSDROPDOWN_URL = "/getRiskReviewers";
 //heat map dropdown
 export const HEATMAP_URL = "/getHeatMapData";
 
+//heat map dropdown
+export const FRAMEWORKDROPDOWN = "/Governance/Control/frameworkDropdown"; 
+
 
 /*************************************************Delete and Edit************************************************/
 
