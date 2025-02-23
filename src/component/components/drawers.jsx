@@ -1064,12 +1064,13 @@ export function Framworkforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    const name = frameWorkSelect === "YES" ? framework : frameworkText;
+    
     try {
       await axios.post(
         FRAMEWORKFORM_URL,
         JSON.stringify({
-          name: frameworkText,
+          name: name,
           description: description,
         }),
         {
@@ -1118,7 +1119,7 @@ export function Framworkforms({ onFormSubmit }) {
           <div className=" px-10 py-10 flex flex-col space-y-6">
             <CustomSelect
               id="frameWorkSelect"
-              label="Want to select a new Framework?"
+              label="Select an Existing Framework?"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
               options={FormArray.responseActivityStatus}
