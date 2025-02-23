@@ -84,11 +84,10 @@ export function Userforms({ onFormSubmit }) {
         USERSCREATEFORM_URL,{
           firstName: userValue.firstName,
           lastName: userValue.lastName,
-          departmentName,
+          deptID: departmentName,
           email: userValue.email,
           phoneNumber: userValue.phoneNumber,
-          role,
-          password: userValue.password,
+          position: role,
         },
         {
           headers: {
