@@ -960,7 +960,7 @@ export function DeleteBox() {
 export function Delete ({data, message, name}){
   const [open, setOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log({ id: data.data.id,
+  console.log({ id: data.id,
     riskID: data.riskID ,
     deptId: data.deptID,
     data
