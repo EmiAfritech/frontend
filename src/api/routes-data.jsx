@@ -987,10 +987,10 @@ export function useRiskOwnersDropdown(departmentName) {
   return { ownersList, fetchData };
 }
 
-export function useRiskToBeMitigated(deptId) {
+export function useRiskToBeMitigated(departmentID) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigated, setRiskTOBeMitigated] = useState([]);
-
+  const deptId = departmentID;
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -1018,10 +1018,10 @@ export function useRiskToBeMitigated(deptId) {
   return { riskToBeMitigated, fetchData };
 }
 
-export function useRiskToBeMitigatedInfo(deptId) {
+export function useRiskToBeMitigatedInfo(riskName) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
-
+  const deptId = riskName;
   const fetchData = async () => {
     try {
       const response = await axios.post(
