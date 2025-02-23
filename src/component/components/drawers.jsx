@@ -787,10 +787,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
 
-  const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
-  const probabilityLevelNumber = getProbabiltyLevelNumber(
-    parseInt(probabilityLevel, 10)
-  );
+  
   const FormArray = GRCFormsArray(t);
   const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
@@ -854,7 +851,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({
-            riskID,
+            riskID: riskName,
             mitigatedRiskProbabilityLevel,
             mitigatedRiskImpactLevel,
             mitigationControl,
@@ -1533,34 +1530,5 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   );
 }
 
-function getProbabiltyLevelNumber(probabilitys) {
-  if (probabilitys === 1) {
-    return "Almost Impossible (1)";
-  } else if (probabilitys === 2) {
-    return "Unlikely (2)";
-  } else if (probabilitys === 3) {
-    return "Likely (3)";
-  } else if (probabilitys === 4) {
-    return "Very Likely (4)";
-  } else if (probabilitys === 5) {
-    return "Almost Certain (5)";
-  } else {
-    return " ";
-  }
-}
 
-function getImpactLevelNumber(impact) {
-  if (impact === 1) {
-    return "Insignificant (1)";
-  } else if (impact === 2) {
-    return "Minor (2)";
-  } else if (impact === 3) {
-    return "Moderate (3)";
-  } else if (impact === 4) {
-    return "Major (4)";
-  } else if (impact === 5) {
-    return "Catastrophic (5)";
-  } else {
-    return " ";
-  }
-}
+
