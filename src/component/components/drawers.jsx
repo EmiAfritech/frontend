@@ -345,7 +345,7 @@ export function Riskforms({ onFormSubmit }) {
     riskDescription: "",
     riskResponseActivity: "",
   });
-  console.log({ departmentID: departmentName });
+  console.log({ departmentID: departmentName, ownersList: ownersList });
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
