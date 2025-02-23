@@ -963,6 +963,7 @@ export function Delete ({data, message, name}){
   console.log({ id: data.data.id,
     riskID: data.riskID ,
     deptId: data.deptID,
+    data
   })
   
   const handleDelete = async (e) => {
