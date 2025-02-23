@@ -8,6 +8,8 @@ import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL } from "../../api/routes";
+import { showToast } from "./notifications";
+import axios from "../../api/axios";
 
 export function InputField({
   label,
@@ -269,38 +271,41 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskDetailsSideTabs(data, name) {
+export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
-  console.log({"name of tab": name})
+  const [disabled, setDisabled] = useState(false);
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  console.log(activeTab);
+  console.log("Active Tab:", activeTab);
+  console.log("Disabled:", disabled);
+
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo data={data}/>;
+        return <RiskInfo data={data} />;
       case "Mitigate":
         return <MitigateRIsk data={data} />;
       case "Review":
-        return <ReviewRIsk data={data}/>;
+        return <ReviewRIsk data={data} />;
       case "Monitor Risk":
-        return <MonitorRisk data={data}/>;
+        return <MonitorRisk data={data} />;
       default:
-        return <RiskInfo data={data}/>;
+        return <RiskInfo data={data} />;
     }
   };
-  
 
   return (
     <div>
       <RiskDetailNavigation onTabChange={handleTabChange} />
       <div className="mt-6 mb-60">{renderComponent()}</div>
-      <DeleteBox/>
+      <DeleteBox disabled={disabled} />
     </div>
   );
 }
+
 
 export function RiskDetailNavigation({ onTabChange }) {
   const { t } = useTranslation();
@@ -959,40 +964,38 @@ export function DeleteBox() {
   );
 }
 
-export function Delete ({data, message, name}){
-  const [open, setOpen] = useState(false)
+export function Delete({ data, message, name }) {
+  const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log({ id: data.id,
-    riskID: data.riskID ,
-    deptId: data.deptID,
-    data
-  })
-  
+
   const handleDelete = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
       if (name === "risk") {
-        const {riskDelete} = useDelete({
+        const response = await axios.post(DELETERISK_URL, {
           id: data.id,
-          riskID: data.riskID ,
+          riskID: data.riskID,
           deptId: data.deptID,
-        })
+        });
+
+        if (response.status === 200) {
+          showToast("Successfully deleted", "success");
+        } else {
+          showToast("Failed to delete. Please try again", "error");
+        }
       } else {
       }
-      notify();
     } catch (error) {
-      // if (error.response.status === 400) {
-      //   showToast("Kindly check Input details", "error");
-      //   console.log(error);
-      // } else if (error.response.status === 500) {
-      //   showToast("Server is currently down Contact your admin", "error");
-      // }
+      showToast("An error occurred. Please try again later.", "error");
+      console.error("Delete error:", error);
     } finally {
       setIsSubmitting(false);
+      setOpen(false); // Close the modal after the operation
     }
   };
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -1009,56 +1012,58 @@ export function Delete ({data, message, name}){
     p: 2,
   };
 
-  return(
+  return (
     <div>
-    <IconButton onClick={handleOpen} >
-      <MdDelete color="red"/>
-    </IconButton>
-    <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description">
-            <Box sx={style}>
-              <div className="flex flex row items-center justify-center mb-4">
-                <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                  <svg
-                    class="h-6 w-6 text-red-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                    />
-                  </svg>
+      <IconButton onClick={handleOpen}>
+        <MdDelete color="red" />
+      </IconButton>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="flex flex-row items-center justify-center mb-4">
+            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg
+                className="h-6 w-6 text-red-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                />
+              </svg>
+            </div>
+            <div className="ml-2">
+              <Typography component="h2">{message}</Typography>
+            </div>
+          </div>
+          <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+            <button
+              className="flex flex-row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              type="submit"
+              onClick={handleDelete}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex flex-row justify-center">
+                  <p className="text-sm pr-2">loading...</p>
+                  <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
-                <div className="ml-2">
-                  <Typography component="h2">{message}</Typography>
-                </div>
-              </div>
-              <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-                <button
-                  className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  type="submit"
-                  onClick={handleDelete}
-                  disabled={isSubmitting} // Disable the button while loading
-                >
-                  {isSubmitting ? (
-                    <div className="flex flex-row justify-center">
-                      <p className="text-sm pr-2">loading...</p>
-                      <CircularProgress size={27} thickness={6} color="primary" />
-                    </div>
-                  ) : (
-                    <div>yes</div>
-                  )}
-                </button>
-              </div>
-            </Box>
-          </Modal>
+              ) : (
+                <div>Yes</div>
+              )}
+            </button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   );
 }
