@@ -1444,7 +1444,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               group={false}
             />
             <FormInputField
-              id="riskid"
+              id="riskID"
               label={t("riskId")}
               value={monitoringValue.riskID}
               required
