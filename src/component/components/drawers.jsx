@@ -1052,7 +1052,7 @@ export function Framworkforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
 
   const notify = () => {
-    toast.success("User Saved Successfully", {
+    toast.success("Frame work Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
@@ -1064,12 +1064,13 @@ export function Framworkforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    const name = frameWorkSelect === "YES" ? framework : frameworkText;
+    
     try {
       await axios.post(
         FRAMEWORKFORM_URL,
         JSON.stringify({
-          name: frameworkText,
+          name: name,
           description: description,
         }),
         {
@@ -1101,6 +1102,12 @@ export function Framworkforms({ onFormSubmit }) {
     setOpen(false);
   }
 
+  const reload =()=>{
+    setFrameWorkSelect("");
+    setFrameworkText("");
+    setFramework("")
+  }
+
   return (
     <div>
       <CustomButton
@@ -1118,7 +1125,7 @@ export function Framworkforms({ onFormSubmit }) {
           <div className=" px-10 py-10 flex flex-col space-y-6">
             <CustomSelect
               id="frameWorkSelect"
-              label="Select existing Framework?"
+              label="Select an Existing Framework?"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
               options={FormArray.responseActivityStatus}
@@ -1179,11 +1186,11 @@ export function Controlforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
 
   const notify = () => {
-    toast.success("User Saved Successfully", {
+    toast.success("Control Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
-        reload();
+        // reload();
       },
     });
   };
@@ -1196,9 +1203,9 @@ export function Controlforms({ onFormSubmit }) {
       await axios.post(
         CONTROLFORM_URL,
         JSON.stringify({
-          name: frameworkText,
+          name: frameWorkSelect,
           description: description,
-          controlItem:"kdbcbskjbvs",
+          controlItem: controlItem,
           frameworkId:1
         }),
         {
@@ -1249,7 +1256,7 @@ export function Controlforms({ onFormSubmit }) {
               id="controlItem"
               label="Control Item"
               value={controlItem}
-              onChange={setControlItem}
+              onChange={(e) => setControlItem(e.target.value)}
               required
             />
             <CustomSelect
