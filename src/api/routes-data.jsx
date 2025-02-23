@@ -953,9 +953,10 @@ export function useRiskStatusReport(departmentName) {
   return { riskStatus, fetchData };
 }
 
-export function useRiskOwnersDropdown(deptId) {
+export function useRiskOwnersDropdown(departmentName) {
   const { auth } = useContext(AuthContext);
   const [ownersList, setOwnersList] = useState([]);
+  const deptId = departmentName;
   console.log({"ownersr id": deptId})
 
   const fetchData = async () => {
