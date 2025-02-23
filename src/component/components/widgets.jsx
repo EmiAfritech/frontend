@@ -991,8 +991,9 @@ export function Delete({ data, message, name }) {
             withCredentials: true,
           }
         );
-        if (response.status === 200) {
+        if (response.status === 201) {
           showToast("Successfully deleted", "success");
+          handleClose()
         } else {
           showToast("Failed to delete. Please try again", "error");
           console.log(response)
