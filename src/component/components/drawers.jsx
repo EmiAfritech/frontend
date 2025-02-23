@@ -1062,6 +1062,7 @@ export function Framworkforms({ onFormSubmit }) {
   };
 
   const handleSubmit = async (e) => {
+    console.log({frameworkText, description});
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -1118,7 +1119,7 @@ export function Framworkforms({ onFormSubmit }) {
           <div className=" px-10 py-10 flex flex-col space-y-6">
             <CustomSelect
               id="frameWorkSelect"
-              label="Want to select a new Framework?"
+              label="Select existing Framework"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
               options={FormArray.responseActivityStatus}
