@@ -153,7 +153,7 @@ export function Userforms({ onFormSubmit }) {
               required
             />
             <FormInputField
-              id="Email"
+              id="email"
               label={t("email")}
               value={userValue.email}
               onChange={handleInputChange}
