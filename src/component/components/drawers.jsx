@@ -113,7 +113,7 @@ export function Userforms({ onFormSubmit }) {
     setFirstName("");
     setLastName("");
     setEmail("");
-    setDepartmentName("");
+    setDepartment("");
     setPhoneNumber("");
     setRole("");
     setPassword("");
@@ -146,6 +146,13 @@ export function Userforms({ onFormSubmit }) {
                 group={false}
               />
             )}
+            <FormInputField
+              id="firstName"
+              label={t("firstName")}
+              value={userValue.firstName}
+              onChange={handleInputChange}
+              required
+            />
             <FormInputField
               id="lastName"
               label={t("lastName")}
