@@ -1205,7 +1205,7 @@ export function Controlforms({ onFormSubmit }) {
         JSON.stringify({
           name: frameworkText,
           description: description,
-          controlItem:"kdbcbskjbvs",
+          controlItem: controlItem,
           frameworkId:1
         }),
         {
@@ -1256,7 +1256,7 @@ export function Controlforms({ onFormSubmit }) {
               id="controlItem"
               label="Control Item"
               value={controlItem}
-              onChange={setControlItem}
+              onChange={(e) => setControlItem(e.target.value)}
               required
             />
             <CustomSelect
