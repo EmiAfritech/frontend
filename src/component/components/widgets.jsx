@@ -338,7 +338,6 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo(data) {
-console.log({"riskInfo": data})
   const disabled = useState(false)
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
