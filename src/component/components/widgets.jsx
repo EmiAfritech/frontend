@@ -282,13 +282,13 @@ export function RiskDetailsSideTabs(data, name) {
       case "Risk Info":
         return <RiskInfo data={data}/>;
       case "Mitigate":
-        return <MitigateRIsk />;
+        return <MitigateRIsk data={data} />;
       case "Review":
-        return <ReviewRIsk />;
+        return <ReviewRIsk data={data}/>;
       case "Monitor Risk":
-        return <MonitorRisk />;
+        return <MonitorRisk data={data}/>;
       default:
-        return <RiskInfo />;
+        return <RiskInfo data={data}/>;
     }
   };
   
