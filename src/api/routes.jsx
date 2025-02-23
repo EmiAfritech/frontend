@@ -198,10 +198,14 @@ export const RISKREVIEWERSDROPDOWN_URL = "/getRiskReviewers";
 //heat map dropdown
 export const HEATMAP_URL = "/getHeatMapData";
 
-//heat map dropdown
+//Frame Work
 export const FRAMEWORKDROPDOWN = "/Governance/Control/frameworkDropdown"; 
 
+//All risks to be mitigated
+export const RISKSTOBEMITIGATED_URL = "/Organization/Risk/getAllOpenedRiskIDSToBeMitigated"; 
 
+//All risks to be mitigated Info
+export const RISKSTOBEMITIGATEDINFO_URL = "/Organization/Risk/getAllOpenedRiskDetailsToBeMitigatedDetails"; 
 /*************************************************Delete and Edit************************************************/
 
 // edit risk url 

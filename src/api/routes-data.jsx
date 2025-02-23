@@ -33,7 +33,8 @@ import {
   REPORTAUDITTRAIL_URL,
   FRAMEWORK_URL,
   CONTROL_URL,
-  FRAMEWORKDROPDOWN
+  FRAMEWORKDROPDOWN,
+  RISKSTOBEMITIGATED_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -319,7 +320,7 @@ export function useMitigationTable() {
 
 export function useFrameWorkDropDown() {
   const { auth } = useContext(AuthContext);
-  const [framework, setFramework] = useState([]);
+  const [frameworkdropdown, setFramework] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(FRAMEWORKDROPDOWN, {
@@ -330,7 +331,7 @@ export function useFrameWorkDropDown() {
         withCredentials: true,
       });
 
-      setFramework(response.data.Data);
+      setFramework(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -339,7 +340,7 @@ export function useFrameWorkDropDown() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { framework, fetchData };
+  return { frameworkdropdown, fetchData };
 }
 
 export function useMonitoringTable() {
@@ -986,6 +987,38 @@ export function useRiskOwnersDropdown(departmentName) {
   }, [deptId]); 
   console.log({"owners":ownersList})
   return { ownersList, fetchData };
+}
+
+export function useRiskToBeMitigated(deptId) {
+  const { auth } = useContext(AuthContext);
+  const [riskToBeMitigated, setRiskTOBeMitigated] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTOBEMITIGATED_URL,
+        JSON.stringify({ deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskTOBeMitigated(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (deptId) {
+      fetchData();
+    }
+  }, [deptId]); 
+  console.log({"owners":ownersList})
+  return { riskToBeMitigated, fetchData };
 }
 
 export function useDelete({id, riskID, deptId}) {

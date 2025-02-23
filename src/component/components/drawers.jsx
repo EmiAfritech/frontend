@@ -29,6 +29,7 @@ import {
   useFrameWorkDropDown,
   useRiskOwnersDropdown,
   useRiskReviewer,
+  useRiskToBeMitigated,
 } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
@@ -783,8 +784,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [riskID, riskCategory, impactLevel, probabilityLevel] =
-  //   riskName.split(","); //
+  
 
   const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
   const probabilityLevelNumber = getProbabiltyLevelNumber(
@@ -793,6 +793,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const FormArray = GRCFormsArray(t);
   const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
+  const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
@@ -936,7 +937,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("riskName")}
               value={riskName}
               onChange={setRiskName}
-              options={departmentList}
+              options={riskToBeMitigated}
               searchable={true}
               required
               group={false}
@@ -1189,9 +1190,10 @@ export function Controlforms({ onFormSubmit }) {
   const [description, setDescription] = useState("");
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
   const [controlItem, setControlItem] = useState("");
-  const {framework} = useFrameWorkDropDown()
+  const {frameworkdropdown} = useFrameWorkDropDown()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
+  console.log({frameworkdropdown: frameworkdropdown})
 
   const notify = () => {
     toast.success("Control Saved Successfully", {
@@ -1271,7 +1273,7 @@ export function Controlforms({ onFormSubmit }) {
               label="Select a Framework"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
-              options={framework}
+              options={frameworkdropdown}
               searchable={true}
               required
             />
