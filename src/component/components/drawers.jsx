@@ -1203,7 +1203,7 @@ export function Controlforms({ onFormSubmit }) {
       await axios.post(
         CONTROLFORM_URL,
         JSON.stringify({
-          name: frameworkText,
+          name: frameWorkSelect,
           description: description,
           controlItem: controlItem,
           frameworkId:1
