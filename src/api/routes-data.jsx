@@ -1018,10 +1018,10 @@ export function useRiskToBeMitigated(departmentID) {
   return { riskToBeMitigated, fetchData };
 }
 
-export function useRiskToBeMitigatedInfo(riskName) {
+export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
-  const deptId = riskName;
+  const deptId = riskToBeMitigated;
   const fetchData = async () => {
     try {
       const response = await axios.post(
