@@ -782,8 +782,8 @@ export function RiskMitigationforms({ onFormSubmit }) {
     useState("");
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [riskID, riskCategory, impactLevel, probabilityLevel] =
-    riskName.split(","); //
+  // const [riskID, riskCategory, impactLevel, probabilityLevel] =
+  //   riskName.split(","); //
 
   const impactLevelNumber = getImpactLevelNumber(parseInt(impactLevel, 10));
   const probabilityLevelNumber = getProbabiltyLevelNumber(
