@@ -98,11 +98,12 @@ export function Userforms({ onFormSubmit }) {
       );
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
     } finally {
       setIsSubmitting(false);
     }
