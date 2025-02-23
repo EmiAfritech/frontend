@@ -269,38 +269,41 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskDetailsSideTabs(data, name) {
+export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
-  console.log({"name of tab": name})
+  const [disabled, setDisabled] = useState(false);
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  console.log(activeTab);
+  console.log("Active Tab:", activeTab);
+  console.log("Disabled:", disabled);
+
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo data={data}/>;
+        return <RiskInfo data={data} />;
       case "Mitigate":
         return <MitigateRIsk data={data} />;
       case "Review":
-        return <ReviewRIsk data={data}/>;
+        return <ReviewRIsk data={data} />;
       case "Monitor Risk":
-        return <MonitorRisk data={data}/>;
+        return <MonitorRisk data={data} />;
       default:
-        return <RiskInfo data={data}/>;
+        return <RiskInfo data={data} />;
     }
   };
-  
 
   return (
     <div>
       <RiskDetailNavigation onTabChange={handleTabChange} />
       <div className="mt-6 mb-60">{renderComponent()}</div>
-      <DeleteBox/>
+      <DeleteBox disabled={disabled} />
     </div>
   );
 }
+
 
 export function RiskDetailNavigation({ onTabChange }) {
   const { t } = useTranslation();
