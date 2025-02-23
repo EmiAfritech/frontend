@@ -1184,7 +1184,7 @@ export function Controlforms({ onFormSubmit }) {
       onClose: () => {
         handleClose();
         onFormSubmit();
-        reload();
+        // reload();
       },
     });
   };
