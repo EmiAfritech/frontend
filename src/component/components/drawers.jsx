@@ -1102,6 +1102,12 @@ export function Framworkforms({ onFormSubmit }) {
     setOpen(false);
   }
 
+  const reload =()=>{
+    setFrameWorkSelect("");
+    setFrameworkText("");
+    setFramework("")
+  }
+
   return (
     <div>
       <CustomButton
