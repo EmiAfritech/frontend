@@ -1047,11 +1047,11 @@ export function Delete ({data, message, name}){
                 >
                   {isSubmitting ? (
                     <div className="flex flex-row justify-center">
-                      <p className="text-sm pr-2">{t("loading")}</p>
+                      <p className="text-sm pr-2">loading...</p>
                       <CircularProgress size={27} thickness={6} color="primary" />
                     </div>
                   ) : (
-                    t("yes")
+                    <div>yes</div>
                   )}
                 </button>
               </div>
