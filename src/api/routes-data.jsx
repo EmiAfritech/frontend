@@ -973,7 +973,6 @@ export function useRiskOwnersDropdown(departmentName) {
           withCredentials: true,
         }
       );
-      console.log({"owners response":response})
       setOwnersList(response.data);
     } catch (error) {
       console.error(error);

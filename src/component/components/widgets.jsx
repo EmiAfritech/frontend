@@ -995,6 +995,7 @@ export function Delete({ data, message, name }) {
           showToast("Successfully deleted", "success");
         } else {
           showToast("Failed to delete. Please try again", "error");
+          console.log(response)
         }
       } else {
       }
