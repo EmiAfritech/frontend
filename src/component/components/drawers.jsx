@@ -30,6 +30,7 @@ import {
   useRiskOwnersDropdown,
   useRiskReviewer,
   useRiskToBeMitigated,
+  useRiskToBeMitigatedInfo,
 } from "../../api/routes-data";
 import { CustomButton, FormInputField, CustomSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
@@ -794,6 +795,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { ownersName } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
+  const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
@@ -946,26 +948,26 @@ export function RiskMitigationforms({ onFormSubmit }) {
               <FormInputField
                 id="riskid"
                 label={t("riskId")}
-                value={riskID}
+                value={riskToBeMitigatedInfo.riskID}
                 required
               />
               <FormInputField
                 id="category"
                 label={t("categorydrawer")}
-                value={riskCategory}
+                value={riskToBeMitigatedInfo.riskCategory}
                 required
               />
             </div>
             <FormInputField
               id="impact"
               label={t("mitigatedRiskImpactLevel")}
-              value={impactLevelNumber}
+              value={riskToBeMitigatedInfo.impact}
               required
             />
             <FormInputField
               id="probability"
               label={t("probabilityLevel")}
-              value={probabilityLevelNumber}
+              value={riskToBeMitigatedInfo.probability}
               required
             />
             <CustomSelect

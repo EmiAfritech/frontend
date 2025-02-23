@@ -965,8 +965,10 @@ export function DeleteBox() {
 }
 
 export function Delete({ data, message, name }) {
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -974,12 +976,21 @@ export function Delete({ data, message, name }) {
 
     try {
       if (name === "risk") {
-        const response = await axios.post(DELETERISK_URL, {
-          id: data.id,
-          riskID: data.riskID,
-          deptId: data.deptID,
-        });
-
+        const response = await axios.post(
+          DELETERISK_URL,
+          JSON.stringify({ 
+              id: data.id,
+              riskID: data.riskID,
+              deptId: data.deptID,
+            }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+          }
+        );
         if (response.status === 200) {
           showToast("Successfully deleted", "success");
         } else {
