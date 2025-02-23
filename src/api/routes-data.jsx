@@ -271,7 +271,7 @@ export function useRiskIDMonitoring({ departmentID }) {
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
-  const [ownersName, setOwnersName] = useState([]);
+  const [riskReviewerDropdown, setRiskReviewer] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(RISKREVIEWERSDROPDOWN_URL, {
@@ -282,7 +282,7 @@ export function useRiskReviewer() {
         withCredentials: true,
       }
     );
-      setOwnersName(response.data);
+    setRiskReviewer(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -290,7 +290,7 @@ export function useRiskReviewer() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { ownersName };
+  return { riskReviewerDropdown };
 }
 
 export function useMitigationTable() {

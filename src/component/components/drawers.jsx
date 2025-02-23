@@ -789,10 +789,11 @@ export function RiskMitigationforms({ onFormSubmit }) {
 
   
   const FormArray = GRCFormsArray(t);
-  const { ownersName } = useRiskReviewer();
+  const { riskReviewerDropdown } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
+  console.log({riskToBeMitigatedInfo:riskToBeMitigatedInfo})
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
@@ -1029,7 +1030,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("riskReviewer")}
               value={riskReviewer}
               onChange={setRiskReviewer}
-              options={ownersName}
+              options={riskReviewerDropdown}
               searchable={true}
               required
               group={false}

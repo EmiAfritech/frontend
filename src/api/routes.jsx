@@ -193,7 +193,7 @@ export const OWNERSDROPDOWN_URL = "/Organization/User/getTheNamesOfUserAllUsers"
 export const MANAGERSDROPDOWN_URL = "/getTheNamesOfAllManagers";
 
 //risk reviewers dropdown
-export const RISKREVIEWERSDROPDOWN_URL = "/getRiskReviewers";
+export const RISKREVIEWERSDROPDOWN_URL = "/Organization/User/getRiskReviewers";
 
 //heat map dropdown
 export const HEATMAP_URL = "/getHeatMapData";
