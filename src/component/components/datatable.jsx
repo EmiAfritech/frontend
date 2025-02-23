@@ -125,7 +125,7 @@ export const useRiskViewColumns = () => {
       accessorKey: "view",
       header: t("Action"),
       Cell: ({ row }) => (
-          <RiskDetails data={row.original} />
+          <RiskDetails data={row.original} name={"risk"}/>
       ),
     },
   ];

@@ -2728,7 +2728,7 @@ export function LogOut() {
   );
 }
 
-export function RiskDetails( data) {
+export function RiskDetails(data, name) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
@@ -2814,7 +2814,7 @@ export function RiskDetails( data) {
               </div>
             </div>
             <div className="mb-10">To Delete an Item scroll to the end of the container</div>
-            <RiskDetailsSideTabs data= {riskInfo} />
+            <RiskDetailsSideTabs data= {riskInfo} name= {name} />
           </div>
         </Box>
       </Modal>
