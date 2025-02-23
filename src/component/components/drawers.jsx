@@ -81,8 +81,7 @@ export function Userforms({ onFormSubmit }) {
 
     try {
       await axios.post(
-        USERSCREATEFORM_URL,
-        JSON.stringify({
+        USERSCREATEFORM_URL,{
           firstName: userValue.firstName,
           lastName: userValue.lastName,
           departmentName,
@@ -90,7 +89,7 @@ export function Userforms({ onFormSubmit }) {
           phoneNumber: userValue.phoneNumber,
           role,
           password: userValue.password,
-        }),
+        },
         {
           headers: {
             "Content-Type": "application/json",
