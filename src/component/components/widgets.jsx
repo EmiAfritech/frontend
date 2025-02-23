@@ -341,6 +341,7 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo(data) {
+console.log({"riskInfo": data})
   const disabled = useState(false)
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
@@ -651,7 +652,9 @@ export function ReviewRIsk({
   isSubmitting,
   handleSubmit,
   auth,
+  data
 }) {
+  console.log({"riskreview": data})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
