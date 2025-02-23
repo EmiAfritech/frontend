@@ -961,34 +961,34 @@ export function Delete ({data, message, name}){
   const [open, setOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false);
   console.log({ id: data.data.id,
-    riskID: data.data.riskID ,
-    deptId: data.data.deptID,
+    riskID: data.riskID ,
+    deptId: data.deptID,
   })
   
   const handleDelete = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // try {
-    //   if (name === "risk") {
-    //     const {riskDelete} = useDelete({
-    //       id: data.data.id,
-    //       riskID: data.data.riskID ,
-    //       deptId: data.data.deptID,
-    //     })
-    //   } else {
-    //   }
-    //   notify();
-    // } catch (error) {
-    //   // if (error.response.status === 400) {
-    //   //   showToast("Kindly check Input details", "error");
-    //   //   console.log(error);
-    //   // } else if (error.response.status === 500) {
-    //   //   showToast("Server is currently down Contact your admin", "error");
-    //   // }
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+    try {
+      if (name === "risk") {
+        const {riskDelete} = useDelete({
+          id: data.id,
+          riskID: data.riskID ,
+          deptId: data.deptID,
+        })
+      } else {
+      }
+      notify();
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      //   console.log(error);
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
