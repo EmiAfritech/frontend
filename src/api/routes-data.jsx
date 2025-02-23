@@ -985,7 +985,6 @@ export function useRiskOwnersDropdown(departmentName) {
       fetchData();
     }
   }, [deptId]); 
-  console.log({"owners":ownersList})
   return { ownersList, fetchData };
 }
 
@@ -1017,7 +1016,6 @@ export function useRiskToBeMitigated(deptId) {
       fetchData();
     }
   }, [deptId]); 
-  console.log({"owners":ownersList})
   return { riskToBeMitigated, fetchData };
 }
 
