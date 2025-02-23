@@ -1052,7 +1052,7 @@ export function Framworkforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
 
   const notify = () => {
-    toast.success("User Saved Successfully", {
+    toast.success("Frame work Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
@@ -1186,7 +1186,7 @@ export function Controlforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
 
   const notify = () => {
-    toast.success("User Saved Successfully", {
+    toast.success("Control Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
