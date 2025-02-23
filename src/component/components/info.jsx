@@ -55,7 +55,7 @@ export function MitigatedReport() {
   return (
     <p className="m-5">
       <h2 className="pb-2 font-medium">MITIGATED REPORT</h2>
-      Based on the various parameters placed int consideration the following
+      Based on the various parameters placed into consideration the following
       aspects of Mitigations were <br />
       of high concern and needs immediate attention
       <br />
