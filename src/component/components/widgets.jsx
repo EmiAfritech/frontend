@@ -970,26 +970,26 @@ export function Delete ({data, message, name}){
     e.preventDefault();
     setIsSubmitting(true);
 
-    // try {
-    //   if (name === "risk") {
-    //     const {riskDelete} = useDelete({
-    //       id: data.id,
-    //       riskID: data.riskID ,
-    //       deptId: data.deptID,
-    //     })
-    //   } else {
-    //   }
-    //   notify();
-    // } catch (error) {
-    //   // if (error.response.status === 400) {
-    //   //   showToast("Kindly check Input details", "error");
-    //   //   console.log(error);
-    //   // } else if (error.response.status === 500) {
-    //   //   showToast("Server is currently down Contact your admin", "error");
-    //   // }
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+    try {
+      if (name === "risk") {
+        const {riskDelete} = useDelete({
+          id: data.id,
+          riskID: data.riskID ,
+          deptId: data.deptID,
+        })
+      } else {
+      }
+      notify();
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      //   console.log(error);
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
