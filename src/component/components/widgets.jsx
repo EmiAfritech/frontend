@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
+import { DELETERISK_URL } from "../../api/routes";
 
 export function InputField({
   label,
@@ -956,22 +957,39 @@ export function DeleteBox() {
   );
 }
 
-export function Delete (data){
+export function Delete ({data, message, name}){
   const [open, setOpen] = useState(false)
-  const RiskInfoInitialize = data.data;
+  const ItemInfoInitialize = data.data;
   const [id, setId] = useState("")
   const [riskID, setRiskID] = useState("")
   const [deptId, setDeptId] = useState("")
   console.log({ id, riskID, deptId})
-  const {riskDelete} = useDelete({id, riskID, deptId})
-  const handleDelete = () => {
-    console.log("I am working")
-    setId(RiskInfoInitialize.id),
-    setRiskID(RiskInfoInitialize.riskID),
-    setDeptId(RiskInfoInitialize.deptId)
-    
-  } 
   
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      if (name === "risk") {
+        const {riskDelete} = useDelete({
+          id: data.data.id,
+          riskID: data.data.riskID ,
+          deptId: data.data.deptID,
+        })
+      } else {
+      }
+      notify();
+    } catch (error) {
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+        console.log(error);
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   if(riskDelete){
     handleClose()
   }
@@ -997,21 +1015,50 @@ export function Delete (data){
       <MdDelete color="red"/>
     </IconButton>
     <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
-        <Button onClick={handleDelete}>Delete</Button>
-      </Box>
-    </Modal>
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
+            <Box sx={style}>
+              <div className="flex flex row items-center justify-center mb-4">
+                <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <svg
+                    class="h-6 w-6 text-red-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                    />
+                  </svg>
+                </div>
+                <div className="ml-2">
+                  <Typography component="h2">{Message}</Typography>
+                </div>
+              </div>
+              <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
+                <button
+                  className="flex flex row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                  type="submit"
+                  onClick={handleLogOut}
+                  disabled={isLoading} // Disable the button while loading
+                >
+                  {isLoading ? (
+                    <div className="flex flex-row justify-center">
+                      <p className="text-sm pr-2">{t("loading")}</p>
+                      <CircularProgress size={27} thickness={6} color="primary" />
+                    </div>
+                  ) : (
+                    t("yes")
+                  )}
+                </button>
+              </div>
+            </Box>
+          </Modal>
     </div>
   );
 }

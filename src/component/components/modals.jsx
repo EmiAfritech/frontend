@@ -46,7 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { CustomButton, DeleteBox, FormInputField, RiskDetailsSideTabs } from "./widgets";
+import { CustomButton, Delete, DeleteBox, FormInputField, RiskDetailsSideTabs } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2740,9 +2740,16 @@ export function RiskDetails( data) {
 
   return (
     <div>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <IconButton onClick={handleOpen} color="primary">
         <FaEye />
       </IconButton>
+        <Delete
+          data = {riskInfo}
+          message = "Are you sure you want to delete risk?"
+          name = "risk"
+        />
+    </div>
       <Modal
         open={open}
         onClose={close}
