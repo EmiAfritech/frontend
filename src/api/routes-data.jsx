@@ -1042,10 +1042,10 @@ export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
   };
 
   useEffect(() => {
-    if (deptId) {
+    if (id) {
       fetchData();
     }
-  }, [deptId]); 
+  }, [id]); 
   return { riskToBeMitigatedInfo, fetchData };
 }
 
