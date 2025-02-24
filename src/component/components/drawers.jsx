@@ -790,7 +790,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { riskReviewerDropdown } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
-  const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskToBeMitigated)
+  const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
   console.log({riskToBeMitigatedInfo:riskToBeMitigatedInfo, riskToBeMitigated: riskToBeMitigated})
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
@@ -1182,6 +1182,120 @@ export function Framworkforms({ onFormSubmit }) {
 }
 
 export function Controlforms({ onFormSubmit }) {
+  const { auth } = useContext(AuthContext);
+  const { t } = useTranslation();
+  const [description, setDescription] = useState("");
+  const [frameWorkSelect, setFrameWorkSelect] = useState(true);
+  const [controlItem, setControlItem] = useState("");
+  const {frameworkdropdown} = useFrameWorkDropDown()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [open, setOpen] = useState(false);
+  console.log({frameworkdropdown: frameworkdropdown})
+
+  const notify = () => {
+    toast.success("Control Saved Successfully", {
+      onClose: () => {
+        handleClose();
+        onFormSubmit();
+        // reload();
+      },
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await axios.post(
+        CONTROLFORM_URL,
+        JSON.stringify({
+          description: description,
+          controlItem: controlItem,
+          frameworkId: frameWorkSelect,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      notify();
+    } catch (error) {
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
+
+  return (
+    <div>
+      <CustomButton
+        label="Set a New Control"
+        type="New Declaration"
+        className="custom-class rounded-full p-2 px-5"
+        onClick={handleOpen}
+      />
+      <Drawer anchor={"right"} open={open} onClose={handleClose}>
+        <div className="flex justify-center font-bold py-5  text-black">
+          Governance Control
+        </div>
+        <hr />
+        <form className="w-96">
+          <div className=" px-10 py-10 flex flex-col space-y-6">
+            <FormInputField
+              id="controlItem"
+              label="Control Item"
+              value={controlItem}
+              onChange={(e) => setControlItem(e.target.value)}
+              required
+            />
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Select a Framework"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={frameworkdropdown}
+              searchable={true}
+              required
+            />
+            <FormInputField
+              id="description"
+              label="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <CustomButton
+              label="submit"
+              onClick={handleSubmit}
+              type="submit"
+              className="custom-class"
+              loading={isSubmitting}
+            />
+          </div>
+        </form>
+      </Drawer>
+    </div>
+  );
+}
+
+export function Complianceforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [description, setDescription] = useState("");

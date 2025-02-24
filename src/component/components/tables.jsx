@@ -14,6 +14,7 @@ import {
   useRiskStatuscolumns,
   useGovernanceColumns,
   useGovernanceControlColumns,
+  useComplianceColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
@@ -1624,7 +1625,7 @@ export function ControleTab() {
 }
 
 export function ComplianceTab() {
-  const columns = useGovernanceControlColumns();
+  const columns = useComplianceColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { control, fetchData } = useControlTable();
   console.log({"control":control })
