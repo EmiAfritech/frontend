@@ -32,7 +32,10 @@ import {
   RISKNEEDINGREVIEWREPORT_URL,
   REPORTAUDITTRAIL_URL,
   FRAMEWORK_URL,
-  CONTROL_URL
+  CONTROL_URL,
+  FRAMEWORKDROPDOWN,
+  RISKSTOBEMITIGATED_URL,
+  RISKSTOBEMITIGATEDINFO_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -269,7 +272,7 @@ export function useRiskIDMonitoring({ departmentID }) {
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
-  const [ownersName, setOwnersName] = useState([]);
+  const [riskReviewerDropdown, setRiskReviewer] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.get(RISKREVIEWERSDROPDOWN_URL, {
@@ -280,7 +283,7 @@ export function useRiskReviewer() {
         withCredentials: true,
       }
     );
-      setOwnersName(response.data);
+    setRiskReviewer(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -288,7 +291,7 @@ export function useRiskReviewer() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { ownersName };
+  return { riskReviewerDropdown };
 }
 
 export function useMitigationTable() {
@@ -316,6 +319,30 @@ export function useMitigationTable() {
   return { mitigationTable, fetchData };
 }
 
+export function useFrameWorkDropDown() {
+  const { auth } = useContext(AuthContext);
+  const [frameworkdropdown, setFramework] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(FRAMEWORKDROPDOWN, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setFramework(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { frameworkdropdown, fetchData };
+}
 
 export function useMonitoringTable() {
   const { auth } = useContext(AuthContext);
@@ -928,9 +955,10 @@ export function useRiskStatusReport(departmentName) {
   return { riskStatus, fetchData };
 }
 
-export function useRiskOwnersDropdown(deptId) {
+export function useRiskOwnersDropdown(departmentName) {
   const { auth } = useContext(AuthContext);
   const [ownersList, setOwnersList] = useState([]);
+  const deptId = departmentName;
   console.log({"ownersr id": deptId})
 
   const fetchData = async () => {
@@ -946,7 +974,6 @@ export function useRiskOwnersDropdown(deptId) {
           withCredentials: true,
         }
       );
-      console.log({"owners response":response})
       setOwnersList(response.data);
     } catch (error) {
       console.error(error);
@@ -958,11 +985,72 @@ export function useRiskOwnersDropdown(deptId) {
       fetchData();
     }
   }, [deptId]); 
-  console.log({"owners":ownersList})
   return { ownersList, fetchData };
 }
 
-export function useDelete({id, riskID, deptId}) {
+export function useRiskToBeMitigated(departmentID) {
+  const { auth } = useContext(AuthContext);
+  const [riskToBeMitigated, setRiskTOBeMitigated] = useState([]);
+  const deptId = departmentID;
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTOBEMITIGATED_URL,
+        JSON.stringify({ deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskTOBeMitigated(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (deptId) {
+      fetchData();
+    }
+  }, [deptId]); 
+  return { riskToBeMitigated, fetchData };
+}
+
+export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
+  const { auth } = useContext(AuthContext);
+  const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
+  const id = riskToBeMitigated;
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKSTOBEMITIGATEDINFO_URL,JSON.stringify({ id }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      setRiskTOBeMitigatedInfo(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchData();
+    }
+  }, [id]); 
+  return { riskToBeMitigatedInfo, fetchData };
+}
+
+
+export function useDelete(id, riskID, deptId) {
   const { auth } = useContext(AuthContext);
   const [riskDelete, setRiskDelete] = useState("");
 

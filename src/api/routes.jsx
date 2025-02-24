@@ -193,12 +193,19 @@ export const OWNERSDROPDOWN_URL = "/Organization/User/getTheNamesOfUserAllUsers"
 export const MANAGERSDROPDOWN_URL = "/getTheNamesOfAllManagers";
 
 //risk reviewers dropdown
-export const RISKREVIEWERSDROPDOWN_URL = "/getRiskReviewers";
+export const RISKREVIEWERSDROPDOWN_URL = "/Organization/User/getRiskReviewers";
 
 //heat map dropdown
 export const HEATMAP_URL = "/getHeatMapData";
 
+//Frame Work
+export const FRAMEWORKDROPDOWN = "/Governance/Control/frameworkDropdown"; 
 
+//All risks to be mitigated
+export const RISKSTOBEMITIGATED_URL = "/Organization/Risk/getAllOpenedRiskIDSToBeMitigated"; 
+
+//All risks to be mitigated Info
+export const RISKSTOBEMITIGATEDINFO_URL = "/Organization/Risk/getAllOpenedRiskDetailsToBeMitigatedDetails"; 
 /*************************************************Delete and Edit************************************************/
 
 // edit risk url 

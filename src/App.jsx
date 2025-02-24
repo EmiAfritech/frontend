@@ -29,7 +29,6 @@ import { SubscriptionPage } from "./pages/subscription/subscription";
 import { VerifyEmail } from "./pages/resetPassword/verifyemail";
 import { Compliance } from "./pages/Compliance/complaince";
 import { Governance } from "./pages/Governance/governance";
-import { RiskManagement } from "./pages/riskManagement/riskManagement";
 
 function App() {
   return (

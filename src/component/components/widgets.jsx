@@ -343,7 +343,6 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo(data) {
-console.log({"riskInfo": data})
   const disabled = useState(false)
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
@@ -966,8 +965,10 @@ export function DeleteBox() {
 }
 
 export function Delete({ data, message, name }) {
+  const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -975,16 +976,27 @@ export function Delete({ data, message, name }) {
 
     try {
       if (name === "risk") {
-        const response = await axios.post(DELETERISK_URL, {
-          id: data.id,
-          riskID: data.riskID,
-          deptId: data.deptID,
-        });
-
-        if (response.status === 200) {
+        const response = await axios.post(
+          DELETERISK_URL,
+          JSON.stringify({ 
+              id: data.id,
+              riskID: data.riskID,
+              deptId: data.deptID,
+            }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
+            },
+            withCredentials: true,
+          }
+        );
+        if (response.status === 201) {
           showToast("Successfully deleted", "success");
+          handleClose()
         } else {
           showToast("Failed to delete. Please try again", "error");
+          console.log(response)
         }
       } else {
       }

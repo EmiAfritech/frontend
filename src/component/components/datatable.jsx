@@ -233,6 +233,28 @@ export const useGovernanceControlColumns = () => {
   ];
 };
 
+export const useComplianceColumns = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      accessorKey: "controlItem",
+      header: "Control Item",
+    },
+    {
+      accessorKey: "description",
+      header: "Description",
+    },
+    {
+      accessorKey: "name",
+      header: "Framework",
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Creted At",
+    },
+  ];
+};
+
 export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
   return [
