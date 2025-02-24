@@ -7,7 +7,7 @@ export function Compliance() {
     <div className="flex flex-col h-screen">
       <Sidebar />
       <div className="ml-[18%] m-6 ">
-        <ComplianceTab/>
+        {/* <ComplianceTab/> */}
       </div>
     </div>
   );
