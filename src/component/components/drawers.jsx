@@ -791,6 +791,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
+  const { riskCategory, riskID, probability, impact } = riskToBeMitigatedInfo;
   console.log({"riskINfo":  riskToBeMitigatedInfo})
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
@@ -943,26 +944,26 @@ export function RiskMitigationforms({ onFormSubmit }) {
               <FormInputField
                 id="riskid"
                 label={t("riskId")}
-                value={riskToBeMitigatedInfo.riskID}
+                value={riskID}
                 required
               />
               <FormInputField
                 id="category"
                 label={t("categorydrawer")}
-                value={riskToBeMitigatedInfo.riskCategory}
+                value={riskCategory}
                 required
               />
             </div>
             <FormInputField
               id="impact"
               label={t("mitigatedRiskImpactLevel")}
-              value={riskToBeMitigatedInfo.impact}
+              value={impact}
               required
             />
             <FormInputField
               id="probability"
               label={t("probabilityLevel")}
-              value={riskToBeMitigatedInfo.probability}
+              value={probability}
               required
             />
             <CustomSelect
