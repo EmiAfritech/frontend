@@ -15,6 +15,7 @@ import LoadingPopup from "../../api/sessions";
 import { useState, useContext } from "react";
 import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
+import { MdCheckCircle } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
 
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
@@ -82,6 +83,7 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
+      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
       <LogOut />
     </>
   );
@@ -97,6 +99,7 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
+      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
       <LogOut />
     </>
   );
