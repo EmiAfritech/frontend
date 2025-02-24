@@ -229,6 +229,7 @@ export const useGovernanceControlColumns = () => {
       accessorKey: "createdAt",
       header: "Creted At",
     },
+    
   ];
 };
 
