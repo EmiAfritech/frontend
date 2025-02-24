@@ -42,6 +42,7 @@ import {
   Userforms,
   RiskMonitoringforms,
   Controlforms,
+  Complianceforms,
 } from "./drawers";
 import axios from "../../api/axios";
 import {
@@ -1687,7 +1688,7 @@ export function ComplianceTab() {
     <div>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="m-5">
-          <Controlforms onFormSubmit={handleFormSubmit} />
+          <Complianceforms onFormSubmit={handleFormSubmit} />
         </div>
       </div>
       <MaterialReactTable table={table} />

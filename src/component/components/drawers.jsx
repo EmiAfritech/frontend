@@ -791,7 +791,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
-  console.log({riskToBeMitigatedInfo:riskToBeMitigatedInfo, riskToBeMitigated: riskToBeMitigated})
+  console.log(riskToBeMitigatedInfo.riskCategory)
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
@@ -1389,8 +1389,34 @@ export function Complianceforms({ onFormSubmit }) {
               required
             />
             <FormInputField
-              id="description"
-              label="Description"
+              type="date"
+              id="assessmentDate"
+              label="Assessment Date"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <FormInputField
+              type="text"
+              id="assessmentDate"
+              label="Assessor"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Assessment"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={frameworkdropdown}
+              searchable={true}
+              required
+            />
+            <FormInputField
+              type="date"
+              id="assessmentDate"
+              label="Recommendations"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
