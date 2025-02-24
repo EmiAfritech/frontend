@@ -791,7 +791,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
-  const { riskCategory, riskID, probability, impact } = riskToBeMitigatedInfo;
+  const { riskCategory, riskID, probability, impact } = riskToBeMitigatedInfo ?? {};
   console.log({ riskCategory, riskID, probability, impact } )
   console.log({"riskINfo":  riskToBeMitigatedInfo})
   const hostaddress = "http://localhost:5173/risk-mitigation";
