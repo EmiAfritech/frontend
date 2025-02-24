@@ -1022,11 +1022,11 @@ export function useRiskToBeMitigated(departmentID) {
 export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
-  const deptId = riskToBeMitigated;
+  const id = riskToBeMitigated;
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTOBEMITIGATEDINFO_URL,JSON.stringify({ deptId }),
+        RISKSTOBEMITIGATEDINFO_URL,JSON.stringify({ id }),
         {
           headers: {
             "Content-Type": "application/json",
