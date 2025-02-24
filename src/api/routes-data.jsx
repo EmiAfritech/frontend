@@ -34,7 +34,8 @@ import {
   FRAMEWORK_URL,
   CONTROL_URL,
   FRAMEWORKDROPDOWN,
-  RISKSTOBEMITIGATED_URL
+  RISKSTOBEMITIGATED_URL,
+  RISKSTOBEMITIGATEDINFO_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1021,11 +1022,11 @@ export function useRiskToBeMitigated(departmentID) {
 export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
-  const deptId = parseInt(riskToBeMitigated, 10);
+  const deptId = riskToBeMitigated;
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTOBEMITIGATED_URL,{ deptId },
+        RISKSTOBEMITIGATEDINFO_URL,{ deptId },
         {
           headers: {
             "Content-Type": "application/json",
