@@ -1026,7 +1026,7 @@ export function useRiskToBeMitigatedInfo(riskToBeMitigated) {
   const fetchData = async () => {
     try {
       const response = await axios.post(
-        RISKSTOBEMITIGATEDINFO_URL,{ deptId },
+        RISKSTOBEMITIGATEDINFO_URL,JSON.stringify({ deptId }),
         {
           headers: {
             "Content-Type": "application/json",
