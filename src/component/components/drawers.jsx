@@ -394,7 +394,7 @@ export function Riskforms({ onFormSubmit }) {
           JSON.stringify({
             riskID: riskValue.riskID,
             riskName: riskValue.riskName,
-            riskOwner,
+            riskOwner: riskValue,
             riskImpactLevel,
             riskProbabilityLevel,
             riskCategory,
