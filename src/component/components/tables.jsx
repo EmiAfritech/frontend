@@ -1349,11 +1349,15 @@ export function RiskViewTable() {
   const columns = useRiskViewColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { riskTable, fetchData } = useRiskTable();
+  const {trigger} = useContext(Modaltrigger)
 
   const handleFormSubmit = () => {
     fetchData();
   };
 
+  
+
+  
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
