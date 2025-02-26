@@ -192,15 +192,15 @@ export const useGovernanceColumns = () => {
   return [
     {
       accessorKey: "name",
-      header: "Governance Framework",
+      header: "Framework",
     },
     {
       accessorKey: "description",
-      header: "Governance Description",
+      header: "Description",
     },
     {
       accessorKey: "createdAt",
-      header: "Creted At",
+      header: "Created At",
     },
     
     {
@@ -222,13 +222,14 @@ export const useGovernanceControlColumns = () => {
       header: "Description",
     },
     {
-      accessorKey: "name",
+      accessorKey: "frameworkName",
       header: "Framework",
     },
     {
       accessorKey: "createdAt",
-      header: "Creted At",
+      header: "Created At",
     },
+    
   ];
 };
 
@@ -249,7 +250,7 @@ export const useComplianceColumns = () => {
     },
     {
       accessorKey: "createdAt",
-      header: "Creted At",
+      header: "Created At",
     },
   ];
 };
@@ -266,7 +267,7 @@ export const useRiskReviewColumns = () => {
       header: t("riskName"),
     },
     {
-      accessorKey: "riskOwner",
+      accessorKey: "riskOwnerLabel",
       header: t("owner"),
     },
     {

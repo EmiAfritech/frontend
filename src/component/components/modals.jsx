@@ -2821,3 +2821,6 @@ export function RiskDetails(data, name) {
     </div>
   );
 }
+
+
+
