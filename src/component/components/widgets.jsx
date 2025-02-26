@@ -10,6 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
+import { RiskViewTable } from "./tables";
 
 export function InputField({
   label,
@@ -995,11 +996,10 @@ export function Delete({ data, message, name,}) {
         if (response.status === 201) {
           showToast("Successfully deleted", "success");
           handleClose()
-          successDelete()
+          RiskViewTable()
         } else {
           showToast("Failed to delete. Please try again", "error");
           console.log(response)
-          triggerComponent()
         }
       } else {
       }
