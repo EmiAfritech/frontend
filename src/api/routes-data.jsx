@@ -38,7 +38,7 @@ import {
   RISKSTOBEMITIGATEDINFO_URL
 } from "./routes";
 import axios from "./axios";
-import { AuthContext, Modaltrigger } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { ConstantLine } from "devextreme-react/chart";
 
 export function useDepartmentDropdown() {
@@ -167,7 +167,6 @@ export function useEmployeeTable() {
 export function useRiskTable() {
   const { auth } = useContext(AuthContext);
   const [riskTable, setRiskTable] = useState([]);
-  const {trigger} = useContext(Modaltrigger)
   const fetchData = async () => {
     try {
       const response = await axios.get(VIEWALLRISKS_URL, {
@@ -184,9 +183,6 @@ export function useRiskTable() {
 
   useEffect(() => {
     fetchData(); 
-    if (trigger){
-      fetchData();
-    }
   }, []);
   return { riskTable, fetchData };
 }
