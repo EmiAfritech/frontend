@@ -3,7 +3,7 @@ import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
@@ -964,10 +964,11 @@ export function DeleteBox() {
   );
 }
 
-export function Delete({ data, message, name }) {
+export function Delete({ data, message, name,}) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const {triggerComponent} = useContext(Modaltrigger)
   
 
   const handleDelete = async (e) => {
@@ -994,9 +995,11 @@ export function Delete({ data, message, name }) {
         if (response.status === 201) {
           showToast("Successfully deleted", "success");
           handleClose()
+          successDelete()
         } else {
           showToast("Failed to delete. Please try again", "error");
           console.log(response)
+          triggerComponent()
         }
       } else {
       }
