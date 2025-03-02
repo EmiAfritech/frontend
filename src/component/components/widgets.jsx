@@ -271,6 +271,31 @@ export const CustomDetailsSelect = ({
   );
 };
 
+export function RiskMitigationSideTabs(data) {
+  const [activeTab, setActiveTab] = useState("Risk Info");
+  console.log({"riskdata": data})
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const renderComponent = () => {
+    switch (activeTab) {
+      case "Risk Info":
+        return <RiskInfo data={data} />;
+      default:
+        return <RiskInfo data={data} />;
+    }
+  };
+
+  return (
+    <div>
+      <RiskDetailNavigation onTabChange={handleTabChange} />
+      <div className="my-6">{renderComponent()}</div>
+    </div>
+  );
+}
+
 export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
   console.log({"riskdata": data})

@@ -46,7 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { CustomButton, Delete, DeleteBox, FormInputField, RiskDetailsSideTabs } from "./widgets";
+import { CustomButton, Delete, DeleteBox, FormInputField, RiskDetailsSideTabs, RiskMitigationSideTabs } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
@@ -2827,6 +2827,7 @@ export function MitigationDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const riskInfo = data.data;
+  console.log({"mitigationdata": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -2908,7 +2909,7 @@ export function MitigationDetails(data) {
               </div>
             </div>
             <div className="mb-10">To Delete an Item scroll to the end of the container</div>
-            <RiskDetailsSideTabs data= {riskInfo} name= {name} />
+            <RiskMitigationSideTabs data= {riskInfo} name= {name} />
           </div>
         </Box>
       </Modal>
