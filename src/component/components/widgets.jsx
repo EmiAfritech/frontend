@@ -7,7 +7,7 @@ import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL } from "../../api/routes";
+import { DELETERISK_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
 
@@ -296,7 +296,6 @@ export function RiskMitigationSideTabs(data) {
 
 export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
-  console.log({"riskdata": data})
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -338,6 +337,7 @@ export function RiskDetailNavigation({ onTabChange }) {
             <li key={tab.title}>
               <button
                 onClick={() => handleTabChange(tab.title)}
+                disabled={tab !== activeTab}
                 className={`text-md font-thin font-[Open_Sans] p-4 ${
                   activeTab === tab.title
                     ? "text-[#04026b] border-b-2 border-[#04026b]"
@@ -387,8 +387,24 @@ export function RiskInfo(data) {
   
       try {
         const response = await axios.post(
-          LOGIN_URL,
-          JSON.stringify({ email, password }),
+          EDITRISK_URL,
+          JSON.stringify(
+            {
+              riskID,
+              riskName,
+              riskDescription,
+              riskCategory,
+              riskImpactLevel,
+              riskProbabilityLevel,
+              riskObjective,
+              riskResponse,
+              riskResponseActivity,
+              riskOwner,
+              deptId: RiskInfoInitialize.data.deptId,
+              id: RiskInfoInitialize.data.id,
+              
+            }            
+          ),
           {
             headers: {
               "Content-Type": "application/json",
@@ -397,36 +413,24 @@ export function RiskInfo(data) {
             withCredentials: true,
           }
         );
-        if (response.status === 200) {
-          const {authToken, role, department, organizationName,} = response.data;
-          const token = authToken
-          setAuth({ token, role, department, organizationName, });
-          setVerified(true);
-          Cookies.set('token', token, {
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite: 'Strict', 
-          });
-          Cookies.set('role', role, {
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite: 'Strict', 
-          });
+        if (response.status === 201) {
+        
           verifyRecapture();
         }
       } catch (err) {
-        if (err.response?.status === 500 || err.response?.status === 400) {
-          setNotification({ ...notification, serverDown: true });
-          reload();
-        } else if (err.response?.status === 401) {
-          setNotification({ ...notification, authorized: true });
-        } else if ([404].includes(err.response?.status)) {
-          setNotification({ ...notification, errorMessage: true });
-        }
+        // if (err.response?.status === 500 || err.response?.status === 400) {
+        //   setNotification({ ...notification, serverDown: true });
+        //   reload();
+        // } else if (err.response?.status === 401) {
+        //   setNotification({ ...notification, authorized: true });
+        // } else if ([404].includes(err.response?.status)) {
+        //   setNotification({ ...notification, errorMessage: true });
+        // }
       } finally {
         setLoading(false);
       }
     };
 
-    console.log({"riskdatafromriskinfo": RiskInfoInitialize})
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">

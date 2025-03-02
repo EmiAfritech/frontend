@@ -209,7 +209,7 @@ export const RISKSTOBEMITIGATEDINFO_URL = "/Organization/Risk/getAllOpenedRiskDe
 /*************************************************Delete and Edit************************************************/
 
 // edit risk url 
-export const EDITRISK_URL = "/department/risk/edit"
+export const EDITRISK_URL = "/Organization/Risk/update"
 
 //delete risk url
 export const DELETERISK_URL  = "/Organization/Risk/delete"

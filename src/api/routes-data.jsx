@@ -35,7 +35,8 @@ import {
   CONTROL_URL,
   FRAMEWORKDROPDOWN,
   RISKSTOBEMITIGATED_URL,
-  RISKSTOBEMITIGATEDINFO_URL
+  RISKSTOBEMITIGATEDINFO_URL,
+  EDITRISK_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
