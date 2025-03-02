@@ -1,7 +1,7 @@
 import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
 import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -359,26 +359,23 @@ export function RiskInfo(data) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
-  const [riskInfo, setRiskInfo] = useState({}); 
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  useEffect(() => {
-      if (data?.data) { 
-          setRiskInfo({
-              riskID: data.data.riskID || "",
-              riskName: data.data.riskName || "",
-              createdAt: data.data.updatedAt || "",
-              riskScore: data.data.riskScore || 0,
-              riskDescription: data.data.riskDescription || "",
-              riskResponseActivity: data.data.riskResponseActivity || "",
-              riskOwner: data.data.riskOwner || "",
-              riskResponse: data.data.riskResponse || "",
-              riskCategory: data.data.riskCategory || "",
-              riskProbabilityLevel: data.data.riskProbabilityLevel || 0,
-          });
-      }
-  }, [data]);
+  const RiskInfoInitialize = data.data;
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [riskInfo, setRiskInfo] = useState({
+    riskID: RiskInfoInitialize.riskID,
+    riskName: RiskInfoInitialize.riskName,
+    createdAt: RiskInfoInitialize.updatedAt,
+    riskScore: RiskInfoInitialize.riskScore,
+    riskDescription: RiskInfoInitialize.riskDescription,
+    riskResponseActivity: RiskInfoInitialize.riskResponseActivity,
+    riskOwner: RiskInfoInitialize.riskOwner,
+    riskResponse: RiskInfoInitialize.riskResponse,
+    riskCategory: RiskInfoInitialize.riskCategory,
+    riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
+
+  })
+
   const onChange = (e) => {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
@@ -430,7 +427,7 @@ export function RiskInfo(data) {
       }
     };
 
-    console.log({"riskdatafromriskinfo": riskInfo.riskID})
+    console.log({"riskdatafromriskinfo": riskInfo})
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
