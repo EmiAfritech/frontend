@@ -357,7 +357,6 @@ export function RiskDetailNavigation({ onTabChange }) {
 
 export function RiskInfo(data) {
   const {t} = useTranslation()
-  const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
@@ -369,7 +368,7 @@ export function RiskInfo(data) {
     riskScore: RiskInfoInitialize.data.riskScore,
     riskDescription: RiskInfoInitialize.data.riskDescription,
     riskResponseActivity: RiskInfoInitialize.data.riskResponseActivity,
-    riskOwner: RiskInfoInitialize.data.riskOwner,
+    riskOwner: RiskInfoInitialize.data.riskOwnerLabel,
     riskResponse: RiskInfoInitialize.data.riskResponse,
     riskCategory: RiskInfoInitialize.data.riskCategory,
     riskProbabilityLevel: RiskInfoInitialize.data.riskProbabilityLevel,
