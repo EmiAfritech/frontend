@@ -359,24 +359,26 @@ export function RiskInfo(data) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
-  const RiskInfoInitialize = data.data;
+  const [riskInfo, setRiskInfo] = useState({}); // Start with an empty object
+  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
-  
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [riskInfo, setRiskInfo] = useState({
-    riskID: data.data.riskID,
-    riskName: RiskInfoInitialize.riskName,
-    createdAt: RiskInfoInitialize.updatedAt,
-    riskScore: RiskInfoInitialize.riskScore,
-    riskDescription: RiskInfoInitialize.riskDescription,
-    riskResponseActivity: RiskInfoInitialize.riskResponseActivity,
-    riskOwner: RiskInfoInitialize.riskOwner,
-    riskResponse: RiskInfoInitialize.riskResponse,
-    riskCategory: RiskInfoInitialize.riskCategory,
-    riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
-
-  })
+  useEffect(() => {
+      if (data?.data) { // Ensure data.data exists
+          setRiskInfo({
+              riskID: data.data.riskID || "",
+              riskName: data.data.riskName || "",
+              createdAt: data.data.updatedAt || "",
+              riskScore: data.data.riskScore || 0,
+              riskDescription: data.data.riskDescription || "",
+              riskResponseActivity: data.data.riskResponseActivity || "",
+              riskOwner: data.data.riskOwner || "",
+              riskResponse: data.data.riskResponse || "",
+              riskCategory: data.data.riskCategory || "",
+              riskProbabilityLevel: data.data.riskProbabilityLevel || 0,
+          });
+      }
+  }, [data]);
   const onChange = (e) => {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
