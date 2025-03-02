@@ -2498,7 +2498,7 @@ export function DepartmentAccountDetails(data) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setIsSubmitting(true);
 
     try {
       await axios.get(EDITDEPARTMENT_URL, 
@@ -2517,13 +2517,14 @@ export function DepartmentAccountDetails(data) {
       });
       notify();
     } catch (error) {
-      if (error.response.status === 401) {
-        notifyUnauthorized();
-      } else if (error.response.status === 500) {
-        notifyNetwork();
-      }
+      // if (error.response.status === 401) {
+      //   notifyUnauthorized();
+      // } else if (error.response.status === 500) {
+      //   notifyNetwork();
+      // }
+      console.log(error)
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
