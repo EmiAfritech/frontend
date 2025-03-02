@@ -411,7 +411,7 @@ export function RiskInfo(data) {
           }
         );
         if (response.status === 201) {
-        
+          console.log("sucess")
           verifyRecapture();
         }
       } catch (err) {
