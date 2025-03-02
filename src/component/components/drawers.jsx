@@ -793,7 +793,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
   console.log({"riskINfo":  riskToBeMitigatedInfo})
   
-  console.log({"riskID": riskToBeMitigatedInfo[0].riskID})
+  console.log({"riskID": riskToBeMitigatedInfo.riskID})
   const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
