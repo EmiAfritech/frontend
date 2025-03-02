@@ -833,7 +833,19 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log(
+      JSON.stringify({
+        riskId: riskID,
+        mitigatedRiskProbabilityLevel,
+        mitigatedRiskImpactLevel,
+        mitigationControl,
+        mitigationEffort,
+        riskReviewer,
+        mitigationCost,
+        endDate,
+        hostaddress,
+      }),
+    )
     try {
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(

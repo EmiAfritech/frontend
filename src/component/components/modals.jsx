@@ -2304,9 +2304,47 @@ export function UserAccountDetails(data) {
     setOpen(!open);
   }
 
-  const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: data });
+  const notify = () => {
+    toast.success(t("userSavedSuccessfully") , {
+      onClose: () => {
+        close();
+      },
+    });
   };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    await axios.get(EDITDEPARTMENT_URL, 
+      JSON.stringify({
+        lastName: data.data.lastName,
+        otherName: data.data.firstName,
+        email: data.data.email,
+        phone: data.data.phoneNumber,
+        createdAt: data.data.createdAt,
+        department: data.data.departmentName,
+        role: data.data.role,
+      }),{
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      },
+      withCredentials: true,
+    });
+    notify();
+  } catch (error) {
+    // if (error.response.status === 401) {
+    //   notifyUnauthorized();
+    // } else if (error.response.status === 500) {
+    //   notifyNetwork();
+    // }
+    console.log(error)
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div>
@@ -2365,12 +2403,6 @@ export function UserAccountDetails(data) {
                     <MdOutlineLocalPhone color="blue" />
                   </span>
                   <span>{accountValue.phone}</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <IoLocationOutline color="blue" />
-                  </span>
-                  <span>{accountValue.department}</span>
                 </div>
               </div>
               <div className="flex-[2] ml-8">
