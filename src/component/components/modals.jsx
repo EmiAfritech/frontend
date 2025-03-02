@@ -2813,7 +2813,7 @@ export function RiskDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskDetailsSideTabs data= {riskInfo} name= {name} />
+            <RiskDetailsSideTabs data= {riskInfo} />
           </div>
         </Box>
       </Modal>
