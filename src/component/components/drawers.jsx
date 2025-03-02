@@ -852,7 +852,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
             riskReviewer,
             mitigationCost,
             endDate,
-            deptId: departmentID,
+            deptId: JSON.parse(departmentID),
           }),
           {
             headers: {
@@ -873,7 +873,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
             mitigationEffort,
             riskReviewer,
             mitigationCost,
-            deptId: departmentID,
+            deptId: JSON.parse(departmentID),
             endDate,
           }),
           {
