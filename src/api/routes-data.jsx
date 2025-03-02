@@ -37,7 +37,8 @@ import {
   RISKSTOBEMITIGATED_URL,
   RISKSTOBEMITIGATEDINFO_URL,
   EDITRISK_URL,
-  MITIGATIONRISK_URL
+  MITIGATIONRISK_URL,
+  RISKREVIEW_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -187,6 +188,29 @@ export function useRiskTable() {
     fetchData(); 
   }, []);
   return { riskTable, fetchData };
+}
+
+export function useRiskReviewTable() {
+  const { auth } = useContext(AuthContext);
+  const [riskReviewTable, setRiskReviewTable] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKREVIEW_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRiskReviewTable(response.data.Data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskReviewTable, fetchData };
 }
 
 export function useRiskIDMitigation({ departmentID }) {

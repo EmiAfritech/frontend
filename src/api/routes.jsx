@@ -51,7 +51,7 @@ export const OPENVSCLOSEBASEDONDEPARTMENTCHART_URL = "/risks/getOpenedVsClosedBy
 export const VIEWCLOSEDRISKS_URL = "/Organization/Risk/Closed/list";
 
 //risk review url
-export const RISKREVIEW_URL = "/risks/reviews";
+export const RISKREVIEW_URL = "/Organization/Risk/Review/list";
 
 //report audit trail url (ea)
 export const REPORTAUDITTRAIL_URL = "/Auth/Audits/list";

@@ -68,7 +68,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useAuditTrail, useControlTable, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useAuditTrail, useControlTable, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskReviewTable, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -1702,7 +1702,7 @@ export function ComplianceTab() {
 export function RiskReview() {
   const columns = useRiskReviewColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { riskTable, fetchData } = useRiskTable();
+  const { riskReviewTable, fetchData } = useRiskReviewTable();
 
   console.log({"riskReview": riskTable})
   const handleFormSubmit = () => {
