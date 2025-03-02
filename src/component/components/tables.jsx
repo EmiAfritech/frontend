@@ -1704,7 +1704,6 @@ export function RiskReview() {
   const [rowSelection, setRowSelection] = useState({});
   const { riskReviewTable, fetchData } = useRiskReviewTable();
 
-  console.log({"riskReview": riskTable})
   const handleFormSubmit = () => {
     fetchData();
   };
@@ -1747,7 +1746,7 @@ export function RiskReview() {
       },
     },
     columns,
-    data: riskTable,
+    data: riskReviewTable,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,

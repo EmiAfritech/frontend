@@ -735,7 +735,7 @@ export function RiskReviewforms({ onFormSubmit }) {
             <FormInputField
               id="riskID"
               label={t("riskId")}
-              value={reviewValue.riskID}
+              value={riskName}
               onChange={handleInputChange}
               required
             />
