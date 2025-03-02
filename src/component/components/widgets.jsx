@@ -427,7 +427,7 @@ export function RiskInfo(data) {
       }
     };
 
-    console.log({"riskdatafromriskinfo": RiskInfoInitialize?.riskID})
+    console.log({"riskdatafromriskinfo": RiskInfoInitialize})
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
