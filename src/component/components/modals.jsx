@@ -2316,8 +2316,17 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   setIsSubmitting(true);
 
+  console.log(JSON.stringify({
+    lastName: data.data.lastName,
+    otherName: data.data.firstName,
+    email: data.data.email,
+    phone: data.data.phoneNumber,
+    createdAt: data.data.createdAt,
+    department: data.data.departmentName,
+    role: data.data.role,
+  }),)
   try {
-    await axios.get(EDITDEPARTMENT_URL, 
+    await axios.get(EDITUSER_URL, 
       JSON.stringify({
         lastName: data.data.lastName,
         otherName: data.data.firstName,

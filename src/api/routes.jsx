@@ -224,7 +224,7 @@ export const EDITMITIGATION_URL = "departments/risk/riskmitigation/edit"
 export const EDITMONITORING_URL = "departments/risk/riskmonitorings/edit"
 
 //edit user url
-export const EDITUSER_URL = "users/update"
+export const EDITUSER_URL = "Organization/User/update"
 
 //delete user url
 export const DELETEUSER_URL = "users/delete"
