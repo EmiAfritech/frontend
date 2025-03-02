@@ -273,25 +273,15 @@ export const CustomDetailsSelect = ({
 
 export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
-  const [disabled, setDisabled] = useState(false);
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
-  console.log("Active Tab:", activeTab);
-  console.log("Disabled:", disabled);
-
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
         return <RiskInfo data={data} />;
-      case "Mitigate":
-        return <MitigateRIsk data={data} />;
-      case "Review":
-        return <ReviewRIsk data={data} />;
-      case "Monitor Risk":
-        return <MonitorRisk data={data} />;
       default:
         return <RiskInfo data={data} />;
     }
@@ -343,7 +333,6 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo(data) {
-  const disabled = useState(false)
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
@@ -423,7 +412,6 @@ export function RiskInfo(data) {
           label="Risk Code"
           value={riskInfo.riskID}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -431,7 +419,6 @@ export function RiskInfo(data) {
           label="Risk Name"
           value={riskInfo.riskName}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -439,7 +426,6 @@ export function RiskInfo(data) {
           label="Risk Owner"
           value={riskInfo.riskOwner}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -448,7 +434,6 @@ export function RiskInfo(data) {
           label="Created At"
           value={riskInfo.createdAt}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -456,7 +441,6 @@ export function RiskInfo(data) {
           label="Risk Score"
           value={riskInfo.riskScore}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
@@ -468,7 +452,6 @@ export function RiskInfo(data) {
           label="Risk Response"
           value={riskInfo.riskResponse}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -476,7 +459,6 @@ export function RiskInfo(data) {
           label="Risk Category"
           value={riskInfo.riskCategory}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -484,7 +466,6 @@ export function RiskInfo(data) {
           label="Probability Level"
           value={riskInfo.riskProbabilityLevel}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -492,7 +473,6 @@ export function RiskInfo(data) {
           label="Risk Description"
           value={riskInfo.riskDescription}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -500,7 +480,6 @@ export function RiskInfo(data) {
           label="Response Activity"
           value={riskInfo.riskResponseActivity}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
