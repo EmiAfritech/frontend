@@ -361,7 +361,7 @@ export function RiskInfo(data) {
   const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
   
-  console.log({"riskdatafromriskinfo": RiskInfoInitialize})
+  
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
@@ -427,6 +427,8 @@ export function RiskInfo(data) {
         setLoading(false);
       }
     };
+
+    console.log({"riskdatafromriskinfo": riskInfo.riskID})
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
