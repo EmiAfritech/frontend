@@ -2526,7 +2526,8 @@ export function DepartmentAccountDetails(data) {
             name: accountValue.departmentName,
             manager: accountValue.departmentManager,
             id: data.data.id
-        }),{
+        }),
+        {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,

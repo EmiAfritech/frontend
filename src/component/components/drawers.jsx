@@ -851,6 +851,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
             riskReviewer,
             mitigationCost,
             endDate,
+            deptId: departmentID,
           }),
           {
             headers: {
