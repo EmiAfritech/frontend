@@ -2286,16 +2286,13 @@ export function UserAccountDetails(data) {
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [accountValue, setAccountValue] = useState({
-    lastName: "",
-    otherName: "",
-    email: "",
-    phone: "",
-    address1: "",
-    nationality: "",
-    dob: "",
-    officeLocation: "",
-    department: "",
-    role: "",
+    lastName: data.data.lastName,
+    otherName: data.data.firstName,
+    email: data.data.email,
+    phone: data.data.phoneNumber,
+    createdAt: data.data.createdAt,
+    department: data.data.departmentName,
+    role: data.data.role,
   });
 
   const handleInputChange = (e) => {
@@ -2355,25 +2352,25 @@ export function UserAccountDetails(data) {
                   <span className="mr-4">
                     <IoPerson color="blue" />
                   </span>
-                  <span>Robert Knaihv</span>
+                  <span>{accountValue.otherName}</span>
                 </div>
                 <div className="mb-2 flex flex-row items-center">
                   <span className="mr-4">
                     <MdOutlineMarkEmailRead color="blue" />
                   </span>
-                  <span>knaihv@ymail.com</span>
+                  <span>{accountValue.email}</span>
                 </div>
                 <div className="mb-2 flex flex-row items-center">
                   <span className="mr-4">
                     <MdOutlineLocalPhone color="blue" />
                   </span>
-                  <span>+233 544-5342</span>
+                  <span>{accountValue.phone}</span>
                 </div>
                 <div className="mb-2 flex flex-row items-center">
                   <span className="mr-4">
                     <IoLocationOutline color="blue" />
                   </span>
-                  <span>JohnBull Street</span>
+                  <span>{accountValue.department}</span>
                 </div>
               </div>
               <div className="flex-[2] ml-8">
@@ -2405,34 +2402,6 @@ export function UserAccountDetails(data) {
                     id="phone"
                     label="Phone"
                     value={accountValue.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="address1"
-                    label="Address "
-                    value={accountValue.address1}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="nationality"
-                    label="Nationality"
-                    value={accountValue.nationality}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="dob"
-                    label="Date of Birth"
-                    value={accountValue.dob}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="officelocation"
-                    label="Office Location"
-                    value={accountValue.officeLocation}
                     onChange={handleInputChange}
                     required
                   />
