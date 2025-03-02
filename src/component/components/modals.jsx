@@ -2317,7 +2317,7 @@ export function UserAccountDetails(data) {
         <FaEye />
       </IconButton>
       <Delete
-          data = {riskInfo}
+          data = "hi"
           message = "Are you sure you want to delete risk?"
           name = "risk"
         />
