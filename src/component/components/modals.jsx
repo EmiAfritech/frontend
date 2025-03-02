@@ -2316,11 +2316,11 @@ export function UserAccountDetails(data) {
       <IconButton onClick={handleOpen} color="primary">
         <FaEye />
       </IconButton>
-      <Delete
+      {/* <Delete
           data = "hi"
           message = "Are you sure you want to delete risk?"
           name = "risk"
-        />
+        /> */}
       <Modal
         open={open}
         onClose={close}
