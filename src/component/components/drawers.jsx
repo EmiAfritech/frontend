@@ -833,8 +833,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(
-      JSON.stringify({
+    console.log({
         riskId: riskID,
         mitigatedRiskProbabilityLevel,
         mitigatedRiskImpactLevel,
@@ -844,7 +843,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         mitigationCost,
         endDate,
         hostaddress,
-      }),
+      },
     )
     try {
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
