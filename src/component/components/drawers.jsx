@@ -872,7 +872,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
             mitigationEffort,
             riskReviewer,
             mitigationCost,
-            departmentID,
+            deptId: departmentID,
             endDate,
           }),
           {
