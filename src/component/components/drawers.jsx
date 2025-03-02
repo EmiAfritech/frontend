@@ -873,7 +873,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
             mitigationCost,
             departmentID,
             endDate,
-            hostaddress,
           }),
           {
             headers: {
