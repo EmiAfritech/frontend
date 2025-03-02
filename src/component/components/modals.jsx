@@ -2571,18 +2571,6 @@ export function DepartmentAccountDetails(data) {
                     className="h-[120] w-40"
                   />
                 </div>
-                <div className="mb-4 flex flex-row items-center">
-                  <span className="mr-4">
-                    <IoPerson color="blue" />
-                  </span>
-                  <span>{accountValue.departmentName}</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <IoLocationOutline color="blue" />
-                  </span>
-                  <span>{accountValue.officeLocation}</span>
-                </div>
               </div>
               <div className="flex-[2] ml-8">
                 <div className="grid grid-cols-2 gap-8 p-4">
@@ -2635,7 +2623,6 @@ export function DepartmentAccountDetails(data) {
                 </div>
               </div>
             </main>
-            <DeleteBox/>
           </div>
         </Box>
       </Modal>
