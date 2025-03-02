@@ -903,10 +903,10 @@ export function RiskMitigationforms({ onFormSubmit }) {
     setdepartmentID("");
     setmitigatedRiskProbabilityLevel("");
     setmitigatedRiskImpactLevel("");
-    setmitigationControl("");
-    setmitigationEffort("");
+    setMitigationControl("");
+    setMitigationEffort("");
     setRiskReviewer("");
-    setmitigationCost("");
+    setMitigationCost("");
     setEndDate("");
   };
 
