@@ -1023,6 +1023,7 @@ export function useRiskToBeMitigated(departmentID) {
 export function useRiskToBeMitigatedInfo(riskName) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
+  console.log({"riskName in mitigation": riskName})
   const id = riskName;
   const fetchData = async () => {
     try {
