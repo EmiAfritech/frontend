@@ -834,7 +834,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     e.preventDefault();
     setIsSubmitting(true);
     console.log({
-        riskId: riskID,
+        riskId: riskName,
         mitigatedRiskProbabilityLevel,
         mitigatedRiskImpactLevel,
         mitigationControl,
