@@ -90,7 +90,7 @@ export const DEPARTMENTCREATEFORM_URL = "/Organization/Department/create";
 export const CREATERISKFORM_URL = "/Organization/Risk/create";
 
 // mitigation form
-export const MITIGATERISKFORM_URL = "/departments/risk/riskmitigation/create";
+export const MITIGATERISKFORM_URL = "/Organization/Risk/Mitigation/create";
 
 // risk review form
 export const REVIEWRISKFORM_URL = "/departments/risk/riskreview/create";
