@@ -2314,14 +2314,14 @@ export function UserAccountDetails(data) {
   return (
     <div>
       <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-        <IconButton onClick={handleOpen} color="primary">
-          <FaEye />
-        </IconButton>
-        <Delete
-          data = "hi"
-          message = "Are you sure you want to delete risk?"
-          name = "risk"
-        />
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
+      <Delete
+        data = "hi"
+        message = "Are you sure you want to delete risk?"
+        name = "risk"
+      />
       </div>
       <Modal
         open={open}
@@ -2470,7 +2470,7 @@ export function UserAccountDetails(data) {
   );
 }
 
-export function DepartmentAccountDetails() {
+export function DepartmentAccountDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -2493,7 +2493,7 @@ export function DepartmentAccountDetails() {
   };
 
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: accountValue });
+    console.log({ userAccountDetials: data });
   };
 
   function handleOpen() {
