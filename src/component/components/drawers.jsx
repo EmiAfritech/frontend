@@ -850,7 +850,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({
-            riskId: riskID,
+            riskId: riskName,
             mitigatedRiskProbabilityLevel,
             mitigatedRiskImpactLevel,
             mitigationControl,
