@@ -1,7 +1,7 @@
 import Select from "react-select";
 import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
 import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -359,12 +359,12 @@ export function RiskInfo(data) {
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
-  const [riskInfo, setRiskInfo] = useState({}); // Start with an empty object
+  const [riskInfo, setRiskInfo] = useState({}); 
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   useEffect(() => {
-      if (data?.data) { // Ensure data.data exists
+      if (data?.data) { 
           setRiskInfo({
               riskID: data.data.riskID || "",
               riskName: data.data.riskName || "",
