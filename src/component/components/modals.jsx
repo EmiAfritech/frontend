@@ -2502,7 +2502,7 @@ export function DepartmentAccountDetails(data) {
         <FaEye />
       </IconButton>
       <Delete
-        data = "hi"
+        data = {data.data}
         message = "Are you sure you want to delete risk?"
         name = "risk"
       />
@@ -2539,13 +2539,13 @@ export function DepartmentAccountDetails(data) {
                   <span className="mr-4">
                     <IoPerson color="blue" />
                   </span>
-                  <span>{departmentName}</span>
+                  <span>{accountValue.departmentName}</span>
                 </div>
                 <div className="mb-2 flex flex-row items-center">
                   <span className="mr-4">
                     <IoLocationOutline color="blue" />
                   </span>
-                  <span>{officeLocation}</span>
+                  <span>{accountValue.officeLocation}</span>
                 </div>
               </div>
               <div className="flex-[2] ml-8">
