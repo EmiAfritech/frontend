@@ -34,10 +34,13 @@ export const useUserColumns = () => {
       accessorKey: "role",
       header: t("role"),
     },
+    
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <UserAccountDetails data={row.original}/>,
+      Cell: ({ row }) => (
+        <UserAccountDetails data={row.original}/>
+      ),
     },
   ];
 };
