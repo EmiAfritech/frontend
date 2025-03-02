@@ -365,7 +365,7 @@ export function RiskInfo(data) {
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
-    riskID: RiskInfoInitialize.riskID,
+    riskID: data.data.riskID,
     riskName: RiskInfoInitialize.riskName,
     createdAt: RiskInfoInitialize.updatedAt,
     riskScore: RiskInfoInitialize.riskScore,
