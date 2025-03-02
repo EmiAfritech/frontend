@@ -793,17 +793,11 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-
-  
   const FormArray = GRCFormsArray(t);
   const { riskReviewerDropdown } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
-  console.log({"riskINfo":  riskToBeMitigatedInfo})
-  
-  console.log({"riskID": riskToBeMitigatedInfo.riskID})
-  const hostaddress = "http://localhost:5173/risk-mitigation";
   const [open, setOpen] = useState(false);
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
@@ -842,7 +836,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
         riskReviewer,
         mitigationCost,
         endDate,
-        hostaddress,
       },
     )
     try {
@@ -858,7 +851,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
             riskReviewer,
             mitigationCost,
             endDate,
-            hostaddress,
           }),
           {
             headers: {
