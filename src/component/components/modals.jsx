@@ -2813,7 +2813,6 @@ export function RiskDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <div className="mb-10">To Delete an Item scroll to the end of the container</div>
             <RiskDetailsSideTabs data= {riskInfo} name= {name} />
           </div>
         </Box>
