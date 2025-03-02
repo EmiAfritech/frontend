@@ -782,7 +782,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
-  const [departmentID, setdepartmentID] = useState(" ");
+  const [departmentID, setdepartmentID] = useState("");
   const [mitigationEffort, setMitigationEffort] = useState(" ");
   const [mitigationControl, setMitigationControl] = useState(" ");
   const [mitigationCost, setMitigationCost] = useState(" ");
@@ -836,6 +836,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
         riskReviewer,
         mitigationCost,
         endDate,
+        deptId: departmentID,
       },
     )
     try {
