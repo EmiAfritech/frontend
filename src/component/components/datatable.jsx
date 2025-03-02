@@ -5,6 +5,7 @@ import {
   UserAccountDetails,
   DepartmentAccountDetails,
   RiskDetails,
+  MitigationDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -182,7 +183,7 @@ export const useRiskMitigationColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails data={row.original}/>,
+      Cell: ({ row }) => <MitigationDetails data={row.original}/>,
     },
   ];
 };

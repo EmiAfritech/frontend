@@ -2728,7 +2728,102 @@ export function LogOut() {
   );
 }
 
-export function RiskDetails(data, name) {
+export function RiskDetails(data) {
+  const { auth } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+  const riskInfo = data.data;
+
+  function handleOpen() {
+    setOpen(!open);
+  }
+
+  return (
+    <div>
+    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+      <IconButton onClick={handleOpen} color="primary">
+        <FaEye />
+      </IconButton>
+        <Delete
+          data = {riskInfo}
+          message = "Are you sure you want to delete risk?"
+          name = "risk"
+        />
+    </div>
+      <Modal
+        open={open}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <Box sx={style}>
+          <button
+            onClick={close}
+            className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
+            ✖
+          </button>
+
+          {/* Header */}
+          <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
+            GRC Risk Management
+          </div>
+
+          {/* Scrollable Body */}
+          <div className="overflow-y-auto max-h-[70vh] p-4">
+            <div className="grid grid-cols-6 bg-gray-300 mb-2 p-6 rounded-lg shadow-md">
+              {/* Left Section: Risk Cards */}
+              <div className="col-span-2 grid grid-cols-2 gap-4">
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
+                  <p className="text-lg font-semibold">Inherent Risk</p>
+                  <p className="text-7xl font-bold">32</p>
+                  <p className="text-2xl font-bold">Very High</p>
+                </div>
+                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
+                  <p className="text-lg font-semibold">Residual Risk</p>
+                  <p className="text-7xl font-bold">32</p>
+                  <p className="text-2xl font-bold">Very High</p>
+                </div>
+              </div>
+
+              {/* Right Section: Details */}
+              <div className="col-span-4 flex flex-col py-10">
+                <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
+                  <div className="text-gray-700">
+                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
+                  </div>
+                  <div className="text-gray-700">
+                    Status:{" "}
+                    <span className="font-semibold text-blue-700">
+                      {riskInfo.riskStatus}
+                    </span>
+                  </div>
+                  <div className="text-gray-700">
+                    Category:{" "}
+                    <span className="font-semibold text-blue-700">
+                      {riskInfo.riskCategory}
+                    </span>
+                  </div>
+                </div>
+                <hr className="my-4 w-full border-gray-400" />
+                <div className="text-gray-700 text-lg font-medium">
+                  Subject:{" "}
+                  <span className="font-semibold text-blue-700">
+                    {riskInfo.riskDescription}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800"></h3>
+              </div>
+            </div>
+            <div className="mb-10">To Delete an Item scroll to the end of the container</div>
+            <RiskDetailsSideTabs data= {riskInfo} name= {name} />
+          </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+
+export function MitigationDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);

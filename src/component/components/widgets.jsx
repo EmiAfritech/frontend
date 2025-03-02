@@ -273,6 +273,7 @@ export const CustomDetailsSelect = ({
 
 export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
+  console.log({"riskdata": data})
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -290,7 +291,7 @@ export function RiskDetailsSideTabs(data) {
   return (
     <div>
       <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="mt-6 mb-60">{renderComponent()}</div>
+      <div className="my-6">{renderComponent()}</div>
     </div>
   );
 }
