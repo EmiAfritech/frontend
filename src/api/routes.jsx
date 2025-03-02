@@ -167,7 +167,7 @@ export const MONITOREDVSUNMONITOREDBARCHARTDATA_URL = "/getMonitoredVsUnMonitore
 export const MONITORINGRISK_URL = "/departments/{departmentId}/risks/{riskId}/riskmonitorings";
 
 //risk mitigation url
-export const MITIGATIONRISK_URL ="/departments/{departmentId}/risks/{riskId}/riskmitigation";
+export const MITIGATIONRISK_URL ="/Organization/Risk/Mitigation/list";
 
 
 /**********************************************dropdowns*********************************************************/

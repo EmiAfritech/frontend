@@ -36,7 +36,8 @@ import {
   FRAMEWORKDROPDOWN,
   RISKSTOBEMITIGATED_URL,
   RISKSTOBEMITIGATEDINFO_URL,
-  EDITRISK_URL
+  EDITRISK_URL,
+  MITIGATIONRISK_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -300,7 +301,7 @@ export function useMitigationTable() {
   const [mitigationTable, setMitigationTable] = useState([]);
   const fetchData = async () => {
     try {
-      const response = await axios.get(RISKMITIGATION_URL, {
+      const response = await axios.get(MITIGATIONRISK_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + auth.token,
