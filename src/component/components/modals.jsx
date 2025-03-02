@@ -2471,6 +2471,7 @@ export function UserAccountDetails(data) {
 }
 
 export function DepartmentAccountDetails(data) {
+  const {auth} = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
