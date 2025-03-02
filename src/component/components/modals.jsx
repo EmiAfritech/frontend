@@ -2282,6 +2282,7 @@ export function RiskData2(params) {
 //new modals
 
 export function UserAccountDetails(data) {
+  const {auth} = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
