@@ -270,8 +270,7 @@ export const CustomDetailsSelect = ({
 };
 
 export function RiskMitigationSideTabs(data) {
-  const [activeTab, setActiveTab] = useState("Risk Info");
-  console.log({"riskdata": data})
+  const [activeTab, setActiveTab] = useState("Mitigate");
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -279,10 +278,8 @@ export function RiskMitigationSideTabs(data) {
 
   const renderComponent = () => {
     switch (activeTab) {
-      case "Risk Info":
-        return <RiskInfo data={data} />;
       default:
-        return <RiskInfo data={data} />;
+        return <MitigateRIsk data={data} />;
     }
   };
 
