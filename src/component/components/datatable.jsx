@@ -39,7 +39,7 @@ export const useUserColumns = () => {
       accessorKey: "view",
       header: t("Action"),
       Cell: ({ row }) => (
-        <UserAccountDetails/>
+        <UserAccountDetails data={row.original}/>
       ),
     },
   ];
@@ -67,7 +67,9 @@ export const useDeptColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <DepartmentAccountDetails />,
+      Cell: ({ row }) => (
+        <DepartmentAccountDetails data={row.original}/>
+      ),
     },
   ];
 };

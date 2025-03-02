@@ -2281,7 +2281,7 @@ export function RiskData2(params) {
 
 //new modals
 
-export function UserAccountDetails() {
+export function UserAccountDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -2308,19 +2308,21 @@ export function UserAccountDetails() {
   }
 
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: "hi" });
+    console.log({ userAccountDetials: data });
   };
 
   return (
     <div>
-      <IconButton onClick={handleOpen} color="primary">
-        <FaEye />
-      </IconButton>
-      {/* <Delete
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <IconButton onClick={handleOpen} color="primary">
+          <FaEye />
+        </IconButton>
+        <Delete
           data = "hi"
           message = "Are you sure you want to delete risk?"
           name = "risk"
-        /> */}
+        />
+      </div>
       <Modal
         open={open}
         onClose={close}
@@ -2499,9 +2501,16 @@ export function DepartmentAccountDetails() {
   }
   return (
     <div>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
       <IconButton onClick={handleOpen} color="primary">
         <FaEye />
       </IconButton>
+      <Delete
+        data = "hi"
+        message = "Are you sure you want to delete risk?"
+        name = "risk"
+      />
+    </div>
       <Modal
         open={open}
         onClose={close}
