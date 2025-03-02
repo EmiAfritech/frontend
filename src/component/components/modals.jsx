@@ -2456,7 +2456,6 @@ export function UserAccountDetails() {
                 </div>
               </div>
             </main>
-            <DeleteBox/>
           </div>
         </Box>
       </Modal>

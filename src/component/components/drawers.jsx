@@ -78,17 +78,26 @@ export function Userforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log(
+      JSON.stringify({
+        firstName: userValue.firstName,
+        lastName: userValue.lastName,
+        deptID: departmentName,
+        email: userValue.email,
+        phoneNumber: userValue.phoneNumber,
+        position: role,
+      }),
+    )
     try {
       await axios.post(
-        USERSCREATEFORM_URL,{
+        USERSCREATEFORM_URL,JSON.stringify({
           firstName: userValue.firstName,
           lastName: userValue.lastName,
           deptID: departmentName,
           email: userValue.email,
           phoneNumber: userValue.phoneNumber,
           position: role,
-        },
+        }),
         {
           headers: {
             "Content-Type": "application/json",

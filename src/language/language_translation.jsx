@@ -24,7 +24,7 @@ i18n.use(initReactI18next).init({
         mitigateRisk: "Mitigate Risks",
         reviewRisk: "Review Risks",
         report: "Reporting",
-        users: "Employees",
+        users: "Users",
         departments: "Departments",
         riskApplication: "RISK APPLICATION",
         //chart
