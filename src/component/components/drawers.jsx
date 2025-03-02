@@ -1574,8 +1574,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            {auth.role === "ADMIN" ||
-              (auth.role === "GENERALMANAGER" && (
+            {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
                 <CustomSelect
                   id="departmentID"
                   label={t("departmentId")}
@@ -1586,7 +1585,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
                   required
                   group={false}
                 />
-              ))}
+              )}
             <CustomSelect
               id="riskName"
               label={t("riskName")}
