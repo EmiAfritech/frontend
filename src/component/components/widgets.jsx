@@ -932,18 +932,20 @@ export const Tabs = [
   },
 ];
 
-export function DeleteBox() {
+export function DeleteBox({ data, message, name }) {
   const [deleteItem, setDelete] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = () => {
     setIsSubmitting(true);
-    console.log("Delete");
+    console.log(data);
   };
+  
+
   return (
     <main>
       <div className=" bg-gray-300 my-10 p-6 rounded-lg shadow-md h-44 flex flex-col space-y-4">
         <h1 className="font-bold text-red-500">
-          Are you sure you Wish to Delete Item? This action is irrevisible
+          {message}
         </h1>
         <div className="font-bold flex space-x-1">
           <span>Type</span> <p className="text-red-500 font-bold">Delete.</p>{" "}

@@ -2475,17 +2475,13 @@ export function DepartmentAccountDetails(data) {
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [accountValue, setAccountValue] = useState({
-    departmentName: "",
-    departmentManager: "",
-    email: "",
-    phone: "",
-    address1: "",
-    nationality: "",
-    dob: "",
-    officeLocation: "",
-    department: "",
-    role: "",
+    departmentName: data.data.name,
+    departmentManager: data.data.manager,
+    officeLocation: data.data.organizationId,
+    departmentID: data.data.deptID,
+    createdAt: data.data.createdAt,
   });
+
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -2543,23 +2539,24 @@ export function DepartmentAccountDetails(data) {
                   <span className="mr-4">
                     <IoPerson color="blue" />
                   </span>
-                  <span>Robert Knaihv</span>
-                </div>
-                <div className="mb-2 flex flex-row items-center">
-                  <span className="mr-4">
-                    <MdOutlineLocalPhone color="blue" />
-                  </span>
-                  <span>+233 544-5342</span>
+                  <span>{departmentName}</span>
                 </div>
                 <div className="mb-2 flex flex-row items-center">
                   <span className="mr-4">
                     <IoLocationOutline color="blue" />
                   </span>
-                  <span>JohnBull Street</span>
+                  <span>{officeLocation}</span>
                 </div>
               </div>
               <div className="flex-[2] ml-8">
                 <div className="grid grid-cols-2 gap-8 p-4">
+                  <FormInputField
+                    id="departmentID"
+                    label="Department ID"
+                    value={accountValue.departmentID}
+                    onChange={handleInputChange}
+                    required
+                  />
                   <FormInputField
                     id="dname"
                     label="Department Name"
@@ -2575,32 +2572,17 @@ export function DepartmentAccountDetails(data) {
                     required
                   />
                   <FormInputField
-                    type="email"
-                    id="email"
-                    label="Email"
-                    value={accountValue.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    type="phone"
-                    id="phone"
-                    label="Phone"
-                    value={accountValue.phone}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
-                    id="address1"
-                    label="Address 1"
-                    value={accountValue.address1}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <FormInputField
                     id="officelocation"
                     label="Office Location"
                     value={accountValue.officeLocation}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FormInputField
+                    type="date"
+                    id="createdAt"
+                    label="Date Created"
+                    value={accountValue.createdAt}
                     onChange={handleInputChange}
                     required
                   />
