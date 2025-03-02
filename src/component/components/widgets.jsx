@@ -168,7 +168,6 @@ export function FormInputField({
         type={type}
         value={value}
         placeholder={placeholder}
-        disabled={disabled}
         onChange={onChange}
         required={required}
         autoComplete="false"
@@ -208,7 +207,6 @@ export function FormDetailsField({
         type={type}
         value={value}
         placeholder={placeholder}
-        disabled={disabled}
         onChange={onChange}
         required={required}
         autoComplete="false"
@@ -358,11 +356,12 @@ export function RiskDetailNavigation({ onTabChange }) {
 }
 
 export function RiskInfo(data) {
-  console.log({"riskdatafromriskinfo": data})
   const {t} = useTranslation()
   const {ownersList} = useRiskOwnersDropdown()
   const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
+  
+  console.log({"riskdatafromriskinfo": RiskInfoInitialize})
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
