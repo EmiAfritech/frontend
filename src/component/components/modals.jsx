@@ -2477,7 +2477,7 @@ export function DepartmentAccountDetails(data) {
   const [accountValue, setAccountValue] = useState({
     departmentName: data.data.name,
     departmentManager: data.data.manager,
-    officeLocation: data.data.organizationId,
+    officeLocation: data.data.location,
     departmentID: data.data.deptID,
     createdAt: data.data.createdAt,
   });
@@ -2488,8 +2488,43 @@ export function DepartmentAccountDetails(data) {
     setAccountValue((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  const notify = () => {
+      toast.success(t("userSavedSuccessfully") , {
+        onClose: () => {
+          close();
+        },
+      });
+    };
+
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: data });
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await axios.get(EDITDEPARTMENT_URL, 
+        JSON.stringify({
+            deptID: accountValue.departmentID,
+            location: accountValue.officeLocation,
+            name: accountValue.departmentName,
+            manager: accountValue.departmentManager,
+            id: data.data.id
+        }),{
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+      notify();
+    } catch (error) {
+      if (error.response.status === 401) {
+        notifyUnauthorized();
+      } else if (error.response.status === 500) {
+        notifyNetwork();
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   function handleOpen() {
@@ -2530,7 +2565,7 @@ export function DepartmentAccountDetails(data) {
               <div className="flex-[1] border-r-2 border-r-[#cbd5e1] p-6 flex flex-col space-y-6 justify-center">
                 <div className="flex justify-center items-center">
                   <img
-                    src="https://th.bing.com/th/id/OIF.tVJjXsRXmyzpnTV2UwfQVA?w=175&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                    src="https://th.bing.com/th/id/R.635f62858b227227ad3fc15de1da5c20?rik=2tuidPfmkjePNg&pid=ImgRaw&r=0"
                     alt="Sample"
                     className="h-[120] w-40"
                   />
