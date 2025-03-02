@@ -2281,7 +2281,7 @@ export function RiskData2(params) {
 
 //new modals
 
-export function UserAccountDetails(data) {
+export function UserAccountDetails() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -2308,7 +2308,7 @@ export function UserAccountDetails(data) {
   }
 
   const handleSubmit = async (e) => {
-    console.log({ userAccountDetials: data });
+    console.log({ userAccountDetials: "hi" });
   };
 
   return (
