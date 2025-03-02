@@ -670,7 +670,7 @@ export function RiskReviewforms({ onFormSubmit }) {
           riskID,
           riskReview,
           NextRiskReviewDate,
-          riskReviewComments,
+          riskReviewComments: reviewValue.riskReviewComments,
           departmentID,
         }),
         {
