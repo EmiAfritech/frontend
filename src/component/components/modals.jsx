@@ -2510,7 +2510,13 @@ export function DepartmentAccountDetails(data) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log(JSON.stringify({
+      deptID: accountValue.departmentID,
+      location: accountValue.officeLocation,
+      name: accountValue.departmentName,
+      manager: accountValue.departmentManager,
+      id: data.data.id
+  }))
     try {
       await axios.get(EDITDEPARTMENT_URL, 
         JSON.stringify({
