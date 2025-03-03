@@ -3052,7 +3052,7 @@ export function RiskMonitoringDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const mitigationInfo = data.data.data;
+  const mitigationInfo = data.data;
   console.log({"mitigationdata": data})
 
   function handleOpen() {
