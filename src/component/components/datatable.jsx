@@ -296,16 +296,16 @@ export const useRiskMonitoringColumns = () => {
   const { t } = useTranslation();
   return [
     {
-      accessorKey: "riskID",
-      header: t("riskCode"),
-    },
-    {
       accessorKey: "riskName",
       header: t("riskName"),
     },
     {
       accessorKey: "riskResponseImplementation",
       header: t("riskImplementation"),
+    },
+    {
+      accessorKey: "challenges",
+      header: "Challenges",
     },
     {
       accessorKey: "recommendedChanges",
