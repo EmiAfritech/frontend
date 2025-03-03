@@ -1109,3 +1109,20 @@ export function getRiskImpactLevel(level) {
   }
 }
 
+export function getRiskProbabilityLevel(level) {
+  switch (level) {
+      case 1:
+          return "almostImpossible";
+      case 2:
+          return "unlikely";
+      case 3:
+          return "Likely";
+      case 4:
+          return "Very Likely";
+      case 5:
+          return "almostCertain"; // Handles invalid inputs
+  }
+}
+
+
+
