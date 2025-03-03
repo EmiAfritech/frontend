@@ -118,13 +118,11 @@ export const CustomSelect = ({
       )}
       <Select
         id={id}
-        isMulti={isMulti}
         required={required}
         isSearchable={true}
         options={options}
         defaultValue={value} 
         onChange={(selectedOption) => onChange(selectedOption.value)}
-        isClearable={true}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
