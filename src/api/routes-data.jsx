@@ -275,6 +275,7 @@ export function useRiskIDMonitoring(departmentID) {
   const { auth } = useContext(AuthContext);
   const [monitoringIDs, setMonitoringIDs] = useState([]);
   const deptId = departmentID
+  console.log(JSON.stringify({ deptId }))
   const fetchData = async () => {
     try {
       const response = await axios.post(
