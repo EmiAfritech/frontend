@@ -1497,14 +1497,13 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     console.log(
       {
         riskId: riskName,
-        riskResponseActivitiyStatus,
-        riskResponseImplementation,
-        challenges,
-        mitigationOwner,
-        recommendedChanges,
-        comments,
-        closeStatus,
-        deptId: departmentID
+            riskResponseActivitiyStatus,
+            riskResponseImplementation: monitoringValue.riskResponseImplementation,
+            challenges: monitoringValue.challenges,
+            recommendedChanges: monitoringValue.recommendedChanges,
+            comments: monitoringValue.comments,
+            closeStatus,
+            deptId: departmentID
       }
     )
     try {
@@ -1514,10 +1513,10 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           JSON.stringify({
             riskId: riskName,
             riskResponseActivitiyStatus,
-            riskResponseImplementation,
-            challenges,
-            recommendedChanges,
-            comments,
+            riskResponseImplementation: monitoringValue.riskResponseImplementation,
+            challenges: monitoringValue.challenges,
+            recommendedChanges: monitoringValue.recommendedChanges,
+            comments: monitoringValue.comments,
             closeStatus,
             deptId: departmentID
           }),
@@ -1535,10 +1534,10 @@ export function RiskMonitoringforms({ onFormSubmit }) {
           JSON.stringify({
             riskId: riskName,
             riskResponseActivitiyStatus,
-            riskResponseImplementation,
-            challenges,
-            recommendedChanges,
-            comments,
+            riskResponseImplementation: monitoringValue.riskResponseImplementation,
+            challenges: monitoringValue.challenges,
+            recommendedChanges: monitoringValue.recommendedChanges,
+            comments: monitoringValue.comments,
             deptId: departmentID,
           }),
           {
