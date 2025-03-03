@@ -278,8 +278,6 @@ export function RiskMitigationSideTabs(data) {
     switch (activeTab) {
       case "Mitigate":
         return <MitigateRIsk data={data} />;
-      default:
-        return <MitigateRIsk data={data} />;
     }
   };
 
@@ -301,8 +299,6 @@ export function RiskDetailsSideTabs(data) {
   const renderComponent = () => {
     switch (activeTab) {
       case "Risk Info":
-        return <RiskInfo data={data} />;
-      default:
         return <RiskInfo data={data} />;
     }
   };
