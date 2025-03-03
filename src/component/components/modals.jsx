@@ -2825,7 +2825,7 @@ export function RiskDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{riskInfo.riskId}</span>
+                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
