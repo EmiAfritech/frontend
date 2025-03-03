@@ -1104,8 +1104,6 @@ export function getRiskImpactLevel(level) {
           return "major";
       case 4:
         return "critical";
-      default:
-          return "insignificant"; 
   }
 }
 
