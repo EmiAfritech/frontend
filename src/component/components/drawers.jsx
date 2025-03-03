@@ -668,7 +668,7 @@ export function RiskReviewforms({ onFormSubmit }) {
       await axios.post(
         REVIEWRISKFORM_URL,
         JSON.stringify({
-          riskID,
+          riskId: riskName,
           riskReview,
           NextRiskReviewDate,
           riskReviewComments: reviewValue.riskReviewComments,
