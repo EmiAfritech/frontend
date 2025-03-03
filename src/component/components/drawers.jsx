@@ -1494,18 +1494,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(
-      {
-        riskId: riskName,
-            riskResponseActivitiyStatus,
-            riskResponseImplementation: monitoringValue.riskResponseImplementation,
-            challenges: monitoringValue.challenges,
-            recommendedChanges: monitoringValue.recommendedChanges,
-            comments: monitoringValue.comments,
-            closeStatus,
-            deptId: departmentID
-      }
-    )
     try {
       if (auth.role === "MANAGER") {
         await axios.post(
@@ -1563,13 +1551,15 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   };
 
   const reload = () => {
-    setdepartmentID("");
-    setRiskResponseActivitiyStatus("");
-    setRiskResponseImplementation("");
-    setChallenges("");
-    setmitigationOwner("");
-    setRecommendedChanges("");
-    setComments("");
+    setMonitoringValue({
+      riskResponseImplementation: "",
+      challenges: "",
+      recommendedChanges: "",
+      comments: "",
+  });
+  setRiskResponseActivitiyStatus("");
+  setRiskName("");
+  setdepartmentID("")
   };
 
   return (
