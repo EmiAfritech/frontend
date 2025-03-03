@@ -301,7 +301,7 @@ export function useRisksNeededToBeReviewed({ departmentID }) {
   const { auth } = useContext(AuthContext);
   const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
   const deptId = departmentID
-  console.log({"risks needed to be reviewed": deptId})
+  console.log({"risks needed to be reviewed": deptId, departmentID})
   const fetchData = async () => {
     try {
       const response = await axios.post(
