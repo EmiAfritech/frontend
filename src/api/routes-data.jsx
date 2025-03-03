@@ -315,7 +315,7 @@ export function useRisksNeededToBeReviewed(departmentID) {
           withCredentials: true,
         }
       );
-
+      console.log(response)
       setRiskToBeReviewed(response.data);
     } catch (error) {
       console.error(error);
