@@ -2825,7 +2825,7 @@ export function RiskDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
+                    ID: <span className="font-semibold">{riskInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
@@ -2920,7 +2920,7 @@ export function MitigationDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskID}</span>
+                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
@@ -3015,7 +3015,7 @@ export function RiskReviewDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskID}</span>
+                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
@@ -3109,7 +3109,7 @@ export function RiskMonitoringDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskID}</span>
+                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
