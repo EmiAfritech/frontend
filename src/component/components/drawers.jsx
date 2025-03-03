@@ -122,14 +122,15 @@ export function Userforms({ onFormSubmit }) {
     }
   };
   const reload = () => {
-    setUserName("");
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setDepartment("");
-    setPhoneNumber("");
-    setRole("");
-    setPassword("");
+    setUserValue({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      password: "",
+    });
+    setDepartment("")
+    setRole("")
   };
 
   return (
