@@ -1460,6 +1460,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [closeStatus, setRiskClosed] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { departmentList } = useDepartmentDropdown();
+  const { monitoringIDs } = useRiskIDMonitoring(departmentID);
   const [open, setOpen] = useState(false);
   const GRCFormArray = GRCFormsArray(t);
   const [monitoringValue, setMonitoringValue] = useState({
@@ -1595,7 +1596,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               label={t("riskName")}
               value={riskName}
               onChange={setRiskName}
-              options={GRCFormArray.mitigationEffort}
+              options={monitoringIDs}
               searchable={true}
               required
               group={false}

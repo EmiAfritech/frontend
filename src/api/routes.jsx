@@ -175,7 +175,7 @@ export const MITIGATIONRISK_URL ="/Organization/Risk/Mitigation/list";
 export const RISKIDS_URL = "/risks/getAllOpenedRiskIDs";
 
 //riskIDs for monitoring dropdown
-export const RISKIDSMONITORING_URL = "/risks/getAllOpenedRiskIDSToBeMonitored";
+export const RISKIDSMONITORING_URL = "/Organization/Risk/getAllOpenedRiskIDSToBeMonito";
 
 //riskIDs for mitigation dropdown
 export const RISKIDSMITIGATION_URL = "/risks/getAllOpenedRiskIDSToBeMitigated";

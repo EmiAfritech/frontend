@@ -271,14 +271,15 @@ export function useRiskIDReview({ departmentID }) {
   return { riskReviewIDs };
 }
 
-export function useRiskIDMonitoring({ departmentID }) {
+export function useRiskIDMonitoring(departmentID) {
   const { auth } = useContext(AuthContext);
   const [monitoringIDs, setMonitoringIDs] = useState([]);
+  const deptId = departmentID
   const fetchData = async () => {
     try {
       const response = await axios.post(
         RISKIDSMONITORING_URL,
-        JSON.stringify({ departmentID }),
+        JSON.stringify({ deptId }),
         {
           headers: {
             "Content-Type": "application/json",
@@ -295,7 +296,8 @@ export function useRiskIDMonitoring({ departmentID }) {
   };
   useEffect(() => {
     fetchData(); 
-  }, []);
+  }, [deptId]);
+
   return { monitoringIDs };
 }
 
