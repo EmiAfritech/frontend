@@ -2945,7 +2945,7 @@ export function MitigationDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskMitigationSideTabs data= {mitigationInfo}  />
+            <MitigateRIsk data= {mitigationInfo}  />
           </div>
         </Box>
       </Modal>
