@@ -32,6 +32,9 @@ export const ResetPasswordUrl = "/Organization/User/Password/forgot-password-res
 //users list url
 export const USERS_URL = "/Organization/User/list";
 
+//risk monitoring list
+export const RISKMONITORING_URL = "/Organization/Risk/Monitoring/list";
+
 //department url
 export const DEPARTMENT_URL = "/Organization/Department/list";
 
@@ -133,8 +136,7 @@ export const RISKCATEGORYREPORTCHART_URL = "/Organization/Analytics/getRiskCateg
 //openvsclose bar chart data
 export const OPENVSCLOSEBARCHART_URL = "/Organization/Analytics/getOpenedVsClosedGraphData";
 
-//risk monitoring bar chat chart data
-export const RISKMONITORING_URL = "/risks/monitorings";
+
 
 //risk mitigations bar chat chart data
 export const RISKMITIGATION_URL = "/risks/mitigations";
