@@ -278,6 +278,8 @@ export function RiskMitigationSideTabs(data) {
 
   const renderComponent = () => {
     switch (activeTab) {
+      case "Mitigate":
+        return <MitigateRIsk data={data} />;
       default:
         return <MitigateRIsk data={data} />;
     }
