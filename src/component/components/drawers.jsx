@@ -1516,7 +1516,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             riskResponseActivitiyStatus,
             riskResponseImplementation,
             challenges,
-            mitigationOwner,
             recommendedChanges,
             comments,
             closeStatus,
@@ -1539,9 +1538,8 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             riskResponseImplementation,
             challenges,
             recommendedChanges,
-            mitigationOwner,
             comments,
-            departmentID,
+            deptId: departmentID,
           }),
           {
             headers: {
