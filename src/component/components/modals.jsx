@@ -2901,7 +2901,7 @@ export function MitigationDetails(data) {
 
           {/* Scrollable Body */}
           <div className="overflow-y-auto max-h-[70vh] p-4">
-            <div className="grid grid-cols-6 bg-gray-300 mb-2 p-6 rounded-lg shadow-md">
+            <div className="grid grid-cols-6 bg-gray-300 mb-16 p-6 rounded-lg shadow-md">
               {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
