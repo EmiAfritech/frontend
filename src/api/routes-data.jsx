@@ -300,12 +300,12 @@ export function useRiskIDMonitoring({ departmentID }) {
 export function useRisksNeededToBeReviewed({ departmentID }) {
   const { auth } = useContext(AuthContext);
   const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
-  const id = departmentID
+  const deptId = departmentID
   const fetchData = async () => {
     try {
       const response = await axios.post(
         RISKNEEDEDTOBESREVIEW_URL,
-        JSON.stringify({ id }),
+        JSON.stringify({ deptId }),
         {
           headers: {
             "Content-Type": "application/json",
