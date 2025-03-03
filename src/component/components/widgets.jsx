@@ -1095,15 +1095,17 @@ export function Delete({ data, message, name }) {
 export function getRiskImpactLevel(level) {
   switch (level) {
       case 1:
-          return "Low";
+          return "insignificant";
       case 2:
-          return "Moderate";
+          return "minor";
       case 3:
-          return "High";
+          return "moderate";
       case 4:
-          return "Critical";
+          return "major";
+      case 4:
+        return "critical";
       default:
-          return "Unknown"; // For invalid inputs
+          return "insignificant"; 
   }
 }
 
