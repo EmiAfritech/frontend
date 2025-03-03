@@ -211,6 +211,7 @@ export function useRiskReviewTable() {
   useEffect(() => {
     fetchData(); 
   }, []);
+  console.log(riskReviewTable)
   return { riskReviewTable, fetchData };
 }
 
