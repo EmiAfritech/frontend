@@ -1494,17 +1494,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log( JSON.stringify({
-      riskId: riskName,
-      riskResponseActivitiyStatus,
-      riskResponseImplementation,
-      challenges,
-      mitigationOwner,
-      recommendedChanges,
-      comments,
-      closeStatus,
-      deptId: departmentID
-    }),)
+    
     try {
       if (auth.role === "MANAGER") {
         await axios.post(
