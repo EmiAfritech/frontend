@@ -202,6 +202,7 @@ export function useRiskReviewTable() {
           Authorization: "Bearer " + auth.token,
         },
       });
+      console.log(response)
       setRiskReviewTable(response.data);
     } catch (error) {
       console.error(error);
