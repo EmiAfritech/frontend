@@ -39,7 +39,8 @@ import {
   EDITRISK_URL,
   MITIGATIONRISK_URL,
   RISKREVIEW_URL,
-  RISKNEEDEDTOBESREVIEW_URL
+  RISKNEEDEDTOBESREVIEW_URL,
+  DEPARTMENTCODEDROPDOWN_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -67,6 +68,30 @@ export function useDepartmentDropdown() {
   }, []);
 
   return { departmentList };
+}
+
+export function useDepartmentCodeDropdown() {
+  const { auth } = useContext(AuthContext);
+  const [departmentCodeList, setDepartmentCodeList] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(DEPARTMENTCODEDROPDOWN_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setDepartmentCodeList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+
+  return { departmentCodeList };
 }
 
 export function useDepartmentTable() {

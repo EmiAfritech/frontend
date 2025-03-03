@@ -188,6 +188,9 @@ export const RISKNEEDEDTOBESREVIEW_URL = "/Organization/Risk/getAllOpenedRiskIDS
 //department dropdown
 export const DEPARTMENTDROPDOWN_URL = "/Organization/Department/listNamesAndDeptIds";
 
+//department code dropdown
+export const DEPARTMENTCODEDROPDOWN_URL = "/Organization/Department/listDepartmentIDs";
+
 //user dropdown
 export const OWNERSDROPDOWN_URL = "/Organization/User/getTheNamesOfUserAllUsers";
 

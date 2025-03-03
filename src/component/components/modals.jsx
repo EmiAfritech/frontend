@@ -2863,7 +2863,7 @@ export function MitigationDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const riskInfo = data.data;
+  const mitigationInfo = data.data;
   console.log({"mitigationdata": data})
 
   function handleOpen() {
@@ -2920,18 +2920,18 @@ export function MitigationDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
+                    ID: <span className="font-semibold">{mitigationInfo.riskID}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {riskInfo.riskStatus}
+                      {mitigationInfo.riskStatus}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {riskInfo.riskCategory}
+                      {mitigationInfo.riskCategory}
                     </span>
                   </div>
                 </div>
@@ -2939,14 +2939,13 @@ export function MitigationDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {riskInfo.riskDescription}
+                    {mitigationInfo.riskDescription}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <div className="mb-10">To Delete an Item scroll to the end of the container</div>
-            <RiskMitigationSideTabs data= {riskInfo}  />
+            <RiskMitigationSideTabs data= {mitigationInfo}  />
           </div>
         </Box>
       </Modal>

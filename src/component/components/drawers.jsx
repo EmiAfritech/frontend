@@ -25,6 +25,7 @@ import {
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
+  useDepartmentCodeDropdown,
   useDepartmentDropdown,
   useFrameWorkDropDown,
   useRiskIDMonitoring,
@@ -46,7 +47,7 @@ export function Userforms({ onFormSubmit }) {
   const [role, setRole] = useState("");
   const { userRole } = GRCFormsArray(t);
   const { auth } = useContext(AuthContext);
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const [userValue, setUserValue] = useState({
     firstName: "",
     lastName: "",
@@ -152,7 +153,7 @@ export function Userforms({ onFormSubmit }) {
                 label={t("departments")}
                 value={departmentName}
                 onChange={setDepartment}
-                options={departmentList}
+                options={departmentCodeList}
                 searchable={true}
                 required
                 group={false}
