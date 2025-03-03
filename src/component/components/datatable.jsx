@@ -6,6 +6,8 @@ import {
   DepartmentAccountDetails,
   RiskDetails,
   MitigationDetails,
+  RiskReviewDetails,
+  RiskMonitoringDetails,
 } from "./modals";
 import { useTranslation } from "react-i18next";
 import { FaEye } from "react-icons/fa";
@@ -287,7 +289,7 @@ export const useRiskReviewColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails data={row.original}/>,
+      Cell: ({ row }) => <RiskReviewDetails data={row.original}/>,
     },
   ];
 };
@@ -318,7 +320,7 @@ export const useRiskMonitoringColumns = () => {
     {
       accessorKey: "view",
       header: t("Action"),
-      Cell: ({ row }) => <RiskDetails data={row.original}/>,
+      Cell: ({ row }) => <RiskMonitoringDetails data={row.original}/>,
     },
   ];
 };
