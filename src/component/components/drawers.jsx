@@ -679,7 +679,7 @@ export function RiskReviewforms({ onFormSubmit }) {
           riskReview,
           NextRiskReviewDate,
           riskReviewComments: reviewValue.riskReviewComments,
-          departmentID,
+          deptId: departmentID,
         }),
         {
           headers: {
