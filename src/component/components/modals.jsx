@@ -46,7 +46,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { CustomButton, Delete, DeleteBox, FormInputField, RiskDetailsSideTabs, RiskMitigationSideTabs } from "./widgets";
+import { CustomButton, Delete, DeleteBox, FormInputField, MitigateRIsk, RiskDetailsSideTabs, RiskMitigationSideTabs } from "./widgets";
 
 function getRiskScore(score) {
   if (score >= 1 && score <= 5) {
