@@ -1495,7 +1495,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
     e.preventDefault();
     setIsSubmitting(true);
     console.log( JSON.stringify({
-      riskId: riskID,
+      riskId: riskName,
       riskResponseActivitiyStatus,
       riskResponseImplementation,
       challenges,
