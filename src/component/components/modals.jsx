@@ -2946,7 +2946,7 @@ export function MitigationDetails(data) {
               </div>
             </div>
             <div className="mb-10">To Delete an Item scroll to the end of the container</div>
-            <RiskMitigationSideTabs data= {riskInfo} name= {name} />
+            <RiskMitigationSideTabs data= {riskInfo}  />
           </div>
         </Box>
       </Modal>

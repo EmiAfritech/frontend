@@ -1091,3 +1091,19 @@ export function Delete({ data, message, name }) {
     </div>
   );
 }
+
+export function getRiskImpactLevel(level) {
+  switch (level) {
+      case 1:
+          return "Low";
+      case 2:
+          return "Moderate";
+      case 3:
+          return "High";
+      case 4:
+          return "Critical";
+      default:
+          return "Unknown"; // For invalid inputs
+  }
+}
+

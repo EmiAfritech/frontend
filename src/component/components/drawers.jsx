@@ -33,7 +33,7 @@ import {
   useRiskToBeMitigated,
   useRiskToBeMitigatedInfo,
 } from "../../api/routes-data";
-import { CustomButton, FormInputField, CustomSelect } from "./widgets";
+import { CustomButton, FormInputField, CustomSelect, getRiskImpactLevel } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import { showToast } from "./notifications";
 
@@ -792,6 +792,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
   const {riskToBeMitigatedInfo} = useRiskToBeMitigatedInfo(riskName)
+  const impactLevel = getRiskImpactLevel(riskToBeMitigatedInfo.impact)
   const [open, setOpen] = useState(false);
   const notify = () => {
     toast.success("Risk Mitigation Saved Successfully", {
@@ -963,11 +964,10 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 required
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
             <FormInputField
               id="impact"
               label={t("mitigatedRiskImpactLevel")}
-              value={riskToBeMitigatedInfo.impact}
+              value={impactLevel}
               required
             />
             <FormInputField
@@ -976,7 +976,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
               value={riskToBeMitigatedInfo.probability}
               required
             />
-            </div>
             <CustomSelect
               id="riskID"
               label={t("mitgatedRiskProbabillityLevel")}
