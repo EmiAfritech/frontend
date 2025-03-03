@@ -203,7 +203,7 @@ export function useRiskReviewTable() {
         },
       });
       console.log(response)
-      setRiskReviewTable(response.data);
+      setRiskReviewTable(response.data.Data);
     } catch (error) {
       console.error(error);
     }
