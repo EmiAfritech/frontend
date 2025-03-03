@@ -38,7 +38,8 @@ import {
   RISKSTOBEMITIGATEDINFO_URL,
   EDITRISK_URL,
   MITIGATIONRISK_URL,
-  RISKREVIEW_URL
+  RISKREVIEW_URL,
+  RISKNEEDEDTOBESREVIEW_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -294,6 +295,34 @@ export function useRiskIDMonitoring({ departmentID }) {
     fetchData(); 
   }, []);
   return { monitoringIDs };
+}
+
+export function useRisksNeededToBeReviewed({ departmentID }) {
+  const { auth } = useContext(AuthContext);
+  const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKNEEDEDTOBESREVIEW_URL,
+        JSON.stringify({ departmentID }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setRiskToBeReviewed(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskToBeReviewed };
 }
 
 export function useRiskReviewer() {

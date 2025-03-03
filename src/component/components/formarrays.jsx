@@ -56,6 +56,14 @@ export const GRCFormsArray = (t) => ({
     { value: "YES", label: t("yes")},
     { value: "NO", label: t("no") },
   ],
+  compliance: [
+    { value: "Complied", label: "Complied"},
+    { value: "Not Complied", label: "Not Complied"},
+  ],
+  mitigationControl: [
+    { value: "Systematic", label: "Systematic"},
+    { value: "Manual", label: "Manual"},
+  ],
   governance: [
     { value: "ISO37000", label: "ISO37000"},
     { value: "ISO31000", label: "ISO31000" },

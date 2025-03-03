@@ -29,6 +29,7 @@ import {
   useFrameWorkDropDown,
   useRiskOwnersDropdown,
   useRiskReviewer,
+  useRisksNeededToBeReviewed,
   useRiskToBeMitigated,
   useRiskToBeMitigatedInfo,
 } from "../../api/routes-data";
@@ -606,6 +607,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = React.useState(false);
   const {riskReviewArray} = GRCFormsArray(t)
+  const {riskToBeReviewed} = useRisksNeededToBeReviewed
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
     riskReviewComments: "",
@@ -1010,7 +1012,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
               label={t("mitigationControl")}
               value={mitigationControl}
               onChange={setMitigationControl}
-              options={FormArray.mitigationEffort}
+              options={FormArray.mitigationControl}
               searchable={true}
               required
               group={false}
@@ -1200,7 +1202,6 @@ export function Controlforms({ onFormSubmit }) {
   const {frameworkdropdown} = useFrameWorkDropDown()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
-  console.log({frameworkdropdown: frameworkdropdown})
 
   const notify = () => {
     toast.success("Control Saved Successfully", {
@@ -1309,12 +1310,13 @@ export function Complianceforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
   const [description, setDescription] = useState("");
+  const [recomendedChanges, setRecommendedChanges] = useState("");
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
   const [controlItem, setControlItem] = useState("");
   const {frameworkdropdown} = useFrameWorkDropDown()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
-  console.log({frameworkdropdown: frameworkdropdown})
+  const FormArray = GRCFormsArray(t);
 
   const notify = () => {
     toast.success("Control Saved Successfully", {
@@ -1398,6 +1400,15 @@ export function Complianceforms({ onFormSubmit }) {
               searchable={true}
               required
             />
+            <CustomSelect
+              id="frameWorkSelect"
+              label="Assessment"
+              value={frameWorkSelect}
+              onChange={setFrameWorkSelect}
+              options={FormArray.compliance}
+              searchable={true}
+              required
+            />
             <FormInputField
               type="date"
               id="assessmentDate"
@@ -1407,26 +1418,10 @@ export function Complianceforms({ onFormSubmit }) {
               required
             />
             <FormInputField
-              id="assessmentDate"
-              label="Assessor"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-            <CustomSelect
-              id="frameWorkSelect"
-              label="Assessment"
-              value={frameWorkSelect}
-              onChange={setFrameWorkSelect}
-              options={frameworkdropdown}
-              searchable={true}
-              required
-            />
-            <FormInputField
-              id="assessmentDate"
+              id="recomendations"
               label="Recommendations"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={recomendedChanges}
+              onChange={(e) => setRecommendedChanges(e.target.value)}
               required
             />
             <CustomButton
