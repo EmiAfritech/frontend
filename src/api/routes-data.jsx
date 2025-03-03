@@ -297,7 +297,7 @@ export function useRiskIDMonitoring({ departmentID }) {
   return { monitoringIDs };
 }
 
-export function useRisksNeededToBeReviewed({ departmentID }) {
+export function useRisksNeededToBeReviewed(departmentID) {
   const { auth } = useContext(AuthContext);
   const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
   const deptId = departmentID

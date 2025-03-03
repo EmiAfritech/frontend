@@ -145,6 +145,10 @@ export const useRiskMitigationColumns = () => {
       header: t("riskName"),
     },
     {
+      accessorKey: "riskReviewer",
+      header: t("riskReviewer"),
+    },
+    {
       accessorKey: "mitigatedRiskScore",
       header: t("mitigatedRiskScore"),
       muiTableBodyCellProps: ({ cell }) => {
@@ -176,10 +180,6 @@ export const useRiskMitigationColumns = () => {
           } 
         };
       },    
-    },
-    {
-      accessorKey: "riskReviewer",
-      header: t("riskReviewer"),
     },
     {
       accessorKey: "createdAt",
