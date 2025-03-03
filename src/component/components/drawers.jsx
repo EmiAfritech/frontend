@@ -607,7 +607,6 @@ export function RiskReviewforms({ onFormSubmit }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const {riskReviewArray} = GRCFormsArray(t)
-  console.log({"departmentID": departmentID})
   const {riskToBeReviewed} = useRisksNeededToBeReviewed(departmentID)
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
