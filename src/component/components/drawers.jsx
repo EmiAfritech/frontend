@@ -27,6 +27,7 @@ import { useTranslation } from "react-i18next";
 import {
   useDepartmentDropdown,
   useFrameWorkDropDown,
+  useRiskIDMonitoring,
   useRiskOwnersDropdown,
   useRiskReviewer,
   useRisksNeededToBeReviewed,
@@ -1502,7 +1503,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         await axios.post(
           MONITORINGRISKFORM_URL,
           JSON.stringify({
-            riskID,
+            riskId: riskID,
             riskResponseActivitiyStatus,
             riskResponseImplementation,
             challenges,
@@ -1510,6 +1511,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
             recommendedChanges,
             comments,
             closeStatus,
+            deptId: departmentID
           }),
           {
             headers: {
@@ -1600,13 +1602,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               searchable={true}
               required
               group={false}
-            />
-            <FormInputField
-              id="riskID"
-              label={t("riskId")}
-              value={monitoringValue.riskID}
-              required
-              onChange={handleInputChange}
             />
             <CustomSelect
               id="riskResponseActivityStatus"
