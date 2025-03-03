@@ -599,7 +599,7 @@ export function Riskforms({ onFormSubmit }) {
 export function RiskReviewforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [NextRiskReviewDate, setNextRiskReviewDate] = useState("");
+  const [NextRiskReviewDate, setNextRiskReviewDate] = useState(new Date());
   const [departmentID, setDepartmentID] = useState("");
   const [riskName, setRiskName] = useState("");
   const [riskReview, setRiskReview] = useState("");
