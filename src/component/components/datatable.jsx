@@ -277,10 +277,6 @@ export const useRiskReviewColumns = () => {
       header: "Review",
     },
     {
-      accessorKey: "riskReviewComments",
-      header: "Comments",
-    },
-    {
       accessorKey: "status",
       header: "Status",
     },
