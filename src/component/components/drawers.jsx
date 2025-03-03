@@ -663,7 +663,14 @@ export function RiskReviewforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log(JSON.stringify({
+      riskId: riskName,
+      riskReview,
+      NextRiskReviewDate,
+      riskReviewComments: reviewValue.riskReviewComments,
+      departmentID,
+    }));
+    
     try {
       await axios.post(
         REVIEWRISKFORM_URL,
