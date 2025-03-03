@@ -13,7 +13,7 @@ export const GRCFormsArray = (t) => ({
   ],
   userRole: [
     { value: "MANAGER", label: t("departmentManager") },
-    { value: "AUDITOR", label: t("riskAnalyst") },
+    { value: "ANALYST", label: t("riskAnalyst") },
   ],
   riskResponsedrawer: [
     { value: "Exploit", label: t("exploit") },
