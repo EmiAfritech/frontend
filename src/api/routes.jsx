@@ -84,7 +84,7 @@ export const CONTROL_URL = "/Governance/Control/list";
 /*************************************************Forms******************************************************/
 
 //create users url
-export const USERSCREATEFORM_URL = "/users/create";
+export const USERSCREATEFORM_URL = "/Organization/User/create";
 
 //create department url
 export const DEPARTMENTCREATEFORM_URL = "/Organization/Department/create";
