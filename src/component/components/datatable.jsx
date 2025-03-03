@@ -145,7 +145,7 @@ export const useRiskMitigationColumns = () => {
       header: t("riskName"),
     },
     {
-      accessorKey: "riskReviewer",
+      accessorKey: "riskOwnerLabel",
       header: t("riskReviewer"),
     },
     {
