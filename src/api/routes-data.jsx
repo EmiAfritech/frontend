@@ -299,35 +299,7 @@ export function useRiskIDMonitoring({ departmentID }) {
   return { monitoringIDs };
 }
 
-export function useRisksNeededToBeReviewed(departmentID) {
-  const { auth } = useContext(AuthContext);
-  const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
-  const deptId = departmentID
-  console.log(JSON.stringify({ deptId }))
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKNEEDEDTOBESREVIEW_URL,
-        JSON.stringify({ deptId }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
-      console.log(response)
-      setRiskToBeReviewed(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { riskToBeReviewed };
-}
+
 
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
@@ -1076,6 +1048,36 @@ export function useRiskToBeMitigated(departmentID) {
     }
   }, [deptId]); 
   return { riskToBeMitigated, fetchData };
+}
+
+export function useRisksNeededToBeReviewed(departmentID) {
+  const { auth } = useContext(AuthContext);
+  const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
+  const deptId = departmentID
+  console.log(JSON.stringify({ deptId }))
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKNEEDEDTOBESREVIEW_URL,
+        JSON.stringify({ deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response)
+      setRiskToBeReviewed(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchData(); 
+  }, [deptId]);
+  return { riskToBeReviewed };
 }
 
 export function useRiskToBeMitigatedInfo(riskName) {
