@@ -2877,7 +2877,7 @@ export function MitigationDetails(data) {
         <FaEye />
       </IconButton>
         <Delete
-          data = {riskInfo}
+          data = {mitigationInfo}
           message = "Are you sure you want to delete risk?"
           name = "risk"
         />
