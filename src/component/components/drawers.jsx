@@ -967,7 +967,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
             </div>
             <FormInputField
               id="impact"
-              label={t("mitigatedRiskImpactLevel")}
+              label="Impact Level"
               value={impactLevel}
               required
             />
