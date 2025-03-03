@@ -1564,7 +1564,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
 
   const reload = () => {
     setdepartmentID("");
-    setRiskID("");
     setRiskResponseActivitiyStatus("");
     setRiskResponseImplementation("");
     setChallenges("");
