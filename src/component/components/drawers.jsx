@@ -1497,13 +1497,23 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log( JSON.stringify({
+      riskId: riskID,
+      riskResponseActivitiyStatus,
+      riskResponseImplementation,
+      challenges,
+      mitigationOwner,
+      recommendedChanges,
+      comments,
+      closeStatus,
+      deptId: departmentID
+    }),)
     try {
       if (auth.role === "MANAGER") {
         await axios.post(
           MONITORINGRISKFORM_URL,
           JSON.stringify({
-            riskId: riskID,
+            riskId: riskName,
             riskResponseActivitiyStatus,
             riskResponseImplementation,
             challenges,
@@ -1525,7 +1535,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
         await axios.post(
           MONITORINGRISKFORM_URL,
           JSON.stringify({
-            riskID,
+            riskId: riskName,
             riskResponseActivitiyStatus,
             riskResponseImplementation,
             challenges,
