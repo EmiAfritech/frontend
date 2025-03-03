@@ -1545,11 +1545,12 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
       notify();
     } catch (error) {
-      if (error.response.status === 400) {
-        showToast("Kindly check Input details", "error");
-      } else if (error.response.status === 500) {
-        showToast("Server is currently down Contact your admin", "error");
-      }
+      // if (error.response.status === 400) {
+      //   showToast("Kindly check Input details", "error");
+      // } else if (error.response.status === 500) {
+      //   showToast("Server is currently down Contact your admin", "error");
+      // }
+      console.log(error)
     } finally {
       setIsSubmitting(false);
     }
@@ -1640,16 +1641,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
               value={monitoringValue.comments}
               required
               onChange={handleInputChange}
-            />
-            <CustomSelect
-              id="mitigationOwner"
-              label={t("responseActivityStatus")}
-              value={mitigationOwner}
-              onChange={setmitigationOwner}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
             />
             <CustomSelect
               id="closeStatus"
