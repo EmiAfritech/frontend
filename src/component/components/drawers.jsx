@@ -965,18 +965,20 @@ export function RiskMitigationforms({ onFormSubmit }) {
                 required
               />
             </div>
-            <FormInputField
-              id="impact"
-              label="Impact Level"
-              value={impactLevel}
-              required
-            />
-            <FormInputField
-              id="probability"
-              label={t("probabilityLevel")}
-              value={probability}
-              required
-            />
+            <div className="grid grid-cols-2 gap-2">
+              <FormInputField
+                id="impact"
+                label="Impact Level"
+                value={impactLevel}
+                required
+              />
+              <FormInputField
+                id="probability"
+                label={t("probabilityLevel")}
+                value={probability}
+                required
+              />
+            </div>
             <CustomSelect
               id="riskID"
               label={t("mitgatedRiskProbabillityLevel")}
