@@ -265,20 +265,24 @@ export const useRiskReviewColumns = () => {
   const { t } = useTranslation();
   return [
     {
-      accessorKey: "riskID",
-      header: t("riskCode"),
-    },
-    {
       accessorKey: "riskName",
       header: t("riskName"),
     },
     {
-      accessorKey: "riskOwnerLabel",
-      header: t("owner"),
+      accessorKey: "submittedByLabel",
+      header: "Submitted By",
     },
     {
-      accessorKey: "riskResponse",
-      header: t("riskResponse"),
+      accessorKey: "riskReview",
+      header: "Review",
+    },
+    {
+      accessorKey: "riskReviewComments",
+      header: "Comments",
+    },
+    {
+      accessorKey: "status",
+      header: "Status",
     },
     {
       accessorKey: "createdAt",
