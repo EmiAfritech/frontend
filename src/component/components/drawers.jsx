@@ -1451,9 +1451,7 @@ export function Complianceforms({ onFormSubmit }) {
 export function RiskMonitoringforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [riskID, setRiskID] = useState("");
   const [riskName, setRiskName] = useState("");
-  const [ownersName, setOwnersName] = useState([]);
   const [departmentID, setdepartmentID] = useState(" ");
   const [riskResponseActivitiyStatus, setRiskResponseActivitiyStatus] =
     useState("");
@@ -1465,7 +1463,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const [open, setOpen] = useState(false);
   const GRCFormArray = GRCFormsArray(t);
   const [monitoringValue, setMonitoringValue] = useState({
-    riskID: "",
     riskResponseImplementation: "",
     challenges: "",
     recommendedChanges: "",
