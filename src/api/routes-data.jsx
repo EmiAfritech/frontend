@@ -296,7 +296,9 @@ export function useRiskIDMonitoring(departmentID) {
     }
   };
   useEffect(() => {
-    fetchData(); 
+    if (deptId) {
+      fetchData();
+    }
   }, [deptId]);
 
   return { monitoringIDs };
