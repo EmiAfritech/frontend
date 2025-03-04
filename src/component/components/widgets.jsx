@@ -611,7 +611,6 @@ export function MitigateRIsk(data){
           label="Risk Code"
           value={mitigationInfo.riskID}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -619,7 +618,6 @@ export function MitigateRIsk(data){
           label="Risk Name"
           value={mitigationInfo.riskName}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -647,7 +645,6 @@ export function MitigateRIsk(data){
           label="Mitigation Score"
           value={mitigationInfo.MitigationScore}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
@@ -700,7 +697,6 @@ export function MitigateRIsk(data){
           label="Created At"
           value={mitigationInfo.createdAt}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
