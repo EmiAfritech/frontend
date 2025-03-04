@@ -520,15 +520,87 @@ export function RiskInfo(data) {
   );
 }
 
-export function MitigateRIsk({
-  onChange,
-  value,
-  disabled,
-  options,
-  isSubmitting,
-  handleSubmit,
-  auth,
-}) {
+export function MitigateRIsk(data){
+  const {t} = useTranslation()
+  const options = GRCFormsArray(t)
+  const MitigationInfoInitialize = data.data;
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [mitigationInfo, setMitigationInfo] = useState({
+    riskID: MitigationInfoInitialize.data.riskId,
+    riskName: MitigationInfoInitialize.data.riskName,
+    createdAt: MitigationInfoInitialize.data.updatedAt,
+    MitigationScore: MitigationInfoInitialize.data.mitigatedRiskScore,
+    riskReviewer: MitigationInfoInitialize.data.riskOwnerLabel,
+    MitigationCost: MitigationInfoInitialize.data.mitigationCost,
+    MitigationProbabilityLevel: MitigationInfoInitialize.data.mitigatedRiskProbabilityLevel,
+    MitigatedImpact: MitigationInfoInitialize.data.mitigatedRiskImpactLevel,
+    MitigationEffort: MitigationInfoInitialize.data.mitigationEffort,
+    MitigationControl: MitigationInfoInitialize.data.mitigationControl,
+
+  })
+
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setMitigationInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
+  
+  const handleSubmit = async (e) => {MitigationEffort
+    console.log("Mitigated Data", MitigationInfoInitialize.data.riskId, 
+      MitigationInfoInitialize.data.riskName, 
+      MitigationInfoInitialize.data.UpdatedAt, 
+      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
+      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
+      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
+      MitigationInfoInitialize.data.MitigationControl)
+      // e.preventDefault();
+  
+      // setIsSubmitting(true);
+  
+      // try {
+      //   const response = await axios.post(
+      //     EDITRISK_URL,
+      //     JSON.stringify(
+      //       {
+      //         riskID,
+      //         riskName,
+      //         riskDescription,
+      //         riskCategory,
+      //         riskImpactLevel,
+      //         riskProbabilityLevel,
+      //         riskObjective,
+      //         riskResponse,
+      //         riskResponseActivity,
+      //         riskOwner,
+      //         deptId: RiskInfoInitialize.data.deptId,
+      //         id: RiskInfoInitialize.data.id,
+              
+      //       }            
+      //     ),
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //       },
+      //       withCredentials: true,
+      //     }
+      //   );
+      //   if (response.status === 201) {
+      //     console.log("sucess")
+      //     verifyRecapture();
+      //   }
+      // } catch (err) {
+      //   // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   //   setNotification({ ...notification, serverDown: true });
+      //   //   reload();
+      //   // } else if (err.response?.status === 401) {
+      //   //   setNotification({ ...notification, authorized: true });
+      //   // } else if ([404].includes(err.response?.status)) {
+      //   //   setNotification({ ...notification, errorMessage: true });
+      //   // }
+      // } finally {
+      //   setLoading(false);
+      // }
+    };
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -536,7 +608,7 @@ export function MitigateRIsk({
         <FormDetailsField
           id="riskID"
           label="Risk Code"
-          value={value}
+          value={mitigationInfo.riskID}
           onChange={onChange}
           disabled={disabled}
           required
@@ -544,25 +616,25 @@ export function MitigateRIsk({
         <FormDetailsField
           id="riskName"
           label="Risk Name"
-          value={value}
+          value={mitigationInfo.riskName}
           onChange={onChange}
           disabled={disabled}
           required
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskReviewer"
           label="Risk Reviewer"
-          value={value}
+          value={mitigationInfo.riskReviewer}
           onChange={onChange}
           options={options}
           searchable={true}
           required
           group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="MitigationControl"
           label="Mitigation Control"
-          value={value}
+          value={mitigationInfo.MitigationControl}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -572,7 +644,7 @@ export function MitigateRIsk({
         <FormDetailsField
           id="MitigationScore"
           label="Mitigation Score"
-          value={value}
+          value={mitigationInfo.MitigationScore}
           onChange={onChange}
           disabled={disabled}
           required
@@ -581,40 +653,40 @@ export function MitigateRIsk({
 
       {/* Right Column */}
       <div className="flex flex-col gap-8">
-        <CustomDetailsSelect
+        <FormDetailsField
           id="MitigationEffort"
           label="Mitigation Effort"
-          value={value}
+          value={mitigationInfo.MitigationEffort}
           onChange={onChange}
           options={options}
           searchable={true}
           required
           group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="MitigationCost"
           label="Mitigation Cost"
-          value={value}
+          value={mitigationInfo.MitigationCost}
           onChange={onChange}
           options={options}
           searchable={true}
           required
           group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="MitigationProbabilityLevel"
           label="Mitigation Probability Level"
-          value={value}
+          value={mitigationInfo.MitigationProbabilityLevel}
           onChange={onChange}
           options={options}
           searchable={true}
           required
           group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="MitigatedImpact"
           label="Mitigated Impact"
-          value={value}
+          value={mitigationInfo.MitigatedImpact}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -625,7 +697,7 @@ export function MitigateRIsk({
           type="date"
           id="createdAt"
           label="Created At"
-          value={value}
+          value={mitigationInfo.createdAt}
           onChange={onChange}
           disabled={disabled}
           required

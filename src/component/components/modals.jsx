@@ -2925,13 +2925,13 @@ export function MitigationDetails(data) {
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskStatus}
+                      {mitigationInfo.status}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskCategory}
+                      {mitigationInfo.category}
                     </span>
                   </div>
                 </div>
