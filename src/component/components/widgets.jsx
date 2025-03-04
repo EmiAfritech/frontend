@@ -523,6 +523,7 @@ export function RiskInfo(data) {
 export function MitigateRIsk(data){
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
+  Console.log(MitigationInfoInitialize)
   const MitigationInfoInitialize = data.data;
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [mitigationInfo, setMitigationInfo] = useState({
