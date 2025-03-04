@@ -527,16 +527,16 @@ export function MitigateRIsk(data){
   const [isSubmitting, setIsSubmitting] = useState(false)
   console.log(MitigationInfoInitialize)
   const [mitigationInfo, setMitigationInfo] = useState({
-    riskID: MitigationInfoInitialize.data.riskId,
-    riskName: MitigationInfoInitialize.data.riskName,
-    createdAt: MitigationInfoInitialize.data.updatedAt,
-    MitigationScore: MitigationInfoInitialize.data.mitigatedRiskScore,
-    riskReviewer: MitigationInfoInitialize.data.riskOwnerLabel,
-    MitigationCost: MitigationInfoInitialize.data.mitigationCost,
-    MitigationProbabilityLevel: MitigationInfoInitialize.data.mitigatedRiskProbabilityLevel,
-    MitigatedImpact: MitigationInfoInitialize.data.mitigatedRiskImpactLevel,
-    MitigationEffort: MitigationInfoInitialize.data.mitigationEffort,
-    MitigationControl: MitigationInfoInitialize.data.mitigationControl,
+    riskID: MitigationInfoInitialize.riskId,
+    riskName: MitigationInfoInitialize.riskName,
+    createdAt: MitigationInfoInitialize.updatedAt,
+    MitigationScore: MitigationInfoInitialize.mitigatedRiskScore,
+    riskReviewer: MitigationInfoInitialize.riskOwnerLabel,
+    MitigationCost: MitigationInfoInitialize.mitigationCost,
+    MitigationProbabilityLevel: MitigationInfoInitialize.mitigatedRiskProbabilityLevel,
+    MitigatedImpact: MitigationInfoInitialize.mitigatedRiskImpactLevel,
+    MitigationEffort: MitigationInfoInitialize.mitigationEffort,
+    MitigationControl: MitigationInfoInitialize.mitigationControl,
 
   })
 
