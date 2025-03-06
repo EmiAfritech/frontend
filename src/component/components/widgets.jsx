@@ -807,7 +807,7 @@ export function ReviewRIsk(data){
           label="Risk Code"
           value={reviewInfo.riskID}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
         <FormDetailsField
@@ -815,7 +815,6 @@ export function ReviewRIsk(data){
           label="Risk Name"
           value={reviewInfo.riskName}
           onChange={onChange}
-          disabled={disabled}
           required
         />
         {(auth === "MANAGER" || auth === "AUDITOR") && (
@@ -823,15 +822,14 @@ export function ReviewRIsk(data){
             <FormDetailsField
               id="departmentId"
               label="Department Id"
-              value={reviewInfo.departmentId}
-              disabled={disabled}
+              value={reviewInfo.departmentId} 
               required
             />
             <FormDetailsField
               id="departmentName"
               label="Department Name"
               value={reviewInfo.departmentId}
-              disabled={disabled}
+  
               required
             />
           </div>
@@ -851,7 +849,6 @@ export function ReviewRIsk(data){
           id="createdAt"
           label="Created At"
           value={reviewInfo.createdAt}
-          disabled={disabled}
           required
         />
         <FormDetailsField
@@ -859,7 +856,6 @@ export function ReviewRIsk(data){
           label="Risk Category"
           value={reviewInfo.riskCategory}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
@@ -901,7 +897,6 @@ export function ReviewRIsk(data){
           label="Risk Review Comments"
           value={reviewInfo.riskReviewComments}
           onChange={onChange}
-          disabled={disabled}
           required
         />
       </div>
@@ -1010,7 +1005,7 @@ export function MonitorRisk(data){
           label="Risk Code"
           value={monitorInfo.riskID}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
         <FormDetailsField
@@ -1018,7 +1013,7 @@ export function MonitorRisk(data){
           label="Risk Name"
           value={monitorInfo.riskName}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
         <CustomDetailsSelect
@@ -1037,7 +1032,7 @@ export function MonitorRisk(data){
           label="Created At"
           value={monitorInfo.createdAt}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
         <FormDetailsField
@@ -1045,7 +1040,7 @@ export function MonitorRisk(data){
           label="challenges"
           value={monitorInfo.challenges}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
       </div>
@@ -1087,7 +1082,7 @@ export function MonitorRisk(data){
           label="Response Implementation"
           value={monitorInfo.ResponseImplementation}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
         <FormDetailsField
@@ -1095,7 +1090,7 @@ export function MonitorRisk(data){
           label="Response Activity"
           value={monitorInfo.riskResponseActivity}
           onChange={onChange}
-          disabled={disabled}
+          
           required
         />
       </div>
