@@ -2959,8 +2959,8 @@ export function RiskReviewDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const mitigationInfo = data.data;
-  console.log({"mitigationdata": data})
+  const reviewInfo = data.data;
+  console.log({"reviewInfo": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -2973,7 +2973,7 @@ export function RiskReviewDetails(data) {
         <FaEye />
       </IconButton>
         <Delete
-          data = {mitigationInfo}
+          data = {reviewInfo}
           message = "Are you sure you want to delete risk?"
           name = "risk"
         />
@@ -3016,18 +3016,18 @@ export function RiskReviewDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
+                    ID: <span className="font-semibold">{reviewInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskStatus}
+                      {reviewInfo.riskStatus}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskCategory}
+                      {reviewInfo.riskCategory}
                     </span>
                   </div>
                 </div>
@@ -3035,13 +3035,13 @@ export function RiskReviewDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {mitigationInfo.riskDescription}
+                    {reviewInfo.riskDescription}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <ReviewRIsk data= {mitigationInfo}  />
+            <ReviewRIsk data= {reviewInfo}  />
           </div>
         </Box>
       </Modal>
@@ -3053,8 +3053,8 @@ export function RiskMonitoringDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const mitigationInfo = data.data;
-  console.log({"mitigationdata": data})
+  const monitorInfo = data.data;
+  console.log({"monitordata": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -3067,7 +3067,7 @@ export function RiskMonitoringDetails(data) {
         <FaEye />
       </IconButton>
         <Delete
-          data = {mitigationInfo}
+          data = {monitorInfo}
           message = "Are you sure you want to delete risk?"
           name = "risk"
         />
@@ -3110,18 +3110,18 @@ export function RiskMonitoringDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
+                    ID: <span className="font-semibold">{monitorInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskStatus}
+                      {monitorInfo.riskStatus}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.riskCategory}
+                      {monitorInfo.riskCategory}
                     </span>
                   </div>
                 </div>
@@ -3129,13 +3129,13 @@ export function RiskMonitoringDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {mitigationInfo.riskDescription}
+                    {monitorInfo.riskDescription}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <MonitorRisk data= {mitigationInfo}  />
+            <MonitorRisk data= {monitorInfo}  />
           </div>
         </Box>
       </Modal>

@@ -716,16 +716,87 @@ export function MitigateRIsk(data){
   );
 }
 
-export function ReviewRIsk({
-  onChange,
-  value,
-  disabled,
-  options,
-  isSubmitting,
-  handleSubmit,
-  auth,
-  data
-}) {
+export function ReviewRIsk(data){
+  const {t} = useTranslation()
+  const options = GRCFormsArray(t)
+  const ReviewInfoInitialize = data.data;
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  console.log(ReviewInfoInitialize)
+  const [reviewInfo, setReviewInfo] = useState({
+    riskID: ReviewInfoInitialize.riskId,
+    riskName: ReviewInfoInitialize.riskName,
+    createdAt: ReviewInfoInitialize.updatedAt,
+    departmentId: ReviewInfoInitialize.deptId,
+    riskCategory: ReviewInfoInitialize.riskCategory,
+    riskStatus: ReviewInfoInitialize.status,
+    riskReview: ReviewInfoInitialize.riskReview,
+    NextRiskReviewDate: ReviewInfoInitialize.NextRiskReviewDate,
+    riskReviewComments: ReviewInfoInitialize.riskReviewComments,
+    riskOwner: ReviewInfoInitialize.submittedByLabel,
+  })
+
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setReviewInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
+  
+  const handleSubmit = async (e) => {MitigationEffort
+    console.log("Mitigated Data", ReviewInfoInitialize.riskId, 
+      MitigationInfoInitialize.data.riskName, 
+      MitigationInfoInitialize.data.UpdatedAt, 
+      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
+      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
+      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
+      MitigationInfoInitialize.data.MitigationControl)
+      // e.preventDefault();
+  
+      // setIsSubmitting(true);
+  
+      // try {
+      //   const response = await axios.post(
+      //     EDITRISK_URL,
+      //     JSON.stringify(
+      //       {
+      //         riskID,
+      //         riskName,
+      //         riskDescription,
+      //         riskCategory,
+      //         riskImpactLevel,
+      //         riskProbabilityLevel,
+      //         riskObjective,
+      //         riskResponse,
+      //         riskResponseActivity,
+      //         riskOwner,
+      //         deptId: RiskInfoInitialize.data.deptId,
+      //         id: RiskInfoInitialize.data.id,
+              
+      //       }            
+      //     ),
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //       },
+      //       withCredentials: true,
+      //     }
+      //   );
+      //   if (response.status === 201) {
+      //     console.log("sucess")
+      //     verifyRecapture();
+      //   }
+      // } catch (err) {
+      //   // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   //   setNotification({ ...notification, serverDown: true });
+      //   //   reload();
+      //   // } else if (err.response?.status === 401) {
+      //   //   setNotification({ ...notification, authorized: true });
+      //   // } else if ([404].includes(err.response?.status)) {
+      //   //   setNotification({ ...notification, errorMessage: true });
+      //   // }
+      // } finally {
+      //   setLoading(false);
+      // }
+    };
   console.log({"riskreview": data})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
@@ -734,7 +805,7 @@ export function ReviewRIsk({
         <FormDetailsField
           id="riskID"
           label="Risk Code"
-          value={value}
+          value={reviewInfo.riskID}
           onChange={onChange}
           disabled={disabled}
           required
@@ -742,7 +813,7 @@ export function ReviewRIsk({
         <FormDetailsField
           id="riskName"
           label="Risk Name"
-          value={value}
+          value={reviewInfo.riskName}
           onChange={onChange}
           disabled={disabled}
           required
@@ -752,25 +823,23 @@ export function ReviewRIsk({
             <FormDetailsField
               id="departmentId"
               label="Department Id"
-              value={value}
-              onChange={onChange}
+              value={reviewInfo.departmentId}
               disabled={disabled}
               required
             />
             <FormDetailsField
               id="departmentName"
               label="Department Name"
-              value={value}
-              onChange={onChange}
+              value={reviewInfo.departmentId}
               disabled={disabled}
               required
             />
           </div>
         )}
-        <CustomDetailsSelect
-          id="departmentName"
-          label="Risk Owner"
-          value={value}
+        <FormDetailsField
+          id="riskOwner"
+          label="Submitted By"
+          value={reviewInfo.riskOwner}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -781,15 +850,14 @@ export function ReviewRIsk({
           type="date"
           id="createdAt"
           label="Created At"
-          value={value}
-          onChange={onChange}
+          value={reviewInfo.createdAt}
           disabled={disabled}
           required
         />
         <FormDetailsField
-          id="riskScore"
-          label="Risk Score"
-          value={value}
+          id="riskCategory"
+          label="Risk Category"
+          value={reviewInfo.riskCategory}
           onChange={onChange}
           disabled={disabled}
           required
@@ -798,30 +866,10 @@ export function ReviewRIsk({
 
       {/* Right Column */}
       <div className="flex flex-col gap-8">
-        <CustomDetailsSelect
-          id="riskResponse"
-          label="Risk Response"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <CustomDetailsSelect
-          id="riskCategory"
-          label="Risk Category"
-          value={value}
-          onChange={onChange}
-          options={options}
-          searchable={true}
-          required
-          group={false}
-        />
-        <CustomDetailsSelect
-          id="riskProbabilityLevel"
-          label="Probability Level"
-          value={value}
+        <FormDetailsField
+          id="riskStatus"
+          label="Risk Status"
+          value={reviewInfo.riskStatus}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -829,17 +877,29 @@ export function ReviewRIsk({
           group={false}
         />
         <FormDetailsField
-          id="riskDescription"
-          label="Risk Description"
-          value={value}
+          id="riskReview"
+          label="Risk Review"
+          value={reviewInfo.riskReview}
           onChange={onChange}
-          disabled={disabled}
+          options={options}
+          searchable={true}
           required
+          group={false}
         />
         <FormDetailsField
-          id="riskResponseActivity"
-          label="Response Activity"
-          value={value}
+          id="nextRiskReview"
+          label="Next Risk Review"
+          value={reviewInfo.nextRiskReview}
+          onChange={onChange}
+          options={options}
+          searchable={true}
+          required
+          group={false}
+        />
+        <FormDetailsField
+          id="riskReviewComments"
+          label="Risk Review Comments"
+          value={reviewInfo.riskReviewComments}
           onChange={onChange}
           disabled={disabled}
           required
@@ -860,15 +920,87 @@ export function ReviewRIsk({
   );
 }
 
-export function MonitorRisk({
-  onChange,
-  value,
-  disabled,
-  options,
-  isSubmitting,
-  handleSubmit,
-  auth,
-}) {
+export function MonitorRisk(data){
+  const {t} = useTranslation()
+  const options = GRCFormsArray(t)
+  const MitigationInfoInitialize = data.data;
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  console.log(MonitorInfoInitialize)
+  const [monitorInfo, setMonitorInfo] = useState({
+    riskID: MonitorInfoInitialize.riskId,
+    riskName: MonitorInfoInitialize.riskName,
+    createdAt: MonitorInfoInitialize.updatedAt,
+    ResponseActivity: MonitorInfoInitialize.mitigatedRiskScore,
+    RiskReviewer: MonitorInfoInitialize.riskOwnerLabel,
+    riskResponse: MonitorInfoInitialize.riskOwnerLabel,
+    riskProbabilityLevel: MonitorInfoInitialize.mitigatedRiskProbabilityLevel,
+    ResponseImplementation: MonitorInfoInitialize.mitigatedRiskImpactLevel,
+    riskResponseActivity: MonitorInfoInitialize.mitigationEffort,
+    challenges: MonitorInfoInitialize.mitigationControl,
+  })
+
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setMonitorInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
+  
+  const handleSubmit = async (e) => {MitigationEffort
+    console.log("Mitigated Data", MonitorInfoInitialize.data.riskId, 
+      MitigationInfoInitialize.data.riskName, 
+      MitigationInfoInitialize.data.UpdatedAt, 
+      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
+      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
+      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
+      MitigationInfoInitialize.data.MitigationControl)
+      // e.preventDefault();
+  
+      // setIsSubmitting(true);
+  
+      // try {
+      //   const response = await axios.post(
+      //     EDITRISK_URL,
+      //     JSON.stringify(
+      //       {
+      //         riskID,
+      //         riskName,
+      //         riskDescription,
+      //         riskCategory,
+      //         riskImpactLevel,
+      //         riskProbabilityLevel,
+      //         riskObjective,
+      //         riskResponse,
+      //         riskResponseActivity,
+      //         riskOwner,
+      //         deptId: RiskInfoInitialize.data.deptId,
+      //         id: RiskInfoInitialize.data.id,
+              
+      //       }            
+      //     ),
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //       },
+      //       withCredentials: true,
+      //     }
+      //   );
+      //   if (response.status === 201) {
+      //     console.log("sucess")
+      //     verifyRecapture();
+      //   }
+      // } catch (err) {
+      //   // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   //   setNotification({ ...notification, serverDown: true });
+      //   //   reload();
+      //   // } else if (err.response?.status === 401) {
+      //   //   setNotification({ ...notification, authorized: true });
+      //   // } else if ([404].includes(err.response?.status)) {
+      //   //   setNotification({ ...notification, errorMessage: true });
+      //   // }
+      // } finally {
+      //   setLoading(false);
+      // }
+    };
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -876,7 +1008,7 @@ export function MonitorRisk({
         <FormDetailsField
           id="riskID"
           label="Risk Code"
-          value={value}
+          value={monitorInfo.riskID}
           onChange={onChange}
           disabled={disabled}
           required
@@ -884,7 +1016,7 @@ export function MonitorRisk({
         <FormDetailsField
           id="riskName"
           label="Risk Name"
-          value={value}
+          value={monitorInfo.riskName}
           onChange={onChange}
           disabled={disabled}
           required
@@ -892,7 +1024,7 @@ export function MonitorRisk({
         <CustomDetailsSelect
           id="ResponseActivity"
           label="Response Activity"
-          value={value}
+          value={monitorInfo.ResponseActivity}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -903,7 +1035,7 @@ export function MonitorRisk({
           type="date"
           id="createdAt"
           label="Created At"
-          value={value}
+          value={monitorInfo.createdAt}
           onChange={onChange}
           disabled={disabled}
           required
@@ -911,7 +1043,7 @@ export function MonitorRisk({
         <FormDetailsField
           id="challenges"
           label="challenges"
-          value={value}
+          value={monitorInfo.challenges}
           onChange={onChange}
           disabled={disabled}
           required
@@ -923,7 +1055,7 @@ export function MonitorRisk({
         <CustomDetailsSelect
           id="riskResponse"
           label="Risk Response"
-          value={value}
+          value={monitorInfo.riskResponse}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -933,7 +1065,7 @@ export function MonitorRisk({
         <CustomDetailsSelect
           id="RiskReviewer"
           label="Risk Reviewer"
-          value={value}
+          value={monitorInfo.RiskReviewer}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -943,7 +1075,7 @@ export function MonitorRisk({
         <CustomDetailsSelect
           id="riskProbabilityLevel"
           label="Probability Level"
-          value={value}
+          value={monitorInfo.riskProbabilityLevel}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -953,7 +1085,7 @@ export function MonitorRisk({
         <FormDetailsField
           id="ResponseImplementation"
           label="Response Implementation"
-          value={value}
+          value={monitorInfo.ResponseImplementation}
           onChange={onChange}
           disabled={disabled}
           required
@@ -961,7 +1093,7 @@ export function MonitorRisk({
         <FormDetailsField
           id="riskResponseActivity"
           label="Response Activity"
-          value={value}
+          value={monitorInfo.riskResponseActivity}
           onChange={onChange}
           disabled={disabled}
           required
