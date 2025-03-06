@@ -717,6 +717,7 @@ export function MitigateRIsk(data){
 }
 
 export function ReviewRIsk(data){
+  const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
   const ReviewInfoInitialize = data.data;
@@ -916,6 +917,7 @@ export function ReviewRIsk(data){
 }
 
 export function MonitorRisk(data){
+  const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
   const MitigationInfoInitialize = data.data;
