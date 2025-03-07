@@ -269,8 +269,8 @@ export const CustomDetailsSelect = ({
 
 
 export function RiskInfo(data) {
+  const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
-  const options = GRCFormsArray(t)
   const RiskInfoInitialize = data.data;
   const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -341,7 +341,7 @@ export function RiskInfo(data) {
           {
             headers: {
               "Content-Type": "application/json",
-              Accept: "application/json",
+              Authorization: "Bearer " + auth.token,
             },
             withCredentials: true,
           }
