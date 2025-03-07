@@ -1,6 +1,6 @@
 import Select from "react-select";
 import { useTranslation } from "react-i18next";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
 import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -268,7 +268,7 @@ export const CustomDetailsSelect = ({
 
 
 
-export function RiskInfo(data, handleSubmit, isSubmitting=false) {
+export function RiskInfo(data, onClick, isSubmitting=false) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
@@ -349,6 +349,11 @@ export function RiskInfo(data, handleSubmit, isSubmitting=false) {
       }
   };
 
+  useEffect(() => {
+    if (onClick) {
+      handleSubmit();
+    }
+  }, [onClick]);
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
