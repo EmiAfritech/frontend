@@ -317,8 +317,8 @@ export function RiskInfo(data) {
               riskResponse,
               riskResponseActivity,
               riskOwner,
-              deptId: RiskInfoInitialize.data.deptId,
-              id: RiskInfoInitialize.data.id,
+              deptId: RiskInfoInitialize.deptId,
+              id: RiskInfoInitialize.id,
               
             }       
           ),
