@@ -673,7 +673,7 @@ export function ReviewRIsk(data){
     e.preventDefault();
 
     setIsSubmitting(true);
-  
+    console.log(reviewInfo.id)
     try {
       const response = await axios.post(
         EDITREVIEW_URL,
