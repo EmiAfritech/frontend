@@ -2826,16 +2826,16 @@ export function RiskDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{riskInfo.riskID?.toUpperCase()}</span>
+                    ID: <span className="font-semibold text-blue-700">{riskInfo.riskID?.toUpperCase()}</span>
                   </div>
                   <div className="text-gray-700">
-                    Status:{" "}
+                    STATUS:{" "}
                     <span className="font-semibold text-blue-700">
                       {riskInfo.riskStatus?.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-gray-700">
-                    Category:{" "}
+                    CATEGORY:{" "}
                     <span className="font-semibold text-blue-700">
                       {riskInfo.riskCategory?.toUpperCase()}
                     </span>
@@ -2843,7 +2843,7 @@ export function RiskDetails(data) {
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
                 <div className="text-gray-700 text-lg font-medium">
-                  Subject:{" "}
+                  SUBJECT:{" "}
                   <span className="font-semibold text-blue-700">
                     {riskInfo.riskDescription?.toUpperCase()}
                   </span>
@@ -2921,26 +2921,26 @@ export function MitigationDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{mitigationInfo.riskId}</span>
+                    ID: <span className="font-semibold text-blue-700">{mitigationInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
-                    Status:{" "}
+                    STATUS:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.status}
+                      {mitigationInfo.status?.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-gray-700">
-                    Category:{" "}
+                    CATEGORY:{" "}
                     <span className="font-semibold text-blue-700">
-                      {mitigationInfo.category}
+                      {mitigationInfo.category?.toUpperCase()}
                     </span>
                   </div>
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
                 <div className="text-gray-700 text-lg font-medium">
-                  Subject:{" "}
+                  SUBJECT:{" "}
                   <span className="font-semibold text-blue-700">
-                    {mitigationInfo.riskName}
+                    {mitigationInfo.riskName?.toUpperCase()}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
@@ -3016,26 +3016,26 @@ export function RiskReviewDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{reviewInfo.riskId}</span>
+                    ID: <span className="font-semibold text-blue-700">{reviewInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
-                    Status:{" "}
+                    STATUS:{" "}
                     <span className="font-semibold text-blue-700">
-                      {reviewInfo.status}
+                      {reviewInfo.status?.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-gray-700">
-                    Category:{" "}
+                    CATEGORY:{" "}
                     <span className="font-semibold text-blue-700">
-                      {reviewInfo.riskCategory}
+                      {reviewInfo.riskCategory?.toUpperCase()}
                     </span>
                   </div>
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
                 <div className="text-gray-700 text-lg font-medium">
-                  Subject:{" "}
+                  SUBJECT:{" "}
                   <span className="font-semibold text-blue-700">
-                    {reviewInfo.riskName}
+                    {reviewInfo.riskName?.toUpperCase()}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
@@ -3110,26 +3110,26 @@ export function RiskMonitoringDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{monitorInfo.riskId}</span>
+                    ID: <span className="font-semibold text-blue-700">{monitorInfo.riskId}</span>
                   </div>
                   <div className="text-gray-700">
-                    Status:{" "}
+                    STATUS:{" "}
                     <span className="font-semibold text-blue-700">
-                      {monitorInfo.status}
+                      {monitorInfo.status?.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-gray-700">
-                    Category:{" "}
+                    CATEGORY:{" "}
                     <span className="font-semibold text-blue-700">
-                      {monitorInfo.riskCategory}
+                      {monitorInfo.riskCategory?.toUpperCase()}
                     </span>
                   </div>
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
                 <div className="text-gray-700 text-lg font-medium">
-                  Subject:{" "}
+                  SUBJECT:{" "}
                   <span className="font-semibold text-blue-700">
-                    {monitorInfo.riskName}
+                    {monitorInfo.riskName?.toUpperCase()}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
