@@ -352,135 +352,105 @@ export function RiskInfo(data) {
 
 
   return (
-    <main >
-      <div className="grid grid-cols-2 gap-12 pt-5">
-        {/* Left Column */}
-        <div className="flex flex-col gap-8">
-          <FormDetailsField
-            id="riskID"
-            label="Risk Code"
-            value={riskInfo.riskID}
-            required
-          />
-          <FormDetailsField
-            id="riskName"
-            label="Risk Name"
-            value={riskInfo.riskName}
-            required
-          />
-          <FormDetailsField
-            id="riskOwner"
-            label="Risk Owner"
-            value={riskInfo.riskOwner}
-            required
-          />
-          <FormDetailsField
-            type="date"
-            id="createdAt"
-            label="Created At"
-            value={riskInfo.createdAt}
-            required
-          />
-          <FormDetailsField
-            id="riskScore"
-            label="Risk Score"
-            value={riskInfo.riskScore}
-            required
-          />
-          <FormDetailsField
-            id="riskObjective"
-            label="Response Objective"
-            value={riskInfo.riskObjective}
-            onChange={onChange}
-            required
-          />
-        </div>
+    <main className="grid grid-cols-2 gap-12 pt-5">
+      {/* Left Column */}
+      <div className="flex flex-col gap-8">
+        <FormDetailsField
+          id="riskID"
+          label="Risk Code"
+          value={riskInfo.riskID}
+          required
+        />
+        <FormDetailsField
+          id="riskName"
+          label="Risk Name"
+          value={riskInfo.riskName}
+          required
+        />
+        <FormDetailsField
+          id="riskOwner"
+          label="Risk Owner"
+          value={riskInfo.riskOwner}
+          required
+        />
+        <FormDetailsField
+          type="date"
+          id="createdAt"
+          label="Created At"
+          value={riskInfo.createdAt}
+          required
+        />
+        <FormDetailsField
+          id="riskScore"
+          label="Risk Score"
+          value={riskInfo.riskScore}
+          required
+        />
+        <FormDetailsField
+          id="riskObjective"
+          label="Response Objective"
+          value={riskInfo.riskObjective}
+          onChange={onChange}
+          required
+        />
+      </div>
 
-        {/* Right Column */}
-        <div className="flex flex-col gap-8">
-          <FormDetailsField
-            id="riskResponse"
-            label="Risk Response"
-            value={riskInfo.riskResponse}
-            onChange={onChange}
-            required
-          />
-          <FormDetailsField
-            id="riskCategory"
-            label="Risk Category"
-            value={riskInfo.riskCategory}
-            onChange={onChange}
-            required
-          />
-          <FormDetailsField
-            id="riskProbabilityLevel"
-            label="Probability Level"
-            value={riskInfo.riskProbabilityLevel}
-            onChange={onChange}
-            required
-          />
-          <FormDetailsField
-            id="riskDescription"
-            label="Risk Description"
-            value={riskInfo.riskDescription}
-            onChange={onChange}
-            required
-          />
-          <FormDetailsField
-            id="riskResponseActivity"
-            label="Response Activity"
-            value={riskInfo.riskResponseActivity}
-            onChange={onChange}
-            required
-          />
-          
-          <FormDetailsField
-            id="riskImpactLevel"
-            label="Response Impact Level"
-            value={riskInfo.riskImpactLevel}
-            onChange={onChange}
-            required
-          />
-        </div>
+      {/* Right Column */}
+      <div className="flex flex-col gap-8">
+        <FormDetailsField
+          id="riskResponse"
+          label="Risk Response"
+          value={riskInfo.riskResponse}
+          onChange={onChange}
+          required
+        />
+        <FormDetailsField
+          id="riskCategory"
+          label="Risk Category"
+          value={riskInfo.riskCategory}
+          onChange={onChange}
+          required
+        />
+        <FormDetailsField
+          id="riskProbabilityLevel"
+          label="Probability Level"
+          value={riskInfo.riskProbabilityLevel}
+          onChange={onChange}
+          required
+        />
+        <FormDetailsField
+          id="riskDescription"
+          label="Risk Description"
+          value={riskInfo.riskDescription}
+          onChange={onChange}
+          required
+        />
+        <FormDetailsField
+          id="riskResponseActivity"
+          label="Response Activity"
+          value={riskInfo.riskResponseActivity}
+          onChange={onChange}
+          required
+        />
+        
+        <FormDetailsField
+          id="riskImpactLevel"
+          label="Response Impact Level"
+          value={riskInfo.riskImpactLevel}
+          onChange={onChange}
+          required
+        />
       </div>
 
       {/* Submit Button */}
-      
-      <div className="flex justify-end mt-2">
-        <Button
-          variant="text"
-          color="success"
-          onClick={handleSubmit}>
-          
-            {isSubmitting ? (
-                <span className="flex items-center justify-center">
-                  {/* Spinner */}
-                  <svg
-                    className="animate-spin h-5 w-5 mr-2 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2zm2 5.292A7.964 7.964 0 014 12H2a10 10 0 0016.292 7.292l-1.414-1.414A8.003 8.003 0 016 17.292z"
-                    />
-                  </svg>
-                  Loading...
-                </span>
-              ) : (
-                "Submit"
-              )
-            }
-        </Button>
+      <div className="col-span-2 flex justify-end pt-2 px-[300px]">
+        <CustomButton
+          label="Submit"
+          onClick={handleSubmit}
+          type="submit"
+          className="custom-class"
+          loading={isSubmitting}
+        />
       </div>
     </main>
   );
