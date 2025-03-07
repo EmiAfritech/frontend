@@ -6,7 +6,7 @@ import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL, EDITMITIGATION_URL, EDITRISK_URL } from "../../api/routes";
+import { DELETERISK_URL, EDITMITIGATION_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
 
