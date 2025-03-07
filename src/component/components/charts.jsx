@@ -272,7 +272,7 @@ export function RiskLineChart() {
 export function ReportRiskLevel() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskLevel} = useRiskLevelReport(departmentName)
   console.log({"report risk Level": riskLevel})
 
@@ -291,7 +291,7 @@ export function ReportRiskLevel() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
@@ -312,7 +312,7 @@ export function ReportRiskLevel() {
 export function ReportRiskStatus() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskStatus} = useRiskStatusReportPieChart(departmentName)
  
 
@@ -329,7 +329,7 @@ export function ReportRiskStatus() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
@@ -349,7 +349,7 @@ export function ReportRiskStatus() {
 export function ReportRiskLocation() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskLocation} = useRiskLocationReport(departmentName);
 
   
@@ -367,7 +367,7 @@ export function ReportRiskLocation() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
@@ -387,7 +387,7 @@ export function ReportRiskLocation() {
 export function ReportRiskCategory() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskCategory} = useRiskCategoryReport(departmentName)
   
   console.log({"report risk Category": riskCategory})
@@ -406,7 +406,7 @@ export function ReportRiskCategory() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
@@ -427,7 +427,7 @@ export function ReportRiskResponse() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskResponse} = useRiskResponseReport(departmentName)
 
   return (
@@ -443,7 +443,7 @@ export function ReportRiskResponse() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}

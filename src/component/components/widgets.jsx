@@ -268,7 +268,7 @@ export const CustomDetailsSelect = ({
 
 
 
-export function RiskInfo(data) {
+export function RiskInfo(data, handleSubmit, isSubmitting) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
@@ -348,7 +348,7 @@ export function RiskInfo(data) {
       } finally {
         setIsSubmitting(false);
       }
-    };
+  };
 
 
   return (
@@ -444,13 +444,13 @@ export function RiskInfo(data) {
 
       {/* Submit Button */}
       <div className="col-span-2 flex justify-end pt-2 px-[300px]">
-        <CustomButton
+        {/* <CustomButton
           label="Submit"
           onClick={handleSubmit}
           type="submit"
           className="custom-class"
           loading={isSubmitting}
-        />
+        /> */}
       </div>
     </main>
   );

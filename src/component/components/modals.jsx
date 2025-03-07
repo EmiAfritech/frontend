@@ -3135,7 +3135,44 @@ export function RiskMonitoringDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <MonitorRisk data= {monitorInfo}  />
+            <MonitorRisk data= {monitorInfo}  handleSubmit={handleSubmit} isSubmitting={isSubmitting}/>
+          </div>
+
+          <div className="flex justify-end mt-2">
+            <Button
+              variant="text"
+              color="success"
+              onClick={handleSubmit}>
+              
+                {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      {/* Spinner */}
+                      <svg
+                        className="animate-spin h-5 w-5 mr-2 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24">
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2zm2 5.292A7.964 7.964 0 014 12H2a10 10 0 0016.292 7.292l-1.414-1.414A8.003 8.003 0 016 17.292z"
+                        />
+                      </svg>
+                      Loading...
+                    </span>
+                  ) : (
+                    "Submit"
+                  )
+                }
+            </Button>
           </div>
         </Box>
       </Modal>
