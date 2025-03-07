@@ -779,10 +779,10 @@ export function useRiskLocationReport(departmentName) {
   return { riskLocation, fetchData };
 }
 
-export function useRiskOwnerReport(departmentName) {
+export function useRiskOwnerReport(c) {
   const { auth } = useContext(AuthContext);
   const [riskOwner, setRiskOwner] = useState("");
-
+  console.log(departmentName)
   const fetchData = async () => {
     try {
       const response = await axios.post(
