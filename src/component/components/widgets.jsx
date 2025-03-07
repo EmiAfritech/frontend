@@ -286,6 +286,7 @@ export function RiskInfo(data) {
     riskResponse: RiskInfoInitialize.riskResponse,
     riskCategory: RiskInfoInitialize.riskCategory,
     riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
+    riskImpactLevel: RiskInfoInitialize.riskImpactLevel,
 
   })
 
@@ -317,7 +318,7 @@ export function RiskInfo(data) {
               deptId: RiskInfoInitialize.data.deptId,
               id: RiskInfoInitialize.data.id,
               
-            }            
+            }       
           ),
           {
             headers: {
@@ -417,6 +418,14 @@ export function RiskInfo(data) {
           id="riskResponseActivity"
           label="Response Activity"
           value={riskInfo.riskResponseActivity}
+          onChange={onChange}
+          required
+        />
+        
+        <FormDetailsField
+          id="riskImpactLevel"
+          label="Response Impact Leve"
+          value={riskInfo.riskImpactLevel}
           onChange={onChange}
           required
         />
