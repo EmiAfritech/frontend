@@ -514,7 +514,7 @@ export function MitigateRIsk(data){
       );
       if (response.status === 201) {
         showToast(
-          "Risk has be Updated Successfully!",
+          "Risk Mitigation has be Updated Successfully!",
         );
       }
     } catch (err) {
@@ -697,7 +697,9 @@ export function ReviewRIsk(data){
         }
       );
       if (response.status === 201) {
-        console.log("sucess")
+        showToast(
+          "Risk Reviiew has be Updated Successfully!",
+        );
       }
     } catch (err) {
       // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -872,8 +874,8 @@ export function MonitorRisk(data){
             riskResponseImplementation: monitorInfo.ResponseImplementation,
             challenges: monitorInfo.challenges,
             comments: monitorInfo.comments,
-            deptId: RiskInfoInitialize.deptId,
-            id: RiskInfoInitialize.id,
+            deptId: MonitorInfoInitialize.deptId,
+            id: MonitorInfoInitialize.id,
           }       
         ),
         {
