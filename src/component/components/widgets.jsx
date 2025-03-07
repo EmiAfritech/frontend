@@ -301,7 +301,7 @@ export function RiskInfo(data) {
       e.preventDefault();
   
       setIsSubmitting(true);
-    console.log(JSON.stringify(
+    console.log({"risk data": JSON.stringify(
       {
         riskID,
         riskName,
@@ -317,7 +317,7 @@ export function RiskInfo(data) {
         id: RiskInfoInitialize.id,
         
       }       
-    ));
+    )})
       try {
         const response = await axios.post(
           EDITRISK_URL,
