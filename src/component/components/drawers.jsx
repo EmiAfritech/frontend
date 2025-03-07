@@ -1325,11 +1325,11 @@ export function Complianceforms({ onFormSubmit }) {
   const { t } = useTranslation();
   const [description, setDescription] = useState("");
   const [recomendedChanges, setRecommendedChanges] = useState("");
-  const [frameWorkSelect, setFrameWorkSelect] = useState(true);
+  const [frameWorkSelect, setFrameWorkSelect] = useState("");
   const [controlItem, setControlItem] = useState("");
   const {frameworkdropdown} = useFrameWorkDropDown();
   const [assessment, setAssessment] = useState("")
-  const {controleItemDropdown} = useControlItemDropDown(frameworkdropdown)
+  const {controleItemDropdown} = useControlItemDropDown(frameWorkSelect)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const FormArray = GRCFormsArray(t);

@@ -405,13 +405,13 @@ export function useFrameWorkDropDown() {
   return { frameworkdropdown, fetchData };
 }
 
-export function useControlItemDropDown(frameworkdropdown) {
+export function useControlItemDropDown(frameWorkSelect) {
   const { auth } = useContext(AuthContext);
   const [controleItemDropdown, setControleItemDropdown] = useState([]);
   const fetchData = async () => {
     try {
       const response = await axios.post(CONTROLITEMDROPDOWN,
-      JSON.stringify({ frameworkdropdown }),
+      JSON.stringify({ frameWorkSelect }),
       {
         headers: {
           "Content-Type": "application/json",
