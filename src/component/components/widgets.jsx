@@ -189,7 +189,7 @@ export function FormDetailsField({
 }) {
   return (
     <div className="flex items-center gap-4 mt-4">
-      <div className="flex flex-col">
+      <div>
         {label && (
           <label
             className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
@@ -498,8 +498,8 @@ export function MitigateRIsk(data){
             mitigationEffort: mitigationInfo.MitigationEffort,
             mitigationControl: mitigationInfo.MitigationControl,
             riskReviewer: mitigationInfo.riskOwner,
-            deptId: RiskInfoInitialize.deptId,
-            id: RiskInfoInitialize.id,
+            deptId: MitigationInfoInitialize.deptId,
+            id: MitigationInfoInitialize.id,
             
           }       
         ),
