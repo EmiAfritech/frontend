@@ -235,7 +235,7 @@ export const EDITMONITORING_URL = "/Organization/Risk/Monitoring/update"
 export const EDITUSER_URL = "/Organization/User/update"
 
 //delete user url
-export const DELETEUSER_URL = "users/delete"
+export const DELETEUSER_URL = "/users/delete"
 
 //edit department url
 export const EDITDEPARTMENT_URL = "/Organization/Department/update"
