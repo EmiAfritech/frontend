@@ -6,7 +6,7 @@ import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL, EDITRISK_URL } from "../../api/routes";
+import { DELETERISK_URL, EDITMITIGATION_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
 
@@ -435,7 +435,7 @@ export function RiskInfo(data) {
         
         <FormDetailsField
           id="riskImpactLevel"
-          label="Response Impact Leve"
+          label="Response Impact Level"
           value={riskInfo.riskImpactLevel}
           onChange={onChange}
           required
@@ -492,8 +492,8 @@ export function MitigateRIsk(data){
         JSON.stringify(
           {
             riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: mitigationInfo.MitigationProbabilityLevel,
-            mitigatedRiskImpactLevel: mitigationInfo.MitigatedImpact,
+            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(mitigationInfo.MitigationProbabilityLevel),
+            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigationInfo.MitigatedImpact),
             mitigationCost: mitigationInfo.MitigationCost,
             mitigationEffort: mitigationInfo.MitigationEffort,
             mitigationControl: mitigationInfo.MitigationControl,
