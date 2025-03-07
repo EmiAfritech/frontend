@@ -226,7 +226,7 @@ export const EDITREVIEW_URL = "/Organization/Risk/Review/update"
 export const EDITMITIGATION_URL = "/Organization/Risk/Mitigation/update"
 
 //edit monitoring url
-export const EDITMONITORING_URL = "departments/risk/riskmonitorings/edit"
+export const EDITMONITORING_URL = "/Organization/Risk/Monitoring/update"
 
 //edit user url
 export const EDITUSER_URL = "/Organization/User/update"
