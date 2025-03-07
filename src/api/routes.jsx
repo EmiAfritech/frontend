@@ -220,10 +220,10 @@ export const EDITRISK_URL = "/Organization/Risk/update"
 export const DELETERISK_URL  = "/Organization/Risk/delete"
 
 //edit review url
-export const EDITREVIEW_URL = "/departments/risk/riskreview/edit"
+export const EDITREVIEW_URL = "/Organization/Risk/Review/update"
 
 //edit mitigation url
-export const EDITMITIGATION_URL = "departments/risk/riskmitigation/edit"
+export const EDITMITIGATION_URL = "/Organization/Risk/Mitigation/update"
 
 //edit monitoring url
 export const EDITMONITORING_URL = "departments/risk/riskmonitorings/edit"
