@@ -379,6 +379,7 @@ export function Riskforms({ onFormSubmit }) {
   const handleOpen = () => {
     setOpen(true);
   };
+  
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {

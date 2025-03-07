@@ -1,5 +1,4 @@
 import Select from "react-select";
-import LoadingPopup from "../../api/sessions";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
@@ -10,6 +9,7 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
+import { showToast } from "./notifications";
 
 export function InputField({
   label,
@@ -273,9 +273,7 @@ export function RiskInfo(data) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
-  const [riskProbabilityLevel, setRiskProbabilityLevel] = useState()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  console.log(RiskInfoInitialize)
   const [riskInfo, setRiskInfo] = useState({
     riskID: RiskInfoInitialize.riskID,
     riskName: RiskInfoInitialize.riskName,
@@ -298,23 +296,8 @@ export function RiskInfo(data) {
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
 
-  console.log({"risk data": JSON.stringify(
-    {
-      riskID: riskInfo.riskID,
-      riskName: riskInfo.riskName,
-      riskDescription: riskInfo.riskDescription,
-      riskCategory: riskInfo.riskCategory,
-      riskImpactLevel: getImpactLevelNumber(riskInfo.riskImpactLevel),
-      riskProbabilityLevel: getProbabilityLevelNumber(riskInfo.riskProbabilityLevel),
-      riskObjective: riskInfo.riskObjective,
-      riskResponse: riskInfo.riskResponse,
-      riskResponseActivity: riskInfo.riskResponseActivity,
-      riskOwner: riskInfo.riskOwner,
-      deptId: RiskInfoInitialize.deptId,
-      id: RiskInfoInitialize.id,
-      
-    }       
-  )})
+
+ 
   const handleSubmit = async (e) => {
       e.preventDefault();
   
@@ -349,7 +332,9 @@ export function RiskInfo(data) {
           }
         );
         if (response.status === 201) {
-          console.log("sucess")
+          showToast(
+            "Risk has be Updated Successfully!",
+          );
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
