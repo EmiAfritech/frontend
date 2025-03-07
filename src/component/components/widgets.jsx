@@ -9,7 +9,6 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
-import { showToast } from "./notifications";
 
 export function InputField({
   label,
