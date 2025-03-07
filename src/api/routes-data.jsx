@@ -421,7 +421,7 @@ export function useControlItemDropDown(frameWorkSelect) {
         },
         withCredentials: true,
       });
-
+      console.log(response)
       setControleItemDropdown(response.data);
     } catch (error) {
       console.error(error);
