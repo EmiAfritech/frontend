@@ -1327,7 +1327,8 @@ export function Complianceforms({ onFormSubmit }) {
   const [recomendedChanges, setRecommendedChanges] = useState("");
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
   const [controlItem, setControlItem] = useState("");
-  const {frameworkdropdown} = useFrameWorkDropDown()
+  const {frameworkdropdown} = useFrameWorkDropDown();
+  const [assessment, setAssessment] = useState("")
   const {controleItemDropdown} = useControlItemDropDown(frameworkdropdown)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
@@ -1351,9 +1352,10 @@ export function Complianceforms({ onFormSubmit }) {
       await axios.post(
         CONTROLFORM_URL,
         JSON.stringify({
-          description: description,
-          controlItem: controlItem,
-          frameworkId: frameWorkSelect,
+
+          assessment:assessment,
+          recomendation: recomendedChanges,
+          controlId:controlItem
         }),
         {
           headers: {
@@ -1418,10 +1420,10 @@ export function Complianceforms({ onFormSubmit }) {
               required
             />
             <CustomSelect
-              id="frameWorkSelect"
+              id="assessment"
               label="Assessment"
-              value={frameWorkSelect}
-              onChange={setFrameWorkSelect}
+              value={assessment}
+              onChange={setAssessment}
               options={FormArray.compliance}
               searchable={true}
               required
