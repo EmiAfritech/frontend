@@ -2826,18 +2826,18 @@ export function RiskDetails(data) {
               <div className="col-span-4 flex flex-col py-10">
                 <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
-                    ID: <span className="font-semibold">{riskInfo.riskID}</span>
+                    ID: <span className="font-semibold">{riskInfo.riskID?.toUpperCase()}</span>
                   </div>
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {riskInfo.riskStatus}
+                      {riskInfo.riskStatus?.toUpperCase()}
                     </span>
                   </div>
                   <div className="text-gray-700">
                     Category:{" "}
                     <span className="font-semibold text-blue-700">
-                      {riskInfo.riskCategory}
+                      {riskInfo.riskCategory?.toUpperCase()}
                     </span>
                   </div>
                 </div>
@@ -2845,7 +2845,7 @@ export function RiskDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {riskInfo.riskDescription}
+                    {riskInfo.riskDescription?.toUpperCase()}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
