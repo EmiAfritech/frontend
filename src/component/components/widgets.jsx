@@ -513,7 +513,9 @@ export function MitigateRIsk(data){
         }
       );
       if (response.status === 201) {
-        console.log("sucess")
+        showToast(
+          "Risk has be Updated Successfully!",
+        );
       }
     } catch (err) {
       // if (err.response?.status === 500 || err.response?.status === 400) {
