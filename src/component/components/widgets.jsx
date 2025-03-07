@@ -268,11 +268,10 @@ export const CustomDetailsSelect = ({
 
 
 
-export function RiskInfo(data, handleSubmit, isSubmitting) {
+export function RiskInfo(data, handleSubmit, isSubmitting=false) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
     riskID: RiskInfoInitialize.riskID,
     riskName: RiskInfoInitialize.riskName,
@@ -300,7 +299,7 @@ export function RiskInfo(data, handleSubmit, isSubmitting) {
   const handleSubmit = async (e) => {
       e.preventDefault();
   
-      setIsSubmitting(true);
+      isSubmitting = true;
     
       try {
         const response = await axios.post(
@@ -346,7 +345,7 @@ export function RiskInfo(data, handleSubmit, isSubmitting) {
         // }
         console.log(err)
       } finally {
-        setIsSubmitting(false);
+        isSubmitting= false;
       }
   };
 
