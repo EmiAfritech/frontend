@@ -287,8 +287,10 @@ export function RiskInfo(data) {
     riskCategory: RiskInfoInitialize.riskCategory,
     riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
     riskImpactLevel: RiskInfoInitialize.riskImpactLevel,
+    riskObjective:RiskInfoInitialize.riskObjective
 
   })
+
 
   const onChange = (e) => {
     const { id, value } = e.target;
@@ -380,6 +382,13 @@ export function RiskInfo(data) {
           id="riskScore"
           label="Risk Score"
           value={riskInfo.riskScore}
+          required
+        />
+        <FormDetailsField
+          id="riskObjective"
+          label="Response Objective"
+          value={riskInfo.riskObjective}
+          onChange={onChange}
           required
         />
       </div>
