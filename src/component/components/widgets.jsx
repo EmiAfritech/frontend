@@ -495,63 +495,53 @@ export function MitigateRIsk(data){
     setMitigationInfo((prevData) => ({ ...prevData, [id]: value }));
   };
   
-  const handleSubmit = async (e) => {MitigationEffort
-    console.log("Mitigated Data", MitigationInfoInitialize.data.riskId, 
-      MitigationInfoInitialize.data.riskName, 
-      MitigationInfoInitialize.data.UpdatedAt, 
-      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
-      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
-      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
-      MitigationInfoInitialize.data.MitigationControl)
-      // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
   
-      // setIsSubmitting(true);
-  
-      // try {
-      //   const response = await axios.post(
-      //     EDITRISK_URL,
-      //     JSON.stringify(
-      //       {
-      //         riskID,
-      //         riskName,
-      //         riskDescription,
-      //         riskCategory,
-      //         riskImpactLevel,
-      //         riskProbabilityLevel,
-      //         riskObjective,
-      //         riskResponse,
-      //         riskResponseActivity,
-      //         riskOwner,
-      //         deptId: RiskInfoInitialize.data.deptId,
-      //         id: RiskInfoInitialize.data.id,
-              
-      //       }            
-      //     ),
-      //     {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         Accept: "application/json",
-      //       },
-      //       withCredentials: true,
-      //     }
-      //   );
-      //   if (response.status === 201) {
-      //     console.log("sucess")
-      //     verifyRecapture();
-      //   }
-      // } catch (err) {
-      //   // if (err.response?.status === 500 || err.response?.status === 400) {
-      //   //   setNotification({ ...notification, serverDown: true });
-      //   //   reload();
-      //   // } else if (err.response?.status === 401) {
-      //   //   setNotification({ ...notification, authorized: true });
-      //   // } else if ([404].includes(err.response?.status)) {
-      //   //   setNotification({ ...notification, errorMessage: true });
-      //   // }
-      // } finally {
-      //   setLoading(false);
+    try {
+      const response = await axios.post(
+        EDITMITIGATION_URL,
+        JSON.stringify(
+          {
+            riskId: mitigationInfo.riskID,
+            mitigatedRiskProbabilityLevel: mitigationInfo.MitigationProbabilityLevel,
+            mitigatedRiskImpactLevel: mitigationInfo.MitigatedImpact,
+            mitigationCost: mitigationInfo.MitigationCost,
+            mitigationEffort: mitigationInfo.MitigationEffort,
+            mitigationControl: mitigationInfo.MitigationControl,
+            riskReviewer: mitigationInfo.riskOwner,
+            deptId: RiskInfoInitialize.deptId,
+            id: RiskInfoInitialize.id,
+            
+          }       
+        ),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      if (response.status === 201) {
+        console.log("sucess")
+      }
+    } catch (err) {
+      // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   setNotification({ ...notification, serverDown: true });
+      //   reload();
+      // } else if (err.response?.status === 401) {
+      //   setNotification({ ...notification, authorized: true });
+      // } else if ([404].includes(err.response?.status)) {
+      //   setNotification({ ...notification, errorMessage: true });
       // }
-    };
+      console.log(err)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -690,63 +680,50 @@ export function ReviewRIsk(data){
     setReviewInfo((prevData) => ({ ...prevData, [id]: value }));
   };
   
-  const handleSubmit = async (e) => {MitigationEffort
-    console.log("Mitigated Data", ReviewInfoInitialize.riskId, 
-      MitigationInfoInitialize.data.riskName, 
-      MitigationInfoInitialize.data.UpdatedAt, 
-      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
-      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
-      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
-      MitigationInfoInitialize.data.MitigationControl)
-      // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
   
-      // setIsSubmitting(true);
-  
-      // try {
-      //   const response = await axios.post(
-      //     EDITRISK_URL,
-      //     JSON.stringify(
-      //       {
-      //         riskID,
-      //         riskName,
-      //         riskDescription,
-      //         riskCategory,
-      //         riskImpactLevel,
-      //         riskProbabilityLevel,
-      //         riskObjective,
-      //         riskResponse,
-      //         riskResponseActivity,
-      //         riskOwner,
-      //         deptId: RiskInfoInitialize.data.deptId,
-      //         id: RiskInfoInitialize.data.id,
-              
-      //       }            
-      //     ),
-      //     {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         Accept: "application/json",
-      //       },
-      //       withCredentials: true,
-      //     }
-      //   );
-      //   if (response.status === 201) {
-      //     console.log("sucess")
-      //     verifyRecapture();
-      //   }
-      // } catch (err) {
-      //   // if (err.response?.status === 500 || err.response?.status === 400) {
-      //   //   setNotification({ ...notification, serverDown: true });
-      //   //   reload();
-      //   // } else if (err.response?.status === 401) {
-      //   //   setNotification({ ...notification, authorized: true });
-      //   // } else if ([404].includes(err.response?.status)) {
-      //   //   setNotification({ ...notification, errorMessage: true });
-      //   // }
-      // } finally {
-      //   setLoading(false);
+    try {
+      const response = await axios.post(
+        EDITREVIEW_URL,
+        JSON.stringify(
+          {
+            riskId: reviewInfo.riskID,
+            riskReview: reviewInfo.riskReview,
+            NextRiskReviewDate: reviewInfo.NextRiskReviewDate,
+            riskReviewComments: reviewInfo.riskReviewComments,
+            deptId: RiskInfoInitialize.deptId,
+            id: RiskInfoInitialize.id,
+            
+          }       
+        ),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      if (response.status === 201) {
+        console.log("sucess")
+      }
+    } catch (err) {
+      // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   setNotification({ ...notification, serverDown: true });
+      //   reload();
+      // } else if (err.response?.status === 401) {
+      //   setNotification({ ...notification, authorized: true });
+      // } else if ([404].includes(err.response?.status)) {
+      //   setNotification({ ...notification, errorMessage: true });
       // }
-    };
+      console.log(err)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   console.log({"riskreview": data})
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
