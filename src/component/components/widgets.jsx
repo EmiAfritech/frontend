@@ -683,8 +683,8 @@ export function ReviewRIsk(data){
             riskReview: reviewInfo.riskReview,
             NextRiskReviewDate: reviewInfo.NextRiskReviewDate,
             riskReviewComments: reviewInfo.riskReviewComments,
-            deptId: reviewInfo.deptId,
-            id: reviewInfo.id,
+            deptId: ReviewInfoInitialize.deptId,
+            id: ReviewInfoInitialize.id,
             
           }       
         ),
@@ -818,7 +818,7 @@ export function ReviewRIsk(data){
       </div>
 
       {/* Submit Button */}
-      <div className="col-span-2 flex justify-end pt-6">
+      <div className= "col-span-2 flex justify-end pt-2 px-[300px]">
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
