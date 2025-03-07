@@ -35,6 +35,9 @@ export const USERS_URL = "/Organization/User/list";
 //risk monitoring list
 export const RISKMONITORING_URL = "/Organization/Risk/Monitoring/list";
 
+//risk monitoring list
+export const COMPLIANCETABLE_URL = "/Compliance/list";
+
 //department url
 export const DEPARTMENT_URL = "/Organization/Department/list";
 

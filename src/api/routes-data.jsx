@@ -40,7 +40,8 @@ import {
   MITIGATIONRISK_URL,
   RISKREVIEW_URL,
   RISKNEEDEDTOBESREVIEW_URL,
-  DEPARTMENTCODEDROPDOWN_URL
+  DEPARTMENTCODEDROPDOWN_URL,
+  COMPLIANCETABLE_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -329,8 +330,6 @@ export function useRiskIDMonitoring(departmentID) {
   return { monitoringIDs };
 }
 
-
-
 export function useRiskReviewer() {
   const { auth } = useContext(AuthContext);
   const [riskReviewerDropdown, setRiskReviewer] = useState([]);
@@ -430,6 +429,30 @@ export function useMonitoringTable() {
   return { monitoringTable, fetchData };
 }
 
+export function useComplianceTable() {
+  const { auth } = useContext(AuthContext);
+  const [complianceTable, setComplianceTable] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(COMPLIANCETABLE_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setComplianceTable(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { complianceTable, fetchData };
+}
 
 export function useOpenVrsClosedPieChart() {
   const { auth } = useContext(AuthContext);
@@ -653,7 +676,6 @@ export function useRiskLevelReport(departmentName) {
   }, [departmentName]); 
   return { riskLevel, fetchData };
 }
-
 
 export function useRiskStatusReportPieChart(departmentName) {
   const { auth } = useContext(AuthContext);

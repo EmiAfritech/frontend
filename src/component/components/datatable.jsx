@@ -257,6 +257,10 @@ export const useComplianceColumns = () => {
       header: "Framework",
     },
     {
+      accessorKey: "recomendation",
+      header: "Recomendation",
+    },
+    {
       accessorKey: "createdAt",
       header: "Created At",
     },
