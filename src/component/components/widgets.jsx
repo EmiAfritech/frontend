@@ -355,21 +355,18 @@ export function RiskInfo(data) {
           id="riskID"
           label="Risk Code"
           value={riskInfo.riskID}
-          onChange={onChange}
           required
         />
         <FormDetailsField
           id="riskName"
           label="Risk Name"
           value={riskInfo.riskName}
-          onChange={onChange}
           required
         />
         <FormDetailsField
           id="riskOwner"
           label="Risk Owner"
           value={riskInfo.riskOwner}
-          onChange={onChange}
           required
         />
         <FormDetailsField
@@ -377,14 +374,12 @@ export function RiskInfo(data) {
           id="createdAt"
           label="Created At"
           value={riskInfo.createdAt}
-          onChange={onChange}
           required
         />
         <FormDetailsField
           id="riskScore"
           label="Risk Score"
           value={riskInfo.riskScore}
-          onChange={onChange}
           required
         />
       </div>
@@ -947,15 +942,13 @@ export function MonitorRisk(data){
           
           required
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="ResponseActivity"
           label="Response Activity"
           value={monitorInfo.ResponseActivity}
           onChange={onChange}
-          options={options}
-          searchable={true}
+          
           required
-          group={false}
         />
         <FormDetailsField
           type="date"
@@ -978,35 +971,29 @@ export function MonitorRisk(data){
 
       {/* Right Column */}
       <div className="flex flex-col gap-8">
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskResponse"
           label="Risk Response"
           value={monitorInfo.riskResponse}
           onChange={onChange}
-          options={options}
-          searchable={true}
+          
           required
-          group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="RiskReviewer"
           label="Risk Reviewer"
           value={monitorInfo.RiskReviewer}
           onChange={onChange}
-          options={options}
-          searchable={true}
+          
           required
-          group={false}
         />
-        <CustomDetailsSelect
+        <FormDetailsField
           id="riskProbabilityLevel"
           label="Probability Level"
           value={monitorInfo.riskProbabilityLevel}
           onChange={onChange}
-          options={options}
-          searchable={true}
+          
           required
-          group={false}
         />
         <FormDetailsField
           id="ResponseImplementation"
