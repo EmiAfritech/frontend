@@ -209,6 +209,9 @@ export const HEATMAP_URL = "/getHeatMapData";
 //Frame Work
 export const FRAMEWORKDROPDOWN = "/Governance/Control/frameworkDropdown"; 
 
+//Control Work
+export const CONTROLITEMDROPDOWN = "/Compliance/controlItemsDropdown"; 
+
 //All risks to be mitigated
 export const RISKSTOBEMITIGATED_URL = "/Organization/Risk/getAllOpenedRiskIDSToBeMitigated"; 
 

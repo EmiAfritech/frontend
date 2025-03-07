@@ -41,7 +41,8 @@ import {
   RISKREVIEW_URL,
   RISKNEEDEDTOBESREVIEW_URL,
   DEPARTMENTCODEDROPDOWN_URL,
-  COMPLIANCETABLE_URL
+  COMPLIANCETABLE_URL,
+  CONTROLITEMDROPDOWN
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -402,6 +403,33 @@ export function useFrameWorkDropDown() {
     fetchData(); 
   }, []);
   return { frameworkdropdown, fetchData };
+}
+
+export function useControlItemDropDown(frameworkdropdown) {
+  const { auth } = useContext(AuthContext);
+  const [controleItemDropdown, setControleItemDropdown] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(CONTROLITEMDROPDOWN,
+      JSON.stringify({ frameworkdropdown }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+        withCredentials: true,
+      });
+
+      setControleItemDropdown(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { controleItemDropdown, fetchData };
 }
 
 export function useMonitoringTable() {

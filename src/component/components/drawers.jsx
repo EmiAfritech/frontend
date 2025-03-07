@@ -25,6 +25,7 @@ import {
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
+  useControlItemDropDown,
   useDepartmentCodeDropdown,
   useDepartmentDropdown,
   useFrameWorkDropDown,
@@ -379,7 +380,7 @@ export function Riskforms({ onFormSubmit }) {
   const handleOpen = () => {
     setOpen(true);
   };
-  
+
   const notify = () => {
     toast.success("Risk Saved Successfully", {
       onClose: () => {
@@ -1327,6 +1328,7 @@ export function Complianceforms({ onFormSubmit }) {
   const [frameWorkSelect, setFrameWorkSelect] = useState(true);
   const [controlItem, setControlItem] = useState("");
   const {frameworkdropdown} = useFrameWorkDropDown()
+  const {controleItemDropdown} = useControlItemDropDown(frameworkdropdown)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
   const FormArray = GRCFormsArray(t);
@@ -1397,19 +1399,21 @@ export function Complianceforms({ onFormSubmit }) {
         <hr />
         <form className="w-96">
           <div className=" px-10 py-10 flex flex-col space-y-6">
-            <FormInputField
-              id="controlItem"
-              label="Control Item"
-              value={controlItem}
-              onChange={(e) => setControlItem(e.target.value)}
-              required
-            />
             <CustomSelect
               id="frameWorkSelect"
               label="Select a Framework"
               value={frameWorkSelect}
               onChange={setFrameWorkSelect}
               options={frameworkdropdown}
+              searchable={true}
+              required
+            />
+            <CustomSelect
+              id="controlItem"
+              label="Control Item"
+              value={controlItem}
+              onChange={setControlItem}
+              options={controleItemDropdown}
               searchable={true}
               required
             />
