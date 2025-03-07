@@ -844,7 +844,7 @@ export function MonitorRisk(data){
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
-  const MitigationInfoInitialize = data.data;
+  const MonitorInfoInitialize = data.data;
   const [isSubmitting, setIsSubmitting] = useState(false)
   console.log(MonitorInfoInitialize)
   const [monitorInfo, setMonitorInfo] = useState({
