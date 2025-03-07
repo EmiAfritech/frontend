@@ -2768,47 +2768,42 @@ export function LogOut() {
 export function RiskDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add isSubmitting state
+
   const close = () => setOpen(false);
   const riskInfo = data.data;
-  console.log(riskInfo)
 
   function handleOpen() {
     setOpen(!open);
   }
 
+  // Define onClick function
+  const handleSubmitClick = () => {
+    setIsSubmitting(true);
+  };
+
   return (
     <div>
-    <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-      <IconButton onClick={handleOpen} color="primary">
-        <FaEye />
-      </IconButton>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <IconButton onClick={handleOpen} color="primary">
+          <FaEye />
+        </IconButton>
         <Delete
-          data = {riskInfo}
-          message = "Are you sure you want to delete risk?"
-          name = "risk"
+          data={riskInfo}
+          message="Are you sure you want to delete risk?"
+          name="risk"
         />
-    </div>
-      <Modal
-        open={open}
-        onClose={close}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
+      </div>
+      <Modal open={open} onClose={close} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <button
-            onClick={close}
-            className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">
-            ✖
-          </button>
+          <button onClick={close} className="absolute top-4 right-4 text-black p-2 hover:bg-gray-400">✖</button>
 
-          {/* Header */}
           <div className="font-bold text-3xl flex items-center text-[#04B1C4] justify-center mb-6">
             GRC Risk Management
           </div>
 
-          {/* Scrollable Body */}
           <div className="overflow-y-auto max-h-[70vh] p-4">
             <div className="grid grid-cols-6 bg-gray-300 mb-2 p-6 rounded-lg shadow-md">
-              {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
@@ -2822,72 +2817,41 @@ export function RiskDetails(data) {
                 </div>
               </div>
 
-              {/* Right Section: Details */}
               <div className="col-span-4 flex flex-col py-10">
-                <div className="flex  space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
+                <div className="flex space-x-6 items-center justify-between w-full text-lg font-medium pb-4">
                   <div className="text-gray-700">
                     ID: <span className="font-semibold text-blue-700">{riskInfo.riskID?.toUpperCase()}</span>
                   </div>
                   <div className="text-gray-700">
-                    STATUS:{" "}
-                    <span className="font-semibold text-blue-700">
-                      {riskInfo.riskStatus?.toUpperCase()}
-                    </span>
+                    STATUS: <span className="font-semibold text-blue-700">{riskInfo.riskStatus?.toUpperCase()}</span>
                   </div>
                   <div className="text-gray-700">
-                    CATEGORY:{" "}
-                    <span className="font-semibold text-blue-700">
-                      {riskInfo.riskCategory?.toUpperCase()}
-                    </span>
+                    CATEGORY: <span className="font-semibold text-blue-700">{riskInfo.riskCategory?.toUpperCase()}</span>
                   </div>
                 </div>
                 <hr className="my-4 w-full border-gray-400" />
                 <div className="text-gray-700 text-lg font-medium">
-                  SUBJECT:{" "}
-                  <span className="font-semibold text-blue-700">
-                    {riskInfo.riskDescription?.toUpperCase()}
-                  </span>
+                  SUBJECT: <span className="font-semibold text-blue-700">{riskInfo.riskDescription?.toUpperCase()}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskInfo data= {riskInfo} onClick={onClick} isSubmitting={isSubmitting}/>
+            <RiskInfo data={riskInfo} onClick={handleSubmitClick} isSubmitting={isSubmitting} />
           </div>
 
           <div className="flex justify-end mt-2">
-            <Button
-              variant="text"
-              color="success"
-              onClick={onClick}>
-              
-                {isSubmitting ? (
-                    <span className="flex items-center justify-center">
-                      {/* Spinner */}
-                      <svg
-                        className="animate-spin h-5 w-5 mr-2 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2zm2 5.292A7.964 7.964 0 014 12H2a10 10 0 0016.292 7.292l-1.414-1.414A8.003 8.003 0 016 17.292z"
-                        />
-                      </svg>
-                      Loading...
-                    </span>
-                  ) : (
-                    "Submit"
-                  )
-                }
+            <Button variant="text" color="success" onClick={handleSubmitClick}>
+              {isSubmitting ? (
+                <span className="flex items-center justify-center">
+                  <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2zm2 5.292A7.964 7.964 0 014 12H2a10 10 0 0016.292 7.292l-1.414-1.414A8.003 8.003 0 016 17.292z" />
+                  </svg>
+                  Loading...
+                </span>
+              ) : (
+                "Submit"
+              )}
             </Button>
           </div>
         </Box>
@@ -2895,6 +2859,7 @@ export function RiskDetails(data) {
     </div>
   );
 }
+
 
 
 export function MitigationDetails(data) {
