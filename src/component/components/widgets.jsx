@@ -6,7 +6,7 @@ import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL, EDITMITIGATION_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
+import { DELETERISK_URL, EDITMONITORING_URL, EDITREVIEW_URL, EDITMITIGATION_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
 
@@ -799,9 +799,10 @@ export function ReviewRIsk(data){
           group={false}
         />
         <FormDetailsField
+          type="date"
           id="nextRiskReview"
-          label="Next Risk Review"
-          value={reviewInfo.nextRiskReview}
+          label="Next Risk Review Date"
+          value={reviewInfo.NextRiskReviewDate}
           onChange={onChange}
           options={options}
           searchable={true}
@@ -819,6 +820,7 @@ export function ReviewRIsk(data){
 
       {/* Submit Button */}
       <div className= "col-span-2 flex justify-end pt-2 px-[300px]">
+
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
@@ -842,13 +844,11 @@ export function MonitorRisk(data){
     riskID: MonitorInfoInitialize.riskId,
     riskName: MonitorInfoInitialize.riskName,
     createdAt: MonitorInfoInitialize.updatedAt,
-    ResponseActivity: MonitorInfoInitialize.mitigatedRiskScore,
-    RiskReviewer: MonitorInfoInitialize.riskOwnerLabel,
-    riskResponse: MonitorInfoInitialize.riskOwnerLabel,
-    riskProbabilityLevel: MonitorInfoInitialize.mitigatedRiskProbabilityLevel,
-    ResponseImplementation: MonitorInfoInitialize.mitigatedRiskImpactLevel,
-    riskResponseActivity: MonitorInfoInitialize.mitigationEffort,
-    challenges: MonitorInfoInitialize.mitigationControl,
+    comments: MonitorInfoInitialize.comments,
+    recommendedChanges: MonitorInfoInitialize.recommendedChanges,
+    ResponseImplementation: MonitorInfoInitialize.riskResponseImplementation,
+    riskResponseActivity: MonitorInfoInitialize.riskResponseActivitiyStatus,
+    challenges: MonitorInfoInitialize.challenges,
   })
 
   const onChange = (e) => {
@@ -856,63 +856,54 @@ export function MonitorRisk(data){
     setMonitorInfo((prevData) => ({ ...prevData, [id]: value }));
   };
   
-  const handleSubmit = async (e) => {MitigationEffort
-    console.log("Mitigated Data", MonitorInfoInitialize.data.riskId, 
-      MitigationInfoInitialize.data.riskName, 
-      MitigationInfoInitialize.data.UpdatedAt, 
-      MitigationInfoInitialize.data.MitigationScore, MitigationInfoInitialize.data.riskReviewer, 
-      MitigationInfoInitialize.data.MitigationCost, MitigationInfoInitialize.data.MitigationProbabilityLevel,
-      MitigationInfoInitialize.data.MitigatedImpact, MitigationInfoInitialize.data.MitigationEffort, 
-      MitigationInfoInitialize.data.MitigationControl)
-      // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
   
-      // setIsSubmitting(true);
-  
-      // try {
-      //   const response = await axios.post(
-      //     EDITRISK_URL,
-      //     JSON.stringify(
-      //       {
-      //         riskID,
-      //         riskName,
-      //         riskDescription,
-      //         riskCategory,
-      //         riskImpactLevel,
-      //         riskProbabilityLevel,
-      //         riskObjective,
-      //         riskResponse,
-      //         riskResponseActivity,
-      //         riskOwner,
-      //         deptId: RiskInfoInitialize.data.deptId,
-      //         id: RiskInfoInitialize.data.id,
-              
-      //       }            
-      //     ),
-      //     {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         Accept: "application/json",
-      //       },
-      //       withCredentials: true,
-      //     }
-      //   );
-      //   if (response.status === 201) {
-      //     console.log("sucess")
-      //     verifyRecapture();
-      //   }
-      // } catch (err) {
-      //   // if (err.response?.status === 500 || err.response?.status === 400) {
-      //   //   setNotification({ ...notification, serverDown: true });
-      //   //   reload();
-      //   // } else if (err.response?.status === 401) {
-      //   //   setNotification({ ...notification, authorized: true });
-      //   // } else if ([404].includes(err.response?.status)) {
-      //   //   setNotification({ ...notification, errorMessage: true });
-      //   // }
-      // } finally {
-      //   setLoading(false);
+    try {
+      const response = await axios.post(
+        EDITMONITORING_URL,
+        JSON.stringify(
+          {
+            riskId: monitorInfo.riskID,
+            riskResponseActivitiyStatus: monitorInfo.riskResponseActivity,
+            recommendedChanges: monitorInfo.recommendedChanges,
+            riskResponseImplementation: monitorInfo.ResponseImplementation,
+            challenges: monitorInfo.challenges,
+            comments: monitorInfo.comments,
+            deptId: RiskInfoInitialize.deptId,
+            id: RiskInfoInitialize.id,
+          }       
+        ),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+      if (response.status === 201) {
+        showToast(
+          "Risk has be Updated Successfully!",
+        );
+      }
+    } catch (err) {
+      // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   setNotification({ ...notification, serverDown: true });
+      //   reload();
+      // } else if (err.response?.status === 401) {
+      //   setNotification({ ...notification, authorized: true });
+      // } else if ([404].includes(err.response?.status)) {
+      //   setNotification({ ...notification, errorMessage: true });
       // }
-    };
+      console.log(err)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
       {/* Left Column */}
@@ -933,14 +924,7 @@ export function MonitorRisk(data){
           
           required
         />
-        <FormDetailsField
-          id="ResponseActivity"
-          label="Response Activity"
-          value={monitorInfo.ResponseActivity}
-          onChange={onChange}
-          
-          required
-        />
+        
         <FormDetailsField
           type="date"
           id="createdAt"
@@ -963,25 +947,18 @@ export function MonitorRisk(data){
       {/* Right Column */}
       <div className="flex flex-col gap-8">
         <FormDetailsField
-          id="riskResponse"
-          label="Risk Response"
-          value={monitorInfo.riskResponse}
+          id="comments"
+          label="Comments"
+          value={monitorInfo.comments}
           onChange={onChange}
           
           required
         />
+        
         <FormDetailsField
-          id="RiskReviewer"
-          label="Risk Reviewer"
-          value={monitorInfo.RiskReviewer}
-          onChange={onChange}
-          
-          required
-        />
-        <FormDetailsField
-          id="riskProbabilityLevel"
-          label="Probability Level"
-          value={monitorInfo.riskProbabilityLevel}
+          id="recommendedChanges"
+          label="Recommended Changes"
+          value={monitorInfo.recommendedChanges}
           onChange={onChange}
           
           required
@@ -996,7 +973,7 @@ export function MonitorRisk(data){
         />
         <FormDetailsField
           id="riskResponseActivity"
-          label="Response Activity"
+          label="Response Activity Status"
           value={monitorInfo.riskResponseActivity}
           onChange={onChange}
           
@@ -1005,7 +982,7 @@ export function MonitorRisk(data){
       </div>
 
       {/* Submit Button */}
-      <div className="col-span-2 flex justify-end pt-6">
+      <div className="col-span-2 flex justify-end pt-2 px-[300px]">
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
