@@ -3115,7 +3115,7 @@ export function RiskMonitoringDetails(data) {
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {monitorInfo.riskStatus}
+                      {monitorInfo.status}
                     </span>
                   </div>
                   <div className="text-gray-700">
@@ -3129,7 +3129,7 @@ export function RiskMonitoringDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {monitorInfo.riskDescription}
+                    {monitorInfo.riskName}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
