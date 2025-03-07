@@ -501,7 +501,7 @@ export function ReportRiskOwner() {
 export function Pyramidchat() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskAdviceChart} = useRiskAdviceChart(departmentName)
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
@@ -531,7 +531,7 @@ export function Pyramidchat() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}

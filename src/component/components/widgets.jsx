@@ -1,6 +1,6 @@
 import Select from "react-select";
 import { useTranslation } from "react-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
 import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
@@ -268,10 +268,11 @@ export const CustomDetailsSelect = ({
 
 
 
-export function RiskInfo(data, onClick, isSubmitting=false) {
+export function RiskInfo(data) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [riskInfo, setRiskInfo] = useState({
     riskID: RiskInfoInitialize.riskID,
     riskName: RiskInfoInitialize.riskName,
@@ -299,7 +300,7 @@ export function RiskInfo(data, onClick, isSubmitting=false) {
   const handleSubmit = async (e) => {
       e.preventDefault();
   
-      isSubmitting = true;
+      setIsSubmitting(true);
     
       try {
         const response = await axios.post(
@@ -345,15 +346,10 @@ export function RiskInfo(data, onClick, isSubmitting=false) {
         // }
         console.log(err)
       } finally {
-        isSubmitting= false;
+        setIsSubmitting(false);
       }
   };
 
-  useEffect(() => {
-    if (onClick) {
-      handleSubmit();
-    }
-  }, [onClick]);
 
   return (
     <main className="grid grid-cols-2 gap-12 pt-5">
@@ -448,13 +444,13 @@ export function RiskInfo(data, onClick, isSubmitting=false) {
 
       {/* Submit Button */}
       <div className="col-span-2 flex justify-end pt-2 px-[300px]">
-        {/* <CustomButton
+        <CustomButton
           label="Submit"
           onClick={handleSubmit}
           type="submit"
           className="custom-class"
           loading={isSubmitting}
-        /> */}
+        />
       </div>
     </main>
   );

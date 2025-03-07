@@ -68,7 +68,7 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
-import { useAuditTrail, useComplianceTable, useControlTable, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskReviewTable, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
+import { useAuditTrail, useComplianceTable, useControlTable, useDepartmentCodeDropdown, useDepartmentDropdown, useDepartmentTable, useEmployeeTable, useFrameWorkTable, useMitigationByDate, useMitigationTable, useMonitoringTable, useRiskAppetiteReportLow, useRiskNeedingToBeReviewed, useRiskReviewTable, useRiskStatusReport, useRiskTable } from "../../api/routes-data";
 import { ModaltriggerProvider } from "../../context/AuthProvider";
 import { CustomSelect } from "./widgets";
 
@@ -1841,9 +1841,8 @@ export function RiskStatusReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const columns = useRiskStatuscolumns();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskStatus} = useRiskStatusReport(departmentName)
-  console.log({"riskstatus table": riskStatus})
 
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
@@ -1940,9 +1939,7 @@ export function RiskStatusReportTab() {
     ),
   });
 
-  const someEventHandler = () => {
-    console.log(table.getState().sorting);
-  };
+  
 
   return (
     <main>
@@ -1954,7 +1951,7 @@ export function RiskStatusReportTab() {
             label={t("departments")}
             value={departmentName}
             onChange={setDeptmentName}
-            options={departmentList}
+            options={departmentCodeList}
             searchable={true}
             required
             group={false}
@@ -2089,7 +2086,7 @@ export function RiskMitigationReportTable() {
   const columns = useReportRiskMitigationColumns();
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {mitigationByDate} = useMitigationByDate(departmentName)
 
   const table = useMaterialReactTable({
@@ -2149,7 +2146,7 @@ export function RiskMitigationReportTable() {
             label={t("departments")}
             value={departmentName}
             onChange={setDeptmentName}
-            options={departmentList}
+            options={departmentCodeList}
             searchable={true}
             required
             group={false}
@@ -2167,7 +2164,7 @@ export function ReviewNeedingRisksReportTab() {
   const columns = useReportOpenRiskToReviewColumns();
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskToReview} = useRiskNeedingToBeReviewed(departmentName)
 
   const table = useMaterialReactTable({
@@ -2227,7 +2224,7 @@ export function ReviewNeedingRisksReportTab() {
             label={t("departments")}
             value={departmentName}
             onChange={setDeptmentName}
-            options={departmentList}
+            options={departmentCodeList}
             searchable={true}
             required
             group={false}
@@ -2244,7 +2241,7 @@ export function Reportaudittrail() {
   const columns = useReportAuditTrailColumns();
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const { auditTrail } = useAuditTrail(departmentName);
   
 
@@ -2305,7 +2302,7 @@ export function Reportaudittrail() {
             label={t("departments")}
             value={departmentName}
             onChange={setDeptmentName}
-            options={departmentList}
+            options={departmentCodeList}
             searchable={true}
             required
             group={false}
