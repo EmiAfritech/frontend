@@ -627,7 +627,7 @@ export function MitigateRIsk(data){
       </div>
 
       {/* Submit Button */}
-      <div className="col-span-2 flex justify-end pt-6">
+      <div className="col-span-2 flex justify-end pt-2 px-[300px]">
         <CustomButton
           label="Submit"
           onClick={handleSubmit}
