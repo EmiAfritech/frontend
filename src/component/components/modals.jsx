@@ -2940,7 +2940,7 @@ export function MitigationDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {mitigationInfo.riskDescription}
+                    {mitigationInfo.riskName}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>

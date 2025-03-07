@@ -6,10 +6,9 @@ import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { GRCFormsArray } from "./formarrays";
 import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL, EDITMONITORING_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
+import { DELETERISK_URL, EDITMONITORING_URL, EDITREVIEW_URL, EDITMITIGATION_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
-import { showToast } from "./notifications";
 
 export function InputField({
   label,
@@ -189,8 +188,8 @@ export function FormDetailsField({
   id,
 }) {
   return (
-    <div className="flex items-center gap-4 mt-4">
-      <div className="flex flex-row">
+    <div className="mt-4">
+      <div className="flex">
         {label && (
           <label
             className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
@@ -436,7 +435,7 @@ export function RiskInfo(data) {
         
         <FormDetailsField
           id="riskImpactLevel"
-          label="Response Impact Leve"
+          label="Response Impact Level"
           value={riskInfo.riskImpactLevel}
           onChange={onChange}
           required
@@ -458,6 +457,7 @@ export function RiskInfo(data) {
 }
 
 export function MitigateRIsk(data){
+  const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
   const MitigationInfoInitialize = data.data;
@@ -493,14 +493,14 @@ export function MitigateRIsk(data){
         JSON.stringify(
           {
             riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: mitigationInfo.MitigationProbabilityLevel,
-            mitigatedRiskImpactLevel: mitigationInfo.MitigatedImpact,
+            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(mitigationInfo.MitigationProbabilityLevel),
+            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigationInfo.MitigatedImpact),
             mitigationCost: mitigationInfo.MitigationCost,
             mitigationEffort: mitigationInfo.MitigationEffort,
             mitigationControl: mitigationInfo.MitigationControl,
             riskReviewer: mitigationInfo.riskOwner,
-            deptId: RiskInfoInitialize.deptId,
-            id: RiskInfoInitialize.id,
+            deptId: MitigationInfoInitialize.deptId,
+            id: MitigationInfoInitialize.id,
             
           }       
         ),
@@ -513,7 +513,9 @@ export function MitigateRIsk(data){
         }
       );
       if (response.status === 201) {
-        console.log("sucess")
+        showToast(
+          "Risk has be Updated Successfully!",
+        );
       }
     } catch (err) {
       // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -681,8 +683,8 @@ export function ReviewRIsk(data){
             riskReview: reviewInfo.riskReview,
             NextRiskReviewDate: reviewInfo.NextRiskReviewDate,
             riskReviewComments: reviewInfo.riskReviewComments,
-            deptId: RiskInfoInitialize.deptId,
-            id: RiskInfoInitialize.id,
+            deptId: reviewInfo.deptId,
+            id: reviewInfo.id,
             
           }       
         ),
