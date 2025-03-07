@@ -3021,7 +3021,7 @@ export function RiskReviewDetails(data) {
                   <div className="text-gray-700">
                     Status:{" "}
                     <span className="font-semibold text-blue-700">
-                      {reviewInfo.riskStatus}
+                      {reviewInfo.status}
                     </span>
                   </div>
                   <div className="text-gray-700">
@@ -3035,7 +3035,7 @@ export function RiskReviewDetails(data) {
                 <div className="text-gray-700 text-lg font-medium">
                   Subject:{" "}
                   <span className="font-semibold text-blue-700">
-                    {reviewInfo.riskDescription}
+                    {reviewInfo.riskName}
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800"></h3>

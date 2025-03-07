@@ -267,27 +267,6 @@ export const CustomDetailsSelect = ({
   );
 };
 
-export function RiskMitigationSideTabs(data) {
-  const [activeTab, setActiveTab] = useState("Mitigate");
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const renderComponent = () => {
-    switch (activeTab) {
-      case "Mitigate":
-        return <MitigateRIsk data={data} />;
-    }
-  };
-
-  return (
-    <div>
-      <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="my-6">{renderComponent()}</div>
-    </div>
-  );
-}
 
 export function RiskDetailsSideTabs(data) {
   const [activeTab, setActiveTab] = useState("Risk Info");
@@ -311,42 +290,6 @@ export function RiskDetailsSideTabs(data) {
   );
 }
 
-
-export function RiskDetailNavigation({ onTabChange }) {
-  const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState(Tabs[0].title);
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    onTabChange(tab);
-  };
-
-  return (
-    <div>
-      {/* Tabs Navigation */}
-      <div className="flex p-6 justify-center">
-        <ul className="flex flex-row space-x-1 border-b border-gray-300">
-          {Tabs.map((tab) => (
-            <li key={tab.title}>
-              <button
-                onClick={() => handleTabChange(tab.title)}
-                disabled={tab !== activeTab}
-                className={`text-md font-thin font-[Open_Sans] p-4 ${
-                  activeTab === tab.title
-                    ? "text-[#04026b] border-b-2 border-[#04026b]"
-                    : "text-black"
-                }`}>
-                <span className=" transition duration-300 ease-out">
-                  {t(tab.title)}
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
 
 export function RiskInfo(data) {
   const {t} = useTranslation()
@@ -1111,21 +1054,6 @@ export function MonitorRisk(data){
   );
 }
 
-export const Tabs = [
-  {
-    title: "Risk Info",
-  },
-  {
-    title: "Mitigate",
-  },
-  {
-    title: "Review",
-  },
-
-  {
-    title: "Monitor Risk",
-  },
-];
 
 export function DeleteBox({ data, message, name }) {
   const [deleteItem, setDelete] = useState("");
