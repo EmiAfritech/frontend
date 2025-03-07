@@ -249,12 +249,8 @@ export const useComplianceColumns = () => {
       header: "Control Item",
     },
     {
-      accessorKey: "description",
-      header: "Description",
-    },
-    {
-      accessorKey: "name",
-      header: "Framework",
+      accessorKey: "assessment",
+      header: "Assessment",
     },
     {
       accessorKey: "recomendation",
@@ -263,6 +259,11 @@ export const useComplianceColumns = () => {
     {
       accessorKey: "createdAt",
       header: "Created At",
+    },
+    
+    {
+      accessorKey: "updatedAt",
+      header: "Last Updated",
     },
   ];
 };
