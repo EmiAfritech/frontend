@@ -339,6 +339,7 @@ export function RiskInfo(data) {
         // } else if ([404].includes(err.response?.status)) {
         //   setNotification({ ...notification, errorMessage: true });
         // }
+        console.log(err)
       } finally {
         setIsSubmitting(false);
       }
