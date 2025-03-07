@@ -296,28 +296,28 @@ export function RiskInfo(data) {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
-  
+  console.log({"risk data": JSON.stringify(
+    {
+      riskID,
+      riskName,
+      riskDescription,
+      riskCategory,
+      riskImpactLevel,
+      riskProbabilityLevel,
+      riskObjective,
+      riskResponse,
+      riskResponseActivity,
+      riskOwner,
+      deptId: RiskInfoInitialize.deptId,
+      id: RiskInfoInitialize.id,
+      
+    }       
+  )})
   const handleSubmit = async (e) => {
       e.preventDefault();
   
       setIsSubmitting(true);
-    console.log({"risk data": JSON.stringify(
-      {
-        riskID,
-        riskName,
-        riskDescription,
-        riskCategory,
-        riskImpactLevel,
-        riskProbabilityLevel,
-        riskObjective,
-        riskResponse,
-        riskResponseActivity,
-        riskOwner,
-        deptId: RiskInfoInitialize.deptId,
-        id: RiskInfoInitialize.id,
-        
-      }       
-    )})
+    
       try {
         const response = await axios.post(
           EDITRISK_URL,
