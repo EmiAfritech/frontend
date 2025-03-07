@@ -683,8 +683,8 @@ export function ReviewRIsk(data){
             riskReview: reviewInfo.riskReview,
             NextRiskReviewDate: reviewInfo.NextRiskReviewDate,
             riskReviewComments: reviewInfo.riskReviewComments,
-            deptId: RiskInfoInitialize.deptId,
-            id: RiskInfoInitialize.id,
+            deptId: reviewInfo.deptId,
+            id: reviewInfo.id,
             
           }       
         ),
