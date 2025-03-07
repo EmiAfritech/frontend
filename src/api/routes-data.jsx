@@ -408,6 +408,7 @@ export function useFrameWorkDropDown() {
 export function useControlItemDropDown(frameWorkSelect) {
   const { auth } = useContext(AuthContext);
   const [controleItemDropdown, setControleItemDropdown] = useState([]);
+  console.log(frameWorkSelect)
   const fetchData = async () => {
     try {
       const response = await axios.post(CONTROLITEMDROPDOWN,
