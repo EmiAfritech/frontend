@@ -188,8 +188,8 @@ export function FormDetailsField({
   id,
 }) {
   return (
-    <div className="flex items-center gap-4 mt-4">
-      <div>
+    <div className="mt-4">
+      <div className="flex">
         {label && (
           <label
             className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
@@ -457,6 +457,7 @@ export function RiskInfo(data) {
 }
 
 export function MitigateRIsk(data){
+  const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
   const MitigationInfoInitialize = data.data;
