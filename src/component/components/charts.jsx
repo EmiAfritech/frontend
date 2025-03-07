@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart, useDepartmentCodeDropdown } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -463,7 +463,7 @@ export function ReportRiskResponse() {
 export function ReportRiskOwner() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const {riskOwner} = useRiskOwnerReport(departmentName)
 
  
@@ -481,7 +481,7 @@ export function ReportRiskOwner() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
