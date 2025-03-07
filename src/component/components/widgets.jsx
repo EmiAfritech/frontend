@@ -268,6 +268,7 @@ export const CustomDetailsSelect = ({
 };
 
 
+
 export function RiskInfo(data) {
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
@@ -296,14 +297,15 @@ export function RiskInfo(data) {
     const { id, value } = e.target;
     setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
   };
+
   console.log({"risk data": JSON.stringify(
     {
       riskID: riskInfo.riskID,
       riskName: riskInfo.riskName,
       riskDescription: riskInfo.riskDescription,
       riskCategory: riskInfo.riskCategory,
-      riskImpactLevel: riskInfo.riskImpactLevel,
-      riskProbabilityLevel: riskInfo.riskProbabilityLevel,
+      riskImpactLevel: getImpactLevelNumber(riskInfo.riskImpactLevel),
+      riskProbabilityLevel: getProbabilityLevelNumber(riskInfo.riskProbabilityLevel),
       riskObjective: riskInfo.riskObjective,
       riskResponse: riskInfo.riskResponse,
       riskResponseActivity: riskInfo.riskResponseActivity,
@@ -327,8 +329,8 @@ export function RiskInfo(data) {
               riskName: riskInfo.riskName,
               riskDescription: riskInfo.riskDescription,
               riskCategory: riskInfo.riskCategory,
-              riskImpactLevel: riskInfo.riskImpactLevel,
-              riskProbabilityLevel: riskInfo.riskProbabilityLevel,
+              riskImpactLevel: getImpactLevelNumber(riskInfo.riskImpactLevel),
+              riskProbabilityLevel: getProbabilityLevelNumber(riskInfo.riskProbabilityLevel),
               riskObjective: riskInfo.riskObjective,
               riskResponse: riskInfo.riskResponse,
               riskResponseActivity: riskInfo.riskResponseActivity,
@@ -1214,32 +1216,67 @@ export function Delete({ data, message, name }) {
 export function getRiskImpactLevel(level) {
   switch (level) {
       case 1:
-          return "insignificant";
+          return "Insignificant (1)";
       case 2:
-          return "minor";
+          return "Minor (2)";
       case 3:
-          return "moderate";
+          return "Moderate (3)";
       case 4:
-          return "major";
-      case 4:
-        return "critical";
+          return "Major (4)";
+      case 5:
+        return "Catastrophic (5)";
   }
 }
 
 export function getRiskProbabilityLevel(level) {
   switch (level) {
       case 1:
-          return "almostImpossible";
+          return "Almost Impossible (1)";
       case 2:
-          return "unlikely";
+          return "Unlikely (2)";
       case 3:
-          return "Likely";
+          return "Likely (3)";
       case 4:
-          return "Very Likely";
+          return "Very Likely (4)";
       case 5:
-          return "almostCertain"; // Handles invalid inputs
+          return "Almost Certain (5)"; // Handles invalid inputs
   }
 }
+
+export function getProbabilityLevelNumber(probability) {
+  switch (probability) {
+    case "Almost Impossible":
+      return 1;
+    case "Unlikely":
+      return 2;
+    case "Likely":
+      return 3;
+    case "Very Likely":
+      return 4;
+    case "Almost Certain":
+      return 5;
+    default:
+      return 0;
+  }
+}
+
+export function getImpactLevelNumber(impact) {
+  switch (impact) {
+    case "Insignificant":
+      return 1;
+    case "Minor":
+      return 2;
+    case "Moderate":
+      return 3;
+    case "Major":
+      return 4;
+    case "Catastrophic":
+      return 5;
+    default:
+      return 0;
+  }
+}
+
 
 
 
