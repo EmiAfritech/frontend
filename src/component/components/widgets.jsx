@@ -268,29 +268,6 @@ export const CustomDetailsSelect = ({
 };
 
 
-export function RiskDetailsSideTabs(data) {
-  const [activeTab, setActiveTab] = useState("Risk Info");
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const renderComponent = () => {
-    switch (activeTab) {
-      case "Risk Info":
-        return <RiskInfo data={data} />;
-    }
-  };
-
-  return (
-    <div>
-      <RiskDetailNavigation onTabChange={handleTabChange} />
-      <div className="my-6">{renderComponent()}</div>
-    </div>
-  );
-}
-
-
 export function RiskInfo(data) {
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
@@ -352,7 +329,6 @@ export function RiskInfo(data) {
         );
         if (response.status === 201) {
           console.log("sucess")
-          verifyRecapture();
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -364,7 +340,7 @@ export function RiskInfo(data) {
         //   setNotification({ ...notification, errorMessage: true });
         // }
       } finally {
-        setLoading(false);
+        setIsSubmitting(false);
       }
     };
 
@@ -863,7 +839,7 @@ export function MonitorRisk(data){
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
   const options = GRCFormsArray(t)
-  const MonitorInfoInitialize = data.data;
+  const MitigationInfoInitialize = data.data;
   const [isSubmitting, setIsSubmitting] = useState(false)
   console.log(MonitorInfoInitialize)
   const [monitorInfo, setMonitorInfo] = useState({
