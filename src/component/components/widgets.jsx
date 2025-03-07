@@ -189,7 +189,7 @@ export function FormDetailsField({
 }) {
   return (
     <div className="flex items-center gap-4 mt-4">
-      <div className="flex flex-row">
+      <div className="flex flex-col">
         {label && (
           <label
             className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
