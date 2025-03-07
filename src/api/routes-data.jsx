@@ -779,7 +779,7 @@ export function useRiskLocationReport(departmentName) {
   return { riskLocation, fetchData };
 }
 
-export function useRiskOwnerReport(c) {
+export function useRiskOwnerReport(departmentName) {
   const { auth } = useContext(AuthContext);
   const [riskOwner, setRiskOwner] = useState("");
   console.log(departmentName)
