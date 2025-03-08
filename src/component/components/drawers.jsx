@@ -37,7 +37,8 @@ import {
   useRiskToBeMitigated,
   useRiskToBeMitigatedInfo,
 } from "../../api/routes-data";
-import { CustomButton, FormInputField, CustomSelect, getRiskImpactLevel, getRiskProbabilityLevel } from "./widgets";
+import { CustomButton, FormInputField, CustomSelect,} from "./widgets";
+import { getRiskImpactLevel, getRiskProbabilityLevel } from "./modalforms";
 import { GRCFormsArray } from "./formarrays";
 import { showToast } from "./notifications";
 
