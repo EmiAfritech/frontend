@@ -57,7 +57,7 @@ export function MitigatedReport() {
       <h2 className="pb-2 font-medium">MITIGATED REPORT</h2>
       Based on the various parameters placed into consideration the following
       aspects of Mitigations were <br />
-      of high concern and needs immediate attention
+      of high concern and needs immediate attenti
       <br />
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
