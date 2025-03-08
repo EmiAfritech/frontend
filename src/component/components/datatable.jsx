@@ -736,7 +736,7 @@ export const useRiskStatusColumns = () => {
       field: "view",
       headerName: t("Action"),
       flex: 0.5,
-      renderCell: (params) => RiskAdviceReportData(params),
+      
     },
   ];
 };
