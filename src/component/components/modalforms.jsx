@@ -16,9 +16,17 @@ export function RiskInfo(data) {
     const {ownersDropdown} = useRiskOwnersDropdown();
     const grcArray = GRCFormsArray(t);
     const RiskInfoInitialize = data.data;
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const {triggerComponent} = useContext(Modaltrigger)
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const {triggerComponent} = useContext(Modaltrigger);
     const [probabilityLevel, setProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel);
+    const [impactLevel, setImpactLevel] = useState(RiskInfoInitialize.riskImpactLevel);
+    const [responseActivity, setResponseActivity] = useState(RiskInfoInitialize.riskResponseActivity);
+    const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory);
+    const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse);
+
+
+
+
     const [riskInfo, setRiskInfo] = useState({
       riskID: RiskInfoInitialize.riskID,
       riskName: RiskInfoInitialize.riskName,
@@ -142,18 +150,20 @@ export function RiskInfo(data) {
   
         {/* Right Column */}
         <div className="flex flex-col gap-8">
-          <FormDetailsField
+          <ModalFormSelect
             id="riskResponse"
             label="Risk Response"
-            value={riskInfo.riskResponse}
-            onChange={onChange}
+            value={riskResponse}
+            options={grcArray.riskResponsedrawer}
+            onChange={setRiskResponse}
             required
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskCategory"
             label="Risk Category"
-            value={riskInfo.riskCategory}
-            onChange={onChange}
+            value={riskCategory}
+            options={grcArray.categorydrawer}
+            onChange={setRiskCategory}
             required
           />
           <ModalFormSelect
@@ -171,19 +181,21 @@ export function RiskInfo(data) {
             onChange={onChange}
             required
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskResponseActivity"
             label="Response Activity"
-            value={riskInfo.riskResponseActivity}
-            onChange={onChange}
+            value={responseActivity}
+            options={grcArray.responseActivityStatus}
+            onChange={setResponseActivity}
             required
           />
           
-          <FormDetailsField
+          <ModalFormSelect
             id="riskImpactLevel"
             label="Response Impact Level"
-            value={riskInfo.riskImpactLevel}
-            onChange={onChange}
+            value={impactLevel}
+            options={grcArray.impactLevel}
+            onChange={setImpactLevel}
             required
           />
         </div>
@@ -206,7 +218,11 @@ export function RiskInfo(data) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
+    const grcArray = GRCFormsArray(t);
     const MitigationInfoInitialize = data.data;
+    
+    const [probabilityLevel, setProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel);
+
     const [isSubmitting, setIsSubmitting] = useState(false)
     console.log(MitigationInfoInitialize)
     const [mitigationInfo, setMitigationInfo] = useState({
