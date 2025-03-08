@@ -273,6 +273,7 @@ export function RiskInfo(data) {
   const {t} = useTranslation()
   const RiskInfoInitialize = data.data;
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const {triggerComponent} = useContext(Modaltrigger)
   const [riskInfo, setRiskInfo] = useState({
     riskID: RiskInfoInitialize.riskID,
     riskName: RiskInfoInitialize.riskName,
@@ -334,6 +335,7 @@ export function RiskInfo(data) {
           showToast(
             "Risk has be Updated Successfully!",
           );
+          triggerComponent();
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {

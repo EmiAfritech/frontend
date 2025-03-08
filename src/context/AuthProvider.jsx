@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
 };
 
 
-
 export const ModaltriggerProvider =({children}) => {
   const [trigger, setTrigger] = useState(false)
 

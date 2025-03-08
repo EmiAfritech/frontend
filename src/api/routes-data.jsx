@@ -214,7 +214,7 @@ export function useRiskTable() {
 
   useEffect(() => {
     fetchData(); 
-  }, []);
+  }, [fetchData]);
   return { riskTable, fetchData };
 }
 
