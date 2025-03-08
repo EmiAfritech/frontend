@@ -144,7 +144,7 @@ export function ModalFormSelect({
   error = ""
 }){
   return(
-    <div className="flex flex-row">
+    <div className="mb-1">
       <div className="flex flex-row">
         {label && (
           <label
