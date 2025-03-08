@@ -137,6 +137,7 @@ export const CustomSelect = ({
 export function ModalFormSelect({
   value,
   onChange,
+  disabled = false,
   options =[],
   label,
   required = false,
