@@ -138,7 +138,9 @@ export function ModalFormSelect({
   value,
   onChange,
   options =[],
-  label
+  label,
+  required = false,
+  error = ""
 }){
   return(
     <div className="flex flex-row">
