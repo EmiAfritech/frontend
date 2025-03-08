@@ -1,7 +1,6 @@
 import { IconButton, Tooltip } from "@mui/material";
 import "../comstyles/component.css";
 import {
-  RiskAdviceReportData,
   UserAccountDetails,
   DepartmentAccountDetails,
   RiskDetails,
@@ -736,7 +735,7 @@ export const useRiskStatusColumns = () => {
       field: "view",
       headerName: t("Action"),
       flex: 0.5,
-      renderCell: (params) => RiskAdviceReportData(params),
+      
     },
   ];
 };
@@ -752,7 +751,6 @@ export const useReportRiskPyramidColumns = () => {
       field: "view",
       headerName: t("Action"),
       flex: 0.5,
-      renderCell: (params) => RiskAdviceReportData(params),
     },
   ];
 };

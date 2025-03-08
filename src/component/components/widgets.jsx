@@ -137,11 +137,14 @@ export const CustomSelect = ({
 export function ModalFormSelect({
   value,
   onChange,
+  disabled = false,
   options =[],
-  label
+  label,
+  required = false,
+  error = ""
 }){
   return(
-    <div className="flex flex-row">
+    <div className="mb-1">
       <div className="flex flex-row">
         {label && (
           <label
