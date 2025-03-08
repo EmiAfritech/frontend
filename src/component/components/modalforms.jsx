@@ -7,14 +7,12 @@ import { EDITMITIGATION_URL, EDITMONITORING_URL, EDITREVIEW_URL, EDITRISK_URL } 
 import { showToast } from "./notifications";
 import { CustomButton, FormDetailsField, ModalFormSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
-import { useDelete, useRiskOwnersDropdown } from "../../api/routes-data";
 import axios from "../../api/axios";
 
 
 export function RiskInfo(data) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const {ownersDropdown} = useRiskOwnersDropdown();
     const grcArray = GRCFormsArray(t);
     const RiskInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
