@@ -110,6 +110,9 @@ export const FRAMEWORKFORM_URL = "/Governance/Framework/create";
 //governance Control form
 export const CONTROLFORM_URL = "/Governance/Control/create";
 
+//governance compliance form
+export const COMPLIANCEFORM_URL = "/Compliance/create";
+
 /************************************************ Chat ******************************************************/
 
 //get monitored vs unmonitored risks in the organization data

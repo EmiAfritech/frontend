@@ -22,6 +22,7 @@ import {
   OWNERSDROPDOWN_URL,
   FRAMEWORKFORM_URL,
   CONTROLFORM_URL,
+  COMPLIANCEFORM_URL,
 } from "../../api/routes";
 import { useTranslation } from "react-i18next";
 import {
@@ -1350,7 +1351,7 @@ export function Complianceforms({ onFormSubmit }) {
 
     try {
       await axios.post(
-        CONTROLFORM_URL,
+        COMPLIANCEFORM_URL,
         JSON.stringify({
 
           assessment:assessment,
