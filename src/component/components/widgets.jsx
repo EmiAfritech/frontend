@@ -354,17 +354,18 @@ export function Delete({ data, message, name }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {triggerComponent} = useState(Modaltrigger)
-  
+  console.log(JSON.stringify({
+    data, 
+    id: data.id,
+    riskID: data.riskID,
+    deptId: data.deptID,
+  }))
 
   const handleDelete = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    console.log(JSON.stringify({ 
-      id: data.id,
-      riskID: data.riskID,
-      deptId: data.deptID,
-    }))
+    
     try {
       if (name === "risk") {
         const response = await axios.post(
