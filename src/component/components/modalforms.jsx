@@ -24,8 +24,6 @@ export function RiskInfo(data) {
     const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse);
 
 
-
-
     const [riskInfo, setRiskInfo] = useState({
       riskID: RiskInfoInitialize.riskID,
       riskName: RiskInfoInitialize.riskName,
@@ -218,11 +216,15 @@ export function RiskInfo(data) {
     const {t} = useTranslation()
     const grcArray = GRCFormsArray(t);
     const MitigationInfoInitialize = data.data;
-    
-    const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.riskProbabilityLevel);
+    const {triggerComponent} = useContext(Modaltrigger);
+    const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
+    const [mitigationCost, setMitigationCost] = useState(MitigationInfoInitialize.mitigationCost);
+    const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
+    const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
+    const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
+
 
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl)
     const [mitigationInfo, setMitigationInfo] = useState({
       riskID: MitigationInfoInitialize.riskId,
       riskName: MitigationInfoInitialize.riskName,
@@ -275,6 +277,7 @@ export function RiskInfo(data) {
           showToast(
             "Risk Mitigation has be Updated Successfully!",
           );
+          triggerComponent();
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -325,8 +328,8 @@ export function RiskInfo(data) {
             id="MitigationControl"
             label="Mitigation Control"
             value={mitigationControl}
-            onChange={setMitigationControl}
             options={grcArray.mitigationControl}
+            onChange={setMitigationControl}
             searchable={true}
             required
             group={false}
@@ -342,42 +345,42 @@ export function RiskInfo(data) {
   
         {/* Right Column */}
         <div className="flex flex-col gap-8">
-          <FormDetailsField
+          <ModalFormSelect
             id="MitigationEffort"
             label="Mitigation Effort"
-            value={mitigationInfo.MitigationEffort}
-            onChange={onChange}
-            options={options}
+            value={mitigationEffort}
+            options={grcArray.mitigationEffort}
+            onChange={setMitigationEffort}
             searchable={true}
             required
             group={false}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="MitigationCost"
             label="Mitigation Cost"
-            value={mitigationInfo.MitigationCost}
-            onChange={onChange}
-            options={options}
+            value={mitigationCost}
+            options={grcArray.mitigationCost}
+            onChange={setMitigationCost}
             searchable={true}
             required
             group={false}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="MitigationProbabilityLevel"
             label="Mitigation Probability Level"
-            value={mitigationInfo.MitigationProbabilityLevel}
-            onChange={onChange}
-            options={options}
+            value={probabilityLevel}
+            options={grcArray}
+            onChange={setProbabilityLevel}
             searchable={true}
             required
             group={false}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="MitigatedImpact"
             label="Mitigated Impact"
-            value={mitigationInfo.MitigatedImpact}
-            onChange={onChange}
-            options={options}
+            value={mitigatedImpact}
+            options={grcArray}
+            onChange={setMitigatedImpact}
             searchable={true}
             required
             group={false}
@@ -412,6 +415,7 @@ export function RiskInfo(data) {
     const options = GRCFormsArray(t)
     const ReviewInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const {triggerComponent} = useContext(Modaltrigger);
     console.log(ReviewInfoInitialize)
     const [reviewInfo, setReviewInfo] = useState({
       riskID: ReviewInfoInitialize.riskId,
@@ -462,6 +466,7 @@ export function RiskInfo(data) {
           showToast(
             "Risk Reviiew has be Updated Successfully!",
           );
+          triggerComponent();
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -604,6 +609,8 @@ export function RiskInfo(data) {
     const MonitorInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
     console.log(MonitorInfoInitialize)
+    const {triggerComponent} = useContext(Modaltrigger);
+
     const [monitorInfo, setMonitorInfo] = useState({
       riskID: MonitorInfoInitialize.riskId,
       riskName: MonitorInfoInitialize.riskName,
@@ -652,6 +659,7 @@ export function RiskInfo(data) {
           showToast(
             "Risk has be Updated Successfully!",
           );
+          triggerComponent();
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
