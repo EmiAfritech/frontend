@@ -206,198 +206,198 @@ export function RiskInfo(data) {
     );
   }
   
-  export function MitigateRIsk(data){
-    const {auth} = useContext(AuthContext)
-    const {t} = useTranslation()
-    const grcArray = GRCFormsArray(t);
-    const MitigationInfoInitialize = data.data;
-    const {triggerComponent} = useContext(Modaltrigger);
-    const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
-    const [mitigationCost, setMitigationCost] = useState(MitigationInfoInitialize.mitigationCost);
-    const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
-    const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
-    const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
+export function MitigateRIsk(data){
+  const {auth} = useContext(AuthContext)
+  const {t} = useTranslation()
+  const grcArray = GRCFormsArray(t);
+  const MitigationInfoInitialize = data.data;
+  const {triggerComponent} = useContext(Modaltrigger);
+  const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
+  const [mitigationCost, setMitigationCost] = useState(MitigationInfoInitialize.mitigationCost);
+  const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
+  const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
+  const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
 
 
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [mitigationInfo, setMitigationInfo] = useState({
-      riskID: MitigationInfoInitialize.riskId,
-      riskName: MitigationInfoInitialize.riskName,
-      createdAt: MitigationInfoInitialize.updatedAt,
-      MitigationScore: MitigationInfoInitialize.mitigatedRiskScore,
-      riskReviewer: MitigationInfoInitialize.riskOwnerLabel,
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [mitigationInfo, setMitigationInfo] = useState({
+    riskID: MitigationInfoInitialize.riskId,
+    riskName: MitigationInfoInitialize.riskName,
+    createdAt: MitigationInfoInitialize.updatedAt,
+    MitigationScore: MitigationInfoInitialize.mitigatedRiskScore,
+    riskReviewer: MitigationInfoInitialize.riskOwnerLabel,
+
+  })
+
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setMitigationInfo((prevData) => ({ ...prevData, [id]: value }));
+  };
   
-    })
-  
-    const onChange = (e) => {
-      const { id, value } = e.target;
-      setMitigationInfo((prevData) => ({ ...prevData, [id]: value }));
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
     
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      setIsSubmitting(true);
-      
-      try {
-        const response = await axios.post(
-          EDITMITIGATION_URL,
-          JSON.stringify(
-            {
-              riskId: mitigationInfo.riskID,
-              mitigatedRiskProbabilityLevel: probabilityLevel,
-              mitigatedRiskImpactLevel: mitigatedImpact,
-              mitigationCost: mitigationCost,
-              mitigationEffort: mitigationEffort,
-              mitigationControl: mitigationControl,
-              riskReviewer: mitigationInfo.riskOwner,
-              deptId: MitigationInfoInitialize.deptId,
-              id: MitigationInfoInitialize.id,
-              
-            }       
-          ),
+    try {
+      const response = await axios.post(
+        EDITMITIGATION_URL,
+        JSON.stringify(
           {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
-        if (response.status === 201) {
-          showToast(
-            "Risk Mitigation has be Updated Successfully!",
-          );
-          triggerComponent();
+            riskId: mitigationInfo.riskID,
+            mitigatedRiskProbabilityLevel: probabilityLevel,
+            mitigatedRiskImpactLevel: mitigatedImpact,
+            mitigationCost: mitigationCost,
+            mitigationEffort: mitigationEffort,
+            mitigationControl: mitigationControl,
+            riskReviewer: mitigationInfo.riskOwner,
+            deptId: MitigationInfoInitialize.deptId,
+            id: MitigationInfoInitialize.id,
+            
+          }       
+        ),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
         }
-      } catch (err) {
-        // if (err.response?.status === 500 || err.response?.status === 400) {
-        //   setNotification({ ...notification, serverDown: true });
-        //   reload();
-        // } else if (err.response?.status === 401) {
-        //   setNotification({ ...notification, authorized: true });
-        // } else if ([404].includes(err.response?.status)) {
-        //   setNotification({ ...notification, errorMessage: true });
-        // }
-        console.log(err)
-      } finally {
-        setIsSubmitting(false);
+      );
+      if (response.status === 201) {
+        showToast(
+          "Risk Mitigation has be Updated Successfully!",
+        );
+        triggerComponent();
       }
-    };
-    return (
-      <main className="grid grid-cols-2 gap-12 pt-5">
-        {/* Left Column */}
-        <div className="flex flex-col gap-8">
-          <FormDetailsField
-            id="riskID"
-            label="Risk Code"
-            value={mitigationInfo.riskID}
-            onChange={onChange}
-            required
-            disabled={true}
-          />
-          <FormDetailsField
-            id="riskName"
-            label="Risk Name"
-            value={mitigationInfo.riskName}
-            onChange={onChange}
-            required
-            disabled={true}
-          />
-          <FormDetailsField
-            id="riskReviewer"
-            label="Risk Reviewer"
-            value={mitigationInfo.riskReviewer}
-            onChange={onChange}
-            searchable={true}
-            required
-            group={false}
-            disabled={true}
-          />
-          <ModalFormSelect
-            id="MitigationControl"
-            label="Mitigation Control"
-            value={mitigationControl}
-            options={grcArray.mitigationControl}
-            onChange={setMitigationControl}
-            searchable={true}
-            required
-            group={false}
-          />
-          <FormDetailsField
-            id="MitigationScore"
-            label="Mitigation Score"
-            value={mitigationInfo.MitigationScore}
-            onChange={onChange}
-            required
-          />
-        </div>
-  
-        {/* Right Column */}
-        <div className="flex flex-col gap-8">
-          <ModalFormSelect
-            id="MitigationEffort"
-            label="Mitigation Effort"
-            value={mitigationEffort}
-            options={grcArray.mitigationEffort}
-            onChange={setMitigationEffort}
-            searchable={true}
-            required
-            group={false}
-          />
-          <ModalFormSelect
-            id="MitigationCost"
-            label="Mitigation Cost"
-            value={mitigationCost}
-            options={grcArray.mitigationCost}
-            onChange={setMitigationCost}
-            searchable={true}
-            required
-            group={false}
-          />
-          <ModalFormSelect
-            id="MitigationProbabilityLevel"
-            label="Mitigation Probability Level"
-            value={probabilityLevel}
-            options={grcArray.probabilityLevel}
-            onChange={setProbabilityLevel}
-            searchable={true}
-            required
-            group={false}
-          />
-          <ModalFormSelect
-            id="MitigatedImpact"
-            label="Mitigated Impact"
-            value={mitigatedImpact}
-            options={grcArray.impactLevel}
-            onChange={setMitigatedImpact}
-            searchable={true}
-            required
-            group={false}
-          />
-          <FormDetailsField
-            type="date"
-            id="createdAt"
-            label="Created At"
-            value={mitigationInfo.createdAt}
-            onChange={onChange}
-            required
-          />
-        </div>
-  
-        {/* Submit Button */}
-        <div className="col-span-2 flex justify-end pt-2 px-[300px]">
-          <CustomButton
-            label="Submit"
-            onClick={handleSubmit}
-            type="submit"
-            className="custom-class"
-            loading={isSubmitting}
-          />
-        </div>
-      </main>
-    );
-  }
+    } catch (err) {
+      // if (err.response?.status === 500 || err.response?.status === 400) {
+      //   setNotification({ ...notification, serverDown: true });
+      //   reload();
+      // } else if (err.response?.status === 401) {
+      //   setNotification({ ...notification, authorized: true });
+      // } else if ([404].includes(err.response?.status)) {
+      //   setNotification({ ...notification, errorMessage: true });
+      // }
+      console.log(err)
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  return (
+    <main className="grid grid-cols-2 gap-12 pt-5">
+      {/* Left Column */}
+      <div className="flex flex-col gap-8">
+        <FormDetailsField
+          id="riskID"
+          label="Risk Code"
+          value={mitigationInfo.riskID}
+          onChange={onChange}
+          required
+          disabled={true}
+        />
+        <FormDetailsField
+          id="riskName"
+          label="Risk Name"
+          value={mitigationInfo.riskName}
+          onChange={onChange}
+          required
+          disabled={true}
+        />
+        <FormDetailsField
+          id="riskReviewer"
+          label="Risk Reviewer"
+          value={mitigationInfo.riskReviewer}
+          onChange={onChange}
+          searchable={true}
+          required
+          group={false}
+          disabled={true}
+        />
+        <ModalFormSelect
+          id="MitigationControl"
+          label="Mitigation Control"
+          value={mitigationControl}
+          options={grcArray.mitigationControl}
+          onChange={setMitigationControl}
+          searchable={true}
+          required
+          group={false}
+        />
+        <FormDetailsField
+          id="MitigationScore"
+          label="Mitigation Score"
+          value={mitigationInfo.MitigationScore}
+          onChange={onChange}
+          required
+        />
+      </div>
+
+      {/* Right Column */}
+      <div className="flex flex-col gap-8">
+        <ModalFormSelect
+          id="MitigationEffort"
+          label="Mitigation Effort"
+          value={mitigationEffort}
+          options={grcArray.mitigationEffort}
+          onChange={setMitigationEffort}
+          searchable={true}
+          required
+          group={false}
+        />
+        <ModalFormSelect
+          id="MitigationCost"
+          label="Mitigation Cost"
+          value={mitigationCost}
+          options={grcArray.mitigationCost}
+          onChange={setMitigationCost}
+          searchable={true}
+          required
+          group={false}
+        />
+        <ModalFormSelect
+          id="MitigationProbabilityLevel"
+          label="Mitigation Probability Level"
+          value={probabilityLevel}
+          options={grcArray.probabilityLevel}
+          onChange={setProbabilityLevel}
+          searchable={true}
+          required
+          group={false}
+        />
+        <ModalFormSelect
+          id="MitigatedImpact"
+          label="Mitigated Impact"
+          value={mitigatedImpact}
+          options={grcArray.impactLevel}
+          onChange={setMitigatedImpact}
+          searchable={true}
+          required
+          group={false}
+        />
+        <FormDetailsField
+          type="date"
+          id="createdAt"
+          label="Created At"
+          value={mitigationInfo.createdAt}
+          onChange={onChange}
+          required
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div className="col-span-2 flex justify-end pt-2 px-[300px]">
+        <CustomButton
+          label="Submit"
+          onClick={handleSubmit}
+          type="submit"
+          className="custom-class"
+          loading={isSubmitting}
+        />
+      </div>
+    </main>
+  );
+}
   
   export function ReviewRIsk(data){
     const {auth} = useContext(AuthContext)
@@ -542,7 +542,6 @@ export function RiskInfo(data) {
             label="Risk Status"
             value={reviewInfo.riskStatus}
             onChange={onChange}
-            options={options}
             searchable={true}
             required
             group={false}
