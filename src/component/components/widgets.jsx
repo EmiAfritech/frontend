@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
+import { useRiskDelete } from "../../api/routes-data";
 
 export function InputField({
   label,
@@ -354,30 +355,18 @@ export function Delete({ data, message, name }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {triggerComponent} = useState(Modaltrigger)
-  
+  const id = data.id;
+  const riskID = data.riskID;
+  const deptId = data.deptId;
 
   const handleDelete = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    
     
     try {
       if (name === "risk") {
-        const response = await axios.post(
-          DELETERISK_URL,
-          JSON.stringify({ 
-              id: data.id,
-              riskID: data.riskID,
-              deptId: data.deptId,
-            }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + auth.token,
-            },
-            withCredentials: true,
-          }
-        );
+        const response = useRiskDelete(id,riskID,deptId)
         if (response.status === 201) {
           showToast("Successfully deleted", "success");
           triggerComponent()
@@ -386,8 +375,7 @@ export function Delete({ data, message, name }) {
           showToast("Failed to delete. Please try again", "error");
           console.log(response)
         }
-      } else {
-      }
+      } 
     } catch (error) {
       showToast("An error occurred. Please try again later.", "error");
       console.error("Delete error:", error);

@@ -1193,10 +1193,9 @@ export function useRiskToBeMitigatedInfo(riskName) {
 }
 
 
-export function useDelete(id, riskID, deptId) {
+export function useRiskDelete(id, riskID, deptId) {
   const { auth } = useContext(AuthContext);
-  const [riskDelete, setRiskDelete] = useState("");
-
+  console.log({"deteing risk": JSON.stringify({ id, riskID, deptId }),})
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -1210,13 +1209,10 @@ export function useDelete(id, riskID, deptId) {
           withCredentials: true,
         }
       );
-      setRiskDelete(response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
   };
-
-  
-  return { riskDelete, fetchData };
 }
 
