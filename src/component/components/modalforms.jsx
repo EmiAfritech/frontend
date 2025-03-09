@@ -8,6 +8,7 @@ import { showToast } from "./notifications";
 import { CustomButton, FormDetailsField, ModalFormSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import axios from "../../api/axios";
+import { Modal } from "@mui/material";
 
 
 export function RiskInfo(data) {
@@ -561,7 +562,7 @@ export function RiskInfo(data) {
             required
             group={false}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskReview"
             label="Risk Review"
             value={riskReview}
@@ -614,7 +615,7 @@ export function RiskInfo(data) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     console.log(MonitorInfoInitialize)
     const {triggerComponent} = useContext(Modaltrigger);
-
+    const [responseActivityStatus, setResponseActivityStatus] = useState(MonitorInfoInitialize.riskResponseActivitiyStatus);
     const [monitorInfo, setMonitorInfo] = useState({
       riskID: MonitorInfoInitialize.riskId,
       riskName: MonitorInfoInitialize.riskName,
@@ -747,11 +748,12 @@ export function RiskInfo(data) {
             
             required
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskResponseActivity"
             label="Response Activity Status"
-            value={monitorInfo.riskResponseActivity}
-            onChange={onChange}
+            value={responseActivityStatus}
+            options={grcArray.responseActivityStatus}
+            onChange={setResponseActivityStatus}          
             
             required
           />
