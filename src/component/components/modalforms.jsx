@@ -247,7 +247,22 @@ export function RiskInfo(data) {
       e.preventDefault();
   
       setIsSubmitting(true);
-    
+      console.log(
+        JSON.stringify(
+          {
+            riskId: mitigationInfo.riskID,
+            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(mitigationInfo.MitigationProbabilityLevel),
+            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigationInfo.MitigatedImpact),
+            mitigationCost: mitigationInfo.MitigationCost,
+            mitigationEffort: mitigationInfo.MitigationEffort,
+            mitigationControl: mitigationInfo.MitigationControl,
+            riskReviewer: mitigationInfo.riskOwner,
+            deptId: MitigationInfoInitialize.deptId,
+            id: MitigationInfoInitialize.id,
+            
+          }       
+        ),
+      )
       try {
         const response = await axios.post(
           EDITMITIGATION_URL,
