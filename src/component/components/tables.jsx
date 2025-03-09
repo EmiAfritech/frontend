@@ -1212,6 +1212,7 @@ export function DepartmentTab() {
   const columns = useDeptColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { departmentTable, fetchData} = useDepartmentTable();
+  
 
   
   const handleFormSubmit = () => {
@@ -1361,9 +1362,6 @@ export function RiskViewTable() {
     fetchData();
   };
 
-  
-
-  
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
@@ -1428,6 +1426,13 @@ export function RiskmitigationTab() {
   const columns = useRiskMitigationColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { mitigationTable, fetchData } = useMitigationTable();
+  const {trigger, resettriggerComponent} = useContext(Modaltrigger);
+
+
+  const Refresh = () => {
+    fetchData();
+    resettriggerComponent();
+  };
 
   
   const handleFormSubmit = () => {
@@ -1489,6 +1494,8 @@ export function RiskmitigationTab() {
         </div>
       </div>
       <MaterialReactTable table={table} />
+      {trigger && (Refresh())}
+
     </div>
   );
 }
@@ -1710,6 +1717,13 @@ export function RiskReview() {
   const columns = useRiskReviewColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { riskReviewTable, fetchData } = useRiskReviewTable();
+  const {trigger, resettriggerComponent} = useContext(Modaltrigger);
+
+
+  const Refresh = () => {
+    fetchData();
+    resettriggerComponent();
+  };
 
   const handleFormSubmit = () => {
     fetchData();
@@ -1770,6 +1784,7 @@ export function RiskReview() {
         </div>
       </div>
       <MaterialReactTable table={table} />
+      {trigger && (Refresh())}
     </div>
   );
 }
@@ -1778,6 +1793,13 @@ export function RiskMonitor() {
   const columns = useRiskMonitoringColumns();
   const [rowSelection, setRowSelection] = useState({});
   const { monitoringTable, fetchData } = useMonitoringTable();
+  const {trigger, resettriggerComponent} = useContext(Modaltrigger);
+
+
+  const Refresh = () => {
+    fetchData();
+    resettriggerComponent();
+  };
 
   
   const handleFormSubmit = () => {
@@ -1839,6 +1861,7 @@ export function RiskMonitor() {
         </div>
       </div>
       <MaterialReactTable table={table} className="p-6"/>
+      {trigger && (Refresh())}
     </div>
   );
 }
