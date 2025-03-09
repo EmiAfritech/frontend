@@ -181,7 +181,7 @@ export function RiskInfo(data) {
           <ModalFormSelect
             id="riskProbabilityLevel"
             label="Probability Level"
-            value={getRiskProbabilityLevel(probabilityLevel)}
+            value={getProbabilityLevelNumber(probabilityLevel)}
             options={grcArray.probabilityLevel}
             onChange={setProbabilityLevel}
             required
