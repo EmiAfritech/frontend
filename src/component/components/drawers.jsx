@@ -1337,7 +1337,7 @@ export function Complianceforms({ onFormSubmit }) {
   const FormArray = GRCFormsArray(t);
 
   const notify = () => {
-    toast.success("Control Saved Successfully", {
+    toast.success("Compliance Saved Successfully", {
       onClose: () => {
         handleClose();
         onFormSubmit();
@@ -1391,14 +1391,14 @@ export function Complianceforms({ onFormSubmit }) {
   return (
     <div>
       <CustomButton
-        label="Set a New Control"
+        label="Test New Compliance"
         type="New Declaration"
         className="custom-class rounded-full p-2 px-5"
         onClick={handleOpen}
       />
       <Drawer anchor={"right"} open={open} onClose={handleClose}>
         <div className="flex justify-center font-bold py-5  text-black">
-          Governance Control
+          Compliance
         </div>
         <hr />
         <form className="w-96">
