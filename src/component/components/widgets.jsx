@@ -360,6 +360,11 @@ export function Delete({ data, message, name }) {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log(JSON.stringify({ 
+      id: data.id,
+      riskID: data.riskID,
+      deptId: data.deptID,
+    }))
     try {
       if (name === "risk") {
         const response = await axios.post(
