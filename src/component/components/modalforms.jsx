@@ -419,7 +419,6 @@ export function ReviewRIsk(data){
       departmentId: ReviewInfoInitialize.deptId,
       riskCategory: ReviewInfoInitialize.riskCategory,
       riskStatus: ReviewInfoInitialize.status,
-      riskReview: ReviewInfoInitialize.riskReview,
       NextRiskReviewDate: ReviewInfoInitialize.NextRiskReviewDate,
       riskReviewComments: ReviewInfoInitialize.riskReviewComments,
       riskOwner: ReviewInfoInitialize.submittedByLabel,
@@ -441,7 +440,7 @@ export function ReviewRIsk(data){
           JSON.stringify(
             {
               riskId: reviewInfo.riskID,
-              riskReview: reviewInfo.riskReview,
+              riskReview: riskReview,
               NextRiskReviewDate: reviewInfo.NextRiskReviewDate,
               riskReviewComments: reviewInfo.riskReviewComments,
               deptId: ReviewInfoInitialize.deptId,
@@ -612,7 +611,6 @@ export function MonitorRisk(data){
       comments: MonitorInfoInitialize.comments,
       recommendedChanges: MonitorInfoInitialize.recommendedChanges,
       ResponseImplementation: MonitorInfoInitialize.riskResponseImplementation,
-      riskResponseActivity: MonitorInfoInitialize.riskResponseActivitiyStatus,
       challenges: MonitorInfoInitialize.challenges,
     })
   
@@ -632,7 +630,7 @@ export function MonitorRisk(data){
           JSON.stringify(
             {
               riskId: monitorInfo.riskID,
-              riskResponseActivitiyStatus: monitorInfo.riskResponseActivity,
+              riskResponseActivitiyStatus: responseActivityStatus,
               recommendedChanges: monitorInfo.recommendedChanges,
               riskResponseImplementation: monitorInfo.ResponseImplementation,
               challenges: monitorInfo.challenges,
