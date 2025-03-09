@@ -216,14 +216,13 @@ export function RiskInfo(data) {
   export function MitigateRIsk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const options = GRCFormsArray(t)
     const grcArray = GRCFormsArray(t);
     const MitigationInfoInitialize = data.data;
     
-    const [probabilityLevel, setProbabilityLevel] = useState(RiskInfoInitialize.riskProbabilityLevel);
+    const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.riskProbabilityLevel);
 
     const [isSubmitting, setIsSubmitting] = useState(false)
-    console.log(MitigationInfoInitialize)
+    const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl)
     const [mitigationInfo, setMitigationInfo] = useState({
       riskID: MitigationInfoInitialize.riskId,
       riskName: MitigationInfoInitialize.riskName,
@@ -234,7 +233,6 @@ export function RiskInfo(data) {
       MitigationProbabilityLevel: MitigationInfoInitialize.mitigatedRiskProbabilityLevel,
       MitigatedImpact: MitigationInfoInitialize.mitigatedRiskImpactLevel,
       MitigationEffort: MitigationInfoInitialize.mitigationEffort,
-      MitigationControl: MitigationInfoInitialize.mitigationControl,
   
     })
   
@@ -302,6 +300,7 @@ export function RiskInfo(data) {
             value={mitigationInfo.riskID}
             onChange={onChange}
             required
+            disabled={true}
           />
           <FormDetailsField
             id="riskName"
@@ -309,6 +308,7 @@ export function RiskInfo(data) {
             value={mitigationInfo.riskName}
             onChange={onChange}
             required
+            disabled={true}
           />
           <FormDetailsField
             id="riskReviewer"
@@ -319,13 +319,14 @@ export function RiskInfo(data) {
             searchable={true}
             required
             group={false}
+            disabled={true}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="MitigationControl"
             label="Mitigation Control"
-            value={mitigationInfo.MitigationControl}
-            onChange={onChange}
-            options={options}
+            value={mitigationControl}
+            onChange={setMitigationControl}
+            options={grcArray.mitigationControl}
             searchable={true}
             required
             group={false}
