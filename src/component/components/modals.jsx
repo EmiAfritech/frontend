@@ -518,6 +518,7 @@ export function RiskDetails(data) {
   function handleOpen() {
     setOpen(!open);
   }
+  
 
 
   return (
@@ -574,7 +575,7 @@ export function RiskDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskInfo data={riskInfo} close={close()}/>
+            <RiskInfo data={riskInfo} close={close}/>
           </div>
         </Box>
       </Modal>
