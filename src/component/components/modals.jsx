@@ -574,15 +574,13 @@ export function RiskDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskInfo data={riskInfo} />
+            <RiskInfo data={riskInfo} close={close()}/>
           </div>
         </Box>
       </Modal>
     </div>
   );
 }
-
-
 
 export function MitigationDetails(data) {
   const { auth } = useContext(AuthContext);
@@ -678,7 +676,6 @@ export function MitigationDetails(data) {
   );
 }
 
-
 export function RiskReviewDetails(data) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -765,7 +762,7 @@ export function RiskReviewDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <ReviewRIsk data= {reviewInfo}  />
+            <ReviewRIsk data= {reviewInfo}  close={close()}/>
           </div>
         </Box>
       </Modal>

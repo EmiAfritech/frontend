@@ -10,7 +10,7 @@ import { GRCFormsArray } from "./formarrays";
 import axios from "../../api/axios";
 
 
-export function RiskInfo(data) {
+export function RiskInfo(data, close) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const grcArray = GRCFormsArray(t);
@@ -79,6 +79,7 @@ export function RiskInfo(data) {
               "Risk has be Updated Successfully!",
             );
             triggerComponent();
+            close()
           }
         } catch (err) {
           // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -399,7 +400,7 @@ export function MitigateRIsk(data){
   );
 }
   
-  export function ReviewRIsk(data){
+  export function ReviewRIsk(data, close){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
@@ -457,6 +458,7 @@ export function MitigateRIsk(data){
             "Risk Reviiew has be Updated Successfully!",
           );
           triggerComponent();
+          close()
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
