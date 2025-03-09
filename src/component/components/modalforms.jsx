@@ -185,6 +185,7 @@ export function RiskInfo(data) {
             options={grcArray.probabilityLevel}
             onChange={setProbabilityLevel}
             required
+            initialize={probabilityLevel}
           />
           <FormDetailsField
             id="riskDescription"
@@ -209,6 +210,7 @@ export function RiskInfo(data) {
             options={grcArray.impactLevel}
             onChange={setImpactLevel}
             required
+            initialize={impactLevel}
           />
         </div>
   

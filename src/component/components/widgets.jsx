@@ -144,6 +144,7 @@ export function ModalFormSelect({
   required = false,
   error = "",
   id,
+  initialize
 }) {
   return (
     <div className="mt-4">
@@ -169,7 +170,7 @@ export function ModalFormSelect({
           ${error ? "border border-red-500" : ""} 
           ${disabled ? "bg-gray-100" : ""}`}
       >
-        <option value="" disabled>{value}</option>
+        <option value={initialize} disabled>{initialize}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
