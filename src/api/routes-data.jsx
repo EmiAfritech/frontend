@@ -44,7 +44,8 @@ import {
   COMPLIANCETABLE_URL,
   CONTROLITEMDROPDOWN,
   DELETERISK_URL,
-  DELETERISKMITIGATION_URL
+  DELETERISKMITIGATION_URL,
+  DELETERISKREVIEW_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1251,5 +1252,63 @@ export function useRiskMitigateDelete() {
   };
 
   return { deleteMitigationRisk }; 
+}
+
+export function useRiskReviewDelete() {
+  const { auth } = useContext(AuthContext);
+
+  const deleteReviewRisk = async (id, riskId, deptId) => {
+    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
+
+    try {
+      const response = await axios.post(
+        DELETERISKREVIEW_URL,
+        JSON.stringify({ id, riskId, deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      return response; 
+    } catch (error) {
+      console.error("Error deleting risk:", error);
+      throw error; 
+    }
+  };
+
+  return { deleteReviewRisk }; 
+}
+
+export function useRiskMonitorDelete() {
+  const { auth } = useContext(AuthContext);
+
+  const deleteMonitorRisk = async (id, riskId, deptId) => {
+    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
+
+    try {
+      const response = await axios.post(
+        DELETERISKREVIEW_URL,
+        JSON.stringify({ id, riskId, deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      return response; 
+    } catch (error) {
+      console.error("Error deleting risk:", error);
+      throw error; 
+    }
+  };
+
+  return { deleteMonitorRisk }; 
 }
 

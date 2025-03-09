@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
-import { useRiskDelete, useRiskMitigateDelete } from "../../api/routes-data";
+import { useRiskDelete, useRiskMitigateDelete, useRiskMonitorDelete, useRiskReviewDelete } from "../../api/routes-data";
 
 export function InputField({
   label,
@@ -354,37 +354,43 @@ export function Delete({ data, message, name }) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {triggerComponent} = useContext(Modaltrigger);
-  const { deleteRisk } = useRiskDelete()
-  const {deleteMitigationRisk} = useRiskMitigateDelete()
+  const { triggerComponent } = useContext(Modaltrigger);
+
+  const { deleteRisk } = useRiskDelete();
+  const { deleteMitigationRisk } = useRiskMitigateDelete();
+  const { deleteReviewRisk } = useRiskReviewDelete();
+  const { deleteMonitorRisk } = useRiskMonitorDelete();
+
+  const deleteFunctions = {
+    risk: deleteRisk,
+    mitigation: deleteMitigationRisk,
+    review: deleteReviewRisk,
+    monitor: deleteMonitorRisk,
+  };
 
   const handleDelete = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    
+
     try {
-      if (name === "risk") {
-        const response = await deleteRisk(data.id, data.riskID, data.deptId) 
-        if (response.status === 201) {
-          showToast("Successfully deleted", "success");
-          triggerComponent()
-          handleClose()
-        } else {
-          showToast("Failed to delete. Please try again", "error");
-          console.log(response)
-        }
+      if (!name || !deleteFunctions[name]) {
+        showToast("Invalid delete action", "error");
+        return;
       }
-      if (name === "mitigation") {
-        const response = await deleteMitigationRisk(data.id, data.riskId, data.deptId) 
-        if (response.status === 201) {
-          showToast("Successfully deleted", "success");
-          triggerComponent()
-          handleClose()
-        } else {
-          showToast("Failed to delete. Please try again", "error");
-          console.log(response)
-        }
+
+      const { id, deptId } = data;
+      const riskId = name === "risk" ? data.riskID : data.riskId; // Handle riskID vs riskId correctly
+      const deleteFunction = deleteFunctions[name];
+
+      const response = await deleteFunction(id, riskId, deptId);
+
+      if (response?.status === 201) {
+        showToast("Successfully deleted", "success");
+        triggerComponent();
+        handleClose();
+      } else {
+        showToast("Failed to delete. Please try again", "error");
+        console.error("Delete failed:", response);
       }
     } catch (error) {
       showToast("An error occurred. Please try again later.", "error");
@@ -398,46 +404,17 @@ export function Delete({ data, message, name }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const style = {
-    position: "absolute",
-    top: "20%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 450,
-    bgcolor: "white",
-    borderBottom: "4px solid #000",
-    boxShadow: "40px rgba(0, 0, 0, 0.2)",
-    borderRadius: "8px",
-    p: 2,
-  };
-
   return (
     <div>
       <IconButton onClick={handleOpen}>
         <MdDelete color="red" />
       </IconButton>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={{ position: "absolute", top: "20%", left: "50%", transform: "translate(-50%, -50%)", width: 450, bgcolor: "white", borderBottom: "4px solid #000", boxShadow: "40px rgba(0, 0, 0, 0.2)", borderRadius: "8px", p: 2 }}>
           <div className="flex flex-row items-center justify-center mb-4">
-            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <svg
-                className="h-6 w-6 text-red-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                />
+            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100">
+              <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
             </div>
             <div className="ml-2">
@@ -445,19 +422,14 @@ export function Delete({ data, message, name }) {
             </div>
           </div>
           <div className="flex flex-row pb-3 pt-2 px-2 flex-row-reverse items-center">
-            <button
-              className="flex flex-row items-center p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              type="submit"
-              onClick={handleDelete}
-              disabled={isSubmitting}
-            >
+            <button className="p-3 m-2 bg-transparent hover:bg-blue-900 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" type="submit" onClick={handleDelete} disabled={isSubmitting}>
               {isSubmitting ? (
                 <div className="flex flex-row justify-center">
                   <p className="text-sm pr-2">loading...</p>
                   <CircularProgress size={27} thickness={6} color="primary" />
                 </div>
               ) : (
-                <div>Yes</div>
+                "Yes"
               )}
             </button>
           </div>
@@ -466,6 +438,7 @@ export function Delete({ data, message, name }) {
     </div>
   );
 }
+
 
 export const ModalModification = {
   position: "absolute",

@@ -697,7 +697,7 @@ export function RiskReviewDetails(data) {
         <Delete
           data = {reviewInfo}
           message = "Are you sure you want to delete risk?"
-          name = "risk"
+          name = "review"
         />
     </div>
       <Modal
