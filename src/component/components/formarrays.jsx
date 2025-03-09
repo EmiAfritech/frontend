@@ -10,6 +10,7 @@ export const GRCFormsArray = (t) => ({
     { value: "PEOPLE", label: t("people") },
     { value: "SYSTEM", label: t("system") },
     { value: "PROCESS", label: t("process") },
+    { value: "External", label: t("externalFactors") },
   ],
   userRole: [
     { value: "MANAGER", label: t("departmentManager") },
