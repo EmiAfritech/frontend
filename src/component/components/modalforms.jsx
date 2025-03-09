@@ -30,12 +30,7 @@ export function RiskInfo(data) {
       createdAt: RiskInfoInitialize.updatedAt,
       riskScore: RiskInfoInitialize.riskScore,
       riskDescription: RiskInfoInitialize.riskDescription,
-      riskResponseActivity: RiskInfoInitialize.riskResponseActivity,
       riskOwner: RiskInfoInitialize.riskOwnerLabel,
-      riskResponse: RiskInfoInitialize.riskResponse,
-      riskCategory: RiskInfoInitialize.riskCategory,
-      riskProbabilityLevel: RiskInfoInitialize.riskProbabilityLevel,
-      riskImpactLevel: RiskInfoInitialize.riskImpactLevel,
       riskObjective:RiskInfoInitialize.riskObjective
   
     })
@@ -59,12 +54,12 @@ export function RiskInfo(data) {
                 riskID: riskInfo.riskID,
                 riskName: riskInfo.riskName,
                 riskDescription: riskInfo.riskDescription,
-                riskCategory: riskInfo.riskCategory,
-                riskImpactLevel: getImpactLevelNumber(riskInfo.riskImpactLevel),
-                riskProbabilityLevel: getProbabilityLevelNumber(riskInfo.riskProbabilityLevel),
+                riskCategory: riskCategory,
+                riskImpactLevel: impactLevel,
+                riskProbabilityLevel: probabilityLevel,
                 riskObjective: riskInfo.riskObjective,
-                riskResponse: riskInfo.riskResponse,
-                riskResponseActivity: riskInfo.riskResponseActivity,
+                riskResponse: riskResponse,
+                riskResponseActivity: responseActivity,
                 riskOwner: riskInfo.riskOwner,
                 deptId: RiskInfoInitialize.deptId,
                 id: RiskInfoInitialize.id,
@@ -231,10 +226,6 @@ export function RiskInfo(data) {
       createdAt: MitigationInfoInitialize.updatedAt,
       MitigationScore: MitigationInfoInitialize.mitigatedRiskScore,
       riskReviewer: MitigationInfoInitialize.riskOwnerLabel,
-      MitigationCost: MitigationInfoInitialize.mitigationCost,
-      MitigationProbabilityLevel: MitigationInfoInitialize.mitigatedRiskProbabilityLevel,
-      MitigatedImpact: MitigationInfoInitialize.mitigatedRiskImpactLevel,
-      MitigationEffort: MitigationInfoInitialize.mitigationEffort,
   
     })
   
@@ -247,33 +238,18 @@ export function RiskInfo(data) {
       e.preventDefault();
   
       setIsSubmitting(true);
-      console.log(
-        JSON.stringify(
-          {
-            riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(mitigationInfo.MitigationProbabilityLevel),
-            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigationInfo.MitigatedImpact),
-            mitigationCost: mitigationInfo.MitigationCost,
-            mitigationEffort: mitigationInfo.MitigationEffort,
-            mitigationControl: mitigationInfo.MitigationControl,
-            riskReviewer: mitigationInfo.riskOwner,
-            deptId: MitigationInfoInitialize.deptId,
-            id: MitigationInfoInitialize.id,
-            
-          }       
-        ),
-      )
+      
       try {
         const response = await axios.post(
           EDITMITIGATION_URL,
           JSON.stringify(
             {
               riskId: mitigationInfo.riskID,
-              mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(mitigationInfo.MitigationProbabilityLevel),
-              mitigatedRiskImpactLevel: getImpactLevelNumber(mitigationInfo.MitigatedImpact),
-              mitigationCost: mitigationInfo.MitigationCost,
-              mitigationEffort: mitigationInfo.MitigationEffort,
-              mitigationControl: mitigationInfo.MitigationControl,
+              mitigatedRiskProbabilityLevel: probabilityLevel,
+              mitigatedRiskImpactLevel: mitigatedImpact,
+              mitigationCost: mitigationCost,
+              mitigationEffort: mitigationEffort,
+              mitigationControl: mitigationControl,
               riskReviewer: mitigationInfo.riskOwner,
               deptId: MitigationInfoInitialize.deptId,
               id: MitigationInfoInitialize.id,
@@ -333,7 +309,6 @@ export function RiskInfo(data) {
             label="Risk Reviewer"
             value={mitigationInfo.riskReviewer}
             onChange={onChange}
-            options={options}
             searchable={true}
             required
             group={false}
@@ -384,7 +359,7 @@ export function RiskInfo(data) {
             id="MitigationProbabilityLevel"
             label="Mitigation Probability Level"
             value={probabilityLevel}
-            options={grcArray}
+            options={grcArray.probabilityLevel}
             onChange={setProbabilityLevel}
             searchable={true}
             required
@@ -394,7 +369,7 @@ export function RiskInfo(data) {
             id="MitigatedImpact"
             label="Mitigated Impact"
             value={mitigatedImpact}
-            options={grcArray}
+            options={grcArray.impactLevel}
             onChange={setMitigatedImpact}
             searchable={true}
             required
@@ -812,39 +787,9 @@ export function RiskInfo(data) {
     }
   }
   
-  export function getProbabilityLevelNumber(probability) {
-    switch (probability) {
-      case "Almost Impossible":
-        return 1;
-      case "Unlikely":
-        return 2;
-      case "Likely":
-        return 3;
-      case "Very Likely":
-        return 4;
-      case "Almost Certain":
-        return 5;
-      default:
-        return 0;
-    }
-  }
   
-  export function getImpactLevelNumber(impact) {
-    switch (impact) {
-      case "Insignificant":
-        return 1;
-      case "Minor":
-        return 2;
-      case "Moderate":
-        return 3;
-      case "Major":
-        return 4;
-      case "Catastrophic":
-        return 5;
-      default:
-        return 0;
-    }
-  }
+  
+  
   
   
   
