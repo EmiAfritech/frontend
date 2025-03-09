@@ -162,7 +162,7 @@ export function RiskInfo(data) {
             label="Risk Category"
             value={riskCategory}
             options={grcArray.categorydrawer}
-            onChange={setRiskCategory}
+            onChange={(e) => setRiskCategory(e.target.value)}
             required
           />
           <ModalFormSelect

@@ -160,7 +160,7 @@ export function ModalFormSelect({
         id="year"
         value={value}
         autoComplete="off"
-        onChange={onChange}>
+        onChange={(e) => onChange(e.target.value)}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
