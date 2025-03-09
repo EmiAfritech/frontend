@@ -181,11 +181,10 @@ export function RiskInfo(data) {
           <ModalFormSelect
             id="riskProbabilityLevel"
             label="Probability Level"
-            value={probabilityLevel}
+            value={getRiskProbabilityLevel(probabilityLevel)}
             options={grcArray.probabilityLevel}
             onChange={setProbabilityLevel}
             required
-            initialize={probabilityLevel}
           />
           <FormDetailsField
             id="riskDescription"
@@ -206,11 +205,10 @@ export function RiskInfo(data) {
           <ModalFormSelect
             id="riskImpactLevel"
             label="Response Impact Level"
-            value={impactLevel}
+            value={getImpactLevelNumber(impactLevel)}
             options={grcArray.impactLevel}
             onChange={setImpactLevel}
             required
-            initialize={impactLevel}
           />
         </div>
   
