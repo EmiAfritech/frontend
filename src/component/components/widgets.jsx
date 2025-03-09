@@ -354,7 +354,7 @@ export function Delete({ data, message, name }) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {triggerComponent} = useState(Modaltrigger);
+  const {triggerComponent} = useContext(Modaltrigger);
   const { deleteRisk } = useRiskDelete()
 
   const handleDelete = async (e) => {
