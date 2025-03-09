@@ -413,7 +413,11 @@ export function RiskInfo(data) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
+    const grcArray = GRCFormsArray(t);
     const ReviewInfoInitialize = data.data;
+
+    const [riskReview, setRiskReview] = useState(ReviewInfoInitialize.riskReview);
+
     const [isSubmitting, setIsSubmitting] = useState(false)
     const {triggerComponent} = useContext(Modaltrigger);
     console.log(ReviewInfoInitialize)
@@ -560,9 +564,9 @@ export function RiskInfo(data) {
           <FormDetailsField
             id="riskReview"
             label="Risk Review"
-            value={reviewInfo.riskReview}
-            onChange={onChange}
-            options={options}
+            value={riskReview}
+            options={grcArray.riskReviewArray}
+            onChange={setRiskReview}
             searchable={true}
             required
             group={false}
@@ -605,7 +609,7 @@ export function RiskInfo(data) {
   export function MonitorRisk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const options = GRCFormsArray(t)
+    const grcArray = GRCFormsArray(t)
     const MonitorInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
     console.log(MonitorInfoInitialize)
