@@ -138,29 +138,37 @@ export function ModalFormSelect({
   value,
   onChange,
   disabled = false,
-  options =[],
+  options = [],
   label,
   required = false,
-  error = ""
-}){
-  return(
-    <div className="mb-1">
-      <div className="flex flex-row">
+  error = "",
+  id,
+}) {
+  return (
+    <div className="mt-4">
+      <div className="flex">
         {label && (
           <label
-            className={`block text-[12.5px] text-[#08376B] ${
-              (error ? "text-red-500" : "", disabled ? "text-gray-300" : "")
-            }`}>
+            className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] 
+              ${error ? "text-red-500" : ""} 
+              ${disabled ? "text-gray-300" : ""}`}
+          >
             {label} {required && <span className="required">*</span>}
           </label>
         )}
       </div>
       <select
-        className="block w-full p-2 bg-gray-200 border-none appearance-none"
-        id="year"
+        id={id}
         value={value}
         autoComplete="off"
-        onChange={(e) => onChange(e.target.value)}>
+        onChange={(e) => onChange(e.target.value)}
+        required={required}
+        disabled={disabled}
+        className={`w-full p-2 bg-gray-200  
+          ${error ? "border border-red-500" : ""} 
+          ${disabled ? "bg-gray-100" : ""}`}
+      >
+        <option value="" disabled>Select an option</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -168,8 +176,9 @@ export function ModalFormSelect({
         ))}
       </select>
     </div>
-  )
-};
+  );
+}
+
 
 export function FormInputField({
   label,
