@@ -575,7 +575,7 @@ export function RiskDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <RiskInfo data={riskInfo} close={close}/>
+            <RiskInfo data={riskInfo}/>
           </div>
         </Box>
       </Modal>
@@ -763,7 +763,7 @@ export function RiskReviewDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <ReviewRIsk data= {reviewInfo}  close={close()}/>
+            <ReviewRIsk data= {reviewInfo} />
           </div>
         </Box>
       </Modal>

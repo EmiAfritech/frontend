@@ -10,7 +10,7 @@ import { GRCFormsArray } from "./formarrays";
 import axios from "../../api/axios";
 
 
-export function RiskInfo(data, close) {
+export function RiskInfo(data) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const grcArray = GRCFormsArray(t);
@@ -55,8 +55,8 @@ export function RiskInfo(data, close) {
                 riskName: riskInfo.riskName,
                 riskDescription: riskInfo.riskDescription,
                 riskCategory: riskCategory,
-                riskImpactLevel: impactLevel,
-                riskProbabilityLevel: probabilityLevel,
+                riskImpactLevel: getImpactLevelNumber(impactLevel),
+                riskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
                 riskObjective: riskInfo.riskObjective,
                 riskResponse: riskResponse,
                 riskResponseActivity: responseActivity,
@@ -246,8 +246,8 @@ export function MitigateRIsk(data){
         JSON.stringify(
           {
             riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: probabilityLevel,
-            mitigatedRiskImpactLevel: mitigatedImpact,
+            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
+            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigatedImpact),
             mitigationCost: mitigationCost,
             mitigationEffort: mitigationEffort,
             mitigationControl: mitigationControl,
@@ -400,7 +400,7 @@ export function MitigateRIsk(data){
   );
 }
   
-  export function ReviewRIsk(data, close){
+  export function ReviewRIsk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
@@ -788,9 +788,39 @@ export function MitigateRIsk(data){
     }
   }
   
+  export function getProbabilityLevelNumber(probability) {
+    switch (probability) {
+      case "Almost Impossible":
+        return 1;
+      case "Unlikely":
+        return 2;
+      case "Likely":
+        return 3;
+      case "Very Likely":
+        return 4;
+      case "Almost Certain":
+        return 5;
+      default:
+        return 0;
+    }
+  }
   
-  
-  
+  export function getImpactLevelNumber(impact) {
+    switch (impact) {
+      case "Insignificant":
+        return 1;
+      case "Minor":
+        return 2;
+      case "Moderate":
+        return 3;
+      case "Major":
+        return 4;
+      case "Catastrophic":
+        return 5;
+      default:
+        return 0;
+    }
+  }
   
   
   
