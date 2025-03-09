@@ -378,7 +378,7 @@ export function MitigateRIsk(data){
         <ModalFormSelect
           id="MitigationProbabilityLevel"
           label="Mitigation Probability Level"
-          value={probabilityLevel}
+          value={getProbabilityLevelNumber(probabilityLevel)}
           options={grcArray.probabilityLevel}
           onChange={setProbabilityLevel}
           searchable={true}
@@ -388,7 +388,7 @@ export function MitigateRIsk(data){
         <ModalFormSelect
           id="MitigatedImpact"
           label="Mitigated Impact"
-          value={mitigatedImpact}
+          value={getImpactLevelNumber(mitigatedImpact)}
           options={grcArray.impactLevel}
           onChange={setMitigatedImpact}
           searchable={true}
