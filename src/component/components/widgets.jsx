@@ -354,12 +354,7 @@ export function Delete({ data, message, name }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {triggerComponent} = useState(Modaltrigger)
-  console.log(JSON.stringify({
-    data, 
-    id: data.id,
-    riskID: data.riskID,
-    deptId: data.deptID,
-  }))
+  
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -373,7 +368,7 @@ export function Delete({ data, message, name }) {
           JSON.stringify({ 
               id: data.id,
               riskID: data.riskID,
-              deptId: data.deptID,
+              deptId: data.deptId,
             }),
           {
             headers: {
