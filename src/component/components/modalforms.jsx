@@ -419,7 +419,7 @@ export function ReviewRIsk(data){
       departmentId: ReviewInfoInitialize.deptId,
       riskCategory: ReviewInfoInitialize.riskCategory,
       riskStatus: ReviewInfoInitialize.status,
-      NextRiskReviewDate: ReviewInfoInitialize.NextRiskReviewDate,
+      NextRiskReviewDate: new Date(ReviewInfoInitialize.NextRiskReviewDate),
       riskReviewComments: ReviewInfoInitialize.riskReviewComments,
       riskOwner: ReviewInfoInitialize.submittedByLabel,
     })
