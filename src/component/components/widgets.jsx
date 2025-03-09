@@ -156,7 +156,7 @@ export function ModalFormSelect({
         )}
       </div>
       <select
-        className="block w-full px-2 py-1 bg-[#E5E7EB] border-none appearance-none"
+        className="block w-full p-2 bg-gray-200 border-none appearance-none"
         id="year"
         value={value}
         autoComplete="off"
