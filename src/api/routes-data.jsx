@@ -42,7 +42,8 @@ import {
   RISKNEEDEDTOBESREVIEW_URL,
   DEPARTMENTCODEDROPDOWN_URL,
   COMPLIANCETABLE_URL,
-  CONTROLITEMDROPDOWN
+  CONTROLITEMDROPDOWN,
+  DELETERISK_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
