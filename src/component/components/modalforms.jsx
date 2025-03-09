@@ -812,14 +812,19 @@ export function getRiskProbabilityLevel(level) {
 export function getProbabilityLevelNumber(probability) {
   switch (probability) {
     case "Almost Impossible":
+    case 1:
       return 1;
     case "Unlikely":
+    case 2:
       return 2;
     case "Likely":
+    case 3:
       return 3;
     case "Very Likely":
+    case 4:
       return 4;
     case "Almost Certain":
+    case 5:
       return 5;
     default:
       return 0;
@@ -829,14 +834,19 @@ export function getProbabilityLevelNumber(probability) {
 export function getImpactLevelNumber(impact) {
   switch (impact) {
     case "Insignificant":
+    case 1:
       return 1;
     case "Minor":
+    case 2:
       return 2;
     case "Moderate":
+    case 3:
       return 3;
     case "Major":
+    case 4:
       return 4;
     case "Catastrophic":
+    case 5:
       return 5;
     default:
       return 0;
