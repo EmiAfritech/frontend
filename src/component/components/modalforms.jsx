@@ -41,7 +41,7 @@ export function RiskInfo(data) {
       setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
     };
   
-  
+   console.log({impactLevel,probabilityLevel})
     const handleSubmit = async (e) => {
         e.preventDefault();
     
