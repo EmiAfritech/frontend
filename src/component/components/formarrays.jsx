@@ -4,7 +4,7 @@ export const GRCFormsArray = (t) => ({
     { value: 2, label: t("unlikely") },
     { value: 3, label: t("likely")},
     { value: 4, label: t("veryLikely")},
-    { value: 5, label: t("almostCertain") },
+    { value: 5, label: t("almostCetain") },
   ],
   categorydrawer: [
     { value: "PEOPLE", label: t("people") },
