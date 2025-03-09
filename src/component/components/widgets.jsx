@@ -169,7 +169,7 @@ export function ModalFormSelect({
           ${error ? "border border-red-500" : ""} 
           ${disabled ? "bg-gray-100" : ""}`}
       >
-        <option value="" disabled>Select ...</option>
+        <option value={value} disabled>{value}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
