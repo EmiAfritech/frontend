@@ -14,7 +14,6 @@ export function ActivationPage() {
   const [activationSuccess, setActivationSuccess] = useState(false);
   const email = location.state?.email || "";
 
-  console.log({"activationToken": token})
   const handleActivation = async () => {
     if (!token) {
       toast.error("Please enter the activation token.");

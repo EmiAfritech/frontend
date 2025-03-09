@@ -30,7 +30,6 @@ export function Sidebar() {
   const { t } = useTranslation();
   const userRole = Cookies.get("role");
   const location = useLocation();
-  console.log(location.pathname)
 
   // Determine the organization logo
   const SidebarLogo =

@@ -387,15 +387,6 @@ export const useRiskStatuscolumns = () => {
     {
       accessorKey: "view",
       header: "Action",
-      Cell: ({ row }) => (
-        <Tooltip title="View Details">
-          <IconButton
-            onClick={() => console.log(row.original.deptID)}
-            color="primary">
-            <FaEye />
-          </IconButton>
-        </Tooltip>
-      ),
     },
   ];
 };

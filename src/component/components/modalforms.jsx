@@ -41,29 +41,10 @@ export function RiskInfo(data) {
       setRiskInfo((prevData) => ({ ...prevData, [id]: value }));
     };
   
-   console.log({impactLevel,probabilityLevel})
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         setIsSubmitting(true);
-
-        console.log( JSON.stringify(
-            {
-              riskID: riskInfo.riskID,
-              riskName: riskInfo.riskName,
-              riskDescription: riskInfo.riskDescription,
-              riskCategory: riskCategory,
-              riskImpactLevel: getImpactLevelNumber(impactLevel),
-              riskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
-              riskObjective: riskInfo.riskObjective,
-              riskResponse: riskResponse,
-              riskResponseActivity: responseActivity,
-              riskOwner: riskInfo.riskOwner,
-              deptId: RiskInfoInitialize.deptId,
-              id: RiskInfoInitialize.id,
-              
-            }       
-          ));
 
       
         try {
@@ -430,7 +411,6 @@ export function ReviewRIsk(data){
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const {triggerComponent} = useContext(Modaltrigger);
-    console.log(ReviewInfoInitialize)
     const [reviewInfo, setReviewInfo] = useState({
       riskID: ReviewInfoInitialize.riskId,
       riskName: ReviewInfoInitialize.riskName,
@@ -452,7 +432,6 @@ export function ReviewRIsk(data){
       e.preventDefault();
   
       setIsSubmitting(true);
-      console.log(reviewInfo.id)
       try {
         const response = await axios.post(
           EDITREVIEW_URL,
@@ -495,7 +474,6 @@ export function ReviewRIsk(data){
         setIsSubmitting(false);
       }
     };
-    console.log({"riskreview": data})
     return (
       <main className="grid grid-cols-2 gap-12 pt-5">
         {/* Left Column */}
@@ -620,7 +598,6 @@ export function MonitorRisk(data){
     const grcArray = GRCFormsArray(t)
     const MonitorInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
-    console.log(MonitorInfoInitialize)
     const {triggerComponent} = useContext(Modaltrigger);
     const [responseActivityStatus, setResponseActivityStatus] = useState(MonitorInfoInitialize.riskResponseActivitiyStatus);
     const [monitorInfo, setMonitorInfo] = useState({

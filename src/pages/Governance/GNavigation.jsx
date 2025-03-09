@@ -18,8 +18,6 @@ export const Tabs = [
     const handleTabChange = (tab) => {
       setActiveTab(tab);
     };
-  
-    console.log(activeTab);
     const renderComponent = () => {
       switch (activeTab) {
         case "Frame Work":

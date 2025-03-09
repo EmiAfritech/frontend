@@ -26,7 +26,6 @@ export function ReportSideTabs() {
     setActiveTab(tab);
   };
 
-  console.log(activeTab)
   const renderComponent = () => {
     switch (activeTab) {
       case "report":

@@ -233,7 +233,6 @@ export function useRiskReviewTable() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      console.log(response)
       setRiskReviewTable(response.data.Data);
     } catch (error) {
       console.error(error);
@@ -243,7 +242,6 @@ export function useRiskReviewTable() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  console.log(riskReviewTable)
   return { riskReviewTable, fetchData };
 }
 
@@ -642,9 +640,6 @@ export function useRiskLineChartYearData() {
   useEffect(() => {
     fetchData();
   }, []); 
-
-  console.log({ "years data": riskLineYearChart });
-
   return { riskLineYearChart, fetchData };
 }
 
@@ -837,7 +832,6 @@ export function useRiskLocationReport(departmentName) {
 export function useRiskOwnerReport(departmentName) {
   const { auth } = useContext(AuthContext);
   const [riskOwner, setRiskOwner] = useState("");
-  console.log(departmentName)
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -1075,7 +1069,6 @@ export function useRiskOwnersDropdown(departmentName) {
   const { auth } = useContext(AuthContext);
   const [ownersList, setOwnersList] = useState([]);
   const deptId = departmentName;
-  console.log({"ownersr id": deptId})
 
   const fetchData = async () => {
     try {
@@ -1139,7 +1132,6 @@ export function useRisksNeededToBeReviewed(departmentID) {
   const { auth } = useContext(AuthContext);
   const [riskToBeReviewed, setRiskToBeReviewed] = useState([]);
   const deptId = departmentID
-  console.log(JSON.stringify({ deptId }))
   const fetchData = async () => {
     try {
       const response = await axios.post(
@@ -1153,7 +1145,6 @@ export function useRisksNeededToBeReviewed(departmentID) {
           withCredentials: true,
         }
       );
-      console.log(response)
       setRiskToBeReviewed(response.data);
     } catch (error) {
       console.error(error);
@@ -1168,7 +1159,6 @@ export function useRisksNeededToBeReviewed(departmentID) {
 export function useRiskToBeMitigatedInfo(riskName) {
   const { auth } = useContext(AuthContext);
   const [riskToBeMitigatedInfo, setRiskTOBeMitigatedInfo] = useState([]);
-  console.log({"riskName in mitigation": riskName})
   const id = riskName;
   const fetchData = async () => {
     try {
@@ -1230,8 +1220,6 @@ export function useRiskMitigateDelete() {
   const { auth } = useContext(AuthContext);
 
   const deleteMitigationRisk = async (id, riskId, deptId) => {
-    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
-
     try {
       const response = await axios.post(
         DELETERISKMITIGATION_URL,
@@ -1259,7 +1247,6 @@ export function useRiskReviewDelete() {
   const { auth } = useContext(AuthContext);
 
   const deleteReviewRisk = async (id, riskId, deptId) => {
-    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
 
     try {
       const response = await axios.post(
@@ -1288,8 +1275,6 @@ export function useRiskMonitorDelete() {
   const { auth } = useContext(AuthContext);
 
   const deleteMonitorRisk = async (id, riskId, deptId) => {
-    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
-
     try {
       const response = await axios.post(
         DELETERISKMONITOR_URL,

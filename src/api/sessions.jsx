@@ -41,7 +41,6 @@ export function Sessions() {
   useEffect(() => {
     const exemptPaths = [ "/login","/activate", "/signup", "/setPassword", "/subscription", "/verifyemail", "/resetpassword","/governance", "/dashboard"]; 
 
-    console.log({"session": token})
     if (!token && !exemptPaths.includes(location.pathname)) {
       navigate("/", { replace: true });
       return;
@@ -52,7 +51,6 @@ export function Sessions() {
         if (!token) {
           throw new Error("No token provided");
         }
-        console.log({"session token": token})
         const response = await axios.post(
           Sessions_URL,
           { token }, 
@@ -73,7 +71,6 @@ export function Sessions() {
         //   notifySystem();
         //   Cookies.remove("token")
         // }
-        console.log(err)
       }
     };
 

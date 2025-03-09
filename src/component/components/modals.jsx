@@ -61,15 +61,6 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   setIsSubmitting(true);
 
-  console.log(JSON.stringify({
-    lastName: data.data.lastName,
-    otherName: data.data.firstName,
-    email: data.data.email,
-    phone: data.data.phoneNumber,
-    createdAt: data.data.createdAt,
-    department: data.data.departmentName,
-    role: data.data.role,
-  }),)
   try {
     await axios.get(EDITUSER_URL, 
       JSON.stringify({
@@ -255,13 +246,6 @@ export function DepartmentAccountDetails(data) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(JSON.stringify({
-      deptID: accountValue.departmentID,
-      location: accountValue.officeLocation,
-      name: accountValue.departmentName,
-      manager: accountValue.departmentManager,
-      id: data.data.id
-  }))
     try {
       await axios.get(EDITDEPARTMENT_URL, 
         JSON.stringify({
@@ -588,7 +572,6 @@ export function MitigationDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const mitigationInfo = data.data;
-  console.log({"mitigationdata": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -682,7 +665,6 @@ export function RiskReviewDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const reviewInfo = data.data;
-  console.log({"reviewInfo": data})
 
   function handleOpen() {
     setOpen(!open);
@@ -776,7 +758,6 @@ export function RiskMonitoringDetails(data) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const monitorInfo = data.data;
-  console.log({"monitordata": data})
 
   function handleOpen() {
     setOpen(!open);

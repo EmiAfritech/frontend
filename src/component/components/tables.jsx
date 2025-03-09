@@ -102,7 +102,6 @@ export function EmployeesTable2() {
       console.error(error);
     }
   };
-  console.log({"employees": tableData})
   useEffect(() => {
     getUsers();
   }, []);
@@ -663,7 +662,6 @@ export function Reportaudittrail2() {
         });
 
         setTableData(response.data);
-        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -1503,9 +1501,7 @@ export function RiskmitigationTab() {
 export function FrameworkTab() {
   const columns = useGovernanceColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { framework, fetchData } = useFrameWorkTable();
-  console.log({"framework":framework })
-  
+  const { framework, fetchData } = useFrameWorkTable();  
   
   
   const handleFormSubmit = () => {
@@ -1574,9 +1570,7 @@ export function FrameworkTab() {
 export function ControleTab() {
   const columns = useGovernanceControlColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { control, fetchData } = useControlTable();
-  console.log({"control":control })
-  
+  const { control, fetchData } = useControlTable();  
   
   
   const handleFormSubmit = () => {
@@ -1645,9 +1639,7 @@ export function ControleTab() {
 export function ComplianceTab() {
   const columns = useComplianceColumns();
   const [rowSelection, setRowSelection] = useState({});
-  const { complianceTable, fetchData } = useComplianceTable();
-  console.log({"control":complianceTable })
-  
+  const { complianceTable, fetchData } = useComplianceTable();  
   
   
   const handleFormSubmit = () => {

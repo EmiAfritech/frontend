@@ -52,7 +52,7 @@ import {
   selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart, useDepartmentCodeDropdown } from "../../api/routes-data";
+import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
 const getSelectedRowsToExport = ({ apiRef }) => {
@@ -144,7 +144,6 @@ export function RiskBarChart() {
   const [year, setYear] = useState(yr.toString());
   const {openVrscloseChart} = useOpenVsCloseBarChartData(year)
   const {riskLineYearChart} = useRiskLineChartYearData()
-  console.log({ "riskLineYearChart": openVrscloseChart})
 
   const handleYearChange = (e) => {
     setYear(e.target.value);
@@ -225,8 +224,6 @@ export function RiskLineChart() {
   const [year, setYear] = useState(yr.toString());
   const {riskLineYearChart} = useRiskLineChartYearData()
   const {riskLineChart} = useRiskLineChartData(year)
-  console.log({ "riskLineYearChart": riskLineChart})
-
   const handleYearChange = (e) => {
     setYear(e.target.value);
   };
@@ -272,9 +269,8 @@ export function RiskLineChart() {
 export function ReportRiskLevel() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskLevel} = useRiskLevelReport(departmentName)
-  console.log({"report risk Level": riskLevel})
 
 
   return (
@@ -291,7 +287,7 @@ export function ReportRiskLevel() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -312,7 +308,7 @@ export function ReportRiskLevel() {
 export function ReportRiskStatus() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskStatus} = useRiskStatusReportPieChart(departmentName)
  
 
@@ -329,7 +325,7 @@ export function ReportRiskStatus() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -349,7 +345,7 @@ export function ReportRiskStatus() {
 export function ReportRiskLocation() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskLocation} = useRiskLocationReport(departmentName);
 
   
@@ -367,7 +363,7 @@ export function ReportRiskLocation() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -387,10 +383,8 @@ export function ReportRiskLocation() {
 export function ReportRiskCategory() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskCategory} = useRiskCategoryReport(departmentName)
-  
-  console.log({"report risk Category": riskCategory})
 
 
   return (
@@ -406,7 +400,7 @@ export function ReportRiskCategory() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -427,7 +421,7 @@ export function ReportRiskResponse() {
   const {auth} = useContext(AuthContext)
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskResponse} = useRiskResponseReport(departmentName)
 
   return (
@@ -443,7 +437,7 @@ export function ReportRiskResponse() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -463,7 +457,7 @@ export function ReportRiskResponse() {
 export function ReportRiskOwner() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskOwner} = useRiskOwnerReport(departmentName)
 
  
@@ -481,7 +475,7 @@ export function ReportRiskOwner() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}
@@ -501,7 +495,7 @@ export function ReportRiskOwner() {
 export function Pyramidchat() {
   const {auth} = useContext(AuthContext)
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentCodeList } = useDepartmentCodeDropdown();
+  const { departmentList } = useDepartmentDropdown();
   const {riskAdviceChart} = useRiskAdviceChart(departmentName)
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
@@ -531,7 +525,7 @@ export function Pyramidchat() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentCodeList}
+              options={departmentList}
               searchable={true}
               required
               group={false}

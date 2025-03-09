@@ -84,16 +84,6 @@ export function Userforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(
-      JSON.stringify({
-        firstName: userValue.firstName,
-        lastName: userValue.lastName,
-        deptID: departmentName,
-        email: userValue.email,
-        phoneNumber: userValue.phoneNumber,
-        position: role,
-      }),
-    )
     try {
       await axios.post(
         USERSCREATEFORM_URL,JSON.stringify({
@@ -370,7 +360,6 @@ export function Riskforms({ onFormSubmit }) {
     riskDescription: "",
     riskResponseActivity: "",
   });
-  console.log({ departmentID: departmentName, ownersList: ownersList });
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setRiskValue((prevData) => ({ ...prevData, [id]: value }));
@@ -670,13 +659,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(JSON.stringify({
-      riskId: riskName,
-      riskReview,
-      NextRiskReviewDate,
-      riskReviewComments: reviewValue.riskReviewComments,
-      departmentID,
-    }));
+    
     
     try {
       await axios.post(
@@ -837,18 +820,6 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log({
-        riskId: riskName,
-        mitigatedRiskProbabilityLevel,
-        mitigatedRiskImpactLevel,
-        mitigationControl,
-        mitigationEffort,
-        riskReviewer,
-        mitigationCost,
-        endDate,
-        deptId: departmentID,
-      },
-    )
     try {
       if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
         await axios.post(
@@ -1505,16 +1476,6 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log({
-      riskId: riskName,
-      riskResponseActivitiyStatus,
-      riskResponseImplementation: monitoringValue.riskResponseImplementation,
-      challenges: monitoringValue.challenges,
-      recommendedChanges: monitoringValue.recommendedChanges,
-      comments: monitoringValue.comments,
-      closeStatus,
-      deptId: departmentID
-    })
     try {
       if (auth.role === "MANAGER") {
         await axios.post(

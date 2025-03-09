@@ -316,7 +316,6 @@ export function DeleteBox({ data, message, name }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = () => {
     setIsSubmitting(true);
-    console.log(data);
   };
   
 
