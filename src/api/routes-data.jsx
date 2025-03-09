@@ -45,7 +45,8 @@ import {
   CONTROLITEMDROPDOWN,
   DELETERISK_URL,
   DELETERISKMITIGATION_URL,
-  DELETERISKREVIEW_URL
+  DELETERISKREVIEW_URL,
+  DELETERISKMONITOR_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1291,7 +1292,7 @@ export function useRiskMonitorDelete() {
 
     try {
       const response = await axios.post(
-        DELETERISKREVIEW_URL,
+        DELETERISKMONITOR_URL,
         JSON.stringify({ id, riskId, deptId }),
         {
           headers: {

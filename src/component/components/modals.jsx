@@ -791,7 +791,7 @@ export function RiskMonitoringDetails(data) {
         <Delete
           data = {monitorInfo}
           message = "Are you sure you want to delete risk?"
-          name = "risk"
+          name = "monitor"
         />
     </div>
       <Modal

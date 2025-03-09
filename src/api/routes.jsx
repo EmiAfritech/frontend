@@ -234,6 +234,9 @@ export const DELETERISKMITIGATION_URL  = "/Organization/Risk/Mitigation/delete"
 //delete riskreview url
 export const DELETERISKREVIEW_URL  = "/Organization/Risk/Review/delete"
 
+//delete monitor url
+export const DELETERISKMONITOR_URL  = "/Organization/Risk/Monitoring/delete"
+
 //edit review url
 export const EDITREVIEW_URL = "/Organization/Risk/Review/update"
 
