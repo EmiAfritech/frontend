@@ -213,10 +213,10 @@ export function MitigateRIsk(data){
   const grcArray = GRCFormsArray(t);
   const MitigationInfoInitialize = data.data;
   const {triggerComponent} = useContext(Modaltrigger);
-  const [probabilityLevel, setProbabilityLevel] = useState(getProbabilityLevelNumber(MitigationInfoInitialize.mitigatedRiskProbabilityLevel));
+  const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
   const [mitigationCost, setMitigationCost] = useState(MitigationInfoInitialize.mitigationCost);
   const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
-  const [mitigatedImpact, setMitigatedImpact] = useState(getImpactLevelNumber(MitigationInfoInitialize.mitigatedRiskImpactLevel));
+  const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
   const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
 
 
@@ -246,8 +246,8 @@ export function MitigateRIsk(data){
         JSON.stringify(
           {
             riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: probabilityLevel,
-            mitigatedRiskImpactLevel: mitigatedImpact,
+            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
+            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigatedImpact),
             mitigationCost: mitigationCost,
             mitigationEffort: mitigationEffort,
             mitigationControl: mitigationControl,
