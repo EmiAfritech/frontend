@@ -23,7 +23,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalModification as style, CustomButton, Delete, FormInputField } from "./widgets";
-import { MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo, RiskMitigationSideTabs } from "./modalforms";
+import { MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo } from "./modalforms";
 
 export function UserAccountDetails(data) {
   const {auth} = useContext(AuthContext)
