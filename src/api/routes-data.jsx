@@ -1227,13 +1227,13 @@ export function useRiskDelete() {
 export function useRiskMitigateDelete() {
   const { auth } = useContext(AuthContext);
 
-  const deleteMitigationRisk = async (id, riskID, deptId) => {
-    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskID, deptId }) });
+  const deleteMitigationRisk = async (id, riskId, deptId) => {
+    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskId, deptId }) });
 
     try {
       const response = await axios.post(
         DELETERISKMITIGATION_URL,
-        JSON.stringify({ id, riskID, deptId }),
+        JSON.stringify({ id, riskId, deptId }),
         {
           headers: {
             "Content-Type": "application/json",
