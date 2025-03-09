@@ -215,8 +215,8 @@ export function MitigateRIsk(data){
   const {triggerComponent} = useContext(Modaltrigger);
   const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
   const [mitigationCost, setMitigationCost] = useState(MitigationInfoInitialize.mitigationCost);
-  const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
-  const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
+  const [mitigationEffort, setMitigationEffort] = useState(getProbabilityLevelNumber(MitigationInfoInitialize.mitigationEffort));
+  const [mitigatedImpact, setMitigatedImpact] = useState(getImpactLevelNumber(MitigationInfoInitialize.mitigatedRiskImpactLevel));
   const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
 
 
@@ -246,8 +246,8 @@ export function MitigateRIsk(data){
         JSON.stringify(
           {
             riskId: mitigationInfo.riskID,
-            mitigatedRiskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
-            mitigatedRiskImpactLevel: getImpactLevelNumber(mitigatedImpact),
+            mitigatedRiskProbabilityLevel: probabilityLevel,
+            mitigatedRiskImpactLevel: mitigatedImpact,
             mitigationCost: mitigationCost,
             mitigationEffort: mitigationEffort,
             mitigationControl: mitigationControl,
@@ -419,7 +419,7 @@ export function ReviewRIsk(data){
       departmentId: ReviewInfoInitialize.deptId,
       riskCategory: ReviewInfoInitialize.riskCategory,
       riskStatus: ReviewInfoInitialize.status,
-      NextRiskReviewDate: new Date(ReviewInfoInitialize.NextRiskReviewDate),
+      NextRiskReviewDate: ReviewInfoInitialize.NextRiskReviewDate,
       riskReviewComments: ReviewInfoInitialize.riskReviewComments,
       riskOwner: ReviewInfoInitialize.submittedByLabel,
     })
