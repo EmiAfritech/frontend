@@ -228,6 +228,9 @@ export const EDITRISK_URL = "/Organization/Risk/update"
 //delete risk url
 export const DELETERISK_URL  = "/Organization/Risk/delete"
 
+//delete riskmitigation url
+export const DELETERISKMITIGATION_URL  = "/Organization/Risk/Mitigation/delete"
+
 //edit review url
 export const EDITREVIEW_URL = "/Organization/Risk/Review/update"
 

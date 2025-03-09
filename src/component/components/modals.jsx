@@ -603,7 +603,7 @@ export function MitigationDetails(data) {
         <Delete
           data = {mitigationInfo}
           message = "Are you sure you want to delete risk?"
-          name = "risk"
+          name = "mitigation"
         />
     </div>
       <Modal

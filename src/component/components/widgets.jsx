@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { DELETERISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
 import axios from "../../api/axios";
-import { useRiskDelete } from "../../api/routes-data";
+import { useRiskDelete, useRiskMitigateDelete } from "../../api/routes-data";
 
 export function InputField({
   label,
@@ -356,6 +356,7 @@ export function Delete({ data, message, name }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {triggerComponent} = useContext(Modaltrigger);
   const { deleteRisk } = useRiskDelete()
+  const {deleteMitigationRisk} = useRiskMitigateDelete()
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -373,7 +374,18 @@ export function Delete({ data, message, name }) {
           showToast("Failed to delete. Please try again", "error");
           console.log(response)
         }
-      } 
+      }
+      if (name === "mitigation") {
+        const response = await deleteMitigationRisk(data.id, data.riskId, data.deptId) 
+        if (response.status === 201) {
+          showToast("Successfully deleted", "success");
+          triggerComponent()
+          handleClose()
+        } else {
+          showToast("Failed to delete. Please try again", "error");
+          console.log(response)
+        }
+      }
     } catch (error) {
       showToast("An error occurred. Please try again later.", "error");
       console.error("Delete error:", error);

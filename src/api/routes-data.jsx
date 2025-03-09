@@ -43,7 +43,8 @@ import {
   DEPARTMENTCODEDROPDOWN_URL,
   COMPLIANCETABLE_URL,
   CONTROLITEMDROPDOWN,
-  DELETERISK_URL
+  DELETERISK_URL,
+  DELETERISKMITIGATION_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1199,7 +1200,6 @@ export function useRiskDelete() {
   const { auth } = useContext(AuthContext);
 
   const deleteRisk = async (id, riskID, deptId) => {
-    console.log({ "deleting risk": JSON.stringify({ id, riskID, deptId }) });
 
     try {
       const response = await axios.post(
@@ -1224,4 +1224,32 @@ export function useRiskDelete() {
   return { deleteRisk }; 
 }
 
+export function useRiskMitigateDelete() {
+  const { auth } = useContext(AuthContext);
+
+  const deleteMitigationRisk = async (id, riskID, deptId) => {
+    console.log({ "deleting MITIGATION risk": JSON.stringify({ id, riskID, deptId }) });
+
+    try {
+      const response = await axios.post(
+        DELETERISKMITIGATION_URL,
+        JSON.stringify({ id, riskID, deptId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      return response; 
+    } catch (error) {
+      console.error("Error deleting risk:", error);
+      throw error; 
+    }
+  };
+
+  return { deleteMitigationRisk }; 
+}
 
