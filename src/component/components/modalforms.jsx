@@ -8,6 +8,7 @@ import { showToast } from "./notifications";
 import { CustomButton, FormDetailsField, ModalFormSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import axios from "../../api/axios";
+import { Modal } from "@mui/material";
 
 
 export function RiskInfo(data) {
@@ -403,7 +404,11 @@ export function ReviewRIsk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
+    const grcArray = GRCFormsArray(t);
     const ReviewInfoInitialize = data.data;
+
+    const [riskReview, setRiskReview] = useState(ReviewInfoInitialize.riskReview);
+
     const [isSubmitting, setIsSubmitting] = useState(false)
     const {triggerComponent} = useContext(Modaltrigger);
     console.log(ReviewInfoInitialize)
@@ -546,12 +551,12 @@ export function ReviewRIsk(data){
             required
             group={false}
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskReview"
             label="Risk Review"
-            value={reviewInfo.riskReview}
-            onChange={onChange}
-            options={options}
+            value={riskReview}
+            options={grcArray.riskReviewArray}
+            onChange={setRiskReview}
             searchable={true}
             required
             group={false}
@@ -594,12 +599,12 @@ export function ReviewRIsk(data){
 export function MonitorRisk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const options = GRCFormsArray(t)
+    const grcArray = GRCFormsArray(t)
     const MonitorInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
     console.log(MonitorInfoInitialize)
     const {triggerComponent} = useContext(Modaltrigger);
-
+    const [responseActivityStatus, setResponseActivityStatus] = useState(MonitorInfoInitialize.riskResponseActivitiyStatus);
     const [monitorInfo, setMonitorInfo] = useState({
       riskID: MonitorInfoInitialize.riskId,
       riskName: MonitorInfoInitialize.riskName,
@@ -732,11 +737,12 @@ export function MonitorRisk(data){
             
             required
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskResponseActivity"
             label="Response Activity Status"
-            value={monitorInfo.riskResponseActivity}
-            onChange={onChange}
+            value={responseActivityStatus}
+            options={grcArray.responseActivityStatus}
+            onChange={setResponseActivityStatus}          
             
             required
           />
