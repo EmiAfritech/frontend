@@ -79,7 +79,6 @@ export function RiskInfo(data) {
               "Risk has be Updated Successfully!",
             );
             triggerComponent();
-            close()
           }
         } catch (err) {
           // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -205,7 +204,7 @@ export function RiskInfo(data) {
         </div>
       </main>
     );
-  }
+}
   
 export function MitigateRIsk(data){
   const {auth} = useContext(AuthContext)
@@ -400,7 +399,7 @@ export function MitigateRIsk(data){
   );
 }
   
-  export function ReviewRIsk(data){
+export function ReviewRIsk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
@@ -458,7 +457,6 @@ export function MitigateRIsk(data){
             "Risk Reviiew has be Updated Successfully!",
           );
           triggerComponent();
-          close()
         }
       } catch (err) {
         // if (err.response?.status === 500 || err.response?.status === 400) {
@@ -591,9 +589,9 @@ export function MitigateRIsk(data){
         </div>
       </main>
     );
-  }
+}
   
-  export function MonitorRisk(data){
+export function MonitorRisk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
     const options = GRCFormsArray(t)
@@ -756,71 +754,71 @@ export function MitigateRIsk(data){
         </div>
       </main>
     );
-  }
+}
 
-  export function getRiskImpactLevel(level) {
-    switch (level) {
-        case 1:
-            return "Insignificant (1)";
-        case 2:
-            return "Minor (2)";
-        case 3:
-            return "Moderate (3)";
-        case 4:
-            return "Major (4)";
-        case 5:
-          return "Catastrophic (5)";
-    }
+export function getRiskImpactLevel(level) {
+  switch (level) {
+      case 1:
+          return "Insignificant (1)";
+      case 2:
+          return "Minor (2)";
+      case 3:
+          return "Moderate (3)";
+      case 4:
+          return "Major (4)";
+      case 5:
+        return "Catastrophic (5)";
   }
+}
   
-  export function getRiskProbabilityLevel(level) {
-    switch (level) {
-        case 1:
-            return "Almost Impossible (1)";
-        case 2:
-            return "Unlikely (2)";
-        case 3:
-            return "Likely (3)";
-        case 4:
-            return "Very Likely (4)";
-        case 5:
-            return "Almost Certain (5)"; // Handles invalid inputs
-    }
+export function getRiskProbabilityLevel(level) {
+  switch (level) {
+      case 1:
+          return "Almost Impossible (1)";
+      case 2:
+          return "Unlikely (2)";
+      case 3:
+          return "Likely (3)";
+      case 4:
+          return "Very Likely (4)";
+      case 5:
+          return "Almost Certain (5)"; // Handles invalid inputs
   }
+}
   
-  export function getProbabilityLevelNumber(probability) {
-    switch (probability) {
-      case "Almost Impossible":
-        return 1;
-      case "Unlikely":
-        return 2;
-      case "Likely":
-        return 3;
-      case "Very Likely":
-        return 4;
-      case "Almost Certain":
-        return 5;
-      default:
-        return 0;
-    }
+export function getProbabilityLevelNumber(probability) {
+  switch (probability) {
+    case "Almost Impossible":
+      return 1;
+    case "Unlikely":
+      return 2;
+    case "Likely":
+      return 3;
+    case "Very Likely":
+      return 4;
+    case "Almost Certain":
+      return 5;
+    default:
+      return 0;
   }
+}
   
-  export function getImpactLevelNumber(impact) {
-    switch (impact) {
-      case "Insignificant":
-        return 1;
-      case "Minor":
-        return 2;
-      case "Moderate":
-        return 3;
-      case "Major":
-        return 4;
-      case "Catastrophic":
-        return 5;
-      default:
-        return 0;
-    }
+export function getImpactLevelNumber(impact) {
+  switch (impact) {
+    case "Insignificant":
+      return 1;
+    case "Minor":
+      return 2;
+    case "Moderate":
+      return 3;
+    case "Major":
+      return 4;
+    case "Catastrophic":
+      return 5;
+    default:
+      return 0;
   }
+}
   
   
   
