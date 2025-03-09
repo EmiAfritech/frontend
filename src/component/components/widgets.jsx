@@ -354,10 +354,8 @@ export function Delete({ data, message, name }) {
   const { auth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {triggerComponent} = useState(Modaltrigger)
-  const id = data.id;
-  const riskID = data.riskID;
-  const deptId = data.deptId;
+  const {triggerComponent} = useState(Modaltrigger);
+  const { deleteRisk } = useRiskDelete()
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -366,7 +364,7 @@ export function Delete({ data, message, name }) {
     
     try {
       if (name === "risk") {
-        const response = useRiskDelete(id,riskID,deptId)
+        const response = await deleteRisk(data.id, data.riskID, data.deptId) 
         if (response.status === 201) {
           showToast("Successfully deleted", "success");
           triggerComponent()
