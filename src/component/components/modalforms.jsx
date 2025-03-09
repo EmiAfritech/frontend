@@ -46,6 +46,25 @@ export function RiskInfo(data) {
         e.preventDefault();
     
         setIsSubmitting(true);
+
+        console.log( JSON.stringify(
+            {
+              riskID: riskInfo.riskID,
+              riskName: riskInfo.riskName,
+              riskDescription: riskInfo.riskDescription,
+              riskCategory: riskCategory,
+              riskImpactLevel: getImpactLevelNumber(impactLevel),
+              riskProbabilityLevel: getProbabilityLevelNumber(probabilityLevel),
+              riskObjective: riskInfo.riskObjective,
+              riskResponse: riskResponse,
+              riskResponseActivity: responseActivity,
+              riskOwner: riskInfo.riskOwner,
+              deptId: RiskInfoInitialize.deptId,
+              id: RiskInfoInitialize.id,
+              
+            }       
+          ));
+
       
         try {
           const response = await axios.post(
