@@ -104,7 +104,7 @@ export const useRiskViewColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -158,7 +158,7 @@ export const useRiskMitigationColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -351,7 +351,7 @@ export const useRiskStatuscolumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -423,7 +423,7 @@ export const useRiskAppetiteReportLowerColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -456,7 +456,7 @@ export const useRiskAppetiteReportLowerColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -506,7 +506,7 @@ export const useRiskAppetiteReportGreaterColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -539,7 +539,7 @@ export const useRiskAppetiteReportGreaterColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -594,7 +594,7 @@ export const useReportRiskMitigationColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":
@@ -654,7 +654,7 @@ export const useReportOpenRiskToReviewColumns = () => {
         let backgroundColor = "transparent";
       
         switch (priority) {
-          case "veryhigh":
+          case "very high":
             backgroundColor = "#F84626";
             break;
           case "high":

@@ -164,7 +164,7 @@ export function ModalFormSelect({
         onChange={(e) => onChange(e.target.value)}
         required={required}
         disabled={disabled}
-        className={`w-full p-2 bg-gray-200  
+        className={`w-full p-2 bg-gray-200 appearance-none
           ${error ? "border border-red-500" : ""} 
           ${disabled ? "bg-gray-100" : ""}`}
       >
