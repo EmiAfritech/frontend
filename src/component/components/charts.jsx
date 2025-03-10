@@ -1,35 +1,15 @@
-import { useContext, useEffect, useState, useRef, React,   } from "react";
+import { useContext, useState, useRef, React } from "react";
 import axios from "../../api/axios";
 import Chart from "react-apexcharts";
 import ReactToPrint from "react-to-print";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import { Item, Border, Label, Font, Funnel, } from "devextreme-react/funnel";
+import { Item, Border, Label, Font, Funnel } from "devextreme-react/funnel";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import { AuthContext } from "../../context/AuthContext";
 import { RiskReportAdvice } from "./info";
 import { useReportRiskPyramidColumns } from "./datatable";
-import {
-  MITIGATEDVSUNMITIGATEDCHAT_URL,
-  MONITOREDVSUNMONITOREDRISKSCHART_URL,
-  OPENVSCLOSEBARCHART_URL,
-  REVIEWEDVSUNREVIEWEDCHART_URL,
-  RISKLINECHART_URL,
-  RISKSTATUSREPORTCHART_URL,
-  RISKLOCATIONREPORT_URL,
-  RISKOWNERREPORT_URL,
-  RISKLEVELPYRAMIDCHART_URL,
-  RISKRESPONSEREPORT_URL,
-  RISKLEVELREPORT_URL,
-  RISKCATEGORYREPORT_URL,
-  MONITOREDVSUNMONITOREDBARCHARTDATA_URL,
-  OPENVSCLOSEBASEDONDEPARTMENT_URL,
-  HEATMAP_URL,
-  OPENVSCLOSECHART_URL,
-  DEPARTMENTDROPDOWN_URL,
-  RISKYEARSCHART_URL,
-} from "../../api/routes";
 import {
   PieChart,
   Pie,
@@ -48,25 +28,32 @@ import {
   DataGrid,
   gridClasses,
   GridToolbar,
-  gridFilteredSortedRowIdsSelector,
-  selectedGridRowsSelector,
 } from "@mui/x-data-grid";
 import "../comstyles/component.css";
-import { useOpenVrsClosedPieChart, useMonitoredVrsUnMonitoredPieChart, useMitigatedVrsUnMitigatedPieChart, useReviewedVrsUnReviewedPieChart, useRiskLineChartYearData, useRiskLineChartData, useOpenVsCloseBarChartData, useDepartmentDropdown, useRiskLevelReport, useRiskStatusReport, useRiskCategoryReport, useRiskResponseReport, useRiskStatusReportPieChart, useRiskLocationReport, useRiskOwnerReport, useRiskAdviceChart } from "../../api/routes-data";
+import {
+  useOpenVrsClosedPieChart,
+  useMonitoredVrsUnMonitoredPieChart,
+  useMitigatedVrsUnMitigatedPieChart,
+  useReviewedVrsUnReviewedPieChart,
+  useRiskLineChartYearData,
+  useRiskLineChartData,
+  useOpenVsCloseBarChartData,
+  useDepartmentDropdown,
+  useRiskLevelReport,
+  useRiskStatusReport,
+  useRiskCategoryReport,
+  useRiskResponseReport,
+  useRiskStatusReportPieChart,
+  useRiskLocationReport,
+  useRiskOwnerReport,
+  useRiskAdviceChart,
+} from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
-const getSelectedRowsToExport = ({ apiRef }) => {
-  const selectedRowIds = selectedGridRowsSelector(apiRef);
-  if (selectedRowIds.size > 0) {
-    return Array.from(selectedRowIds.keys());
-  }
-
-  return gridFilteredSortedRowIdsSelector(apiRef);
-};
 
 export function OpenVsClose() {
   const { t } = useTranslation();
-  const {openVrsClosePieData} = useOpenVrsClosedPieChart()
+  const { openVrsClosePieData } = useOpenVrsClosedPieChart();
   return (
     <div className=" items-center flex flex-col px-8 pb-5">
       <h3 className="pb-3">
@@ -75,7 +62,12 @@ export function OpenVsClose() {
       </h3>
       <ResponsiveContainer height={180}>
         <PieChart>
-          <Pie dataKey="value" data={openVrsClosePieData} outerRadius={85} innerRadius={50} />
+          <Pie
+            dataKey="value"
+            data={openVrsClosePieData}
+            outerRadius={85}
+            innerRadius={50}
+          />
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>
@@ -84,7 +76,8 @@ export function OpenVsClose() {
 }
 export function MitigatedVsUnmitigated() {
   const { t } = useTranslation();
-  const {mitigatedVrunmitigatedPieData} = useMitigatedVrsUnMitigatedPieChart()
+  const { mitigatedVrunmitigatedPieData } =
+    useMitigatedVrsUnMitigatedPieChart();
 
   return (
     <div className="items-center flex flex-col  px-4 pb-5">
@@ -93,19 +86,23 @@ export function MitigatedVsUnmitigated() {
         <span style={{ color: "#2394cc" }}>{t("unmitigated")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={mitigatedVrunmitigatedPieData} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie
+            dataKey="value"
+            data={mitigatedVrunmitigatedPieData}
+            outerRadius={85}
+            innerRadius={50}
+          />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReviewedVsUnreviewed() {
   const { t } = useTranslation();
-  const {reviewedVrunrevieweddPieData} = useReviewedVrsUnReviewedPieChart()
+  const { reviewedVrunrevieweddPieData } = useReviewedVrsUnReviewedPieChart();
 
-  
   return (
     <div className=" items-center flex flex-col px-6 pb-5">
       <h3 className="pb-3">
@@ -113,17 +110,23 @@ export function ReviewedVsUnreviewed() {
         <span style={{ color: "#2394cc" }}>{t("unreviewed")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={reviewedVrunrevieweddPieData} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie
+            dataKey="value"
+            data={reviewedVrunrevieweddPieData}
+            outerRadius={85}
+            innerRadius={50}
+          />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function MonitoredVsUnmonitored() {
-  const {monitoredVrunmonitoredPieData} = useMonitoredVrsUnMonitoredPieChart()
-  
+  const { monitoredVrunmonitoredPieData } =
+    useMonitoredVrsUnMonitoredPieChart();
+
   return (
     <div className=" items-center flex flex-col px-4 pb-5">
       <h3 className="pb-3">
@@ -131,10 +134,15 @@ export function MonitoredVsUnmonitored() {
         <span style={{ color: "#2394cc" }}>{t("unmonitored")}</span>
       </h3>
       <ResponsiveContainer height={180}>
-      <PieChart >
-        <Pie dataKey="value" data={monitoredVrunmonitoredPieData} outerRadius={85} innerRadius={50} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie
+            dataKey="value"
+            data={monitoredVrunmonitoredPieData}
+            outerRadius={85}
+            innerRadius={50}
+          />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -142,8 +150,8 @@ export function MonitoredVsUnmonitored() {
 export function RiskBarChart() {
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
-  const {openVrscloseChart} = useOpenVsCloseBarChartData(year)
-  const {riskLineYearChart} = useRiskLineChartYearData()
+  const { openVrscloseChart } = useOpenVsCloseBarChartData(year);
+  const { riskLineYearChart } = useRiskLineChartYearData();
 
   const handleYearChange = (e) => {
     setYear(e.target.value);
@@ -173,43 +181,29 @@ export function RiskBarChart() {
         </div>
       </div>
       <ResponsiveContainer height={300}>
-      <BarChart data={openVrscloseChart}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <Legend />
-        <YAxis />
-        <XAxis dataKey="name" />
-        <Bar dataKey="Opened" fill="#cc23b3" />
-        <Bar dataKey="Closed" fill="#2394cc" />
-        <Tooltip />
-      </BarChart>
+        <BarChart data={openVrscloseChart}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <Legend />
+          <YAxis />
+          <XAxis dataKey="name" />
+          <Bar dataKey="Opened" fill="#cc23b3" />
+          <Bar dataKey="Closed" fill="#2394cc" />
+          <Tooltip />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function MonitoredVsUnmonitoredBarchart() {
-  const {auth} = useContext(AuthContext)
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(MONITOREDVSUNMONITOREDBARCHARTDATA_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-        withCredentials: true,
-      })
-      .then((data) => {
-        setData(data.data);
-      });
-  }, [data]);
+  const { monitoredVrunmonitoredPieData } =
+    useMonitoredVrsUnMonitoredPieChart();
   return (
     <div className="p-3 card">
-      <BarChart width={760} height={250} data={data}>
+      <BarChart width={760} height={250} data={monitoredVrunmonitoredPieData}>
         <CartesianGrid strokeDasharray="3 3" />
         <Legend />
         <YAxis />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="value" />
         <Bar dataKey="Monitored" fill="#cc23b3" />
         <Bar dataKey="UnMonitored" fill="#2394cc" />
         <Tooltip />
@@ -218,12 +212,11 @@ export function MonitoredVsUnmonitoredBarchart() {
   );
 }
 
-
 export function RiskLineChart() {
   const yr = new Date().getFullYear();
   const [year, setYear] = useState(yr.toString());
-  const {riskLineYearChart} = useRiskLineChartYearData()
-  const {riskLineChart} = useRiskLineChartData(year)
+  const { riskLineYearChart } = useRiskLineChartYearData();
+  const { riskLineChart } = useRiskLineChartData(year);
   const handleYearChange = (e) => {
     setYear(e.target.value);
   };
@@ -253,25 +246,24 @@ export function RiskLineChart() {
         </div>
       </div>
       <ResponsiveContainer height="100%" minHeight={400}>
-      <LineChart  data={riskLineChart} margin={{ top: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
-      </LineChart>
+        <LineChart data={riskLineChart} margin={{ top: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="risk" stroke="#cc23b3" />
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
 export function ReportRiskLevel() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskLevel} = useRiskLevelReport(departmentName)
-
+  const { riskLevel } = useRiskLevelReport(departmentName);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -280,8 +272,7 @@ export function ReportRiskLevel() {
       </h3>
       <div>
         <div>
-          {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
+          {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <CustomSelect
               id="department"
               label={t("departments")}
@@ -296,21 +287,20 @@ export function ReportRiskLevel() {
         </div>
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskLevel} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskLevel} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReportRiskStatus() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskStatus} = useRiskStatusReportPieChart(departmentName)
- 
+  const { riskStatus } = useRiskStatusReportPieChart(departmentName);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -318,37 +308,34 @@ export function ReportRiskStatus() {
         <span>{t("riskStatus")}</span>
       </h3>
       <div>
-      {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskStatus} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskStatus} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReportRiskLocation() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskLocation} = useRiskLocationReport(departmentName);
-
-  
+  const { riskLocation } = useRiskLocationReport(departmentName);
 
   return (
     <div className="card items-center flex flex-col  pb-12">
@@ -356,36 +343,34 @@ export function ReportRiskLocation() {
         <span>{t("location")}</span>
       </h3>
       <div>
-      {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskLocation} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskLocation} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReportRiskCategory() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskCategory} = useRiskCategoryReport(departmentName)
-
+  const { riskCategory } = useRiskCategoryReport(departmentName);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -393,36 +378,35 @@ export function ReportRiskCategory() {
         <span>{t("category")}</span>
       </h3>
       <div>
-      {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskCategory} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskCategory} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReportRiskResponse() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [data, setData] = useState();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskResponse} = useRiskResponseReport(departmentName)
+  const { riskResponse } = useRiskResponseReport(departmentName);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -430,37 +414,34 @@ export function ReportRiskResponse() {
         <span>{t("riskResponse")}</span>
       </h3>
       <div>
-      {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskResponse} outerRadius={90} />
-        <Legend iconSize={10} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskResponse} outerRadius={90} />
+          <Legend iconSize={10} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 export function ReportRiskOwner() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskOwner} = useRiskOwnerReport(departmentName)
-
- 
+  const { riskOwner } = useRiskOwnerReport(departmentName);
 
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -468,41 +449,38 @@ export function ReportRiskOwner() {
         <span>{t("owner")}</span>
       </h3>
       <div>
-      {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentList}
+            searchable={true}
+            required
+            group={false}
+          />
+        )}
       </div>
       <ResponsiveContainer height={250}>
-      <PieChart >
-        <Pie dataKey="value" data={riskOwner} outerRadius={90} />
-        <Tooltip />
-      </PieChart>
+        <PieChart>
+          <Pie dataKey="value" data={riskOwner} outerRadius={90} />
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
 export function Pyramidchat() {
-  const {auth} = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  const {riskAdviceChart} = useRiskAdviceChart(departmentName)
+  const { riskAdviceChart } = useRiskAdviceChart(departmentName);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
-  const pyramidTable = useReportRiskPyramidColumns()
-
-
+  const pyramidTable = useReportRiskPyramidColumns();
 
   const handleItemClick = (e) => {
     setPyramidRiskTable(true);
@@ -518,8 +496,7 @@ export function Pyramidchat() {
     <>
       <div>
         <div className="grid grid-cols-4">
-        {(auth.role=== "ADMIN" ||
-          auth.role === "GENERALMANAGER") && (
+          {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <CustomSelect
               id="department"
               label={t("departments")}
@@ -566,26 +543,24 @@ export function Pyramidchat() {
           </div>
         </div>
         <div className="grid grid-cols-6 gap-4">
-        <Button
+          <Button
             className="px-12"
             onClick={handleRiskAdvice}
             variant="text"
             size="large"
             sx={{
-              whiteSpace: "nowrap", 
-              width: "auto", 
+              whiteSpace: "nowrap",
+              width: "auto",
               display: "inline-block",
             }}>
-               {t("riskAdvice")}
-        </Button>
+            {t("riskAdvice")}
+          </Button>
         </div>
         <hr />
         <div className="py-5">
           {pyramidRiskTable ? (
             <>
-              <div
-                style={{ height: 350 }}
-                className=" mt-4">
+              <div style={{ height: 350 }} className=" mt-4">
                 <Box
                   sx={{
                     [`.${gridClasses.cell}.veryhigh`]: {
@@ -639,125 +614,14 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap3() {
-
-  const series = [
-    {
-      name: t("rare"),
-      data: [
-        { x: t("insignificant"), y: 1 },
-        { x: t("minor"), y: 2 },
-        { x: t("moderate"), y: 3 },
-        { x: t("major"), y: 4 },
-        { x: t("critical"), y: 5 },
-      ],
-    },
-    {
-      name: t("unlikely"),
-      data: [
-        { x: t("insignificant"), y: 2 },
-        { x: t("minor"), y: 4 },
-        { x: t("moderate"), y: 6 },
-        { x: t("major"), y: 8 },
-        { x: t("critical"), y: 10 },
-      ],
-    },
-    {
-      name: t("possible"),
-      data: [
-        { x: t("insignificant"), y: 3 },
-        { x: t("minor"), y: 6 },
-        { x: t("moderate"), y: 9 },
-        { x: t("major"), y: 12},
-        { x: t("critical"), y: 15 },
-      ],
-    },
-    {
-      name: t("likely"),
-      data: [
-        { x: t("insignificant"), y: 4 },
-        { x: t("minor"), y: 8 },
-        { x: t("moderate"), y: 12 },
-        { x: t("major"), y: 16 },
-        { x: t("critical"), y: 20 },
-      ],
-    },
-    {
-      name: t("almostCertain"),
-      data: [
-        { x: t("insignificant"), y: 5 },
-        { x: t("minor"), y: 10 },
-        { x: t("moderate"), y: 15 },
-        { x: t("major"), y: 20 },
-        { x: t("critical"), y: 25 },
-      ],
-    },
-  ];
-
-
-  const options = {
-    chart: {
-      type: "heatmap",
-    },
-    plotOptions: {
-      heatmap: {
-        colorScale: {
-          ranges: [
-            {
-              from: 1,
-              to: 5,
-              name: t("low"),
-              color: "#008000",
-            },
-            {
-              from: 6,
-              to: 9,
-              name: t("medium"),
-              color: "#002db3",
-            },
-            {
-              from: 10,
-              to: 15,
-              name: t("high"),
-              color: "#ffcc00",
-            },
-            {
-              from: 16,
-              to: 25,
-              name: t("veryHigh"),
-              color: "#ff0000",
-            },
-          ],
-        },
-      },
-    },
-    xaxis: {
-      title: {
-        text: t("impact"), // Label for the x-axis
-      },
-    },
-    yaxis: {
-      title: {
-        text: t("likelihood"), // Label for the y-axis
-      },
-    },
-  };
-
-  return (
-    <div>
-      <Chart
-        options={options}
-        series={series}
-        type="heatmap"
-        height={550}
-        width={1100}
-      />
-    </div>
-  );
-}
-
 export function HeatMap2() {
- const yLabels = [t("veryLow"), t("low"), t("medium"), t("high"), t("veryHigh")];
+  const yLabels = [
+    t("veryLow"),
+    t("low"),
+    t("medium"),
+    t("high"),
+    t("veryHigh"),
+  ];
   const series = [
     {
       name: t("rare"),
@@ -785,7 +649,7 @@ export function HeatMap2() {
         { x: t("insignificant"), y: 3 },
         { x: t("minor"), y: 6 },
         { x: t("moderate"), y: 9 },
-        { x: t("major"), y: 12},
+        { x: t("major"), y: 12 },
         { x: t("critical"), y: 15 },
       ],
     },
@@ -861,12 +725,12 @@ export function HeatMap2() {
       enabled: true, // Enable data labels
       formatter: function (val) {
         // Map the data label to custom yLabels based on the value
-        if (val >= 1 && val <= 5) return yLabels[0];  // "veryLow"
-        if (val >= 6 && val <= 9) return yLabels[1];  // "low"
+        if (val >= 1 && val <= 5) return yLabels[0]; // "veryLow"
+        if (val >= 6 && val <= 9) return yLabels[1]; // "low"
         if (val >= 10 && val <= 15) return yLabels[2]; // "medium"
         if (val >= 16 && val <= 20) return yLabels[3]; // "high"
         if (val >= 21 && val <= 25) return yLabels[4]; // "veryHigh"
-        return val;  // Fallback to default value if out of range
+        return val; // Fallback to default value if out of range
       },
     },
   };
@@ -883,5 +747,3 @@ export function HeatMap2() {
     </div>
   );
 }
-
-
