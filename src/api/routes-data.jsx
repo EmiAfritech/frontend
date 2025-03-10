@@ -50,7 +50,6 @@ import {
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
-import { ConstantLine } from "devextreme-react/chart";
 
 export function useDepartmentDropdown() {
   const { auth } = useContext(AuthContext);
@@ -245,32 +244,7 @@ export function useRiskReviewTable() {
   return { riskReviewTable, fetchData };
 }
 
-export function useRiskIDMitigation({ departmentID }) {
-  const { auth } = useContext(AuthContext);
-  const [riskIDs, setRiskIDs] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSMITIGATION_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
-      setRiskIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { riskIDs };
-}
+
 
 export function useRiskIDReview({ departmentID }) {
   const { auth } = useContext(AuthContext);
@@ -1185,8 +1159,6 @@ export function useRiskToBeMitigatedInfo(riskName) {
   }, [id]); 
   return { riskToBeMitigatedInfo, fetchData };
 }
-
-
 
 export function useRiskDelete() {
   const { auth } = useContext(AuthContext);
