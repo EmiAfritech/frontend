@@ -1,48 +1,12 @@
 import Select from "react-select";
 import { useContext, useState } from "react";
 import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@mui/material";
-import { AuthContext, Modaltrigger } from "../../context/AuthContext";
+import {  Modaltrigger } from "../../context/AuthContext";
 import { MdDelete } from "react-icons/md";
-import { DELETERISK_URL } from "../../api/routes";
 import { showToast } from "./notifications";
-import axios from "../../api/axios";
 import { useRiskDelete, useRiskMitigateDelete, useRiskMonitorDelete, useRiskReviewDelete } from "../../api/routes-data";
 
-export function InputField({
-  label,
-  type = "text",
-  value,
-  placeholder,
-  onChange,
-  required = false,
-  error = "",
-  id,
-}) {
-  return (
-    <div className="mb-4">
-      {label && (
-        <label
-          className={`block mb-2 font-bold text-[10px] italic ${
-            error ? "text-red-500" : ""
-          }`}>
-          {label} {required && <span className="required">*</span>}
-        </label>
-      )}
-      <input
-        id={id}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-        required={required}
-        autoComplete="false"
-        className={`w-full p-2 border border-[#08376B] rounded-xl ${
-          error ? "border border-red-500" : ""
-        }`}
-      />
-    </div>
-  );
-}
+
 
 export function CustomButton({
   label = "Click me",
@@ -258,57 +222,6 @@ export function FormDetailsField({
     </div>
   );
 }
-
-export const CustomDetailsSelect = ({
-  isMulti = false,
-  value,
-  onChange,
-  error,
-  required = false,
-  id,
-  label,
-  options = [],
-}) => {
-  return (
-    <div className="flex items-center w-full gap-4 mt-4">
-      {label && (
-        <label
-          htmlFor={id}
-          className={`block text-[12.5px] min-w-[120px] whitespace-nowrap text-[#08376B] ${
-            error ? "text-red-500" : ""
-          }`}>
-          {label} {required && <span className="text-red-500">*</span>}
-        </label>
-      )}
-      <Select
-        id={id}
-        isMulti={isMulti}
-        required={required}
-        isSearchable={true}
-        options={options}
-        onChange={onChange}
-        defaultValue={value}
-        isClearable={true}
-        className="w-full"
-        styles={{
-          control: (baseStyles) => ({
-            ...baseStyles,
-            width: "100%",
-            height: "40px",
-            padding: "2px",
-            backgroundColor: "#E5E7EB",
-            border: "none",
-            borderRadius: "4px",
-          }),
-          menu: (baseStyles) => ({
-            ...baseStyles,
-            width: "100%",
-          }),
-        }}
-      />
-    </div>
-  );
-};
 
 
 export function DeleteBox({ data, message, name }) {

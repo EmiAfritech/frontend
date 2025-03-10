@@ -1,5 +1,4 @@
 import { useContext, useState, useRef, React } from "react";
-import axios from "../../api/axios";
 import Chart from "react-apexcharts";
 import ReactToPrint from "react-to-print";
 import Box from "@mui/material/Box";

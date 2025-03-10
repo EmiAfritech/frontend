@@ -335,12 +335,10 @@ export const useRiskStatuscolumns = () => {
     {
       accessorKey: "riskCode",
       header: "Risk Code",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "Subject",
       header: "Name",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskScore",
@@ -382,7 +380,6 @@ export const useRiskStatuscolumns = () => {
     {
       accessorKey: "status",
       header: "Status",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "view",
@@ -398,12 +395,10 @@ export const useRiskAppetiteReportLowerColumns = () => {
     {
       accessorKey: "riskID",
       header: t("riskCode"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskName",
       header: t("subject"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskScore",
@@ -481,12 +476,10 @@ export const useRiskAppetiteReportGreaterColumns = () => {
     {
       accessorKey: "riskID",
       header: t("riskCode"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskName",
       header: t("subject"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskScore",
@@ -564,17 +557,14 @@ export const useReportRiskMitigationColumns = () => {
     {
       accessorKey: "riskID",
       header: t("riskCode"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskName",
       header: t("subject"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskReviewer",
       header:  t("riskReviewer"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "mitigatedRiskScore",
@@ -612,7 +602,6 @@ export const useReportRiskMitigationColumns = () => {
     {
       accessorKey: "createdAt",
       header: t("dateMitigated"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
   ];
   
@@ -624,17 +613,14 @@ export const useReportOpenRiskToReviewColumns = () => {
     {
       accessorKey: "riskCode",
       header: t("riskCode"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "status",
       header: t("status"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "Subject",
       header:  t("subject"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "riskScore",
@@ -672,12 +658,10 @@ export const useReportOpenRiskToReviewColumns = () => {
     {
       accessorKey: "daysOpen",
       header: t("daysOpen"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "nextReviewDate",
       header: t("nextReviewDate"),
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
   ];
   
@@ -689,27 +673,22 @@ export const useReportAuditTrailColumns = () => {
     {
       accessorKey: "id",
       header: "ID",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "type",
       header: "Type",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "action",
       header:  "Action",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "submittedBy",
       header: "Submitted By",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
     {
       accessorKey: "createdAt",
       header: "Creted At",
-      Cell: ({ cell }) => <span>{cell.getValue()}</span>,
     },
   ];
   
