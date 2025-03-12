@@ -374,6 +374,9 @@ export const ReportDashboard = () => {
   const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
+  console.log(departmentList);
+  console.log(departmentName);
+
 
   return (
     <div className="dashboard-container">
