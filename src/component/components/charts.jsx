@@ -277,7 +277,7 @@ export const ReportRiskLevel = (departmentName) => {
   const { riskLevel } = useRiskLevelReport(departmentName);
   const riskLevelReader  = riskLevel;
   console.log(departmentName);
-  console.log(risklevel);
+  console.log(riskLevelReader);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3"><span>Risk Level</span></h3>
