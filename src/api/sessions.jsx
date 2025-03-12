@@ -64,13 +64,13 @@ export function Sessions() {
           notifyUnauthorized();
         }
       } catch (err) {
-        // if (err.message.includes("Network Error")) {
-        //   notifyNetwork();
-        //   Cookies.remove("token")
-        // } else {
-        //   notifySystem();
-        //   Cookies.remove("token")
-        // }
+        if (err.message.includes("Network Error")) {
+          notifyNetwork();
+          Cookies.remove("token")
+        } else {
+          notifySystem();
+          Cookies.remove("token")
+        }
       }
     };
 

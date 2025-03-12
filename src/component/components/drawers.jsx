@@ -1087,12 +1087,11 @@ export function Framworkforms({ onFormSubmit }) {
       );
       notify();
     } catch (error) {
-      // if (error.response.status === 400) {
-      //   showToast("Kindly check Input details", "error");
-      // } else if (error.response.status === 500) {
-      //   showToast("Server is currently down Contact your admin", "error");
-      // }
-      console.log(error)
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -1220,12 +1219,11 @@ export function Controlforms({ onFormSubmit }) {
       );
       notify();
     } catch (error) {
-      // if (error.response.status === 400) {
-      //   showToast("Kindly check Input details", "error");
-      // } else if (error.response.status === 500) {
-      //   showToast("Server is currently down Contact your admin", "error");
-      // }
-      console.log(error)
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -1338,12 +1336,11 @@ export function Complianceforms({ onFormSubmit }) {
       );
       notify();
     } catch (error) {
-      // if (error.response.status === 400) {
-      //   showToast("Kindly check Input details", "error");
-      // } else if (error.response.status === 500) {
-      //   showToast("Server is currently down Contact your admin", "error");
-      // }
-      console.log(error)
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -1519,12 +1516,11 @@ export function RiskMonitoringforms({ onFormSubmit }) {
       }
       notify();
     } catch (error) {
-      // if (error.response.status === 400) {
-      //   showToast("Kindly check Input details", "error");
-      // } else if (error.response.status === 500) {
-      //   showToast("Server is currently down Contact your admin", "error");
-      // }
-      console.log(error)
+      if (error.response.status === 400) {
+        showToast("Kindly check Input details", "error");
+      } else if (error.response.status === 500) {
+        showToast("Server is currently down Contact your admin", "error");
+      }
     } finally {
       setIsSubmitting(false);
     }
