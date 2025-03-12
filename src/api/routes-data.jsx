@@ -243,33 +243,6 @@ export function useRiskReviewTable() {
 
 
 
-export function useRiskIDReview({ departmentID }) {
-  const { auth } = useContext(AuthContext);
-  const [riskReviewIDs, setRiskReviewIDs] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.post(
-        RISKIDSREVIEW_URL,
-        JSON.stringify({ departmentID }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.token,
-          },
-          withCredentials: true,
-        }
-      );
-
-      setRiskReviewIDs(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { riskReviewIDs };
-}
 
 export function useRiskIDMonitoring(departmentID) {
   const { auth } = useContext(AuthContext);
@@ -374,7 +347,7 @@ export function useFrameWorkDropDown() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { frameworkdropdown, fetchData };
+  return { frameworkdropdown };
 }
 
 export function useControlItemDropDown(frameWorkSelect) {
@@ -403,7 +376,7 @@ export function useControlItemDropDown(frameWorkSelect) {
       fetchData(); 
     }
   }, [frameworkId]);
-  return { controleItemDropdown, fetchData };
+  return { controleItemDropdown };
 }
 
 export function useMonitoringTable() {
@@ -504,7 +477,7 @@ export function useMonitoredVrsUnMonitoredPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { monitoredVrunmonitoredPieData, fetchData };
+  return { monitoredVrunmonitoredPieData };
 }
 
 export function useMitigatedVrsUnMitigatedPieChart() {
@@ -529,7 +502,7 @@ export function useMitigatedVrsUnMitigatedPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { mitigatedVrunmitigatedPieData, fetchData };
+  return { mitigatedVrunmitigatedPieData };
 }
 
 export function useReviewedVrsUnReviewedPieChart() {
@@ -554,7 +527,7 @@ export function useReviewedVrsUnReviewedPieChart() {
   useEffect(() => {
     fetchData(); 
   }, []);
-  return { reviewedVrunrevieweddPieData, fetchData };
+  return { reviewedVrunrevieweddPieData };
 }
 
 
@@ -587,7 +560,7 @@ export function useRiskLineChartData(year) {
       fetchData();
     }
   }, [year]); 
-  return { riskLineChart, fetchData };
+  return { riskLineChart };
 }
 
 export function useRiskLineChartYearData() {  
@@ -611,7 +584,7 @@ export function useRiskLineChartYearData() {
   useEffect(() => {
     fetchData();
   }, []); 
-  return { riskLineYearChart, fetchData };
+  return { riskLineYearChart };
 }
 
 export function useOpenVsCloseBarChartData(year) {
@@ -972,7 +945,6 @@ export function useRiskNeedingToBeReviewed(departmentName) {
   }, [departmentName]); 
   return { riskToReview, fetchData };
 }
-
 
 export function useAuditTrail(departmentName) {
   const { auth } = useContext(AuthContext);

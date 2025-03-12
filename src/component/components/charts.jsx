@@ -613,136 +613,63 @@ export function Pyramidchat() {
   );
 }
 
-export function HeatMap2() {
-  const yLabels = [
-    t("veryLow"),
-    t("low"),
-    t("medium"),
-    t("high"),
-    t("veryHigh"),
-  ];
-  const series = [
-    {
-      name: t("rare"),
-      data: [
-        { x: t("insignificant"), y: 1 },
-        { x: t("minor"), y: 2 },
-        { x: t("moderate"), y: 3 },
-        { x: t("major"), y: 4 },
-        { x: t("critical"), y: 5 },
-      ],
-    },
-    {
-      name: t("unlikely"),
-      data: [
-        { x: t("insignificant"), y: 2 },
-        { x: t("minor"), y: 4 },
-        { x: t("moderate"), y: 6 },
-        { x: t("major"), y: 8 },
-        { x: t("critical"), y: 10 },
-      ],
-    },
-    {
-      name: t("possible"),
-      data: [
-        { x: t("insignificant"), y: 3 },
-        { x: t("minor"), y: 6 },
-        { x: t("moderate"), y: 9 },
-        { x: t("major"), y: 12 },
-        { x: t("critical"), y: 15 },
-      ],
-    },
-    {
-      name: t("likely"),
-      data: [
-        { x: t("insignificant"), y: 4 },
-        { x: t("minor"), y: 8 },
-        { x: t("moderate"), y: 12 },
-        { x: t("major"), y: 16 },
-        { x: t("critical"), y: 20 },
-      ],
-    },
-    {
-      name: t("almostCertain"),
-      data: [
-        { x: t("insignificant"), y: 5 },
-        { x: t("minor"), y: 10 },
-        { x: t("moderate"), y: 15 },
-        { x: t("major"), y: 20 },
-        { x: t("critical"), y: 25 },
-      ],
-    },
-  ];
 
-  const options = {
-    chart: {
-      type: "heatmap",
-    },
+export function HeatMap2() {
+  const { t } = useTranslation();
+
+  const yLabels = useMemo(() => [
+    t("veryLow"), t("low"), t("medium"), t("high"), t("veryHigh")
+  ], [t]);
+
+  const series = useMemo(() => [
+    { name: t("rare"), data: [{ x: t("insignificant"), y: 1 }, { x: t("minor"), y: 2 }, { x: t("moderate"), y: 3 }, { x: t("major"), y: 4 }, { x: t("critical"), y: 5 }] },
+    { name: t("unlikely"), data: [{ x: t("insignificant"), y: 2 }, { x: t("minor"), y: 4 }, { x: t("moderate"), y: 6 }, { x: t("major"), y: 8 }, { x: t("critical"), y: 10 }] },
+    { name: t("possible"), data: [{ x: t("insignificant"), y: 3 }, { x: t("minor"), y: 6 }, { x: t("moderate"), y: 9 }, { x: t("major"), y: 12 }, { x: t("critical"), y: 15 }] },
+    { name: t("likely"), data: [{ x: t("insignificant"), y: 4 }, { x: t("minor"), y: 8 }, { x: t("moderate"), y: 12 }, { x: t("major"), y: 16 }, { x: t("critical"), y: 20 }] },
+    { name: t("almostCertain"), data: [{ x: t("insignificant"), y: 5 }, { x: t("minor"), y: 10 }, { x: t("moderate"), y: 15 }, { x: t("major"), y: 20 }, { x: t("critical"), y: 25 }] }
+  ], [t]);
+
+  const options = useMemo(() => ({
+    chart: { type: "heatmap" },
     plotOptions: {
       heatmap: {
         colorScale: {
           ranges: [
-            {
-              from: 1,
-              to: 5,
-              name: t("low"),
-              color: "#008000",
-            },
-            {
-              from: 6,
-              to: 9,
-              name: t("medium"),
-              color: "#002db3",
-            },
-            {
-              from: 10,
-              to: 15,
-              name: t("high"),
-              color: "#ffcc00",
-            },
-            {
-              from: 16,
-              to: 25,
-              name: t("veryHigh"),
-              color: "#ff0000",
-            },
+            { from: 1, to: 5, name: t("low"), color: "#008000" },
+            { from: 6, to: 9, name: t("medium"), color: "#002db3" },
+            { from: 10, to: 15, name: t("high"), color: "#ffcc00" },
+            { from: 16, to: 25, name: t("veryHigh"), color: "#ff0000" }
           ],
         },
       },
     },
-    xaxis: {
-      title: {
-        text: t("impact"), // Label for the x-axis
-      },
-    },
-    yaxis: {
-      title: {
-        text: t("likelihood"), // Label for the y-axis
-      },
-    },
+    xaxis: { title: { text: t("impact") } },
+    yaxis: { title: { text: t("likelihood") } },
     dataLabels: {
-      enabled: true, // Enable data labels
-      formatter: function (val) {
-        // Map the data label to custom yLabels based on the value
-        if (val >= 1 && val <= 5) return yLabels[0]; // "veryLow"
-        if (val >= 6 && val <= 9) return yLabels[1]; // "low"
-        if (val >= 10 && val <= 15) return yLabels[2]; // "medium"
-        if (val >= 16 && val <= 20) return yLabels[3]; // "high"
-        if (val >= 21 && val <= 25) return yLabels[4]; // "veryHigh"
-        return val; // Fallback to default value if out of range
+      enabled: true,
+      formatter: (val) => {
+        if (val >= 1 && val <= 5) return yLabels[0];
+        if (val >= 6 && val <= 9) return yLabels[1];
+        if (val >= 10 && val <= 15) return yLabels[2];
+        if (val >= 16 && val <= 20) return yLabels[3];
+        if (val >= 21 && val <= 25) return yLabels[4];
+        return val;
       },
     },
-  };
+  }), [t, yLabels]);
+
+  useEffect(() => {
+    return () => {
+      if (Chart) {
+        Chart.destroy(); // Clean up chart to prevent memory leaks
+      }
+    };
+  }, []);
 
   return (
     <div>
-      <Chart
-        options={options}
-        series={series}
-        type="heatmap"
-        height={550}
-        width={1100}
-      />
+      <Chart options={options} series={series} type="heatmap" height={550} width={1100} />
     </div>
   );
 }
+
