@@ -258,33 +258,26 @@ export function RiskLineChart() {
   );
 }
 
-export function ReportRiskLevel() {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskLevel } = useRiskLevelReport(departmentName);
+const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList }) => (
+  <div className="department-selector-container">
+    <CustomSelect
+      id="department"
+      label="Departments"
+      value={departmentName}
+      onChange={setDeptmentName}
+      options={departmentList}
+      searchable={true}
+      required
+      group={false}
+    />
+  </div>
+);
 
+export const ReportRiskLevel = ({ departmentName }) => {
+  const { riskLevel } = useRiskLevelReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3">
-        <span>{t("riskLevel")}</span>
-      </h3>
-      <div>
-        <div>
-          {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-            <CustomSelect
-              id="department"
-              label={t("departments")}
-              value={departmentName}
-              onChange={setDeptmentName}
-              options={departmentList}
-              searchable={true}
-              required
-              group={false}
-            />
-          )}
-        </div>
-      </div>
+      <h3 className="py-3"><span>Risk Level</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskLevel} outerRadius={90} />
@@ -294,32 +287,13 @@ export function ReportRiskLevel() {
       </ResponsiveContainer>
     </div>
   );
-}
-export function ReportRiskStatus() {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskStatus } = useRiskStatusReportPieChart(departmentName);
+};
 
+export const ReportRiskStatus = ({ departmentName }) => {
+  const { riskStatus } = useRiskStatusReportPieChart(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
-      <h3 className="py-3">
-        <span>{t("riskStatus")}</span>
-      </h3>
-      <div>
-        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
-      </div>
+      <h3 className="py-3"><span>Risk Status</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskStatus} outerRadius={90} />
@@ -329,32 +303,13 @@ export function ReportRiskStatus() {
       </ResponsiveContainer>
     </div>
   );
-}
-export function ReportRiskLocation() {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskLocation } = useRiskLocationReport(departmentName);
+};
 
+export const ReportRiskLocation = ({ departmentName }) => {
+  const { riskLocation } = useRiskLocationReport(departmentName);
   return (
-    <div className="card items-center flex flex-col  pb-12">
-      <h3 className="py-3">
-        <span>{t("location")}</span>
-      </h3>
-      <div>
-        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
-      </div>
+    <div className="card items-center flex flex-col pb-12">
+      <h3 className="py-3"><span>Location</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskLocation} outerRadius={90} />
@@ -364,32 +319,13 @@ export function ReportRiskLocation() {
       </ResponsiveContainer>
     </div>
   );
-}
-export function ReportRiskCategory() {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskCategory } = useRiskCategoryReport(departmentName);
+};
 
+export const ReportRiskCategory = ({ departmentName }) => {
+  const { riskCategory } = useRiskCategoryReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3">
-        <span>{t("category")}</span>
-      </h3>
-      <div>
-        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
-      </div>
+      <h3 className="py-3"><span>Category</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskCategory} outerRadius={90} />
@@ -399,68 +335,28 @@ export function ReportRiskCategory() {
       </ResponsiveContainer>
     </div>
   );
-}
-export function ReportRiskResponse() {
-  const { auth } = useContext(AuthContext);
-  const [data, setData] = useState();
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskResponse } = useRiskResponseReport(departmentName);
+};
 
+export const ReportRiskResponse = ({ departmentName }) => {
+  const { riskResponse } = useRiskResponseReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
-      <h3 className="py-3">
-        <span>{t("riskResponse")}</span>
-      </h3>
-      <div>
-        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
-      </div>
+      <h3 className="py-3"><span>Risk Response</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskResponse} outerRadius={90} />
-          <Legend iconSize={10} />
           <Tooltip />
         </PieChart>
       </ResponsiveContainer>
     </div>
   );
-}
-export function ReportRiskOwner() {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  const { riskOwner } = useRiskOwnerReport(departmentName);
+};
 
+export const ReportRiskOwner = ({ departmentName }) => {
+  const { riskOwner } = useRiskOwnerReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3">
-        <span>{t("owner")}</span>
-      </h3>
-      <div>
-        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentList}
-            searchable={true}
-            required
-            group={false}
-          />
-        )}
-      </div>
+      <h3 className="py-3"><span>Owner</span></h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskOwner} outerRadius={90} />
@@ -469,7 +365,34 @@ export function ReportRiskOwner() {
       </ResponsiveContainer>
     </div>
   );
-}
+};
+
+export const ReportDashboard = () => {
+  const { auth } = useContext(AuthContext);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+
+  return (
+    <div className="dashboard-container">
+      {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+        <DepartmentSelector
+          departmentName={departmentName}
+          setDeptmentName={setDeptmentName}
+          departmentList={departmentList}
+        />
+      )}
+      
+      <div className="reports-container">
+        <ReportRiskLevel departmentName={departmentName} />
+        <ReportRiskStatus departmentName={departmentName} />
+        <ReportRiskLocation departmentName={departmentName} />
+        <ReportRiskCategory departmentName={departmentName} />
+        <ReportRiskResponse departmentName={departmentName} />
+        <ReportRiskOwner departmentName={departmentName} />
+      </div>
+    </div>
+  );
+};
 
 export function Pyramidchat() {
   const { auth } = useContext(AuthContext);
