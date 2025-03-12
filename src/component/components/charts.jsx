@@ -262,7 +262,7 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
   <div className="department-selector-container">
     <CustomSelect
       id="department"
-      label="Departments"
+      label={t("departments")}
       value={departmentName}
       onChange={setDeptmentName}
       options={departmentList}
@@ -273,8 +273,11 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
   </div>
 );
 
-export const ReportRiskLevel = ({ departmentName }) => {
+export const ReportRiskLevel = (departmentName) => {
   const { riskLevel } = useRiskLevelReport(departmentName);
+  const riskLevelReader  = riskLevel;
+  console.log(departmentName);
+  console.log(risklevel);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3"><span>Risk Level</span></h3>
@@ -289,7 +292,7 @@ export const ReportRiskLevel = ({ departmentName }) => {
   );
 };
 
-export const ReportRiskStatus = ({ departmentName }) => {
+export const ReportRiskStatus = (departmentName) => {
   const { riskStatus } = useRiskStatusReportPieChart(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -305,7 +308,7 @@ export const ReportRiskStatus = ({ departmentName }) => {
   );
 };
 
-export const ReportRiskLocation = ({ departmentName }) => {
+export const ReportRiskLocation = (departmentName) => {
   const { riskLocation } = useRiskLocationReport(departmentName);
   return (
     <div className="card items-center flex flex-col pb-12">
@@ -321,7 +324,7 @@ export const ReportRiskLocation = ({ departmentName }) => {
   );
 };
 
-export const ReportRiskCategory = ({ departmentName }) => {
+export const ReportRiskCategory = (departmentName) => {
   const { riskCategory } = useRiskCategoryReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -337,7 +340,7 @@ export const ReportRiskCategory = ({ departmentName }) => {
   );
 };
 
-export const ReportRiskResponse = ({ departmentName }) => {
+export const ReportRiskResponse = ( departmentName) => {
   const { riskResponse } = useRiskResponseReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
@@ -352,7 +355,7 @@ export const ReportRiskResponse = ({ departmentName }) => {
   );
 };
 
-export const ReportRiskOwner = ({ departmentName }) => {
+export const ReportRiskOwner = (departmentName) => {
   const { riskOwner } = useRiskOwnerReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
@@ -381,7 +384,7 @@ export const ReportDashboard = () => {
           departmentList={departmentList}
         />
       )}
-      
+
       <div className="reports-container">
         <ReportRiskLevel departmentName={departmentName} />
         <ReportRiskStatus departmentName={departmentName} />
