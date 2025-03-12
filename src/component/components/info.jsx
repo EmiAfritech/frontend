@@ -35,7 +35,7 @@ export function ImpactReportAdvice() {
       <h2 className="pb-2 font-medium">IMPACT REPORT</h2>
       Based on the various parameters placed into consideration the follow
       aspects of impact were <br />
-      o
+      
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
         1. Technologies
