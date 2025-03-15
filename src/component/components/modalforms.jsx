@@ -82,15 +82,14 @@ export function RiskInfo(data) {
             triggerComponent();
           }
         } catch (err) {
-          // if (err.response?.status === 500 || err.response?.status === 400) {
-          //   setNotification({ ...notification, serverDown: true });
-          //   reload();
-          // } else if (err.response?.status === 401) {
-          //   setNotification({ ...notification, authorized: true });
-          // } else if ([404].includes(err.response?.status)) {
-          //   setNotification({ ...notification, errorMessage: true });
-          // }
-          console.log(err)
+          if (err.response?.status === 500 || err.response?.status === 400) {
+            setNotification({ ...notification, serverDown: true });
+            reload();
+          } else if (err.response?.status === 401) {
+            setNotification({ ...notification, authorized: true });
+          } else if ([404].includes(err.response?.status)) {
+            setNotification({ ...notification, errorMessage: true });
+          }
         } finally {
           setIsSubmitting(false);
         }
@@ -272,15 +271,14 @@ export function MitigateRIsk(data){
         triggerComponent();
       }
     } catch (err) {
-      // if (err.response?.status === 500 || err.response?.status === 400) {
-      //   setNotification({ ...notification, serverDown: true });
-      //   reload();
-      // } else if (err.response?.status === 401) {
-      //   setNotification({ ...notification, authorized: true });
-      // } else if ([404].includes(err.response?.status)) {
-      //   setNotification({ ...notification, errorMessage: true });
-      // }
-      console.log(err)
+      if (err.response?.status === 500 || err.response?.status === 400) {
+        setNotification({ ...notification, serverDown: true });
+        reload();
+      } else if (err.response?.status === 401) {
+        setNotification({ ...notification, authorized: true });
+      } else if ([404].includes(err.response?.status)) {
+        setNotification({ ...notification, errorMessage: true });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -461,15 +459,14 @@ export function ReviewRIsk(data){
           triggerComponent();
         }
       } catch (err) {
-        // if (err.response?.status === 500 || err.response?.status === 400) {
-        //   setNotification({ ...notification, serverDown: true });
-        //   reload();
-        // } else if (err.response?.status === 401) {
-        //   setNotification({ ...notification, authorized: true });
-        // } else if ([404].includes(err.response?.status)) {
-        //   setNotification({ ...notification, errorMessage: true });
-        // }
-        console.log(err)
+        if (err.response?.status === 500 || err.response?.status === 400) {
+          setNotification({ ...notification, serverDown: true });
+          reload();
+        } else if (err.response?.status === 401) {
+          setNotification({ ...notification, authorized: true });
+        } else if ([404].includes(err.response?.status)) {
+          setNotification({ ...notification, errorMessage: true });
+        }
       } finally {
         setIsSubmitting(false);
       }
@@ -650,15 +647,14 @@ export function MonitorRisk(data){
           triggerComponent();
         }
       } catch (err) {
-        // if (err.response?.status === 500 || err.response?.status === 400) {
-        //   setNotification({ ...notification, serverDown: true });
-        //   reload();
-        // } else if (err.response?.status === 401) {
-        //   setNotification({ ...notification, authorized: true });
-        // } else if ([404].includes(err.response?.status)) {
-        //   setNotification({ ...notification, errorMessage: true });
-        // }
-        console.log(err)
+        if (err.response?.status === 500 || err.response?.status === 400) {
+          setNotification({ ...notification, serverDown: true });
+          reload();
+        } else if (err.response?.status === 401) {
+          setNotification({ ...notification, authorized: true });
+        } else if ([404].includes(err.response?.status)) {
+          setNotification({ ...notification, errorMessage: true });
+        }
       } finally {
         setIsSubmitting(false);
       }

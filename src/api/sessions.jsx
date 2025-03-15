@@ -34,6 +34,7 @@ export function Sessions() {
       onClose: () => {
         navigate("/", { replace: true });
         clearAuth();
+        Cookies.remove("token")
       },
     });
   };
@@ -105,5 +106,5 @@ const LoadingPopup = () => {
   );
 };
 
-
+ 
 export default LoadingPopup;
