@@ -23,11 +23,7 @@ import {
   Line,
   ResponsiveContainer,
 } from "recharts";
-import {
-  DataGrid,
-  gridClasses,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { DataGrid, gridClasses, GridToolbar } from "@mui/x-data-grid";
 import "../comstyles/component.css";
 import {
   useOpenVrsClosedPieChart,
@@ -48,7 +44,6 @@ import {
   useRiskAdviceChart,
 } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
-
 
 export function OpenVsClose() {
   const { t } = useTranslation();
@@ -263,20 +258,22 @@ export const ReportDashboard = () => {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   console.log(departmentList);
-  console.log({"reportDepartmentName": departmentName});
+  console.log({ reportDepartmentName: departmentName });
 
-  
   return (
-    <div className="dashboard-container">
-      {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-        <DepartmentSelector
-          departmentName={departmentName}
-          setDeptmentName={setDeptmentName}
-          departmentList={departmentList}
-        />
-      )}
-
-      <div className="reports-container">
+    <div className="mt-5">
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+        <div className="mx-5">
+          {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+            <DepartmentSelector
+              departmentName={departmentName}
+              setDeptmentName={setDeptmentName}
+              departmentList={departmentList}
+            />
+          )}
+        </div>
+      </div>
+      <div className="grid grid-cols-2  xl:grid-cols-3 xl:gap-0.5">
         <ReportRiskLevel departmentName={departmentName} />
         <ReportRiskStatus departmentName={departmentName} />
         <ReportRiskLocation departmentName={departmentName} />
@@ -288,7 +285,11 @@ export const ReportDashboard = () => {
   );
 };
 
-const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList }) => (
+const DepartmentSelector = ({
+  departmentName,
+  setDeptmentName,
+  departmentList,
+}) => (
   <div className="department-selector-container">
     <CustomSelect
       id="department"
@@ -303,14 +304,16 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
   </div>
 );
 
-export const ReportRiskLevel = ({departmentName}) => {
-  console.log({"reportRiskLevelDepartmentName": departmentName});
+export const ReportRiskLevel = ({ departmentName }) => {
+  console.log({ reportRiskLevelDepartmentName: departmentName });
   const { riskLevel } = useRiskLevelReport(departmentName);
-  const riskLevelReader  = riskLevel;
+  const riskLevelReader = riskLevel;
   console.log(riskLevelReader);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3"><span>Risk Level</span></h3>
+      <h3 className="py-3">
+        <span>Risk Level</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskLevel} outerRadius={90} />
@@ -322,11 +325,13 @@ export const ReportRiskLevel = ({departmentName}) => {
   );
 };
 
-export const ReportRiskStatus = ({departmentName}) => {
+export const ReportRiskStatus = ({ departmentName }) => {
   const { riskStatus } = useRiskStatusReportPieChart(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
-      <h3 className="py-3"><span>Risk Status</span></h3>
+      <h3 className="py-3">
+        <span>Risk Status</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskStatus} outerRadius={90} />
@@ -338,11 +343,13 @@ export const ReportRiskStatus = ({departmentName}) => {
   );
 };
 
-export const ReportRiskLocation = ({departmentName}) => {
+export const ReportRiskLocation = ({ departmentName }) => {
   const { riskLocation } = useRiskLocationReport(departmentName);
   return (
     <div className="card items-center flex flex-col pb-12">
-      <h3 className="py-3"><span>Location</span></h3>
+      <h3 className="py-3">
+        <span>Location</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskLocation} outerRadius={90} />
@@ -354,11 +361,13 @@ export const ReportRiskLocation = ({departmentName}) => {
   );
 };
 
-export const ReportRiskCategory = ({departmentName}) => {
+export const ReportRiskCategory = ({ departmentName }) => {
   const { riskCategory } = useRiskCategoryReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3"><span>Category</span></h3>
+      <h3 className="py-3">
+        <span>Category</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskCategory} outerRadius={90} />
@@ -370,11 +379,13 @@ export const ReportRiskCategory = ({departmentName}) => {
   );
 };
 
-export const ReportRiskResponse = ( {departmentName}) => {
+export const ReportRiskResponse = ({ departmentName }) => {
   const { riskResponse } = useRiskResponseReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-2">
-      <h3 className="py-3"><span>Risk Response</span></h3>
+      <h3 className="py-3">
+        <span>Risk Response</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskResponse} outerRadius={90} />
@@ -385,11 +396,13 @@ export const ReportRiskResponse = ( {departmentName}) => {
   );
 };
 
-export const ReportRiskOwner = ({departmentName}) => {
+export const ReportRiskOwner = ({ departmentName }) => {
   const { riskOwner } = useRiskOwnerReport(departmentName);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
-      <h3 className="py-3"><span>Owner</span></h3>
+      <h3 className="py-3">
+        <span>Owner</span>
+      </h3>
       <ResponsiveContainer height={250}>
         <PieChart>
           <Pie dataKey="value" data={riskOwner} outerRadius={90} />
@@ -399,8 +412,6 @@ export const ReportRiskOwner = ({departmentName}) => {
     </div>
   );
 };
-
-
 
 export function Pyramidchat() {
   const { auth } = useContext(AuthContext);
@@ -544,50 +555,101 @@ export function Pyramidchat() {
   );
 }
 
-
 export function HeatMap2() {
   const { t } = useTranslation();
 
-  const yLabels = useMemo(() => [
-    t("veryLow"), t("low"), t("medium"), t("high"), t("veryHigh")
-  ], [t]);
+  const yLabels = useMemo(
+    () => [t("veryLow"), t("low"), t("medium"), t("high"), t("veryHigh")],
+    [t]
+  );
 
-  const series = useMemo(() => [
-    { name: t("rare"), data: [{ x: t("insignificant"), y: 1 }, { x: t("minor"), y: 2 }, { x: t("moderate"), y: 3 }, { x: t("major"), y: 4 }, { x: t("critical"), y: 5 }] },
-    { name: t("unlikely"), data: [{ x: t("insignificant"), y: 2 }, { x: t("minor"), y: 4 }, { x: t("moderate"), y: 6 }, { x: t("major"), y: 8 }, { x: t("critical"), y: 10 }] },
-    { name: t("possible"), data: [{ x: t("insignificant"), y: 3 }, { x: t("minor"), y: 6 }, { x: t("moderate"), y: 9 }, { x: t("major"), y: 12 }, { x: t("critical"), y: 15 }] },
-    { name: t("likely"), data: [{ x: t("insignificant"), y: 4 }, { x: t("minor"), y: 8 }, { x: t("moderate"), y: 12 }, { x: t("major"), y: 16 }, { x: t("critical"), y: 20 }] },
-    { name: t("almostCertain"), data: [{ x: t("insignificant"), y: 5 }, { x: t("minor"), y: 10 }, { x: t("moderate"), y: 15 }, { x: t("major"), y: 20 }, { x: t("critical"), y: 25 }] }
-  ], [t]);
+  const series = useMemo(
+    () => [
+      {
+        name: t("rare"),
+        data: [
+          { x: t("insignificant"), y: 1 },
+          { x: t("minor"), y: 2 },
+          { x: t("moderate"), y: 3 },
+          { x: t("major"), y: 4 },
+          { x: t("critical"), y: 5 },
+        ],
+      },
+      {
+        name: t("unlikely"),
+        data: [
+          { x: t("insignificant"), y: 2 },
+          { x: t("minor"), y: 4 },
+          { x: t("moderate"), y: 6 },
+          { x: t("major"), y: 8 },
+          { x: t("critical"), y: 10 },
+        ],
+      },
+      {
+        name: t("possible"),
+        data: [
+          { x: t("insignificant"), y: 3 },
+          { x: t("minor"), y: 6 },
+          { x: t("moderate"), y: 9 },
+          { x: t("major"), y: 12 },
+          { x: t("critical"), y: 15 },
+        ],
+      },
+      {
+        name: t("likely"),
+        data: [
+          { x: t("insignificant"), y: 4 },
+          { x: t("minor"), y: 8 },
+          { x: t("moderate"), y: 12 },
+          { x: t("major"), y: 16 },
+          { x: t("critical"), y: 20 },
+        ],
+      },
+      {
+        name: t("almostCertain"),
+        data: [
+          { x: t("insignificant"), y: 5 },
+          { x: t("minor"), y: 10 },
+          { x: t("moderate"), y: 15 },
+          { x: t("major"), y: 20 },
+          { x: t("critical"), y: 25 },
+        ],
+      },
+    ],
+    [t]
+  );
 
-  const options = useMemo(() => ({
-    chart: { type: "heatmap" },
-    plotOptions: {
-      heatmap: {
-        colorScale: {
-          ranges: [
-            { from: 1, to: 5, name: t("low"), color: "#008000" },
-            { from: 6, to: 9, name: t("medium"), color: "#002db3" },
-            { from: 10, to: 15, name: t("high"), color: "#ffcc00" },
-            { from: 16, to: 25, name: t("veryHigh"), color: "#ff0000" }
-          ],
+  const options = useMemo(
+    () => ({
+      chart: { type: "heatmap" },
+      plotOptions: {
+        heatmap: {
+          colorScale: {
+            ranges: [
+              { from: 1, to: 5, name: t("low"), color: "#008000" },
+              { from: 6, to: 9, name: t("medium"), color: "#002db3" },
+              { from: 10, to: 15, name: t("high"), color: "#ffcc00" },
+              { from: 16, to: 25, name: t("veryHigh"), color: "#ff0000" },
+            ],
+          },
         },
       },
-    },
-    xaxis: { title: { text: t("impact") } },
-    yaxis: { title: { text: t("likelihood") } },
-    dataLabels: {
-      enabled: true,
-      formatter: (val) => {
-        if (val >= 1 && val <= 5) return yLabels[0];
-        if (val >= 6 && val <= 9) return yLabels[1];
-        if (val >= 10 && val <= 15) return yLabels[2];
-        if (val >= 16 && val <= 20) return yLabels[3];
-        if (val >= 21 && val <= 25) return yLabels[4];
-        return val;
+      xaxis: { title: { text: t("impact") } },
+      yaxis: { title: { text: t("likelihood") } },
+      dataLabels: {
+        enabled: true,
+        formatter: (val) => {
+          if (val >= 1 && val <= 5) return yLabels[0];
+          if (val >= 6 && val <= 9) return yLabels[1];
+          if (val >= 10 && val <= 15) return yLabels[2];
+          if (val >= 16 && val <= 20) return yLabels[3];
+          if (val >= 21 && val <= 25) return yLabels[4];
+          return val;
+        },
       },
-    },
-  }), [t, yLabels]);
+    }),
+    [t, yLabels]
+  );
 
   useEffect(() => {
     return () => {
@@ -599,8 +661,13 @@ export function HeatMap2() {
 
   return (
     <div>
-      <Chart options={options} series={series} type="heatmap" height={550} width={1100} />
+      <Chart
+        options={options}
+        series={series}
+        type="heatmap"
+        height={550}
+        width={1100}
+      />
     </div>
   );
 }
-
