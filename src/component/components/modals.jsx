@@ -80,12 +80,11 @@ const handleSubmit = async (e) => {
     });
     notify();
   } catch (error) {
-    // if (error.response.status === 401) {
-    //   notifyUnauthorized();
-    // } else if (error.response.status === 500) {
-    //   notifyNetwork();
-    // }
-    console.log(error)
+    if (error.response.status === 401) {
+      notifyUnauthorized();
+    } else if (error.response.status === 500) {
+      notifyNetwork();
+    }
   } finally {
     setIsSubmitting(false);
   }
@@ -264,12 +263,11 @@ export function DepartmentAccountDetails(data) {
       });
       notify();
     } catch (error) {
-      // if (error.response.status === 401) {
-      //   notifyUnauthorized();
-      // } else if (error.response.status === 500) {
-      //   notifyNetwork();
-      // }
-      console.log(error)
+      if (error.response.status === 401) {
+        notifyUnauthorized();
+      } else if (error.response.status === 500) {
+        notifyNetwork();
+      }
     } finally {
       setIsSubmitting(false);
     }
