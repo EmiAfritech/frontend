@@ -273,7 +273,7 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
   </div>
 );
 
-export const ReportRiskLevel = ({departmentName}) => {
+export const ReportRiskLevel = (departmentName) => {
   console.log({"reportRiskLevelDepartmentName": departmentName});
   const { riskLevel } = useRiskLevelReport(departmentName);
   const riskLevelReader  = riskLevel;
