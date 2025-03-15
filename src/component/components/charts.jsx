@@ -295,7 +295,7 @@ const DepartmentSelector = ({
       id="department"
       label={t("departments")}
       value={departmentName}
-      onChange={setDeptmentName}
+      onChange={(selected) => setDeptmentName(selected?.value || "All Departments")}
       options={departmentList}
       searchable={true}
       required

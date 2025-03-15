@@ -621,6 +621,7 @@ export function useOpenVsCloseBarChartData(year) {
 export function useRiskLevelReport(departmentName) {
   const { auth } = useContext(AuthContext);
   const [riskLevel, setRiskLevel] = useState("");
+  console.log({RouteDepartmentName : departmentName});
 
   const fetchData = async () => {
     try {
@@ -642,9 +643,7 @@ export function useRiskLevelReport(departmentName) {
   };
 
   useEffect(() => {
-    if (departmentName) {
       fetchData();
-    }
   }, [departmentName]); 
   return { riskLevel, fetchData };
 }
