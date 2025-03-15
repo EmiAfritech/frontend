@@ -258,6 +258,36 @@ export function RiskLineChart() {
   );
 }
 
+export const ReportDashboard = () => {
+  const { auth } = useContext(AuthContext);
+  const [departmentName, setDeptmentName] = useState("All Departments");
+  const { departmentList } = useDepartmentDropdown();
+  console.log(departmentList);
+  console.log({"reportDepartmentName": departmentName});
+
+
+  return (
+    <div className="dashboard-container">
+      {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
+        <DepartmentSelector
+          departmentName={departmentName}
+          setDeptmentName={setDeptmentName}
+          departmentList={departmentList}
+        />
+      )}
+
+      <div className="reports-container">
+        <ReportRiskLevel departmentName={departmentName} />
+        <ReportRiskStatus departmentName={departmentName} />
+        <ReportRiskLocation departmentName={departmentName} />
+        <ReportRiskCategory departmentName={departmentName} />
+        <ReportRiskResponse departmentName={departmentName} />
+        <ReportRiskOwner departmentName={departmentName} />
+      </div>
+    </div>
+  );
+};
+
 const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList }) => (
   <div className="department-selector-container">
     <CustomSelect
@@ -273,7 +303,7 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
   </div>
 );
 
-export const ReportRiskLevel = (departmentName) => {
+export const ReportRiskLevel = ({departmentName}) => {
   console.log({"reportRiskLevelDepartmentName": departmentName});
   const { riskLevel } = useRiskLevelReport(departmentName);
   const riskLevelReader  = riskLevel;
@@ -370,35 +400,7 @@ export const ReportRiskOwner = ({departmentName}) => {
   );
 };
 
-export const ReportDashboard = () => {
-  const { auth } = useContext(AuthContext);
-  const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
-  console.log(departmentList);
-  console.log({"reportDepartmentName": departmentName});
 
-
-  return (
-    <div className="dashboard-container">
-      {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-        <DepartmentSelector
-          departmentName={departmentName}
-          setDeptmentName={setDeptmentName}
-          departmentList={departmentList}
-        />
-      )}
-
-      <div className="reports-container">
-        <ReportRiskLevel departmentName={departmentName} />
-        <ReportRiskStatus departmentName={departmentName} />
-        <ReportRiskLocation departmentName={departmentName} />
-        <ReportRiskCategory departmentName={departmentName} />
-        <ReportRiskResponse departmentName={departmentName} />
-        <ReportRiskOwner departmentName={departmentName} />
-      </div>
-    </div>
-  );
-};
 
 export function Pyramidchat() {
   const { auth } = useContext(AuthContext);
