@@ -42,6 +42,7 @@ import {
   useRiskLocationReport,
   useRiskOwnerReport,
   useRiskAdviceChart,
+  useDepartmentCodeDropdown,
 } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
 
@@ -256,7 +257,7 @@ export function RiskLineChart() {
 export const ReportDashboard = () => {
   const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   console.log({ reportDepartmentName: departmentName });
 
   return (
@@ -269,7 +270,7 @@ export const ReportDashboard = () => {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
