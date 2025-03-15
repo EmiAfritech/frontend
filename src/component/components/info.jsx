@@ -33,7 +33,7 @@ export function ImpactReportAdvice() {
   return (
     <p className="m-5">
       <h2 className="pb-2 font-medium">IMPACT REPORT</h2>
-      Based on the various parameters placed into consideration the follow
+      Based on the various parameters placed into consideration the foll
       aspects of impact were <br />
       
       <br />

@@ -265,7 +265,7 @@ export const ReportDashboard = () => {
   console.log(departmentList);
   console.log({"reportDepartmentName": departmentName});
 
-
+  
   return (
     <div className="dashboard-container">
       {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
