@@ -262,7 +262,7 @@ export const ReportDashboard = () => {
 
   return (
     <div className="mt-5">
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
+      <div className="flex p-5 justify-end items-center">
         <div className="mx-5">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <CustomSelect
