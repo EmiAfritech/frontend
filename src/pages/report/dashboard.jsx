@@ -5,6 +5,7 @@ import {
   ReportRiskOwner,
   ReportRiskResponse,
   ReportRiskStatus,
+  ReportDashboard,
 } from "../../component/components/charts";
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
@@ -13,7 +14,8 @@ export function ReportRiskDashboard() {
   const ref = useRef();
   return (
     <div>
-      <div className=" m-3 flex flex-row-reverse">
+      <div className=" m-3 flex justify-between items-center">
+        <ReportDashboard />
         <ReactToPrint
           trigger={() => <button>Print </button>}
           content={() => ref.current}
