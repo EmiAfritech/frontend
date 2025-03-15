@@ -262,7 +262,7 @@ export const ReportDashboard = () => {
 
   return (
     <div className="mt-5">
-      <div className="flex p-5 justify-end items-center">
+      <div className="flex p-3 justify-end items-center">
         <div>{t("departments")}</div>
         <div className="mx-5 min-w-[200px]">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
