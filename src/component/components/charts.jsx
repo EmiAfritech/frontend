@@ -257,7 +257,6 @@ export const ReportDashboard = () => {
   const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
-  console.log(departmentList);
   console.log({ reportDepartmentName: departmentName });
 
   return (
@@ -267,7 +266,7 @@ export const ReportDashboard = () => {
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <DepartmentSelector
               departmentName={departmentName}
-              setDeptmentName={setDeptmentName}
+              setDeptmentName={(e) => setDeptmentName(e.target.value)}
               departmentList={departmentList}
             />
           )}
@@ -295,7 +294,7 @@ const DepartmentSelector = ({
       id="department"
       label={t("departments")}
       value={departmentName}
-      onChange={(selected) => setDeptmentName(selected?.value || "All Departments")}
+      onChange={setDeptmentName}
       options={departmentList}
       searchable={true}
       required
