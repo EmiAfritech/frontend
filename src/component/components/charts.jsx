@@ -264,10 +264,15 @@ export const ReportDashboard = () => {
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
         <div className="mx-5">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
-            <DepartmentSelector
-              departmentName={departmentName}
-              setDeptmentName={(e) => setDeptmentName(e.target.value)}
-              departmentList={departmentList}
+            <CustomSelect
+              id="department"
+              label={t("departments")}
+              value={departmentName}
+              onChange={setDeptmentName}
+              options={departmentList}
+              searchable={true}
+              required
+              group={false}
             />
           )}
         </div>
@@ -284,24 +289,6 @@ export const ReportDashboard = () => {
   );
 };
 
-const DepartmentSelector = ({
-  departmentName,
-  setDeptmentName,
-  departmentList,
-}) => (
-  <div className="department-selector-container">
-    <CustomSelect
-      id="department"
-      label={t("departments")}
-      value={departmentName}
-      onChange={setDeptmentName}
-      options={departmentList}
-      searchable={true}
-      required
-      group={false}
-    />
-  </div>
-);
 
 export const ReportRiskLevel = ({ departmentName }) => {
   console.log({ reportRiskLevelDepartmentName: departmentName });
