@@ -263,11 +263,11 @@ export const ReportDashboard = () => {
   return (
     <div className="mt-5">
       <div className="flex p-5 justify-end items-center">
+        <div>{t("departments")}</div>
         <div className="mx-5">
           {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
             <CustomSelect
               id="department"
-              label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
               options={departmentCodeList}
