@@ -274,7 +274,7 @@ const DepartmentSelector = ({ departmentName, setDeptmentName, departmentList })
 );
 
 export const ReportRiskLevel = ({departmentName}) => {
-  console.log(departmentName);
+  console.log({"reportRiskLevelDepartmentName": departmentName});
   const { riskLevel } = useRiskLevelReport(departmentName);
   const riskLevelReader  = riskLevel;
   console.log(riskLevelReader);
@@ -375,7 +375,7 @@ export const ReportDashboard = () => {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentList } = useDepartmentDropdown();
   console.log(departmentList);
-  console.log(departmentName);
+  console.log({"reportDepartmentName": departmentName});
 
 
   return (
