@@ -638,13 +638,7 @@ export function HeatMap2() {
     [t, yLabels]
   );
 
-  useEffect(() => {
-    return () => {
-      if (Chart) {
-        Chart.destroy(); // Clean up chart to prevent memory leaks
-      }
-    };
-  }, []);
+ 
 
   return (
     <div>
