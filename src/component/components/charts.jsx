@@ -258,7 +258,6 @@ export const ReportDashboard = () => {
   const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentCodeList } = useDepartmentCodeDropdown();
-  console.log({ reportDepartmentName: departmentName });
 
   return (
     <div className="mt-5">
@@ -292,10 +291,8 @@ export const ReportDashboard = () => {
 
 
 export const ReportRiskLevel = ({ departmentName }) => {
-  console.log({ reportRiskLevelDepartmentName: departmentName });
   const { riskLevel } = useRiskLevelReport(departmentName);
   const riskLevelReader = riskLevel;
-  console.log(riskLevelReader);
   return (
     <div className="card items-center flex flex-col px-6 pb-12">
       <h3 className="py-3">
