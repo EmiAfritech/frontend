@@ -410,11 +410,12 @@ export function LogOut() {
       navigate("/", { replace: true });
       clearAuth();
     } catch (error) {
-      if (error.response.status === 401) {
-        notifyUnauthorized();
-      } else if (error.response.status === 500) {
-        notifyNetwork();
-      }
+      // if (error.response.status === 401) {
+      //   notifyUnauthorized();
+      // } else if (error.response.status === 500) {
+      //   notifyNetwork();
+      // }
+      console.log(error)
     } finally {
       setLoading(false);
     }
