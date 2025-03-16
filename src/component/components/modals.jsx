@@ -7,6 +7,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import {
   EDITDEPARTMENT_URL,
+  LOGOUT_URL,
 
 } from "../../api/routes";
 import {
@@ -410,11 +411,11 @@ export function LogOut() {
       navigate("/", { replace: true });
       clearAuth();
     } catch (error) {
-      // if (error.response.status === 401) {
-      //   notifyUnauthorized();
-      // } else if (error.response.status === 500) {
-      //   notifyNetwork();
-      // }
+      if (error.response.status === 401) {
+        notifyUnauthorized();
+      } else if (error.response.status === 500) {
+        notifyNetwork();
+      }
       console.log(error)
     } finally {
       setLoading(false);
