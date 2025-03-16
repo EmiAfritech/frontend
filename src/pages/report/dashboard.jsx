@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 export function ReportRiskDashboard() {
   const ref = useRef();
+  
   return (
     <div className="p-2">
       <div className="m-3 flex justify-between items-center">

@@ -7,6 +7,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import {
   EDITDEPARTMENT_URL,
+  LOGOUT_URL,
 
 } from "../../api/routes";
 import {
@@ -415,6 +416,7 @@ export function LogOut() {
       } else if (error.response.status === 500) {
         notifyNetwork();
       }
+      console.log(error)
     } finally {
       setLoading(false);
     }
