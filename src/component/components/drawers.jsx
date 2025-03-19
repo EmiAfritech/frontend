@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Drawer, Button } from "@mui/material";
 import axios from "../../api/axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useMemo } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext";
@@ -46,7 +46,7 @@ export function Userforms({ onFormSubmit }) {
   const [departmentName, setDepartment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [role, setRole] = useState("");
-  const { userRole } = GRCFormsArray(t);
+  const { userRole } = useMemo(() => GRCFormsArray(t), [t]);
   const { auth } = useContext(AuthContext);
   const { departmentCodeList } = useDepartmentCodeDropdown();
   const [userValue, setUserValue] = useState({
@@ -346,8 +346,7 @@ export function Riskforms({ onFormSubmit }) {
   const [riskResponse, setRiskResponse] = useState("");
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } =
-    GRCFormsArray(t);
+  const { probabilityLevel, categorydrawer, impactLevel, riskResponsedrawer } = useMemo(() => GRCFormsArray(t), [t]);
   const { departmentList } = useDepartmentDropdown();
   const { ownersList } = useRiskOwnersDropdown(departmentName);
   const [riskValue, setRiskValue] = useState({
@@ -598,7 +597,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
-  const {riskReviewArray} = GRCFormsArray(t)
+  const {riskReviewArray} = useMemo(() => GRCFormsArray(t), [t]);
   const {riskToBeReviewed} = useRisksNeededToBeReviewed(departmentID)
   const [reviewValue, setReviewValue] = useState({
     riskID: "",
@@ -779,7 +778,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
   const [mitigatedRiskImpactLevel, setmitigatedRiskImpactLevel] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const FormArray = GRCFormsArray(t);
+  const FormArray = useMemo(() => GRCFormsArray(t), [t]);
   const { riskReviewerDropdown } = useRiskReviewer();
   const { departmentList } = useDepartmentDropdown();
   const {riskToBeMitigated} = useRiskToBeMitigated(departmentID)
@@ -1042,7 +1041,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
 export function Framworkforms({ onFormSubmit }) {
   const { auth } = useContext(AuthContext);
   const { t } = useTranslation();
-  const FormArray = GRCFormsArray(t);
+  const FormArray = useMemo(() => GRCFormsArray(t), [t]);
   const [description, setDescription] = useState("");
 
   const [frameWorkSelect, setFrameWorkSelect] = useState("");
@@ -1297,7 +1296,7 @@ export function Complianceforms({ onFormSubmit }) {
   const {controleItemDropdown} = useControlItemDropDown(frameWorkSelect)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
-  const FormArray = GRCFormsArray(t);
+  const FormArray = useMemo(() => GRCFormsArray(t), [t]);;
 
   const notify = () => {
     toast.success("Compliance Saved Successfully", {
@@ -1434,7 +1433,7 @@ export function RiskMonitoringforms({ onFormSubmit }) {
   const { departmentList } = useDepartmentDropdown();
   const { monitoringIDs } = useRiskIDMonitoring(departmentID);
   const [open, setOpen] = useState(false);
-  const GRCFormArray = GRCFormsArray(t);
+  const GRCFormArray = useMemo(() => GRCFormsArray(t), [t]);
   const [monitoringValue, setMonitoringValue] = useState({
     riskResponseImplementation: "",
     challenges: "",
