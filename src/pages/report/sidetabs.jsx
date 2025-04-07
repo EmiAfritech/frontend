@@ -97,13 +97,28 @@ export function ReportingNavigation({ onTabChange }) {
       setActiveTab(tab);
       onTabChange(tab);
     };
+
+    const filteredTabs = Tabs.filter((item) => {
+      if (auth.subscription === "FREE") {
+        return !["likelyhoodvsimpact","riskAppetite",
+          "mitigationByDate","riskStatusReport","allOpenedRiskNeedingReview", "auditTrail", "riskAdvice",  ].includes(item.title);
+      }
+      if (auth.subscription === "BASIC") {
+        return !["riskAppetite",
+          "mitigationByDate","riskStatusReport","allOpenedRiskNeedingReview", "auditTrail", "riskAdvice"].includes(item.title);
+      }
+      if (auth.subscription === "STANDARD") {
+        return !["allOpenedRiskNeedingReview", "auditTrail", "riskAdvice"].includes(item.title);
+      }
+      return ![""].includes(item.title);
+    });
   
     return (
       <div>
         {/* Tabs Navigation */}
         <div className="flex p-6 justify-center">
           <ul className="flex flex-row space-x-1 border-b border-gray-300">
-            {Tabs.map((tab) => (
+            {filteredTabs.map((tab) => (
               <li key={tab.title}>
                 <button
                   onClick={() => handleTabChange(tab.title)}
@@ -121,5 +136,5 @@ export function ReportingNavigation({ onTabChange }) {
     );
 }
 
-
+//Subscription based tabs
 

@@ -388,7 +388,7 @@ export function Riskforms({ onFormSubmit }) {
         "error"
       );
     }
-
+    console.log({"departmentList": departmentList});
     try {
       if (auth.role === "MANAGER" || auth.role === "ANALYST") {
         await axios.post(
