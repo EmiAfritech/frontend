@@ -130,7 +130,7 @@ export function Sidebar() {
         return <GeneralManagerTabs />;
       case "MANAGER":
         return <ManagerTabs />;
-      case "AUDITOR":
+      case "ANALYST":
         return <AuditorTabs />;
       default:
         return <AdminTabs />;

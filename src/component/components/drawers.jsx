@@ -391,7 +391,7 @@ export function Riskforms({ onFormSubmit }) {
     }
 
     try {
-      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
+      if (auth.role === "MANAGER" || auth.role === "ANALYST") {
         await axios.post(
           CREATERISKFORM_URL,
           JSON.stringify({
@@ -816,7 +816,7 @@ export function RiskMitigationforms({ onFormSubmit }) {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      if (auth.role === "MANAGER" || auth.role === "AUDITOR") {
+      if (auth.role === "MANAGER" || auth.role === "ANALYST") {
         await axios.post(
           MITIGATERISKFORM_URL,
           JSON.stringify({

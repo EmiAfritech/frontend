@@ -490,7 +490,7 @@ export function ReviewRIsk(data){
             onChange={onChange}
             required
           />
-          {(auth === "MANAGER" || auth === "AUDITOR") && (
+          {(auth === "MANAGER" || auth === "ANALYST") && (
             <div className="flex flex-col gap-8">
               <FormDetailsField
                 id="departmentId"

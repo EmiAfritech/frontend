@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     organizationName: "",
 
   });
-
   useEffect(() => {
     const savedToken = Cookies.get("token");
     if ( savedToken) {
