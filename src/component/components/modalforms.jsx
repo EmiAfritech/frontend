@@ -1,6 +1,6 @@
 "use client"
 
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { AuthContext, Modaltrigger } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { EDITMITIGATION_URL, EDITMONITORING_URL, EDITREVIEW_URL, EDITRISK_URL } from "../../api/routes";
@@ -14,7 +14,7 @@ import { Modal } from "@mui/material";
 export function RiskInfo(data) {
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const grcArray = GRCFormsArray(t);
+    const grcArray = useMemo(() => GRCFormsArray(t), [t]);;
     const RiskInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false);
     const {triggerComponent} = useContext(Modaltrigger);
@@ -209,7 +209,7 @@ export function RiskInfo(data) {
 export function MitigateRIsk(data){
   const {auth} = useContext(AuthContext)
   const {t} = useTranslation()
-  const grcArray = GRCFormsArray(t);
+  const grcArray = useMemo(() => GRCFormsArray(t), [t]);;
   const MitigationInfoInitialize = data.data;
   const {triggerComponent} = useContext(Modaltrigger);
   const [probabilityLevel, setProbabilityLevel] = useState(MitigationInfoInitialize.mitigatedRiskProbabilityLevel);
@@ -401,8 +401,7 @@ export function MitigateRIsk(data){
 export function ReviewRIsk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const options = GRCFormsArray(t)
-    const grcArray = GRCFormsArray(t);
+    const grcArray = useMemo(() => GRCFormsArray(t), [t]);;
     const ReviewInfoInitialize = data.data;
 
     const [riskReview, setRiskReview] = useState(ReviewInfoInitialize.riskReview);
@@ -512,8 +511,6 @@ export function ReviewRIsk(data){
             label="Submitted By"
             value={reviewInfo.riskOwner}
             onChange={onChange}
-            options={options}
-            searchable={true}
             required
             group={false}
           />
@@ -560,8 +557,6 @@ export function ReviewRIsk(data){
             label="Next Risk Review Date"
             value={reviewInfo.NextRiskReviewDate}
             onChange={onChange}
-            options={options}
-            searchable={true}
             required
             group={false}
           />
@@ -592,7 +587,7 @@ export function ReviewRIsk(data){
 export function MonitorRisk(data){
     const {auth} = useContext(AuthContext)
     const {t} = useTranslation()
-    const grcArray = GRCFormsArray(t)
+    const grcArray = useMemo(() => GRCFormsArray(t), [t]);
     const MonitorInfoInitialize = data.data;
     const [isSubmitting, setIsSubmitting] = useState(false)
     const {triggerComponent} = useContext(Modaltrigger);
