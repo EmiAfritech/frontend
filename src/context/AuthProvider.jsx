@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       setAuth({
         token: savedToken ? savedToken : null,
         role: savedRole ? savedRole : null,
-        departmentID: savedDepartmentId ? savedDepartmentId : null,
+        departmentId: savedDepartmentId ? savedDepartmentId : null,
         organizationName: savedOrganizationName ? savedOrganizationName : null,
       });
     }

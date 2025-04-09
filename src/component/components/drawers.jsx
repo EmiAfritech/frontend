@@ -377,12 +377,14 @@ export function Riskforms({ onFormSubmit }) {
       },
     });
   };
-
+  console.log(auth.departmentId)
   useEffect(() => {
     if (auth.role !== "ADMIN" && auth.role !== "GENERALMANAGER") {
       setDepartmentName(auth.departmentId);
     }
   }, [auth]);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
