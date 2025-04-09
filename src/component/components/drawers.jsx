@@ -2,7 +2,7 @@
 import * as React from "react";
 import { Drawer, Button } from "@mui/material";
 import axios from "../../api/axios";
-import { useState, useContext, useMemo } from "react";
+import { useState, useContext, useMemo, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/AuthContext";
@@ -383,7 +383,7 @@ export function Riskforms({ onFormSubmit }) {
       setDepartmentName(auth.departmentId);
     }
   }, [auth]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
