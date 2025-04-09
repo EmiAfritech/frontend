@@ -18,8 +18,18 @@ export function CreatePasswordPage() {
   const [activationSuccess, setActivationSuccess] = useState(false);
 
   useEffect(() => {
-    if (location.state?.email) {
-      setEmail(location.state.email);
+    // Check query param
+    const params = new URLSearchParams(window.location.search);
+    const emailFromQuery = params.get("email");
+
+    // Check location state
+    const emailFromState = location.state?.email;
+
+    // Prioritize state, fallback to query param
+    if (emailFromState) {
+      setEmail(emailFromState);
+    } else if (emailFromQuery) {
+      setEmail(emailFromQuery);
     }
   }, [location.state]);
 
