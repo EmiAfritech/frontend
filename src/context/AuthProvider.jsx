@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     token: "",
     role: "",
-    departmentID: "",
+    departmentId: "",
     organizationName: "",
 
   });
@@ -15,9 +15,13 @@ export const AuthProvider = ({ children }) => {
     const savedToken = Cookies.get("token");
     if ( savedToken) {
       const savedRole = Cookies.get("role");
+      const savedDepartmentId = Cookies.get("departmentId");
+      const savedOrganizationName = Cookies.get("organizationName");
       setAuth({
         token: savedToken ? savedToken : null,
         role: savedRole ? savedRole : null,
+        departmentID: savedDepartmentId ? savedDepartmentId : null,
+        organizationName: savedOrganizationName ? savedOrganizationName : null,
       });
     }
   }, []);

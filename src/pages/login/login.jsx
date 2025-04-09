@@ -77,15 +77,20 @@ export function Login() {
         }
       );
       if (response.status === 200) {
-        const {authToken, role, department, organizationName,} = response.data;
+        const {authToken, role, organizationId, organizationName, departmentId} = response.data;
         const token = authToken
-        setAuth({ token, role, department, organizationName, });
+        setAuth({ token, role, departmentId, organizationName, });
         setVerified(true);
         Cookies.set('token', token, {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
         Cookies.set('role', role, {
+          secure: process.env.NODE_ENV === 'production', 
+          sameSite: 'Strict', 
+        });
+        
+        Cookies.set('departmentId', departmentId, {
           secure: process.env.NODE_ENV === 'production', 
           sameSite: 'Strict', 
         });
