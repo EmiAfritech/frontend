@@ -634,6 +634,12 @@ export function RiskReviewforms({ onFormSubmit }) {
       },
     });
   };
+  
+  useEffect(() => {
+    if (auth.role !== "ADMIN" && auth.role !== "GENERALMANAGER") {
+      setDepartmentID(auth.departmentId);
+    }
+  }, [auth]);
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -818,6 +824,12 @@ export function RiskMitigationforms({ onFormSubmit }) {
     // Set the formatted date to state
     setEndDate(formattedDate);
   };
+  
+  useEffect(() => {
+    if (auth.role !== "ADMIN" && auth.role !== "GENERALMANAGER") {
+      setdepartmentID(auth.departmentId);
+    }
+  }, [auth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
