@@ -377,7 +377,7 @@ export function Riskforms({ onFormSubmit }) {
       },
     });
   };
-  
+  console.log(auth.departmentId)
   useEffect(() => {
     if (auth.role !== "ADMIN" && auth.role !== "GENERALMANAGER") {
       setDepartmentName(auth.departmentId);
@@ -772,7 +772,8 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-   const { t } = useTranslation();
+  const { t } = useTranslation();
+  const { auth } = useContext(AuthContext);
   const [riskName, setRiskName] = useState("");
   const [departmentID, setdepartmentID] = useState("");
   const [mitigationEffort, setMitigationEffort] = useState(" ");
