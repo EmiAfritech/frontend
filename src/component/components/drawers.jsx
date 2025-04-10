@@ -54,7 +54,6 @@ export function Userforms({ onFormSubmit }) {
     lastName: "",
     email: "",
     phoneNumber: "",
-    password: "",
   });
 
   const handleClose = () => {
@@ -117,7 +116,6 @@ export function Userforms({ onFormSubmit }) {
       lastName: "",
       email: "",
       phoneNumber: "",
-      password: "",
     });
     setDepartment("")
     setRole("")
@@ -179,13 +177,6 @@ export function Userforms({ onFormSubmit }) {
               required
             />
 
-            <FormInputField
-              id="password"
-              label={t("password")}
-              value={userValue.password}
-              onChange={handleInputChange}
-              required
-            />
             <CustomSelect
               id="role"
               label={t("role")}

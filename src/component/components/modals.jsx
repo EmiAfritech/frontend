@@ -98,8 +98,8 @@ const handleSubmit = async (e) => {
         <FaEye />
       </IconButton>
       <Delete
-        data = "hi"
-        message = "Are you sure you want to delete risk?"
+        data = {data.data}
+        message = "Are you sure you want to delete user?"
         name = "risk"
       />
       </div>
@@ -285,7 +285,7 @@ export function DepartmentAccountDetails(data) {
       </IconButton>
       <Delete
         data = {data.data}
-        message = "Are you sure you want to delete risk?"
+        message = "Are you sure you want to delete department?"
         name = "risk"
       />
     </div>
@@ -585,7 +585,7 @@ export function MitigationDetails(data) {
       </IconButton>
         <Delete
           data = {mitigationInfo}
-          message = "Are you sure you want to delete risk?"
+          message = "Are you sure you want to delete mitigated risk risk?"
           name = "mitigation"
         />
     </div>
@@ -678,7 +678,7 @@ export function RiskReviewDetails(data) {
       </IconButton>
         <Delete
           data = {reviewInfo}
-          message = "Are you sure you want to delete risk?"
+          message = "Are you sure you want to delete reviewed risk?"
           name = "review"
         />
     </div>
@@ -771,7 +771,7 @@ export function RiskMonitoringDetails(data) {
       </IconButton>
         <Delete
           data = {monitorInfo}
-          message = "Are you sure you want to delete risk?"
+          message = "Are you sure you want to delete monitored risk?"
           name = "monitor"
         />
     </div>
