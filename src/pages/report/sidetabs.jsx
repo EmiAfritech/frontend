@@ -91,6 +91,7 @@ export const Tabs = [
 
 
 export function ReportingNavigation({ onTabChange }) {
+    const { auth } = useContext(AuthContext);
     const [activeTab, setActiveTab] = useState(Tabs[0].title);
   
     const handleTabChange = (tab) => {

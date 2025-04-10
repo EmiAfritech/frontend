@@ -398,7 +398,7 @@ export function Riskforms({ onFormSubmit }) {
     }
     console.log({"departmentList": departmentList});
     try {
-      if (auth.role === "MANAGER" || auth.role === "ANALYST") {
+      if (auth.role === "MANAGER") {
         await axios.post(
           CREATERISKFORM_URL,
           JSON.stringify({
@@ -772,8 +772,7 @@ export function RiskReviewforms({ onFormSubmit }) {
   );
 }
 export function RiskMitigationforms({ onFormSubmit }) {
-  const { auth } = useContext(AuthContext);
-  const { t } = useTranslation();
+   const { t } = useTranslation();
   const [riskName, setRiskName] = useState("");
   const [departmentID, setdepartmentID] = useState("");
   const [mitigationEffort, setMitigationEffort] = useState(" ");
