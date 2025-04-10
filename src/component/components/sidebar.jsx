@@ -64,7 +64,6 @@ export function Sidebar() {
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
-      <NavItem to="/risk-review" icon={FaClipboardList} label={t("reviewRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <LogOut />
     </>
