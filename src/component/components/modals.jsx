@@ -100,7 +100,7 @@ const handleSubmit = async (e) => {
       <Delete
         data = {data.data}
         message = "Are you sure you want to delete user?"
-        name = "risk"
+        name = "user"
       />
       </div>
       <Modal

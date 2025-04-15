@@ -4,7 +4,7 @@ import { Box, Button, CircularProgress, IconButton, Modal, Typography } from "@m
 import {  Modaltrigger } from "../../context/AuthContext";
 import { MdDelete } from "react-icons/md";
 import { showToast } from "./notifications";
-import { useRiskDelete, useRiskMitigateDelete, useRiskMonitorDelete, useRiskReviewDelete } from "../../api/routes-data";
+import { useRiskDelete, useRiskMitigateDelete, useRiskMonitorDelete, useRiskReviewDelete, useUserDelete } from "../../api/routes-data";
 
 
 
@@ -265,14 +265,16 @@ export function DeleteBox({ data, message, name }) {
 export function Delete({ data, message, name }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { triggerComponent } = useContext(Modaltrigger);
+  const { triggerComponent } = useContext(Modaltrigger); 
 
+  const { deleteUser } = useUserDelete();
   const { deleteRisk } = useRiskDelete();
   const { deleteMitigationRisk } = useRiskMitigateDelete();
   const { deleteReviewRisk } = useRiskReviewDelete();
   const { deleteMonitorRisk } = useRiskMonitorDelete();
 
   const deleteFunctions = {
+    user: deleteUser,
     risk: deleteRisk,
     mitigation: deleteMitigationRisk,
     review: deleteReviewRisk,

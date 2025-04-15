@@ -9,6 +9,7 @@ import { CustomButton, FormDetailsField, ModalFormSelect } from "./widgets";
 import { GRCFormsArray } from "./formarrays";
 import axios from "../../api/axios";
 import { Modal } from "@mui/material";
+import { useRiskOwnersDropdown } from "../../api/routes-data";
 
 
 export function RiskInfo(data) {
@@ -23,6 +24,9 @@ export function RiskInfo(data) {
     const [responseActivity, setResponseActivity] = useState(RiskInfoInitialize.riskResponseActivity);
     const [riskCategory, setRiskCategory] = useState(RiskInfoInitialize.riskCategory);
     const [riskResponse, setRiskResponse] = useState(RiskInfoInitialize.riskResponse);
+    const [riskOwner, setRiskOwner] = useState(RiskInfoInitialize.riskOwnerLabel);
+    const departmentName = RiskInfoInitialize.deptId;
+    const { ownersList } = useRiskOwnersDropdown(departmentName);
 
 
     const [riskInfo, setRiskInfo] = useState({
@@ -31,7 +35,6 @@ export function RiskInfo(data) {
       createdAt: RiskInfoInitialize.updatedAt,
       riskScore: RiskInfoInitialize.riskScore,
       riskDescription: RiskInfoInitialize.riskDescription,
-      riskOwner: RiskInfoInitialize.riskOwnerLabel,
       riskObjective:RiskInfoInitialize.riskObjective
   
     })
@@ -112,10 +115,12 @@ export function RiskInfo(data) {
             value={riskInfo.riskName}
             required
           />
-          <FormDetailsField
+          <ModalFormSelect
             id="riskOwner"
             label="Risk Owner"
-            value={riskInfo.riskOwner}
+            value={riskOwner}
+            options={ownersList}
+            onChange={setRiskOwner}
             required
           />
           <FormDetailsField
@@ -217,16 +222,18 @@ export function MitigateRIsk(data){
   const [mitigationEffort, setMitigationEffort] = useState(MitigationInfoInitialize.mitigationEffort);
   const [mitigatedImpact, setMitigatedImpact] = useState(MitigationInfoInitialize.mitigatedRiskImpactLevel);
   const [mitigationControl, setMitigationControl] = useState(MitigationInfoInitialize.mitigationControl);
+  const [riskOwner, setRiskOwner] = useState(MitigationInfoInitialize.riskOwnerLabel);
+  const departmentName = MitigationInfoInitialize.deptId;
+  const { ownersList } = useRiskOwnersDropdown(departmentName);
 
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [mitigationInfo, setMitigationInfo] = useState({
+    riskCode: MitigationInfoInitialize.riskCode,
     riskID: MitigationInfoInitialize.riskId,
     riskName: MitigationInfoInitialize.riskName,
     createdAt: MitigationInfoInitialize.updatedAt,
     MitigationScore: MitigationInfoInitialize.mitigatedRiskScore,
-    riskReviewer: MitigationInfoInitialize.riskOwnerLabel,
-
   })
 
   const onChange = (e) => {
@@ -288,9 +295,9 @@ export function MitigateRIsk(data){
       {/* Left Column */}
       <div className="flex flex-col gap-8">
         <FormDetailsField
-          id="riskID"
+          id="riskCode"
           label="Risk Code"
-          value={mitigationInfo.riskID}
+          value={mitigationInfo.riskCode}
           onChange={onChange}
           required
           disabled={true}
@@ -303,16 +310,14 @@ export function MitigateRIsk(data){
           required
           disabled={true}
         />
-        <FormDetailsField
-          id="riskReviewer"
-          label="Risk Reviewer"
-          value={mitigationInfo.riskReviewer}
-          onChange={onChange}
-          searchable={true}
-          required
-          group={false}
-          disabled={true}
-        />
+        <ModalFormSelect
+            id="riskReviewer"
+            label="Risk Reviewer"
+            value={riskOwner}
+            options={ownersList}
+            onChange={setRiskOwner}
+            required
+          />
         <ModalFormSelect
           id="MitigationControl"
           label="Mitigation Control"

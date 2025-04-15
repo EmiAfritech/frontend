@@ -43,7 +43,8 @@ import {
   DELETERISK_URL,
   DELETERISKMITIGATION_URL,
   DELETERISKREVIEW_URL,
-  DELETERISKMONITOR_URL
+  DELETERISKMONITOR_URL,
+  DELETEUSER_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1238,3 +1239,30 @@ export function useRiskMonitorDelete() {
   return { deleteMonitorRisk }; 
 }
 
+export function useUserDelete() {
+  const { auth } = useContext(AuthContext);
+
+  const deleteUser = async (id, email) => {
+
+    try {
+      const response = await axios.post(
+        DELETEUSER_URL,
+        JSON.stringify({ id, email }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          },
+          withCredentials: true,
+        }
+      );
+
+      return response; 
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error; 
+    }
+  };
+
+  return { deleteUser }; 
+}
