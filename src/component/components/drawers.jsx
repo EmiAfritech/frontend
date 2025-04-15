@@ -521,12 +521,12 @@ export function Riskforms({ onFormSubmit }) {
               onChange={handleInputChange}
               required
             />
-            <CustomSelect
-              id="riskOwner"
-              label={t("ownerdrawer")}
-              value={riskOwner}
-              onChange={setRiskOwner}
-              options={ownersList}
+             <CustomSelect
+              id="riskCategory"
+              label={t("categorydrawer")}
+              value={riskCategory}
+              onChange={setCategory}
+              options={categorydrawer}
               searchable={true}
               required
             />
@@ -536,15 +536,6 @@ export function Riskforms({ onFormSubmit }) {
               value={riskProbabilityLevel}
               onChange={setProbabityilLevel}
               options={probabilityLevel}
-              searchable={true}
-              required
-            />
-            <CustomSelect
-              id="riskCategory"
-              label={t("categorydrawer")}
-              value={riskCategory}
-              onChange={setCategory}
-              options={categorydrawer}
               searchable={true}
               required
             />
@@ -571,6 +562,15 @@ export function Riskforms({ onFormSubmit }) {
               label={t("riskResponseActivity")}
               value={riskValue.riskResponseActivity}
               onChange={handleInputChange}
+              required
+            />
+            <CustomSelect
+              id="riskOwner"
+              label={t("ownerdrawer")}
+              value={riskOwner}
+              onChange={setRiskOwner}
+              options={ownersList}
+              searchable={true}
               required
             />
             <CustomButton
