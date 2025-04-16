@@ -1021,14 +1021,34 @@ export function RiskMitigationReportTable() {
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentCodeList } = useDepartmentCodeDropdown();
-  const {mitigationByDate} = useMitigationByDate(departmentName)
+  const { mitigationByDate } = useMitigationByDate(departmentName);
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableHeaders = columns.map((c) => c.header);
+    const tableData = rows.map((row) =>
+      columns.map((col) => row.original[col.accessorKey])
+    );
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save("risk-mitigation-report.pdf");
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(mitigationByDate);
+    download(csvConfig)(csv);
+  };
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "rgb(7, 7, 60);",
+        background: "rgb(7, 7, 60)",
         color: "white",
       },
     },
@@ -1036,7 +1056,6 @@ export function RiskMitigationReportTable() {
       elevation: 0,
       sx: {
         borderRadius: "10",
-        
       },
       style: {
         zIndex: "1",
@@ -1067,14 +1086,43 @@ export function RiskMitigationReportTable() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
+
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}
+      >
+        <Button onClick={handleExportData} startIcon={<FileDownloadIcon />}>
+          Export Data
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
   });
 
   return (
     <main>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
           <CustomSelect
             id="department"
             label={t("departments")}
@@ -1088,10 +1136,11 @@ export function RiskMitigationReportTable() {
           />
         )}
       </div>
-      <MaterialReactTable table={table} className="p-6"/>
+      <MaterialReactTable table={table} className="p-6" />
     </main>
   );
 }
+
 
 export function ReviewNeedingRisksReportTab() {
   const { auth } = useContext(AuthContext);
@@ -1099,14 +1148,34 @@ export function ReviewNeedingRisksReportTab() {
   const [rowSelection, setRowSelection] = useState({});
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentCodeList } = useDepartmentCodeDropdown();
-  const {riskToReview} = useRiskNeedingToBeReviewed(departmentName)
+  const { riskToReview } = useRiskNeedingToBeReviewed(departmentName);
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableHeaders = columns.map((c) => c.header);
+    const tableData = rows.map((row) =>
+      columns.map((col) => row.original[col.accessorKey])
+    );
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save("review-needing-risks.pdf");
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(riskToReview);
+    download(csvConfig)(csv);
+  };
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "rgb(7, 7, 60);",
+        background: "rgb(7, 7, 60)",
         color: "white",
       },
     },
@@ -1114,7 +1183,6 @@ export function ReviewNeedingRisksReportTab() {
       elevation: 0,
       sx: {
         borderRadius: "10",
-        
       },
       style: {
         zIndex: "1",
@@ -1145,14 +1213,43 @@ export function ReviewNeedingRisksReportTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
+
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}
+      >
+        <Button onClick={handleExportData} startIcon={<FileDownloadIcon />}>
+          Export Data
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
   });
 
   return (
     <main>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
           <CustomSelect
             id="department"
             label={t("departments")}
@@ -1165,10 +1262,11 @@ export function ReviewNeedingRisksReportTab() {
           />
         )}
       </div>
-      <MaterialReactTable table={table} className="p-6"/>
+      <MaterialReactTable table={table} className="p-6" />
     </main>
   );
 }
+
 
 export function Reportaudittrail() {
   const { auth } = useContext(AuthContext);
