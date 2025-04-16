@@ -15,6 +15,7 @@ import {
   useGovernanceColumns,
   useGovernanceControlColumns,
   useComplianceColumns,
+  useReportRiskPyramidColumns,
 } from "./datatable";
 import { useContext, useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
@@ -1219,6 +1220,82 @@ export function Reportaudittrail() {
     },
     columns,
     data: auditTrail,
+    enableColumnOrdering: true,
+    enableRowSelection: true,
+    enablePagination: true,
+    onRowSelectionChange: setRowSelection,
+    state: { rowSelection },
+    
+  });
+
+  return (
+    <main>
+      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
+      {(auth.role=== "ADMIN" ||
+        auth.role === "GENERALMANAGER") && (
+          <CustomSelect
+            id="department"
+            label={t("departments")}
+            value={departmentName}
+            onChange={setDeptmentName}
+            options={departmentCodeList}
+            searchable={true}
+            required
+            group={false}
+            className="w-full"
+          />
+        )}
+      </div>
+      <MaterialReactTable table={table} className="p-6"/>
+    </main>
+  );
+}
+
+export function PyramidTable({datatable}) {
+  const { auth } = useContext(AuthContext);
+  const columns = useReportRiskPyramidColumns();
+  const [rowSelection, setRowSelection] = useState({});
+  
+
+  const table = useMaterialReactTable({
+    muiTableHeadCellProps: {
+      sx: {
+        fontWeight: "normal",
+        fontSize: "14px",
+        background: "rgb(7, 7, 60);",
+        color: "white",
+      },
+    },
+    muiTablePaperProps: {
+      elevation: 0,
+      sx: {
+        borderRadius: "10",
+        
+      },
+      style: {
+        zIndex: "1",
+      },
+    },
+    muiTableBodyProps: {
+      sx: {
+        "& tr:nth-of-type(even) > td": {
+          backgroundColor: "#f5f5f5",
+        },
+        overflowY: "auto",
+      },
+    },
+    muiTableContainerProps: {
+      sx: {
+        height: "70vh",
+      },
+    },
+    muiTableBodyCellProps: {
+      sx: {
+        overflowY: "auto",
+      },
+    },
+    columns,
+    data: datatable,
     enableColumnOrdering: true,
     enableRowSelection: true,
     enablePagination: true,

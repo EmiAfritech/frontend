@@ -45,6 +45,7 @@ import {
   useDepartmentCodeDropdown,
 } from "../../api/routes-data";
 import { CustomSelect } from "./widgets";
+import { PyramidTable } from "./tables";
 
 
 export function OpenVsClose() {
@@ -401,12 +402,13 @@ export const ReportRiskOwner = ({ departmentName }) => {
 export function Pyramidchat() {
   const { auth } = useContext(AuthContext);
   const [departmentName, setDeptmentName] = useState("All Departments");
-  const { departmentList } = useDepartmentDropdown();
+  const { departmentCodeList } = useDepartmentCodeDropdown();
   const { riskAdviceChart } = useRiskAdviceChart(departmentName);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
   const ref = useRef();
   const pyramidTable = useReportRiskPyramidColumns();
+  
 
   const handleItemClick = (e) => {
     setPyramidRiskTable(true);
@@ -428,7 +430,7 @@ export function Pyramidchat() {
               label={t("departments")}
               value={departmentName}
               onChange={setDeptmentName}
-              options={departmentList}
+              options={departmentCodeList}
               searchable={true}
               required
               group={false}
@@ -485,52 +487,7 @@ export function Pyramidchat() {
         <hr />
         <div className="py-5">
           {pyramidRiskTable ? (
-            <>
-              <div style={{ height: 350 }} className=" mt-4">
-                <Box
-                  sx={{
-                    [`.${gridClasses.cell}.veryhigh`]: {
-                      backgroundColor: "#F84626",
-                    },
-                    [`.${gridClasses.cell}.high`]: {
-                      backgroundColor: "#ecbe2f",
-                    },
-                    [`.${gridClasses.cell}.medium`]: {
-                      backgroundColor: "#0B37D6",
-                    },
-                    [`.${gridClasses.cell}.low`]: {
-                      backgroundColor: "#4A7C0B",
-                    },
-                    height: 350,
-                  }}>
-                  <DataGrid
-                    rows={tableData}
-                    columns={pyramidTable}
-                    pageSizeOptions={[10, 15]}
-                    pagination
-                    getCellClassName={(params) => {
-                      if (params.value === "High") {
-                        return "high";
-                      } else if (params.value === "Very High") {
-                        return "veryhigh";
-                      } else if (params.value === "Medium") {
-                        return "medium";
-                      } else if (params.value === "Low") {
-                        return "low";
-                      }
-                    }}
-                    slots={{ toolbar: GridToolbar }}
-                    slotProps={{
-                      toolbar: {
-                        printOptions: {
-                          getRowsToExport: getSelectedRowsToExport,
-                        },
-                      },
-                    }}
-                  />
-                </Box>
-              </div>
-            </>
+            <PyramidTable datatable={tableData}/>
           ) : (
             <RiskReportAdvice />
           )}

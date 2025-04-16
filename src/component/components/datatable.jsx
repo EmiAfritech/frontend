@@ -713,18 +713,30 @@ export const useRiskStatusColumns = () => {
 export const useReportRiskPyramidColumns = () => {
   const { t } = useTranslation();
   return [
-    { field: "riskID", headerName: t("riskCode"), flex: 1 },
-    { field: "riskName", headerName: t("riskName"), flex: 1 },
-    { field: "riskDescription", headerName: t("riskDescription"), flex: 1 },
-    { field: "riskScore", headerName: t("riskScore"), flex: 1 },
     {
-      field: "view",
-      headerName: t("Action"),
-      flex: 0.5,
+      accessorKey: "riskID",
+      header: t("riskCode"),
     },
+    {
+      accessorKey: "riskName",
+      header: t("riskName"),
+    },
+    {
+      accessorKey: "riskDescription",
+      header: t("riskDescription"),
+    },
+    {
+      accessorKey: "riskScore",
+      header: t("riskScore"),
+    },
+    {
+      accessorKey: "action",
+      header:  t("Action"),
+    },
+    
   ];
+  
 };
-
 
 
 
