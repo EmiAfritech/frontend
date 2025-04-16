@@ -778,12 +778,14 @@ export function RiskStatusReportTab() {
   const columns = useRiskStatuscolumns();
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentCodeList } = useDepartmentCodeDropdown();
-  const {riskStatus} = useRiskStatusReport(departmentName)
+  const { riskStatus } = useRiskStatusReport(departmentName);
 
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
-    const tableData = rows.map((row) => Object.values(row.original));
     const tableHeaders = columns.map((c) => c.header);
+    const tableData = rows.map((row) =>
+      columns.map((col) => row.original[col.accessorKey])
+    );
 
     autoTable(doc, {
       head: [tableHeaders],
@@ -794,11 +796,9 @@ export function RiskStatusReportTab() {
   };
 
   const handleExportData = () => {
-    const csv = generateCsv(csvConfig)(data);
+    const csv = generateCsv(csvConfig)(riskStatus);
     download(csvConfig)(csv);
   };
-
-  useEffect(() => {}, [rowSelection]);
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
@@ -840,7 +840,6 @@ export function RiskStatusReportTab() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    //export function is already imported use when needing to export data, using jdPDF
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
         sx={{
@@ -848,40 +847,38 @@ export function RiskStatusReportTab() {
           gap: "16px",
           padding: "8px",
           flexWrap: "wrap",
-        }}>
+        }}
+      >
         <Button
-          //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
           onClick={handleExportData}
-          startIcon={<FileDownloadIcon />}>
+          startIcon={<FileDownloadIcon />}
+        >
           Export Data
         </Button>
         <Button
           disabled={table.getRowModel().rows.length === 0}
-          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
           onClick={() => handleExportRows(table.getRowModel().rows)}
-          startIcon={<FileDownloadIcon />}>
+          startIcon={<FileDownloadIcon />}
+        >
           Export Page Rows
         </Button>
         <Button
           disabled={
             !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
           }
-          //only export selected rows
           onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
-          startIcon={<FileDownloadIcon />}>
+          startIcon={<FileDownloadIcon />}
+        >
           Export Selected Rows
         </Button>
       </Box>
     ),
   });
 
-  
-
   return (
     <main>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse items-center">
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
           <CustomSelect
             id="department"
             label={t("departments")}
@@ -894,10 +891,11 @@ export function RiskStatusReportTab() {
           />
         )}
       </div>
-      <MaterialReactTable table={table} className="p-6"/>
+      <MaterialReactTable table={table} className="p-6" />
     </main>
   );
 }
+
 
 export function RiskAppetiteReportLower() {
   const columns = useRiskAppetiteReportLowerColumns();
