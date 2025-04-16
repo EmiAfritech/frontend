@@ -838,7 +838,7 @@ export function RiskMonitoringDetails(data) {
                 <h3 className="text-xl font-semibold text-gray-800"></h3>
               </div>
             </div>
-            <MonitorRisk data= {monitorInfo}  onClick={onClick} isSubmitting={isSubmitting}/>
+            <MonitorRisk data= {monitorInfo}/>
           </div>
         </Box>
       </Modal>
