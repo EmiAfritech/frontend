@@ -790,6 +790,34 @@ export function RiskStatusReportTab() {
     autoTable(doc, {
       head: [tableHeaders],
       body: tableData,
+      didParseCell: (data) => {
+        const colIndex = data.column.index;
+        const column = columns[colIndex];
+        const cellValue = data.cell.raw;
+
+        if (column.accessorKey === "riskScore" && typeof cellValue === "string") {
+          switch (cellValue.toLowerCase()) {
+            case "very high":
+              data.cell.styles.fillColor = [248, 70, 38]; // #F84626
+              data.cell.styles.textColor = 255;
+              break;
+            case "high":
+              data.cell.styles.fillColor = [236, 190, 47]; // #ecbe2f
+              data.cell.styles.textColor = 0;
+              break;
+            case "medium":
+              data.cell.styles.fillColor = [11, 55, 214]; // #0B37D6
+              data.cell.styles.textColor = 255;
+              break;
+            case "low":
+              data.cell.styles.fillColor = [74, 124, 11]; // #4A7C0B
+              data.cell.styles.textColor = 255;
+              break;
+            default:
+              break;
+          }
+        }
+      },
     });
 
     doc.save("mrt-pdf-example.pdf");
@@ -811,9 +839,7 @@ export function RiskStatusReportTab() {
     },
     muiTablePaperProps: {
       elevation: 0,
-      sx: {
-        borderRadius: "10",
-      },
+      sx: { borderRadius: "10" },
     },
     muiTableBodyProps: {
       sx: {
@@ -824,14 +850,10 @@ export function RiskStatusReportTab() {
       },
     },
     muiTableContainerProps: {
-      sx: {
-        height: "70vh",
-      },
+      sx: { height: "70vh" },
     },
     muiTableBodyCellProps: {
-      sx: {
-        overflowY: "auto",
-      },
+      sx: { overflowY: "auto" },
     },
     columns,
     data: riskStatus,
@@ -849,10 +871,7 @@ export function RiskStatusReportTab() {
           flexWrap: "wrap",
         }}
       >
-        <Button
-          onClick={handleExportData}
-          startIcon={<FileDownloadIcon />}
-        >
+        <Button onClick={handleExportData} startIcon={<FileDownloadIcon />}>
           Export Data
         </Button>
         <Button
@@ -1347,18 +1366,33 @@ export function Reportaudittrail() {
   );
 }
 
-export function PyramidTable({datatable}) {
+export function PyramidTable({ datatable }) {
   const { auth } = useContext(AuthContext);
   const columns = useReportRiskPyramidColumns();
   const [rowSelection, setRowSelection] = useState({});
-  
+
+  // PDF Export Function
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableHeaders = columns.map((c) => c.header);
+    const tableData = rows.map((row) =>
+      columns.map((col) => row.original[col.accessorKey])
+    );
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save("risk-pyramid-report.pdf");
+  };
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
       sx: {
         fontWeight: "normal",
         fontSize: "14px",
-        background: "rgb(7, 7, 60);",
+        background: "rgb(7, 7, 60)",
         color: "white",
       },
     },
@@ -1366,7 +1400,6 @@ export function PyramidTable({datatable}) {
       elevation: 0,
       sx: {
         borderRadius: "10",
-        
       },
       style: {
         zIndex: "1",
@@ -1397,13 +1430,42 @@ export function PyramidTable({datatable}) {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
+
+    // Export buttons
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}
+      >
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
   });
 
   return (
     <main>
-      <MaterialReactTable table={table} className="p-6"/>
+      <MaterialReactTable table={table} className="p-6" />
     </main>
   );
 }
+
 
