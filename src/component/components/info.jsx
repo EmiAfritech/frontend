@@ -34,7 +34,7 @@ export function ImpactReportAdvice() {
     <p className="m-5">
       <h2 className="pb-2 font-medium">IMPACT REPORT</h2>
       Based on the various parameters placed into consideration the full
-      aspectss <br />
+      aspects <br />
       
       <br />
       <a href="" className="text-[#ce4a01] font-bold">
