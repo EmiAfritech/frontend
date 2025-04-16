@@ -728,10 +728,35 @@ export const useReportRiskPyramidColumns = () => {
     {
       accessorKey: "riskScore",
       header: t("riskScore"),
-    },
-    {
-      accessorKey: "action",
-      header:  t("Action"),
+      muiTableBodyCellProps: ({ cell }) => {
+        const priority = String(cell.getValue()).toLowerCase();
+      
+        let backgroundColor = "transparent";
+      
+        switch (priority) {
+          case "very high":
+            backgroundColor = "#F84626";
+            break;
+          case "high":
+            backgroundColor = "#ecbe2f";
+            break;
+          case "medium":
+            backgroundColor = "#0B37D6";
+            break;
+          case "low":
+            backgroundColor = "#4A7C0B";
+            break;
+          default:
+            backgroundColor = "transparent";
+        }
+      
+        return { 
+          sx: { 
+            backgroundColor: `${backgroundColor} !important`, // Enforce priority
+            color: "white",
+          } 
+        };
+      },
     },
     
   ];
