@@ -1052,6 +1052,34 @@ export function RiskMitigationReportTable() {
     autoTable(doc, {
       head: [tableHeaders],
       body: tableData,
+      didParseCell: function (data) {
+        const riskScoreIndex = columns.findIndex(
+          (col) => col.accessorKey === "riskScore"
+        );
+        if (data.section === "body" && data.column.index === riskScoreIndex) {
+          const riskScore = data.cell.raw?.toLowerCase();
+          let fillColor;
+          switch (riskScore) {
+            case "very high":
+              fillColor = [248, 70, 38]; // #F84626
+              break;
+            case "high":
+              fillColor = [236, 190, 47]; // #ecbe2f
+              break;
+            case "medium":
+              fillColor = [11, 55, 214]; // #0B37D6
+              break;
+            case "low":
+              fillColor = [74, 124, 11]; // #4A7C0B
+              break;
+            default:
+              fillColor = null;
+          }
+          if (fillColor) {
+            data.cell.styles.fillColor = fillColor;
+          }
+        }
+      },
     });
 
     doc.save("risk-mitigation-report.pdf");
@@ -1179,6 +1207,34 @@ export function ReviewNeedingRisksReportTab() {
     autoTable(doc, {
       head: [tableHeaders],
       body: tableData,
+      didParseCell: function (data) {
+        const riskScoreIndex = columns.findIndex(
+          (col) => col.accessorKey === "riskScore"
+        );
+        if (data.section === "body" && data.column.index === riskScoreIndex) {
+          const riskScore = data.cell.raw?.toLowerCase();
+          let fillColor;
+          switch (riskScore) {
+            case "very high":
+              fillColor = [248, 70, 38]; // #F84626
+              break;
+            case "high":
+              fillColor = [236, 190, 47]; // #ecbe2f
+              break;
+            case "medium":
+              fillColor = [11, 55, 214]; // #0B37D6
+              break;
+            case "low":
+              fillColor = [74, 124, 11]; // #4A7C0B
+              break;
+            default:
+              fillColor = null;
+          }
+          if (fillColor) {
+            data.cell.styles.fillColor = fillColor;
+          }
+        }
+      },
     });
 
     doc.save("review-needing-risks.pdf");
@@ -1294,7 +1350,26 @@ export function Reportaudittrail() {
   const [departmentName, setDeptmentName] = useState("All Departments");
   const { departmentCodeList } = useDepartmentCodeDropdown();
   const { auditTrail } = useAuditTrail(departmentName);
-  
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableHeaders = columns.map((c) => c.header);
+    const tableData = rows.map((row) =>
+      columns.map((col) => row.original[col.accessorKey])
+    );
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save("audit-trail-report.pdf");
+  };
+
+  const handleExportData = () => {
+    const csv = generateCsv(csvConfig)(auditTrail);
+    download(csvConfig)(csv);
+  };
 
   const table = useMaterialReactTable({
     muiTableHeadCellProps: {
@@ -1309,7 +1384,6 @@ export function Reportaudittrail() {
       elevation: 0,
       sx: {
         borderRadius: "10",
-        
       },
       style: {
         zIndex: "1",
@@ -1340,14 +1414,46 @@ export function Reportaudittrail() {
     enablePagination: true,
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
-    
+
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "16px",
+          padding: "8px",
+          flexWrap: "wrap",
+        }}
+      >
+        <Button
+          onClick={handleExportData}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Data
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
+      </Box>
+    ),
   });
 
   return (
     <main>
       <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
+        {(auth.role === "ADMIN" || auth.role === "GENERALMANAGER") && (
           <CustomSelect
             id="department"
             label={t("departments")}
@@ -1361,7 +1467,7 @@ export function Reportaudittrail() {
           />
         )}
       </div>
-      <MaterialReactTable table={table} className="p-6"/>
+      <MaterialReactTable table={table} className="p-6" />
     </main>
   );
 }
@@ -1371,7 +1477,6 @@ export function PyramidTable({ datatable }) {
   const columns = useReportRiskPyramidColumns();
   const [rowSelection, setRowSelection] = useState({});
 
-  // PDF Export Function
   const handleExportRows = (rows) => {
     const doc = new jsPDF();
     const tableHeaders = columns.map((c) => c.header);
@@ -1382,6 +1487,34 @@ export function PyramidTable({ datatable }) {
     autoTable(doc, {
       head: [tableHeaders],
       body: tableData,
+      didParseCell: function (data) {
+        const riskScoreIndex = columns.findIndex(
+          (col) => col.accessorKey === "riskScore"
+        );
+        if (data.section === "body" && data.column.index === riskScoreIndex) {
+          const riskScore = data.cell.raw?.toLowerCase();
+          let fillColor;
+          switch (riskScore) {
+            case "very high":
+              fillColor = [248, 70, 38]; // #F84626
+              break;
+            case "high":
+              fillColor = [236, 190, 47]; // #ecbe2f
+              break;
+            case "medium":
+              fillColor = [11, 55, 214]; // #0B37D6
+              break;
+            case "low":
+              fillColor = [74, 124, 11]; // #4A7C0B
+              break;
+            default:
+              fillColor = null;
+          }
+          if (fillColor) {
+            data.cell.styles.fillColor = fillColor;
+          }
+        }
+      },
     });
 
     doc.save("risk-pyramid-report.pdf");
@@ -1431,7 +1564,6 @@ export function PyramidTable({ datatable }) {
     onRowSelectionChange: setRowSelection,
     state: { rowSelection },
 
-    // Export buttons
     renderTopToolbarCustomActions: ({ table }) => (
       <Box
         sx={{
