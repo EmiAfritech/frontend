@@ -406,9 +406,7 @@ export function Pyramidchat() {
   const { riskAdviceChart } = useRiskAdviceChart(departmentName);
   const [tableData, settableData] = useState([]);
   const [pyramidRiskTable, setPyramidRiskTable] = useState(false);
-  const ref = useRef();
-  const pyramidTable = useReportRiskPyramidColumns();
-  
+  const ref = useRef();  
 
   const handleItemClick = (e) => {
     setPyramidRiskTable(true);

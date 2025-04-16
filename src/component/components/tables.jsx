@@ -1306,22 +1306,6 @@ export function PyramidTable({datatable}) {
 
   return (
     <main>
-      <div className="flex flex-row pb-3 pt-2 flex-row-reverse">
-      {(auth.role=== "ADMIN" ||
-        auth.role === "GENERALMANAGER") && (
-          <CustomSelect
-            id="department"
-            label={t("departments")}
-            value={departmentName}
-            onChange={setDeptmentName}
-            options={departmentCodeList}
-            searchable={true}
-            required
-            group={false}
-            className="w-full"
-          />
-        )}
-      </div>
       <MaterialReactTable table={table} className="p-6"/>
     </main>
   );
