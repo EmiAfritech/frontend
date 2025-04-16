@@ -1057,20 +1057,20 @@ export function RiskMitigationReportTable() {
           (col) => col.accessorKey === "riskScore"
         );
         if (data.section === "body" && data.column.index === riskScoreIndex) {
-          const riskScore = data.cell.raw?.toLowerCase();
+          const cellValue = data.cell.text?.[0]?.toLowerCase(); // <- more reliable
           let fillColor;
-          switch (riskScore) {
+          switch (cellValue) {
             case "very high":
-              fillColor = [248, 70, 38]; // #F84626
+              fillColor = [248, 70, 38];
               break;
             case "high":
-              fillColor = [236, 190, 47]; // #ecbe2f
+              fillColor = [236, 190, 47];
               break;
             case "medium":
-              fillColor = [11, 55, 214]; // #0B37D6
+              fillColor = [11, 55, 214];
               break;
             case "low":
-              fillColor = [74, 124, 11]; // #4A7C0B
+              fillColor = [74, 124, 11];
               break;
             default:
               fillColor = null;
@@ -1079,7 +1079,7 @@ export function RiskMitigationReportTable() {
             data.cell.styles.fillColor = fillColor;
           }
         }
-      },
+      },      
     });
 
     doc.save("risk-mitigation-report.pdf");
