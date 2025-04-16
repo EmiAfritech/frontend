@@ -410,6 +410,7 @@ export function Pyramidchat() {
 
   const handleItemClick = (e) => {
     setPyramidRiskTable(true);
+    console.log("i am working")
     const clickedItem = e.item;
     settableData(clickedItem.data.risks);
   };
