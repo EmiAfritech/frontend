@@ -24,7 +24,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalModification as style, CustomButton, Delete, FormInputField } from "./widgets";
-import { getRiskImpactLevel, MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo } from "./modalforms";
+import { getImpactLevelNumber, getRiskImpactLevel, MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo } from "./modalforms";
 
 export function UserAccountDetails(data) {
   const {auth} = useContext(AuthContext)
@@ -530,7 +530,7 @@ export function RiskDetails(data) {
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
-                  <p className="text-7xl font-bold">{getRiskImpactLevel(riskInfo.riskImpactLevel)}</p>
+                  <p className="text-7xl font-bold">{getImpactLevelNumber(riskInfo.riskImpactLevel)}</p>
                   <p className="text-2xl font-bold">{riskInfo.riskImpactLevel}</p>
                 </div>
                 
@@ -614,7 +614,7 @@ export function MitigationDetails(data) {
                 </div>*/}
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Residual Risk</p>
-                  <p className="text-7xl font-bold">{getRiskImpactLevel(mitigationInfo.mitigatedRiskImpactLevel)}</p>
+                  <p className="text-7xl font-bold">{getImpactLevelNumber(mitigationInfo.mitigatedRiskImpactLevel)}</p>
                   <p className="text-2xl font-bold">{mitigationInfo.mitigatedRiskImpactLevel}</p>
                 </div>
               </div>
