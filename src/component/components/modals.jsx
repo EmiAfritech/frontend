@@ -24,7 +24,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useTranslation } from "react-i18next";
 import { AuthContext } from "../../context/AuthContext";
 import { ModalModification as style, CustomButton, Delete, FormInputField } from "./widgets";
-import { MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo } from "./modalforms";
+import { getRiskImpactLevel, MitigateRIsk, MonitorRisk, ReviewRIsk, RiskInfo } from "./modalforms";
 
 export function UserAccountDetails(data) {
   const {auth} = useContext(AuthContext)
@@ -530,14 +530,10 @@ export function RiskDetails(data) {
               <div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
-                  <p className="text-7xl font-bold">32</p>
-                  <p className="text-2xl font-bold">Very High</p>
+                  <p className="text-7xl font-bold">{getRiskImpactLevel(riskInfo.riskImpactLevel)}</p>
+                  <p className="text-2xl font-bold">{riskInfo.riskImpactLevel}</p>
                 </div>
-                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
-                  <p className="text-lg font-semibold">Residual Risk</p>
-                  <p className="text-7xl font-bold">32</p>
-                  <p className="text-2xl font-bold">Very High</p>
-                </div>
+                
               </div>
 
               <div className="col-span-4 flex flex-col py-10">
@@ -611,15 +607,15 @@ export function MitigationDetails(data) {
             <div className="grid grid-cols-6 bg-gray-300 mb-16 p-6 rounded-lg shadow-md">
               {/* Left Section: Risk Cards */}
               <div className="col-span-2 grid grid-cols-2 gap-4">
-                <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
+                {/*<div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
                   <p className="text-7xl font-bold">32</p>
                   <p className="text-2xl font-bold">Very High</p>
-                </div>
+                </div>*/}
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Residual Risk</p>
-                  <p className="text-7xl font-bold">32</p>
-                  <p className="text-2xl font-bold">Very High</p>
+                  <p className="text-7xl font-bold">{getRiskImpactLevel(mitigationInfo.mitigatedRiskImpactLevel)}</p>
+                  <p className="text-2xl font-bold">{mitigationInfo.mitigatedRiskImpactLevel}</p>
                 </div>
               </div>
 
@@ -703,7 +699,7 @@ export function RiskReviewDetails(data) {
           <div className="overflow-y-auto max-h-[70vh] p-4">
             <div className="grid grid-cols-6 bg-gray-300 mb-16 p-6 rounded-lg shadow-md">
               {/* Left Section: Risk Cards */}
-              <div className="col-span-2 grid grid-cols-2 gap-4">
+              {/*<div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
                   <p className="text-7xl font-bold">32</p>
@@ -714,7 +710,7 @@ export function RiskReviewDetails(data) {
                   <p className="text-7xl font-bold">32</p>
                   <p className="text-2xl font-bold">Very High</p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Right Section: Details */}
               <div className="col-span-4 flex flex-col py-10">
@@ -796,7 +792,7 @@ export function RiskMonitoringDetails(data) {
           <div className="overflow-y-auto max-h-[70vh] p-4">
             <div className="grid grid-cols-6 bg-gray-300 mb-16 p-6 rounded-lg shadow-md">
               {/* Left Section: Risk Cards */}
-              <div className="col-span-2 grid grid-cols-2 gap-4">
+              {/*<div className="col-span-2 grid grid-cols-2 gap-4">
                 <div className="bg-blue-700 text-white h-48 w-40 p-5 flex flex-col items-center justify-center rounded-lg shadow-md">
                   <p className="text-lg font-semibold">Inherent Risk</p>
                   <p className="text-7xl font-bold">32</p>
@@ -807,7 +803,7 @@ export function RiskMonitoringDetails(data) {
                   <p className="text-7xl font-bold">32</p>
                   <p className="text-2xl font-bold">Very High</p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Right Section: Details */}
               <div className="col-span-4 flex flex-col py-10">
