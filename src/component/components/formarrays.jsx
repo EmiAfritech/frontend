@@ -1,10 +1,10 @@
 export const GRCFormsArray = (t) => ({
   probabilityLevel: [
-    { value: 1, label: `${t("almostImpossible")} 1` },
-    { value: 2, label: `${t("unlikely")} 2` },
-    { value: 3, label: `${t("likely")} 3` },
-    { value: 4, label: `${t("veryLikely")} 4` },
-    { value: 5, label: `${t("almostCertain")} 5` },
+    { value: 1, label: `${t("almostImpossible")} (1)` },
+    { value: 2, label: `${t("unlikely")} (2)` },
+    { value: 3, label: `${t("likely")} (3)` },
+    { value: 4, label: `${t("veryLikely")} (4)` },
+    { value: 5, label: `${t("almostCertain")} (5)` },
   ],
 
   categorydrawer: [
@@ -26,11 +26,11 @@ export const GRCFormsArray = (t) => ({
     { value: "Mitigate", label: t("mitigate") },
   ],
   impactLevel: [
-    { value: 1, label: `${t("insignificant")} 1` },
-    { value: 2, label: `${t("minor")} 2` },
-    { value: 3, label: `${t("moderate")} 3` },
-    { value: 4, label: `${t("major")} 4` },
-    { value: 5, label: `${t("critical")} 5` },
+    { value: 1, label: `${t("insignificant")} (1)` },
+    { value: 2, label: `${t("minor")} (2)` },
+    { value: 3, label: `${t("moderate")} (3)` },
+    { value: 4, label: `${t("major")} (4)` },
+    { value: 5, label: `${t("critical")} (5)` },
   ],
   
   riskReviewArray: [
