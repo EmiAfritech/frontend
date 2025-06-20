@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaLanguage } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import axios from "../../api/axios";
 import { LOGIN_URL } from "../../api/routes";
@@ -12,7 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Notification } from "../../component/components/notifications";
 
 import "./login.css";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import CircularProgress from "@mui/material/CircularProgress";
 import ReCaptcha from "react-google-recaptcha";
 
@@ -24,13 +23,19 @@ export function Login() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
-  const [notification,setNotification] = useState({
-    authorized: false,
-    serverDown: false,
-    errorMessage: false
-  })
+  const [showPassword, setShowPassword] = useState(false);
+
+
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   
+  const [notification, setNotification] = useState({
+    authorized: false,
+    serverDown: false,
+    errorMessage: false,
+  });
 
   const reload = () => {
     setEmail("");
@@ -39,17 +44,16 @@ export function Login() {
 
   const handleCaptchaSuccess = (value) => {
     axios
-      .post("/verify-captcha",  JSON.stringify({recaptchaResponse: value  }),
-      {
+      .post("/verify-captcha", JSON.stringify({ recaptchaResponse: value }), {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         withCredentials: true,
-      },)
+      })
       .then((res) => {
         if (res.data) {
-          setVerified(false); 
+          setVerified(false);
 
           navigate("/dashboard", { replace: true });
         } else {
@@ -77,24 +81,29 @@ export function Login() {
         }
       );
       if (response.status === 200) {
-        const {authToken, role, organizationId, organizationName, departmentId} = response.data;
-        const token = authToken
-        setAuth({ token, role, departmentId, organizationName, });
+        const {
+          authToken,
+          role,
+          organizationId,
+          organizationName,
+          departmentId,
+        } = response.data;
+        const token = authToken;
+        setAuth({ token, role, departmentId, organizationName });
         setVerified(true);
-        Cookies.set('token', token, {
-          secure: process.env.NODE_ENV === 'production', 
-          sameSite: 'Strict', 
+        Cookies.set("token", token, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
         });
-        Cookies.set('role', role, {
-          secure: process.env.NODE_ENV === 'production', 
-          sameSite: 'Strict', 
+        Cookies.set("role", role, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
         });
-        
-        Cookies.set('departmentId', departmentId, {
-          secure: process.env.NODE_ENV === 'production', 
-          sameSite: 'Strict', 
+
+        Cookies.set("departmentId", departmentId, {
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "Strict",
         });
-        verifyRecapture();
       }
     } catch (err) {
       if (err.response?.status === 500 || err.response?.status === 400) {
@@ -112,13 +121,28 @@ export function Login() {
 
   const getNotification = () => {
     if (notification.authorized) {
-      return <Notification message="Your email or password may be incorrect" type="error" />;
+      return (
+        <Notification
+          message="Your email or password may be incorrect"
+          type="error"
+        />
+      );
     }
     if (notification.serverDown) {
-      return <Notification message="Server is currently unavailable. Contact Admin." type="error" />;
+      return (
+        <Notification
+          message="Server is currently unavailable. Contact Admin."
+          type="error"
+        />
+      );
     }
     if (notification.errorMessage) {
-      return <Notification message="Account Not Found, Kindly Register for Free" type="error" />;
+      return (
+        <Notification
+          message="Account Not Found, Kindly Register for Free"
+          type="error"
+        />
+      );
     }
     return null;
   };
@@ -135,9 +159,12 @@ export function Login() {
                 <FaLanguage size={20} color="rgb(7, 7, 60)" />
               </span>
             </div>
-            
+
             <div className="formstyle flex-col mx-12">
-            <div className="flex justify-center mb-12"> {getNotification()}</div>
+              <div className="flex justify-center mb-12">
+                {" "}
+                {getNotification()}
+              </div>
               <div className="flex justify-center">
                 <img
                   src={afriquetek_logo}
@@ -163,13 +190,19 @@ export function Login() {
                   <div className="mb-8">
                     <label htmlFor="password">{t("password")}</label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       autoComplete="off"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
+
+                    <div onClick={toggleShowPassword} className="flex justify-end">
+                      <h4 className="text-blue italic text-sm text-[#08376B] cursor-pointer">
+                        {showPassword ? "hide password" : "show password"}
+                      </h4>
+                    </div>
                   </div>
 
                   {/* Login button */}
@@ -211,7 +244,6 @@ export function Login() {
                     </span>
                   </div>
 
-                  
                   {/* ReCaptcha appears only after successful login */}
                   {verified && (
                     <div className="flex justify-center item-center pt-3">
@@ -221,7 +253,6 @@ export function Login() {
                       />
                     </div>
                   )}
-                  
                 </form>
               </div>
             </div>

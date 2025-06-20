@@ -69,7 +69,7 @@ export function MitigatedReport() {
         <br />
       </a>
       <a href="" className="text-[#ce4a01] font-bold">
-        3. Electrical Mitigations <br />
+        3. Electrical Mitigation <br />
       </a>
     </p>
   );
