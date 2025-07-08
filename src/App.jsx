@@ -80,7 +80,6 @@ export default function App() {
           <Route path="/features/:feature" element={<FeatureDetail data-id="a4453m1gz"/>} data-id="ihu3vnod0"/>
           <Route path="/analytics" element={<AnalyticsAi data-id="zkaqcxnpm"/>} data-id="6906oed92"/>
           <Route path="/settings" element={<SettingsAi data-id="rsvp6or3h"/>} data-id="vlqsdhrsh"/>
-          <Route path="*" element={<Navigate to="/" replace data-id="wahk5kxdp"/>} data-id="oy7j1xnq2"/>
         </Route>
       </Routes>
     </BrowserRouter>
