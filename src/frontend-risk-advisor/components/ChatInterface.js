@@ -107,48 +107,48 @@ function ChatInterface() {
   const renderMessageComponent = (componentType) => {
     switch (componentType) {
       case 'RiskScoreCard':
-        return <RiskScoreCard data-id="xax6vpl9m" data-path="components/ChatInterface.js" />;
+        return <RiskScoreCard data-id="xax6vpl9m" />;
       case 'MitigationPlaybook':
-        return <MitigationPlaybook data-id="sojlynuo8" data-path="components/ChatInterface.js" />;
+        return <MitigationPlaybook data-id="sojlynuo8" />;
       case 'ScenarioGuidance':
-        return <ScenarioGuidance data-id="p26m9iext" data-path="components/ChatInterface.js" />;
+        return <ScenarioGuidance data-id="p26m9iext" />;
       case 'AlertDemo':
-        return <AlertDemo data-id="6icpffo77" data-path="components/ChatInterface.js" />;
+        return <AlertDemo data-id="6icpffo77" />;
       default:
         return null;
     }
   };
 
   return (
-    <div className="flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-200" data-id="n7w6ht3sa" data-path="components/ChatInterface.js">
+    <div className="flex flex-col h-full bg-white rounded-lg shadow-sm border border-gray-200" data-id="n7w6ht3sa">
             {/* Chat Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50" data-id="qmjo6d1cz" data-path="components/ChatInterface.js">
-                <div className="flex items-center space-x-3" data-id="2n0ti7f8o" data-path="components/ChatInterface.js">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center" data-id="u3yv5ukqx" data-path="components/ChatInterface.js">
-                        <i className="fas fa-robot text-white" data-id="tbby0vx3u" data-path="components/ChatInterface.js"></i>
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50" data-id="qmjo6d1cz">
+                <div className="flex items-center space-x-3" data-id="2n0ti7f8o">
+                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center" data-id="u3yv5ukqx">
+                        <i className="fas fa-robot text-white" data-id="tbby0vx3u"></i>
                     </div>
-                    <div data-id="ty3gujqy0" data-path="components/ChatInterface.js">
-                        <h3 className="font-semibold text-gray-900" data-id="p43bvoebg" data-path="components/ChatInterface.js">Risk Advisor AI</h3>
-                        <p className="text-sm text-gray-500" data-id="jk0qgzwzh" data-path="components/ChatInterface.js">Online • Ready to assist</p>
+                    <div data-id="ty3gujqy0">
+                        <h3 className="font-semibold text-gray-900" data-id="p43bvoebg">Risk Advisor AI</h3>
+                        <p className="text-sm text-gray-500" data-id="jk0qgzwzh">Online • Ready to assist</p>
                     </div>
                 </div>
-                <div className="flex items-center space-x-2" data-id="xq959z5kc" data-path="components/ChatInterface.js">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" data-id="xqwvdqpqh" data-path="components/ChatInterface.js"></div>
-                    <span className="text-xs text-green-600 font-medium" data-id="mumiky1xu" data-path="components/ChatInterface.js">Active</span>
+                <div className="flex items-center space-x-2" data-id="xq959z5kc">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" data-id="xqwvdqpqh"></div>
+                    <span className="text-xs text-green-600 font-medium" data-id="mumiky1xu">Active</span>
                 </div>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-96" data-id="e74nd47ko" data-path="components/ChatInterface.js">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-96" data-id="e74nd47ko">
                 {messages.map((message) =>
-        <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`} data-id="qy58dt8vw" data-path="components/ChatInterface.js">
+        <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`} data-id="qy58dt8vw">
                         <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
           message.type === 'user' ?
           'bg-blue-600 text-white' :
           'bg-gray-100 text-gray-800'}`
-          } data-id="nwwhhs961" data-path="components/ChatInterface.js">
-                            <p className="text-sm whitespace-pre-line" data-id="8kx56u37b" data-path="components/ChatInterface.js">{message.content}</p>
-                            <p className="text-xs opacity-70 mt-1" data-id="2uoe6tdkd" data-path="components/ChatInterface.js">
+          } data-id="nwwhhs961">
+                            <p className="text-sm whitespace-pre-line" data-id="8kx56u37b">{message.content}</p>
+                            <p className="text-xs opacity-70 mt-1" data-id="2uoe6tdkd">
                                 {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
                         </div>
@@ -158,56 +158,56 @@ function ChatInterface() {
                 {/* Render component responses */}
                 {messages.map((message) =>
         message.component &&
-        <div key={`${message.id}-component`} className="w-full" data-id="25mj3ikpo" data-path="components/ChatInterface.js">
+        <div key={`${message.id}-component`} className="w-full" data-id="25mj3ikpo">
                             {renderMessageComponent(message.component)}
                         </div>
 
         )}
 
                 {isTyping &&
-        <div className="flex justify-start" data-id="9wacva3d5" data-path="components/ChatInterface.js">
-                        <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg" data-id="o39h2vvif" data-path="components/ChatInterface.js">
-                            <div className="flex items-center space-x-1" data-id="degsrvtv0" data-path="components/ChatInterface.js">
-                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" data-id="rc0l08y6y" data-path="components/ChatInterface.js"></div>
-                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} data-id="f26iba0ni" data-path="components/ChatInterface.js"></div>
-                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} data-id="akiln84hm" data-path="components/ChatInterface.js"></div>
+        <div className="flex justify-start" data-id="9wacva3d5">
+                        <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg" data-id="o39h2vvif">
+                            <div className="flex items-center space-x-1" data-id="degsrvtv0">
+                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" data-id="rc0l08y6y"></div>
+                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} data-id="f26iba0ni"></div>
+                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} data-id="akiln84hm"></div>
                             </div>
                         </div>
                     </div>
         }
-                <div ref={messagesEndRef} data-id="t1iootfbm" data-path="components/ChatInterface.js" />
+                <div ref={messagesEndRef} data-id="t1iootfbm" />
             </div>
 
             {/* Quick Actions */}
-            <div className="p-4 border-t border-gray-200 bg-gray-50" data-id="5pj1rgz05" data-path="components/ChatInterface.js">
-                <div className="flex flex-wrap gap-2 mb-3" data-id="u2jomo9iu" data-path="components/ChatInterface.js">
+            <div className="p-4 border-t border-gray-200 bg-gray-50" data-id="5pj1rgz05">
+                <div className="flex flex-wrap gap-2 mb-3" data-id="u2jomo9iu">
                     {quickActions.map((action, index) =>
           <button
             key={index}
             onClick={() => handleQuickAction(action.text)}
-            className="flex items-center space-x-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors" data-id="r1ofp9cuf" data-path="components/ChatInterface.js">
+            className="flex items-center space-x-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-600 hover:bg-gray-100 transition-colors" data-id="r1ofp9cuf">
 
-                            <i className={`${action.icon} text-xs`} data-id="bwyc2c15c" data-path="components/ChatInterface.js"></i>
-                            <span data-id="zw7gxuy8l" data-path="components/ChatInterface.js">{action.text}</span>
+                            <i className={`${action.icon} text-xs`} data-id="bwyc2c15c"></i>
+                            <span data-id="zw7gxuy8l">{action.text}</span>
                         </button>
           )}
                 </div>
 
                 {/* Input */}
-                <div className="flex space-x-2" data-id="2g2lvtdud" data-path="components/ChatInterface.js">
+                <div className="flex space-x-2" data-id="2g2lvtdud">
                     <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             placeholder="Ask me about risk management..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-id="avwu7304k" data-path="components/ChatInterface.js" />
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-id="avwu7304k" />
 
                     <button
             onClick={() => handleSendMessage()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" data-id="yq4h2q6nc" data-path="components/ChatInterface.js">
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" data-id="yq4h2q6nc">
 
-                        <i className="fas fa-paper-plane" data-id="vpbpktvkd" data-path="components/ChatInterface.js"></i>
+                        <i className="fas fa-paper-plane" data-id="vpbpktvkd"></i>
                     </button>
                 </div>
             </div>

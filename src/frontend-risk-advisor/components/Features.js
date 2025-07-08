@@ -51,19 +51,19 @@ function Features() {
 
 
   return (
-    <section className="py-16 bg-gray-50" id="features" data-id="zyjjf2tpj" data-path="components/Features.js">
-      <div className="container mx-auto px-4 md:px-6" data-id="l74z0v1yl" data-path="components/Features.js">
-        <div className="text-center mb-16" data-id="0babky37l" data-path="components/Features.js">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-id="v07q9cmdf" data-path="components/Features.js">Core Features</h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto" data-id="omiucf4qv" data-path="components/Features.js">
+    <section className="py-16 bg-gray-50" id="features" data-id="zyjjf2tpj">
+      <div className="container mx-auto px-4 md:px-6" data-id="l74z0v1yl">
+        <div className="text-center mb-16" data-id="0babky37l">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-id="v07q9cmdf">Core Features</h2>
+          <p className="text-gray-600 text-lg max-w-3xl mx-auto" data-id="omiucf4qv">
             Risk Advisor leverages AI and advanced analytics to transform how you manage risks,
             making your organization more resilient and adaptive.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-id="stzn7i3fo" data-path="components/Features.js">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-id="stzn7i3fo">
           {features.map((feature) =>
-          <FeatureCard key={feature.id} feature={feature} data-id="wfhugqweh" data-path="components/Features.js" />
+          <FeatureCard key={feature.id} feature={feature} data-id="wfhugqweh" />
           )}
         </div>
       </div>
@@ -73,20 +73,20 @@ function Features() {
 
 function FeatureCard({ feature }) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 card-hover" data-id="cxl11ms9n" data-path="components/Features.js">
-      <div className={`${feature.bgColor} w-14 h-14 rounded-full flex items-center justify-center mb-4`} data-id="yud7loeqi" data-path="components/Features.js">
-        <i className={`fas ${feature.icon} text-xl ${feature.color}`} data-id="joqg0b2xb" data-path="components/Features.js"></i>
+    <div className="bg-white rounded-lg shadow-md p-6 card-hover" data-id="cxl11ms9n">
+      <div className={`${feature.bgColor} w-14 h-14 rounded-full flex items-center justify-center mb-4`} data-id="yud7loeqi">
+        <i className={`fas ${feature.icon} text-xl ${feature.color}`} data-id="joqg0b2xb"></i>
       </div>
-      <h3 className="text-xl font-semibold mb-3" data-id="ypa5mb5pz" data-path="components/Features.js">{feature.title}</h3>
-      <p className="text-gray-600" data-id="32yjoafsw" data-path="components/Features.js">{feature.description}</p>
+      <h3 className="text-xl font-semibold mb-3" data-id="ypa5mb5pz">{feature.title}</h3>
+      <p className="text-gray-600" data-id="32yjoafsw">{feature.description}</p>
       
-      <div className="mt-4 pt-4 border-t border-gray-100" data-id="m7l2vjbor" data-path="components/Features.js">
+      <div className="mt-4 pt-4 border-t border-gray-100" data-id="m7l2vjbor">
         <ReactRouterDOM.Link
           to={`/features/${feature.id}`}
-          className="text-primary hover:text-primary-dark font-medium flex items-center" data-id="c8em4lxsy" data-path="components/Features.js">
+          className="text-primary hover:text-primary-dark font-medium flex items-center" data-id="c8em4lxsy">
 
           Learn more
-          <i className="fas fa-arrow-right ml-2 text-sm" data-id="43nfsjtgs" data-path="components/Features.js"></i>
+          <i className="fas fa-arrow-right ml-2 text-sm" data-id="43nfsjtgs"></i>
         </ReactRouterDOM.Link>
       </div>
     </div>);
