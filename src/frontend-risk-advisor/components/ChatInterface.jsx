@@ -147,7 +147,7 @@ export function ChatInterface() {
           <div
             className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center"
             data-id="u3yv5ukqx">
-            <div className=" text-xl" data-id="hzomnuhcf">
+            <div className="text-white text-xl" data-id="hzomnuhcf">
               <FaRobot />
             </div>
           </div>
