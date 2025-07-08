@@ -1,3 +1,12 @@
+import React from 'react';
+import { RiskScoreCard } from './RiskScoreCard';
+import { MitigationPlaybook } from './MitigationPlaybo';
+import { ScenarioGuidance } from './ScenarioGuidance';
+import { AlertDemo } from './AlertDemo';
+
+
+
+
 export function ChatInterface() {
   const [messages, setMessages] = React.useState([
   {

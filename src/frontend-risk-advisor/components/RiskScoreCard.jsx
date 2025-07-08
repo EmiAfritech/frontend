@@ -1,4 +1,5 @@
-function RiskScoreCard() {
+import React from 'react';
+export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
 
   const risks = [

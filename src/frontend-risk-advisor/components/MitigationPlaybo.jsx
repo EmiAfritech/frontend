@@ -1,4 +1,5 @@
-function MitigationPlaybook() {
+import React from 'react';
+export function MitigationPlaybook() {
   const [selectedPlaybook, setSelectedPlaybook] = React.useState(null);
   const [expandedStep, setExpandedStep] = React.useState(null);
 
