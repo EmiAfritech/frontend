@@ -1,4 +1,4 @@
-function Settings() {
+export function SettingsAi() {
   const {
     settings,
     updateNotifications,

@@ -29,6 +29,10 @@ import { SubscriptionPage } from "./pages/subscription/subscription";
 import { VerifyEmail } from "./pages/resetPassword/verifyemail";
 import { Compliance } from "./pages/Compliance/complaince";
 import { Governance } from "./pages/Governance/governance";
+import { AnalyticsAi } from "./frontend-risk-advisor/pages/AnalyticsAi";
+import { SettingsAi } from "./frontend-risk-advisor/pages/SettingsAi";
+import { HomeAi } from "./frontend-risk-advisor/pages/HomeAi";
+import { FeatureDetail } from "./frontend-risk-advisor/pages/FeatureDetail";
 
 function App() {
   return (
@@ -71,6 +75,13 @@ function App() {
             element={<ReviewNeedingRisksReport />}
           />
           <Route path="chatbot" element={<ReportRiskChatbot />} />
+        </Route>
+        <Route path="/risk-ai" element={<RiskAi />}>
+          <Route path="/" element={<HomeAi data-id="kxjqa1ayv" data-path="App.js" />} data-id="4bpvzbj8u" data-path="App.js" />
+                <Route path="/features/:feature" element={<FeatureDetail data-id="a4453m1gz" data-path="App.js" />} data-id="ihu3vnod0" data-path="App.js" />
+                <Route path="/analytics" element={<AnalyticsAi data-id="zkaqcxnpm" data-path="App.js" />} data-id="6906oed92" data-path="App.js" />
+                <Route path="/settings" element={<SettingsAi data-id="rsvp6or3h" data-path="App.js" />} data-id="vlqsdhrsh" data-path="App.js" />
+                <Route path="*" element={<Navigate to="/" replace data-id="wahk5kxdp" data-path="App.js" />} data-id="oy7j1xnq2" data-path="App.js" />
         </Route>
       </Routes>
     </BrowserRouter>

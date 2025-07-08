@@ -1,4 +1,4 @@
-function Analytics() {
+export function AnalyticsAi() {
   const [activeDemo, setActiveDemo] = React.useState('riskScores');
 
   const demos = {

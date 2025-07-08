@@ -82,7 +82,7 @@ export function Sidebar() {
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      <LogOut />
+      <NavItem to="/risk-ai" icon={MdCheckCircle} label="Risk-Ai" />
     </>
   );
 

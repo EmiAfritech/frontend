@@ -1,4 +1,4 @@
-function FeatureDetail() {
+export function FeatureDetail() {
   const { useParams } = ReactRouterDOM;
   const { feature } = useParams();
 
