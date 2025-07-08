@@ -1,7 +1,13 @@
+import { Sidebar } from "../../component/components/sidebar";
+import { TopNavbar } from "../../component/components/topnavbar";
 import { ChatInterface } from "../components/ChatInterface";
 
 export function HomeAi() {
   return (
+    <div className="flex flex-col h-screen">
+          <Sidebar />
+          <div className="ml-[18%] m-6 ">
+            <div className="mb-4"><TopNavbar /></div>
     <div className="min-h-screen bg-gray-50 transition-colors" data-id="lh21tdiyw">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-16" data-id="hdmd64bfg" >
@@ -14,21 +20,7 @@ export function HomeAi() {
               <div className="text-left" data-id="5hhyjh05x">
                 <h1 className="text-4xl font-bold" data-id="0vph7zsvc" >Risk Advisor AI</h1>
                 <p className="text-xl text-blue-100" data-id="cf9k2pk1c">Intelligent Risk Management Assistant</p>
-              </div>
-            </div>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto" data-id="lztlzbuqw">
-              Proactively identify, analyze, and mitigate risks with AI-powered insights. 
-              Get personalized recommendations and real-time alerts to stay ahead of potential issues.
-            </p>
-            <div className="flex items-center justify-center space-x-4" data-id="r72w5j95y">
-              <div className="flex items-center space-x-2 bg-white bg-opacity-20 rounded-full px-4 py-2" data-id="im87glmam">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" data-id="gz3hpf1cl"></div>
-                <span className="text-sm font-medium" data-id="hd9y38g48">AI Assistant Ready</span>
-              </div>
-              <div className="flex items-center space-x-2 bg-white bg-opacity-20 rounded-full px-4 py-2" data-id="38qh91v76">
-                <i className="fas fa-shield-alt text-green-400" data-id="gltyhlsmu"></i>
-                <span className="text-sm font-medium" data-id="lxcq0l6ng">Risk Score: 0-20 Scale</span>
-              </div>
+              </div>    
             </div>
           </div>
         </div>
@@ -108,6 +100,9 @@ export function HomeAi() {
           </div>
         </div>
       </div>
-    </div>);
+    </div>
+    </div>
+    </div>
 
+    );
 }
