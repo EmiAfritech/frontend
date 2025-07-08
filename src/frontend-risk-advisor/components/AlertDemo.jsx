@@ -1,4 +1,5 @@
-function AlertDemo() {
+import React from 'react';
+export function AlertDemo() {
   const [alerts, setAlerts] = React.useState([
   {
     id: 1,

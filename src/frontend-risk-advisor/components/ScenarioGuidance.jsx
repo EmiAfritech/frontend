@@ -1,4 +1,5 @@
-function ScenarioGuidance() {
+import React from 'react';
+export function ScenarioGuidance() {
   const [selectedScenario, setSelectedScenario] = React.useState(null);
   const [customScenario, setCustomScenario] = React.useState('');
 
