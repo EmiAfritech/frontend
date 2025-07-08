@@ -1,3 +1,5 @@
+import { ChatInterface } from "../components/ChatInterface";
+
 export function HomeAi() {
   return (
     <div className="min-h-screen bg-gray-50 transition-colors" data-id="lh21tdiyw">

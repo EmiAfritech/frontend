@@ -1,4 +1,4 @@
-function ChatInterface() {
+export function ChatInterface() {
   const [messages, setMessages] = React.useState([
   {
     id: 1,
