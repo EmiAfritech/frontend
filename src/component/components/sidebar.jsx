@@ -17,6 +17,7 @@ import { LogOut } from "./modals";
 import { useTranslation } from "react-i18next";
 import { MdCheckCircle } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
+import { FaRobot } from "react-icons/fa";
 
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import ecg_logo from "../../assets/images/ecg_logo.jpg";
@@ -82,7 +83,7 @@ export function Sidebar() {
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      <NavItem to="/risk-ai" icon={MdCheckCircle} label="Risk-Ai" />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
