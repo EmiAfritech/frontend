@@ -77,11 +77,11 @@ function App() {
           <Route path="chatbot" element={<ReportRiskChatbot />} />
         </Route>
         <Route path="/risk-ai" element={<RiskAi />}>
-          <Route index element={<HomeAi data-id="kxjqa1ayv" data-path="App.js" />} data-id="4bpvzbj8u" data-path="App.js" />
-                <Route path="/features/:feature" element={<FeatureDetail data-id="a4453m1gz" data-path="App.js" />} data-id="ihu3vnod0" data-path="App.js" />
-                <Route path="/analytics" element={<AnalyticsAi data-id="zkaqcxnpm" data-path="App.js" />} data-id="6906oed92" data-path="App.js" />
-                <Route path="/settings" element={<SettingsAi data-id="rsvp6or3h" data-path="App.js" />} data-id="vlqsdhrsh" data-path="App.js" />
-                <Route path="*" element={<Navigate to="/" replace data-id="wahk5kxdp" data-path="App.js" />} data-id="oy7j1xnq2" data-path="App.js" />
+          <Route index element={<HomeAi data-id="kxjqa1ayv"/>} data-id="4bpvzbj8u"/>
+          <Route path="/features/:feature" element={<FeatureDetail data-id="a4453m1gz"/>} data-id="ihu3vnod0"/>
+          <Route path="/analytics" element={<AnalyticsAi data-id="zkaqcxnpm"/>} data-id="6906oed92"/>
+          <Route path="/settings" element={<SettingsAi data-id="rsvp6or3h"/>} data-id="vlqsdhrsh"/>
+          <Route path="*" element={<Navigate to="/" replace data-id="wahk5kxdp"/>} data-id="oy7j1xnq2"/>
         </Route>
       </Routes>
     </BrowserRouter>
