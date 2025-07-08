@@ -34,7 +34,7 @@ import { SettingsAi } from "./frontend-risk-advisor/pages/SettingsAi";
 import { HomeAi } from "./frontend-risk-advisor/pages/HomeAi";
 import { FeatureDetail } from "./frontend-risk-advisor/pages/FeatureDetail";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Sessions />
@@ -88,4 +88,4 @@ function App() {
   );
 }
 
-export default App;
+
