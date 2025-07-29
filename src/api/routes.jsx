@@ -230,3 +230,7 @@ export const EDITDEPARTMENT_URL = "/Organization/Department/update"
 export const DELETEDEPARTMENT_URL = "departments/delete"
 
 
+/*************************************************Chat Bot************************************************/
+
+export const RISKSCORECARD_URL = "/risk-ai/summary"
+

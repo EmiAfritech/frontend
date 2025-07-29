@@ -44,7 +44,8 @@ import {
   DELETERISKMITIGATION_URL,
   DELETERISKREVIEW_URL,
   DELETERISKMONITOR_URL,
-  DELETEUSER_URL
+  DELETEUSER_URL,
+  RISKSCORECARD_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -217,6 +218,29 @@ export function useRiskTable() {
     fetchData(); 
   }, []);
   return { riskTable, fetchData };
+}
+
+export function useRiskScoreCard() {
+  const { auth } = useContext(AuthContext);
+  const [riskscorecard, setRiskscorecard] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKSCORECARD_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRiskscorecard(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskscorecard, fetchData };
 }
 
 export function useRiskReviewTable() {

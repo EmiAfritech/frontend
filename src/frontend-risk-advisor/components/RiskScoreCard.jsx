@@ -1,6 +1,9 @@
 import React from 'react';
+import { useRiskScoreCard } from '../../api/routes-data';
 export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
+  const {riskscorecard} = useRiskScoreCard()
+  console.log({"riskscrore":riskscorecard})
 
   const risks = [
   {
