@@ -8,6 +8,7 @@ import { FaRobot } from "react-icons/fa";
 export function HomeAi() {
   const { riskScoreOverview } = useRiskScoreOverview;
   const { recentActivityList } = useRiskRecentActivity();
+  console.log(riskScoreOverview, riskScoreOverview);
 
   return (
     <div className="flex flex-col h-screen">
