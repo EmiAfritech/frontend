@@ -234,3 +234,9 @@ export const DELETEDEPARTMENT_URL = "departments/delete"
 
 export const RISKSCORECARD_URL = "/risk-ai/summary"
 
+// Risk score overview 
+export const RISKSCOREOVERVIEW_URL = "/risk-ai/risk-score-overview"
+
+// Recent Activity 
+export const RISKRECENTACTIVITY_URL = "/risk-ai/recent-activity"
+
