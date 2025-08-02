@@ -66,7 +66,7 @@ export function Sidebar() {
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <LogOut />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
@@ -99,7 +99,7 @@ export function Sidebar() {
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      <LogOut />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
@@ -112,7 +112,7 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <LogOut />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 

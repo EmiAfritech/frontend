@@ -1,7 +1,7 @@
 
 import { MdAccountCircle } from "react-icons/md";
 import { CgMenuGridR } from "react-icons/cg";
-import { AiOutlineLogout } from "react-icons/ai";
+import { LogOut } from "./modals";
 
 
 export function TopNavbar() {
@@ -9,7 +9,7 @@ export function TopNavbar() {
     <nav className="flex justify-end">
       <div className="flex cursor-pointer space-x-4 item-center">
         <div className="flex text-2xl cursor-pointer">
-           <AiOutlineLogout />
+           <LogOut/>
         </div>
         <div className="flex text-2xl cursor-pointer">
           <MdAccountCircle />
