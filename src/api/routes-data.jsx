@@ -1310,7 +1310,7 @@ export function useRiskScoreOverview() {
         },
       });
       console.log(response);
-      setRiskScoreOverview(response.data.data); 
+      setRiskScoreOverview(response.data); 
     } catch (error) {
       console.error("Failed to fetch Risk Score Overview:", error);
     }
