@@ -1307,7 +1307,7 @@ export function useRiskScoreOverview() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      setRiskScoreOverview(response.data.data); // `data` contains the nested object
+      setRiskScoreOverview(response.data.data); 
     } catch (error) {
       console.error("Failed to fetch Risk Score Overview:", error);
     }
@@ -1332,7 +1332,7 @@ export function useRiskRecentActivity() {
           Authorization: "Bearer " + auth.token,
         },
       });
-      setRecentActivityList(response.data.data); // `data` contains an array
+      setRecentActivityList(response.data.data); 
     } catch (error) {
       console.error("Failed to fetch Risk Recent Activity:", error);
     }
