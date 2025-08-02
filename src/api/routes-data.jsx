@@ -1290,3 +1290,57 @@ export function useUserDelete() {
 
   return { deleteUser }; 
 }
+
+
+/*************************************************Risk AI Routes************************************************/
+
+
+export function useRiskScoreOverview() {
+  const { auth } = useContext(AuthContext);
+  const [riskScoreOverview, setRiskScoreOverview] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKSCOREOVERVIEW_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRiskScoreOverview(response.data.data); // `data` contains the nested object
+    } catch (error) {
+      console.error("Failed to fetch Risk Score Overview:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return { riskScoreOverview, fetchData };
+}
+
+export function useRiskRecentActivity() {
+  const { auth } = useContext(AuthContext);
+  const [recentActivityList, setRecentActivityList] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKRECENTACTIVITY_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRecentActivityList(response.data.data); // `data` contains an array
+    } catch (error) {
+      console.error("Failed to fetch Risk Recent Activity:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return { recentActivityList, fetchData };
+}
