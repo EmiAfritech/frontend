@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useContext, useEffect } from "react";
-import {FaEye,FaSignOutAlt} from "react-icons/fa";
+import {FaEye,} from "react-icons/fa";
+import { AiOutlineLogout } from "react-icons/ai";
 import afriquetek_logo from "../../assets/images/afriquetek_logo.png";
 import "../comstyles/component.css";
 import axios from "../../api/axios";
@@ -439,10 +440,8 @@ export function LogOut() {
     <>
       <ToastContainer onClose={5000} hideProgressBar />
       <button
-        onClick={handleOpen}
-        className="flex flex row items-center p-3 ml-3">
-        <FaSignOutAlt className="icons" />
-        {t("logout")}
+        onClick={handleOpen}>
+        <AiOutlineLogout />
       </button>
       <Modal
         open={open}
