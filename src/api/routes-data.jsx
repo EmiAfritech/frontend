@@ -1309,6 +1309,7 @@ export function useRiskScoreOverview() {
           Authorization: "Bearer " + auth.token,
         },
       });
+      console.log(response);
       setRiskScoreOverview(response.data.data); 
     } catch (error) {
       console.error("Failed to fetch Risk Score Overview:", error);
