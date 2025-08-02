@@ -45,7 +45,9 @@ import {
   DELETERISKREVIEW_URL,
   DELETERISKMONITOR_URL,
   DELETEUSER_URL,
-  RISKSCORECARD_URL
+  RISKSCORECARD_URL,
+  RISKSCOREOVERVIEW_URL,
+  RISKRECENTACTIVITY_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
