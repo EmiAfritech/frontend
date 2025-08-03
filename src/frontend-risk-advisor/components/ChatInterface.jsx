@@ -41,27 +41,69 @@ export function ChatInterface() {
     handleSendMessage(action);
   };
 
-  const handleSendMessage = async (message = inputValue) => {
-    if (!message.trim()) return;
+const handleSendMessage = async (message = inputValue) => {
+  if (!message.trim()) return;
 
-    const userMessage = {
+  const userMessage = {
+    id: Date.now(),
+    type: "user",
+    content: message,
+    timestamp: new Date(),
+  };
+
+  setMessages((prev) => [...prev, userMessage]);
+  setInputValue("");
+  setIsTyping(true);
+
+  try {
+    // Decide if user is responding to a confirmation
+    const isYesOrNo = ["yes", "no"].includes(message.trim().toLowerCase());
+    const lastBotMessage = messages[messages.length - 1]?.content || "";
+    const isConfirming = lastBotMessage.includes("Would you like advice");
+
+    // Build payload accordingly
+    const payload = {
+      session_id: "user-session-123",
+      ...(isYesOrNo && isConfirming
+        ? { confirm_response: message }
+        : { message: message }),
+    };
+
+    const response = await fetch("https://robotechgh-risk-bot.hf.space/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+
+    const aiMessage = {
       id: Date.now(),
-      type: "user",
-      content: message,
+      type: "ai",
+      content: data.response,
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue("");
-    setIsTyping(true);
+    setMessages((prev) => [...prev, aiMessage]);
+  } catch (error) {
+    console.error("API error:", error);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        type: "ai",
+        content: "⚠️ Error: Could not reach the server.",
+        timestamp: new Date(),
+      },
+    ]);
+  } finally {
+    setIsTyping(false);
+  }
+};
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(message);
-      setMessages((prev) => [...prev, aiResponse]);
-      setIsTyping(false);
-    }, 1500);
-  };
+
 
   const generateAIResponse = (userMessage) => {
     const message = userMessage.toLowerCase();
