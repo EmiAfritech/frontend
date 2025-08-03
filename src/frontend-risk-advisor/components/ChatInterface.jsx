@@ -41,7 +41,7 @@ export function ChatInterface() {
     handleSendMessage(action);
   };
 
-  const handleSendMessage = async (message = inputValue) => {
+const handleSendMessage = async (message = inputValue) => {
   if (!message.trim()) return;
 
   const userMessage = {
@@ -56,15 +56,25 @@ export function ChatInterface() {
   setIsTyping(true);
 
   try {
+    // Decide if user is responding to a confirmation
+    const isYesOrNo = ["yes", "no"].includes(message.trim().toLowerCase());
+    const lastBotMessage = messages[messages.length - 1]?.content || "";
+    const isConfirming = lastBotMessage.includes("Would you like advice");
+
+    // Build payload accordingly
+    const payload = {
+      session_id: "user-session-123",
+      ...(isYesOrNo && isConfirming
+        ? { confirm_response: message }
+        : { message: message }),
+    };
+
     const response = await fetch("https://robotechgh-risk-bot.hf.space/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        session_id: "user-session-123",
-        message: message,
-      }),
+      body: JSON.stringify(payload),
     });
 
     const data = await response.json();
@@ -77,13 +87,6 @@ export function ChatInterface() {
     };
 
     setMessages((prev) => [...prev, aiMessage]);
-
-    // If model returns a "Would you like advice?" question,
-    // store it and allow user to say yes/no
-    if (data.response.includes("Would you like advice")) {
-      // Optional: Add a way to track pending confirmation
-    }
-
   } catch (error) {
     console.error("API error:", error);
     setMessages((prev) => [
@@ -99,6 +102,7 @@ export function ChatInterface() {
     setIsTyping(false);
   }
 };
+
 
 
   const generateAIResponse = (userMessage) => {
