@@ -114,7 +114,10 @@ export function RiskScoreCard() {
                                 <span className="text-sm text-gray-600" data-id="r07vqohhu">Impact Level</span>
                                 <span className={`text-sm font-medium px-2 py-1 rounded-full ${
               risk.impact === 'Critical' ? 'bg-red-100 text-red-800' :
-              risk.impact === 'High' ? 'bg-orange-100 text-orange-800' :
+              risk.impact === 'Major' ? 'bg-orange-100 text-orange-800' :
+              risk.impact === 'Moderate' ? 'bg-yellow-100 text-yellow-800' :
+              risk.impact === 'Minor' ? 'bg-blue-100 text-blue-800' :
+              risk.impact === 'Insignificant' ? 'bg-gray-100 text-gray-800' :
               'bg-yellow-100 text-yellow-800'}`
               } data-id="cl4jyux7o">
                                     {risk.impact}
