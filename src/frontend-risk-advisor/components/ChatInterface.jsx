@@ -42,26 +42,64 @@ export function ChatInterface() {
   };
 
   const handleSendMessage = async (message = inputValue) => {
-    if (!message.trim()) return;
+  if (!message.trim()) return;
 
-    const userMessage = {
+  const userMessage = {
+    id: Date.now(),
+    type: "user",
+    content: message,
+    timestamp: new Date(),
+  };
+
+  setMessages((prev) => [...prev, userMessage]);
+  setInputValue("");
+  setIsTyping(true);
+
+  try {
+    const response = await fetch("https://robotechgh-risk-bot.hf.space/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        session_id: "user-session-123",
+        message: message,
+      }),
+    });
+
+    const data = await response.json();
+
+    const aiMessage = {
       id: Date.now(),
-      type: "user",
-      content: message,
+      type: "ai",
+      content: data.response,
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue("");
-    setIsTyping(true);
+    setMessages((prev) => [...prev, aiMessage]);
 
-    // Simulate AI response delay
-    setTimeout(() => {
-      const aiResponse = generateAIResponse(message);
-      setMessages((prev) => [...prev, aiResponse]);
-      setIsTyping(false);
-    }, 1500);
-  };
+    // If model returns a "Would you like advice?" question,
+    // store it and allow user to say yes/no
+    if (data.response.includes("Would you like advice")) {
+      // Optional: Add a way to track pending confirmation
+    }
+
+  } catch (error) {
+    console.error("API error:", error);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        type: "ai",
+        content: "⚠️ Error: Could not reach the server.",
+        timestamp: new Date(),
+      },
+    ]);
+  } finally {
+    setIsTyping(false);
+  }
+};
+
 
   const generateAIResponse = (userMessage) => {
     const message = userMessage.toLowerCase();
