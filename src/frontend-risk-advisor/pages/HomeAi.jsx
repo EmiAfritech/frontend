@@ -22,6 +22,7 @@ export function HomeAi() {
           data-id="lh21tdiyw"
         >
           {/* Hero Section */}
+
           <div
             className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-16"
             data-id="hdmd64bfg"
@@ -55,6 +56,9 @@ export function HomeAi() {
               </div>
             </div>
           </div>
+
+          {/* Navbar Area */}
+          <Navbar data-id="jtcgbd42r"  />
 
           {/* Main Chat Interface */}
           <div
