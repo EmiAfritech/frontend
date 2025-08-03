@@ -144,19 +144,19 @@ export function RiskScoreCard() {
                 <div className="flex items-center space-x-4 text-sm" data-id="b0oerhxq1">
                     <div className="flex items-center space-x-2" data-id="gt3v0e6oe">
                         <div className="w-4 h-4 bg-green-500 rounded" data-id="0hm6zvats"></div>
-                        <span data-id="85ynjzhyv">0-7 (Low)</span>
+                        <span data-id="85ynjzhyv">1-5 (Low)</span>
                     </div>
                     <div className="flex items-center space-x-2" data-id="x0nvo23pt">
                         <div className="w-4 h-4 bg-yellow-500 rounded" data-id="u5eak6yo9"></div>
-                        <span data-id="r0oisjowm">8-11 (Medium)</span>
+                        <span data-id="r0oisjowm">6-9 (Medium)</span>
                     </div>
                     <div className="flex items-center space-x-2" data-id="4161sz0mq">
                         <div className="w-4 h-4 bg-orange-500 rounded" data-id="h8x2qss1x"></div>
-                        <span data-id="z1amsn49a">12-15 (High)</span>
+                        <span data-id="z1amsn49a">10-15 (High)</span>
                     </div>
                     <div className="flex items-center space-x-2" data-id="sotek5f8a">
                         <div className="w-4 h-4 bg-red-500 rounded" data-id="nkufhuhl9"></div>
-                        <span data-id="fm6jk6mdv">16-20 (Critical)</span>
+                        <span data-id="fm6jk6mdv">16-25 (Critical)</span>
                     </div>
                 </div>
             </div>
