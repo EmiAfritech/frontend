@@ -152,7 +152,7 @@ export function HomeAi() {
                 </div>
 
                 {/* AI Capabilities - Unchanged */}
-                <div
+                {/*<div
                   className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
                   data-id="d11fuize3"
                 >
@@ -188,7 +188,7 @@ export function HomeAi() {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 <div
                   className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
