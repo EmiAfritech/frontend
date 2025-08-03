@@ -32,9 +32,9 @@ export function ChatInterface() {
       text: "Analyze high-risk scenarios",
       icon: "fas fa-exclamation-triangle",
     },
-    { text: "Show mitigation playbooks", icon: "fas fa-book" },
+    {/*{ text: "Show mitigation playbooks", icon: "fas fa-book" },*/},
     { text: "Risk score analysis", icon: "fas fa-chart-line" },
-    { text: "Generate risk alerts", icon: "fas fa-bell" },
+    {/*{ text: "Generate risk alerts", icon: "fas fa-bell" },*/},
   ];
 
   const handleQuickAction = (action) => {
