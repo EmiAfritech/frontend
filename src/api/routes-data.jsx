@@ -222,29 +222,6 @@ export function useRiskTable() {
   return { riskTable, fetchData };
 }
 
-export function useRiskScoreCard() {
-  const { auth } = useContext(AuthContext);
-  const [riskscorecard, setRiskscorecard] = useState([]);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(RISKSCORECARD_URL, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        },
-      });
-      setRiskscorecard(response.data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData(); 
-  }, []);
-  return { riskscorecard, fetchData };
-}
-
 export function useRiskReviewTable() {
   const { auth } = useContext(AuthContext);
   const [riskReviewTable, setRiskReviewTable] = useState([]);
@@ -1296,6 +1273,28 @@ export function useUserDelete() {
 
 /*************************************************Risk AI Routes************************************************/
 
+export function useRiskScoreCard() {
+  const { auth } = useContext(AuthContext);
+  const [riskscorecard, setRiskscorecard] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(RISKSCORECARD_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        },
+      });
+      setRiskscorecard(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); 
+  }, []);
+  return { riskscorecard, fetchData };
+}
 
 export function useRiskScoreOverview() {
   const { auth } = useContext(AuthContext);

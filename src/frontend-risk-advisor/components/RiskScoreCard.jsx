@@ -1,11 +1,12 @@
 import React from 'react';
 import { useRiskScoreCard } from '../../api/routes-data';
+
 export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
   const {riskscorecard} = useRiskScoreCard()
   console.log({"riskscrore":riskscorecard})
 
-  const risks = [
+ {/* const risks = [
   {
     id: 1,
     name: "Supplier Delays",
@@ -46,6 +47,8 @@ export function RiskScoreCard() {
     trend: "down",
     lastUpdated: "6 hours ago"
   }];
+    
+    */} 
 
 
   const getRiskColor = (score) => {
@@ -74,7 +77,7 @@ export function RiskScoreCard() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2" data-id="bd4jxt9f2">
-                {risks.map((risk) =>
+                {riskscorecard.map((risk) =>
         <div
           key={risk.id}
           className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
@@ -86,27 +89,27 @@ export function RiskScoreCard() {
                                     {risk.score}
                                 </div>
                                 <div data-id="7hwprivnl">
-                                    <h4 className="font-medium text-gray-900" data-id="2uv2jzpzd">{risk.name}</h4>
-                                    <p className="text-sm text-gray-500" data-id="8qb89gsuw">{risk.category}</p>
+                                    <h4 className="font-medium text-gray-900" data-id="2uv2jzpzd">{risk.riskName}</h4>
+                                    <p className="text-sm text-gray-500" data-id="8qb89gsuw">{risk.riskCategory}</p>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-2" data-id="u896bwaz8">
                                 <i className={`fas ${getTrendIcon(risk.trend)}`} data-id="9de9bbizc"></i>
-                                <span className="text-xs text-gray-500" data-id="8x4wqxc2u">{risk.lastUpdated}</span>
+                                <span className="text-xs text-gray-500" data-id="8x4wqxc2u">{risk.createdAt}</span>
                             </div>
                         </div>
 
                         <div className="space-y-2" data-id="l0ui34aqk">
                             <div className="flex justify-between items-center" data-id="ebz068frg">
                                 <span className="text-sm text-gray-600" data-id="0bf4a5l3a">Probability</span>
-                                <span className="text-sm font-medium" data-id="4dv8gc2pv">{risk.probability}%</span>
+                                <span className="text-sm font-medium" data-id="4dv8gc2pv">{risk.probability}</span>
                             </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2" data-id="lm0wrjwq1">
+                           {/*  <div className="w-full bg-gray-200 rounded-full h-2" data-id="lm0wrjwq1">
                                 <div
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${risk.probability}%` }} data-id="ckgzysekx">
               </div>
-                            </div>
+                            </div> */}
                             <div className="flex justify-between items-center mt-2" data-id="ii4ryh5i5">
                                 <span className="text-sm text-gray-600" data-id="r07vqohhu">Impact Level</span>
                                 <span className={`text-sm font-medium px-2 py-1 rounded-full ${
