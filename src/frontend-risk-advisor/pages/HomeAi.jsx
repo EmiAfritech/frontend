@@ -3,6 +3,7 @@ import { Sidebar } from "../../component/components/sidebar";
 import { TopNavbar } from "../../component/components/topnavbar";
 import { ChatInterface } from "../components/ChatInterface";
 import { FaRobot } from "react-icons/fa";
+import { Navbar } from "../components/Navbar";
 
 
 export function HomeAi() {

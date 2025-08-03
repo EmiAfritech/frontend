@@ -1,4 +1,4 @@
-function Navbar() {
+export function Navbar() {
   const { Link, useLocation } = ReactRouterDOM;
   const location = useLocation();
   const { t } = useLanguage();
