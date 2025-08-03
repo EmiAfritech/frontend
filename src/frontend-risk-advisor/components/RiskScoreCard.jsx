@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRiskScoreCard } from '../../api/routes-data';
+import { getImpactLevelNumber, getProbabilityLevelNumber } from '../../component/components/modalforms';
 
 export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
@@ -86,7 +87,7 @@ export function RiskScoreCard() {
                         <div className="flex items-center justify-between mb-3" data-id="2u08iu4li">
                             <div className="flex items-center space-x-3" data-id="r4ov5t0a9">
                                 <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg ${getRiskColor(risk.score)}`} data-id="v6jc92ijy">
-                                    {risk.riskScore}
+                                    {getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability)}
                                 </div>
                                 <div data-id="7hwprivnl">
                                     <h4 className="font-medium text-gray-900" data-id="2uv2jzpzd">{risk.riskName}</h4>
