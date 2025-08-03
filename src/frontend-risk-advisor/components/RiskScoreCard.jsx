@@ -86,9 +86,11 @@ export function RiskScoreCard() {
 
                         <div className="flex items-center justify-between mb-3" data-id="2u08iu4li">
                             <div className="flex items-center space-x-3" data-id="r4ov5t0a9">
-                                <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg ${getRiskColor(risk.score)}`} data-id="v6jc92ijy">
-                                    {getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability)}
+                                <div className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-lg ${getRiskColor(getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability))}`} data-id="v6jc92ijy">
+                                    <span className="font-bold">{getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability)}</span>
+                                    <span className="text-xs font-normal">({risk.riskScore})</span>
                                 </div>
+
                                 <div data-id="7hwprivnl">
                                     <h4 className="font-medium text-gray-900" data-id="2uv2jzpzd">{risk.riskName}</h4>
                                     <p className="text-sm text-gray-500" data-id="8qb89gsuw">{risk.riskCategory}</p>
