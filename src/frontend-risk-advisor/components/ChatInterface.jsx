@@ -33,98 +33,112 @@ export function ChatInterface() {
     { text: "Risk score analysis", icon: "fas fa-chart-line" },
   ];
 
-  const handleQuickAction = async (action) => {
-    setQuickActionLock(true);
+  const handleQuickAction = (action) => {
+    const timestamp = new Date();
     const userMessage = {
-      id: Date.now(),
+      id: `user-${timestamp.getTime()}`,
       type: "user",
       content: action,
-      timestamp: new Date(),
+      timestamp,
     };
 
     let aiResponse = {
-      id: Date.now() + 1,
+      id: `ai-${timestamp.getTime() + 1}`,
       type: "ai",
-      timestamp: new Date(),
+      timestamp: new Date(timestamp.getTime() + 1),
       content: "",
     };
 
     switch (action) {
       case "Analyze high-risk scenarios":
-        aiResponse.content = "Analyzing high-risk scenarios... Here's what I found:";
+        aiResponse.content =
+          "Analyzing high-risk scenarios... Here's what I found:";
         aiResponse.component = "RiskScoreCard";
+        break;
+      case "Show mitigation playbooks":
+        aiResponse.content =
+          "Here are mitigation playbooks tailored to your risks:";
+        aiResponse.component = "MitigationPlaybook";
         break;
       case "Risk score analysis":
         aiResponse.content = "Generating your risk score analysis...";
         aiResponse.component = "RiskScoreCard";
         break;
+      case "Generate risk alerts":
+        aiResponse.content = "Generating latest risk alerts...";
+        aiResponse.component = "AlertDemo";
+        break;
       default:
-        aiResponse.content = "I'm here to help with your risk inquiries. Please type a question!";
+        aiResponse.content =
+          "I'm here to help with your risk inquiries. Please type a question!";
     }
 
-    setMessages((prev) => [...prev, userMessage]);
-    await new Promise((res) => setTimeout(res, 300));
-    setMessages((prev) => [...prev, aiResponse]);
-    setQuickActionLock(false);
+    // Append both messages together to maintain order
+    setMessages((prev) => [...prev, userMessage, aiResponse]);
   };
 
-  const handleSendMessage = async (message = inputValue) => {
-    if (!message.trim() || quickActionLock) return;
 
-    const userMessage = {
-      id: Date.now(),
-      type: "user",
-      content: message,
+  const handleSendMessage = async (message = inputValue) => {
+  if (!message.trim()) return;
+
+  const timestamp = new Date();
+  const userMessage = {
+    id: `user-${timestamp.getTime()}`,
+    type: "user",
+    content: message,
+    timestamp,
+  };
+
+  setMessages((prev) => [...prev, userMessage]);
+  setInputValue("");
+  setIsTyping(true);
+
+  try {
+    const isYesOrNo = ["yes", "no"].includes(message.trim().toLowerCase());
+    const lastBotMessage = messages[messages.length - 1]?.content || "";
+    const isConfirming = lastBotMessage.includes("Would you like advice");
+
+    const payload = {
+      session_id: "user-session-123",
+      ...(isYesOrNo && isConfirming
+        ? { confirm_response: message }
+        : { message: message }),
+    };
+
+    const response = await fetch("https://robotechgh-risk-bot.hf.space/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+
+    const aiMessage = {
+      id: `ai-${Date.now()}`,
+      type: "ai",
+      content: data.response,
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue("");
-    setIsTyping(true);
-
-    try {
-      const isYesOrNo = ["yes", "no"].includes(message.trim().toLowerCase());
-      const lastBotMessage = messages[messages.length - 1]?.content || "";
-      const isConfirming = lastBotMessage.includes("Would you like advice");
-
-      const payload = {
-        session_id: "user-session-123",
-        ...(isYesOrNo && isConfirming
-          ? { confirm_response: message }
-          : { message: message }),
-      };
-
-      const response = await fetch("https://robotechgh-risk-bot.hf.space/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-
-      const aiMessage = {
-        id: Date.now(),
+    setMessages((prev) => [...prev, aiMessage]);
+  } catch (error) {
+    console.error("API error:", error);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `error-${Date.now()}`,
         type: "ai",
-        content: data.response,
+        content: "⚠️ Error: Could not reach the server.",
         timestamp: new Date(),
-      };
+      },
+    ]);
+  } finally {
+    setIsTyping(false);
+  }
+};
 
-      setMessages((prev) => [...prev, aiMessage]);
-    } catch (error) {
-      console.error("API error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          type: "ai",
-          content: "⚠️ Error: Could not reach the server.",
-          timestamp: new Date(),
-        },
-      ]);
-    } finally {
-      setIsTyping(false);
-    }
-  };
 
   const renderMessageComponent = (componentType) => {
     switch (componentType) {
