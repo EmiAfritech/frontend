@@ -1357,19 +1357,21 @@ export function useAIRecommendation() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: riskName }),  // ✅ match backend schema
+        body: JSON.stringify({ message: riskName }),  
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();  // ✅ correctly parse response
-      return data
+      const data = await response.json();  // Parse JSON
+      return data.response;                // ✅ Return only the string
     } catch (error) {
       console.error("Error fetching AI recommendation:", error);
+      return "⚠️ Unable to fetch recommendation.";
     }
   };
 
   return { recommendation };
 }
+
