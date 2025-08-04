@@ -54,7 +54,7 @@ export function RiskScoreCard() {
                     data-id="v6jc92ijy"
                   >
                     <span className="font-bold">{riskScoreNumber}</span>
-                    <span className="text-xs font-normal">({riskScorePercentage} %)</span>
+                    <span className="text-xs font-normal">({riskScorePercentage}%)</span>
                   </div>
                   <div data-id="7hwprivnl">
                     <h4 className="font-medium text-gray-900" data-id="2uv2jzpzd">{risk.riskName}</h4>
