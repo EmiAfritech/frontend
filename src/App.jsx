@@ -33,6 +33,7 @@ import { AnalyticsAi } from "./frontend-risk-advisor/pages/AnalyticsAi";
 import { SettingsAi } from "./frontend-risk-advisor/pages/SettingsAi";
 import { HomeAi } from "./frontend-risk-advisor/pages/HomeAi";
 import { FeatureDetail } from "./frontend-risk-advisor/pages/FeatureDetail";
+import { RiskScoreCard } from "./frontend-risk-advisor/components/RiskScoreCard";
 
 export default function App() {
   return (
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="features/:feature" element={<FeatureDetail data-id="a4453m1gz"/>} data-id="ihu3vnod0"/>
           <Route path="analytics" element={<AnalyticsAi data-id="zkaqcxnpm"/>} data-id="6906oed92"/>
           <Route path="settings" element={<SettingsAi data-id="rsvp6or3h"/>} data-id="vlqsdhrsh"/>
+          <Route path="/scorecard" element={<RiskScoreCard />} />
         </Route>
       </Routes>
     </BrowserRouter>
