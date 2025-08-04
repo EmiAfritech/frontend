@@ -1348,6 +1348,7 @@ export function useRiskRecentActivity() {
   return { recentActivityList, fetchData };
 }
 
+
 export function useAIRecommendation(riskName) {
   const [recommendation, setRecommendation] = useState("");
 
@@ -1358,13 +1359,18 @@ export function useAIRecommendation(riskName) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(riskName),
+        body: JSON.stringify({ message: riskName }),  // ✅ match backend schema
       });
-      console.log(response,response)
-      setRecommendation(response.data);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();  // ✅ correctly parse response
+      setRecommendation(data.response);    // ✅ use the actual field returned
     } catch (error) {
       console.error("Error fetching AI recommendation:", error);
-      setRecommendation("Unable to fetch recommendation.");
+      setRecommendation("❌ Unable to fetch recommendation.");
     }
   };
 
