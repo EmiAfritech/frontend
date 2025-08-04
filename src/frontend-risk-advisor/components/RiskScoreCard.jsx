@@ -29,12 +29,13 @@ export function RiskScoreCard() {
   };
 
   const aiRecommendation = async (riskId, riskName) => {
+    setSelectedRisk(riskId);
     setLoadingId(riskId);
     try {
       const response = await recommendation(riskName);
       setRecommendationMap((prev) => ({
         ...prev,
-        [riskId]: response,
+        [riskId]: response.response,  // get only the message string
       }));
     } catch (error) {
       console.error("AI Recommendation Error:", error);
@@ -70,9 +71,7 @@ export function RiskScoreCard() {
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
-                  <div
-                    className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-lg ${getRiskColor(riskScoreNumber)}`}
-                  >
+                  <div className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-lg ${getRiskColor(riskScoreNumber)}`}>
                     <span className="font-bold">{riskScoreNumber}</span>
                     <span className="text-xs font-normal">({riskScorePercentage}%)</span>
                   </div>
@@ -120,7 +119,7 @@ export function RiskScoreCard() {
                 </div>
               </div>
 
-              {recommendationMap[risk.id] && (
+              {selectedRisk === risk.id && recommendationMap[risk.id] && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="bg-blue-50 rounded-lg p-3">
                     <h5 className="font-medium text-blue-900 mb-2">AI Recommendation</h5>
