@@ -5,7 +5,7 @@ import { getImpactLevelNumber, getProbabilityLevelNumber } from '../../component
 export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
   const { riskscorecard } = useRiskScoreCard();
-  const { recommendation } = useAIRecommendation(selectedRisk?.riskName);
+  const { recommendation } = useAIRecommendation();
 
 
   const getRiskColor = (score) => {
@@ -26,6 +26,11 @@ export function RiskScoreCard() {
         return 'fa-minus text-gray-500';
     }
   };
+
+  const aiRecommendation = async(name) =>{
+    const response = await recommendation(name)
+    console.log(response,response)
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 my-4">
@@ -48,7 +53,7 @@ export function RiskScoreCard() {
             <div
               key={risk.id}
               className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => setSelectedRisk(isSelected ? null : risk)}
+              onClick={() => aiRecommendation(risk.riskName)}
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">

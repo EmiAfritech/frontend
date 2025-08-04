@@ -1349,10 +1349,8 @@ export function useRiskRecentActivity() {
 }
 
 
-export function useAIRecommendation(riskName) {
-  const [recommendation, setRecommendation] = useState("");
-
-  const fetchData = async () => {
+export function useAIRecommendation() {
+  const recommendation = async (riskName) => {
     try {
       const response = await fetch("https://robotechgh-risk-bot.hf.space/risk-recommendation", {
         method: "POST",
@@ -1367,18 +1365,11 @@ export function useAIRecommendation(riskName) {
       }
 
       const data = await response.json();  // ✅ correctly parse response
-      setRecommendation(data.response);    // ✅ use the actual field returned
+      return data
     } catch (error) {
       console.error("Error fetching AI recommendation:", error);
-      setRecommendation("❌ Unable to fetch recommendation.");
     }
   };
 
-  useEffect(() => {
-    if (riskName) {
-      fetchData();
-    }
-  }, [riskName]);
-
-  return { recommendation, fetchData };
+  return { recommendation };
 }
