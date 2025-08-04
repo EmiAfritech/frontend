@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAIRecommendation, useRiskScoreCard } from '../../api/routes-data';
 import { getImpactLevelNumber, getProbabilityLevelNumber } from '../../component/components/modalforms';
 
@@ -6,6 +6,7 @@ export function RiskScoreCard() {
   const [selectedRisk, setSelectedRisk] = React.useState(null);
   const { riskscorecard } = useRiskScoreCard();
   const { recommendation } = useAIRecommendation();
+  const [recommendationResponse , setRecommendationResponse] = useState("")
 
 
   const getRiskColor = (score) => {
@@ -29,7 +30,7 @@ export function RiskScoreCard() {
 
   const aiRecommendation = async(name) =>{
     const response = await recommendation(name)
-    console.log(response,response)
+    setRecommendationResponse(response)
   }
 
   return (
@@ -101,12 +102,12 @@ export function RiskScoreCard() {
                 </div>
               </div>
 
-              {isSelected && (
+              {recommendationResponse && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="bg-blue-50 rounded-lg p-3">
                     <h5 className="font-medium text-blue-900 mb-2">AI Recommendation</h5>
                     <p className="text-sm text-blue-700">
-                      {recommendation || "Loading..."}
+                      {recommendationResponse || "Loading..."}
                     </p>
                   </div>
                 </div>
