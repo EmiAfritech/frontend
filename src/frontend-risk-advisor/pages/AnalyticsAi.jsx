@@ -1,4 +1,5 @@
 import React from "react";
+import { RiskScoreCard } from "../components/RiskScoreCard";
 
 export function AnalyticsAi() {
   const [activeDemo, setActiveDemo] = React.useState('riskScores');
@@ -27,19 +28,25 @@ export function AnalyticsAi() {
   };
 
   const renderDemoComponent = () => {
-    switch (activeDemo) {
-      case 'riskScores':
-        return <RiskScoreCard data-id="cw2cgyal6" />;
-      case 'mitigation':
-        return <MitigationPlaybook data-id="i3gxpoz81" />;
-      case 'scenarios':
-        return <ScenarioGuidance data-id="za855h9dn" />;
-      case 'alerts':
-        return <AlertDemo data-id="yzertfww3" />;
-      default:
-        return <RiskScoreCard data-id="dhynm9vki" />;
-    }
-  };
+  // Only showing the RiskScoreCard for now
+  return <RiskScoreCard data-id="cw2cgyal6" />;
+
+  /*
+  switch (activeDemo) {
+    case 'riskScores':
+      return <RiskScoreCard data-id="cw2cgyal6" />;
+    case 'mitigation':
+      return <MitigationPlaybook data-id="i3gxpoz81" />;
+    case 'scenarios':
+      return <ScenarioGuidance data-id="za855h9dn" />;
+    case 'alerts':
+      return <AlertDemo data-id="yzertfww3" />;
+    default:
+      return <RiskScoreCard data-id="dhynm9vki" />;
+  }
+  */
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50" data-id="kf5i1alm7">
