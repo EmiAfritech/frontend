@@ -102,7 +102,7 @@ export function AnalyticsAi() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2" data-id="xu33amwvg">Risk Detection</h3>
             <p className="text-sm text-gray-600" data-id="l3ueyn0fa">
-              Automatically identify and score risks on a 0-20 scale
+              Automatically identify and score risks on a 1-25 scale
             </p>
           </div>
 
