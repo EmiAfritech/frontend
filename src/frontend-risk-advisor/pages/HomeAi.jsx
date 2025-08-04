@@ -4,10 +4,11 @@ import { TopNavbar } from "../../component/components/topnavbar";
 import { ChatInterface } from "../components/ChatInterface";
 import { FaRobot } from "react-icons/fa";
 import { Navbar } from "../components/Navbar";
+import { Outlet } from "react-router-dom"
 
 
 export function HomeAi() {
-  const { riskScoreOverview } = useRiskScoreOverview;
+  const { riskScoreOverview } = useRiskScoreOverview();
   const { recentActivityList } = useRiskRecentActivity();
   console.log(riskScoreOverview, riskScoreOverview);
 
@@ -60,6 +61,10 @@ export function HomeAi() {
 
           {/* Navbar Area */}
           <Navbar data-id="jtcgbd42r"  />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <Outlet /> 
+          </div>
 
           {/* Main Chat Interface */}
           <div

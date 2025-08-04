@@ -33,6 +33,7 @@ import { AnalyticsAi } from "./frontend-risk-advisor/pages/AnalyticsAi";
 import { SettingsAi } from "./frontend-risk-advisor/pages/SettingsAi";
 import { HomeAi } from "./frontend-risk-advisor/pages/HomeAi";
 import { FeatureDetail } from "./frontend-risk-advisor/pages/FeatureDetail";
+import { RiskScoreCard } from "./frontend-risk-advisor/components/RiskScoreCard";
 
 export default function App() {
   return (

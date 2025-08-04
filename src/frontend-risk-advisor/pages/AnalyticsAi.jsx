@@ -1,3 +1,9 @@
+import React from "react";
+import { RiskScoreCard } from "../components/RiskScoreCard";
+// import { MitigationPlaybook } from "../components/MitigationPlaybook";
+// import { ScenarioGuidance } from "../components/ScenarioGuidance";
+// import { AlertDemo } from "../components/AlertDemo";
+
 export function AnalyticsAi() {
   const [activeDemo, setActiveDemo] = React.useState('riskScores');
 
@@ -7,24 +13,28 @@ export function AnalyticsAi() {
       description: 'See how AI analyzes and prioritizes risks on a 0-20 scale',
       component: 'RiskScoreCard'
     },
-    mitigation: {
-      title: 'Mitigation Playbooks',
-      description: 'Pre-built response strategies for common risk scenarios',
-      component: 'MitigationPlaybook'
-    },
-    scenarios: {
-      title: 'Scenario Planning',
-      description: 'What-if analysis and predictive risk modeling',
-      component: 'ScenarioGuidance'
-    },
-    alerts: {
-      title: 'Real-time Alerts',
-      description: 'Live monitoring and immediate risk notifications',
-      component: 'AlertDemo'
-    }
+    // mitigation: {
+    //   title: 'Mitigation Playbooks',
+    //   description: 'Pre-built response strategies for common risk scenarios',
+    //   component: 'MitigationPlaybook'
+    // },
+    // scenarios: { 
+    //   title: 'Scenario Planning',
+    //   description: 'What-if analysis and predictive risk modeling',
+    //   component: 'ScenarioGuidance'
+    // },
+    // alerts: {
+    //   title: 'Real-time Alerts',
+    //   description: 'Live monitoring and immediate risk notifications',
+    //   component: 'AlertDemo'
+    // }
   };
 
   const renderDemoComponent = () => {
+    // Only showing the RiskScoreCard for now
+    return <RiskScoreCard data-id="cw2cgyal6" />;
+
+    /*
     switch (activeDemo) {
       case 'riskScores':
         return <RiskScoreCard data-id="cw2cgyal6" />;
@@ -37,6 +47,7 @@ export function AnalyticsAi() {
       default:
         return <RiskScoreCard data-id="dhynm9vki" />;
     }
+    */
   };
 
   return (
@@ -53,15 +64,16 @@ export function AnalyticsAi() {
         <div className="mb-8" data-id="bfcgvbjb6">
           <div className="flex flex-wrap justify-center gap-4" data-id="yafxppx43">
             {Object.entries(demos).map(([key, demo]) =>
-            <button
-              key={key}
-              onClick={() => setActiveDemo(key)}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              activeDemo === key ?
-              'bg-blue-600 text-white shadow-lg' :
-              'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'}`
-              } data-id="oo29bffd9">
-
+              <button
+                key={key}
+                onClick={() => setActiveDemo(key)}
+                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  activeDemo === key
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+                }`}
+                data-id="oo29bffd9"
+              >
                 {demo.title}
               </button>
             )}
@@ -78,7 +90,7 @@ export function AnalyticsAi() {
               {demos[activeDemo].description}
             </p>
           </div>
-          
+
           {renderDemoComponent()}
         </div>
 
@@ -90,7 +102,7 @@ export function AnalyticsAi() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2" data-id="xu33amwvg">Risk Detection</h3>
             <p className="text-sm text-gray-600" data-id="l3ueyn0fa">
-              Automatically identify and score risks on a 0-20 scale
+              Automatically identify and score risks on a 1-25 scale
             </p>
           </div>
 
@@ -104,6 +116,7 @@ export function AnalyticsAi() {
             </p>
           </div>
 
+          {/* These tiles remain visible for now, comment them if you also want them hidden visually */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center" data-id="ugi6q6z3o">
             <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4" data-id="4qo2js0fl">
               <i className="fas fa-shield-alt text-green-600 text-xl" data-id="tk5occpuy"></i>
@@ -125,6 +138,6 @@ export function AnalyticsAi() {
           </div>
         </div>
       </div>
-    </div>);
-
+    </div>
+  );
 }
