@@ -238,7 +238,7 @@ export function ChatInterface() {
 
       {/* Quick Actions */}
       <div className="p-4 border-t bg-gray-50">
-        <div className="flex flex-wrap gap-2 mb-3">
+        {/* <div className="flex flex-wrap gap-2 mb-3">
           {quickActions.map((action, index) => (
             <button
               key={index}
@@ -249,7 +249,7 @@ export function ChatInterface() {
               <span>{action.text}</span>
             </button>
           ))}
-        </div>
+        </div> */}
 
         {/* Input */}
         <div className="flex space-x-2">
