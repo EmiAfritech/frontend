@@ -1,3 +1,5 @@
+import React from "react";
+
 export function AnalyticsAi() {
   const [activeDemo, setActiveDemo] = React.useState('riskScores');
 
