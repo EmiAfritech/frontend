@@ -1349,7 +1349,6 @@ export function useRiskRecentActivity() {
 }
 
 export function useAIRecommendation(riskName) {
-  const { auth } = useContext(AuthContext);
   const [recommendation, setRecommendation] = useState("");
 
   const fetchData = async () => {
@@ -1359,7 +1358,7 @@ export function useAIRecommendation(riskName) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(riskName),
       });
       console.log(response,response)
       setRecommendation(response.data);
