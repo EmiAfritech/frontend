@@ -240,7 +240,8 @@ export function ChatInterface() {
         <div ref={messagesEndRef} data-id="t1iootfbm" />
       </div>
 
-      {/* Quick Actions */}
+      {/* Quick Actions (Commented Out) */}
+      {/* 
       <div
         className="p-4 border-t border-gray-200 bg-gray-50"
         data-id="5pj1rgz05">
@@ -256,26 +257,26 @@ export function ChatInterface() {
             </button>
           ))}
         </div>
+      */}
 
-        {/* Input */}
-        <div className="flex space-x-2" data-id="2g2lvtdud">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-            placeholder="Ask me about risk management..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            data-id="avwu7304k"
-          />
+      {/* Input */}
+      <div className="flex space-x-2" data-id="2g2lvtdud">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+          placeholder="Ask me about risk management..."
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          data-id="avwu7304k"
+        />
 
-          <button
-            onClick={() => handleSendMessage()}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            data-id="yq4h2q6nc">
-            <i className="fas fa-paper-plane" data-id="vpbpktvkd"></i>
-          </button>
-        </div>
+        <button
+          onClick={() => handleSendMessage()}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          data-id="yq4h2q6nc">
+          <i className="fas fa-paper-plane" data-id="vpbpktvkd"></i>
+        </button>
       </div>
     </div>
   );
