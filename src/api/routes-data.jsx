@@ -1354,18 +1354,15 @@ export function useAIRecommendation(riskName) {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(
-        RISKRECOMMENDATION_URL,
-        JSON.stringify({ riskName }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth.token}`, 
-          },
-          withCredentials: true,
-        }
-      );
-      setRecommendation(response.data.recommendation);
+      const response = await fetch("https://robotechgh-risk-bot.hf.space/risk-recommendation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      console.log(response,response)
+      setRecommendation(response.data);
     } catch (error) {
       console.error("Error fetching AI recommendation:", error);
       setRecommendation("Unable to fetch recommendation.");

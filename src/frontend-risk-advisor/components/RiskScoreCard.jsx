@@ -7,6 +7,7 @@ export function RiskScoreCard() {
   const { riskscorecard } = useRiskScoreCard();
   const { recommendation } = useAIRecommendation(selectedRisk?.riskName);
 
+
   const getRiskColor = (score) => {
     if (score >= 16) return 'text-red-600 bg-red-100';
     if (score >= 10) return 'text-orange-600 bg-orange-100';
