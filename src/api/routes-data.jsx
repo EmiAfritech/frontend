@@ -47,7 +47,8 @@ import {
   DELETEUSER_URL,
   RISKSCORECARD_URL,
   RISKSCOREOVERVIEW_URL,
-  RISKRECENTACTIVITY_URL
+  RISKRECENTACTIVITY_URL,
+  RISKRECOMMENDATION_URL
 } from "./routes";
 import axios from "./axios";
 import { AuthContext } from "../context/AuthContext";
@@ -1345,4 +1346,37 @@ export function useRiskRecentActivity() {
   }, []);
 
   return { recentActivityList, fetchData };
+}
+
+export function useAIRecommendation(riskName) {
+  const { auth } = useContext(AuthContext);
+  const [recommendation, setRecommendation] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post(
+        RISKRECOMMENDATION_URL,
+        JSON.stringify({ riskName }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.token}`, 
+          },
+          withCredentials: true,
+        }
+      );
+      setRecommendation(response.data.recommendation);
+    } catch (error) {
+      console.error("Error fetching AI recommendation:", error);
+      setRecommendation("Unable to fetch recommendation.");
+    }
+  };
+
+  useEffect(() => {
+    if (riskName) {
+      fetchData();
+    }
+  }, [riskName]);
+
+  return { recommendation, fetchData };
 }

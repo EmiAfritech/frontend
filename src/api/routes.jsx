@@ -240,3 +240,5 @@ export const RISKSCOREOVERVIEW_URL = "/risk-ai/risk-score-overview"
 // Recent Activity 
 export const RISKRECENTACTIVITY_URL = "/risk-ai/recent-activity"
 
+//ai recommendation
+export const RISKRECOMMENDATION_URL = "/risk-ai/risk-recommendation"
