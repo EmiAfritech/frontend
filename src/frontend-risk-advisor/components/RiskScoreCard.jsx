@@ -3,12 +3,11 @@ import { useAIRecommendation, useRiskScoreCard } from '../../api/routes-data';
 import { getImpactLevelNumber, getProbabilityLevelNumber } from '../../component/components/modalforms';
 
 export function RiskScoreCard() {
-  const [selectedRisk, setSelectedRisk] = useState(null);
+  const [selectedRisk, setSelectedRisk] = React.useState(null);
   const { riskscorecard } = useRiskScoreCard();
   const { recommendation } = useAIRecommendation();
+  const [recommendationResponse , setRecommendationResponse] = useState("")
 
-  const [recommendationMap, setRecommendationMap] = useState({});
-  const [loadingId, setLoadingId] = useState(null);
 
   const getRiskColor = (score) => {
     if (score >= 16) return 'text-red-600 bg-red-100';
@@ -17,6 +16,7 @@ export function RiskScoreCard() {
     return 'text-green-600 bg-green-100';
   };
 
+  
   const getTrendIcon = (trend) => {
     switch (trend) {
       case 'up':
@@ -28,25 +28,10 @@ export function RiskScoreCard() {
     }
   };
 
-  const aiRecommendation = async (riskId, riskName) => {
-    setSelectedRisk(riskId);
-    setLoadingId(riskId);
-    try {
-      const response = await recommendation(riskName);
-      setRecommendationMap((prev) => ({
-        ...prev,
-        [riskId]: response.response,  // get only the message string
-      }));
-    } catch (error) {
-      console.error("AI Recommendation Error:", error);
-      setRecommendationMap((prev) => ({
-        ...prev,
-        [riskId]: "❌ Error fetching recommendation.",
-      }));
-    } finally {
-      setLoadingId(null);
-    }
-  };
+  const aiRecommendation = async(name) =>{
+    const response = await recommendation(name)
+    setRecommendationResponse(response)
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 my-4">
@@ -63,15 +48,19 @@ export function RiskScoreCard() {
           const riskScoreNumber = getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability);
           const riskScorePercentage = Math.min(100, Math.round((riskScoreNumber / 25) * 100));
 
+          const isSelected = selectedRisk?.id === risk.id;
+
           return (
             <div
               key={risk.id}
               className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => aiRecommendation(risk.id, risk.riskName)}
+              onClick={() => aiRecommendation(risk.riskName)}
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
-                  <div className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-lg ${getRiskColor(riskScoreNumber)}`}>
+                  <div
+                    className={`w-12 h-12 rounded-lg flex flex-col items-center justify-center text-lg ${getRiskColor(riskScoreNumber)}`}
+                  >
                     <span className="font-bold">{riskScoreNumber}</span>
                     <span className="text-xs font-normal">({riskScorePercentage}%)</span>
                   </div>
@@ -93,7 +82,6 @@ export function RiskScoreCard() {
                     style={{ width: `${riskScorePercentage}%` }}
                   ></div>
                 </div>
-
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Probability Level</span>
                   <span className="text-sm font-medium">{risk.probability}</span>
@@ -101,30 +89,25 @@ export function RiskScoreCard() {
 
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-sm text-gray-600">Impact Level</span>
-                  <span
-                    className={`text-sm font-medium px-2 py-1 rounded-full ${
-                      risk.impact === 'Critical'
-                        ? 'bg-red-100 text-red-800'
-                        : risk.impact === 'Major'
-                        ? 'bg-orange-100 text-orange-800'
-                        : risk.impact === 'Moderate'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : risk.impact === 'Minor'
-                        ? 'bg-blue-100 text-blue-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}
-                  >
+                  <span className={`text-sm font-medium px-2 py-1 rounded-full ${
+                    risk.impact === 'Critical' ? 'bg-red-100 text-red-800' :
+                    risk.impact === 'Major' ? 'bg-orange-100 text-orange-800' :
+                    risk.impact === 'Moderate' ? 'bg-yellow-100 text-yellow-800' :
+                    risk.impact === 'Minor' ? 'bg-blue-100 text-blue-800' :
+                    risk.impact === 'Insignificant' ? 'bg-gray-100 text-gray-800' :
+                    'bg-yellow-100 text-yellow-800'
+                  }`}>
                     {risk.impact}
                   </span>
                 </div>
               </div>
 
-              {selectedRisk === risk.id && recommendationMap[risk.id] && (
+              {recommendationResponse && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="bg-blue-50 rounded-lg p-3">
                     <h5 className="font-medium text-blue-900 mb-2">AI Recommendation</h5>
                     <p className="text-sm text-blue-700">
-                      {loadingId === risk.id ? "Loading..." : recommendationMap[risk.id]}
+                      {recommendationResponse || "Loading..."}
                     </p>
                   </div>
                 </div>
