@@ -76,8 +76,8 @@ export function RiskScoreCard() {
                   ></div>
                 </div>
                 <div className="flex justify-between items-center" data-id="ebz068frg">
-                  <span className="text-sm text-gray-600" data-id="0bf4a5l3a">Risk Score %</span>
-                  <span className="text-sm font-medium" data-id="4dv8gc2pv">{riskScorePercentage}%</span>
+                  <span className="text-sm text-gray-600" data-id="0bf4a5l3a">Probability Level</span>
+                  <span className="text-sm font-medium" data-id="4dv8gc2pv">{risk.probability}%</span>
                 </div>
 
                 <div className="flex justify-between items-center mt-2" data-id="ii4ryh5i5">
