@@ -14,6 +14,7 @@ export function RiskScoreCard() {
     return 'text-green-600 bg-green-100';
   };
 
+  
   const getTrendIcon = (trend) => {
     switch (trend) {
       case 'up':
