@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom"
 
 
 export function HomeAi() {
-  const { riskScoreOverview } = useRiskScoreOverview;
+  const { riskScoreOverview } = useRiskScoreOverview();
   const { recentActivityList } = useRiskRecentActivity();
   console.log(riskScoreOverview, riskScoreOverview);
 
