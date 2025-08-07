@@ -6,7 +6,7 @@ export function Navbar() {
   const { t } = useTranslation();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center" data-id="aji8xt0t0">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-id="aji8xt0t0">
       <div className="flex justify-between items-center h-16 space-x-10" data-id="p61s9iw30">
 
         {/* Nav Links Centered */}

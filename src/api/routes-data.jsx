@@ -1348,35 +1348,30 @@ export function useRiskRecentActivity() {
   return { recentActivityList, fetchData };
 }
 
-export function useAIRecommendation(riskName) {
-  const { auth } = useContext(AuthContext);
-  const [recommendation, setRecommendation] = useState("");
 
-  const fetchData = async () => {
+export function useAIRecommendation() {
+  const recommendation = async (riskName) => {
     try {
-      const response = await axios.post(
-        RISKRECOMMENDATION_URL,
-        JSON.stringify({ riskName }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth.token}`, 
-          },
-          withCredentials: true,
-        }
-      );
-      setRecommendation(response.data.recommendation);
+      const response = await fetch("https://robotechgh-risk-bot.hf.space/risk-recommendation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: riskName }),  
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();  // Parse JSON
+      return data.response;                // ✅ Return only the string
     } catch (error) {
       console.error("Error fetching AI recommendation:", error);
-      setRecommendation("Unable to fetch recommendation.");
+      return "⚠️ Unable to fetch recommendation.";
     }
   };
 
-  useEffect(() => {
-    if (riskName) {
-      fetchData();
-    }
-  }, [riskName]);
-
-  return { recommendation, fetchData };
+  return { recommendation };
 }
+
