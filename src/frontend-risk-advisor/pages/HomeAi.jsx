@@ -72,10 +72,10 @@ export function HomeAi() {
             data-id="egxrs16g6"
           >
             <div className="grid lg:grid-cols-4 gap-8" data-id="3d3a6ozpl">
-              {/* Chat Interface */}
+              {/* Chat Interface 
               <div className="lg:col-span-3" data-id="mv8qx852i">
                 <ChatInterface data-id="heazulk6r" />
-              </div>
+              </div> */}
 
               {/* Sidebar - Quick Stats */}
               <div className="lg:col-span-1 space-y-6" data-id="t5c89m9dn">

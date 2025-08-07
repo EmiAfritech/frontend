@@ -34,6 +34,7 @@ import { SettingsAi } from "./frontend-risk-advisor/pages/SettingsAi";
 import { HomeAi } from "./frontend-risk-advisor/pages/HomeAi";
 import { FeatureDetail } from "./frontend-risk-advisor/pages/FeatureDetail";
 import { RiskScoreCard } from "./frontend-risk-advisor/components/RiskScoreCard";
+import { ChatTab } from "./frontend-risk-advisor/pages/ChatTab";
 
 export default function App() {
   return (
@@ -79,6 +80,7 @@ export default function App() {
         </Route>
         <Route path="/risk-ai" element={<HomeAi />}>
           <Route path="features/:feature" element={<FeatureDetail data-id="a4453m1gz"/>} data-id="ihu3vnod0"/>
+          <Route path="chat" element={<ChatTab />} />
           <Route path="analytics" element={<AnalyticsAi data-id="zkaqcxnpm"/>} data-id="6906oed92"/>
           <Route path="settings" element={<SettingsAi data-id="rsvp6or3h"/>} data-id="vlqsdhrsh"/>
         </Route>
