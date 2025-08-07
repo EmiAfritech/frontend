@@ -57,7 +57,7 @@ export function RiskScoreCard() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="grid gap-4 md:grid-cols-2">
         {riskscorecard.map((risk) => {
           const riskScoreNumber = getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability);
           const riskScorePercentage = Math.min(100, Math.round((riskScoreNumber / 25) * 100));
@@ -65,7 +65,7 @@ export function RiskScoreCard() {
           return (
             <div
               key={risk.id}
-              className="w-full md:w-[calc(50%-0.5rem)] border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+              className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
               onClick={() => aiRecommendation(risk.id, risk.riskName)}
             >
               <div className="flex items-center justify-between mb-3">
