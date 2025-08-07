@@ -79,6 +79,7 @@ export default function App() {
           <Route path="chatbot" element={<ReportRiskChatbot />} />
         </Route>
         <Route path="/risk-ai" element={<HomeAi />}>
+          <Route index element={<ChatTab />} />
           <Route path="features/:feature" element={<FeatureDetail data-id="a4453m1gz"/>} data-id="ihu3vnod0"/>
           <Route path="chat" element={<ChatTab />} />
           <Route path="analytics" element={<AnalyticsAi data-id="zkaqcxnpm"/>} data-id="6906oed92"/>
