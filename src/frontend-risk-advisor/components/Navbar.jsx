@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { FaRobot } from "react-icons/fa";
 
 export function Navbar() {
   const location = useLocation();
