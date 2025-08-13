@@ -9,7 +9,9 @@ export function Navbar() {
     <div className="sticky top-0 z-50 bg-white shadow">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-id="aji8xt0t0">
       <div className="flex justify-between items-center h-16 space-x-10" data-id="p61s9iw30">
-
+      <div className=" text-3xl" data-id="hzomnuhcf">
+        <FaRobot />
+      </div>
         {/* Nav Links Centered */}
         <div className="flex items-center space-x-8" data-id="g15ff52pv">
           <Link
