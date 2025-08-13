@@ -6,6 +6,7 @@ export function Navbar() {
   const { t } = useTranslation();
 
   return (
+    <div className="sticky top-0 z-50 bg-white shadow">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-id="aji8xt0t0">
       <div className="flex justify-between items-center h-16 space-x-10" data-id="p61s9iw30">
 
@@ -42,6 +43,7 @@ export function Navbar() {
           <span className="text-xs text-green-700 font-medium" data-id="w7ttu0ii1">{t('aiOnline')}</span>
         </div>
       </div>
+    </div>
     </div>
   );
 }
