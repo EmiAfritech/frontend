@@ -10,6 +10,14 @@ export function RiskScoreCard() {
   const [recommendationMap, setRecommendationMap] = useState({});
   const [loadingId, setLoadingId] = useState(null);
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 4;
+
+  const totalPages = Math.ceil(riskscorecard.length / cardsPerPage);
+  const startIndex = (currentPage - 1) * cardsPerPage;
+  const currentCards = riskscorecard.slice(startIndex, startIndex + cardsPerPage);
+
   const getRiskColor = (score) => {
     if (score >= 16) return 'text-red-600 bg-red-100';
     if (score >= 10) return 'text-orange-600 bg-orange-100';
@@ -57,8 +65,9 @@ export function RiskScoreCard() {
         </div>
       </div>
 
+      {/* Cards */}
       <div className="grid gap-4 md:grid-cols-2">
-        {riskscorecard.map((risk) => {
+        {currentCards.map((risk) => {
           const riskScoreNumber = getImpactLevelNumber(risk.impact) * getProbabilityLevelNumber(risk.probability);
           const riskScorePercentage = Math.min(100, Math.round((riskScoreNumber / 25) * 100));
 
@@ -135,6 +144,40 @@ export function RiskScoreCard() {
         })}
       </div>
 
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center space-x-2 mt-6">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+          >
+            ←
+          </button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 rounded-md border ${
+                currentPage === i + 1
+                  ? 'bg-blue-600 text-white border-blue-600'
+                  : 'text-gray-600 hover:bg-gray-100'
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 border rounded-md text-gray-600 hover:bg-gray-100 disabled:opacity-50"
+          >
+            →
+          </button>
+        </div>
+      )}
+
+      {/* Risk Score Scale */}
       <div className="mt-6 p-4 bg-gray-50 rounded-lg">
         <h4 className="font-medium text-gray-900 mb-2">Risk Score Scale</h4>
         <div className="flex items-center space-x-4 text-sm">
