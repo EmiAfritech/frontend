@@ -60,18 +60,20 @@ export function Sidebar() {
   }
 
   // Tab components for each role
-  const AuditorTabs = () => (
+  const AuditorTabs = ({ hasAIAccess }) => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
+      
+      {/* CONDITIONAL RENDERING APPLIED HERE FOR AI ACCESS */}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
     </>
   );
 
   
-  const AdminTabs = () => (
+  const AdminTabs = ({ hasAIAccess }) => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
@@ -83,11 +85,13 @@ export function Sidebar() {
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
+      
+      {/* CONDITIONAL RENDERING APPLIED HERE */}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
     </>
   );
 
-  const GeneralManagerTabs = () => (
+  const GeneralManagerTabs = ({ hasAIAccess }) => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
@@ -99,11 +103,13 @@ export function Sidebar() {
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
       <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
+      
+      {/* CONDITIONAL RENDERING APPLIED HERE */}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
     </>
   );
 
-  const ManagerTabs = () => (
+  const ManagerTabs = ({ hasAIAccess }) => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
@@ -112,7 +118,9 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
+      
+      {/* CONDITIONAL RENDERING APPLIED HERE */}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
     </>
   );
 
@@ -123,17 +131,18 @@ export function Sidebar() {
 
   // Function to render tabs based on the role
   const renderTabsByRole = () => {
+    // --- MODIFIED: Pass the hasAIAccess prop to the components ---
     switch (userRole) {
       case "ADMIN":
-        return <AdminTabs />;
+        return <AdminTabs hasAIAccess={hasAIAccess} />;
       case "GENERALMANAGER":
-        return <GeneralManagerTabs />;
+        return <GeneralManagerTabs hasAIAccess={hasAIAccess} />;
       case "MANAGER":
-        return <ManagerTabs />;
+        return <ManagerTabs hasAIAccess={hasAIAccess} />;
       case "ANALYST":
-        return <AuditorTabs />;
+        return <AuditorTabs hasAIAccess={hasAIAccess} />;
       default:
-        return <AdminTabs />;
+        return <AdminTabs hasAIAccess={hasAIAccess} />;
     }
   };
 
