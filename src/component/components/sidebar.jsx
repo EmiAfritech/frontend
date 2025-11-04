@@ -32,6 +32,9 @@ export function Sidebar() {
   const userRole = Cookies.get("role");
   const location = useLocation();
 
+  // Log the auth object to inspect its contents
+  console.log("Auth object:", auth);
+
   // Determine the organization logo
   const SidebarLogo =
     auth.organizationName === "electricity company of ghana limited"
@@ -43,20 +46,20 @@ export function Sidebar() {
       : afriquetek_logo;
 
   // Component for individual nav links
-  function NavItem  ({ to, icon: Icon, label, active })  {
-    return(
+  function NavItem({ to, icon: Icon, label }) {
+    return (
       <li className="flex flex-row items-center p-3 px-24">
-      <Icon className="icons" />
-      <NavLink
-        to={to}
-        style={({ isActive }) => ({
-          color: isActive ? "greenyellow" : "white",
-        })}
-      >
-        {label}
-      </NavLink>
-    </li>
-    )
+        <Icon className="icons" />
+        <NavLink
+          to={to}
+          style={({ isActive }) => ({
+            color: isActive ? "greenyellow" : "white",
+          })}
+        >
+          {label}
+        </NavLink>
+      </li>
+    );
   }
 
   // Tab components for each role
@@ -66,13 +69,10 @@ export function Sidebar() {
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      
-      {/* CONDITIONAL RENDERING APPLIED HERE FOR AI ACCESS */}
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
     </>
   );
 
-  
   const AdminTabs = ({ hasAIAccess }) => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
@@ -84,10 +84,8 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      
-      {/* CONDITIONAL RENDERING APPLIED HERE */}
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
+      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
     </>
   );
 
@@ -102,10 +100,8 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
-      
-      {/* CONDITIONAL RENDERING APPLIED HERE */}
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
+      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
     </>
   );
 
@@ -118,20 +114,14 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      
-      {/* CONDITIONAL RENDERING APPLIED HERE */}
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />}
+      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
     </>
   );
 
-
-  
-
- 
-
   // Function to render tabs based on the role
   const renderTabsByRole = () => {
-    // --- MODIFIED: Pass the hasAIAccess prop to the components ---
+    // Pass auth.hasAIAccess to the tab components
+    const hasAIAccess = auth.hasAIAccess || false; // Fallback to false if undefined
     switch (userRole) {
       case "ADMIN":
         return <AdminTabs hasAIAccess={hasAIAccess} />;
@@ -145,8 +135,6 @@ export function Sidebar() {
         return <AdminTabs hasAIAccess={hasAIAccess} />;
     }
   };
-
-  
 
   return (
     <div className="sidebar-container bg-[#07073C] h-screen flex flex-col">
@@ -165,8 +153,5 @@ export function Sidebar() {
         </ul>
       </div>
     </div>
-
   );
 }
-
-
