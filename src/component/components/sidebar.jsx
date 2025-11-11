@@ -32,9 +32,6 @@ export function Sidebar() {
   const userRole = Cookies.get("role");
   const location = useLocation();
 
-  // Log the auth object to inspect its contents
-  console.log("Auth object:", auth);
-
   // Determine the organization logo
   const SidebarLogo =
     auth.organizationName === "electricity company of ghana limited"
@@ -62,18 +59,18 @@ export function Sidebar() {
     );
   }
 
-  // Tab components for each role
-  const AuditorTabs = ({ hasAIAccess }) => (
+  // Tab components for each role (AI tab always included)
+  const AuditorTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
       <NavItem to="/risk-mitigation" icon={FaPencilAlt} label={t("mitigateRisk")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
-  const AdminTabs = ({ hasAIAccess }) => (
+  const AdminTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
@@ -84,12 +81,12 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
+      <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
-  const GeneralManagerTabs = ({ hasAIAccess }) => (
+  const GeneralManagerTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/governance" icon={RiGovernmentLine} label="Governance" />
@@ -100,12 +97,12 @@ export function Sidebar() {
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/department" icon={FaUsers} label={t("departments")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      <NavItem to="/compliance" icon={MdCheckCircle} label="Compliance" />
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
+      <NavItem to="/complaince" icon={MdCheckCircle} label="Compliance" />
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
-  const ManagerTabs = ({ hasAIAccess }) => (
+  const ManagerTabs = () => (
     <>
       <NavItem to="/dashboard" icon={FaThList} label={t("overview")} />
       <NavItem to="/risk-identification" icon={FaRegShareSquare} label={t("newRisk")} />
@@ -114,25 +111,23 @@ export function Sidebar() {
       <NavItem to="/risk-monitoring" icon={FaClipboardCheck} label={t("monitorRisk")} />
       <NavItem to="/employees" icon={FaUserFriends} label={t("users")} />
       <NavItem to="/report" icon={FaCopy} label={t("report")} />
-      {hasAIAccess && <NavItem to="/risk-ai" icon={FaRobot} label="Risk-AI" />}
+      <NavItem to="/risk-ai" icon={FaRobot} label="Risk-Ai" />
     </>
   );
 
   // Function to render tabs based on the role
   const renderTabsByRole = () => {
-    // Pass auth.hasAIAccess to the tab components
-    const hasAIAccess = auth.hasAIAccess || false; // Fallback to false if undefined
     switch (userRole) {
       case "ADMIN":
-        return <AdminTabs hasAIAccess={hasAIAccess} />;
+        return <AdminTabs />;
       case "GENERALMANAGER":
-        return <GeneralManagerTabs hasAIAccess={hasAIAccess} />;
+        return <GeneralManagerTabs />;
       case "MANAGER":
-        return <ManagerTabs hasAIAccess={hasAIAccess} />;
+        return <ManagerTabs />;
       case "ANALYST":
-        return <AuditorTabs hasAIAccess={hasAIAccess} />;
+        return <AuditorTabs />;
       default:
-        return <AdminTabs hasAIAccess={hasAIAccess} />;
+        return <AdminTabs />;
     }
   };
 
