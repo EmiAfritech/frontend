@@ -176,7 +176,7 @@ export function ChatInterface() {
             <FaRobot className="text-white text-xl" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900">Risk Advisor AI</h3>
+            <h3 className="font-semibold text-gray-900">{t('analyticsDashboard')}</h3>
             <p className="text-sm text-gray-500">Online • Ready to assist</p>
           </div>
         </div>
