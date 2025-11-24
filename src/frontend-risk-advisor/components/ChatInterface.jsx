@@ -176,13 +176,13 @@ export function ChatInterface() {
             <FaRobot className="text-white text-xl" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900">{t('analyticsDashboard')}</h3>
-            <p className="text-sm text-gray-500">Online • Ready to assist</p>
+            <h3 className="font-semibold text-gray-900">{t('riskAdvisorAI')}</h3>
+            <p className="text-sm text-gray-500">{t('onlineReadyToAssist')}</p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span className="text-xs text-green-600 font-medium">Active</span>
+          <span className="text-xs text-green-600 font-medium">{t('active')}</span>
         </div>
       </div>
 
