@@ -186,8 +186,12 @@ i18n.use(initReactI18next).init({
         contentPermission: "You do not have permission to view this content",
 
         //Risk Ai translations
-        chatAssistant_en: "Chat Assistant",
-        analyticsDashboard_en: "Analytics Dashboard",
+        chatAssistant: "Chat Assistant",
+        analyticsDashboard: "Analytics Dashboard",
+        riskAdvisorAI: "Risk Advisor AI",
+        onlineReadyToAssist: "Online • Ready to assist",
+        active: "Active",
+        aiOnline: "AI Online",
 
 
 
@@ -375,11 +379,12 @@ i18n.use(initReactI18next).init({
         contentPermission: "Vous n'avez pas la permission de voir ce contenu.",
 
         //Risk Ai translations 
-        chatAssistant_fr: "Assistant de discussion",
-        analyticsDashboard_fr: "Tableau de bord analytique"
-
-
-       
+        chatAssistant: "Assistant de discussion",
+        analyticsDashboard: "Tableau de bord analytique",
+        riskAdvisorAI: "Conseiller en risques IA",
+        onlineReadyToAssist: "En ligne • Prêt à aider",
+        active: "Actif",
+        aiOnline: "IA en ligne",
 
       },
     },
