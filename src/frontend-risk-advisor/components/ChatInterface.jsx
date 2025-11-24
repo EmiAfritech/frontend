@@ -4,8 +4,10 @@ import { MitigationPlaybook } from "./MitigationPlaybo";
 import { ScenarioGuidance } from "./ScenarioGuidance";
 import { AlertDemo } from "./AlertDemo";
 import { FaRobot } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export function ChatInterface() {
+  const { t } = useTranslation();
   const [messages, setMessages] = React.useState([
     {
       id: 1,
