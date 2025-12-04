@@ -3,7 +3,7 @@ import { RiskScoreCard } from "./RiskScoreCard";
 import { MitigationPlaybook } from "./MitigationPlaybo";
 import { ScenarioGuidance } from "./ScenarioGuidance";
 import { AlertDemo } from "./AlertDemo";
-import { FaRobot } from "react-icons/fa";
+import { FaPaperPlane, FaRobot,  } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export function ChatInterface() {
@@ -275,7 +275,7 @@ export function ChatInterface() {
             onClick={handleInputSubmit}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            <Icon className="fas fa-paper-plane"></Icon>
+            <FaPaperPlane className="text-white text-xl" />
           </button>
         </div>
       </div>
