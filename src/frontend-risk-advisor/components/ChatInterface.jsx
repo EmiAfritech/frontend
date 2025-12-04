@@ -139,7 +139,7 @@ export function ChatInterface() {
 
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error("API error:", error);
+      console.error("APIs error:", error);
       setMessages((prev) => [
         ...prev,
         {
