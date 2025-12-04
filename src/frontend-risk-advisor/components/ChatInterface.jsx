@@ -120,7 +120,8 @@ export function ChatInterface() {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      const data = response;
+      console.log("API response data:", data);
 
       const aiMessage = {
         id: Date.now(),
