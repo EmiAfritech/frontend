@@ -3,7 +3,7 @@ import { RiskScoreCard } from "./RiskScoreCard";
 import { MitigationPlaybook } from "./MitigationPlaybo";
 import { ScenarioGuidance } from "./ScenarioGuidance";
 import { AlertDemo } from "./AlertDemo";
-import { FaPaperPlane, FaRobot,  } from "react-icons/fa";
+import { FaPaperPlane, FaRobot  } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export function ChatInterface() {
