@@ -275,7 +275,7 @@ export function ChatInterface() {
             onClick={handleInputSubmit}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            <i className="fas fa-paper-plane"></i>
+            <Icon className="fas fa-paper-plane"></Icon>
           </button>
         </div>
       </div>
