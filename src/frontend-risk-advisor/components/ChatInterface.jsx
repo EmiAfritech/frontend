@@ -123,16 +123,23 @@ export function ChatInterface() {
       const data = response;
       console.log("API response data:", data);
 
+      // const aiMessage = {
+      //   id: Date.now(),
+      //   type: "ai",
+      //   content: data.response,
+      //   timestamp: new Date(),
+      // };
+
       const aiMessage = {
         id: Date.now(),
         type: "ai",
-        content: data.response,
+        content: data,
         timestamp: new Date(),
       };
 
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error("APIs error:", error);
+      console.error("API error:", error);
       setMessages((prev) => [
         ...prev,
         {
