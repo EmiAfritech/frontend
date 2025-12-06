@@ -3,7 +3,7 @@ import { RiskScoreCard } from "./RiskScoreCard";
 import { MitigationPlaybook } from "./MitigationPlaybo";
 import { ScenarioGuidance } from "./ScenarioGuidance";
 import { AlertDemo } from "./AlertDemo";
-import { FaPaperPlane, FaRobot  } from "react-icons/fa";
+import { FaRobot } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 export function ChatInterface() {
@@ -120,26 +120,18 @@ export function ChatInterface() {
         body: JSON.stringify(payload),
       });
 
-      const data = response;
-      console.log("API response data:", data);
-
-      // const aiMessage = {
-      //   id: Date.now(),
-      //   type: "ai",
-      //   content: data.response,
-      //   timestamp: new Date(),
-      // };
+      const data = await response.json();
 
       const aiMessage = {
         id: Date.now(),
         type: "ai",
-        content: data,
+        content: data.response,
         timestamp: new Date(),
       };
 
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error("APIs error:", error);
+      console.error("API error:", error);
       setMessages((prev) => [
         ...prev,
         {
@@ -275,7 +267,7 @@ export function ChatInterface() {
             onClick={handleInputSubmit}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            <FaPaperPlane className="text-white text-xl" />
+            <i className="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
